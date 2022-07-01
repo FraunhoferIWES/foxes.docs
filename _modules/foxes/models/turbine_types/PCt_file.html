@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>foxes.models.turbine_types.PCt_file &mdash; foxes 0.1.2
+ documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> foxes
+          </a>
+              <div class="version">
+                0.1.2
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#install-foxes-for-users">Install foxes (for users)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#install-foxes-for-developers">Install foxes (for developers)</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../notebooks/examples.html#The-model-book">The model book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../notebooks/examples.html#Single-row-of-turbines">Single row of turbines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../notebooks/examples.html#Timeseries-data">Timeseries data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../notebooks/examples.html#Heterogeneous-flow">Heterogeneous flow</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.algorithms.html">foxes.algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.algorithms.downwind.html">foxes.algorithms.downwind</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.algorithms.downwind.downwind.html">foxes.algorithms.downwind.downwind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.algorithms.downwind.models.html">foxes.algorithms.downwind.models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.constants.html">foxes.constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.core.html">foxes.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.algorithm.html">foxes.core.algorithm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.algorithm.Algorithm.html">foxes.core.algorithm.Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.data.html">foxes.core.data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.data.Data.html">foxes.core.data.Data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.data_calc_model.html">foxes.core.data_calc_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.data_calc_model.DataCalcModel.html">foxes.core.data_calc_model.DataCalcModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_controller.html">foxes.core.farm_controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_controller.FarmController.html">foxes.core.farm_controller.FarmController</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_data_model.html">foxes.core.farm_data_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_data_model.FarmDataModel.html">foxes.core.farm_data_model.FarmDataModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_data_model_list.html">foxes.core.farm_data_model_list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_data_model_list.FarmDataModelList.html">foxes.core.farm_data_model_list.FarmDataModelList</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_model.html">foxes.core.farm_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_model.FarmModel.html">foxes.core.farm_model.FarmModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.model.html">foxes.core.model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.model.Model.html">foxes.core.model.Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.partial_wakes_model.html">foxes.core.partial_wakes_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.partial_wakes_model.PartialWakesModel.html">foxes.core.partial_wakes_model.PartialWakesModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.point_data_model.html">foxes.core.point_data_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.point_data_model.PointDataModel.html">foxes.core.point_data_model.PointDataModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.point_data_model_list.html">foxes.core.point_data_model_list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.point_data_model_list.PointDataModelList.html">foxes.core.point_data_model_list.PointDataModelList</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.rotor_model.html">foxes.core.rotor_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.rotor_model.RotorModel.html">foxes.core.rotor_model.RotorModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.states.html">foxes.core.states</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.states.States.html">foxes.core.states.States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.turbine.html">foxes.core.turbine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.turbine.Turbine.html">foxes.core.turbine.Turbine</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.turbine_model.html">foxes.core.turbine_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.turbine_model.TurbineModel.html">foxes.core.turbine_model.TurbineModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.turbine_type.html">foxes.core.turbine_type</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.turbine_type.TurbineType.html">foxes.core.turbine_type.TurbineType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.vertical_profile.html">foxes.core.vertical_profile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.vertical_profile.VerticalProfile.html">foxes.core.vertical_profile.VerticalProfile</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.wake_frame.html">foxes.core.wake_frame</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.wake_frame.WakeFrame.html">foxes.core.wake_frame.WakeFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.wake_model.html">foxes.core.wake_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.wake_model.WakeModel.html">foxes.core.wake_model.WakeModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.wake_superposition.html">foxes.core.wake_superposition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.wake_superposition.WakeSuperposition.html">foxes.core.wake_superposition.WakeSuperposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.wind_farm.html">foxes.core.wind_farm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.wind_farm.WindFarm.html">foxes.core.wind_farm.WindFarm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.data.html">foxes.data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.data.farms.html">foxes.data.farms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.data.parse.html">foxes.data.parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.data.parse.parse_Pct_file_name.html">foxes.data.parse.parse_Pct_file_name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.data.power_ct_curves.html">foxes.data.power_ct_curves</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.data.states.html">foxes.data.states</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.data.static_data.html">foxes.data.static_data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.data.static_data.StaticData.html">foxes.data.static_data.StaticData</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.input.html">foxes.input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.input.farm_layout.html">foxes.input.farm_layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.farm_layout.add_from_csv.html">foxes.input.farm_layout.add_from_csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.farm_layout.add_from_file.html">foxes.input.farm_layout.add_from_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.farm_layout.add_from_json.html">foxes.input.farm_layout.add_from_json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.farm_layout.add_grid.html">foxes.input.farm_layout.add_grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.farm_layout.add_row.html">foxes.input.farm_layout.add_row</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.html">foxes.input.states</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.create.html">foxes.input.states.create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.field_data_nc.html">foxes.input.states.field_data_nc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.scan_ws.html">foxes.input.states.scan_ws</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.single.html">foxes.input.states.single</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.states_table.html">foxes.input.states.states_table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.timeseries.html">foxes.input.states.timeseries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.models.html">foxes.models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.farm_controllers.html">foxes.models.farm_controllers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.farm_controllers.basic.html">foxes.models.farm_controllers.basic</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.farm_models.html">foxes.models.farm_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.farm_models.turbine2farm.html">foxes.models.farm_models.turbine2farm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.model_book.html">foxes.models.model_book</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.model_book.ModelBook.html">foxes.models.model_book.ModelBook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.html">foxes.models.partial_wakes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.axiwake.html">foxes.models.partial_wakes.axiwake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.distsliced.html">foxes.models.partial_wakes.distsliced</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.grid.html">foxes.models.partial_wakes.grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.mapped.html">foxes.models.partial_wakes.mapped</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.rotor_points.html">foxes.models.partial_wakes.rotor_points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.top_hat.html">foxes.models.partial_wakes.top_hat</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.point_models.html">foxes.models.point_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.rotor_models.html">foxes.models.rotor_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.rotor_models.centre.html">foxes.models.rotor_models.centre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.rotor_models.grid.html">foxes.models.rotor_models.grid</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_models.html">foxes.models.turbine_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_models.kTI_model.html">foxes.models.turbine_models.kTI_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_types.PCt_file.html">foxes.models.turbine_types.PCt_file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.vertical_profiles.html">foxes.models.vertical_profiles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.vertical_profiles.abl_log.html">foxes.models.vertical_profiles.abl_log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.vertical_profiles.uniform.html">foxes.models.vertical_profiles.uniform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_models.dist_sliced.html">foxes.models.wake_models.dist_sliced</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_superpositions.html">foxes.models.wake_superpositions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_superpositions.linear.html">foxes.models.wake_superpositions.linear</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_superpositions.max.html">foxes.models.wake_superpositions.max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_superpositions.quadratic.html">foxes.models.wake_superpositions.quadratic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_superpositions.ti_superp.html">foxes.models.wake_superpositions.ti_superp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.output.html">foxes.output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.output.farm_layout.html">foxes.output.farm_layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.output.farm_layout.FarmLayoutOutput.html">foxes.output.farm_layout.FarmLayoutOutput</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.output.flow_plots_2d.html">foxes.output.flow_plots_2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.output.flow_plots_2d.FlowPlots2D.html">foxes.output.flow_plots_2d.FlowPlots2D</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.output.output.html">foxes.output.output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.output.output.Output.html">foxes.output.output.Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.tools.html">foxes.tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.tools.abl.html">foxes.tools.abl</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.abl.neutral.html">foxes.tools.abl.neutral</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.abl.stable.html">foxes.tools.abl.stable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.abl.unstable.html">foxes.tools.abl.unstable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.tools.data_book.html">foxes.tools.data_book</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.data_book.DataBook.html">foxes.tools.data_book.DataBook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.tools.dict.html">foxes.tools.dict</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.dict.Dict.html">foxes.tools.dict.Dict</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.tools.helpers.html">foxes.tools.helpers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.helpers.all_subclasses.html">foxes.tools.helpers.all_subclasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.tools.pandas_file_helper.html">foxes.tools.pandas_file_helper</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.pandas_file_helper.PandasFileHelper.html">foxes.tools.pandas_file_helper.PandasFileHelper</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.tools.two_circles.html">foxes.tools.two_circles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.two_circles.area.html">foxes.tools.two_circles.area</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.two_circles.calc_area.html">foxes.tools.two_circles.calc_area</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.tools.wind_dir.html">foxes.tools.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.wind_dir.uv2wd.html">foxes.tools.wind_dir.uv2wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.wind_dir.wd2uv.html">foxes.tools.wind_dir.wd2uv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.wind_dir.wd2wdvec.html">foxes.tools.wind_dir.wd2wdvec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.tools.wind_dir.wdvec2wd.html">foxes.tools.wind_dir.wdvec2wd</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.variables.html">foxes.variables</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">foxes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>foxes.models.turbine_types.PCt_file</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for foxes.models.turbine_types.PCt_file</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">TurbineType</span>
+<span class="kn">from</span> <span class="nn">foxes.tools</span> <span class="kn">import</span> <span class="n">PandasFileHelper</span>
+<span class="kn">from</span> <span class="nn">foxes.data</span> <span class="kn">import</span> <span class="n">PCTCURVE</span><span class="p">,</span> <span class="n">parse_Pct_file_name</span>
+<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
+
+
+<div class="viewcode-block" id="PCtFile"><a class="viewcode-back" href="../../../../_autosummary/foxes.models.turbine_types.PCt_file.PCtFile.html#foxes.models.turbine_types.PCt_file.PCtFile">[docs]</a><span class="k">class</span> <span class="nc">PCtFile</span><span class="p">(</span><span class="n">TurbineType</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate power and ct by interpolating</span>
+<span class="sd">    from power-ct-curve data file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_source : str or pandas.DataFrame</span>
+<span class="sd">        The file path, static name, or data</span>
+<span class="sd">    col_ws : str</span>
+<span class="sd">        The wind speed column</span>
+<span class="sd">    col_P : str</span>
+<span class="sd">        The power column</span>
+<span class="sd">    col_ct : str</span>
+<span class="sd">        The ct column</span>
+<span class="sd">    rho: float, optional</span>
+<span class="sd">        The air densitiy for which the data is valid</span>
+<span class="sd">        or None for no correction</span>
+<span class="sd">    flag_yawm: bool</span>
+<span class="sd">        Flag for yaw misalignment consideration</span>
+<span class="sd">    p_ct: float</span>
+<span class="sd">        The exponent for yaw dependency of ct</span>
+<span class="sd">    p_P: float</span>
+<span class="sd">        The exponent for yaw dependency of P</span>
+<span class="sd">    var_ws_ct : str</span>
+<span class="sd">        The wind speed variable for ct lookup</span>
+<span class="sd">    var_ws_P : str</span>
+<span class="sd">        The wind speed variable for power lookup</span>
+<span class="sd">    **parameters : dict, optional</span>
+<span class="sd">        Parameters for pandas file reading</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    source : str or pandas.DataFrame</span>
+<span class="sd">        The file path, static name, or data</span>
+<span class="sd">    col_ws : str</span>
+<span class="sd">        The wind speed column</span>
+<span class="sd">    col_P : str</span>
+<span class="sd">        The power column</span>
+<span class="sd">    col_ct : str</span>
+<span class="sd">        The ct column</span>
+<span class="sd">    rho: float</span>
+<span class="sd">        The air densitiy for which the data is valid</span>
+<span class="sd">        or None for no correction</span>
+<span class="sd">    flag_yawm: bool</span>
+<span class="sd">        Flag for yaw misalignment consideration</span>
+<span class="sd">    WSCT : str</span>
+<span class="sd">        The wind speed variable for ct lookup</span>
+<span class="sd">    WSP : str</span>
+<span class="sd">        The wind speed variable for power lookup</span>
+<span class="sd">    rpars : dict, optional</span>
+<span class="sd">        Parameters for pandas file reading</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PCtFile.__init__"><a class="viewcode-back" href="../../../../_autosummary/foxes.models.turbine_types.PCt_file.PCtFile.html#foxes.models.turbine_types.PCt_file.PCtFile.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">data_source</span><span class="p">,</span>
+        <span class="n">col_ws</span><span class="o">=</span><span class="s2">&quot;ws&quot;</span><span class="p">,</span>
+        <span class="n">col_P</span><span class="o">=</span><span class="s2">&quot;P&quot;</span><span class="p">,</span>
+        <span class="n">col_ct</span><span class="o">=</span><span class="s2">&quot;ct&quot;</span><span class="p">,</span>
+        <span class="n">rho</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">flag_yawm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">p_ct</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">p_P</span><span class="o">=</span><span class="mf">1.88</span><span class="p">,</span>
+        <span class="n">var_ws_ct</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">REWS2</span><span class="p">,</span>
+        <span class="n">var_ws_P</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">REWS3</span><span class="p">,</span>
+        <span class="n">pd_file_read_pars</span><span class="o">=</span><span class="p">{},</span>
+        <span class="o">**</span><span class="n">parameters</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_source</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">pars</span> <span class="o">=</span> <span class="n">parse_Pct_file_name</span><span class="p">(</span><span class="n">data_source</span><span class="p">)</span>
+            <span class="n">pars</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pars</span> <span class="o">=</span> <span class="n">parameters</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">pars</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">data_source</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_ws</span> <span class="o">=</span> <span class="n">col_ws</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_P</span> <span class="o">=</span> <span class="n">col_P</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_ct</span> <span class="o">=</span> <span class="n">col_ct</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flag_yawm</span> <span class="o">=</span> <span class="n">flag_yawm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_ct</span> <span class="o">=</span> <span class="n">p_ct</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_P</span> <span class="o">=</span> <span class="n">p_P</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">WSCT</span> <span class="o">=</span> <span class="n">var_ws_ct</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">WSP</span> <span class="o">=</span> <span class="n">var_ws_P</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rpars</span> <span class="o">=</span> <span class="n">pd_file_read_pars</span></div>
+
+<div class="viewcode-block" id="PCtFile.output_farm_vars"><a class="viewcode-back" href="../../../../_autosummary/foxes.models.turbine_types.PCt_file.PCtFile.html#foxes.models.turbine_types.PCt_file.PCtFile.output_farm_vars">[docs]</a>    <span class="k">def</span> <span class="nf">output_farm_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The variables which are being modified by the model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        output_vars : list of str</span>
+<span class="sd">            The output variable names</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PCtFile.initialize"><a class="viewcode-back" href="../../../../_autosummary/foxes.models.turbine_types.PCt_file.PCtFile.html#foxes.models.turbine_types.PCt_file.PCtFile.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">st_sel</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        st_sel : numpy.ndarray of bool</span>
+<span class="sd">            The state-turbine selection,</span>
+<span class="sd">            shape: (n_states, n_turbines)</span>
+<span class="sd">        verbosity : int</span>
+<span class="sd">            The verbosity level</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fpath</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">dbook</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span><span class="n">PCTCURVE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">check_raw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">PandasFileHelper</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">rpars</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">col_ws</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_ws</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_P</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">col_P</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_ct</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">col_ct</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">st_sel</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PCtFile.calculate"><a class="viewcode-back" href="../../../../_autosummary/foxes.models.turbine_types.PCt_file.PCtFile.html#foxes.models.turbine_types.PCt_file.PCtFile.calculate">[docs]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">st_sel</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; &quot;</span>
+<span class="sd">        The main model calculation.</span>
+
+<span class="sd">        This function is executed on a single chunk of data,</span>
+<span class="sd">        all computations should be based on numpy arrays.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">            The model data</span>
+<span class="sd">        fdata : foxes.core.Data</span>
+<span class="sd">            The farm data</span>
+<span class="sd">        st_sel : numpy.ndarray of bool</span>
+<span class="sd">            The state-turbine selection,</span>
+<span class="sd">            shape: (n_states, n_turbines)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        results : dict</span>
+<span class="sd">            The resulting data, keys: output variable str.</span>
+<span class="sd">            Values: numpy.ndarray with shape (n_states, n_turbines)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rews2</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">WSCT</span><span class="p">][</span><span class="n">st_sel</span><span class="p">]</span>
+        <span class="n">rews3</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">WSP</span><span class="p">][</span><span class="n">st_sel</span><span class="p">]</span>
+
+        <span class="c1"># apply air density correction:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="c1"># correct wind speed by air density, such</span>
+            <span class="c1"># that in the partial load region the</span>
+            <span class="c1"># correct value is reconstructed:</span>
+            <span class="n">rho</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">][</span><span class="n">st_sel</span><span class="p">]</span>
+            <span class="n">rews2</span> <span class="o">*=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">/</span> <span class="n">rho</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+            <span class="n">rews3</span> <span class="o">*=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">/</span> <span class="n">rho</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span>
+            <span class="k">del</span> <span class="n">rho</span>
+
+        <span class="c1"># in yawed case, calc yaw corrected wind speed:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">flag_yawm</span><span class="p">:</span>
+
+            <span class="c1"># calculate corrected wind speed wsc,</span>
+            <span class="c1"># gives ws**3 * cos**p_P in partial load region</span>
+            <span class="c1"># and smoothly deals with full load region:</span>
+            <span class="n">yawm</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">YAWM</span><span class="p">][</span><span class="n">st_sel</span><span class="p">]</span>
+            <span class="n">cosm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">yawm</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+            <span class="n">rews2</span> <span class="o">*=</span> <span class="p">(</span><span class="n">cosm</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">p_ct</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+            <span class="n">rews3</span> <span class="o">*=</span> <span class="p">(</span><span class="n">cosm</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">p_P</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span>
+            <span class="k">del</span> <span class="n">yawm</span><span class="p">,</span> <span class="n">cosm</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">:</span> <span class="n">fdata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">fdata</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">WSCT</span><span class="p">])),</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">:</span> <span class="n">fdata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">fdata</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">WSP</span><span class="p">])),</span>
+        <span class="p">}</span>
+
+        <span class="n">out</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">][</span><span class="n">st_sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span>
+            <span class="n">rews3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ws</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_P</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.0</span>
+        <span class="p">)</span>
+        <span class="n">out</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">][</span><span class="n">st_sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span>
+            <span class="n">rews2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ws</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ct</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.0</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="PCtFile.finalize"><a class="viewcode-back" href="../../../../_autosummary/foxes.models.turbine_types.PCt_file.PCtFile.html#foxes.models.turbine_types.PCt_file.PCtFile.finalize">[docs]</a>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">st_sel</span><span class="p">,</span> <span class="n">clear_mem</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Finalizes the model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        results : xarray.Dataset</span>
+<span class="sd">            The calculation results</span>
+<span class="sd">        st_sel : numpy.ndarray of bool</span>
+<span class="sd">            The state-turbine selection,</span>
+<span class="sd">            shape: (n_states, n_turbines)</span>
+<span class="sd">        clear_mem : bool</span>
+<span class="sd">            Flag for deleting model data and</span>
+<span class="sd">            resetting initialization flag</span>
+<span class="sd">        verbosity : int</span>
+<span class="sd">            The verbosity level</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">clear_mem</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ws</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_P</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ct</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">clear_mem</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Fraunhofer IWES.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #009879;
+    }
+  </style>
+
+
+</body>
+</html>
