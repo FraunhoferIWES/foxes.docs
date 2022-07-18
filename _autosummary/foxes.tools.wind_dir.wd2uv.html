@@ -49,8 +49,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#install-foxes-for-users">Install foxes (for users)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#install-foxes-for-developers">Install foxes (for developers)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#virtual-python-environment">Virtual Python environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#standard-users">Standard users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developers">Developers</a></li>
 </ul>
 </li>
 </ul>
@@ -321,6 +323,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-1-alpha">v0.1.1-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-2-alpha">v0.1.2-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-3-alpha">v0.1.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-4-alpha">v0.1.4-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -377,15 +380,19 @@
 }
 </style>
 <section id="foxes-tools-wind-dir-wd2uv">
-<h1>foxes.tools.wind_dir.wd2uv<a class="headerlink" href="#foxes-tools-wind-dir-wd2uv" title="Permalink to this heading"></a></h1>
+<h1>foxes.tools.wind_dir.wd2uv<a class="headerlink" href="#foxes-tools-wind-dir-wd2uv" title="Permalink to this heading"></a>
+</h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="foxes.tools.wind_dir.wd2uv">
-<span class="sig-prename descclassname"><span class="pre">foxes.tools.wind_dir.</span></span><span class="sig-name descname"><span class="pre">wd2uv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/tools/wind_dir.html#wd2uv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.tools.wind_dir.wd2uv" title="Permalink to this definition"></a></dt>
-<dd><p>Calculate wind vectors from wind directions
+<span class="sig-prename descclassname"><span class="pre">foxes.tools.wind_dir.</span></span><span class="sig-name descname"><span class="pre">wd2uv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/tools/wind_dir.html#wd2uv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.tools.wind_dir.wd2uv" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Calculate wind vectors from wind directions
 in degrees.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dd class="field-odd">
+<ul class="simple">
 <li><p><strong>wd</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a>) – Wind direction array (any shape)</p></li>
 <li><p><strong>ws</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)"><em>numpy.ndarray</em></a>) – The wind speed. Has to broadcast against wd.</p></li>
 <li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Axis location where to insert the (u, v) components
@@ -393,15 +400,19 @@ into the shape of wd</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>uv</strong> – The wind vectors</p>
+<dd class="field-even">
+<p><strong>uv</strong> – The wind vectors</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
+<dd class="field-odd">
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.23)">numpy.ndarray</a></p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 </section>
+
 
 
            </div>

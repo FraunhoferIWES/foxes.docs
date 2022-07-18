@@ -49,8 +49,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#install-foxes-for-users">Install foxes (for users)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#install-foxes-for-developers">Install foxes (for developers)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#virtual-python-environment">Virtual Python environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#standard-users">Standard users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developers">Developers</a></li>
 </ul>
 </li>
 </ul>
@@ -321,6 +323,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-1-alpha">v0.1.1-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-2-alpha">v0.1.2-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-3-alpha">v0.1.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-4-alpha">v0.1.4-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -377,130 +380,173 @@
 }
 </style>
 <section id="foxes-core-farm-controller-farmcontroller">
-<h1>foxes.core.farm_controller.FarmController<a class="headerlink" href="#foxes-core-farm-controller-farmcontroller" title="Permalink to this heading"></a></h1>
+<h1>foxes.core.farm_controller.FarmController<a class="headerlink" href="#foxes-core-farm-controller-farmcontroller" title="Permalink to this heading"></a>
+</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">foxes.core.farm_controller.</span></span><span class="sig-name descname"><span class="pre">FarmController</span></span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="foxes.core.farm_data_model.FarmDataModel.html#foxes.core.farm_data_model.FarmDataModel" title="foxes.core.farm_data_model.FarmDataModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">FarmDataModel</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">foxes.core.farm_controller.</span></span><span class="sig-name descname"><span class="pre">FarmController</span></span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Bases: <a class="reference internal" href="foxes.core.farm_data_model.FarmDataModel.html#foxes.core.farm_data_model.FarmDataModel" title="foxes.core.farm_data_model.FarmDataModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">FarmDataModel</span></code></a></p>
 <p>Analyses selected turbine models and handles their call.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>pars</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Parameters for the turbine models, stored
+<dd class="field-odd">
+<p><strong>pars</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Parameters for the turbine models, stored
 under their respective name</p>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.turbine_types">
-<span class="sig-name descname"><span class="pre">turbine_types</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.turbine_types" title="Permalink to this definition"></a></dt>
-<dd><p>The turbine type of each turbine</p>
+<span class="sig-name descname"><span class="pre">turbine_types</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.turbine_types" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The turbine type of each turbine</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of foxes.core.TurbineType</p>
+<dd class="field-odd">
+<p>list of foxes.core.TurbineType</p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.turbine_model_names">
-<span class="sig-name descname"><span class="pre">turbine_model_names</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.turbine_model_names" title="Permalink to this definition"></a></dt>
-<dd><p>Names of all turbine models found in the farm</p>
+<span class="sig-name descname"><span class="pre">turbine_model_names</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.turbine_model_names" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Names of all turbine models found in the farm</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of str</p>
+<dd class="field-odd">
+<p>list of str</p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.turbine_model_sels">
-<span class="sig-name descname"><span class="pre">turbine_model_sels</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.turbine_model_sels" title="Permalink to this definition"></a></dt>
-<dd><p>Selection flags for all turbine models,
+<span class="sig-name descname"><span class="pre">turbine_model_sels</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.turbine_model_sels" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Selection flags for all turbine models,
 shape: (n_states, n_turbines, n_models)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>numpy.ndarray of bool</p>
+<dd class="field-odd">
+<p>numpy.ndarray of bool</p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.pre_rotor_models">
-<span class="sig-name descname"><span class="pre">pre_rotor_models</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.pre_rotor_models" title="Permalink to this definition"></a></dt>
-<dd><p>The turbine models with pre-rotor flag</p>
+<span class="sig-name descname"><span class="pre">pre_rotor_models</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.pre_rotor_models" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The turbine models with pre-rotor flag</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>foxes.core.FarmDataModelList</p>
+<dd class="field-odd">
+<p>foxes.core.FarmDataModelList</p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.post_rotor_models">
-<span class="sig-name descname"><span class="pre">post_rotor_models</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.post_rotor_models" title="Permalink to this definition"></a></dt>
-<dd><p>The turbine models without pre-rotor flag</p>
+<span class="sig-name descname"><span class="pre">post_rotor_models</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.post_rotor_models" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The turbine models without pre-rotor flag</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>foxes.core.FarmDataModelList</p>
+<dd class="field-odd">
+<p>foxes.core.FarmDataModelList</p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.pars">
-<span class="sig-name descname"><span class="pre">pars</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.pars" title="Permalink to this definition"></a></dt>
-<dd><p>Parameters for the turbine models, stored
+<span class="sig-name descname"><span class="pre">pars</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.pars" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Parameters for the turbine models, stored
 under their respecitve name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+<dd class="field-odd">
+<p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.__init__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.__init__" title="Permalink to this definition"></a>
+</dt>
+<dd></dd>
+</dl>
 
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col style="width: 10%">
+<col style="width: 90%">
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#id0" title="foxes.core.farm_controller.FarmController.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([pars])</p></td>
+<tr class="row-odd">
+<td><p><a class="reference internal" href="#id0" title="foxes.core.farm_controller.FarmController.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([pars])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.calculate" title="foxes.core.farm_controller.FarmController.calculate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate</span></code></a>(algo, mdata, fdata, pre_rotor[, ...])</p></td>
-<td><p><p>&quot;</p>
-</p></td>
+<tr class="row-even">
+<td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.calculate" title="foxes.core.farm_controller.FarmController.calculate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate</span></code></a>(algo, mdata, fdata, pre_rotor[, ...])</p></td>
+<td>
+<p></p>
+<p>"</p>
+</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.collect_models" title="foxes.core.farm_controller.FarmController.collect_models"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_models</span></code></a>(algo)</p></td>
+<tr class="row-odd">
+<td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.collect_models" title="foxes.core.farm_controller.FarmController.collect_models"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_models</span></code></a>(algo)</p></td>
 <td><p>Analyze and gather turbine models, based on the turbines of the wind farm.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.finalize" title="foxes.core.farm_controller.FarmController.finalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">finalize</span></code></a>(algo, results[, st_sel, verbosity, ...])</p></td>
+<tr class="row-even">
+<td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.finalize" title="foxes.core.farm_controller.FarmController.finalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">finalize</span></code></a>(algo, results[, st_sel, verbosity, ...])</p></td>
 <td><p>Finalizes the model.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.get_data" title="foxes.core.farm_controller.FarmController.get_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_data</span></code></a>(variable, data[, st_sel, upcast, ...])</p></td>
+<tr class="row-odd">
+<td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.get_data" title="foxes.core.farm_controller.FarmController.get_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_data</span></code></a>(variable, data[, st_sel, upcast, ...])</p></td>
 <td><p>Getter for a data entry in either the given data source, or the model object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.initialize" title="foxes.core.farm_controller.FarmController.initialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize</span></code></a>(algo[, st_sel, verbosity])</p></td>
+<tr class="row-even">
+<td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.initialize" title="foxes.core.farm_controller.FarmController.initialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize</span></code></a>(algo[, st_sel, verbosity])</p></td>
 <td><p>Initializes the model.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.model_input_data" title="foxes.core.farm_controller.FarmController.model_input_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_input_data</span></code></a>(algo)</p></td>
+<tr class="row-odd">
+<td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.model_input_data" title="foxes.core.farm_controller.FarmController.model_input_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_input_data</span></code></a>(algo)</p></td>
 <td><p>The model input data, as needed for the calculation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.output_farm_vars" title="foxes.core.farm_controller.FarmController.output_farm_vars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_farm_vars</span></code></a>(algo)</p></td>
+<tr class="row-even">
+<td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.output_farm_vars" title="foxes.core.farm_controller.FarmController.output_farm_vars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_farm_vars</span></code></a>(algo)</p></td>
 <td><p>The variables which are being modified by the model.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.run_calculation" title="foxes.core.farm_controller.FarmController.run_calculation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_calculation</span></code></a>(algo, *data, out_vars, ...)</p></td>
+<tr class="row-odd">
+<td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.run_calculation" title="foxes.core.farm_controller.FarmController.run_calculation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_calculation</span></code></a>(algo, *data, out_vars, ...)</p></td>
 <td><p>Starts the model calculation in parallel, via xarray's <cite>apply_ufunc</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.set_pars" title="foxes.core.farm_controller.FarmController.set_pars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pars</span></code></a>(model_name, init_pars, calc_pars, ...)</p></td>
+<tr class="row-even">
+<td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.set_pars" title="foxes.core.farm_controller.FarmController.set_pars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pars</span></code></a>(model_name, init_pars, calc_pars, ...)</p></td>
 <td><p>Set parameters for a turbine model</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.var" title="foxes.core.farm_controller.FarmController.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code></a>(v)</p></td>
+<tr class="row-odd">
+<td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.var" title="foxes.core.farm_controller.FarmController.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code></a>(v)</p></td>
 <td><p>Creates a model specific variable name.</p></td>
 </tr>
 </tbody>
@@ -508,33 +554,40 @@ under their respecitve name</p>
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col style="width: 10%">
+<col style="width: 90%">
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.initialized" title="foxes.core.farm_controller.FarmController.initialized"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialized</span></code></a></p></td>
+<tr class="row-odd">
+<td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.initialized" title="foxes.core.farm_controller.FarmController.initialized"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialized</span></code></a></p></td>
 <td><p>Initialization flag.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.model_id" title="foxes.core.farm_controller.FarmController.model_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_id</span></code></a></p></td>
+<tr class="row-even">
+<td><p><a class="reference internal" href="#foxes.core.farm_controller.FarmController.model_id" title="foxes.core.farm_controller.FarmController.model_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_id</span></code></a></p></td>
 <td><p>Unique id based on the model type.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition"></a>
+</dt>
+<dd></dd>
+</dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.calculate">
-<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_rotor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st_sel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.calculate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.calculate" title="Permalink to this definition"></a></dt>
-<dd><p>”
+<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_rotor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st_sel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.calculate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.calculate" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>”
 The main model calculation.</p>
 <p>This function is executed on a single chunk of data,
 all computations should be based on numpy arrays.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dd class="field-odd">
+<ul class="simple">
 <li><p><strong>algo</strong> (<em>foxes.core.Algorithm</em>) – The calculation algorithm</p></li>
 <li><p><strong>mdata</strong> (<em>foxes.core.Data</em>) – The model data</p></li>
 <li><p><strong>fdata</strong> (<em>foxes.core.Data</em>) – The farm data</p></li>
@@ -545,34 +598,44 @@ models</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>results</strong> – The resulting data, keys: output variable str.
+<dd class="field-even">
+<p><strong>results</strong> – The resulting data, keys: output variable str.
 Values: numpy.ndarray with shape (n_states, n_turbines)</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+<dd class="field-odd">
+<p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.collect_models">
-<span class="sig-name descname"><span class="pre">collect_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.collect_models"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.collect_models" title="Permalink to this definition"></a></dt>
-<dd><p>Analyze and gather turbine models, based on the
+<span class="sig-name descname"><span class="pre">collect_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.collect_models"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.collect_models" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Analyze and gather turbine models, based on the
 turbines of the wind farm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>algo</strong> (<em>foxes.core.Algorithm</em>) – The calculation algorithm</p>
+<dd class="field-odd">
+<p><strong>algo</strong> (<em>foxes.core.Algorithm</em>) – The calculation algorithm</p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.finalize">
-<span class="sig-name descname"><span class="pre">finalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st_sel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.finalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.finalize" title="Permalink to this definition"></a></dt>
-<dd><p>Finalizes the model.</p>
+<span class="sig-name descname"><span class="pre">finalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st_sel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.finalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.finalize" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Finalizes the model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dd class="field-odd">
+<ul class="simple">
 <li><p><strong>algo</strong> (<em>foxes.core.Algorithm</em>) – The calculation algorithm</p></li>
 <li><p><strong>results</strong> (<em>xarray.Dataset</em>) – The calculation results</p></li>
 <li><p><strong>st_sel</strong> (<em>numpy.ndarray of bool</em><em>, </em><em>optional</em>) – Selection of states and turbines, shape:
@@ -583,16 +646,20 @@ resetting initialization flag</p></li>
 </ul>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.get_data">
-<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st_sel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_prio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accept_none</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.get_data" title="Permalink to this definition"></a></dt>
-<dd><p>Getter for a data entry in either the given
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st_sel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_prio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accept_none</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.get_data" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Getter for a data entry in either the given
 data source, or the model object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dd class="field-odd">
+<ul class="simple">
 <li><p><strong>variable</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The variable, serves as data key</p></li>
 <li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – The data source</p></li>
 <li><p><strong>st_sel</strong> (<em>numpy.ndarray of bool</em><em>, </em><em>optional</em>) – If given, get the specified state-turbine subset</p></li>
@@ -605,15 +672,19 @@ respectively</p></li>
 </ul>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.initialize">
-<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st_sel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.initialize" title="Permalink to this definition"></a></dt>
-<dd><p>Initializes the model.</p>
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st_sel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.initialize" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Initializes the model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dd class="field-odd">
+<ul class="simple">
 <li><p><strong>algo</strong> (<em>foxes.core.Algorithm</em>) – The calculation algorithm</p></li>
 <li><p><strong>st_sel</strong> (<em>numpy.ndarray of bool</em><em>, </em><em>optional</em>) – Selection of states and turbines, shape:
 (n_states, n_turbines). None for all.</p></li>
@@ -621,40 +692,53 @@ respectively</p></li>
 </ul>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.initialized">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">initialized</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.initialized" title="Permalink to this definition"></a></dt>
-<dd><p>Initialization flag.</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">initialized</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.initialized" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Initialization flag.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>True if the model has been initialized.</p>
+<dd class="field-odd">
+<p>True if the model has been initialized.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)">bool</a></p>
+<dd class="field-even">
+<p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)">bool</a></p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.model_id">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">model_id</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.model_id" title="Permalink to this definition"></a></dt>
-<dd><p>Unique id based on the model type.</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">model_id</span></span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.model_id" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Unique id based on the model type.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Unique id of the model object</p>
+<dd class="field-odd">
+<p>Unique id of the model object</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a></p>
+<dd class="field-even">
+<p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a></p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.model_input_data">
-<span class="sig-name descname"><span class="pre">model_input_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.model_input_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.model_input_data" title="Permalink to this definition"></a></dt>
-<dd><p>The model input data, as needed for the
+<span class="sig-name descname"><span class="pre">model_input_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.model_input_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.model_input_data" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The model input data, as needed for the
 calculation.</p>
 <p>This function is automatically called during
 initialization. It should specify all data
@@ -662,45 +746,58 @@ that is either state or point dependent, or
 intended to be shared between chunks.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>algo</strong> (<em>foxes.core.Algorithm</em>) – The calculation algorithm</p>
+<dd class="field-odd">
+<p><strong>algo</strong> (<em>foxes.core.Algorithm</em>) – The calculation algorithm</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>idata</strong> – The dict has exactly two entries: <cite>data_vars</cite>,
+<dd class="field-even">
+<p><strong>idata</strong> – The dict has exactly two entries: <cite>data_vars</cite>,
 a dict with entries <cite>name_str -&gt; (dim_tuple, data_ndarray)</cite>;
 and <cite>coords</cite>, a dict with entries <cite>dim_name_str -&gt; dim_array</cite></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+<dd class="field-odd">
+<p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.output_farm_vars">
-<span class="sig-name descname"><span class="pre">output_farm_vars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.output_farm_vars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.output_farm_vars" title="Permalink to this definition"></a></dt>
-<dd><p>The variables which are being modified by the model.</p>
+<span class="sig-name descname"><span class="pre">output_farm_vars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.output_farm_vars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.output_farm_vars" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>The variables which are being modified by the model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>algo</strong> (<em>foxes.core.Algorithm</em>) – The calculation algorithm</p>
+<dd class="field-odd">
+<p><strong>algo</strong> (<em>foxes.core.Algorithm</em>) – The calculation algorithm</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>output_vars</strong> – The output variable names</p>
+<dd class="field-even">
+<p><strong>output_vars</strong> – The output variable names</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list of str</p>
+<dd class="field-odd">
+<p>list of str</p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.run_calculation">
-<span class="sig-name descname"><span class="pre">run_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_vars</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">calc_pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.run_calculation" title="Permalink to this definition"></a></dt>
-<dd><p>Starts the model calculation in parallel, via
+<span class="sig-name descname"><span class="pre">run_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_vars</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">calc_pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.run_calculation" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Starts the model calculation in parallel, via
 xarray’s <cite>apply_ufunc</cite>.</p>
 <p>Typically this function is called by algorithms.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dd class="field-odd">
+<ul class="simple">
 <li><p><strong>algo</strong> (<em>foxes.core.Algorithm</em>) – The calculation algorithm</p></li>
 <li><p><strong>*data</strong> (<em>tuple of xarray.Dataset</em>) – The input data</p></li>
 <li><p><strong>out_vars</strong> (<em>list of str</em>) – The calculation output variables</p></li>
@@ -708,21 +805,27 @@ xarray’s <cite>apply_ufunc</cite>.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>results</strong> – The calculation results</p>
+<dd class="field-even">
+<p><strong>results</strong> – The calculation results</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>xarray.Dataset</p>
+<dd class="field-odd">
+<p>xarray.Dataset</p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.set_pars">
-<span class="sig-name descname"><span class="pre">set_pars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calc_pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.set_pars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.set_pars" title="Permalink to this definition"></a></dt>
-<dd><p>Set parameters for a turbine model</p>
+<span class="sig-name descname"><span class="pre">set_pars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calc_pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/core/farm_controller.html#FarmController.set_pars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.core.farm_controller.FarmController.set_pars" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Set parameters for a turbine model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dd class="field-odd">
+<ul class="simple">
 <li><p><strong>model_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Name of the model</p></li>
 <li><p><strong>init_pars</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Parameters for initialization</p></li>
 <li><p><strong>calc_pars</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Parameters for calculation</p></li>
@@ -730,28 +833,37 @@ xarray’s <cite>apply_ufunc</cite>.</p>
 </ul>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.core.farm_controller.FarmController.var">
-<span class="sig-name descname"><span class="pre">var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.var" title="Permalink to this definition"></a></dt>
-<dd><p>Creates a model specific variable name.</p>
+<span class="sig-name descname"><span class="pre">var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foxes.core.farm_controller.FarmController.var" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Creates a model specific variable name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The variable name</p>
+<dd class="field-odd">
+<p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The variable name</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Model specific variable name</p>
+<dd class="field-even">
+<p>Model specific variable name</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+<dd class="field-odd">
+<p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
-</dd></dl>
+</dd>
+</dl>
 
 </section>
+
 
 
            </div>

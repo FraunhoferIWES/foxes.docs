@@ -51,8 +51,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#install-foxes-for-users">Install foxes (for users)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#install-foxes-for-developers">Install foxes (for developers)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#virtual-python-environment">Virtual Python environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#standard-users">Standard users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developers">Developers</a></li>
 </ul>
 </li>
 </ul>
@@ -323,6 +325,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-1-alpha">v0.1.1-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-2-alpha">v0.1.2-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-3-alpha">v0.1.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-4-alpha">v0.1.4-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -630,24 +633,30 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Examples">
-<h1>Examples<a class="headerlink" href="#Examples" title="Permalink to this heading"></a></h1>
+<h1>Examples<a class="headerlink" href="#Examples" title="Permalink to this heading"></a>
+</h1>
 <section id="The-model-book">
-<h2>The model book<a class="headerlink" href="#The-model-book" title="Permalink to this heading"></a></h2>
+<h2>The model book<a class="headerlink" href="#The-model-book" title="Permalink to this heading"></a>
+</h2>
 <p>This example only requires the <code class="docutils literal notranslate"><span class="pre">foxes</span></code> package:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [1]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">foxes</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">foxes</span>
 </pre></div>
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">book</span></code> contains all models that are selectable during a <code class="docutils literal notranslate"><span class="pre">foxes</span></code> run. They are organized according to their model type and stored under a <code class="docutils literal notranslate"><span class="pre">str</span></code> type key, i.e., the model name. The default constructor of the <code class="docutils literal notranslate"><span class="pre">ModelBook</span></code> class provides a number of default models, and the complete list can be printed using the <code class="docutils literal notranslate"><span class="pre">print_toc</span></code> function:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [2]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
 <span class="n">mbook</span><span class="o">.</span><span class="n">print_toc</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -788,24 +797,29 @@ ti_linear: ti_linear (TISuperposition)
 ti_max: ti_max (TISuperposition)
 ti_quadratic: ti_quadratic (TISuperposition)
 
-</pre></div></div>
+</pre></div>
+</div>
 </div>
 <p>You can simply add a model by storing the model object under the new model name, for example:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [3]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbook</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="s2">&quot;Jensen_linear_k004&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">top_hat</span><span class="o">.</span><span class="n">JensenWake</span><span class="p">(</span>
-    <span class="n">k</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">superposition</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">mbook</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="s2">"Jensen_linear_k004"</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">top_hat</span><span class="o">.</span><span class="n">JensenWake</span><span class="p">(</span>
+    <span class="n">k</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">superposition</span><span class="o">=</span><span class="s2">"linear"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [4]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbook</span><span class="o">.</span><span class="n">print_toc</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">&quot;wake_models&quot;</span><span class="p">,</span> <span class="n">search</span><span class="o">=</span><span class="s2">&quot;Jensen&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">mbook</span><span class="o">.</span><span class="n">print_toc</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">"wake_models"</span><span class="p">,</span> <span class="n">search</span><span class="o">=</span><span class="s2">"Jensen"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -830,17 +844,21 @@ Jensen_quadratic_amb: Jensen_quadratic_amb (JensenWake)(k=None, sp=quadratic_amb
 Jensen_quadratic_amb_k007: Jensen_quadratic_amb_k007 (JensenWake)(k=0.07, sp=quadratic_amb)
 Jensen_quadratic_k007: Jensen_quadratic_k007 (JensenWake)(k=0.07, sp=quadratic)
 
-</pre></div></div>
+</pre></div>
+</div>
 </div>
 </section>
 <section id="Single-row-of-turbines">
-<h2>Single row of turbines<a class="headerlink" href="#Single-row-of-turbines" title="Permalink to this heading"></a></h2>
+<h2>Single row of turbines<a class="headerlink" href="#Single-row-of-turbines" title="Permalink to this heading"></a>
+</h2>
 <p>We start with the imports for this example:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [5]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">import</span> <span class="nn">foxes</span>
@@ -857,15 +875,17 @@ Jensen_quadratic_k007: Jensen_quadratic_k007 (JensenWake)(k=0.07, sp=quadratic)
 </ol>
 <p>Here is a simple example for a single row of turbines along the x axis and a uniform wind speed with wind direction 270°:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [6]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create model book and add turbine type model:</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="c1"># Create model book and add turbine type model:</span>
 <span class="c1"># The csv file will be searched in the file system,</span>
 <span class="c1"># and if not found, taken from static library</span>
 <span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
-<span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="s2">&quot;NREL5&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">turbine_types</span><span class="o">.</span><span class="n">PCtFile</span><span class="p">(</span>
-    <span class="s2">&quot;NREL-5MW-D126-H90.csv&quot;</span>
+<span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="s2">"NREL5"</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">turbine_types</span><span class="o">.</span><span class="n">PCtFile</span><span class="p">(</span>
+    <span class="s2">"NREL-5MW-D126-H90.csv"</span>
 <span class="p">)</span>
 
 <span class="c1"># create ambient wind conditions, a single uniform state:</span>
@@ -878,24 +898,26 @@ Jensen_quadratic_k007: Jensen_quadratic_k007 (JensenWake)(k=0.07, sp=quadratic)
     <span class="n">xy_base</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
     <span class="n">xy_step</span><span class="o">=</span><span class="p">[</span><span class="mf">800.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
     <span class="n">n_turbines</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-    <span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NREL5&quot;</span><span class="p">],</span>
+    <span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"NREL5"</span><span class="p">],</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1"># setup the calculation algorithm:</span>
 <span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Downwind</span><span class="p">(</span>
-    <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Jensen_linear_k007&quot;</span><span class="p">]</span>
+    <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"Jensen_linear_k007"</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Now we can ask the <code class="docutils literal notranslate"><span class="pre">algorithm</span></code> object to run the calculation. This returns a <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code> object with results for each state and turbine:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [7]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Farm results:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Farm results:</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -921,16 +943,19 @@ Data variables: (12/24)
     AMB_TI     (state, turbine) float64 0.12 0.12 0.12 0.12 0.12
     AMB_RHO    (state, turbine) float64 1.225 1.225 1.225 1.225 1.225
     order      (state, turbine) float64 0.0 1.0 2.0 3.0 4.0
-    AMB_P      (state, turbine) float64 2.519e+03 2.519e+03 ... 2.519e+03
     AMB_CT     (state, turbine) float64 0.79 0.79 0.79 0.79 0.79
-</pre></div></div>
+    AMB_P      (state, turbine) float64 2.519e+03 2.519e+03 ... 2.519e+03
+</pre></div>
+</div>
 </div>
 <p>For a convenient summary printout we can easily convert the results into a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [8]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fr</span> <span class="o">=</span> <span class="n">farm_results</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">fr</span> <span class="o">=</span> <span class="n">farm_results</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fr</span><span class="p">[[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_P</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">]])</span>
 </pre></div>
 </div>
@@ -947,15 +972,18 @@ state turbine
       2        270.0       9.0  7.176627  0.12  2518.6  1290.332498  0.808234
       3        270.0       9.0  6.955794  0.12  2518.6  1167.325199  0.812210
       4        270.0       9.0  6.821354  0.12  2518.6  1106.880886  0.818932
-</pre></div></div>
+</pre></div>
+</div>
 </div>
 <p>Once the farm calculation results are ready, we can evaluate the wake corrected flow and all points of interest. For example, we can evaluate the wind speed along the centre line:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [9]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># infer hub height from turbine type:</span>
-<span class="n">H</span> <span class="o">=</span> <span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="s2">&quot;NREL5&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">H</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="c1"># infer hub height from turbine type:</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="s2">"NREL5"</span><span class="p">]</span><span class="o">.</span><span class="n">H</span>
 
 <span class="c1"># create points of interest, shape (n_states, n_points, 3):</span>
 <span class="n">n_points</span> <span class="o">=</span> <span class="mi">8000</span>
@@ -965,13 +993,13 @@ state turbine
 
 <span class="c1"># calculate point results:</span>
 <span class="n">point_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_points</span><span class="p">(</span><span class="n">farm_results</span><span class="p">,</span> <span class="n">points</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Point results:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">point_results</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Point results:</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">point_results</span><span class="p">)</span>
 
 <span class="c1"># create figure:</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">point_results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x [m]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Wind speed [m/s]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"x [m]"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Wind speed [m/s]"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -995,22 +1023,25 @@ Data variables:
     AMB_WD   (state, point) float64 270.0 270.0 270.0 ... 270.0 270.0 270.0
     AMB_TI   (state, point) float64 0.12 0.12 0.12 0.12 ... 0.12 0.12 0.12 0.12
     AMB_RHO  (state, point) float64 1.225 1.225 1.225 ... 1.225 1.225 1.225
-</pre></div></div>
+</pre></div>
+</div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_examples_19_1.png" src="../_images/notebooks_examples_19_1.png" />
+<img alt="../_images/notebooks_examples_19_1.png" src="../_images/notebooks_examples_19_1.png">
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">foxes.output</span></code> package provides a collection of standard outputs. For example, we can visualize the flow field in a horizontal slice at hub height:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [10]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FlowPlots2D</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">gen_states_fig_horizontal</span><span class="p">(</span><span class="s2">&quot;WS&quot;</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FlowPlots2D</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">gen_states_fig_horizontal</span><span class="p">(</span><span class="s2">"WS"</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>  <span class="c1"># creates the figure for the next state, here there is only state 0</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1020,19 +1051,22 @@ Data variables:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_examples_21_0.png" src="../_images/notebooks_examples_21_0.png" />
+<img alt="../_images/notebooks_examples_21_0.png" src="../_images/notebooks_examples_21_0.png">
 </div>
 </div>
 </section>
 <section id="Timeseries-data">
-<h2>Timeseries data<a class="headerlink" href="#Timeseries-data" title="Permalink to this heading"></a></h2>
+<h2>Timeseries data<a class="headerlink" href="#Timeseries-data" title="Permalink to this heading"></a>
+</h2>
 <p>In this example we calculate the data of a wind farm with 67 turbines in a time series containing 8000 uniform inflow states.</p>
 <p>The required imports are:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [11]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask</span>
 <span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">LocalCluster</span>
 <span class="kn">from</span> <span class="nn">dask.diagnostics</span> <span class="kn">import</span> <span class="n">ProgressBar</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1043,19 +1077,22 @@ Data variables:
 </div>
 <p>First, we create the <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">book</span></code>, adding the turbine type model (see examples above):</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [12]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
-<span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="s2">&quot;NREL5&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">turbine_types</span><span class="o">.</span><span class="n">PCtFile</span><span class="p">(</span>
-    <span class="s2">&quot;NREL-5MW-D126-H90.csv&quot;</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
+<span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="s2">"NREL5"</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">turbine_types</span><span class="o">.</span><span class="n">PCtFile</span><span class="p">(</span>
+    <span class="s2">"NREL-5MW-D126-H90.csv"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Next, we create the <code class="docutils literal notranslate"><span class="pre">states</span></code>. The <code class="docutils literal notranslate"><span class="pre">data_source</span></code> can be any csv-type file (or <code class="docutils literal notranslate"><span class="pre">pandas</span></code> readable equivalent), or a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> object. If it is a file path, then it will first be searched in the file system, and if not found, in the static data. If it is also not found there, an error showing the available static data file names is displayed.</p>
 <p>In this example the static data file <code class="docutils literal notranslate"><span class="pre">timeseries_8000.csv.gz</span></code> will be used, with content</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Time,ws,wd,ti
+<div class="highlight-none notranslate">
+<div class="highlight"><pre><span></span>Time,ws,wd,ti
 2017-01-01 00:00:00,15.62,244.06,0.0504
 2017-01-01 00:30:00,15.99,243.03,0.0514
 2017-01-01 01:00:00,16.31,243.01,0.0522
@@ -1065,20 +1102,23 @@ Data variables:
 </div>
 <p>Notice the column names, and how they appear in the <code class="docutils literal notranslate"><span class="pre">foxes.Timeseries</span></code> constructor:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [13]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">Timeseries</span><span class="p">(</span>
-    <span class="n">data_source</span><span class="o">=</span><span class="s2">&quot;timeseries_8000.csv.gz&quot;</span><span class="p">,</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">Timeseries</span><span class="p">(</span>
+    <span class="n">data_source</span><span class="o">=</span><span class="s2">"timeseries_8000.csv.gz"</span><span class="p">,</span>
     <span class="n">output_vars</span><span class="o">=</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">],</span>
-    <span class="n">var2col</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="s2">&quot;ws&quot;</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">:</span> <span class="s2">&quot;wd&quot;</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">:</span> <span class="s2">&quot;ti&quot;</span><span class="p">},</span>
+    <span class="n">var2col</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="s2">"ws"</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">:</span> <span class="s2">"wd"</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">:</span> <span class="s2">"ti"</span><span class="p">},</span>
     <span class="n">fixed_vars</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">:</span> <span class="mf">1.225</span><span class="p">},</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Likewise, we create the example wind farm with 67 turbines from static data. The file <code class="docutils literal notranslate"><span class="pre">test_farm_67.csv</span></code> has the following structure:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>index,label,x,y
+<div class="highlight-none notranslate">
+<div class="highlight"><pre><span></span>index,label,x,y
 0,T0,101872.70,1004753.57
 1,T1,103659.97,1002993.29
 2,T2,100780.09,1000779.97
@@ -1089,29 +1129,33 @@ Data variables:
 <p>For more options, check the API section <code class="docutils literal notranslate"><span class="pre">foxes.input.farm_layout</span></code>.</p>
 <p>We consider two turbine models in this example: the wind turbine type <code class="docutils literal notranslate"><span class="pre">NREL5</span></code> from above, and the model <code class="docutils literal notranslate"><span class="pre">kTI_02</span></code> from the <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">book</span></code>. This model adds the variable <code class="docutils literal notranslate"><span class="pre">k</span></code> for each state and turbine, calculated as <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">kTI</span> <span class="pre">*</span> <span class="pre">TI</span></code>, with constant <code class="docutils literal notranslate"><span class="pre">kTI</span> <span class="pre">=</span> <span class="pre">0.2</span></code>. The parameter <code class="docutils literal notranslate"><span class="pre">k</span></code> will later be used by the wake model.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [14]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">farm</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">WindFarm</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">farm</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">WindFarm</span><span class="p">()</span>
 <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">farm_layout</span><span class="o">.</span><span class="n">add_from_file</span><span class="p">(</span>
-    <span class="n">farm</span><span class="p">,</span> <span class="s2">&quot;test_farm_67.csv&quot;</span><span class="p">,</span> <span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;kTI_02&quot;</span><span class="p">,</span> <span class="s2">&quot;NREL5&quot;</span><span class="p">],</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">farm</span><span class="p">,</span> <span class="s2">"test_farm_67.csv"</span><span class="p">,</span> <span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"kTI_02"</span><span class="p">,</span> <span class="s2">"NREL5"</span><span class="p">],</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Next, we create the <code class="docutils literal notranslate"><span class="pre">algorithm</span></code>, with further model selections. In particular, two wake models are invoked, the model <code class="docutils literal notranslate"><span class="pre">Bastankhah_linear</span></code> for wind speed deficits and the model <code class="docutils literal notranslate"><span class="pre">CrespoHernandez_quadratic</span></code> for turbulence intensity:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [15]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Downwind</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Downwind</span><span class="p">(</span>
     <span class="n">mbook</span><span class="p">,</span>
     <span class="n">farm</span><span class="p">,</span>
     <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span>
-    <span class="n">rotor_model</span><span class="o">=</span><span class="s2">&quot;centre&quot;</span><span class="p">,</span>
-    <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Bastankhah_quadratic&quot;</span><span class="p">,</span> <span class="s2">&quot;CrespoHernandez_max&quot;</span><span class="p">],</span>
-    <span class="n">wake_frame</span><span class="o">=</span><span class="s2">&quot;rotor_wd&quot;</span><span class="p">,</span>
-    <span class="n">partial_wakes_model</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="n">rotor_model</span><span class="o">=</span><span class="s2">"centre"</span><span class="p">,</span>
+    <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"Bastankhah_quadratic"</span><span class="p">,</span> <span class="s2">"CrespoHernandez_max"</span><span class="p">],</span>
+    <span class="n">wake_frame</span><span class="o">=</span><span class="s2">"rotor_wd"</span><span class="p">,</span>
+    <span class="n">partial_wakes_model</span><span class="o">=</span><span class="s2">"auto"</span><span class="p">,</span>
     <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="mi">1000</span><span class="p">},</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1120,14 +1164,16 @@ Data variables:
 </div>
 <p>Also notice the <code class="docutils literal notranslate"><span class="pre">chunks</span></code> parameter, specifying that always 1000 states should be considered in vectorized form during calculations. The progress can be visualized using <code class="docutils literal notranslate"><span class="pre">dask</span></code>’s <code class="docutils literal notranslate"><span class="pre">ProgressBar</span></code>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [16]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ProgressBar</span><span class="p">():</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ProgressBar</span><span class="p">():</span>
     <span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">()</span>
 
 <span class="n">fr</span> <span class="o">=</span> <span class="n">farm_results</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fr</span><span class="p">[[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_P</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">fr</span><span class="p">[[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_P</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -1137,7 +1183,7 @@ Data variables:
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 [########################################] | 100% Completed |  0.1s
-[########################################] | 100% Completed | 12.4s
+[########################################] | 100% Completed | 13.1s
 [########################################] | 100% Completed |  0.1s
 
                                   WD  AMB_REWS       REWS    AMB_P            P
@@ -1155,23 +1201,26 @@ state               turbine
                     66       299.19     11.70  10.072532  4868.75  3529.208210
 
 [536000 rows x 5 columns]
-</pre></div></div>
+</pre></div>
+</div>
 </div>
 <p>For the fun of it, we can also run this example in parallel, on a local cluster. Depending on the system and the problem size, this is not neccessarily faster than the above implicitely used default dask scheduler, and it comes with overhead. But for complex calculations it is extremely useful and can really save the day. Read the <a class="reference external" href="https://docs.dask.org/en/stable/deploying.html">docs</a> for more details and parameters. The following invokes the default settings for the local cluster:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [17]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Launching cluster..&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Launching cluster.."</span><span class="p">)</span>
 <span class="k">with</span> <span class="n">LocalCluster</span><span class="p">()</span> <span class="k">as</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">Client</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dashboard: </span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">dashboard_link</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running calculations..&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dashboard: </span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">dashboard_link</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Running calculations.."</span><span class="p">)</span>
     <span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shutting down cluster..&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Shutting down cluster.."</span><span class="p">)</span>
 
 <span class="n">fr</span> <span class="o">=</span> <span class="n">farm_results</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fr</span><span class="p">[[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_P</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">fr</span><span class="p">[[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_P</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -1181,7 +1230,7 @@ state               turbine
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Launching cluster..
-LocalCluster(94968784, &#39;tcp://127.0.0.1:34201&#39;, workers=4, threads=8, memory=15.49 GiB)
+LocalCluster(b4d8ecce, 'tcp://127.0.0.1:45065', workers=4, threads=8, memory=15.49 GiB)
 Dashboard: http://127.0.0.1:8787/status
 
 Running calculations..
@@ -1202,12 +1251,14 @@ state               turbine
                     66       299.19     11.70  10.072532  4868.75  3529.208210
 
 [536000 rows x 5 columns]
-</pre></div></div>
+</pre></div>
+</div>
 </div>
 <p>Notice the <code class="docutils literal notranslate"><span class="pre">Dashboard</span></code> link, which is only valid during runtime and in this case is a <code class="docutils literal notranslate"><span class="pre">localhost</span></code> address. The dashboard gives plenty of information of the progress during the run and is a very useful tool provided by dask.</p>
 </section>
 <section id="Heterogeneous-flow">
-<h2>Heterogeneous flow<a class="headerlink" href="#Heterogeneous-flow" title="Permalink to this heading"></a></h2>
+<h2>Heterogeneous flow<a class="headerlink" href="#Heterogeneous-flow" title="Permalink to this heading"></a>
+</h2>
 <p>The best way to run <code class="docutils literal notranslate"><span class="pre">foxes</span></code> calculations on heterogeneous background flow fields is by providing them in <code class="docutils literal notranslate"><span class="pre">netCDF</span></code> format. They should contain the following coordinates:</p>
 <ul class="simple">
 <li><p>A state coordinate, e.g. <code class="docutils literal notranslate"><span class="pre">Time</span></code> (expected by default) or <code class="docutils literal notranslate"><span class="pre">state</span></code>, or similar</p></li>
@@ -1225,10 +1276,12 @@ state               turbine
 <p>All data must depend on the state coordinate, and may depend on the others.</p>
 <p>These are the required imports for this example:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [18]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">foxes</span>
@@ -1238,18 +1291,20 @@ state               turbine
 </div>
 <p>One very simple example for <code class="docutils literal notranslate"><span class="pre">netCDF</span></code> type data is provided in the static data, under the name <code class="docutils literal notranslate"><span class="pre">wind_rotation.nc</span></code>. It contains two states, two heights, and simple 2 x 2 horizontal data that describes a uniform wind speed and a varying wind direction. It can be loaded as follows:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [19]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">FieldDataNC</span><span class="p">(</span>
-    <span class="n">file_pattern</span><span class="o">=</span><span class="s2">&quot;wind_rotation.nc&quot;</span><span class="p">,</span>
-    <span class="n">states_coord</span><span class="o">=</span><span class="s2">&quot;state&quot;</span><span class="p">,</span>
-    <span class="n">x_coord</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
-    <span class="n">y_coord</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span>
-    <span class="n">h_coord</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">FieldDataNC</span><span class="p">(</span>
+    <span class="n">file_pattern</span><span class="o">=</span><span class="s2">"wind_rotation.nc"</span><span class="p">,</span>
+    <span class="n">states_coord</span><span class="o">=</span><span class="s2">"state"</span><span class="p">,</span>
+    <span class="n">x_coord</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span>
+    <span class="n">y_coord</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span>
+    <span class="n">h_coord</span><span class="o">=</span><span class="s2">"h"</span><span class="p">,</span>
     <span class="n">time_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">output_vars</span><span class="o">=</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">],</span>
-    <span class="n">var2ncvar</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="s2">&quot;ws&quot;</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">:</span> <span class="s2">&quot;wd&quot;</span><span class="p">},</span>
+    <span class="n">var2ncvar</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="s2">"ws"</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">:</span> <span class="s2">"wd"</span><span class="p">},</span>
     <span class="n">fixed_vars</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">:</span> <span class="mf">1.225</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
     <span class="n">pre_load</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -1259,16 +1314,18 @@ state               turbine
 </div>
 <p>Let’s place a simple 3 x 3 grid wind farm inside the data domain, which is a rectangle between <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> and <code class="docutils literal notranslate"><span class="pre">(2500,</span> <span class="pre">2500)</span></code>:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [20]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">farm</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">WindFarm</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">farm</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">WindFarm</span><span class="p">()</span>
 <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">farm_layout</span><span class="o">.</span><span class="n">add_grid</span><span class="p">(</span>
     <span class="n">farm</span><span class="p">,</span>
     <span class="n">xy_base</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">500.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">]),</span>
     <span class="n">step_vectors</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">500.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">]]),</span>
     <span class="n">steps</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-    <span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NREL5&quot;</span><span class="p">],</span>
+    <span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"NREL5"</span><span class="p">],</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
@@ -1276,29 +1333,33 @@ state               turbine
 </div>
 <p>Again, we use the <code class="docutils literal notranslate"><span class="pre">NREL</span> <span class="pre">5MW</span></code> turbine:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [21]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
-<span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="s2">&quot;NREL5&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">turbine_types</span><span class="o">.</span><span class="n">PCtFile</span><span class="p">(</span>
-    <span class="s2">&quot;NREL-5MW-D126-H90.csv&quot;</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
+<span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="s2">"NREL5"</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">turbine_types</span><span class="o">.</span><span class="n">PCtFile</span><span class="p">(</span>
+    <span class="s2">"NREL-5MW-D126-H90.csv"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>The streamline following wakes are realized by selecting a <code class="docutils literal notranslate"><span class="pre">wake</span> <span class="pre">frame</span></code> that is an instance of <code class="docutils literal notranslate"><span class="pre">foxes.models.wake_frames.Streamlines</span></code>, e.g. the model <code class="docutils literal notranslate"><span class="pre">streamlines_100</span></code> in the model book. This model has a streamline step size of 100 m:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [22]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Downwind</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Downwind</span><span class="p">(</span>
     <span class="n">mbook</span><span class="p">,</span>
     <span class="n">farm</span><span class="p">,</span>
     <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span>
-    <span class="n">rotor_model</span><span class="o">=</span><span class="s2">&quot;grid16&quot;</span><span class="p">,</span>
-    <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Jensen_linear_k007&quot;</span><span class="p">],</span>
-    <span class="n">wake_frame</span><span class="o">=</span><span class="s2">&quot;streamlines_100&quot;</span><span class="p">,</span>
-    <span class="n">partial_wakes_model</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="n">rotor_model</span><span class="o">=</span><span class="s2">"grid16"</span><span class="p">,</span>
+    <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"Jensen_linear_k007"</span><span class="p">],</span>
+    <span class="n">wake_frame</span><span class="o">=</span><span class="s2">"streamlines_100"</span><span class="p">,</span>
+    <span class="n">partial_wakes_model</span><span class="o">=</span><span class="s2">"auto"</span><span class="p">,</span>
     <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span> <span class="mi">4000</span><span class="p">},</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1307,10 +1368,12 @@ state               turbine
 </div>
 <p>We run the algorithm, once explicitely for calculating the wind farm data, and once implicitely when creating horizontal flow plots:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [23]:
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>In [23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre><span></span><span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">()</span>
 
 <span class="n">fr</span> <span class="o">=</span> <span class="n">farm_results</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fr</span><span class="p">[[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_P</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">]])</span>
@@ -1320,7 +1383,7 @@ state               turbine
     <span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span>
     <span class="n">resolution</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
-    <span class="n">quiver_pars</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">angles</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span> <span class="n">scale_units</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.07</span><span class="p">),</span>
+    <span class="n">quiver_pars</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">angles</span><span class="o">=</span><span class="s2">"xy"</span><span class="p">,</span> <span class="n">scale_units</span><span class="o">=</span><span class="s2">"xy"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.07</span><span class="p">),</span>
     <span class="n">quiver_n</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
     <span class="n">xspace</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
     <span class="n">yspace</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
@@ -1363,26 +1426,28 @@ Pos Z    = 90.0
 Res XY   = 10.0 10.0
 Dim XY   = 301 301
 Grid pts = 90601
-</pre></div></div>
+</pre></div>
+</div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_examples_51_1.png" src="../_images/notebooks_examples_51_1.png" />
+<img alt="../_images/notebooks_examples_51_1.png" src="../_images/notebooks_examples_51_1.png">
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_examples_51_2.png" src="../_images/notebooks_examples_51_2.png" />
+<img alt="../_images/notebooks_examples_51_2.png" src="../_images/notebooks_examples_51_2.png">
 </div>
 </div>
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"2a10aeb77c8743a7ac45000e8d0dcf1d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "f61657a73a954060901ba9ff735b4eaa": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": [], "layout": "IPY_MODEL_2a10aeb77c8743a7ac45000e8d0dcf1d"}}}, "version_major": 2, "version_minor": 0}
+{"state": {"a076ac45f1e844ff9e6b0aad72369416": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "cd8d0c13dfb5431d82b7168463cf27ee": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": [], "layout": "IPY_MODEL_a076ac45f1e844ff9e6b0aad72369416"}}}, "version_major": 2, "version_minor": 0}
 </script></section>
 </section>
+
 
 
            </div>
