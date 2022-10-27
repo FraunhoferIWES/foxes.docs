@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>foxes.utils.geom2d.area_geometry &mdash; foxes 0.2.0
+ documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> foxes
+          </a>
+              <div class="version">
+                0.2.0
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#id1">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation.html#virtual-python-environment">Virtual Python environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation.html#standard-users">Standard users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation.html#developers">Developers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../notebooks/model_book.html">The model book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../notebooks/single_row.html">Single row of turbines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../notebooks/timeseries.html">Timeseries data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../notebooks/heterogeneous.html">Heterogeneous flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../notebooks/layout_opt.html">Layout optimization</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.algorithms.html">foxes.algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.algorithms.downwind.html">foxes.algorithms.downwind</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.algorithms.downwind.downwind.html">foxes.algorithms.downwind.downwind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.algorithms.downwind.models.html">foxes.algorithms.downwind.models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.constants.html">foxes.constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.core.html">foxes.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.algorithm.html">foxes.core.algorithm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.algorithm.Algorithm.html">foxes.core.algorithm.Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.data.html">foxes.core.data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.data.Data.html">foxes.core.data.Data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.data_calc_model.html">foxes.core.data_calc_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.data_calc_model.DataCalcModel.html">foxes.core.data_calc_model.DataCalcModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_controller.html">foxes.core.farm_controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_controller.FarmController.html">foxes.core.farm_controller.FarmController</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_data_model.html">foxes.core.farm_data_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_data_model.FarmDataModel.html">foxes.core.farm_data_model.FarmDataModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_data_model_list.html">foxes.core.farm_data_model_list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_data_model_list.FarmDataModelList.html">foxes.core.farm_data_model_list.FarmDataModelList</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_model.html">foxes.core.farm_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.farm_model.FarmModel.html">foxes.core.farm_model.FarmModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.model.html">foxes.core.model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.model.Model.html">foxes.core.model.Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.partial_wakes_model.html">foxes.core.partial_wakes_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.partial_wakes_model.PartialWakesModel.html">foxes.core.partial_wakes_model.PartialWakesModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.point_data_model.html">foxes.core.point_data_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.point_data_model.PointDataModel.html">foxes.core.point_data_model.PointDataModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.point_data_model_list.html">foxes.core.point_data_model_list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.point_data_model_list.PointDataModelList.html">foxes.core.point_data_model_list.PointDataModelList</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.rotor_model.html">foxes.core.rotor_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.rotor_model.RotorModel.html">foxes.core.rotor_model.RotorModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.states.html">foxes.core.states</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.states.States.html">foxes.core.states.States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.turbine.html">foxes.core.turbine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.turbine.Turbine.html">foxes.core.turbine.Turbine</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.turbine_model.html">foxes.core.turbine_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.turbine_model.TurbineModel.html">foxes.core.turbine_model.TurbineModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.turbine_type.html">foxes.core.turbine_type</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.turbine_type.TurbineType.html">foxes.core.turbine_type.TurbineType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.vertical_profile.html">foxes.core.vertical_profile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.vertical_profile.VerticalProfile.html">foxes.core.vertical_profile.VerticalProfile</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.wake_frame.html">foxes.core.wake_frame</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.wake_frame.WakeFrame.html">foxes.core.wake_frame.WakeFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.wake_model.html">foxes.core.wake_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.wake_model.WakeModel.html">foxes.core.wake_model.WakeModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.wake_superposition.html">foxes.core.wake_superposition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.wake_superposition.WakeSuperposition.html">foxes.core.wake_superposition.WakeSuperposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.core.wind_farm.html">foxes.core.wind_farm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.core.wind_farm.WindFarm.html">foxes.core.wind_farm.WindFarm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.data.html">foxes.data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.data.farms.html">foxes.data.farms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.data.parse.html">foxes.data.parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.data.parse.parse_Pct_file_name.html">foxes.data.parse.parse_Pct_file_name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.data.power_ct_curves.html">foxes.data.power_ct_curves</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.data.states.html">foxes.data.states</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.data.static_data.html">foxes.data.static_data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.data.static_data.StaticData.html">foxes.data.static_data.StaticData</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.input.html">foxes.input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.input.farm_layout.html">foxes.input.farm_layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.farm_layout.add_from_csv.html">foxes.input.farm_layout.add_from_csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.farm_layout.add_from_file.html">foxes.input.farm_layout.add_from_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.farm_layout.add_from_json.html">foxes.input.farm_layout.add_from_json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.farm_layout.add_grid.html">foxes.input.farm_layout.add_grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.farm_layout.add_row.html">foxes.input.farm_layout.add_row</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.html">foxes.input.states</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.create.html">foxes.input.states.create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.field_data_nc.html">foxes.input.states.field_data_nc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.scan_ws.html">foxes.input.states.scan_ws</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.single.html">foxes.input.states.single</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.states_table.html">foxes.input.states.states_table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.input.states.timeseries.html">foxes.input.states.timeseries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.models.html">foxes.models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.farm_controllers.html">foxes.models.farm_controllers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.farm_controllers.basic.html">foxes.models.farm_controllers.basic</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.farm_models.html">foxes.models.farm_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.farm_models.turbine2farm.html">foxes.models.farm_models.turbine2farm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.model_book.html">foxes.models.model_book</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.model_book.ModelBook.html">foxes.models.model_book.ModelBook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.html">foxes.models.partial_wakes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.axiwake.html">foxes.models.partial_wakes.axiwake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.distsliced.html">foxes.models.partial_wakes.distsliced</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.grid.html">foxes.models.partial_wakes.grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.mapped.html">foxes.models.partial_wakes.mapped</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.rotor_points.html">foxes.models.partial_wakes.rotor_points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.partial_wakes.top_hat.html">foxes.models.partial_wakes.top_hat</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.point_models.html">foxes.models.point_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.rotor_models.html">foxes.models.rotor_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.rotor_models.centre.html">foxes.models.rotor_models.centre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.rotor_models.grid.html">foxes.models.rotor_models.grid</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_models.html">foxes.models.turbine_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_models.kTI_model.html">foxes.models.turbine_models.kTI_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_models.thrust2ct.html">foxes.models.turbine_models.thrust2ct</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_types.PCt_file.html">foxes.models.turbine_types.PCt_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_types.PCt_two_files.html">foxes.models.turbine_types.PCt_two_files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.turbine_types.null_type.html">foxes.models.turbine_types.null_type</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.vertical_profiles.html">foxes.models.vertical_profiles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.vertical_profiles.abl_log.html">foxes.models.vertical_profiles.abl_log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.vertical_profiles.uniform.html">foxes.models.vertical_profiles.uniform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_models.axisymmetric.html">foxes.models.wake_models.axisymmetric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_models.dist_sliced.html">foxes.models.wake_models.dist_sliced</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_models.gaussian.html">foxes.models.wake_models.gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_models.ti.html">foxes.models.wake_models.ti</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_models.top_hat.html">foxes.models.wake_models.top_hat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_models.wind.html">foxes.models.wake_models.wind</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_superpositions.html">foxes.models.wake_superpositions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_superpositions.linear.html">foxes.models.wake_superpositions.linear</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_superpositions.max.html">foxes.models.wake_superpositions.max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_superpositions.quadratic.html">foxes.models.wake_superpositions.quadratic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.models.wake_superpositions.ti_superp.html">foxes.models.wake_superpositions.ti_superp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.output.html">foxes.output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.output.farm_layout.html">foxes.output.farm_layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.output.farm_layout.FarmLayoutOutput.html">foxes.output.farm_layout.FarmLayoutOutput</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.output.flow_plots_2d.html">foxes.output.flow_plots_2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.output.flow_plots_2d.FlowPlots2D.html">foxes.output.flow_plots_2d.FlowPlots2D</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.output.output.html">foxes.output.output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.output.output.Output.html">foxes.output.output.Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.output.rose_plot.html">foxes.output.rose_plot</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.output.rose_plot.AmbientRosePlotOutput.html">foxes.output.rose_plot.AmbientRosePlotOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.output.rose_plot.RosePlotOutput.html">foxes.output.rose_plot.RosePlotOutput</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.utils.html">foxes.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.utils.abl.html">foxes.utils.abl</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.abl.neutral.html">foxes.utils.abl.neutral</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.abl.stable.html">foxes.utils.abl.stable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.abl.unstable.html">foxes.utils.abl.unstable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.utils.data_book.html">foxes.utils.data_book</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.data_book.DataBook.html">foxes.utils.data_book.DataBook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.utils.dict.html">foxes.utils.dict</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.dict.Dict.html">foxes.utils.dict.Dict</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.utils.geom2d.html">foxes.utils.geom2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.html">foxes.utils.geom2d.area_geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.geom2d.circle.html">foxes.utils.geom2d.circle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.geom2d.example_intersection.html">foxes.utils.geom2d.example_intersection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.geom2d.example_union.html">foxes.utils.geom2d.example_union</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.geom2d.half_plane.html">foxes.utils.geom2d.half_plane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.geom2d.polygon.html">foxes.utils.geom2d.polygon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.utils.helpers.html">foxes.utils.helpers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.helpers.all_subclasses.html">foxes.utils.helpers.all_subclasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.utils.pandas.html">foxes.utils.pandas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.pandas.PandasFileHelper.html">foxes.utils.pandas.PandasFileHelper</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.utils.plotly.html">foxes.utils.plotly</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.plotly.show_plotly_fig.html">foxes.utils.plotly.show_plotly_fig</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.utils.runners.html">foxes.utils.runners</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.runners.DaskRunner.html">foxes.utils.runners.DaskRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.runners.DefaultRunner.html">foxes.utils.runners.DefaultRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.runners.Runner.html">foxes.utils.runners.Runner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.utils.two_circles.html">foxes.utils.two_circles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.two_circles.area.html">foxes.utils.two_circles.area</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.two_circles.calc_area.html">foxes.utils.two_circles.calc_area</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/foxes.utils.wind_dir.html">foxes.utils.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.wind_dir.uv2wd.html">foxes.utils.wind_dir.uv2wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.wind_dir.wd2uv.html">foxes.utils.wind_dir.wd2uv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.wind_dir.wd2wdvec.html">foxes.utils.wind_dir.wd2wdvec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/foxes.utils.wind_dir.wdvec2wd.html">foxes.utils.wind_dir.wdvec2wd</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/foxes.variables.html">foxes.variables</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-1-0-alpha">v0.1.0-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-1-1-alpha">v0.1.1-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-1-2-alpha">v0.1.2-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-1-3-alpha">v0.1.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-1-4-alpha">v0.1.4-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-2-0-alpha">v0.2.0-alpha</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">foxes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>foxes.utils.geom2d.area_geometry</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for foxes.utils.geom2d.area_geometry</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
+
+
+<div class="viewcode-block" id="AreaGeometry"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaGeometry.html#foxes.utils.geom2d.area_geometry.AreaGeometry">[docs]</a><span class="k">class</span> <span class="nc">AreaGeometry</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract base class for closed 2D geometries.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AreaGeometry.p_min"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaGeometry.html#foxes.utils.geom2d.area_geometry.AreaGeometry.p_min">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">p_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns minimal (x,y) point.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        p_min : numpy.ndarray</span>
+<span class="sd">            The minimal (x,y) point, shape = (2,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AreaGeometry.p_max"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaGeometry.html#foxes.utils.geom2d.area_geometry.AreaGeometry.p_max">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">p_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns maximal (x,y) point.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        p_min : numpy.ndarray</span>
+<span class="sd">            The maximal (x,y) point, shape = (2,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AreaGeometry.points_distance"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaGeometry.html#foxes.utils.geom2d.area_geometry.AreaGeometry.points_distance">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">points_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">return_nearest</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates point distances wrt boundary.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        points : numpy.ndarray</span>
+<span class="sd">            The probe points, shape (n_points, 2)</span>
+<span class="sd">        return_nearest : bool</span>
+<span class="sd">            Flag for return of the nearest point on bundary</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dist : numpy.ndarray</span>
+<span class="sd">            The smallest distances to the boundary,</span>
+<span class="sd">            shape: (n_points,)</span>
+<span class="sd">        p_nearest : numpy.ndarray, optional</span>
+<span class="sd">            The nearest points on the boundary, if</span>
+<span class="sd">            return_nearest is True, shape: (n_points, 2)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AreaGeometry.points_inside"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaGeometry.html#foxes.utils.geom2d.area_geometry.AreaGeometry.points_inside">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">points_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Tests if points are inside the geometry.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        points : numpy.ndarray</span>
+<span class="sd">            The probe points, shape (n_points, 2)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        inside : numpy.ndarray</span>
+<span class="sd">            True if point is inside, shape: (n_points,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AreaGeometry.add_to_figure"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaGeometry.html#foxes.utils.geom2d.area_geometry.AreaGeometry.add_to_figure">[docs]</a>    <span class="k">def</span> <span class="nf">add_to_figure</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ax</span><span class="p">,</span>
+        <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">fill_mode</span><span class="o">=</span><span class="s2">&quot;inside_slategray&quot;</span><span class="p">,</span>
+        <span class="n">pars_boundary</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">pars_distance</span><span class="o">=</span><span class="p">{},</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add image to (x,y) figure.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ax : matplotlib.pyplot.Axis</span>
+<span class="sd">            The axis object</span>
+<span class="sd">        show_boundary : bool</span>
+<span class="sd">            Add the boundary line to the image</span>
+<span class="sd">        fill_mode : str, optional</span>
+<span class="sd">            Fill the area. Options:</span>
+<span class="sd">            dist, dist_inside, dist_outside, inside_&lt;color&gt;,</span>
+<span class="sd">            outside_&lt;color&gt;</span>
+<span class="sd">        pars_boundary : dict</span>
+<span class="sd">            Parameters for boundary plotting command</span>
+<span class="sd">        pars_distance : dict</span>
+<span class="sd">            Parameters for distance plotting command</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">fill_mode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="s2">&quot;Nx&quot;</span> <span class="ow">in</span> <span class="n">pars_distance</span> <span class="ow">or</span> <span class="s2">&quot;Ny&quot;</span> <span class="ow">in</span> <span class="n">pars_distance</span><span class="p">:</span>
+                <span class="n">Nx</span> <span class="o">=</span> <span class="n">pars_distance</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;Nx&quot;</span><span class="p">)</span>
+                <span class="n">Ny</span> <span class="o">=</span> <span class="n">pars_distance</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;Ny&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s2">&quot;N&quot;</span> <span class="ow">in</span> <span class="n">pars_distance</span><span class="p">:</span>
+                <span class="n">Nx</span> <span class="o">=</span> <span class="n">pars_distance</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
+                <span class="n">Ny</span> <span class="o">=</span> <span class="n">Nx</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Nx</span> <span class="o">=</span> <span class="mi">500</span>
+                <span class="n">Ny</span> <span class="o">=</span> <span class="mi">500</span>
+
+            <span class="n">p0</span> <span class="o">=</span> <span class="n">pars_distance</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;p_min&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p_min</span><span class="p">())</span>
+            <span class="n">p1</span> <span class="o">=</span> <span class="n">pars_distance</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;p_max&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p_max</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="n">q0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span><span class="o">.</span><span class="n">p_min</span><span class="p">()</span>
+                <span class="n">a0</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">p0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a0</span> <span class="k">if</span> <span class="n">a0</span> <span class="o">&lt;</span> <span class="n">q0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="n">q0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">q0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span><span class="o">.</span><span class="n">p_min</span><span class="p">()</span>
+                <span class="n">a0</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">p0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a0</span> <span class="k">if</span> <span class="n">a0</span> <span class="o">&lt;</span> <span class="n">q0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="n">q0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="n">q1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span><span class="o">.</span><span class="n">p_max</span><span class="p">()</span>
+                <span class="n">a1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a1</span> <span class="k">if</span> <span class="n">a1</span> <span class="o">&gt;</span> <span class="n">q1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="n">q1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">q1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span><span class="o">.</span><span class="n">p_max</span><span class="p">()</span>
+                <span class="n">a1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a1</span> <span class="k">if</span> <span class="n">a1</span> <span class="o">&gt;</span> <span class="n">q1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="n">q1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">delta</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">-</span> <span class="n">p0</span>
+            <span class="n">p0</span> <span class="o">-=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="n">delta</span>
+            <span class="n">p1</span> <span class="o">+=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="n">delta</span>
+
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Nx</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Ny</span><span class="p">)</span>
+
+            <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="n">pts</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="n">pts</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">pts</span> <span class="o">=</span> <span class="n">pts</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Nx</span> <span class="o">*</span> <span class="n">Ny</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+            <span class="n">pars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">shading</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;magma_r&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span>
+            <span class="n">sbar</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="n">fill_mode</span> <span class="o">==</span> <span class="s2">&quot;dist&quot;</span><span class="p">:</span>
+                <span class="n">dists</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points_distance</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">fill_mode</span> <span class="o">==</span> <span class="s2">&quot;dist_inside&quot;</span><span class="p">:</span>
+                <span class="n">ins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points_inside</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
+                <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">Nx</span> <span class="o">*</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+                <span class="n">dists</span><span class="p">[</span><span class="n">ins</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points_distance</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">ins</span><span class="p">])</span>
+                <span class="n">dists</span> <span class="o">=</span> <span class="n">dists</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">fill_mode</span><span class="p">[:</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;inside_&quot;</span><span class="p">:</span>
+                <span class="n">ins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points_inside</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
+                <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">Nx</span> <span class="o">*</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+                <span class="n">dists</span><span class="p">[</span><span class="n">ins</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+                <span class="n">dists</span> <span class="o">=</span> <span class="n">dists</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">)</span>
+                <span class="n">pars</span><span class="p">[</span><span class="s2">&quot;cmap&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span><span class="n">fill_mode</span><span class="p">[</span><span class="mi">7</span><span class="p">:]])</span>
+                <span class="n">sbar</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">elif</span> <span class="n">fill_mode</span> <span class="o">==</span> <span class="s2">&quot;dist_outside&quot;</span><span class="p">:</span>
+                <span class="n">ins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points_inside</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
+                <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">Nx</span> <span class="o">*</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+                <span class="n">dists</span><span class="p">[</span><span class="o">~</span><span class="n">ins</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points_distance</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="o">~</span><span class="n">ins</span><span class="p">])</span>
+                <span class="n">dists</span> <span class="o">=</span> <span class="n">dists</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">fill_mode</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;outside_&quot;</span><span class="p">:</span>
+                <span class="n">ins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points_inside</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
+                <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">Nx</span> <span class="o">*</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+                <span class="n">dists</span><span class="p">[</span><span class="o">~</span><span class="n">ins</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">dists</span> <span class="o">=</span> <span class="n">dists</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">)</span>
+                <span class="n">pars</span><span class="p">[</span><span class="s2">&quot;cmap&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span><span class="n">fill_mode</span><span class="p">[</span><span class="mi">8</span><span class="p">:]])</span>
+                <span class="n">sbar</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Illegal parameter &#39;fill_mode = </span><span class="si">{</span><span class="n">fill_mode</span><span class="si">}</span><span class="s2">&#39;, expecting: None, dist, dist_inside, dist_outside&quot;</span>
+                <span class="p">)</span>
+
+            <span class="n">pars</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pars_distance</span><span class="p">)</span>
+            <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dists</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="o">**</span><span class="n">pars</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">sbar</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;distance&quot;</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">autoscale_view</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AreaGeometry.inverse"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaGeometry.html#foxes.utils.geom2d.area_geometry.AreaGeometry.inverse">[docs]</a>    <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the inverted geometry</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        inverted : foxes.utils.geom2d.InvertedAreaGeometry</span>
+<span class="sd">            The inverted geometry</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">InvertedAreaGeometry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">AreaUnion</span><span class="p">([</span><span class="bp">self</span><span class="p">]</span> <span class="o">+</span> <span class="n">g</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">AreaUnion</span><span class="p">([</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">AreaIntersection</span><span class="p">([</span><span class="bp">self</span><span class="p">]</span> <span class="o">+</span> <span class="n">g</span><span class="o">.</span><span class="n">inverse</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">AreaIntersection</span><span class="p">([</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">inverse</span><span class="p">()])</span></div>
+
+
+<div class="viewcode-block" id="InvertedAreaGeometry"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.html#foxes.utils.geom2d.area_geometry.InvertedAreaGeometry">[docs]</a><span class="k">class</span> <span class="nc">InvertedAreaGeometry</span><span class="p">(</span><span class="n">AreaGeometry</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for inverted geometries.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    geometry : geom2d.AreaGeometry</span>
+<span class="sd">        The original geometry</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="InvertedAreaGeometry.__init__"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.html#foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometry</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span> <span class="o">=</span> <span class="n">geometry</span></div>
+
+<div class="viewcode-block" id="InvertedAreaGeometry.p_min"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.html#foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.p_min">[docs]</a>    <span class="k">def</span> <span class="nf">p_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns minimal (x,y) point.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        p_min : numpy.ndarray</span>
+<span class="sd">            The minimal (x,y) point, shape = (2,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pmi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">p_min</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">pmi</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="p">,</span> <span class="n">InvertedAreaGeometry</span><span class="p">):</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+            <span class="n">imi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span><span class="o">.</span><span class="n">p_min</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">di</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">pmi</span><span class="p">[</span><span class="n">di</span><span class="p">])</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">imi</span><span class="p">[</span><span class="n">di</span><span class="p">]):</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">],</span> <span class="n">imi</span><span class="p">[</span><span class="n">di</span><span class="p">])</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">pmi</span><span class="p">[</span><span class="n">di</span><span class="p">]):</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="k">return</span> <span class="n">out</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InvertedAreaGeometry.p_max"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.html#foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.p_max">[docs]</a>    <span class="k">def</span> <span class="nf">p_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns maximal (x,y) point.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        p_min : numpy.ndarray</span>
+<span class="sd">            The maximal (x,y) point, shape = (2,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">p_max</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">pma</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="p">,</span> <span class="n">InvertedAreaGeometry</span><span class="p">):</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+            <span class="n">ima</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span><span class="o">.</span><span class="n">p_max</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">di</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">pma</span><span class="p">[</span><span class="n">di</span><span class="p">])</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">ima</span><span class="p">[</span><span class="n">di</span><span class="p">]):</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">],</span> <span class="n">ima</span><span class="p">[</span><span class="n">di</span><span class="p">])</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">pma</span><span class="p">[</span><span class="n">di</span><span class="p">]):</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="k">return</span> <span class="n">out</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InvertedAreaGeometry.points_distance"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.html#foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.points_distance">[docs]</a>    <span class="k">def</span> <span class="nf">points_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">return_nearest</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates point distances wrt boundary.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        points : numpy.ndarray</span>
+<span class="sd">            The probe points, shape (n_points, 2)</span>
+<span class="sd">        return_nearest : bool</span>
+<span class="sd">            Flag for return of the nearest point on bundary</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dist : numpy.ndarray</span>
+<span class="sd">            The smallest distances to the boundary,</span>
+<span class="sd">            shape: (n_points,)</span>
+<span class="sd">        p_nearest : numpy.ndarray, optional</span>
+<span class="sd">            The nearest points on the boundary, if</span>
+<span class="sd">            return_nearest is True, shape: (n_points, 2)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">points_distance</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">return_nearest</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InvertedAreaGeometry.points_inside"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.html#foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.points_inside">[docs]</a>    <span class="k">def</span> <span class="nf">points_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Tests if points are inside the geometry.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        points : numpy.ndarray</span>
+<span class="sd">            The probe points, shape (n_points, 2)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        inside : numpy.ndarray</span>
+<span class="sd">            True if point is inside, shape: (n_points,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">points_inside</span><span class="p">(</span><span class="n">points</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InvertedAreaGeometry.add_to_figure"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.html#foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.add_to_figure">[docs]</a>    <span class="k">def</span> <span class="nf">add_to_figure</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ax</span><span class="p">,</span>
+        <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">fill_mode</span><span class="o">=</span><span class="s2">&quot;inside_slategray&quot;</span><span class="p">,</span>
+        <span class="n">pars_boundary</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">pars_distance</span><span class="o">=</span><span class="p">{},</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add image to (x,y) figure.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ax : matplotlib.pyplot.Axis</span>
+<span class="sd">            The axis object</span>
+<span class="sd">        show_boundary : bool</span>
+<span class="sd">            Add the boundary line to the image</span>
+<span class="sd">        fill_mode : str, optional</span>
+<span class="sd">            Fill the area. Options:</span>
+<span class="sd">            dist, dist_inside, dist_outside, inside_&lt;color&gt;,</span>
+<span class="sd">            outside_&lt;color&gt;</span>
+<span class="sd">        pars_boundary : dict</span>
+<span class="sd">            Parameters for boundary plotting command</span>
+<span class="sd">        pars_distance : dict</span>
+<span class="sd">            Parameters for distance plotting command</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">add_to_figure</span><span class="p">(</span>
+            <span class="n">ax</span><span class="p">,</span>
+            <span class="n">show_boundary</span><span class="p">,</span>
+            <span class="n">fill_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">pars_boundary</span><span class="o">=</span><span class="n">pars_boundary</span><span class="p">,</span>
+            <span class="n">pars_distance</span><span class="o">=</span><span class="p">{},</span>
+        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_to_figure</span><span class="p">(</span>
+            <span class="n">ax</span><span class="p">,</span> <span class="n">show_boundary</span><span class="p">,</span> <span class="n">fill_mode</span><span class="p">,</span> <span class="n">pars_boundary</span><span class="p">,</span> <span class="n">pars_distance</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="InvertedAreaGeometry.inverse"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.html#foxes.utils.geom2d.area_geometry.InvertedAreaGeometry.inverse">[docs]</a>    <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the inverted geometry</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        inverted : foxes.utils.geom2d.InvertedAreaGeometry</span>
+<span class="sd">            The inverted geometry</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span></div></div>
+
+
+<div class="viewcode-block" id="AreaUnion"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaUnion.html#foxes.utils.geom2d.area_geometry.AreaUnion">[docs]</a><span class="k">class</span> <span class="nc">AreaUnion</span><span class="p">(</span><span class="n">AreaGeometry</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The union of area geometries.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    geometries : list of geom2d.AreaGeometry</span>
+<span class="sd">        The geometries</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    geometries : list of geom2d.AreaGeometry</span>
+<span class="sd">        The geometries</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AreaUnion.__init__"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaUnion.html#foxes.utils.geom2d.area_geometry.AreaUnion.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometries</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span> <span class="o">=</span> <span class="n">geometries</span></div>
+
+<div class="viewcode-block" id="AreaUnion.p_min"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaUnion.html#foxes.utils.geom2d.area_geometry.AreaUnion.p_min">[docs]</a>    <span class="k">def</span> <span class="nf">p_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns minimal (x,y) point.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        p_min : numpy.ndarray</span>
+<span class="sd">            The minimal (x,y) point, shape = (2,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">:</span>
+            <span class="n">pmi</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">p_min</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="n">pmi</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">pmi</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="AreaUnion.p_max"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaUnion.html#foxes.utils.geom2d.area_geometry.AreaUnion.p_max">[docs]</a>    <span class="k">def</span> <span class="nf">p_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns maximal (x,y) point.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        p_min : numpy.ndarray</span>
+<span class="sd">            The maximal (x,y) point, shape = (2,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">:</span>
+            <span class="n">pma</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">p_max</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="n">pma</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">pma</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="AreaUnion.points_distance"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaUnion.html#foxes.utils.geom2d.area_geometry.AreaUnion.points_distance">[docs]</a>    <span class="k">def</span> <span class="nf">points_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">return_nearest</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates point distances wrt boundary.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        points : numpy.ndarray</span>
+<span class="sd">            The probe points, shape (n_points, 2)</span>
+<span class="sd">        return_nearest : bool</span>
+<span class="sd">            Flag for return of the nearest point on bundary</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dist : numpy.ndarray</span>
+<span class="sd">            The smallest distances to the boundary,</span>
+<span class="sd">            shape: (n_points,)</span>
+<span class="sd">        p_nearest : numpy.ndarray, optional</span>
+<span class="sd">            The nearest points on the boundary, if</span>
+<span class="sd">            return_nearest is True, shape: (n_points, 2)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">points_distance</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">return_nearest</span><span class="p">)</span>
+
+        <span class="n">n_pts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="n">pins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="n">nerst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_pts</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="k">if</span> <span class="n">return_nearest</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">:</span>
+
+            <span class="n">res</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">points_distance</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">return_nearest</span><span class="p">)</span>
+            <span class="n">ins</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">points_inside</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">return_nearest</span> <span class="k">else</span> <span class="n">res</span>
+
+            <span class="c1"># was outside, is outside:</span>
+            <span class="n">sel</span> <span class="o">=</span> <span class="o">~</span><span class="n">pins</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">ins</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">d</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
+                <span class="n">dist</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">return_nearest</span><span class="p">:</span>
+                    <span class="n">nerst</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">sel</span><span class="p">]</span>
+
+            <span class="c1"># was outside, is inside:</span>
+            <span class="n">sel</span> <span class="o">=</span> <span class="o">~</span><span class="n">pins</span> <span class="o">&amp;</span> <span class="n">ins</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
+                <span class="n">pins</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">dist</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">return_nearest</span><span class="p">:</span>
+                    <span class="n">nerst</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">sel</span><span class="p">]</span>
+
+            <span class="c1"># was inside, is inside:</span>
+            <span class="n">sel</span> <span class="o">=</span> <span class="n">pins</span> <span class="o">&amp;</span> <span class="n">ins</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">d</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
+                <span class="n">dist</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">return_nearest</span><span class="p">:</span>
+                    <span class="n">nerst</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">sel</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">return_nearest</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">dist</span><span class="p">,</span> <span class="n">nerst</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">dist</span></div>
+
+<div class="viewcode-block" id="AreaUnion.points_inside"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaUnion.html#foxes.utils.geom2d.area_geometry.AreaUnion.points_inside">[docs]</a>    <span class="k">def</span> <span class="nf">points_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Tests if points are inside the geometry.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        points : numpy.ndarray</span>
+<span class="sd">            The probe points, shape (n_points, 2)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        inside : numpy.ndarray</span>
+<span class="sd">            True if point is inside, shape: (n_points,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">points_inside</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+
+        <span class="n">n_pts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">inside</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">:</span>
+            <span class="n">inside</span> <span class="o">=</span> <span class="n">inside</span> <span class="o">|</span> <span class="n">g</span><span class="o">.</span><span class="n">points_inside</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">inside</span></div>
+
+<div class="viewcode-block" id="AreaUnion.add_to_figure"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaUnion.html#foxes.utils.geom2d.area_geometry.AreaUnion.add_to_figure">[docs]</a>    <span class="k">def</span> <span class="nf">add_to_figure</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ax</span><span class="p">,</span>
+        <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">fill_mode</span><span class="o">=</span><span class="s2">&quot;inside_slategray&quot;</span><span class="p">,</span>
+        <span class="n">pars_boundary</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">pars_distance</span><span class="o">=</span><span class="p">{},</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add image to (x,y) figure.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ax : matplotlib.pyplot.Axis</span>
+<span class="sd">            The axis object</span>
+<span class="sd">        show_boundary : bool</span>
+<span class="sd">            Add the boundary line to the image</span>
+<span class="sd">        fill_mode : str, optional</span>
+<span class="sd">            Fill the area. Options:</span>
+<span class="sd">            dist, dist_inside, dist_outside, inside_&lt;color&gt;,</span>
+<span class="sd">            outside_&lt;color&gt;</span>
+<span class="sd">        pars_boundary : dict</span>
+<span class="sd">            Parameters for boundary plotting command</span>
+<span class="sd">        pars_distance : dict</span>
+<span class="sd">            Parameters for distance plotting command</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">show_boundary</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">:</span>
+                <span class="n">g</span><span class="o">.</span><span class="n">add_to_figure</span><span class="p">(</span>
+                    <span class="n">ax</span><span class="p">,</span>
+                    <span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">fill_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">pars_boundary</span><span class="o">=</span><span class="n">pars_boundary</span><span class="p">,</span>
+                    <span class="n">pars_distance</span><span class="o">=</span><span class="p">{},</span>
+                <span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_to_figure</span><span class="p">(</span>
+            <span class="n">ax</span><span class="p">,</span>
+            <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">fill_mode</span><span class="o">=</span><span class="n">fill_mode</span><span class="p">,</span>
+            <span class="n">pars_boundary</span><span class="o">=</span><span class="p">{},</span>
+            <span class="n">pars_distance</span><span class="o">=</span><span class="n">pars_distance</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="AreaUnion.inverse"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaUnion.html#foxes.utils.geom2d.area_geometry.AreaUnion.inverse">[docs]</a>    <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the inverted geometry</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        inverted : foxes.utils.geom2d.InvertedAreaGeometry</span>
+<span class="sd">            The inverted geometry</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">InvertedAreaUnion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="InvertedAreaUnion"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.InvertedAreaUnion.html#foxes.utils.geom2d.area_geometry.InvertedAreaUnion">[docs]</a><span class="k">class</span> <span class="nc">InvertedAreaUnion</span><span class="p">(</span><span class="n">InvertedAreaGeometry</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inversion of a union of areas</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    union : geom2d.AreaUnion</span>
+<span class="sd">        The original area union geometry</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="InvertedAreaUnion.__init__"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.InvertedAreaUnion.html#foxes.utils.geom2d.area_geometry.InvertedAreaUnion.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">union</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">union</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InvertedAreaUnion.p_min"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.InvertedAreaUnion.html#foxes.utils.geom2d.area_geometry.InvertedAreaUnion.p_min">[docs]</a>    <span class="k">def</span> <span class="nf">p_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns minimal (x,y) point.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        p_min : numpy.ndarray</span>
+<span class="sd">            The minimal (x,y) point, shape = (2,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">geometries</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">geometries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span><span class="o">.</span><span class="n">p_min</span><span class="p">()</span>
+
+        <span class="n">pmi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">p_min</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">pmi</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">geometries</span><span class="p">:</span>
+                <span class="n">imi</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span><span class="o">.</span><span class="n">p_min</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">di</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">pmi</span><span class="p">[</span><span class="n">di</span><span class="p">])</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">imi</span><span class="p">[</span><span class="n">di</span><span class="p">]):</span>
+                        <span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">],</span> <span class="n">imi</span><span class="p">[</span><span class="n">di</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">di</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">pmi</span><span class="p">[</span><span class="n">di</span><span class="p">]):</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="InvertedAreaUnion.p_max"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.InvertedAreaUnion.html#foxes.utils.geom2d.area_geometry.InvertedAreaUnion.p_max">[docs]</a>    <span class="k">def</span> <span class="nf">p_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns maximal (x,y) point.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        p_min : numpy.ndarray</span>
+<span class="sd">            The maximal (x,y) point, shape = (2,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">geometries</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">geometries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span><span class="o">.</span><span class="n">p_max</span><span class="p">()</span>
+
+        <span class="n">pma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">p_max</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">pma</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry</span><span class="o">.</span><span class="n">geometries</span><span class="p">:</span>
+                <span class="n">ima</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span><span class="o">.</span><span class="n">p_max</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">di</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">pma</span><span class="p">[</span><span class="n">di</span><span class="p">])</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">ima</span><span class="p">[</span><span class="n">di</span><span class="p">]):</span>
+                        <span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">],</span> <span class="n">ima</span><span class="p">[</span><span class="n">di</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">di</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">pma</span><span class="p">[</span><span class="n">di</span><span class="p">]):</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="k">return</span> <span class="n">out</span></div></div>
+
+
+<div class="viewcode-block" id="AreaIntersection"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaIntersection.html#foxes.utils.geom2d.area_geometry.AreaIntersection">[docs]</a><span class="k">class</span> <span class="nc">AreaIntersection</span><span class="p">(</span><span class="n">AreaGeometry</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The intersection of area geometries.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    geometries : list of geom2d.AreaGeometry</span>
+<span class="sd">        The geometries</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AreaIntersection.__new__"><a class="viewcode-back" href="../../../../_autosummary/foxes.utils.geom2d.area_geometry.AreaIntersection.html#foxes.utils.geom2d.area_geometry.AreaIntersection.__new__">[docs]</a>    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">geometries</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">AreaUnion</span><span class="p">([</span><span class="n">g</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">geometries</span><span class="p">])</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Fraunhofer IWES.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #009879;
+    }
+  </style>
+
+
+</body>
+</html>
