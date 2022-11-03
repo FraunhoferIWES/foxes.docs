@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>foxes.input.states.states_table &mdash; foxes 0.2.1
+  <title>foxes.input.states.states_table &mdash; foxes 0.2.2
  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
@@ -34,7 +34,7 @@
             <a href="../../../../index.html" class="icon icon-home"> foxes
           </a>
               <div class="version">
-                0.2.1
+                0.2.2
 
               </div>
 <div role="search">
@@ -370,6 +370,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-1-4-alpha">v0.1.4-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-2-0-alpha">v0.2.0-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-2-1-alpha">v0.2.1-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-2-2-alpha">v0.2.2-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -470,7 +471,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">profdicts</span> <span class="o">=</span> <span class="n">profiles</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_data0</span> <span class="o">=</span> <span class="n">data_source</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_weights</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_N</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tvars</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="StatesTable.initialize"><a class="viewcode-back" href="../../../../_autosummary/foxes.input.states.states_table.StatesTable.html#foxes.input.states.states_table.StatesTable.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">states_sel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">states_loc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -518,7 +522,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tvars</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ovars</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tvars</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ovars</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">profdicts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">VerticalProfile</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
@@ -531,9 +535,9 @@
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Wrong profile type &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39; for variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39;. Expecting VerticalProfile, str or dict&quot;</span>
                 <span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tvars</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">input_vars</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tvars</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fixed_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tvars</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tvars</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tvars</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">input_vars</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tvars</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fixed_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tvars</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tvars</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">initialized</span><span class="p">:</span>
@@ -578,7 +582,7 @@
             <span class="n">idata</span><span class="p">[</span><span class="s2">&quot;coords&quot;</span><span class="p">][</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
 
         <span class="n">tcols</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tvars</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tvars</span><span class="p">:</span>
             <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var2col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
                 <span class="n">tcols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
@@ -588,7 +592,7 @@
                 <span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">tcols</span><span class="p">]</span>
 
-        <span class="n">idata</span><span class="p">[</span><span class="s2">&quot;coords&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">VARS</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tvars</span>
+        <span class="n">idata</span><span class="p">[</span><span class="s2">&quot;coords&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">VARS</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tvars</span>
         <span class="n">idata</span><span class="p">[</span><span class="s2">&quot;data_vars&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">DATA</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">VARS</span><span class="p">),</span> <span class="n">data</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
 
         <span class="k">return</span> <span class="n">idata</span></div>
@@ -666,7 +670,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">z</span> <span class="o">=</span> <span class="n">pdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">POINTS</span><span class="p">][:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span>
 
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tvars</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tvars</span><span class="p">):</span>
             <span class="n">pdata</span><span class="p">[</span><span class="n">v</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">DATA</span><span class="p">][:,</span> <span class="n">i</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
 
         <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed_vars</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -695,8 +699,10 @@
 <span class="sd">            The verbosity level</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">clear_mem</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_weights</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_N</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tvars</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">clear_mem</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span></div></div>
 
 
