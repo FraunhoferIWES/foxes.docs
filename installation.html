@@ -51,13 +51,13 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-via-conda">Installation via conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-via-pip">Installation via pip</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#virtual-python-environment">Virtual Python environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#standard-users">Standard users</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#developers">Developers</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -405,6 +405,22 @@
 <li class="toctree-l3"><a class="reference internal" href="notebooks/data.html#test_farm_67.csv">test_farm_67.csv</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/data.html#Ambient-states-data">Ambient states data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/data.html#WRF-Timeseries-4464.csv.gz">WRF-Timeseries-4464.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/data.html#abl_states_6000.csv.gz">abl_states_6000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/data.html#timeseries_3000.csv.gz">timeseries_3000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/data.html#timeseries_8000.csv.gz">timeseries_8000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/data.html#wind_rose_bremen.csv">wind_rose_bremen.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/data.html#wind_rotation.nc">wind_rotation.nc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/data.html#Power-and-thrust-curves">Power and thrust curves</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/data.html#DTU-10MW-D178d3-H119.csv">DTU-10MW-D178d3-H119.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/data.html#IEA-15MW-D240-H150.csv">IEA-15MW-D240-H150.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/data.html#IWT-7d5MW-D164-H100.csv">IWT-7d5MW-D164-H100.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/data.html#NREL-5MW-D126-H90.csv">NREL-5MW-D126-H90.csv</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/data.html#File-paths">File paths</a></li>
 </ul>
 </li>
@@ -488,8 +504,17 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.10</span></code></p></li>
 </ul>
 </section>
-<section id="id1">
-<h2>Installation<a class="headerlink" href="#id1" title="Permalink to this heading"></a>
+<section id="installation-via-conda">
+<h2>Installation via conda<a class="headerlink" href="#installation-via-conda" title="Permalink to this heading"></a>
+</h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">foxes</span></code> package is available on the channel <a class="reference external" href="https://anaconda.org/conda-forge/foxes">conda-forge</a>. You can install the latest version by</p>
+<div class="highlight-console notranslate">
+<div class="highlight"><pre><span></span><span class="go">conda install -c conda-forge foxes</span>
+</pre></div>
+</div>
+</section>
+<section id="installation-via-pip">
+<h2>Installation via pip<a class="headerlink" href="#installation-via-pip" title="Permalink to this heading"></a>
 </h2>
 <section id="virtual-python-environment">
 <h3>Virtual Python environment<a class="headerlink" href="#virtual-python-environment" title="Permalink to this heading"></a>
@@ -534,7 +559,12 @@
 <div class="highlight"><pre><span></span><span class="go">git clone https://github.com/FraunhoferIWES/foxes.git</span>
 </pre></div>
 </div>
-<p>Enter the root directory by <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">foxes</span></code>. Then you can either install from this directory via</p>
+<p>Enter the root directory by</p>
+<div class="highlight-console notranslate">
+<div class="highlight"><pre><span></span><span class="go">cd foxes</span>
+</pre></div>
+</div>
+<p>Then you can either install from this directory via</p>
 <div class="highlight-console notranslate">
 <div class="highlight"><pre><span></span><span class="go">pip install -e .</span>
 </pre></div>
@@ -544,43 +574,7 @@
 <div class="highlight"><pre><span></span><span class="go">pip install -e .[opt]</span>
 </pre></div>
 </div>
-<p>Alternatively, add the <code class="docutils literal notranslate"><span class="pre">foxes</span></code> directory to your <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code>, e.g. by running</p>
-<div class="highlight-console notranslate">
-<div class="highlight"><pre><span></span><span class="go">export PYTHONPATH=`pwd`:$PYTHONPATH</span>
-</pre></div>
-</div>
-<p>from the root <code class="docutils literal notranslate"><span class="pre">foxes</span></code> directory, and then</p>
-<div class="highlight-console notranslate">
-<div class="highlight"><pre><span></span><span class="go">pip install -r requirements.txt</span>
-</pre></div>
-</div>
-<p>For running optimizations, please install in addition</p>
-<div class="highlight-console notranslate">
-<div class="highlight"><pre><span></span><span class="go">pip install iwopy pymoo</span>
-</pre></div>
-</div>
 </section>
-</section>
-<section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a>
-</h2>
-<p>For detailed examples of how to run <em>foxes</em>, check the <code class="docutils literal notranslate"><span class="pre">examples</span></code> and <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folders in this repository. A minimal running example is the following, based on provided static <code class="docutils literal notranslate"><span class="pre">csv</span></code> data files:</p>
-<div class="highlight-python notranslate">
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">foxes</span>
-
-<span class="n">states</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">Timeseries</span><span class="p">(</span><span class="s2">"timeseries_3000.csv.gz"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"WS"</span><span class="p">,</span> <span class="s2">"WD"</span><span class="p">,</span><span class="s2">"TI"</span><span class="p">,</span><span class="s2">"RHO"</span><span class="p">])</span>
-
-<span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">(</span><span class="s2">"NREL-5MW-D126-H90.csv"</span><span class="p">)</span>
-
-<span class="n">farm</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">WindFarm</span><span class="p">()</span>
-<span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">farm_layout</span><span class="o">.</span><span class="n">add_from_file</span><span class="p">(</span><span class="n">farm</span><span class="p">,</span><span class="s2">"test_farm_67.csv"</span><span class="p">,</span><span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"Pct"</span><span class="p">])</span>
-
-<span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Downwind</span><span class="p">(</span><span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="p">[</span><span class="s2">"Jensen_linear_k007"</span><span class="p">])</span>
-<span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">farm_results</span><span class="p">)</span>
-</pre></div>
-</div>
 </section>
 </section>
 

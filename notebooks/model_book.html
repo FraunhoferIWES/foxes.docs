@@ -53,13 +53,13 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#id1">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installation-via-conda">Installation via conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installation-via-pip">Installation via pip</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../installation.html#virtual-python-environment">Virtual Python environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../installation.html#standard-users">Standard users</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../installation.html#developers">Developers</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#usage">Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -407,6 +407,22 @@
 <li class="toctree-l3"><a class="reference internal" href="data.html#test_farm_67.csv">test_farm_67.csv</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#Ambient-states-data">Ambient states data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data.html#WRF-Timeseries-4464.csv.gz">WRF-Timeseries-4464.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#abl_states_6000.csv.gz">abl_states_6000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#timeseries_3000.csv.gz">timeseries_3000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#timeseries_8000.csv.gz">timeseries_8000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#wind_rose_bremen.csv">wind_rose_bremen.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#wind_rotation.nc">wind_rotation.nc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#Power-and-thrust-curves">Power and thrust curves</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data.html#DTU-10MW-D178d3-H119.csv">DTU-10MW-D178d3-H119.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#IEA-15MW-D240-H150.csv">IEA-15MW-D240-H150.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#IWT-7d5MW-D164-H100.csv">IWT-7d5MW-D164-H100.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#NREL-5MW-D126-H90.csv">NREL-5MW-D126-H90.csv</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="data.html#File-paths">File paths</a></li>
 </ul>
 </li>
@@ -742,7 +758,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">foxes</span>
+<div class="highlight"><pre><span></span>import foxes
 </pre></div>
 </div>
 </div>
@@ -753,8 +769,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
-<span class="n">mbook</span><span class="o">.</span><span class="n">print_toc</span><span class="p">()</span>
+<div class="highlight"><pre><span></span>mbook = foxes.models.ModelBook()
+mbook.print_toc()
 </pre></div>
 </div>
 </div>
@@ -946,9 +962,9 @@ ti_quadratic: ti_quadratic (TISuperposition)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">mbook</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="s2">"Jensen_linear_k004"</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">JensenWake</span><span class="p">(</span>
-    <span class="n">k</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">superposition</span><span class="o">=</span><span class="s2">"linear"</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span>mbook.wake_models["Jensen_linear_k004"] = foxes.models.wake_models.wind.JensenWake(
+    k=0.04, superposition="linear"
+)
 </pre></div>
 </div>
 </div>
@@ -958,7 +974,7 @@ ti_quadratic: ti_quadratic (TISuperposition)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">mbook</span><span class="o">.</span><span class="n">print_toc</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">"wake_models"</span><span class="p">,</span> <span class="n">search</span><span class="o">=</span><span class="s2">"Jensen"</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>mbook.print_toc(subset="wake_models", search="Jensen")
 </pre></div>
 </div>
 </div>

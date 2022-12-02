@@ -53,13 +53,13 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#id1">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installation-via-conda">Installation via conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installation-via-pip">Installation via pip</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../installation.html#virtual-python-environment">Virtual Python environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../installation.html#standard-users">Standard users</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../installation.html#developers">Developers</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#usage">Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -407,6 +407,22 @@
 <li class="toctree-l3"><a class="reference internal" href="data.html#test_farm_67.csv">test_farm_67.csv</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#Ambient-states-data">Ambient states data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data.html#WRF-Timeseries-4464.csv.gz">WRF-Timeseries-4464.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#abl_states_6000.csv.gz">abl_states_6000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#timeseries_3000.csv.gz">timeseries_3000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#timeseries_8000.csv.gz">timeseries_8000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#wind_rose_bremen.csv">wind_rose_bremen.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#wind_rotation.nc">wind_rotation.nc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#Power-and-thrust-curves">Power and thrust curves</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data.html#DTU-10MW-D178d3-H119.csv">DTU-10MW-D178d3-H119.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#IEA-15MW-D240-H150.csv">IEA-15MW-D240-H150.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#IWT-7d5MW-D164-H100.csv">IWT-7d5MW-D164-H100.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#NREL-5MW-D126-H90.csv">NREL-5MW-D126-H90.csv</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="data.html#File-paths">File paths</a></li>
 </ul>
 </li>
@@ -748,17 +764,17 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">plotly.offline</span> <span class="kn">import</span> <span class="n">iplot</span>
-<span class="kn">from</span> <span class="nn">iwopy.interfaces.pymoo</span> <span class="kn">import</span> <span class="n">Optimizer_pymoo</span>
+<div class="highlight"><pre><span></span>import numpy as np
+import matplotlib.pyplot as plt
+from plotly.offline import iplot
+from iwopy.interfaces.pymoo import Optimizer_pymoo
 
-<span class="kn">import</span> <span class="nn">foxes</span>
-<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
-<span class="kn">import</span> <span class="nn">foxes.utils.geom2d</span> <span class="k">as</span> <span class="nn">gm</span>
-<span class="kn">from</span> <span class="nn">foxes.opt.problems.layout</span> <span class="kn">import</span> <span class="n">FarmLayoutOptProblem</span>
-<span class="kn">from</span> <span class="nn">foxes.opt.constraints</span> <span class="kn">import</span> <span class="n">FarmBoundaryConstraint</span><span class="p">,</span> <span class="n">MinDistConstraint</span>
-<span class="kn">from</span> <span class="nn">foxes.opt.objectives</span> <span class="kn">import</span> <span class="n">MaxFarmPower</span>
+import foxes
+import foxes.variables as FV
+import foxes.utils.geom2d as gm
+from foxes.opt.problems.layout import FarmLayoutOptProblem
+from foxes.opt.constraints import FarmBoundaryConstraint, MinDistConstraint
+from foxes.opt.objectives import MaxFarmPower
 </pre></div>
 </div>
 </div>
@@ -780,16 +796,16 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">StatesTable</span><span class="p">(</span>
-    <span class="n">data_source</span><span class="o">=</span><span class="s2">"wind_rose_bremen.csv"</span><span class="p">,</span>
-    <span class="n">output_vars</span><span class="o">=</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">],</span>
-    <span class="n">var2col</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="s2">"ws"</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">:</span> <span class="s2">"wd"</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">:</span> <span class="s2">"weight"</span><span class="p">},</span>
-    <span class="n">fixed_vars</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">:</span> <span class="mf">1.225</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span>states = foxes.input.states.StatesTable(
+    data_source="wind_rose_bremen.csv",
+    output_vars=[FV.WS, FV.WD, FV.TI, FV.RHO],
+    var2col={FV.WS: "ws", FV.WD: "wd", FV.WEIGHT: "weight"},
+    fixed_vars={FV.RHO: 1.225, FV.TI: 0.05},
+)
 
-<span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">StatesRosePlotOutput</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">])</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">get_figure</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_WS</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
-<span class="n">iplot</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+o = foxes.output.StatesRosePlotOutput(states, point=[0., 0., 100.])
+fig = o.get_figure(16, FV.AMB_WS, [0, 3.5, 6, 10, 15, 20])
+iplot(fig)
 </pre></div>
 </div>
 </div>
@@ -880,9 +896,9 @@ e.exports=function(t){return null!=t&&(n(t)||function(t){return"function"==typeo
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area rendered_html docutils container">
-<div>                            <div id="fcb4c293-dfac-475a-bac6-920bf9df45d9" class="plotly-graph-div" style="height:400px; width:500px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("fcb4c293-dfac-475a-bac6-920bf9df45d9")) {                    Plotly.newPlot(                        "fcb4c293-dfac-475a-bac6-920bf9df45d9",                        [{"hovertemplate":"AMB_WS [m/s]=[0.0, 3.5)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[0.0, 3.5)","marker":{"color":"#30123b","pattern":{"shape":""}},"name":"[0.0, 3.5)","r":[0.13400001,0.0,0.321,0.0,0.45599999999999996,0.5329999999999999,0.0,0.0,1.0680000299999999,0.0,0.745,0.0,0.605,0.528,0.0,0.147],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[3.5, 6.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[3.5, 6.0)","marker":{"color":"#4145ab","pattern":{"shape":""}},"name":"[3.5, 6.0)","r":[0.29400001,0.454,0.373,0.907,1.013,1.494,1.6829999999999998,1.67199998,0.92,1.357,0.796,1.62,1.0270000000000001,0.545,0.925,0.207],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[6.0, 10.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[6.0, 10.0)","marker":{"color":"#4675ed","pattern":{"shape":""}},"name":"[6.0, 10.0)","r":[1.5899999999999999,1.427,1.465,1.859,3.00099998,1.98899998,2.8009999600000004,1.233,1.936,2.75699994,2.947,2.88100004,3.116,2.4789999999999996,1.27800001,1.07299999],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[10.0, 15.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[10.0, 15.0)","marker":{"color":"#39a2fc","pattern":{"shape":""}},"name":"[10.0, 15.0)","r":[1.1590000200000001,0.846,0.81699999,1.315,2.23099997,2.11800005,1.57400004,0.732,1.5529999700000001,2.0540000000000003,3.36200005,3.5970000000000004,3.8889999,2.1550000000000002,1.5630000000000002,1.1370000400000002],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[15.0, 20.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[15.0, 20.0)","marker":{"color":"#1bcfd4","pattern":{"shape":""}},"name":"[15.0, 20.0)","r":[0.145,0.094,0.118999992,0.277,0.53399999,0.45699999999999996,0.21700001,0.122,0.39900001100000004,0.592,1.5879999000000002,1.654,2.525,1.02800002,0.60699999,0.28300000999999997],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"}],                        {"barmode":"relative","height":400,"legend":{"title":{"text":"AMB_WS [m/s]"},"tracegroupgap":0},"margin":{"b":50,"l":50,"r":50,"t":50},"polar":{"angularaxis":{"direction":"clockwise","rotation":90},"domain":{"x":[0.0,1.0],"y":[0.0,1.0]}},"template":{"data":{"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"#E5ECF6","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2}}},"title":{"text":"Ambient wind speed","x":0.5,"xanchor":"center","y":0.97,"yanchor":"top"},"width":500},                        {"responsive": true}                    ).then(function(){
+<div>                            <div id="938df0ff-dcce-4aa0-840c-58b809cbd718" class="plotly-graph-div" style="height:400px; width:500px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("938df0ff-dcce-4aa0-840c-58b809cbd718")) {                    Plotly.newPlot(                        "938df0ff-dcce-4aa0-840c-58b809cbd718",                        [{"hovertemplate":"AMB_WS [m/s]=[0.0, 3.5)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[0.0, 3.5)","marker":{"color":"#30123b","pattern":{"shape":""}},"name":"[0.0, 3.5)","r":[0.13400001,0.0,0.321,0.0,0.45599999999999996,0.5329999999999999,0.0,0.0,1.0680000299999999,0.0,0.745,0.0,0.605,0.528,0.0,0.147],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[3.5, 6.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[3.5, 6.0)","marker":{"color":"#4145ab","pattern":{"shape":""}},"name":"[3.5, 6.0)","r":[0.29400001,0.454,0.373,0.907,1.013,1.494,1.6829999999999998,1.67199998,0.92,1.357,0.796,1.62,1.0270000000000001,0.545,0.925,0.207],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[6.0, 10.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[6.0, 10.0)","marker":{"color":"#4675ed","pattern":{"shape":""}},"name":"[6.0, 10.0)","r":[1.5899999999999999,1.427,1.465,1.859,3.00099998,1.98899998,2.8009999600000004,1.233,1.936,2.75699994,2.947,2.88100004,3.116,2.4789999999999996,1.27800001,1.07299999],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[10.0, 15.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[10.0, 15.0)","marker":{"color":"#39a2fc","pattern":{"shape":""}},"name":"[10.0, 15.0)","r":[1.1590000200000001,0.846,0.81699999,1.315,2.23099997,2.11800005,1.57400004,0.732,1.5529999700000001,2.0540000000000003,3.36200005,3.5970000000000004,3.8889999,2.1550000000000002,1.5630000000000002,1.1370000400000002],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[15.0, 20.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[15.0, 20.0)","marker":{"color":"#1bcfd4","pattern":{"shape":""}},"name":"[15.0, 20.0)","r":[0.145,0.094,0.118999992,0.277,0.53399999,0.45699999999999996,0.21700001,0.122,0.39900001100000004,0.592,1.5879999000000002,1.654,2.525,1.02800002,0.60699999,0.28300000999999997],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"}],                        {"barmode":"relative","height":400,"legend":{"title":{"text":"AMB_WS [m/s]"},"tracegroupgap":0},"margin":{"b":50,"l":50,"r":50,"t":50},"polar":{"angularaxis":{"direction":"clockwise","rotation":90},"domain":{"x":[0.0,1.0],"y":[0.0,1.0]}},"template":{"data":{"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"#E5ECF6","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2}}},"title":{"text":"Ambient wind speed","x":0.5,"xanchor":"center","y":0.97,"yanchor":"top"},"width":500},                        {"responsive": true}                    ).then(function(){
 
-var gd = document.getElementById('fcb4c293-dfac-475a-bac6-920bf9df45d9');
+var gd = document.getElementById('938df0ff-dcce-4aa0-840c-58b809cbd718');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -914,16 +930,16 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">boundary</span> <span class="o">=</span> \
-    <span class="n">gm</span><span class="o">.</span><span class="n">ClosedPolygon</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-    <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1200</span><span class="p">],</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">800</span><span class="p">],</span> <span class="p">[</span><span class="mi">900</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span> \
-    <span class="o">+</span> <span class="n">gm</span><span class="o">.</span><span class="n">ClosedPolygon</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-    <span class="p">[[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span> \
-    <span class="o">-</span> <span class="n">gm</span><span class="o">.</span><span class="n">Circle</span><span class="p">([</span><span class="o">-</span><span class="mf">100.</span><span class="p">,</span> <span class="o">-</span><span class="mf">100.</span><span class="p">],</span> <span class="mi">700</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>boundary = \
+    gm.ClosedPolygon(np.array(
+    [[0, 0], [0, 1200], [1000, 800], [900, -200]], dtype=np.float64)) \
+    + gm.ClosedPolygon(np.array(
+    [[500, 0], [500, 1500], [1000, 1500], [1000, 0]], dtype=np.float64)) \
+    - gm.Circle([-100., -100.], 700)
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">boundary</span><span class="o">.</span><span class="n">add_to_figure</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+fig, ax = plt.subplots()
+boundary.add_to_figure(ax)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -941,10 +957,10 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">boundary</span><span class="o">.</span><span class="n">add_to_figure</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fill_mode</span><span class="o">=</span><span class="s2">"dist_inside"</span><span class="p">)</span>
-<span class="n">boundary</span><span class="o">.</span><span class="n">add_to_figure</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fill_mode</span><span class="o">=</span><span class="s2">"dist_outside"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight"><pre><span></span>fig, axs = plt.subplots(1, 2, figsize=(14, 8))
+boundary.add_to_figure(axs[0], fill_mode="dist_inside")
+boundary.add_to_figure(axs[1], fill_mode="dist_outside")
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -962,21 +978,21 @@ if (outputEl) {{
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
-<span class="n">ttype</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">turbine_types</span><span class="o">.</span><span class="n">PCtFile</span><span class="p">(</span><span class="s2">"NREL-5MW-D126-H90.csv"</span><span class="p">)</span>
-<span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="n">ttype</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ttype</span>
+<div class="highlight"><pre><span></span>mbook = foxes.models.ModelBook()
+ttype = foxes.models.turbine_types.PCtFile("NREL-5MW-D126-H90.csv")
+mbook.turbine_types[ttype.name] = ttype
 
-<span class="n">farm</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">WindFarm</span><span class="p">(</span><span class="n">boundary</span><span class="o">=</span><span class="n">boundary</span><span class="p">)</span>
-<span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">farm_layout</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span>
-    <span class="n">farm</span><span class="o">=</span><span class="n">farm</span><span class="p">,</span>
-    <span class="n">xy_base</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">500.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">]),</span>
-    <span class="n">xy_step</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">50.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">]),</span>
-    <span class="n">n_turbines</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"layout_opt"</span><span class="p">,</span> <span class="n">ttype</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
-<span class="p">)</span>
+farm = foxes.WindFarm(boundary=boundary)
+foxes.input.farm_layout.add_row(
+    farm=farm,
+    xy_base=np.array([500.0, 500.0]),
+    xy_step=np.array([50.0, 50.0]),
+    n_turbines=10,
+    turbine_models=["layout_opt", ttype.name],
+)
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FarmLayoutOutput</span><span class="p">(</span><span class="n">farm</span><span class="p">)</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ax = foxes.output.FarmLayoutOutput(farm).get_figure()
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1013,24 +1029,24 @@ Turbine 9, T9: layout_opt, NREL-5MW
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Downwind</span><span class="p">(</span>
-    <span class="n">mbook</span><span class="p">,</span>
-    <span class="n">farm</span><span class="p">,</span>
-    <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span>
-    <span class="n">rotor_model</span><span class="o">=</span><span class="s2">"centre"</span><span class="p">,</span>
-    <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"Bastankhah_linear_k002"</span><span class="p">],</span>
-    <span class="n">wake_frame</span><span class="o">=</span><span class="s2">"rotor_wd"</span><span class="p">,</span>
-    <span class="n">partial_wakes_model</span><span class="o">=</span><span class="s2">"auto"</span><span class="p">,</span>
-    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span>algo = foxes.algorithms.Downwind(
+    mbook,
+    farm,
+    states=states,
+    rotor_model="centre",
+    wake_models=["Bastankhah_linear_k002"],
+    wake_frame="rotor_wd",
+    partial_wakes_model="auto",
+    verbosity=0,
+)
 
-<span class="n">problem</span> <span class="o">=</span> <span class="n">FarmLayoutOptProblem</span><span class="p">(</span><span class="s2">"layout_opt"</span><span class="p">,</span> <span class="n">algo</span><span class="p">)</span>
-<span class="n">problem</span><span class="o">.</span><span class="n">add_objective</span><span class="p">(</span><span class="n">MaxFarmPower</span><span class="p">(</span><span class="n">problem</span><span class="p">))</span>
-<span class="n">problem</span><span class="o">.</span><span class="n">add_constraint</span><span class="p">(</span><span class="n">FarmBoundaryConstraint</span><span class="p">(</span><span class="n">problem</span><span class="p">))</span>
-<span class="n">problem</span><span class="o">.</span><span class="n">add_constraint</span><span class="p">(</span>
-    <span class="n">MinDistConstraint</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">min_dist_unit</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">problem</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+problem = FarmLayoutOptProblem("layout_opt", algo)
+problem.add_objective(MaxFarmPower(problem))
+problem.add_constraint(FarmBoundaryConstraint(problem))
+problem.add_constraint(
+    MinDistConstraint(problem, min_dist=2., min_dist_unit="D")
+)
+problem.initialize()
 </pre></div>
 </div>
 </div>
@@ -1061,24 +1077,24 @@ Problem 'layout_opt' (FarmLayoutOptProblem): Initializing
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">Optimizer_pymoo</span><span class="p">(</span>
-    <span class="n">problem</span><span class="p">,</span>
-    <span class="n">problem_pars</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">vectorize</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">algo_pars</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
-        <span class="nb">type</span><span class="o">=</span><span class="s2">"ga"</span><span class="p">,</span>
-        <span class="n">pop_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-        <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
-    <span class="p">),</span>
-    <span class="n">setup_pars</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span>
-    <span class="n">term_pars</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
-        <span class="nb">type</span><span class="o">=</span><span class="s2">"default"</span><span class="p">,</span>
-        <span class="n">n_max_gen</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-        <span class="n">ftol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span>
-        <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
-    <span class="p">),</span>
-<span class="p">)</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">print_info</span><span class="p">()</span>
+<div class="highlight"><pre><span></span>solver = Optimizer_pymoo(
+    problem,
+    problem_pars=dict(vectorize=True),
+    algo_pars=dict(
+        type="ga",
+        pop_size=50,
+        seed=42,
+    ),
+    setup_pars=dict(),
+    term_pars=dict(
+        type="default",
+        n_max_gen=100,
+        ftol=1e-6,
+        xtol=1e-3,
+    ),
+)
+solver.initialize()
+solver.print_info()
 </pre></div>
 </div>
 </div>
@@ -1118,12 +1134,12 @@ Termination:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>results = solver.solve()
+solver.finalize(results)
 
-<span class="nb">print</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">problem_results</span><span class="p">)</span>
+print()
+print(results)
+print(results.problem_results)
 </pre></div>
 </div>
 </div>
@@ -1345,8 +1361,8 @@ Data variables: (12/24)
     AMB_TI     (state, turbine) float64 0.05 0.05 0.05 0.05 ... 0.05 0.05 0.05
     AMB_RHO    (state, turbine) float64 1.225 1.225 1.225 ... 1.225 1.225 1.225
     order      (state, turbine) float64 5.0 4.0 7.0 8.0 9.0 ... 0.0 1.0 6.0 3.0
-    AMB_CT     (state, turbine) float64 0.995 0.995 0.995 ... 0.081 0.081 0.081
     AMB_P      (state, turbine) float64 109.1 109.1 109.1 ... 5e+03 5e+03 5e+03
+    AMB_CT     (state, turbine) float64 0.995 0.995 0.995 ... 0.081 0.081 0.081
 </pre></div>
 </div>
 </div>
@@ -1357,21 +1373,21 @@ Data variables: (12/24)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight"><pre><span></span>fig, axs = plt.subplots(1, 2, figsize=(12, 8))
 
-<span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FarmLayoutOutput</span><span class="p">(</span><span class="n">farm</span><span class="p">)</span><span class="o">.</span><span class="n">get_figure</span><span class="p">(</span><span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+foxes.output.FarmLayoutOutput(farm).get_figure(fig=fig, ax=axs[0])
 
-<span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FlowPlots2D</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">results</span><span class="o">.</span><span class="n">problem_results</span><span class="p">)</span>
-<span class="n">p_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">350.0</span><span class="p">])</span>
-<span class="n">p_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1100.0</span><span class="p">,</span> <span class="mf">1600.0</span><span class="p">])</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">get_mean_fig_horizontal</span><span class="p">(</span><span class="s2">"WS"</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-    <span class="n">xmin</span><span class="o">=</span><span class="n">p_min</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xmax</span><span class="o">=</span><span class="n">p_max</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="n">p_min</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ymax</span><span class="o">=</span><span class="n">p_max</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">dpars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">p_min</span><span class="o">=</span><span class="n">p_min</span><span class="p">,</span> <span class="n">p_max</span><span class="o">=</span><span class="n">p_max</span><span class="p">)</span>
-<span class="n">farm</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">add_to_figure</span><span class="p">(</span>
-    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fill_mode</span><span class="o">=</span><span class="s2">"outside_white"</span><span class="p">,</span> <span class="n">pars_distance</span><span class="o">=</span><span class="n">dpars</span>
-<span class="p">)</span>
+o = foxes.output.FlowPlots2D(algo, results.problem_results)
+p_min = np.array([-100.0, -350.0])
+p_max = np.array([1100.0, 1600.0])
+fig = o.get_mean_fig_horizontal("WS", resolution=20, fig=fig, ax=axs[1],
+    xmin=p_min[0], xmax=p_max[0], ymin=p_min[1], ymax=p_max[1])
+dpars = dict(alpha=0.6, zorder=10, p_min=p_min, p_max=p_max)
+farm.boundary.add_to_figure(
+    axs[1], fill_mode="outside_white", pars_distance=dpars
+)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.show()
 </pre></div>
 </div>
 </div>

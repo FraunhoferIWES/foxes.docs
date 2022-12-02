@@ -53,13 +53,13 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#id1">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installation-via-conda">Installation via conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installation-via-pip">Installation via pip</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../installation.html#virtual-python-environment">Virtual Python environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../installation.html#standard-users">Standard users</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../installation.html#developers">Developers</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../installation.html#usage">Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -405,6 +405,22 @@
 <li class="toctree-l1"><a class="reference internal" href="data.html">Static data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="data.html#Wind-farm-layout-data">Wind farm layout data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="data.html#test_farm_67.csv">test_farm_67.csv</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#Ambient-states-data">Ambient states data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data.html#WRF-Timeseries-4464.csv.gz">WRF-Timeseries-4464.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#abl_states_6000.csv.gz">abl_states_6000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#timeseries_3000.csv.gz">timeseries_3000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#timeseries_8000.csv.gz">timeseries_8000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#wind_rose_bremen.csv">wind_rose_bremen.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#wind_rotation.nc">wind_rotation.nc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#Power-and-thrust-curves">Power and thrust curves</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data.html#DTU-10MW-D178d3-H119.csv">DTU-10MW-D178d3-H119.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#IEA-15MW-D240-H150.csv">IEA-15MW-D240-H150.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#IWT-7d5MW-D164-H100.csv">IWT-7d5MW-D164-H100.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#NREL-5MW-D126-H90.csv">NREL-5MW-D126-H90.csv</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="data.html#File-paths">File paths</a></li>
@@ -757,11 +773,11 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+import numpy as np
 
-<span class="kn">import</span> <span class="nn">foxes</span>
-<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
+import foxes
+import foxes.variables as FV
 </pre></div>
 </div>
 </div>
@@ -772,19 +788,19 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">FieldDataNC</span><span class="p">(</span>
-    <span class="n">file_pattern</span><span class="o">=</span><span class="s2">"wind_rotation.nc"</span><span class="p">,</span>
-    <span class="n">states_coord</span><span class="o">=</span><span class="s2">"state"</span><span class="p">,</span>
-    <span class="n">x_coord</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span>
-    <span class="n">y_coord</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span>
-    <span class="n">h_coord</span><span class="o">=</span><span class="s2">"h"</span><span class="p">,</span>
-    <span class="n">time_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">output_vars</span><span class="o">=</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">],</span>
-    <span class="n">var2ncvar</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="s2">"ws"</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">:</span> <span class="s2">"wd"</span><span class="p">},</span>
-    <span class="n">fixed_vars</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">:</span> <span class="mf">1.225</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
-    <span class="n">pre_load</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span>states = foxes.input.states.FieldDataNC(
+    file_pattern="wind_rotation.nc",
+    states_coord="state",
+    x_coord="x",
+    y_coord="y",
+    h_coord="h",
+    time_format=None,
+    output_vars=[FV.WS, FV.WD, FV.TI, FV.RHO],
+    var2ncvar={FV.WS: "ws", FV.WD: "wd"},
+    fixed_vars={FV.RHO: 1.225, FV.TI: 0.1},
+    pre_load=True,
+    bounds_error=False,
+)
 </pre></div>
 </div>
 </div>
@@ -795,15 +811,15 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">farm</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">WindFarm</span><span class="p">()</span>
-<span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">farm_layout</span><span class="o">.</span><span class="n">add_grid</span><span class="p">(</span>
-    <span class="n">farm</span><span class="p">,</span>
-    <span class="n">xy_base</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">500.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">]),</span>
-    <span class="n">step_vectors</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">500.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">]]),</span>
-    <span class="n">steps</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-    <span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"NREL5"</span><span class="p">],</span>
-    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span>farm = foxes.WindFarm()
+foxes.input.farm_layout.add_grid(
+    farm,
+    xy_base=np.array([500.0, 500.0]),
+    step_vectors=np.array([[500.0, 0], [0, 500.0]]),
+    steps=(3, 3),
+    turbine_models=["NREL5"],
+    verbosity=0,
+)
 </pre></div>
 </div>
 </div>
@@ -814,10 +830,10 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
-<span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="s2">"NREL5"</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">turbine_types</span><span class="o">.</span><span class="n">PCtFile</span><span class="p">(</span>
-    <span class="s2">"NREL-5MW-D126-H90.csv"</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span>mbook = foxes.ModelBook()
+mbook.turbine_types["NREL5"] = foxes.models.turbine_types.PCtFile(
+    "NREL-5MW-D126-H90.csv"
+)
 </pre></div>
 </div>
 </div>
@@ -828,17 +844,17 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Downwind</span><span class="p">(</span>
-    <span class="n">mbook</span><span class="p">,</span>
-    <span class="n">farm</span><span class="p">,</span>
-    <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span>
-    <span class="n">rotor_model</span><span class="o">=</span><span class="s2">"grid16"</span><span class="p">,</span>
-    <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"Jensen_linear_k007"</span><span class="p">],</span>
-    <span class="n">wake_frame</span><span class="o">=</span><span class="s2">"streamlines_100"</span><span class="p">,</span>
-    <span class="n">partial_wakes_model</span><span class="o">=</span><span class="s2">"auto"</span><span class="p">,</span>
-    <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span> <span class="mi">4000</span><span class="p">},</span>
-    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span>algo = foxes.algorithms.Downwind(
+    mbook,
+    farm,
+    states=states,
+    rotor_model="grid16",
+    wake_models=["Jensen_linear_k007"],
+    wake_frame="streamlines_100",
+    partial_wakes_model="auto",
+    chunks={FV.STATE: 1000, FV.POINT: 4000},
+    verbosity=0,
+)
 </pre></div>
 </div>
 </div>
@@ -849,23 +865,23 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span><span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">()</span>
+<div class="highlight"><pre><span></span>farm_results = algo.calc_farm()
 
-<span class="n">fr</span> <span class="o">=</span> <span class="n">farm_results</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fr</span><span class="p">[[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_P</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">]])</span>
+fr = farm_results.to_dataframe()
+print(fr[[FV.WD, FV.AMB_REWS, FV.REWS, FV.AMB_P, FV.P]])
 
-<span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FlowPlots2D</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">fig</span> <span class="ow">in</span> <span class="n">o</span><span class="o">.</span><span class="n">gen_states_fig_horizontal</span><span class="p">(</span>
-    <span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span>
-    <span class="n">resolution</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
-    <span class="n">quiver_pars</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">angles</span><span class="o">=</span><span class="s2">"xy"</span><span class="p">,</span> <span class="n">scale_units</span><span class="o">=</span><span class="s2">"xy"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.07</span><span class="p">),</span>
-    <span class="n">quiver_n</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
-    <span class="n">xspace</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-    <span class="n">yspace</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-<span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+o = foxes.output.FlowPlots2D(algo, farm_results)
+for fig in o.gen_states_fig_horizontal(
+    FV.WS,
+    resolution=10,
+    figsize=(8, 8),
+    quiver_pars=dict(angles="xy", scale_units="xy", scale=0.07),
+    quiver_n=15,
+    xspace=1000,
+    yspace=1000,
+):
+    plt.show()
+    plt.close(fig)
 </pre></div>
 </div>
 </div>
