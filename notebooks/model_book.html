@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The model book &mdash; foxes 0.2.5
+  <title>The model book &mdash; foxes 0.2.6
  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
@@ -39,7 +39,7 @@
             <a href="../index.html" class="icon icon-home"> foxes
           </a>
               <div class="version">
-                0.2.5
+                0.2.6
 
               </div>
 <div role="search">
@@ -73,6 +73,7 @@
 <li class="toctree-l2"><a class="reference internal" href="sector_man.html">Wind sector management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="heterogeneous.html">Heterogeneous flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="power_mask.html">Power mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yawed_wake.html">Yawed rotor wakes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="layout_opt.html">Layout optimization</a></li>
 </ul>
 </li>
@@ -229,6 +230,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.models.point_models.html">foxes.models.point_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.point_models.set_uniform_data.html">foxes.models.point_models.set_uniform_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.point_models.tke2ti.html">foxes.models.point_models.tke2ti</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
 </ul>
 </li>
@@ -243,7 +245,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.sector_management.html">foxes.models.turbine_models.sector_management</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.table_factors.html">foxes.models.turbine_models.table_factors</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.thrust2ct.html">foxes.models.turbine_models.thrust2ct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.yaw2yawm.html">foxes.models.turbine_models.yaw2yawm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.yawm2yaw.html">foxes.models.turbine_models.yawm2yaw</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
@@ -261,6 +266,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.yawed_wakes.html">foxes.models.wake_frames.yawed_wakes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
@@ -389,6 +395,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.utils.wind_dir.html">foxes.utils.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.utils.wind_dir.delta_wd.html">foxes.utils.wind_dir.delta_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.utils.wind_dir.uv2wd.html">foxes.utils.wind_dir.uv2wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.utils.wind_dir.wd2uv.html">foxes.utils.wind_dir.wd2uv</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.utils.wind_dir.wd2wdvec.html">foxes.utils.wind_dir.wd2wdvec</a></li>
@@ -440,6 +447,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-3-alpha">v0.2.3-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-4-alpha">v0.2.4-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-5-alpha">v0.2.5-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -793,7 +801,10 @@ farm_kTI_05: Turbine2FarmModel(kTI_05 (kTI)(kTI=0.5, ti=TI))
 farm_kTI_amb: Turbine2FarmModel(kTI_amb (kTI)(kTI=None, ti=AMB_TI))
 farm_kTI_amb_02: Turbine2FarmModel(kTI_amb_02 (kTI)(kTI=0.2, ti=AMB_TI))
 farm_kTI_amb_04: Turbine2FarmModel(kTI_amb_04 (kTI)(kTI=0.4, ti=AMB_TI))
+farm_kTI_amb_05: Turbine2FarmModel(kTI_amb_05 (kTI)(kTI=0.5, ti=AMB_TI))
 farm_thrust2ct: Turbine2FarmModel(thrust2ct (Thrust2Ct))
+farm_yaw2yawm: Turbine2FarmModel(yaw2yawm (YAW2YAWM))
+farm_yawm2yaw: Turbine2FarmModel(yawm2yaw (YAWM2YAW))
 
 partial_wakes
 -------------
@@ -860,7 +871,10 @@ kTI_05: kTI_05 (kTI)(kTI=0.5, ti=TI)
 kTI_amb: kTI_amb (kTI)(kTI=None, ti=AMB_TI)
 kTI_amb_02: kTI_amb_02 (kTI)(kTI=0.2, ti=AMB_TI)
 kTI_amb_04: kTI_amb_04 (kTI)(kTI=0.4, ti=AMB_TI)
+kTI_amb_05: kTI_amb_05 (kTI)(kTI=0.5, ti=AMB_TI)
 thrust2ct: thrust2ct (Thrust2Ct)
+yaw2yawm: yaw2yawm (YAW2YAWM)
+yawm2yaw: yawm2yaw (YAWM2YAW)
 
 turbine_types
 -------------
@@ -870,6 +884,8 @@ wake_frames
 -----------
 rotor_wd: rotor_wd (RotorWD)
 streamlines_100: streamlines_100 (Streamlines)(step=100)
+streamlines_100_yawed: streamlines_100_yawed (YawedWakes)
+yawed: yawed (YawedWakes)
 
 wake_models
 -----------
@@ -877,6 +893,8 @@ Bastankhah_linear: Bastankhah_linear (BastankhahWake)(k=None, sp=linear)
 Bastankhah_linear_amb: Bastankhah_linear_amb (BastankhahWake)(k=None, sp=linear_amb)
 Bastankhah_linear_amb_k002: Bastankhah_linear_amb_k002 (BastankhahWake)(k=0.02, sp=linear_amb)
 Bastankhah_linear_k002: Bastankhah_linear_k002 (BastankhahWake)(k=0.02, sp=linear)
+Bastankhah_linear_lim: Bastankhah_linear_lim (BastankhahWake)(k=None, sp=linear_lim)
+Bastankhah_linear_lim_k002: Bastankhah_linear_lim_k002 (BastankhahWake)(k=0.02, sp=linear_lim)
 Bastankhah_max: Bastankhah_max (BastankhahWake)(k=None, sp=max)
 Bastankhah_max_amb: Bastankhah_max_amb (BastankhahWake)(k=None, sp=max_amb)
 Bastankhah_max_amb_k002: Bastankhah_max_amb_k002 (BastankhahWake)(k=0.02, sp=max_amb)
@@ -885,6 +903,9 @@ Bastankhah_quadratic: Bastankhah_quadratic (BastankhahWake)(k=None, sp=quadratic
 Bastankhah_quadratic_amb: Bastankhah_quadratic_amb (BastankhahWake)(k=None, sp=quadratic_amb)
 Bastankhah_quadratic_amb_k002: Bastankhah_quadratic_amb_k002 (BastankhahWake)(k=0.02, sp=quadratic_amb)
 Bastankhah_quadratic_k002: Bastankhah_quadratic_k002 (BastankhahWake)(k=0.02, sp=quadratic)
+CrespoHernandez_ambti_linear: CrespoHernandez_ambti_linear (CrespoHernandezTIWake)(k=None, sp=ti_linear)
+CrespoHernandez_ambti_max: CrespoHernandez_ambti_max (CrespoHernandezTIWake)(k=None, sp=ti_max)
+CrespoHernandez_ambti_quadratic: CrespoHernandez_ambti_quadratic (CrespoHernandezTIWake)(k=None, sp=ti_quadratic)
 CrespoHernandez_linear: CrespoHernandez_linear (CrespoHernandezTIWake)(k=None, sp=ti_linear)
 CrespoHernandez_linear_k002: CrespoHernandez_linear_k002 (CrespoHernandezTIWake)(k=0.02, sp=ti_linear)
 CrespoHernandez_max: CrespoHernandez_max (CrespoHernandezTIWake)(k=None, sp=ti_max)
@@ -907,6 +928,11 @@ Jensen_linear_k002: Jensen_linear_k002 (JensenWake)(k=0.02, sp=linear)
 Jensen_linear_k004: Jensen_linear_k004 (JensenWake)(k=0.04, sp=linear)
 Jensen_linear_k007: Jensen_linear_k007 (JensenWake)(k=0.07, sp=linear)
 Jensen_linear_k0075: Jensen_linear_k0075 (JensenWake)(k=0.075, sp=linear)
+Jensen_linear_lim: Jensen_linear_lim (JensenWake)(k=None, sp=linear_lim)
+Jensen_linear_lim_k002: Jensen_linear_lim_k002 (JensenWake)(k=0.02, sp=linear_lim)
+Jensen_linear_lim_k004: Jensen_linear_lim_k004 (JensenWake)(k=0.04, sp=linear_lim)
+Jensen_linear_lim_k007: Jensen_linear_lim_k007 (JensenWake)(k=0.07, sp=linear_lim)
+Jensen_linear_lim_k0075: Jensen_linear_lim_k0075 (JensenWake)(k=0.075, sp=linear_lim)
 Jensen_max: Jensen_max (JensenWake)(k=None, sp=max)
 Jensen_max_amb: Jensen_max_amb (JensenWake)(k=None, sp=max_amb)
 Jensen_max_amb_k002: Jensen_max_amb_k002 (JensenWake)(k=0.02, sp=max_amb)
@@ -927,10 +953,19 @@ Jensen_quadratic_k002: Jensen_quadratic_k002 (JensenWake)(k=0.02, sp=quadratic)
 Jensen_quadratic_k004: Jensen_quadratic_k004 (JensenWake)(k=0.04, sp=quadratic)
 Jensen_quadratic_k007: Jensen_quadratic_k007 (JensenWake)(k=0.07, sp=quadratic)
 Jensen_quadratic_k0075: Jensen_quadratic_k0075 (JensenWake)(k=0.075, sp=quadratic)
+PorteAgel_linear: PorteAgel_linear (PorteAgelWake)(k=None, sp=linear)
+PorteAgel_linear_amb: PorteAgel_linear_amb (PorteAgelWake)(k=None, sp=linear_amb)
+PorteAgel_linear_lim: PorteAgel_linear_lim (PorteAgelWake)(k=None, sp=linear_lim)
+PorteAgel_max: PorteAgel_max (PorteAgelWake)(k=None, sp=max)
+PorteAgel_max_amb: PorteAgel_max_amb (PorteAgelWake)(k=None, sp=max_amb)
+PorteAgel_quadratic: PorteAgel_quadratic (PorteAgelWake)(k=None, sp=quadratic)
+PorteAgel_quadratic_amb: PorteAgel_quadratic_amb (PorteAgelWake)(k=None, sp=quadratic_amb)
 TurbOPark_linear: TurbOPark_linear (TurbOParkWake)(k=None, sp=linear)
 TurbOPark_linear_amb: TurbOPark_linear_amb (TurbOParkWake)(k=None, sp=linear_amb)
 TurbOPark_linear_amb_k004: TurbOPark_linear_amb_k004 (TurbOParkWake)(k=0.04, sp=linear_amb)
 TurbOPark_linear_k004: TurbOPark_linear_k004 (TurbOParkWake)(k=0.04, sp=linear)
+TurbOPark_linear_lim: TurbOPark_linear_lim (TurbOParkWake)(k=None, sp=linear_lim)
+TurbOPark_linear_lim_k004: TurbOPark_linear_lim_k004 (TurbOParkWake)(k=0.04, sp=linear_lim)
 TurbOPark_max: TurbOPark_max (TurbOParkWake)(k=None, sp=max)
 TurbOPark_max_amb: TurbOPark_max_amb (TurbOParkWake)(k=None, sp=max_amb)
 TurbOPark_max_amb_k004: TurbOPark_max_amb_k004 (TurbOParkWake)(k=0.04, sp=max_amb)
@@ -944,6 +979,7 @@ wake_superpositions
 -------------------
 linear: linear (LinearSuperposition)
 linear_amb: linear_amb (LinearSuperposition)
+linear_lim: linear_lim (LinearSuperposition)
 max: max (MaxSuperposition)
 max_amb: max_amb (MaxSuperposition)
 quadratic: quadratic (QuadraticSuperposition)
@@ -995,6 +1031,11 @@ Jensen_linear_k002: Jensen_linear_k002 (JensenWake)(k=0.02, sp=linear)
 Jensen_linear_k004: JensenWake(k=0.04, sp=linear)
 Jensen_linear_k007: Jensen_linear_k007 (JensenWake)(k=0.07, sp=linear)
 Jensen_linear_k0075: Jensen_linear_k0075 (JensenWake)(k=0.075, sp=linear)
+Jensen_linear_lim: Jensen_linear_lim (JensenWake)(k=None, sp=linear_lim)
+Jensen_linear_lim_k002: Jensen_linear_lim_k002 (JensenWake)(k=0.02, sp=linear_lim)
+Jensen_linear_lim_k004: Jensen_linear_lim_k004 (JensenWake)(k=0.04, sp=linear_lim)
+Jensen_linear_lim_k007: Jensen_linear_lim_k007 (JensenWake)(k=0.07, sp=linear_lim)
+Jensen_linear_lim_k0075: Jensen_linear_lim_k0075 (JensenWake)(k=0.075, sp=linear_lim)
 Jensen_max: Jensen_max (JensenWake)(k=None, sp=max)
 Jensen_max_amb: Jensen_max_amb (JensenWake)(k=None, sp=max_amb)
 Jensen_max_amb_k002: Jensen_max_amb_k002 (JensenWake)(k=0.02, sp=max_amb)

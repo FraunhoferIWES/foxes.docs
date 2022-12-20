@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>foxes.core.rotor_model &mdash; foxes 0.2.5
+  <title>foxes.core.rotor_model &mdash; foxes 0.2.6
  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
@@ -34,7 +34,7 @@
             <a href="../../../index.html" class="icon icon-home"> foxes
           </a>
               <div class="version">
-                0.2.5
+                0.2.6
 
               </div>
 <div role="search">
@@ -68,6 +68,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/sector_man.html">Wind sector management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/heterogeneous.html">Heterogeneous flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/power_mask.html">Power mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/yawed_wake.html">Yawed rotor wakes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/layout_opt.html">Layout optimization</a></li>
 </ul>
 </li>
@@ -224,6 +225,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.point_models.html">foxes.models.point_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.point_models.set_uniform_data.html">foxes.models.point_models.set_uniform_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.point_models.tke2ti.html">foxes.models.point_models.tke2ti</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
 </ul>
 </li>
@@ -238,7 +240,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.sector_management.html">foxes.models.turbine_models.sector_management</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.table_factors.html">foxes.models.turbine_models.table_factors</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.thrust2ct.html">foxes.models.turbine_models.thrust2ct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.yaw2yawm.html">foxes.models.turbine_models.yaw2yawm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.yawm2yaw.html">foxes.models.turbine_models.yawm2yaw</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
@@ -256,6 +261,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_frames.yawed_wakes.html">foxes.models.wake_frames.yawed_wakes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
@@ -384,6 +390,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.html">foxes.utils.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.delta_wd.html">foxes.utils.wind_dir.delta_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.uv2wd.html">foxes.utils.wind_dir.uv2wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.wd2uv.html">foxes.utils.wind_dir.wd2uv</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.wd2wdvec.html">foxes.utils.wind_dir.wd2wdvec</a></li>
@@ -435,6 +442,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-3-alpha">v0.2.3-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-4-alpha">v0.2.4-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-5-alpha">v0.2.5-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -629,7 +637,7 @@
 <span class="sd">        Helper function for results setting</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">stsel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">fdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span>
+            <span class="n">fdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="k">elif</span> <span class="n">res</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">fdata</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">stsel</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
@@ -729,7 +737,7 @@
         <span class="p">):</span>
 
             <span class="k">if</span> <span class="n">stsel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">yaw</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">YAW</span><span class="p">]</span>
+                <span class="n">yaw</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">YAW</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">yaw</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">YAW</span><span class="p">][</span><span class="n">stsel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
             <span class="n">nax</span> <span class="o">=</span> <span class="n">wd2uv</span><span class="p">(</span><span class="n">yaw</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -738,19 +746,46 @@
             <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_vars</span><span class="p">:</span>
 
                 <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">:</span>
-                    <span class="n">rews</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;stp,p-&gt;st&quot;</span><span class="p">,</span> <span class="n">wsp</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+                    <span class="n">rews</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;stp,p-&gt;st&quot;</span><span class="p">,</span> <span class="n">wsp</span><span class="p">,</span> <span class="n">weights</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_set_res</span><span class="p">(</span><span class="n">fdata</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">rews</span><span class="p">,</span> <span class="n">stsel</span><span class="p">)</span>
                     <span class="k">del</span> <span class="n">rews</span>
                     <span class="n">vdone</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
                 <span class="k">elif</span> <span class="n">v</span> <span class="o">==</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS2</span><span class="p">:</span>
-                    <span class="n">rews2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;stp,p-&gt;st&quot;</span><span class="p">,</span> <span class="n">wsp</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">weights</span><span class="p">))</span>
+
+                    <span class="c1"># For highly inhomogeneous wind fields</span>
+                    <span class="c1"># and multiple rotor points some of the uv</span>
+                    <span class="c1"># vectors may have negative projections onto the</span>
+                    <span class="c1"># turbine axis direction:</span>
+                    <span class="k">if</span> <span class="n">uvp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">rews2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+                            <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span>
+                                <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span>
+                                    <span class="s2">&quot;stp,p-&gt;st&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">wsp</span><span class="p">)</span> <span class="o">*</span> <span class="n">wsp</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">weights</span>
+                                <span class="p">),</span>
+                                <span class="mf">0.0</span><span class="p">,</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">rews2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;stp,p-&gt;st&quot;</span><span class="p">,</span> <span class="n">wsp</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">weights</span><span class="p">))</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_set_res</span><span class="p">(</span><span class="n">fdata</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">rews2</span><span class="p">,</span> <span class="n">stsel</span><span class="p">)</span>
                     <span class="k">del</span> <span class="n">rews2</span>
                     <span class="n">vdone</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
                 <span class="k">elif</span> <span class="n">v</span> <span class="o">==</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS3</span><span class="p">:</span>
-                    <span class="n">rews3</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;stp,p-&gt;st&quot;</span><span class="p">,</span> <span class="n">wsp</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">weights</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span>
+
+                    <span class="c1"># For highly inhomogeneous wind fields</span>
+                    <span class="c1"># and multiple rotor points some of the uv</span>
+                    <span class="c1"># vectors may have negative projections onto the</span>
+                    <span class="c1"># turbine axis direction:</span>
+                    <span class="k">if</span> <span class="n">uvp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">rews3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span>
+                            <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;stp,p-&gt;st&quot;</span><span class="p">,</span> <span class="n">wsp</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">weights</span><span class="p">),</span> <span class="mf">0.0</span>
+                        <span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">rews3</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;stp,p-&gt;st&quot;</span><span class="p">,</span> <span class="n">wsp</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">weights</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span>
+                            <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span>
+                        <span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_set_res</span><span class="p">(</span><span class="n">fdata</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">rews3</span><span class="p">,</span> <span class="n">stsel</span><span class="p">)</span>
                     <span class="k">del</span> <span class="n">rews3</span>
                     <span class="n">vdone</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>

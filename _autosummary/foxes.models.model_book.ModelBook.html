@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>foxes.models.model_book.ModelBook &mdash; foxes 0.2.5
+  <title>foxes.models.model_book.ModelBook &mdash; foxes 0.2.6
  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
@@ -37,7 +37,7 @@
             <a href="../index.html" class="icon icon-home"> foxes
           </a>
               <div class="version">
-                0.2.5
+                0.2.6
 
               </div>
 <div role="search">
@@ -71,6 +71,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/sector_man.html">Wind sector management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/heterogeneous.html">Heterogeneous flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/power_mask.html">Power mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/yawed_wake.html">Yawed rotor wakes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/layout_opt.html">Layout optimization</a></li>
 </ul>
 </li>
@@ -227,6 +228,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="foxes.models.point_models.html">foxes.models.point_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.point_models.set_uniform_data.html">foxes.models.point_models.set_uniform_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.point_models.tke2ti.html">foxes.models.point_models.tke2ti</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
 </ul>
 </li>
@@ -241,7 +243,10 @@
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.sector_management.html">foxes.models.turbine_models.sector_management</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.table_factors.html">foxes.models.turbine_models.table_factors</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.thrust2ct.html">foxes.models.turbine_models.thrust2ct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.yaw2yawm.html">foxes.models.turbine_models.yaw2yawm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.yawm2yaw.html">foxes.models.turbine_models.yawm2yaw</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
@@ -259,6 +264,7 @@
 <li class="toctree-l3"><a class="reference internal" href="foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_frames.yawed_wakes.html">foxes.models.wake_frames.yawed_wakes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
@@ -387,6 +393,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="foxes.utils.wind_dir.html">foxes.utils.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.delta_wd.html">foxes.utils.wind_dir.delta_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.uv2wd.html">foxes.utils.wind_dir.uv2wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.wd2uv.html">foxes.utils.wind_dir.wd2uv</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.wd2wdvec.html">foxes.utils.wind_dir.wd2wdvec</a></li>
@@ -438,6 +445,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-3-alpha">v0.2.3-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-4-alpha">v0.2.4-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-5-alpha">v0.2.5-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -720,6 +728,10 @@ values: foxes.core.WakeModel</p>
 <td><p></p></td>
 </tr>
 <tr class="row-even">
+<td><p><a class="reference internal" href="#foxes.models.model_book.ModelBook.finalize" title="foxes.models.model_book.ModelBook.finalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">finalize</span></code></a>(algo, results[, clear_mem, verbosity])</p></td>
+<td><p>Finalizes the model.</p></td>
+</tr>
+<tr class="row-odd">
 <td><p><a class="reference internal" href="#foxes.models.model_book.ModelBook.print_toc" title="foxes.models.model_book.ModelBook.print_toc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_toc</span></code></a>([subset, search])</p></td>
 <td><p>Print the contents.</p></td>
 </tr>
@@ -730,6 +742,27 @@ values: foxes.core.WakeModel</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Pct_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/models/model_book.html#ModelBook.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition"></a>
 </dt>
 <dd></dd>
+</dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="foxes.models.model_book.ModelBook.finalize">
+<span class="sig-name descname"><span class="pre">finalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/models/model_book.html#ModelBook.finalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.models.model_book.ModelBook.finalize" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Finalizes the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd">
+<ul class="simple">
+<li><p><strong>algo</strong> (<em>foxes.core.Algorithm</em>) – The calculation algorithm</p></li>
+<li><p><strong>results</strong> (<em>xarray.Dataset</em>) – The farm calculation results</p></li>
+<li><p><strong>clear_mem</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – Flag for deleting model data and
+resetting initialization flag</p></li>
+<li><p><strong>verbosity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The verbosity level, 0 = silent</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
 </dl>
 
 <dl class="py method">

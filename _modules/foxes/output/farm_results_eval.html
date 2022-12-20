@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>foxes.output.farm_results_eval &mdash; foxes 0.2.5
+  <title>foxes.output.farm_results_eval &mdash; foxes 0.2.6
  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
@@ -34,7 +34,7 @@
             <a href="../../../index.html" class="icon icon-home"> foxes
           </a>
               <div class="version">
-                0.2.5
+                0.2.6
 
               </div>
 <div role="search">
@@ -68,6 +68,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/sector_man.html">Wind sector management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/heterogeneous.html">Heterogeneous flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/power_mask.html">Power mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/yawed_wake.html">Yawed rotor wakes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/layout_opt.html">Layout optimization</a></li>
 </ul>
 </li>
@@ -224,6 +225,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.point_models.html">foxes.models.point_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.point_models.set_uniform_data.html">foxes.models.point_models.set_uniform_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.point_models.tke2ti.html">foxes.models.point_models.tke2ti</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
 </ul>
 </li>
@@ -238,7 +240,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.sector_management.html">foxes.models.turbine_models.sector_management</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.table_factors.html">foxes.models.turbine_models.table_factors</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.thrust2ct.html">foxes.models.turbine_models.thrust2ct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.yaw2yawm.html">foxes.models.turbine_models.yaw2yawm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.yawm2yaw.html">foxes.models.turbine_models.yawm2yaw</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
@@ -256,6 +261,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_frames.yawed_wakes.html">foxes.models.wake_frames.yawed_wakes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
@@ -384,6 +390,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.html">foxes.utils.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.delta_wd.html">foxes.utils.wind_dir.delta_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.uv2wd.html">foxes.utils.wind_dir.uv2wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.wd2uv.html">foxes.utils.wind_dir.wd2uv</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.wd2wdvec.html">foxes.utils.wind_dir.wd2wdvec</a></li>
@@ -435,6 +442,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-3-alpha">v0.2.3-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-4-alpha">v0.2.4-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-5-alpha">v0.2.5-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -469,6 +477,7 @@
 
 <span class="kn">from</span> <span class="nn">.output</span> <span class="kn">import</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
+<span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 
 <div class="viewcode-block" id="FarmResultsEval"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval">[docs]</a><span class="k">class</span> <span class="nc">FarmResultsEval</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
@@ -493,6 +502,60 @@
 <div class="viewcode-block" id="FarmResultsEval.__init__"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">farm_results</span></div>
 
+<div class="viewcode-block" id="FarmResultsEval.weinsum"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.weinsum">[docs]</a>    <span class="k">def</span> <span class="nf">weinsum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="o">*</span><span class="nb">vars</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates Einstein sum, adding weights</span>
+<span class="sd">        as last argument to the given fields.</span>
+
+<span class="sd">        It&#39;s all about treating NaN values.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        rhs : str</span>
+<span class="sd">            The right-hand side of the einsum expression.</span>
+<span class="sd">            Convention: &#39;s&#39; for states, &#39;t&#39; for turbines</span>
+<span class="sd">        vars : tuple of str or np.ndarray</span>
+<span class="sd">            The variables mentioned in the expression,</span>
+<span class="sd">            but without the obligatory weights that will</span>
+<span class="sd">            be added at the end</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        result : np.ndarray</span>
+<span class="sd">            The results array</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nas</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">fields</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fields</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">nas</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">nas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+            <span class="n">nas</span> <span class="o">=</span> <span class="n">nas</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">inds</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;st&quot;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;st&quot;</span><span class="p">]</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inds</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;-&gt;&quot;</span> <span class="o">+</span> <span class="n">rhs</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">nas</span><span class="p">):</span>
+
+            <span class="n">sel</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">nas</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">]</span>
+
+            <span class="n">weights0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+            <span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">weights0</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
+            <span class="n">w1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">weights</span> <span class="o">*=</span> <span class="n">w0</span> <span class="o">/</span> <span class="n">w1</span>
+            <span class="n">fields</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fields</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">*</span><span class="n">fields</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="FarmResultsEval.reduce_states"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.reduce_states">[docs]</a>    <span class="k">def</span> <span class="nf">reduce_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_op</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reduces the states dimension by some operation</span>
@@ -510,21 +573,23 @@
 <span class="sd">            The results per turbine</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-        <span class="n">n_turbines</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">n_turbines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">]</span>
 
         <span class="n">rdata</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">vars_op</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">vdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
-                <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;st,st-&gt;t&quot;</span><span class="p">,</span> <span class="n">vdata</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+                <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weinsum</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;sum&quot;</span><span class="p">:</span>
+                <span class="n">vdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
                 <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vdata</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span>
+                <span class="n">vdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
                 <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">vdata</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span>
+                <span class="n">vdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
                 <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">vdata</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;std&quot;</span><span class="p">:</span>
+                <span class="n">vdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
                 <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">vdata</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
@@ -553,19 +618,20 @@
 <span class="sd">            The results per state</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
         <span class="n">states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
 
         <span class="n">rdata</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">vars_op</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">vdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
-                <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;st,st-&gt;s&quot;</span><span class="p">,</span> <span class="n">vdata</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+                <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weinsum</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;sum&quot;</span><span class="p">:</span>
+                <span class="n">vdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
                 <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vdata</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span>
+                <span class="n">vdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
                 <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">vdata</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span>
+                <span class="n">vdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
                 <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">vdata</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
@@ -600,7 +666,6 @@
 <span class="sd">            The fully contracted results</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
         <span class="n">sdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_states</span><span class="p">(</span><span class="n">states_op</span><span class="p">)</span>
 
         <span class="n">rdata</span> <span class="o">=</span> <span class="p">{}</span>
@@ -608,15 +673,18 @@
             <span class="n">vdata</span> <span class="o">=</span> <span class="n">sdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">states_op</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
-                    <span class="n">vdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-                    <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;st,st-&gt;&quot;</span><span class="p">,</span> <span class="n">vdata</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+                    <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weinsum</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;st,st-&gt;&quot;</span><span class="p">,</span> <span class="n">vdata</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="n">weights</span><span class="p">)</span>
+                    <span class="n">vdata</span> <span class="o">=</span> <span class="n">sdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+                    <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weinsum</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">vdata</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span>
             <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;sum&quot;</span><span class="p">:</span>
+                <span class="n">vdata</span> <span class="o">=</span> <span class="n">sdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
                 <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vdata</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span>
+                <span class="n">vdata</span> <span class="o">=</span> <span class="n">sdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
                 <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">vdata</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span>
+                <span class="n">vdata</span> <span class="o">=</span> <span class="n">sdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
                 <span class="n">rdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">vdata</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
@@ -768,6 +836,7 @@
         <span class="n">annual</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">ambient</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">hours</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">delta_t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">P_unit_W</span><span class="o">=</span><span class="mf">1e3</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -781,6 +850,9 @@
 <span class="sd">            Flag for ambient power, by default False</span>
 <span class="sd">        hours : int, optional</span>
 <span class="sd">            The duration time in hours, if not timeseries states</span>
+<span class="sd">        delta_t : np.datetime64, optional</span>
+<span class="sd">            The time delta step in case of time series data,</span>
+<span class="sd">            by default automatically determined</span>
 <span class="sd">        P_unit_W : float</span>
 <span class="sd">            The power unit in Watts, 1000 for kW</span>
 
@@ -801,7 +873,10 @@
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">hours</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Unexpected parameter &#39;hours&#39; for timeseries data&quot;</span><span class="p">)</span>
-            <span class="n">duration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">times</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">delta_t</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">delta_t</span> <span class="o">=</span> <span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">delta_t</span>
             <span class="n">duration_seconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">duration</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e9</span><span class="p">)</span>
             <span class="n">duration_hours</span> <span class="o">=</span> <span class="n">duration_seconds</span> <span class="o">/</span> <span class="mi">3600</span>
         <span class="k">elif</span> <span class="n">hours</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">annual</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
@@ -821,7 +896,7 @@
         <span class="n">yld</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">var_in</span><span class="p">:</span> <span class="n">var_out</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">yld</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.add_capacity"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.add_capacity">[docs]</a>    <span class="k">def</span> <span class="nf">add_capacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">P_nom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.add_capacity"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.add_capacity">[docs]</a>    <span class="k">def</span> <span class="nf">add_capacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">P_nom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds capacity to the farm results</span>
 
@@ -833,6 +908,8 @@
 <span class="sd">            Nominal power values for each turbine, if algo not given</span>
 <span class="sd">        ambient : bool, optional</span>
 <span class="sd">            Flag for calculating ambient capacity, by default False</span>
+<span class="sd">        verbosity : int</span>
+<span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">ambient</span><span class="p">:</span>
@@ -846,18 +923,22 @@
         <span class="n">vdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">var_in</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">algo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">P_nom</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">P_nom</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">P_nominal</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">farm_controller</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">]</span>
+            <span class="n">P_nom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">P_nominal</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">farm_controller</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">],</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="k">elif</span> <span class="n">algo</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">P_nom</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">pass</span>
+            <span class="n">P_nom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">P_nom</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Expecting either &#39;algo&#39; or &#39;P_nom&#39;&quot;</span><span class="p">)</span>
 
         <span class="c1"># add to farm results</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">var_out</span><span class="p">]</span> <span class="o">=</span> <span class="n">vdata</span> <span class="o">/</span> <span class="n">P_nom</span>
-        <span class="k">if</span> <span class="n">ambient</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ambient capacity added to farm results&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Capacity added to farm results&quot;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">var_out</span><span class="p">]</span> <span class="o">=</span> <span class="n">vdata</span> <span class="o">/</span> <span class="n">P_nom</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ambient</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ambient capacity added to farm results&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Capacity added to farm results&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="FarmResultsEval.calc_farm_yield"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_farm_yield">[docs]</a>    <span class="k">def</span> <span class="nf">calc_farm_yield</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turbine_yield</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">power_uncert</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -897,14 +978,21 @@
 
         <span class="k">return</span> <span class="n">farm_yield</span><span class="p">[</span><span class="s2">&quot;YLD&quot;</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.add_efficiency"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.add_efficiency">[docs]</a>    <span class="k">def</span> <span class="nf">add_efficiency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.add_efficiency"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.add_efficiency">[docs]</a>    <span class="k">def</span> <span class="nf">add_efficiency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds efficiency to the farm results</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        verbosity : int</span>
+<span class="sd">            The verbosity level, 0 = silent</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">]</span>
         <span class="n">P0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">AMB_P</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1e-14</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">EFF</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span> <span class="o">/</span> <span class="n">P0</span>  <span class="c1"># add to farm results</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Efficiency added to farm results&quot;</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="n">verbosity</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Efficiency added to farm results&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="FarmResultsEval.calc_farm_efficiency"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_farm_efficiency">[docs]</a>    <span class="k">def</span> <span class="nf">calc_farm_efficiency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>

@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>foxes.models.wake_models.wind.porte_agel &mdash; foxes 0.2.6
+ documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../../index.html" class="icon icon-home"> foxes
+          </a>
+              <div class="version">
+                0.2.6
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../installation.html#installation-via-conda">Installation via conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../installation.html#installation-via-pip">Installation via pip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../installation.html#virtual-python-environment">Virtual Python environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../installation.html#standard-users">Standard users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../installation.html#developers">Developers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/model_book.html">The model book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/single_row.html">Single row of turbines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/timeseries.html">Timeseries data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/multi_height.html">Multi-height wind data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/wind_rose.html">Wind rose data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/sector_man.html">Wind sector management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/heterogeneous.html">Heterogeneous flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/power_mask.html">Power mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/yawed_wake.html">Yawed rotor wakes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/layout_opt.html">Layout optimization</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_autosummary/foxes.algorithms.html">foxes.algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.algorithms.downwind.html">foxes.algorithms.downwind</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.algorithms.downwind.downwind.html">foxes.algorithms.downwind.downwind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.algorithms.downwind.models.html">foxes.algorithms.downwind.models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_autosummary/foxes.constants.html">foxes.constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_autosummary/foxes.core.html">foxes.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.algorithm.html">foxes.core.algorithm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.algorithm.Algorithm.html">foxes.core.algorithm.Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.data.html">foxes.core.data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.data.Data.html">foxes.core.data.Data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.data_calc_model.html">foxes.core.data_calc_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.data_calc_model.DataCalcModel.html">foxes.core.data_calc_model.DataCalcModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.farm_controller.html">foxes.core.farm_controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.farm_controller.FarmController.html">foxes.core.farm_controller.FarmController</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.farm_data_model.html">foxes.core.farm_data_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.farm_data_model.FarmDataModel.html">foxes.core.farm_data_model.FarmDataModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.farm_data_model.FarmDataModelList.html">foxes.core.farm_data_model.FarmDataModelList</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.farm_model.html">foxes.core.farm_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.farm_model.FarmModel.html">foxes.core.farm_model.FarmModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.model.html">foxes.core.model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.model.Model.html">foxes.core.model.Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.partial_wakes_model.html">foxes.core.partial_wakes_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.partial_wakes_model.PartialWakesModel.html">foxes.core.partial_wakes_model.PartialWakesModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.point_data_model.html">foxes.core.point_data_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.point_data_model.PointDataModel.html">foxes.core.point_data_model.PointDataModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.point_data_model.PointDataModelList.html">foxes.core.point_data_model.PointDataModelList</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.rotor_model.html">foxes.core.rotor_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.rotor_model.RotorModel.html">foxes.core.rotor_model.RotorModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.states.html">foxes.core.states</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.states.ExtendedStates.html">foxes.core.states.ExtendedStates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.states.States.html">foxes.core.states.States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.turbine.html">foxes.core.turbine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.turbine.Turbine.html">foxes.core.turbine.Turbine</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.turbine_model.html">foxes.core.turbine_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.turbine_model.TurbineModel.html">foxes.core.turbine_model.TurbineModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.turbine_type.html">foxes.core.turbine_type</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.turbine_type.TurbineType.html">foxes.core.turbine_type.TurbineType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.vertical_profile.html">foxes.core.vertical_profile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.vertical_profile.VerticalProfile.html">foxes.core.vertical_profile.VerticalProfile</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.wake_frame.html">foxes.core.wake_frame</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.wake_frame.WakeFrame.html">foxes.core.wake_frame.WakeFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.wake_model.html">foxes.core.wake_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.wake_model.WakeModel.html">foxes.core.wake_model.WakeModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.wake_superposition.html">foxes.core.wake_superposition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.wake_superposition.WakeSuperposition.html">foxes.core.wake_superposition.WakeSuperposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.core.wind_farm.html">foxes.core.wind_farm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.core.wind_farm.WindFarm.html">foxes.core.wind_farm.WindFarm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_autosummary/foxes.data.html">foxes.data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.data.farms.html">foxes.data.farms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.data.parse.html">foxes.data.parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.data.parse.parse_Pct_file_name.html">foxes.data.parse.parse_Pct_file_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.data.parse.parse_Pct_two_files.html">foxes.data.parse.parse_Pct_two_files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.data.power_ct_curves.html">foxes.data.power_ct_curves</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.data.states.html">foxes.data.states</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.data.static_data.html">foxes.data.static_data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.data.static_data.StaticData.html">foxes.data.static_data.StaticData</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_autosummary/foxes.input.html">foxes.input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.input.farm_layout.html">foxes.input.farm_layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.input.farm_layout.add_from_csv.html">foxes.input.farm_layout.add_from_csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.input.farm_layout.add_from_file.html">foxes.input.farm_layout.add_from_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.input.farm_layout.add_from_json.html">foxes.input.farm_layout.add_from_json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.input.farm_layout.add_grid.html">foxes.input.farm_layout.add_grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.input.farm_layout.add_row.html">foxes.input.farm_layout.add_row</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.input.states.html">foxes.input.states</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.input.states.create.html">foxes.input.states.create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.input.states.field_data_nc.html">foxes.input.states.field_data_nc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.input.states.multi_height.html">foxes.input.states.multi_height</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.input.states.scan_ws.html">foxes.input.states.scan_ws</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.input.states.single.html">foxes.input.states.single</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.input.states.states_table.html">foxes.input.states.states_table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_autosummary/foxes.models.html">foxes.models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.models.farm_controllers.html">foxes.models.farm_controllers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.farm_controllers.basic.html">foxes.models.farm_controllers.basic</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.models.farm_models.html">foxes.models.farm_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.farm_models.turbine2farm.html">foxes.models.farm_models.turbine2farm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.models.model_book.html">foxes.models.model_book</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.model_book.ModelBook.html">foxes.models.model_book.ModelBook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.models.partial_wakes.html">foxes.models.partial_wakes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.partial_wakes.axiwake.html">foxes.models.partial_wakes.axiwake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.partial_wakes.distsliced.html">foxes.models.partial_wakes.distsliced</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.partial_wakes.grid.html">foxes.models.partial_wakes.grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.partial_wakes.mapped.html">foxes.models.partial_wakes.mapped</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.partial_wakes.rotor_points.html">foxes.models.partial_wakes.rotor_points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.partial_wakes.top_hat.html">foxes.models.partial_wakes.top_hat</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.models.point_models.html">foxes.models.point_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.point_models.set_uniform_data.html">foxes.models.point_models.set_uniform_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.point_models.tke2ti.html">foxes.models.point_models.tke2ti</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.models.rotor_models.html">foxes.models.rotor_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.rotor_models.centre.html">foxes.models.rotor_models.centre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.rotor_models.grid.html">foxes.models.rotor_models.grid</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_models.html">foxes.models.turbine_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_models.kTI_model.html">foxes.models.turbine_models.kTI_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_models.power_mask.html">foxes.models.turbine_models.power_mask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_models.sector_management.html">foxes.models.turbine_models.sector_management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_models.table_factors.html">foxes.models.turbine_models.table_factors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_models.thrust2ct.html">foxes.models.turbine_models.thrust2ct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_models.yaw2yawm.html">foxes.models.turbine_models.yaw2yawm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_models.yawm2yaw.html">foxes.models.turbine_models.yawm2yaw</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_types.PCt_file.html">foxes.models.turbine_types.PCt_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_types.PCt_two_files.html">foxes.models.turbine_types.PCt_two_files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_types.null_type.html">foxes.models.turbine_types.null_type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.turbine_types.wsrho2PCt_two_files.html">foxes.models.turbine_types.wsrho2PCt_two_files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.models.vertical_profiles.html">foxes.models.vertical_profiles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.vertical_profiles.abl_log.html">foxes.models.vertical_profiles.abl_log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.vertical_profiles.uniform.html">foxes.models.vertical_profiles.uniform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_frames.yawed_wakes.html">foxes.models.wake_frames.yawed_wakes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_models.axisymmetric.html">foxes.models.wake_models.axisymmetric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_models.dist_sliced.html">foxes.models.wake_models.dist_sliced</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_models.gaussian.html">foxes.models.wake_models.gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_models.ti.html">foxes.models.wake_models.ti</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_models.top_hat.html">foxes.models.wake_models.top_hat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_models.wind.html">foxes.models.wake_models.wind</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_superpositions.html">foxes.models.wake_superpositions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_superpositions.linear.html">foxes.models.wake_superpositions.linear</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_superpositions.max.html">foxes.models.wake_superpositions.max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_superpositions.quadratic.html">foxes.models.wake_superpositions.quadratic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.models.wake_superpositions.ti_superp.html">foxes.models.wake_superpositions.ti_superp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_autosummary/foxes.output.html">foxes.output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.output.farm_layout.html">foxes.output.farm_layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.output.farm_layout.FarmLayoutOutput.html">foxes.output.farm_layout.FarmLayoutOutput</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.output.farm_results_eval.html">foxes.output.farm_results_eval</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html">foxes.output.farm_results_eval.FarmResultsEval</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.output.flow_plots_2d.html">foxes.output.flow_plots_2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.output.flow_plots_2d.FlowPlots2D.html">foxes.output.flow_plots_2d.FlowPlots2D</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.output.output.html">foxes.output.output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.output.output.Output.html">foxes.output.output.Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.output.results_writer.html">foxes.output.results_writer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.output.results_writer.ResultsWriter.html">foxes.output.results_writer.ResultsWriter</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.output.rose_plot.html">foxes.output.rose_plot</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.output.rose_plot.RosePlotOutput.html">foxes.output.rose_plot.RosePlotOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.output.rose_plot.StatesRosePlotOutput.html">foxes.output.rose_plot.StatesRosePlotOutput</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.output.state_turbine_map.html">foxes.output.state_turbine_map</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.output.state_turbine_map.StateTurbineMap.html">foxes.output.state_turbine_map.StateTurbineMap</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.output.turbine_type_curves.html">foxes.output.turbine_type_curves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.output.turbine_type_curves.TurbineTypeCurves.html">foxes.output.turbine_type_curves.TurbineTypeCurves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.html">foxes.opt</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.constraints.html">foxes.opt.constraints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.constraints.area_geometry.html">foxes.opt.constraints.area_geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.constraints.min_dist.html">foxes.opt.constraints.min_dist</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.core.html">foxes.opt.core</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.core.farm_constraint.html">foxes.opt.core.farm_constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.core.farm_objective.html">foxes.opt.core.farm_objective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.core.farm_opt_problem.html">foxes.opt.core.farm_opt_problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.core.pop_states.html">foxes.opt.core.pop_states</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.objectives.html">foxes.opt.objectives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.objectives.farm_vars.html">foxes.opt.objectives.farm_vars</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.problems.html">foxes.opt.problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.opt.problems.layout.html">foxes.opt.problems.layout</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.html">foxes.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.abl.html">foxes.utils.abl</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.abl.neutral.html">foxes.utils.abl.neutral</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.abl.stable.html">foxes.utils.abl.stable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.abl.unstable.html">foxes.utils.abl.unstable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.cubic_roots.html">foxes.utils.cubic_roots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.data_book.html">foxes.utils.data_book</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.data_book.DataBook.html">foxes.utils.data_book.DataBook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.dict.html">foxes.utils.dict</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.dict.Dict.html">foxes.utils.dict.Dict</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.geom2d.html">foxes.utils.geom2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.geom2d.area_geometry.html">foxes.utils.geom2d.area_geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.geom2d.circle.html">foxes.utils.geom2d.circle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.geom2d.example_intersection.html">foxes.utils.geom2d.example_intersection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.geom2d.example_union.html">foxes.utils.geom2d.example_union</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.geom2d.half_plane.html">foxes.utils.geom2d.half_plane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.geom2d.polygon.html">foxes.utils.geom2d.polygon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.helpers.html">foxes.utils.helpers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.helpers.all_subclasses.html">foxes.utils.helpers.all_subclasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.pandas.html">foxes.utils.pandas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.pandas.PandasFileHelper.html">foxes.utils.pandas.PandasFileHelper</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.plotly.html">foxes.utils.plotly</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.plotly.show_plotly_fig.html">foxes.utils.plotly.show_plotly_fig</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.runners.html">foxes.utils.runners</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.runners.DaskRunner.html">foxes.utils.runners.DaskRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.runners.DefaultRunner.html">foxes.utils.runners.DefaultRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.runners.Runner.html">foxes.utils.runners.Runner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.two_circles.html">foxes.utils.two_circles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.two_circles.area.html">foxes.utils.two_circles.area</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.two_circles.calc_area.html">foxes.utils.two_circles.calc_area</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.wind_dir.html">foxes.utils.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.wind_dir.delta_wd.html">foxes.utils.wind_dir.delta_wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.wind_dir.uv2wd.html">foxes.utils.wind_dir.uv2wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.wind_dir.wd2uv.html">foxes.utils.wind_dir.wd2uv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.wind_dir.wd2wdvec.html">foxes.utils.wind_dir.wd2wdvec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../_autosummary/foxes.utils.wind_dir.wdvec2wd.html">foxes.utils.wind_dir.wdvec2wd</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_autosummary/foxes.variables.html">foxes.variables</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebooks/data.html">Static data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/data.html#Wind-farm-layout-data">Wind farm layout data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../notebooks/data.html#test_farm_67.csv">test_farm_67.csv</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/data.html#Ambient-states-data">Ambient states data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../notebooks/data.html#WRF-Timeseries-4464.csv.gz">WRF-Timeseries-4464.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../notebooks/data.html#abl_states_6000.csv.gz">abl_states_6000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../notebooks/data.html#timeseries_3000.csv.gz">timeseries_3000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../notebooks/data.html#timeseries_8000.csv.gz">timeseries_8000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../notebooks/data.html#wind_rose_bremen.csv">wind_rose_bremen.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../notebooks/data.html#wind_rotation.nc">wind_rotation.nc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/data.html#Power-and-thrust-curves">Power and thrust curves</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../notebooks/data.html#DTU-10MW-D178d3-H119.csv">DTU-10MW-D178d3-H119.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../notebooks/data.html#IEA-15MW-D240-H150.csv">IEA-15MW-D240-H150.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../notebooks/data.html#IWT-7d5MW-D164-H100.csv">IWT-7d5MW-D164-H100.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../notebooks/data.html#NREL-5MW-D126-H90.csv">NREL-5MW-D126-H90.csv</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../notebooks/data.html#File-paths">File paths</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../history.html#v0-1-0-alpha">v0.1.0-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../history.html#v0-1-1-alpha">v0.1.1-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../history.html#v0-1-2-alpha">v0.1.2-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../history.html#v0-1-3-alpha">v0.1.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../history.html#v0-1-4-alpha">v0.1.4-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../history.html#v0-2-0-alpha">v0.2.0-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../history.html#v0-2-1-alpha">v0.2.1-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../history.html#v0-2-2-alpha">v0.2.2-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../history.html#v0-2-3-alpha">v0.2.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../history.html#v0-2-4-alpha">v0.2.4-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../history.html#v0-2-5-alpha">v0.2.5-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">foxes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">foxes.models.wake_models.wind.porte_agel</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for foxes.models.wake_models.wind.porte_agel</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">foxes.models.wake_models.dist_sliced</span> <span class="kn">import</span> <span class="n">DistSlicedWakeModel</span>
+<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
+<span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
+
+
+<div class="viewcode-block" id="PorteAgelModel"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.porte_agel.PorteAgelModel.html#foxes.models.wake_models.wind.porte_agel.PorteAgelModel">[docs]</a><span class="k">class</span> <span class="nc">PorteAgelModel</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Common calculations for the wake model and the wake</span>
+<span class="sd">    frame, such that code repetitions can be avoided.</span>
+
+<span class="sd">    Based on Bastankhah &amp; Porte-Agel, 2016, https://doi.org/10.1017/jfm.2016.595</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ct_max : float</span>
+<span class="sd">        The maximal value for ct, values beyond will be limited</span>
+<span class="sd">        to this number, by default 0.9999</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">        model parameter used to determine onset of far wake region</span>
+<span class="sd">    beta : float</span>
+<span class="sd">        model parameter used to determine onset of far wake region</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ct_max : float</span>
+<span class="sd">        The maximal value for ct, values beyond will be limited</span>
+<span class="sd">        to this number, by default 0.9999</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">        model parameter used to determine onset of far wake region</span>
+<span class="sd">    beta : float</span>
+<span class="sd">        model parameter used to determine onset of far wake region</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">MDATA_KEY</span> <span class="o">=</span> <span class="s2">&quot;PorteAgelModel&quot;</span>
+    <span class="n">PARS</span> <span class="o">=</span> <span class="s2">&quot;pars&quot;</span>
+    <span class="n">CHECK</span> <span class="o">=</span> <span class="s2">&quot;check&quot;</span>
+    <span class="n">SP_SEL</span> <span class="o">=</span> <span class="s2">&quot;sp_sel&quot;</span>
+    <span class="n">X0</span> <span class="o">=</span> <span class="s2">&quot;x0&quot;</span>
+
+    <span class="n">NEAR</span> <span class="o">=</span> <span class="s2">&quot;near&quot;</span>
+    <span class="n">R_PC</span> <span class="o">=</span> <span class="s2">&quot;r_pc&quot;</span>
+    <span class="n">R_PC_S</span> <span class="o">=</span> <span class="s2">&quot;r_pc_s&quot;</span>
+    <span class="n">AMPL_NEAR</span> <span class="o">=</span> <span class="s2">&quot;ampl_near&quot;</span>
+    <span class="n">DELTA_NEAR</span> <span class="o">=</span> <span class="s2">&quot;delta_near&quot;</span>
+
+    <span class="n">AMPL_FAR</span> <span class="o">=</span> <span class="s2">&quot;ampl_far&quot;</span>
+    <span class="n">SIGMA_Y_FAR</span> <span class="o">=</span> <span class="s2">&quot;sigma_y_far&quot;</span>
+    <span class="n">SIGMA_Z_FAR</span> <span class="o">=</span> <span class="s2">&quot;sigma_z_far&quot;</span>
+    <span class="n">DELTA_FAR</span> <span class="o">=</span> <span class="s2">&quot;delta_far&quot;</span>
+
+<div class="viewcode-block" id="PorteAgelModel.__init__"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.porte_agel.PorteAgelModel.html#foxes.models.wake_models.wind.porte_agel.PorteAgelModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ct_max</span><span class="o">=</span><span class="mf">0.9999</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.58</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.07</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ct_max</span> <span class="o">=</span> <span class="n">ct_max</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">beta</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">pars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dictionary of the model parameters</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict :</span>
+<span class="sd">            Dictionary of the model parameters</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span> <span class="n">ct_max</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ct_max</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PorteAgelModel.calc_data"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.porte_agel.PorteAgelModel.html#foxes.models.wake_models.wind.porte_agel.PorteAgelModel.calc_data">[docs]</a>    <span class="k">def</span> <span class="nf">calc_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">mdata</span><span class="p">,</span>
+        <span class="n">fdata</span><span class="p">,</span>
+        <span class="n">states_source_turbine</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">,</span>
+        <span class="n">gamma</span><span class="p">,</span>
+        <span class="n">k</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate common model data, store it in mdata.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">            The model data</span>
+<span class="sd">        fdata : foxes.core.Data</span>
+<span class="sd">            The farm data</span>
+<span class="sd">        states_source_turbine : numpy.ndarray</span>
+<span class="sd">            For each state, one turbine index for the</span>
+<span class="sd">            wake causing turbine. Shape: (n_states,)</span>
+<span class="sd">        x : numpy.ndarray</span>
+<span class="sd">            The x values, shape: (n_states, n_points)</span>
+<span class="sd">        gamma : numpy.ndarray</span>
+<span class="sd">            The YAWM angles in radiants, shape: (n_states, n_points)</span>
+<span class="sd">        k : numpy.ndarray</span>
+<span class="sd">            The k parameter values, shape: (n_states, n_points)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># prepare:</span>
+        <span class="n">n_states</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span>
+        <span class="n">n_points</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">st_sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">),</span> <span class="n">states_source_turbine</span><span class="p">)</span>
+
+        <span class="c1"># store parameters:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">PARS</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">}</span>
+        <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">CHECK</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">mdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">states_source_turbine</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># get D:</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+        <span class="n">D</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">][</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+
+        <span class="c1"># get ct:</span>
+        <span class="n">ct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+        <span class="n">ct</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">][</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="n">ct</span><span class="p">[</span><span class="n">ct</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">ct_max</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ct_max</span>
+
+        <span class="c1"># select targets:</span>
+        <span class="n">sp_sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mf">1e-5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ct</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sp_sel</span><span class="p">):</span>
+
+            <span class="c1"># get ws:</span>
+            <span class="n">ws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+            <span class="n">ws</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">][</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+
+            <span class="c1"># get TI:</span>
+            <span class="n">ti</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+            <span class="n">ti</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">][</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+
+            <span class="c1"># apply filter:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
+            <span class="n">D</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
+            <span class="n">ct</span> <span class="o">=</span> <span class="n">ct</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
+            <span class="n">ws</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
+            <span class="n">ti</span> <span class="o">=</span> <span class="n">ti</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
+            <span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
+
+            <span class="c1"># calc theta_c0, Eq. (6.12):</span>
+            <span class="n">cosg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
+            <span class="n">theta</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">gamma</span> <span class="o">/</span> <span class="n">cosg</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ct</span> <span class="o">*</span> <span class="n">cosg</span><span class="p">))</span>
+
+            <span class="c1"># calculate x0, Eq. (7.3):</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span>
+            <span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span>
+            <span class="n">sqomct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ct</span><span class="p">)</span>
+            <span class="n">x0</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">D</span>
+                <span class="o">*</span> <span class="p">(</span><span class="n">cosg</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">sqomct</span><span class="p">))</span>
+                <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">ti</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">beta</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sqomct</span><span class="p">)))</span>
+            <span class="p">)</span>
+            <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">X0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span>
+
+            <span class="c1"># calcuate sigma, Eq. (7.2):</span>
+            <span class="n">sigma_y0</span> <span class="o">=</span> <span class="n">D</span> <span class="o">*</span> <span class="n">cosg</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+            <span class="n">simga_z0</span> <span class="o">=</span> <span class="n">D</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+            <span class="n">sigma_y</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">+</span> <span class="n">sigma_y0</span>
+            <span class="n">sigma_z</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">+</span> <span class="n">simga_z0</span>
+
+            <span class="c1"># calc near wake data:</span>
+            <span class="n">near</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">x0</span>
+            <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">NEAR</span><span class="p">]</span> <span class="o">=</span> <span class="n">near</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">near</span><span class="p">):</span>
+
+                <span class="c1"># apply filter:</span>
+                <span class="n">wsn</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="n">near</span><span class="p">]</span>
+                <span class="n">ctn</span> <span class="o">=</span> <span class="n">ct</span><span class="p">[</span><span class="n">near</span><span class="p">]</span>
+                <span class="n">cosgn</span> <span class="o">=</span> <span class="n">cosg</span><span class="p">[</span><span class="n">near</span><span class="p">]</span>
+
+                <span class="c1"># initial velocity deficits, Eq. (6.4):</span>
+                <span class="n">uR</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ctn</span> <span class="o">*</span> <span class="n">cosgn</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ctn</span> <span class="o">*</span> <span class="n">cosgn</span><span class="p">))</span>
+
+                <span class="c1"># constant potential core value, Eq. (6.7):</span>
+                <span class="n">u0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ctn</span><span class="p">)</span>
+
+                <span class="c1"># compute potential core shape, for later, Eq. (6.13):</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">near</span><span class="p">]</span> <span class="o">/</span> <span class="n">x0</span><span class="p">[</span><span class="n">near</span><span class="p">]</span>
+                <span class="n">r_pc_0</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">D</span><span class="p">[</span><span class="n">near</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uR</span> <span class="o">/</span> <span class="n">u0</span><span class="p">)</span>  <span class="c1"># radius at x=0</span>
+                <span class="n">r_pc</span> <span class="o">=</span> <span class="n">r_pc_0</span> <span class="o">-</span> <span class="n">d</span> <span class="o">*</span> <span class="n">r_pc_0</span>  <span class="c1"># potential core radius</span>
+
+                <span class="c1"># memorize near wake data:</span>
+                <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">R_PC</span><span class="p">]</span> <span class="o">=</span> <span class="n">r_pc</span>
+                <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">R_PC_S</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span> <span class="o">*</span> <span class="n">sigma_y0</span><span class="p">[</span><span class="n">near</span><span class="p">]</span>
+                <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">DELTA_NEAR</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">near</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">near</span><span class="p">]</span>
+                <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">AMPL_NEAR</span><span class="p">]</span> <span class="o">=</span> <span class="n">u0</span> <span class="o">-</span> <span class="mi">1</span>
+
+                <span class="c1"># cleanup:</span>
+                <span class="k">del</span> <span class="n">wsn</span><span class="p">,</span> <span class="n">ctn</span><span class="p">,</span> <span class="n">cosgn</span><span class="p">,</span> <span class="n">uR</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">r_pc_0</span><span class="p">,</span> <span class="n">r_pc</span>
+
+            <span class="c1"># calc far wake data:</span>
+            <span class="n">far</span> <span class="o">=</span> <span class="o">~</span><span class="n">near</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">far</span><span class="p">):</span>
+
+                <span class="c1"># apply filter:</span>
+                <span class="n">ws</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="n">far</span><span class="p">]</span>
+                <span class="n">ct</span> <span class="o">=</span> <span class="n">ct</span><span class="p">[</span><span class="n">far</span><span class="p">]</span>
+                <span class="n">sigma_y</span> <span class="o">=</span> <span class="n">sigma_y</span><span class="p">[</span><span class="n">far</span><span class="p">]</span>
+                <span class="n">sigma_z</span> <span class="o">=</span> <span class="n">sigma_z</span><span class="p">[</span><span class="n">far</span><span class="p">]</span>
+                <span class="n">cosg</span> <span class="o">=</span> <span class="n">cosg</span><span class="p">[</span><span class="n">far</span><span class="p">]</span>
+                <span class="n">D</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">far</span><span class="p">]</span>
+                <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">far</span><span class="p">]</span>
+                <span class="n">x0</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[</span><span class="n">far</span><span class="p">]</span>
+                <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="n">far</span><span class="p">]</span>
+                <span class="n">sqomct</span> <span class="o">=</span> <span class="n">sqomct</span><span class="p">[</span><span class="n">far</span><span class="p">]</span>
+
+                <span class="c1"># calculate delta, Eq. (7.4):</span>
+                <span class="n">sqct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
+                <span class="n">sqsd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">sigma_y</span> <span class="o">*</span> <span class="n">sigma_z</span> <span class="o">/</span> <span class="p">(</span><span class="n">cosg</span> <span class="o">*</span> <span class="n">D</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+                <span class="n">delta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">*</span> <span class="n">x0</span> <span class="o">+</span> <span class="p">(</span>
+                    <span class="n">D</span>
+                    <span class="o">*</span> <span class="n">theta</span>
+                    <span class="o">/</span> <span class="mf">14.7</span>
+                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cosg</span> <span class="o">/</span> <span class="p">(</span><span class="n">ct</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+                    <span class="o">*</span> <span class="p">(</span><span class="mf">2.9</span> <span class="o">+</span> <span class="mf">1.3</span> <span class="o">*</span> <span class="n">sqomct</span> <span class="o">-</span> <span class="n">ct</span><span class="p">)</span>
+                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>
+                        <span class="p">((</span><span class="mf">1.6</span> <span class="o">+</span> <span class="n">sqct</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.6</span> <span class="o">*</span> <span class="n">sqsd</span> <span class="o">-</span> <span class="n">sqct</span><span class="p">))</span>
+                        <span class="o">/</span> <span class="p">((</span><span class="mf">1.6</span> <span class="o">-</span> <span class="n">sqct</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.6</span> <span class="o">*</span> <span class="n">sqsd</span> <span class="o">+</span> <span class="n">sqct</span><span class="p">))</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+
+                <span class="c1"># calculate amplitude, Eq. (7.1):</span>
+                <span class="n">ampl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ct</span> <span class="o">*</span> <span class="n">cosg</span> <span class="o">*</span> <span class="n">D</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">sigma_y</span> <span class="o">*</span> <span class="n">sigma_z</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+
+                <span class="c1"># memorize far wake data:</span>
+                <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">AMPL_FAR</span><span class="p">]</span> <span class="o">=</span> <span class="n">ampl</span>
+                <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">DELTA_FAR</span><span class="p">]</span> <span class="o">=</span> <span class="n">delta</span>
+                <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SIGMA_Y_FAR</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigma_y</span>
+                <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SIGMA_Z_FAR</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigma_z</span>
+
+        <span class="c1"># update mdata:</span>
+        <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SP_SEL</span><span class="p">]</span> <span class="o">=</span> <span class="n">sp_sel</span>
+        <span class="n">mdata</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">MDATA_KEY</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="PorteAgelModel.has_data"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.porte_agel.PorteAgelModel.html#foxes.models.wake_models.wind.porte_agel.PorteAgelModel.has_data">[docs]</a>    <span class="k">def</span> <span class="nf">has_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if data exists</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">            The model data</span>
+<span class="sd">        states_source_turbine : numpy.ndarray</span>
+<span class="sd">            For each state, one turbine index for the</span>
+<span class="sd">            wake causing turbine. Shape: (n_states,)</span>
+<span class="sd">        x : numpy.ndarray</span>
+<span class="sd">            The x values, shape: (n_states, n_points)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        check : bool</span>
+<span class="sd">            True if data exists</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">mdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">states_source_turbine</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">MDATA_KEY</span> <span class="ow">in</span> <span class="n">mdata</span> <span class="ow">and</span> <span class="n">mdata</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">MDATA_KEY</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">CHECK</span><span class="p">]</span> <span class="o">==</span> <span class="n">check</span></div>
+
+<div class="viewcode-block" id="PorteAgelModel.get_data"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.porte_agel.PorteAgelModel.html#foxes.models.wake_models.wind.porte_agel.PorteAgelModel.get_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">mdata</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return data entry</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        key : str</span>
+<span class="sd">            The data key</span>
+<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">            The model data</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        data : numpy.ndarray</span>
+<span class="sd">            The data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">mdata</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">MDATA_KEY</span><span class="p">][</span><span class="n">key</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PorteAgelModel.clean"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.porte_agel.PorteAgelModel.html#foxes.models.wake_models.wind.porte_agel.PorteAgelModel.clean">[docs]</a>    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdata</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clean all data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">del</span> <span class="n">mdata</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">MDATA_KEY</span><span class="p">]</span></div></div>
+
+
+<div class="viewcode-block" id="PorteAgelWake"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.porte_agel.PorteAgelWake.html#foxes.models.wake_models.wind.porte_agel.PorteAgelWake">[docs]</a><span class="k">class</span> <span class="nc">PorteAgelWake</span><span class="p">(</span><span class="n">DistSlicedWakeModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Bastankhah PorteAgel wake model</span>
+
+<span class="sd">    Based on Bastankhah &amp; Porte-Agel, 2016, https://doi.org/10.1017/jfm.2016.595</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    superposition : dict</span>
+<span class="sd">        The superpositions. Key: variable name str,</span>
+<span class="sd">        value: The wake superposition model name,</span>
+<span class="sd">        will be looked up in model book</span>
+<span class="sd">    k : float</span>
+<span class="sd">        The wake growth parameter k. If not given here</span>
+<span class="sd">        it will be searched in the farm data, by default None</span>
+<span class="sd">    ct_max : float</span>
+<span class="sd">        The maximal value for ct, values beyond will be limited</span>
+<span class="sd">        to this number, by default 0.9999</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">        model parameter used to determine onset of far wake region</span>
+<span class="sd">    beta : float</span>
+<span class="sd">        model parameter used to determine onset of far wake region</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model : PorteAgelModel</span>
+<span class="sd">        The model for computing common data</span>
+<span class="sd">    K : float</span>
+<span class="sd">        The wake growth parameter k. If not given here</span>
+<span class="sd">        it will be searched in the farm data.</span>
+<span class="sd">    YAWM : float</span>
+<span class="sd">        The yaw misalignment YAWM. If not given here</span>
+<span class="sd">        it will be searched in the farm data.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PorteAgelWake.__init__"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.porte_agel.PorteAgelWake.html#foxes.models.wake_models.wind.porte_agel.PorteAgelWake.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">superposition</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ct_max</span><span class="o">=</span><span class="mf">0.9999</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.58</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.07</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">superpositions</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="n">superposition</span><span class="p">})</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">PorteAgelModel</span><span class="p">(</span><span class="n">ct_max</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">K</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">YAWM</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(k=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="si">}</span><span class="s2">, sp=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="k">return</span> <span class="n">s</span>
+
+<div class="viewcode-block" id="PorteAgelWake.init_wake_deltas"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.porte_agel.PorteAgelWake.html#foxes.models.wake_models.wind.porte_agel.PorteAgelWake.init_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize wake delta storage.</span>
+
+<span class="sd">        They are added on the fly to the wake_deltas dict.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">            The model data</span>
+<span class="sd">        fdata : foxes.core.Data</span>
+<span class="sd">            The farm data</span>
+<span class="sd">        n_points : int</span>
+<span class="sd">            The number of wake evaluation points</span>
+<span class="sd">        wake_deltas : dict</span>
+<span class="sd">            The wake deltas storage, add wake deltas</span>
+<span class="sd">            on the fly. Keys: Variable name str, for which the</span>
+<span class="sd">            wake delta applies, values: numpy.ndarray with</span>
+<span class="sd">            shape (n_states, n_points, ...)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n_states</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span>
+        <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PorteAgelWake.calc_wakes_spsel_x_yz"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.porte_agel.PorteAgelWake.html#foxes.models.wake_models.wind.porte_agel.PorteAgelWake.calc_wakes_spsel_x_yz">[docs]</a>    <span class="k">def</span> <span class="nf">calc_wakes_spsel_x_yz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">yz</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate wake deltas.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">            The model data</span>
+<span class="sd">        fdata : foxes.core.Data</span>
+<span class="sd">            The farm data</span>
+<span class="sd">        states_source_turbine : numpy.ndarray</span>
+<span class="sd">            For each state, one turbine index for the</span>
+<span class="sd">            wake causing turbine. Shape: (n_states,)</span>
+<span class="sd">        x : numpy.ndarray</span>
+<span class="sd">            The x values, shape: (n_states, n_points)</span>
+<span class="sd">        yz : numpy.ndarray</span>
+<span class="sd">            The yz values for each x value, shape:</span>
+<span class="sd">            (n_states, n_points, n_yz_per_x, 2)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        wdeltas : dict</span>
+<span class="sd">            The wake deltas. Key: variable name str,</span>
+<span class="sd">            value: numpy.ndarray, shape: (n_sp_sel, n_yz_per_x)</span>
+<span class="sd">        sp_sel : numpy.ndarray of bool</span>
+<span class="sd">            The state-point selection, for which the wake</span>
+<span class="sd">            is non-zero, shape: (n_states, n_points)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># prepare:</span>
+        <span class="n">n_states</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span>
+        <span class="n">n_points</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">n_y_per_z</span> <span class="o">=</span> <span class="n">yz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">st_sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">),</span> <span class="n">states_source_turbine</span><span class="p">)</span>
+
+        <span class="c1"># calculate model data:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">has_data</span><span class="p">(</span><span class="n">mdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+
+            <span class="c1"># get gamma:</span>
+            <span class="n">gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+            <span class="n">gamma</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">YAWM</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="s2">&quot;farm&quot;</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="n">gamma</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+
+            <span class="c1"># get k:</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+            <span class="n">k</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">K</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="s2">&quot;farm&quot;</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+
+            <span class="c1"># run calculation:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">calc_data</span><span class="p">(</span><span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+
+        <span class="c1"># select targets:</span>
+        <span class="n">sp_sel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">PorteAgelModel</span><span class="o">.</span><span class="n">SP_SEL</span><span class="p">,</span> <span class="n">mdata</span><span class="p">)</span>
+        <span class="n">n_sp_sel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sp_sel</span><span class="p">)</span>
+        <span class="n">wdeltas</span> <span class="o">=</span> <span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_sp_sel</span><span class="p">,</span> <span class="n">n_y_per_z</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)}</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sp_sel</span><span class="p">):</span>
+
+            <span class="c1"># apply filter:</span>
+            <span class="n">yz</span> <span class="o">=</span> <span class="n">yz</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
+
+            <span class="c1"># collect data:</span>
+            <span class="n">near</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">PorteAgelModel</span><span class="o">.</span><span class="n">NEAR</span><span class="p">,</span> <span class="n">mdata</span><span class="p">)</span>
+            <span class="n">far</span> <span class="o">=</span> <span class="o">~</span><span class="n">near</span>
+
+            <span class="c1"># near wake:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">near</span><span class="p">):</span>
+
+                <span class="c1"># collect data:</span>
+                <span class="n">ampl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">PorteAgelModel</span><span class="o">.</span><span class="n">AMPL_NEAR</span><span class="p">,</span> <span class="n">mdata</span><span class="p">)</span>
+                <span class="n">r_pc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">PorteAgelModel</span><span class="o">.</span><span class="n">R_PC</span><span class="p">,</span> <span class="n">mdata</span><span class="p">)</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">PorteAgelModel</span><span class="o">.</span><span class="n">R_PC_S</span><span class="p">,</span> <span class="n">mdata</span><span class="p">)</span>
+
+                <span class="c1"># radial dependency:</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">yz</span><span class="p">[</span><span class="n">near</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">rfactor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+                <span class="n">sel_oc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">r</span> <span class="o">&gt;</span> <span class="n">r_pc</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">sel_oc</span><span class="p">]</span>
+                <span class="n">r_pc</span> <span class="o">=</span> <span class="n">r_pc</span><span class="p">[</span><span class="n">sel_oc</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">sel_oc</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+                <span class="n">rfactor</span><span class="p">[</span><span class="n">sel_oc</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">r</span> <span class="o">-</span> <span class="n">r_pc</span><span class="p">)</span> <span class="o">/</span> <span class="n">s</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+                <span class="c1"># set deficit, Eq. (6.13):</span>
+                <span class="n">wdeltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">][</span><span class="n">near</span><span class="p">]</span> <span class="o">=</span> <span class="n">ampl</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">rfactor</span>
+
+            <span class="c1"># far wake:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">far</span><span class="p">):</span>
+
+                <span class="c1"># apply filter:</span>
+                <span class="n">yz</span> <span class="o">=</span> <span class="n">yz</span><span class="p">[</span><span class="n">far</span><span class="p">]</span>
+
+                <span class="c1"># collect data:</span>
+                <span class="n">ampl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">PorteAgelModel</span><span class="o">.</span><span class="n">AMPL_FAR</span><span class="p">,</span> <span class="n">mdata</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+                <span class="n">sigma_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">PorteAgelModel</span><span class="o">.</span><span class="n">SIGMA_Y_FAR</span><span class="p">,</span> <span class="n">mdata</span><span class="p">)[</span>
+                    <span class="p">:,</span> <span class="kc">None</span>
+                <span class="p">]</span>
+                <span class="n">sigma_z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">PorteAgelModel</span><span class="o">.</span><span class="n">SIGMA_Z_FAR</span><span class="p">,</span> <span class="n">mdata</span><span class="p">)[</span>
+                    <span class="p">:,</span> <span class="kc">None</span>
+                <span class="p">]</span>
+
+                <span class="c1"># set deficit, Eq. (7.1):</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">yz</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+                <span class="n">z</span> <span class="o">=</span> <span class="n">yz</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">wdeltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">][</span><span class="n">far</span><span class="p">]</span> <span class="o">=</span> <span class="n">ampl</span> <span class="o">*</span> <span class="p">(</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">/</span> <span class="n">sigma_y</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">z</span> <span class="o">/</span> <span class="n">sigma_z</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">wdeltas</span><span class="p">,</span> <span class="n">sp_sel</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Fraunhofer IWES.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #009879;
+    }
+  </style>
+
+
+</body>
+</html>

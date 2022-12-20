@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>foxes.core.point_data_model &mdash; foxes 0.2.5
+  <title>foxes.core.point_data_model &mdash; foxes 0.2.6
  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
@@ -34,7 +34,7 @@
             <a href="../../../index.html" class="icon icon-home"> foxes
           </a>
               <div class="version">
-                0.2.5
+                0.2.6
 
               </div>
 <div role="search">
@@ -68,6 +68,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/sector_man.html">Wind sector management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/heterogeneous.html">Heterogeneous flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/power_mask.html">Power mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/yawed_wake.html">Yawed rotor wakes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/layout_opt.html">Layout optimization</a></li>
 </ul>
 </li>
@@ -224,6 +225,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.point_models.html">foxes.models.point_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.point_models.set_uniform_data.html">foxes.models.point_models.set_uniform_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.point_models.tke2ti.html">foxes.models.point_models.tke2ti</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
 </ul>
 </li>
@@ -238,7 +240,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.sector_management.html">foxes.models.turbine_models.sector_management</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.table_factors.html">foxes.models.turbine_models.table_factors</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.thrust2ct.html">foxes.models.turbine_models.thrust2ct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.yaw2yawm.html">foxes.models.turbine_models.yaw2yawm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_models.yawm2yaw.html">foxes.models.turbine_models.yawm2yaw</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
@@ -256,6 +261,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_frames.yawed_wakes.html">foxes.models.wake_frames.yawed_wakes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
@@ -384,6 +390,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.html">foxes.utils.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.delta_wd.html">foxes.utils.wind_dir.delta_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.uv2wd.html">foxes.utils.wind_dir.uv2wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.wd2uv.html">foxes.utils.wind_dir.wd2uv</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.utils.wind_dir.wd2wdvec.html">foxes.utils.wind_dir.wd2wdvec</a></li>
@@ -435,6 +442,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-3-alpha">v0.2.3-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-4-alpha">v0.2.4-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-5-alpha">v0.2.5-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -674,7 +682,37 @@
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PointDataModelList.calculate"><a class="viewcode-back" href="../../../_autosummary/foxes.core.point_data_model.PointDataModelList.html#foxes.core.point_data_model.PointDataModelList.calculate">[docs]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">[]):</span>
+<div class="viewcode-block" id="PointDataModelList.model_input_data"><a class="viewcode-back" href="../../../_autosummary/foxes.core.point_data_model.PointDataModelList.html#foxes.core.point_data_model.PointDataModelList.model_input_data">[docs]</a>    <span class="k">def</span> <span class="nf">model_input_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The model input data, as needed for the</span>
+<span class="sd">        calculation.</span>
+
+<span class="sd">        This function should specify all data</span>
+<span class="sd">        that depend on the loop variable (e.g. state),</span>
+<span class="sd">        or that are intended to be shared between chunks.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        idata : dict</span>
+<span class="sd">            The dict has exactly two entries: `data_vars`,</span>
+<span class="sd">            a dict with entries `name_str -&gt; (dim_tuple, data_ndarray)`;</span>
+<span class="sd">            and `coords`, a dict with entries `dim_name_str -&gt; dim_array`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">idata</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">model_input_data</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">:</span>
+            <span class="n">hidata</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">model_input_data</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
+            <span class="n">idata</span><span class="p">[</span><span class="s2">&quot;coords&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">hidata</span><span class="p">[</span><span class="s2">&quot;coords&quot;</span><span class="p">])</span>
+            <span class="n">idata</span><span class="p">[</span><span class="s2">&quot;data_vars&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">hidata</span><span class="p">[</span><span class="s2">&quot;data_vars&quot;</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">idata</span></div>
+
+<div class="viewcode-block" id="PointDataModelList.calculate"><a class="viewcode-back" href="../../../_autosummary/foxes.core.point_data_model.PointDataModelList.html#foxes.core.point_data_model.PointDataModelList.calculate">[docs]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; &quot;</span>
 <span class="sd">        The main model calculation.</span>
 

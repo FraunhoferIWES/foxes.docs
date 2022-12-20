@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; foxes 0.2.5
+  <title>Installation &mdash; foxes 0.2.6
  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
@@ -21,7 +21,6 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -37,7 +36,7 @@
             <a href="index.html" class="icon icon-home"> foxes
           </a>
               <div class="version">
-                0.2.5
+                0.2.6
 
               </div>
 <div role="search">
@@ -51,11 +50,16 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation-via-conda">Installation via conda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation-via-pip">Installation via pip</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-via-conda">Installation via conda</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#virtual-python-environment">Virtual Python environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#standard-users">Standard users</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#developers">Developers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-via-pip">Installation via pip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Virtual Python environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Standard users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Developers</a></li>
 </ul>
 </li>
 </ul>
@@ -71,6 +75,7 @@
 <li class="toctree-l2"><a class="reference internal" href="notebooks/sector_man.html">Wind sector management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/heterogeneous.html">Heterogeneous flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/power_mask.html">Power mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/yawed_wake.html">Yawed rotor wakes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/layout_opt.html">Layout optimization</a></li>
 </ul>
 </li>
@@ -227,6 +232,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/foxes.models.point_models.html">foxes.models.point_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.point_models.set_uniform_data.html">foxes.models.point_models.set_uniform_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.point_models.tke2ti.html">foxes.models.point_models.tke2ti</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
 </ul>
 </li>
@@ -241,7 +247,10 @@
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.turbine_models.sector_management.html">foxes.models.turbine_models.sector_management</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.turbine_models.table_factors.html">foxes.models.turbine_models.table_factors</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.turbine_models.thrust2ct.html">foxes.models.turbine_models.thrust2ct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.turbine_models.yaw2yawm.html">foxes.models.turbine_models.yaw2yawm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.turbine_models.yawm2yaw.html">foxes.models.turbine_models.yawm2yaw</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
@@ -259,6 +268,7 @@
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.models.wake_frames.yawed_wakes.html">foxes.models.wake_frames.yawed_wakes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
@@ -387,6 +397,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/foxes.utils.wind_dir.html">foxes.utils.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.utils.wind_dir.delta_wd.html">foxes.utils.wind_dir.delta_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.utils.wind_dir.uv2wd.html">foxes.utils.wind_dir.uv2wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.utils.wind_dir.wd2uv.html">foxes.utils.wind_dir.wd2uv</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/foxes.utils.wind_dir.wd2wdvec.html">foxes.utils.wind_dir.wd2wdvec</a></li>
@@ -438,6 +449,7 @@
 <li class="toctree-l2"><a class="reference internal" href="history.html#v0-2-3-alpha">v0.2.3-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="history.html#v0-2-4-alpha">v0.2.4-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="history.html#v0-2-5-alpha">v0.2.5-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -507,17 +519,55 @@
 <section id="installation-via-conda">
 <h2>Installation via conda<a class="headerlink" href="#installation-via-conda" title="Permalink to this heading"></a>
 </h2>
+<section id="virtual-python-environment">
+<h3>Virtual Python environment<a class="headerlink" href="#virtual-python-environment" title="Permalink to this heading"></a>
+</h3>
+<p>First create a new <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment, for example called <code class="docutils literal notranslate"><span class="pre">foxes</span></code>, by</p>
+<div class="highlight-console notranslate">
+<div class="highlight"><pre><span></span><span class="go">conda create --name foxes</span>
+</pre></div>
+</div>
+<p>Then activate the environment every time you work with <code class="docutils literal notranslate"><span class="pre">foxes</span></code>, by</p>
+<div class="highlight-console notranslate">
+<div class="highlight"><pre><span></span><span class="go">conda activate foxes</span>
+</pre></div>
+</div>
+<p>You can leave the environment by</p>
+<div class="highlight-console notranslate">
+<div class="highlight"><pre><span></span><span class="go">conda deactivate</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">conda</span></code> installation commands below should be executed within the active <code class="docutils literal notranslate"><span class="pre">foxes</span></code> environment.</p>
+</section>
+<section id="standard-users">
+<h3>Standard users<a class="headerlink" href="#standard-users" title="Permalink to this heading"></a>
+</h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">foxes</span></code> package is available on the channel <a class="reference external" href="https://anaconda.org/conda-forge/foxes">conda-forge</a>. You can install the latest version by</p>
 <div class="highlight-console notranslate">
 <div class="highlight"><pre><span></span><span class="go">conda install -c conda-forge foxes</span>
 </pre></div>
 </div>
 </section>
+<section id="developers">
+<h3>Developers<a class="headerlink" href="#developers" title="Permalink to this heading"></a>
+</h3>
+<p>For developers using <code class="docutils literal notranslate"><span class="pre">conda</span></code>, we recommend first installing foxes, then removing only the <code class="docutils literal notranslate"><span class="pre">foxes</span></code> package while keeping the dependencies, and then adding <code class="docutils literal notranslate"><span class="pre">foxes</span></code> again from a git using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">develop</span></code>:</p>
+<div class="highlight-console notranslate">
+<div class="highlight"><pre><span></span><span class="go">conda install -c conda-forge foxes</span>
+<span class="go">conda remove foxes --force</span>
+<span class="go">git clone https://github.com/FraunhoferIWES/foxes.git</span>
+<span class="go">cd foxes</span>
+<span class="go">conda develop .</span>
+</pre></div>
+</div>
+<p>The last line makes sure that all your code changes are included whenever importing <code class="docutils literal notranslate"><span class="pre">foxes</span></code>.</p>
+</section>
+</section>
 <section id="installation-via-pip">
 <h2>Installation via pip<a class="headerlink" href="#installation-via-pip" title="Permalink to this heading"></a>
 </h2>
-<section id="virtual-python-environment">
-<h3>Virtual Python environment<a class="headerlink" href="#virtual-python-environment" title="Permalink to this heading"></a>
+<section id="id1">
+<h3>Virtual Python environment<a class="headerlink" href="#id1" title="Permalink to this heading"></a>
 </h3>
 <p>We recommend working in a Python virtual environment and install <code class="docutils literal notranslate"><span class="pre">foxes</span></code> there. Such an environment can be created by</p>
 <div class="highlight-console notranslate">
@@ -530,29 +580,28 @@
 </pre></div>
 </div>
 <p>Note that in the above commands <code class="docutils literal notranslate"><span class="pre">/path/to/my_venv</span></code> is a placeholder that should be replaced by a path to a (non-existing) folder of your choice, for example <code class="docutils literal notranslate"><span class="pre">~/venv/foxes</span></code>.</p>
-<p>All subsequent installation commands via <code class="docutils literal notranslate"><span class="pre">pip</span></code> can then be executed directly within the active environment without changes. After your work with <code class="docutils literal notranslate"><span class="pre">foxes</span></code> is done you can leave the environment by the command <code class="docutils literal notranslate"><span class="pre">deactivate</span></code>.</p>
+<p>All subsequent installation commands via <code class="docutils literal notranslate"><span class="pre">pip</span></code> can then be executed directly within the active environment without changes. After your work with <code class="docutils literal notranslate"><span class="pre">foxes</span></code> is done you can leave the environment by the command</p>
+<div class="highlight-console notranslate">
+<div class="highlight"><pre><span></span><span class="go">deactivate</span>
+</pre></div>
+</div>
 </section>
-<section id="standard-users">
-<h3>Standard users<a class="headerlink" href="#standard-users" title="Permalink to this heading"></a>
+<section id="id2">
+<h3>Standard users<a class="headerlink" href="#id2" title="Permalink to this heading"></a>
 </h3>
 <p>As a standard user, you can install the latest release via <a class="reference external" href="https://pypi.org/project/foxes/">pip</a> by</p>
 <div class="highlight-console notranslate">
 <div class="highlight"><pre><span></span><span class="go">pip install foxes</span>
 </pre></div>
 </div>
-<p>If you are also interested in running wind farm optimizations, please install</p>
-<div class="highlight-console notranslate">
-<div class="highlight"><pre><span></span><span class="go">pip install foxes[opt]</span>
-</pre></div>
-</div>
-<p>Both commands install versions that correspond to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch at <a class="reference external" href="https://github.com/FraunhoferIWES/foxes">github</a>. Alternatively, you can decide to install the latest pre-release developments (non-stable) by</p>
+<p>This commands installs the version that correspond to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch at <a class="reference external" href="https://github.com/FraunhoferIWES/foxes">github</a>. Alternatively, you can decide to install the latest pre-release developments (non-stable) by</p>
 <div class="highlight-console notranslate">
 <div class="highlight"><pre><span></span><span class="go">pip install git+https://github.com/FraunhoferIWES/foxes@dev#egg=foxes</span>
 </pre></div>
 </div>
 </section>
-<section id="developers">
-<h3>Developers<a class="headerlink" href="#developers" title="Permalink to this heading"></a>
+<section id="id3">
+<h3>Developers<a class="headerlink" href="#id3" title="Permalink to this heading"></a>
 </h3>
 <p>The first step as a developer is to clone the <code class="docutils literal notranslate"><span class="pre">foxes</span></code> repository by</p>
 <div class="highlight-console notranslate">
@@ -564,14 +613,9 @@
 <div class="highlight"><pre><span></span><span class="go">cd foxes</span>
 </pre></div>
 </div>
-<p>Then you can either install from this directory via</p>
+<p>Then you can then install from this directory, following all your code changes, via</p>
 <div class="highlight-console notranslate">
 <div class="highlight"><pre><span></span><span class="go">pip install -e .</span>
-</pre></div>
-</div>
-<p>or if you are also interested in running wind farm optimizations, then</p>
-<div class="highlight-console notranslate">
-<div class="highlight"><pre><span></span><span class="go">pip install -e .[opt]</span>
 </pre></div>
 </div>
 </section>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Timeseries data &mdash; foxes 0.2.5
+  <title>Timeseries data &mdash; foxes 0.2.6
  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
@@ -39,7 +39,7 @@
             <a href="../index.html" class="icon icon-home"> foxes
           </a>
               <div class="version">
-                0.2.5
+                0.2.6
 
               </div>
 <div role="search">
@@ -73,6 +73,7 @@
 <li class="toctree-l2"><a class="reference internal" href="sector_man.html">Wind sector management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="heterogeneous.html">Heterogeneous flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="power_mask.html">Power mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yawed_wake.html">Yawed rotor wakes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="layout_opt.html">Layout optimization</a></li>
 </ul>
 </li>
@@ -229,6 +230,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.models.point_models.html">foxes.models.point_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.point_models.set_uniform_data.html">foxes.models.point_models.set_uniform_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.point_models.tke2ti.html">foxes.models.point_models.tke2ti</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
 </ul>
 </li>
@@ -243,7 +245,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.sector_management.html">foxes.models.turbine_models.sector_management</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.table_factors.html">foxes.models.turbine_models.table_factors</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.thrust2ct.html">foxes.models.turbine_models.thrust2ct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.yaw2yawm.html">foxes.models.turbine_models.yaw2yawm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.turbine_models.yawm2yaw.html">foxes.models.turbine_models.yawm2yaw</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
@@ -261,6 +266,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.yawed_wakes.html">foxes.models.wake_frames.yawed_wakes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
@@ -389,6 +395,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.utils.wind_dir.html">foxes.utils.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.utils.wind_dir.delta_wd.html">foxes.utils.wind_dir.delta_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.utils.wind_dir.uv2wd.html">foxes.utils.wind_dir.uv2wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.utils.wind_dir.wd2uv.html">foxes.utils.wind_dir.wd2uv</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.utils.wind_dir.wd2wdvec.html">foxes.utils.wind_dir.wd2wdvec</a></li>
@@ -440,6 +447,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-3-alpha">v0.2.3-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-4-alpha">v0.2.4-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-5-alpha">v0.2.5-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -910,9 +918,9 @@ e.exports=function(t){return null!=t&&(n(t)||function(t){return"function"==typeo
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area rendered_html docutils container">
-<div>                            <div id="72a022ab-e549-4034-89ff-fa42368e0650" class="plotly-graph-div" style="height:400px; width:500px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("72a022ab-e549-4034-89ff-fa42368e0650")) {                    Plotly.newPlot(                        "72a022ab-e549-4034-89ff-fa42368e0650",                        [{"hovertemplate":"AMB_WS [m/s]=[0.0, 3.5)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[0.0, 3.5)","marker":{"color":"#30123b","pattern":{"shape":""}},"name":"[0.0, 3.5)","r":[0.28750000000000003,0.275,0.30000000000000004,0.55,0.5750000000000001,0.47500000000000003,0.3875,0.25,0.4375,0.47500000000000003,0.375,0.4,0.48750000000000004,0.5625,0.75,0.41250000000000003],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[3.5, 6.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[3.5, 6.0)","marker":{"color":"#4145ab","pattern":{"shape":""}},"name":"[3.5, 6.0)","r":[0.4,0.5750000000000001,0.6625000000000001,0.375,0.41250000000000003,0.5625,0.5750000000000001,0.4,0.6625000000000001,0.8125,0.5750000000000001,0.5625,0.925,0.8250000000000001,1.3125,0.65],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[6.0, 10.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[6.0, 10.0)","marker":{"color":"#4675ed","pattern":{"shape":""}},"name":"[6.0, 10.0)","r":[0.7875000000000001,0.4375,0.5875,0.8250000000000001,1.8875000000000002,0.8500000000000001,1.85,1.4875,1.7750000000000001,3.0250000000000004,3.4875000000000003,3.8875,3.2875,2.7875,3.5375,2.375],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[10.0, 15.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[10.0, 15.0)","marker":{"color":"#39a2fc","pattern":{"shape":""}},"name":"[10.0, 15.0)","r":[0.55,0.6375000000000001,0.9750000000000001,1.0125,2.4125,2.0625,1.9625000000000001,2.075,1.7875,2.6500000000000004,3.3875,4.65,3.5375,4.5875,2.45,1.8],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[15.0, 20.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[15.0, 20.0)","marker":{"color":"#1bcfd4","pattern":{"shape":""}},"name":"[15.0, 20.0)","r":[0.3125,0.15000000000000002,0.225,1.2125000000000001,0.0625,0.8875000000000001,0.1875,0.325,0.30000000000000004,0.55,0.8250000000000001,1.9625000000000001,2.5375,1.0250000000000001,0.0625,0.42500000000000004],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"}],                        {"barmode":"relative","height":400,"legend":{"title":{"text":"AMB_WS [m/s]"},"tracegroupgap":0},"margin":{"b":50,"l":50,"r":50,"t":50},"polar":{"angularaxis":{"direction":"clockwise","rotation":90},"domain":{"x":[0.0,1.0],"y":[0.0,1.0]}},"template":{"data":{"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"#E5ECF6","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2}}},"title":{"text":"Ambient wind speed","x":0.5,"xanchor":"center","y":0.97,"yanchor":"top"},"width":500},                        {"responsive": true}                    ).then(function(){
+<div>                            <div id="d62d2228-35b2-42e4-be5a-15b9a8689dbd" class="plotly-graph-div" style="height:400px; width:500px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("d62d2228-35b2-42e4-be5a-15b9a8689dbd")) {                    Plotly.newPlot(                        "d62d2228-35b2-42e4-be5a-15b9a8689dbd",                        [{"hovertemplate":"AMB_WS [m/s]=[0.0, 3.5)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[0.0, 3.5)","marker":{"color":"#30123b","pattern":{"shape":""}},"name":"[0.0, 3.5)","r":[0.28750000000000003,0.275,0.30000000000000004,0.55,0.5750000000000001,0.47500000000000003,0.3875,0.25,0.4375,0.47500000000000003,0.375,0.4,0.48750000000000004,0.5625,0.75,0.41250000000000003],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[3.5, 6.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[3.5, 6.0)","marker":{"color":"#4145ab","pattern":{"shape":""}},"name":"[3.5, 6.0)","r":[0.4,0.5750000000000001,0.6625000000000001,0.375,0.41250000000000003,0.5625,0.5750000000000001,0.4,0.6625000000000001,0.8125,0.5750000000000001,0.5625,0.925,0.8250000000000001,1.3125,0.65],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[6.0, 10.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[6.0, 10.0)","marker":{"color":"#4675ed","pattern":{"shape":""}},"name":"[6.0, 10.0)","r":[0.7875000000000001,0.4375,0.5875,0.8250000000000001,1.8875000000000002,0.8500000000000001,1.85,1.4875,1.7750000000000001,3.0250000000000004,3.4875000000000003,3.8875,3.2875,2.7875,3.5375,2.375],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[10.0, 15.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[10.0, 15.0)","marker":{"color":"#39a2fc","pattern":{"shape":""}},"name":"[10.0, 15.0)","r":[0.55,0.6375000000000001,0.9750000000000001,1.0125,2.4125,2.0625,1.9625000000000001,2.075,1.7875,2.6500000000000004,3.3875,4.65,3.5375,4.5875,2.45,1.8],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"},{"hovertemplate":"AMB_WS [m/s]=[15.0, 20.0)<br>frequency=%{r}<br>AMB_WD=%{theta}<extra></extra>","legendgroup":"[15.0, 20.0)","marker":{"color":"#1bcfd4","pattern":{"shape":""}},"name":"[15.0, 20.0)","r":[0.3125,0.15000000000000002,0.225,1.2125000000000001,0.0625,0.8875000000000001,0.1875,0.325,0.30000000000000004,0.55,0.8250000000000001,1.9625000000000001,2.5375,1.0250000000000001,0.0625,0.42500000000000004],"showlegend":true,"subplot":"polar","theta":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"type":"barpolar"}],                        {"barmode":"relative","height":400,"legend":{"title":{"text":"AMB_WS [m/s]"},"tracegroupgap":0},"margin":{"b":50,"l":50,"r":50,"t":50},"polar":{"angularaxis":{"direction":"clockwise","rotation":90},"domain":{"x":[0.0,1.0],"y":[0.0,1.0]}},"template":{"data":{"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"#E5ECF6","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2}}},"title":{"text":"Ambient wind speed","x":0.5,"xanchor":"center","y":0.97,"yanchor":"top"},"width":500},                        {"responsive": true}                    ).then(function(){
 
-var gd = document.getElementById('72a022ab-e549-4034-89ff-fa42368e0650');
+var gd = document.getElementById('d62d2228-35b2-42e4-be5a-15b9a8689dbd');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -1005,23 +1013,23 @@ foxes.input.farm_layout.add_from_file(
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[########################################] | 100% Completed | 101.88 ms
-[########################################] | 100% Completed | 14.92 s
-[########################################] | 100% Completed | 102.62 ms
+[########################################] | 100% Completed | 102.11 ms
+[########################################] | 100% Completed | 14.71 s
+[########################################] | 100% Completed | 102.77 ms
 
                                   WD  AMB_REWS       REWS    AMB_P            P
 state               turbine
 2017-01-01 00:00:00 0        244.06     15.62  15.598951  5000.00  5000.000000
-                    1        244.06     15.62  14.326038  5000.00  5000.000000
+                    1        244.06     15.62  14.307949  5000.00  5000.000000
                     2        244.06     15.62  15.067607  5000.00  5000.000000
                     3        244.06     15.62  15.522240  5000.00  5000.000000
-                    4        244.06     15.62  14.832921  5000.00  5000.000000
+                    4        244.06     15.62  14.728003  5000.00  5000.000000
 ...                             ...       ...        ...      ...          ...
-2017-06-16 15:30:00 62       299.19     11.70   9.215285  4868.75  2718.771927
+2017-06-16 15:30:00 62       299.19     11.70   9.208883  4868.75  2712.819583
                     63       299.19     11.70  11.435150  4868.75  4752.878044
                     64       299.19     11.70  11.700000  4868.75  4868.750000
-                    65       299.19     11.70  11.607320  4868.75  4828.202586
-                    66       299.19     11.70  10.072532  4868.75  3529.208210
+                    65       299.19     11.70  11.607321  4868.75  4828.202797
+                    66       299.19     11.70   9.769528  4868.75  3234.107125
 
 [536000 rows x 5 columns]
 </pre></div>
@@ -1078,38 +1086,38 @@ Results by turbine:
 
                AMB_P            P   AMB_CAP       CAP       EFF    AMB_YLD  \
 turbine
-0        3067.723397  2816.552191  0.613545  0.563310  0.840601  26.873257
-1        3067.723397  2591.345106  0.613545  0.518269  0.739355  26.873257
-2        3067.723397  2726.582124  0.613545  0.545316  0.789756  26.873257
-3        3067.723397  2756.305333  0.613545  0.551261  0.812470  26.873257
-4        3067.723397  2661.809303  0.613545  0.532362  0.762676  26.873257
+0        3067.723397  2778.987770  0.613545  0.555798  0.825445  26.873257
+1        3067.723397  2531.065918  0.613545  0.506213  0.713413  26.873257
+2        3067.723397  2702.820210  0.613545  0.540564  0.780747  26.873257
+3        3067.723397  2739.058250  0.613545  0.547812  0.805992  26.873257
+4        3067.723397  2593.172270  0.613545  0.518634  0.737070  26.873257
 ...              ...          ...       ...       ...       ...        ...
-62       3067.723397  2666.318832  0.613545  0.533264  0.765539  26.873257
-63       3067.723397  2619.279034  0.613545  0.523856  0.743569  26.873257
-64       3067.723397  2894.260411  0.613545  0.578852  0.872896  26.873257
-65       3067.723397  2636.431805  0.613545  0.527286  0.753281  26.873257
-66       3067.723397  2691.504623  0.613545  0.538301  0.779432  26.873257
+62       3067.723397  2625.796799  0.613545  0.525159  0.748704  26.873257
+63       3067.723397  2591.950988  0.613545  0.518390  0.731988  26.873257
+64       3067.723397  2864.102273  0.613545  0.572820  0.860799  26.873257
+65       3067.723397  2571.260829  0.613545  0.514252  0.726062  26.873257
+66       3067.723397  2633.819847  0.613545  0.526764  0.755245  26.873257
 
                YLD
 turbine
-0        24.672997
-1        22.700183
-2        23.884859
-3        24.145235
-4        23.317449
+0        24.343933
+1        22.172137
+2        23.676705
+3        23.994150
+4        22.716189
 ...            ...
-62       23.356953
-63       22.944884
-64       25.353721
-65       23.095143
-66       23.577580
+62       23.001980
+63       22.705491
+64       25.089536
+65       22.524245
+66       23.072262
 
 [67 rows x 7 columns]
 
-Farm power        : 180.8 MW
+Farm power        : 177.9 MW
 Farm ambient power: 205.5 MW
-Farm efficiency   : 0.88
-Annual farm yield : 1583.86 GWh
+Farm efficiency   : 0.87
+Annual farm yield : 1558.24 GWh
 </pre></div>
 </div>
 </div>
@@ -1161,7 +1169,7 @@ print(f"\nMean farm power: {P/1000:.1f} MW, Efficiency = {P/P0*100:.2f} %")
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Launching dask cluster..
-LocalCluster(8ed070c8, 'tcp://127.0.0.1:36877', workers=4, threads=16, memory=11.87 GiB)
+LocalCluster(fbd20d04, 'tcp://127.0.0.1:46115', workers=4, threads=16, memory=11.87 GiB)
 Dashboard: http://127.0.0.1:8787/status
 
 
@@ -1171,27 +1179,27 @@ Shutting down dask cluster
                                   WD  AMB_REWS       REWS    AMB_P            P
 state               turbine
 2017-01-01 00:00:00 0        244.06     15.62  15.598951  5000.00  5000.000000
-                    1        244.06     15.62  14.326038  5000.00  5000.000000
+                    1        244.06     15.62  14.307949  5000.00  5000.000000
                     2        244.06     15.62  15.067607  5000.00  5000.000000
                     3        244.06     15.62  15.522240  5000.00  5000.000000
-                    4        244.06     15.62  14.832921  5000.00  5000.000000
+                    4        244.06     15.62  14.728003  5000.00  5000.000000
 ...                             ...       ...        ...      ...          ...
-2017-06-16 15:30:00 62       299.19     11.70   9.215285  4868.75  2718.771927
+2017-06-16 15:30:00 62       299.19     11.70   9.208883  4868.75  2712.819583
                     63       299.19     11.70  11.435150  4868.75  4752.878044
                     64       299.19     11.70  11.700000  4868.75  4868.750000
-                    65       299.19     11.70  11.607320  4868.75  4828.202586
-                    66       299.19     11.70  10.072532  4868.75  3529.208210
+                    65       299.19     11.70  11.607321  4868.75  4828.202797
+                    66       299.19     11.70   9.769528  4868.75  3234.107125
 
 [536000 rows x 5 columns]
 
-Mean farm power: 180.8 MW, Efficiency = 87.97 %
+Mean farm power: 177.9 MW, Efficiency = 86.54 %
 </pre></div>
 </div>
 </div>
 <p>Notice the <code class="docutils literal notranslate"><span class="pre">Dashboard</span></code> link, which is only valid during runtime and in this case is a <code class="docutils literal notranslate"><span class="pre">localhost</span></code> address. The dashboard gives plenty of information of the progress during the run and is a very useful tool provided by dask.</p>
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">DaskRunner</span></code> includes an option for the above mentioned <code class="docutils literal notranslate"><span class="pre">ProgressBar</span></code> (cf. API), so the function that is called within <code class="docutils literal notranslate"><span class="pre">runner.run(...)</span></code> should not also try to invoke it as well.</p>
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"702911bbec4d4cccb059702dbb1ddb70": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "6897debf28344455bceb1f8c645cbd0c": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": [], "layout": "IPY_MODEL_702911bbec4d4cccb059702dbb1ddb70", "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}
+{"state": {"9a35d2e514d1470abe36151a35ce92a7": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "927e79ec385c4f4cb0a4c923dd5c01e4": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": [], "layout": "IPY_MODEL_9a35d2e514d1470abe36151a35ce92a7", "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}
 </script></section>
 
 

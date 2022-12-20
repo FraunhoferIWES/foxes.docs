@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>foxes.output.farm_results_eval.FarmResultsEval &mdash; foxes 0.2.5
+  <title>foxes.output.farm_results_eval.FarmResultsEval &mdash; foxes 0.2.6
  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
@@ -37,7 +37,7 @@
             <a href="../index.html" class="icon icon-home"> foxes
           </a>
               <div class="version">
-                0.2.5
+                0.2.6
 
               </div>
 <div role="search">
@@ -71,6 +71,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/sector_man.html">Wind sector management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/heterogeneous.html">Heterogeneous flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/power_mask.html">Power mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/yawed_wake.html">Yawed rotor wakes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/layout_opt.html">Layout optimization</a></li>
 </ul>
 </li>
@@ -227,6 +228,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="foxes.models.point_models.html">foxes.models.point_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.point_models.set_uniform_data.html">foxes.models.point_models.set_uniform_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.point_models.tke2ti.html">foxes.models.point_models.tke2ti</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
 </ul>
 </li>
@@ -241,7 +243,10 @@
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.sector_management.html">foxes.models.turbine_models.sector_management</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.table_factors.html">foxes.models.turbine_models.table_factors</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.thrust2ct.html">foxes.models.turbine_models.thrust2ct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.yaw2yawm.html">foxes.models.turbine_models.yaw2yawm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.yawm2yaw.html">foxes.models.turbine_models.yawm2yaw</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
@@ -259,6 +264,7 @@
 <li class="toctree-l3"><a class="reference internal" href="foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_frames.yawed_wakes.html">foxes.models.wake_frames.yawed_wakes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
@@ -387,6 +393,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="foxes.utils.wind_dir.html">foxes.utils.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.delta_wd.html">foxes.utils.wind_dir.delta_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.uv2wd.html">foxes.utils.wind_dir.uv2wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.wd2uv.html">foxes.utils.wind_dir.wd2uv</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.wd2wdvec.html">foxes.utils.wind_dir.wd2wdvec</a></li>
@@ -438,6 +445,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-3-alpha">v0.2.3-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-4-alpha">v0.2.4-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-5-alpha">v0.2.5-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -545,11 +553,11 @@ given the state-turbine farm_calc results.</p>
 <td><p></p></td>
 </tr>
 <tr class="row-even">
-<td><p><a class="reference internal" href="#foxes.output.farm_results_eval.FarmResultsEval.add_capacity" title="foxes.output.farm_results_eval.FarmResultsEval.add_capacity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_capacity</span></code></a>([algo, P_nom, ambient])</p></td>
+<td><p><a class="reference internal" href="#foxes.output.farm_results_eval.FarmResultsEval.add_capacity" title="foxes.output.farm_results_eval.FarmResultsEval.add_capacity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_capacity</span></code></a>([algo, P_nom, ambient, verbosity])</p></td>
 <td><p>Adds capacity to the farm results</p></td>
 </tr>
 <tr class="row-odd">
-<td><p><a class="reference internal" href="#foxes.output.farm_results_eval.FarmResultsEval.add_efficiency" title="foxes.output.farm_results_eval.FarmResultsEval.add_efficiency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_efficiency</span></code></a>()</p></td>
+<td><p><a class="reference internal" href="#foxes.output.farm_results_eval.FarmResultsEval.add_efficiency" title="foxes.output.farm_results_eval.FarmResultsEval.add_efficiency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_efficiency</span></code></a>([verbosity])</p></td>
 <td><p>Adds efficiency to the farm results</p></td>
 </tr>
 <tr class="row-even">
@@ -617,6 +625,10 @@ given the state-turbine farm_calc results.</p>
 <td><p>Reduces the turbine dimension by some operation</p></td>
 </tr>
 <tr class="row-even">
+<td><p><a class="reference internal" href="#foxes.output.farm_results_eval.FarmResultsEval.weinsum" title="foxes.output.farm_results_eval.FarmResultsEval.weinsum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weinsum</span></code></a>(rhs, *vars)</p></td>
+<td><p>Calculates Einstein sum, adding weights as last argument to the given fields.</p></td>
+</tr>
+<tr class="row-odd">
 <td><p><a class="reference internal" href="#foxes.output.farm_results_eval.FarmResultsEval.write" title="foxes.output.farm_results_eval.FarmResultsEval.write"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write</span></code></a>(file_path, data[, format_col2var, ...])</p></td>
 <td><p>Writes data to file via pandas.</p></td>
 </tr>
@@ -631,7 +643,7 @@ given the state-turbine farm_calc results.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.output.farm_results_eval.FarmResultsEval.add_capacity">
-<span class="sig-name descname"><span class="pre">add_capacity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P_nom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/output/farm_results_eval.html#FarmResultsEval.add_capacity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.output.farm_results_eval.FarmResultsEval.add_capacity" title="Permalink to this definition"></a>
+<span class="sig-name descname"><span class="pre">add_capacity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P_nom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/output/farm_results_eval.html#FarmResultsEval.add_capacity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.output.farm_results_eval.FarmResultsEval.add_capacity" title="Permalink to this definition"></a>
 </dt>
 <dd>
 <p>Adds capacity to the farm results</p>
@@ -642,6 +654,7 @@ given the state-turbine farm_calc results.</p>
 <li><p><strong>algo</strong> (<em>foxes.core.Algorithm</em><em>, </em><em>optional</em>) – The algorithm, for nominal power calculation</p></li>
 <li><p><strong>P_nom</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Nominal power values for each turbine, if algo not given</p></li>
 <li><p><strong>ambient</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag for calculating ambient capacity, by default False</p></li>
+<li><p><strong>verbosity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The verbosity level, 0 = silent</p></li>
 </ul>
 </dd>
 </dl>
@@ -650,10 +663,16 @@ given the state-turbine farm_calc results.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.output.farm_results_eval.FarmResultsEval.add_efficiency">
-<span class="sig-name descname"><span class="pre">add_efficiency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/output/farm_results_eval.html#FarmResultsEval.add_efficiency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.output.farm_results_eval.FarmResultsEval.add_efficiency" title="Permalink to this definition"></a>
+<span class="sig-name descname"><span class="pre">add_efficiency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/output/farm_results_eval.html#FarmResultsEval.add_efficiency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.output.farm_results_eval.FarmResultsEval.add_efficiency" title="Permalink to this definition"></a>
 </dt>
 <dd>
 <p>Adds efficiency to the farm results</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd">
+<p><strong>verbosity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The verbosity level, 0 = silent</p>
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -893,7 +912,7 @@ turbine_yield is not given</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.output.farm_results_eval.FarmResultsEval.calc_turbine_yield">
-<span class="sig-name descname"><span class="pre">calc_turbine_yield</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annual</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hours</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P_unit_W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/output/farm_results_eval.html#FarmResultsEval.calc_turbine_yield"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.output.farm_results_eval.FarmResultsEval.calc_turbine_yield" title="Permalink to this definition"></a>
+<span class="sig-name descname"><span class="pre">calc_turbine_yield</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annual</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hours</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P_unit_W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/output/farm_results_eval.html#FarmResultsEval.calc_turbine_yield"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.output.farm_results_eval.FarmResultsEval.calc_turbine_yield" title="Permalink to this definition"></a>
 </dt>
 <dd>
 <p>Calculates the yield per turbine</p>
@@ -904,6 +923,8 @@ turbine_yield is not given</p></li>
 <li><p><strong>annual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag for returing annual results, by default False</p></li>
 <li><p><strong>ambient</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag for ambient power, by default False</p></li>
 <li><p><strong>hours</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>, </em><em>optional</em>) – The duration time in hours, if not timeseries states</p></li>
+<li><p><strong>delta_t</strong> (<em>np.datetime64</em><em>, </em><em>optional</em>) – The time delta step in case of time series data,
+by default automatically determined</p></li>
 <li><p><strong>P_unit_W</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The power unit in Watts, 1000 for kW</p></li>
 </ul>
 </dd>
@@ -1020,6 +1041,37 @@ are: sum, mean, min, max.</p>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd">
 <p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd>
+</dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="foxes.output.farm_results_eval.FarmResultsEval.weinsum">
+<span class="sig-name descname"><span class="pre">weinsum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rhs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">vars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/output/farm_results_eval.html#FarmResultsEval.weinsum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.output.farm_results_eval.FarmResultsEval.weinsum" title="Permalink to this definition"></a>
+</dt>
+<dd>
+<p>Calculates Einstein sum, adding weights
+as last argument to the given fields.</p>
+<p>It’s all about treating NaN values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd">
+<ul class="simple">
+<li><p><strong>rhs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The right-hand side of the einsum expression.
+Convention: ‘s’ for states, ‘t’ for turbines</p></li>
+<li><p><strong>vars</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><em>tuple</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>np.ndarray</em>) – The variables mentioned in the expression,
+but without the obligatory weights that will
+be added at the end</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even">
+<p><strong>result</strong> – The results array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd">
+<p>np.ndarray</p>
 </dd>
 </dl>
 </dd>
