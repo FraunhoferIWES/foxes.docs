@@ -560,7 +560,7 @@
 <span class="go">conda develop .</span>
 </pre></div>
 </div>
-<p>The last line makes sure that all your code changes are included whenever importing <code class="docutils literal notranslate"><span class="pre">foxes</span></code>.</p>
+<p>The last line makes sure that all your code changes are included whenever importing <code class="docutils literal notranslate"><span class="pre">foxes</span></code>. Concerning the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> line, we actually recommend that you fork <code class="docutils literal notranslate"><span class="pre">foxes</span></code> on GitHub and then replace that command by cloning your fork instead.</p>
 </section>
 </section>
 <section id="installation-via-pip">
@@ -569,22 +569,22 @@
 <section id="id1">
 <h3>Virtual Python environment<a class="headerlink" href="#id1" title="Permalink to this heading"></a>
 </h3>
-<p>We recommend working in a Python virtual environment and install <code class="docutils literal notranslate"><span class="pre">foxes</span></code> there. Such an environment can be created by</p>
+<p>First create a new <code class="docutils literal notranslate"><span class="pre">venv</span></code> environment, for example called <code class="docutils literal notranslate"><span class="pre">foxes</span></code> and located at <code class="docutils literal notranslate"><span class="pre">~/venv/foxes</span></code> (choose any other convenient name and location in your file system if you prefer), by</p>
 <div class="highlight-console notranslate">
-<div class="highlight"><pre><span></span><span class="go">python -m venv /path/to/my_venv</span>
+<div class="highlight"><pre><span></span><span class="go">python3 -m venv ~/venv/foxes</span>
 </pre></div>
 </div>
-<p>and afterwards be activated by</p>
+<p>Then activate the environment every time you work with <code class="docutils literal notranslate"><span class="pre">foxes</span></code>, by</p>
 <div class="highlight-console notranslate">
-<div class="highlight"><pre><span></span><span class="go">source /path/to/my_venv/bin/activate</span>
+<div class="highlight"><pre><span></span><span class="go">source ~/venv/foxes/bin/activate</span>
 </pre></div>
 </div>
-<p>Note that in the above commands <code class="docutils literal notranslate"><span class="pre">/path/to/my_venv</span></code> is a placeholder that should be replaced by a path to a (non-existing) folder of your choice, for example <code class="docutils literal notranslate"><span class="pre">~/venv/foxes</span></code>.</p>
-<p>All subsequent installation commands via <code class="docutils literal notranslate"><span class="pre">pip</span></code> can then be executed directly within the active environment without changes. After your work with <code class="docutils literal notranslate"><span class="pre">foxes</span></code> is done you can leave the environment by the command</p>
+<p>You can leave the environment by</p>
 <div class="highlight-console notranslate">
 <div class="highlight"><pre><span></span><span class="go">deactivate</span>
 </pre></div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">pip</span></code> installation commands below should be executed within the active <code class="docutils literal notranslate"><span class="pre">foxes</span></code> environment.</p>
 </section>
 <section id="id2">
 <h3>Standard users<a class="headerlink" href="#id2" title="Permalink to this heading"></a>
@@ -603,21 +603,14 @@
 <section id="id3">
 <h3>Developers<a class="headerlink" href="#id3" title="Permalink to this heading"></a>
 </h3>
-<p>The first step as a developer is to clone the <code class="docutils literal notranslate"><span class="pre">foxes</span></code> repository by</p>
+<p>For developers using <code class="docutils literal notranslate"><span class="pre">pip</span></code>, simply invoke the <code class="docutils literal notranslate"><span class="pre">-e</span></code> flag in the installation command in your local clone:</p>
 <div class="highlight-console notranslate">
 <div class="highlight"><pre><span></span><span class="go">git clone https://github.com/FraunhoferIWES/foxes.git</span>
+<span class="go">cd foxes</span>
+<span class="go">pip install -e .</span>
 </pre></div>
 </div>
-<p>Enter the root directory by</p>
-<div class="highlight-console notranslate">
-<div class="highlight"><pre><span></span><span class="go">cd foxes</span>
-</pre></div>
-</div>
-<p>Then you can then install from this directory, following all your code changes, via</p>
-<div class="highlight-console notranslate">
-<div class="highlight"><pre><span></span><span class="go">pip install -e .</span>
-</pre></div>
-</div>
+<p>The last line makes sure that all your code changes are included whenever importing <code class="docutils literal notranslate"><span class="pre">foxes</span></code>. Concerning the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> line, we actually recommend that you fork <code class="docutils literal notranslate"><span class="pre">foxes</span></code> on GitHub and then replace that command by cloning your fork instead.</p>
 </section>
 </section>
 </section>
