@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yawed rotor wakes &mdash; foxes 0.2.6
+  <title>Yawed rotor wakes &mdash; foxes 0.3.0
  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
@@ -38,7 +37,7 @@
             <a href="../index.html" class="icon icon-home"> foxes
           </a>
               <div class="version">
-                0.2.6
+                0.3.0
 
               </div>
 <div role="search">
@@ -69,6 +68,7 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview - how to setup foxes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="model_book.html">The model book</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_row.html">Single row of turbines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timeseries.html">Timeseries data</a></li>
@@ -88,6 +88,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.algorithms.downwind.html">foxes.algorithms.downwind</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.algorithms.downwind.downwind.html">foxes.algorithms.downwind.downwind</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.algorithms.downwind.models.html">foxes.algorithms.downwind.models</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.algorithms.iterative.html">foxes.algorithms.iterative</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.algorithms.iterative.iterative.html">foxes.algorithms.iterative.iterative</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.algorithms.iterative.models.html">foxes.algorithms.iterative.models</a></li>
 </ul>
 </li>
 </ul>
@@ -268,6 +273,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.farm_order.html">foxes.models.wake_frames.farm_order</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.models.wake_frames.yawed_wakes.html">foxes.models.wake_frames.yawed_wakes</a></li>
@@ -353,6 +359,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../_autosummary/foxes.utils.html">foxes.utils</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/foxes.utils.abl.html">foxes.utils.abl</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.utils.abl.neutral.html">foxes.utils.abl.neutral</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.utils.abl.sheared.html">foxes.utils.abl.sheared</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.utils.abl.stable.html">foxes.utils.abl.stable</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/foxes.utils.abl.unstable.html">foxes.utils.abl.unstable</a></li>
 </ul>
@@ -452,6 +459,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-4-alpha">v0.2.4-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-5-alpha">v0.2.5-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-0-alpha">v0.3.0-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -760,43 +768,37 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<section id="Yawed-rotor-wakes">
-<h1>Yawed rotor wakes<a class="headerlink" href="#Yawed-rotor-wakes" title="Permalink to this heading"></a>
-</h1>
+<div class="section" id="Yawed-rotor-wakes">
+<h1>Yawed rotor wakes<a class="headerlink" href="#Yawed-rotor-wakes" title="Permalink to this heading"></a></h1>
 <p>This example demonstrates wake modelling for yawed wind turbine rotors, following <a class="reference external" href="https://doi.org/10.1017/jfm.2016.595">Bastankhah &amp; Porte-Agel</a>. Let’s start by importing the required packages:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>In [1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span>import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-import foxes
-import foxes.variables as FV
+<span class="kn">import</span> <span class="nn">foxes</span>
+<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 </pre></div>
 </div>
 </div>
 <p>Our aim in this example is to model two turbines that are located along the x axis, and uniform wind from west. Three states should be computed, with identical wind conditions, in a setup where the first turbine is yawed by 30, 0, -30 degrees, respectively.</p>
 <p>We can realize these wind conditions with the <code class="docutils literal notranslate"><span class="pre">StatesTable</span></code> class, using a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> object as data as source:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>In [2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span>sdata = pd.DataFrame(index=range(3))
-sdata[FV.WS] = 8.0
-sdata[FV.WD] = 270.0
-sdata
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">sdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span> <span class="o">=</span> <span class="mf">8.0</span>
+<span class="n">sdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">]</span> <span class="o">=</span> <span class="mf">270.0</span>
+<span class="n">sdata</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>Out[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[2]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -840,40 +842,34 @@ sdata
     </tr>
   </tbody>
 </table>
-</div>
-</div>
+</div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>In [3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span>states = foxes.input.states.StatesTable(
-    data_source=sdata,
-    output_vars=[FV.WS, FV.WD, FV.TI, FV.RHO],
-    fixed_vars={FV.RHO: 1.225, FV.TI: 0.05},
-)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">StatesTable</span><span class="p">(</span>
+    <span class="n">data_source</span><span class="o">=</span><span class="n">sdata</span><span class="p">,</span>
+    <span class="n">output_vars</span><span class="o">=</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">],</span>
+    <span class="n">fixed_vars</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">:</span> <span class="mf">1.225</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>For each of these 3 states, and for each of the two turbines, we wish to set the yaw misalignment variable <code class="docutils literal notranslate"><span class="pre">FV.YAWM</span></code>. The following <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> defines these angles, with shape <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">2)</span></code> representing <code class="docutils literal notranslate"><span class="pre">(FV.STATE,</span> <span class="pre">FV.TURBINE)</span></code> dimensions:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>In [4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span>yawm = np.array([
-    [30.0, 0.0], [0.0, 0.0], [-30.0, 0.0]
-])
-yawm
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yawm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">yawm</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>Out[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[4]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -881,45 +877,37 @@ yawm
 array([[ 30.,   0.],
        [  0.,   0.],
        [-30.,   0.]])
-</pre></div>
-</div>
+</pre></div></div>
 </div>
 <p>For transferring these data to the variable <code class="docutils literal notranslate"><span class="pre">FV.YAWM</span></code>, we invoke the turbine model <code class="docutils literal notranslate"><span class="pre">SetFarmVars</span></code>, by adding it to the <code class="docutils literal notranslate"><span class="pre">turbine_models</span></code> section of the <code class="docutils literal notranslate"><span class="pre">ModelBook</span></code>:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>In [5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span>mbook = foxes.ModelBook()
-mbook.turbine_types["NREL5"] = foxes.models.turbine_types.PCtFile(
-    "NREL-5MW-D126-H90.csv"
-)
-mbook.turbine_models["set_yawm"] = foxes.models.turbine_models.SetFarmVars()
-mbook.turbine_models["set_yawm"].add_var(FV.YAWM, yawm)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
+<span class="n">mbook</span><span class="o">.</span><span class="n">turbine_models</span><span class="p">[</span><span class="s2">&quot;set_yawm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">turbine_models</span><span class="o">.</span><span class="n">SetFarmVars</span><span class="p">()</span>
+<span class="n">mbook</span><span class="o">.</span><span class="n">turbine_models</span><span class="p">[</span><span class="s2">&quot;set_yawm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add_var</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">YAWM</span><span class="p">,</span> <span class="n">yawm</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Notice that this models appears together with the model <code class="docutils literal notranslate"><span class="pre">yawm2yaw</span></code>, which exists by default in the <code class="docutils literal notranslate"><span class="pre">ModelBook</span></code>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>In [6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span>farm = foxes.WindFarm()
-farm.add_turbine(
-    foxes.Turbine(
-        xy=[0.0, 0.0],
-        turbine_models=["set_yawm", "yawm2yaw", "NREL5", "kTI_05"],
-    )
-)
-farm.add_turbine(
-    foxes.Turbine(
-        xy=[1000.0, 0.0],
-        turbine_models=["set_yawm", "yawm2yaw", "NREL5", "kTI_05"],
-    )
-)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">farm</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">WindFarm</span><span class="p">()</span>
+<span class="n">farm</span><span class="o">.</span><span class="n">add_turbine</span><span class="p">(</span>
+    <span class="n">foxes</span><span class="o">.</span><span class="n">Turbine</span><span class="p">(</span>
+        <span class="n">xy</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;set_yawm&quot;</span><span class="p">,</span> <span class="s2">&quot;yawm2yaw&quot;</span><span class="p">,</span> <span class="s2">&quot;NREL5MW&quot;</span><span class="p">,</span> <span class="s2">&quot;kTI_05&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="n">farm</span><span class="o">.</span><span class="n">add_turbine</span><span class="p">(</span>
+    <span class="n">foxes</span><span class="o">.</span><span class="n">Turbine</span><span class="p">(</span>
+        <span class="n">xy</span><span class="o">=</span><span class="p">[</span><span class="mf">1000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;set_yawm&quot;</span><span class="p">,</span> <span class="s2">&quot;yawm2yaw&quot;</span><span class="p">,</span> <span class="s2">&quot;NREL5MW&quot;</span><span class="p">,</span> <span class="s2">&quot;kTI_05&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -928,54 +916,47 @@ farm.add_turbine(
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Turbine 0, T0: set_yawm, yawm2yaw, NREL5, kTI_05
-Turbine 1, T1: set_yawm, yawm2yaw, NREL5, kTI_05
-</pre></div>
-</div>
+Turbine 0, T0: set_yawm, yawm2yaw, NREL5MW, kTI_05
+Turbine 1, T1: set_yawm, yawm2yaw, NREL5MW, kTI_05
+</pre></div></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">yawm2yaw</span></code> updates the <code class="docutils literal notranslate"><span class="pre">FV.YAW</span></code> variable by adding <code class="docutils literal notranslate"><span class="pre">FV.YAWM</span></code> to the wind direction, i.e., the yaw misalignment defines the absolute rotor yaw in this case (in cases where the latter is set, you may want to include the inverse model <code class="docutils literal notranslate"><span class="pre">yaw2yawm</span></code> instead).</p>
 <p>We can now create an <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code> object and calculate the farm results. We combine the yaw-sensitive wake model <code class="docutils literal notranslate"><span class="pre">PorteAgel_linear</span></code> (c.f. <a class="reference external" href="https://doi.org/10.1017/jfm.2016.595">reference</a>) with the wake frame called <code class="docutils literal notranslate"><span class="pre">yawed</span></code>, which is also based on the same publication:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>In [7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span>algo = foxes.algorithms.Downwind(
-    mbook,
-    farm,
-    states,
-    rotor_model="centre",
-    wake_models=["PorteAgel_linear", "CrespoHernandez_max"],
-    wake_frame="yawed",
-    partial_wakes_model="auto",
-    chunks=None,
-    verbosity=0,
-)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Downwind</span><span class="p">(</span>
+    <span class="n">mbook</span><span class="p">,</span>
+    <span class="n">farm</span><span class="p">,</span>
+    <span class="n">states</span><span class="p">,</span>
+    <span class="n">rotor_model</span><span class="o">=</span><span class="s2">&quot;centre&quot;</span><span class="p">,</span>
+    <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;PorteAgel_linear&quot;</span><span class="p">,</span> <span class="s2">&quot;CrespoHernandez_max&quot;</span><span class="p">],</span>
+    <span class="n">wake_frame</span><span class="o">=</span><span class="s2">&quot;yawed&quot;</span><span class="p">,</span>
+    <span class="n">partial_wakes_model</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="n">chunks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>In [8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span>farm_results = algo.calc_farm()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <p>Once the wind farm results are ready we can continue and plot the wind field:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>In [9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span>o = foxes.output.FlowPlots2D(algo, farm_results)
-g = o.gen_states_fig_horizontal(FV.WS, resolution=10, xmin=-100, xmax=3000, verbosity=0)
-for fig in g:
-    plt.show()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FlowPlots2D</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">gen_states_fig_xy</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=-</span><span class="mi">100</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">fig</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -983,33 +964,64 @@ for fig in g:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_16_0.png" src="../_images/notebooks_yawed_wake_16_0.png">
+<img alt="../_images/notebooks_yawed_wake_16_0.png" src="../_images/notebooks_yawed_wake_16_0.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_16_1.png" src="../_images/notebooks_yawed_wake_16_1.png">
+<img alt="../_images/notebooks_yawed_wake_16_1.png" src="../_images/notebooks_yawed_wake_16_1.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_16_2.png" src="../_images/notebooks_yawed_wake_16_2.png">
+<img alt="../_images/notebooks_yawed_wake_16_2.png" src="../_images/notebooks_yawed_wake_16_2.png" />
+</div>
+</div>
+<p>As well as some vertical cross sections some distance downstream:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FlowPlots2D</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">gen_states_fig_yz</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">750</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=-</span><span class="mi">200</span><span class="p">,</span><span class="n">ymax</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">zmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">zmax</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span><span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">fig</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_yawed_wake_18_0.png" src="../_images/notebooks_yawed_wake_18_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_yawed_wake_18_1.png" src="../_images/notebooks_yawed_wake_18_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_yawed_wake_18_2.png" src="../_images/notebooks_yawed_wake_18_2.png" />
 </div>
 </div>
 <p>Clearly, the model bends the wake and a frontal hit of the downstream rotor is prohibited under yawed conditions. This also reflects in the rotor equivalent wind speed (REWS) values:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>In [10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span>farm_df = farm_results.to_dataframe()
-print("\nFarm results:\n")
-print(farm_df[[FV.X, FV.WD, FV.YAW, FV.YAWM, FV.REWS]])
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">farm_df</span> <span class="o">=</span> <span class="n">farm_results</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Farm results:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">farm_df</span><span class="p">[[</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">YAW</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">YAWM</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -1029,46 +1041,18 @@ state turbine
       1        1000.0  270.0  270.0   0.0  6.042770
 2     0           0.0  270.0  240.0 -30.0  8.000000
       1        1000.0  270.0  270.0   0.0  7.146549
-</pre></div>
-</div>
+</pre></div></div>
 </div>
 <p>By default, the turbine type models in <code class="docutils literal notranslate"><span class="pre">foxes</span></code> apply <span class="math notranslate nohighlight">\(\cos(\gamma)^p\)</span> type yaw corection factors to the variables <code class="docutils literal notranslate"><span class="pre">FV.P</span></code> and <code class="docutils literal notranslate"><span class="pre">FV.CT</span></code>, where <code class="docutils literal notranslate"><span class="pre">\gamma</span></code> is the yaw misalignment angle (i.e., <code class="docutils literal notranslate"><span class="pre">FV.YAWM</span></code> translated to radiants), and <code class="docutils literal notranslate"><span class="pre">p</span></code> is a constant exponent (in fact there is one for power and another for thrust). These exponents can be setup as desired, here the default values <span class="math notranslate nohighlight">\(p_P = 1.88\)</span> and <span class="math notranslate nohighlight">\(p_{ct}=1.0\)</span> were invoked.</p>
-<p>For the fun of it, we can also apply the <code class="docutils literal notranslate"><span class="pre">yawed</span></code> wake frame to any other wake model, for example the Jensen model:</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>In [11]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span>states.finalize(algo, farm_results, clear_mem=True)
-mbook.finalize(algo, farm_results, clear_mem=True)
-</pre></div>
-</div>
-</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">yawed</span></code> wake frame can bend any kind of wake model. For example, we invoked the <code class="docutils literal notranslate"><span class="pre">CrespoHernandez</span></code> model for turbulence intensity wake effects above. This wake model follows the same bending rules as the wind deficit model, even though it is a simple top-hat type model:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate">
-<div class="highlight"><pre><span></span>In [12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate">
-<div class="highlight"><pre><span></span>algo = foxes.algorithms.Downwind(
-    mbook,
-    farm,
-    states,
-    rotor_model="centre",
-    wake_models=["Jensen_linear", "CrespoHernandez_max"],
-    wake_frame="yawed",
-    partial_wakes_model="auto",
-    chunks=None,
-    verbosity=0,
-)
-
-farm_results = algo.calc_farm()
-
-o = foxes.output.FlowPlots2D(algo, farm_results)
-g = o.gen_states_fig_horizontal(FV.WS, resolution=10, xmin=-100, xmax=3000, verbosity=0)
-for fig in g:
-    plt.show()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FlowPlots2D</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">gen_states_fig_xy</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=-</span><span class="mi">100</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">fig</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1076,26 +1060,25 @@ for fig in g:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_21_0.png" src="../_images/notebooks_yawed_wake_21_0.png">
+<img alt="../_images/notebooks_yawed_wake_22_0.png" src="../_images/notebooks_yawed_wake_22_0.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_21_1.png" src="../_images/notebooks_yawed_wake_21_1.png">
+<img alt="../_images/notebooks_yawed_wake_22_1.png" src="../_images/notebooks_yawed_wake_22_1.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_21_2.png" src="../_images/notebooks_yawed_wake_21_2.png">
+<img alt="../_images/notebooks_yawed_wake_22_2.png" src="../_images/notebooks_yawed_wake_22_2.png" />
 </div>
 </div>
-<p>Note that the bending rules are still based on the before mentioned paper, and the intensity of the Jensen wake itself in the wake frame of reference does not depend on the <code class="docutils literal notranslate"><span class="pre">FV.YAWM</span></code> variable.</p>
-</section>
-
+<p>Similarly any other choice of wake models can be combined with the <code class="docutils literal notranslate"><span class="pre">yawed</span></code> wake frame. Note, however, that the intensity of most wake models only depends on the yaw angle implicitely via ct in such setups.</p>
+</div>
 
 
            </div>
