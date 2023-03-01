@@ -1,0 +1,696 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>foxes.utils.geopandas_helpers.read_shp &mdash; foxes 0.3.1
+ documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="foxes.utils.geopandas_helpers.read_shp_polygons" href="foxes.utils.geopandas_helpers.read_shp_polygons.html" />
+    <link rel="prev" title="foxes.utils.geopandas_helpers.check_import_utm" href="foxes.utils.geopandas_helpers.check_import_utm.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> foxes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.1
+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installation-via-conda">Installation via conda</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#virtual-python-environment">Virtual Python environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#standard-users">Standard users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#developers">Developers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installation-via-pip">Installation via pip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#id1">Virtual Python environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#id2">Standard users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#id3">Developers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/overview.html">Overview - how to setup foxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/model_book.html">The model book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/single_row.html">Single row of turbines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/timeseries.html">Timeseries data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/multi_height.html">Multi-height wind data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/wind_rose.html">Wind rose data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/sector_man.html">Wind sector management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/heterogeneous.html">Heterogeneous flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/power_mask.html">Power mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/yawed_wake.html">Yawed rotor wakes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/layout_opt.html">Layout optimization</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="foxes.algorithms.html">foxes.algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="foxes.algorithms.downwind.html">foxes.algorithms.downwind</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.algorithms.downwind.downwind.html">foxes.algorithms.downwind.downwind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.algorithms.downwind.models.html">foxes.algorithms.downwind.models</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.algorithms.iterative.html">foxes.algorithms.iterative</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.algorithms.iterative.iterative.html">foxes.algorithms.iterative.iterative</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.algorithms.iterative.models.html">foxes.algorithms.iterative.models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="foxes.constants.html">foxes.constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="foxes.core.html">foxes.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.algorithm.html">foxes.core.algorithm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.algorithm.Algorithm.html">foxes.core.algorithm.Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.data.html">foxes.core.data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.data.Data.html">foxes.core.data.Data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.data_calc_model.html">foxes.core.data_calc_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.data_calc_model.DataCalcModel.html">foxes.core.data_calc_model.DataCalcModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.farm_controller.html">foxes.core.farm_controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.farm_controller.FarmController.html">foxes.core.farm_controller.FarmController</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.farm_data_model.html">foxes.core.farm_data_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.farm_data_model.FarmDataModel.html">foxes.core.farm_data_model.FarmDataModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.farm_data_model.FarmDataModelList.html">foxes.core.farm_data_model.FarmDataModelList</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.farm_model.html">foxes.core.farm_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.farm_model.FarmModel.html">foxes.core.farm_model.FarmModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.model.html">foxes.core.model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.model.Model.html">foxes.core.model.Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.partial_wakes_model.html">foxes.core.partial_wakes_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.partial_wakes_model.PartialWakesModel.html">foxes.core.partial_wakes_model.PartialWakesModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.point_data_model.html">foxes.core.point_data_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.point_data_model.PointDataModel.html">foxes.core.point_data_model.PointDataModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.point_data_model.PointDataModelList.html">foxes.core.point_data_model.PointDataModelList</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.rotor_model.html">foxes.core.rotor_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.rotor_model.RotorModel.html">foxes.core.rotor_model.RotorModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.states.html">foxes.core.states</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.states.ExtendedStates.html">foxes.core.states.ExtendedStates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.states.States.html">foxes.core.states.States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.turbine.html">foxes.core.turbine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.turbine.Turbine.html">foxes.core.turbine.Turbine</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.turbine_model.html">foxes.core.turbine_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.turbine_model.TurbineModel.html">foxes.core.turbine_model.TurbineModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.turbine_type.html">foxes.core.turbine_type</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.turbine_type.TurbineType.html">foxes.core.turbine_type.TurbineType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.vertical_profile.html">foxes.core.vertical_profile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.vertical_profile.VerticalProfile.html">foxes.core.vertical_profile.VerticalProfile</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.wake_frame.html">foxes.core.wake_frame</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.wake_frame.WakeFrame.html">foxes.core.wake_frame.WakeFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.wake_model.html">foxes.core.wake_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.wake_model.WakeModel.html">foxes.core.wake_model.WakeModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.wake_superposition.html">foxes.core.wake_superposition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.wake_superposition.WakeSuperposition.html">foxes.core.wake_superposition.WakeSuperposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.core.wind_farm.html">foxes.core.wind_farm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.core.wind_farm.WindFarm.html">foxes.core.wind_farm.WindFarm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="foxes.data.html">foxes.data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="foxes.data.farms.html">foxes.data.farms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.data.parse.html">foxes.data.parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.data.parse.parse_Pct_file_name.html">foxes.data.parse.parse_Pct_file_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.data.parse.parse_Pct_two_files.html">foxes.data.parse.parse_Pct_two_files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.data.power_ct_curves.html">foxes.data.power_ct_curves</a></li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.data.states.html">foxes.data.states</a></li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.data.static_data.html">foxes.data.static_data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.data.static_data.StaticData.html">foxes.data.static_data.StaticData</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="foxes.input.html">foxes.input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="foxes.input.farm_layout.html">foxes.input.farm_layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_from_csv.html">foxes.input.farm_layout.add_from_csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_from_file.html">foxes.input.farm_layout.add_from_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_from_json.html">foxes.input.farm_layout.add_from_json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_grid.html">foxes.input.farm_layout.add_grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_row.html">foxes.input.farm_layout.add_row</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.input.states.html">foxes.input.states</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.states.create.html">foxes.input.states.create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.states.field_data_nc.html">foxes.input.states.field_data_nc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.states.multi_height.html">foxes.input.states.multi_height</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.states.scan_ws.html">foxes.input.states.scan_ws</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.states.single.html">foxes.input.states.single</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.states.states_table.html">foxes.input.states.states_table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="foxes.models.html">foxes.models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="foxes.models.farm_controllers.html">foxes.models.farm_controllers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.farm_controllers.basic.html">foxes.models.farm_controllers.basic</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.models.farm_models.html">foxes.models.farm_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.farm_models.turbine2farm.html">foxes.models.farm_models.turbine2farm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.models.model_book.html">foxes.models.model_book</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.model_book.ModelBook.html">foxes.models.model_book.ModelBook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.models.partial_wakes.html">foxes.models.partial_wakes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.partial_wakes.axiwake.html">foxes.models.partial_wakes.axiwake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.partial_wakes.distsliced.html">foxes.models.partial_wakes.distsliced</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.partial_wakes.grid.html">foxes.models.partial_wakes.grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.partial_wakes.mapped.html">foxes.models.partial_wakes.mapped</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.partial_wakes.rotor_points.html">foxes.models.partial_wakes.rotor_points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.partial_wakes.top_hat.html">foxes.models.partial_wakes.top_hat</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.models.point_models.html">foxes.models.point_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.point_models.set_uniform_data.html">foxes.models.point_models.set_uniform_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.point_models.tke2ti.html">foxes.models.point_models.tke2ti</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.models.rotor_models.html">foxes.models.rotor_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.rotor_models.centre.html">foxes.models.rotor_models.centre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.rotor_models.grid.html">foxes.models.rotor_models.grid</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.models.turbine_models.html">foxes.models.turbine_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.calculator.html">foxes.models.turbine_models.calculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.kTI_model.html">foxes.models.turbine_models.kTI_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.power_mask.html">foxes.models.turbine_models.power_mask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.sector_management.html">foxes.models.turbine_models.sector_management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.table_factors.html">foxes.models.turbine_models.table_factors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.thrust2ct.html">foxes.models.turbine_models.thrust2ct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.yaw2yawm.html">foxes.models.turbine_models.yaw2yawm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_models.yawm2yaw.html">foxes.models.turbine_models.yawm2yaw</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.PCt_file.html">foxes.models.turbine_types.PCt_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.PCt_two_files.html">foxes.models.turbine_types.PCt_two_files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.null_type.html">foxes.models.turbine_types.null_type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.wsrho2PCt_two_files.html">foxes.models.turbine_types.wsrho2PCt_two_files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.models.vertical_profiles.html">foxes.models.vertical_profiles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.vertical_profiles.abl_log.html">foxes.models.vertical_profiles.abl_log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.vertical_profiles.uniform.html">foxes.models.vertical_profiles.uniform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_frames.farm_order.html">foxes.models.wake_frames.farm_order</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_frames.yawed_wakes.html">foxes.models.wake_frames.yawed_wakes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_models.axisymmetric.html">foxes.models.wake_models.axisymmetric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_models.dist_sliced.html">foxes.models.wake_models.dist_sliced</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_models.gaussian.html">foxes.models.wake_models.gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_models.ti.html">foxes.models.wake_models.ti</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_models.top_hat.html">foxes.models.wake_models.top_hat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_models.wind.html">foxes.models.wake_models.wind</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.models.wake_superpositions.html">foxes.models.wake_superpositions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_superpositions.linear.html">foxes.models.wake_superpositions.linear</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_superpositions.max.html">foxes.models.wake_superpositions.max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_superpositions.quadratic.html">foxes.models.wake_superpositions.quadratic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.wake_superpositions.ti_superp.html">foxes.models.wake_superpositions.ti_superp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="foxes.output.html">foxes.output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="foxes.output.farm_layout.html">foxes.output.farm_layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.output.farm_layout.FarmLayoutOutput.html">foxes.output.farm_layout.FarmLayoutOutput</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.output.farm_results_eval.html">foxes.output.farm_results_eval</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.output.farm_results_eval.FarmResultsEval.html">foxes.output.farm_results_eval.FarmResultsEval</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.output.flow_plots_2d.html">foxes.output.flow_plots_2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.output.flow_plots_2d.FlowPlots2D.html">foxes.output.flow_plots_2d.FlowPlots2D</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.output.output.html">foxes.output.output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.output.output.Output.html">foxes.output.output.Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.output.results_writer.html">foxes.output.results_writer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.output.results_writer.ResultsWriter.html">foxes.output.results_writer.ResultsWriter</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.output.rose_plot.html">foxes.output.rose_plot</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.output.rose_plot.RosePlotOutput.html">foxes.output.rose_plot.RosePlotOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.output.rose_plot.StatesRosePlotOutput.html">foxes.output.rose_plot.StatesRosePlotOutput</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.output.state_turbine_map.html">foxes.output.state_turbine_map</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.output.state_turbine_map.StateTurbineMap.html">foxes.output.state_turbine_map.StateTurbineMap</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.output.turbine_type_curves.html">foxes.output.turbine_type_curves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.output.turbine_type_curves.TurbineTypeCurves.html">foxes.output.turbine_type_curves.TurbineTypeCurves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="foxes.opt.html">foxes.opt</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="foxes.opt.constraints.html">foxes.opt.constraints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.opt.constraints.area_geometry.html">foxes.opt.constraints.area_geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.opt.constraints.min_dist.html">foxes.opt.constraints.min_dist</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.opt.core.html">foxes.opt.core</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.opt.core.farm_constraint.html">foxes.opt.core.farm_constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.opt.core.farm_objective.html">foxes.opt.core.farm_objective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.opt.core.farm_opt_problem.html">foxes.opt.core.farm_opt_problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.opt.core.farm_vars_problem.html">foxes.opt.core.farm_vars_problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.opt.core.pop_states.html">foxes.opt.core.pop_states</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.opt.objectives.html">foxes.opt.objectives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.opt.objectives.farm_vars.html">foxes.opt.objectives.farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.opt.objectives.max_n_turbines.html">foxes.opt.objectives.max_n_turbines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.opt.problems.html">foxes.opt.problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.opt.problems.layout.html">foxes.opt.problems.layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.opt.problems.opt_farm_vars.html">foxes.opt.problems.opt_farm_vars</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="foxes.utils.html">foxes.utils</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="foxes.utils.abl.html">foxes.utils.abl</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.abl.neutral.html">foxes.utils.abl.neutral</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.abl.sheared.html">foxes.utils.abl.sheared</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.abl.stable.html">foxes.utils.abl.stable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.abl.unstable.html">foxes.utils.abl.unstable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.utils.cubic_roots.html">foxes.utils.cubic_roots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.utils.data_book.html">foxes.utils.data_book</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.data_book.DataBook.html">foxes.utils.data_book.DataBook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.utils.dict.html">foxes.utils.dict</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.dict.Dict.html">foxes.utils.dict.Dict</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.utils.geom2d.html">foxes.utils.geom2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.geom2d.area_geometry.html">foxes.utils.geom2d.area_geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.geom2d.circle.html">foxes.utils.geom2d.circle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.geom2d.example_intersection.html">foxes.utils.geom2d.example_intersection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.geom2d.example_union.html">foxes.utils.geom2d.example_union</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.geom2d.half_plane.html">foxes.utils.geom2d.half_plane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.geom2d.polygon.html">foxes.utils.geom2d.polygon</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="foxes.utils.geopandas_helpers.html">foxes.utils.geopandas_helpers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.geopandas_helpers.check_import_gpd.html">foxes.utils.geopandas_helpers.check_import_gpd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.geopandas_helpers.check_import_utm.html">foxes.utils.geopandas_helpers.check_import_utm</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">foxes.utils.geopandas_helpers.read_shp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.geopandas_helpers.read_shp_polygons.html">foxes.utils.geopandas_helpers.read_shp_polygons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.geopandas_helpers.shp2csv.html">foxes.utils.geopandas_helpers.shp2csv</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.utils.pandas_helpers.html">foxes.utils.pandas_helpers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.pandas_helpers.PandasFileHelper.html">foxes.utils.pandas_helpers.PandasFileHelper</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.utils.plotly_helpers.html">foxes.utils.plotly_helpers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.plotly_helpers.show_plotly_fig.html">foxes.utils.plotly_helpers.show_plotly_fig</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.utils.runners.html">foxes.utils.runners</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.runners.DaskRunner.html">foxes.utils.runners.DaskRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.runners.DefaultRunner.html">foxes.utils.runners.DefaultRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.runners.Runner.html">foxes.utils.runners.Runner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.utils.subclasses.html">foxes.utils.subclasses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.subclasses.all_subclasses.html">foxes.utils.subclasses.all_subclasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.utils.two_circles.html">foxes.utils.two_circles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.two_circles.area.html">foxes.utils.two_circles.area</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.two_circles.calc_area.html">foxes.utils.two_circles.calc_area</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.utils.wind_dir.html">foxes.utils.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.delta_wd.html">foxes.utils.wind_dir.delta_wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.uv2wd.html">foxes.utils.wind_dir.uv2wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.wd2uv.html">foxes.utils.wind_dir.wd2uv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.wd2wdvec.html">foxes.utils.wind_dir.wd2wdvec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.wind_dir.wdvec2wd.html">foxes.utils.wind_dir.wdvec2wd</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="foxes.variables.html">foxes.variables</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/data.html">Static data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/data.html#Wind-farm-layout-data">Wind farm layout data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/data.html#test_farm_67.csv">test_farm_67.csv</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/data.html#Ambient-states-data">Ambient states data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/data.html#WRF-Timeseries-4464.csv.gz">WRF-Timeseries-4464.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/data.html#abl_states_6000.csv.gz">abl_states_6000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/data.html#timeseries_3000.csv.gz">timeseries_3000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/data.html#timeseries_8000.csv.gz">timeseries_8000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/data.html#wind_rose_bremen.csv">wind_rose_bremen.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/data.html#wind_rotation.nc">wind_rotation.nc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/data.html#Power-and-thrust-curves">Power and thrust curves</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/data.html#DTU-10MW-D178d3-H119.csv">DTU-10MW-D178d3-H119.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/data.html#IEA-15MW-D240-H150.csv">IEA-15MW-D240-H150.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/data.html#IWT-7d5MW-D164-H100.csv">IWT-7d5MW-D164-H100.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/data.html#NREL-5MW-D126-H90.csv">NREL-5MW-D126-H90.csv</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/data.html#File-paths">File paths</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-0-alpha">v0.1.0-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-1-alpha">v0.1.1-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-2-alpha">v0.1.2-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-3-alpha">v0.1.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-1-4-alpha">v0.1.4-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-0-alpha">v0.2.0-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-1-alpha">v0.2.1-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-2-alpha">v0.2.2-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-3-alpha">v0.2.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-4-alpha">v0.2.4-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-5-alpha">v0.2.5-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-0-alpha">v0.3.0-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-1-alpha">v0.3.1-alpha</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">foxes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../api.html">API</a> &raquo;</li>
+        
+          <li><a href="foxes.utils.html">foxes.utils</a> &raquo;</li>
+        
+          <li><a href="foxes.utils.geopandas_helpers.html">foxes.utils.geopandas_helpers</a> &raquo;</li>
+        
+      <li>foxes.utils.geopandas_helpers.read_shp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_autosummary/foxes.utils.geopandas_helpers.read_shp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="foxes-utils-geopandas-helpers-read-shp">
+<h1>foxes.utils.geopandas_helpers.read_shp<a class="headerlink" href="#foxes-utils-geopandas-helpers-read-shp" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="foxes.utils.geopandas_helpers.read_shp">
+<span class="sig-prename descclassname"><span class="pre">foxes.utils.geopandas_helpers.</span></span><span class="sig-name descname"><span class="pre">read_shp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/utils/geopandas_helpers.html#read_shp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.utils.geopandas_helpers.read_shp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a shape file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Path to the .shp file</p></li>
+<li><p><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em>, </em><em>optional</em>) – Additional parameters for geopandas.read_file()</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>data</strong> – The data frame in WSG84</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>geopandas.GeoDataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="foxes.utils.geopandas_helpers.read_shp_polygons.html" class="btn btn-neutral float-right" title="foxes.utils.geopandas_helpers.read_shp_polygons" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="foxes.utils.geopandas_helpers.check_import_utm.html" class="btn btn-neutral float-left" title="foxes.utils.geopandas_helpers.check_import_utm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Fraunhofer IWES
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #009879;
+    }
+  </style>
+
+
+</body>
+</html>

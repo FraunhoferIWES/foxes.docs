@@ -1,0 +1,1093 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>foxes.opt.problems.layout.geom_layouts.geom_reggrids &mdash; foxes 0.3.1
+ documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../_static/doctools.js"></script>
+        <script src="../../../../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../../index.html" class="icon icon-home"> foxes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.1
+
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../installation.html#installation-via-conda">Installation via conda</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../installation.html#virtual-python-environment">Virtual Python environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../installation.html#standard-users">Standard users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../installation.html#developers">Developers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../installation.html#installation-via-pip">Installation via pip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../installation.html#id1">Virtual Python environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../installation.html#id2">Standard users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../installation.html#id3">Developers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/overview.html">Overview - how to setup foxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/model_book.html">The model book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/single_row.html">Single row of turbines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/timeseries.html">Timeseries data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/multi_height.html">Multi-height wind data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/wind_rose.html">Wind rose data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/sector_man.html">Wind sector management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/heterogeneous.html">Heterogeneous flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/power_mask.html">Power mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/yawed_wake.html">Yawed rotor wakes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/layout_opt.html">Layout optimization</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_autosummary/foxes.algorithms.html">foxes.algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.algorithms.downwind.html">foxes.algorithms.downwind</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.algorithms.downwind.downwind.html">foxes.algorithms.downwind.downwind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.algorithms.downwind.models.html">foxes.algorithms.downwind.models</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.algorithms.iterative.html">foxes.algorithms.iterative</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.algorithms.iterative.iterative.html">foxes.algorithms.iterative.iterative</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.algorithms.iterative.models.html">foxes.algorithms.iterative.models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_autosummary/foxes.constants.html">foxes.constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.html">foxes.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.algorithm.html">foxes.core.algorithm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.algorithm.Algorithm.html">foxes.core.algorithm.Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.data.html">foxes.core.data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.data.Data.html">foxes.core.data.Data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.data_calc_model.html">foxes.core.data_calc_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.data_calc_model.DataCalcModel.html">foxes.core.data_calc_model.DataCalcModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.farm_controller.html">foxes.core.farm_controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.farm_controller.FarmController.html">foxes.core.farm_controller.FarmController</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.farm_data_model.html">foxes.core.farm_data_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.farm_data_model.FarmDataModel.html">foxes.core.farm_data_model.FarmDataModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.farm_data_model.FarmDataModelList.html">foxes.core.farm_data_model.FarmDataModelList</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.farm_model.html">foxes.core.farm_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.farm_model.FarmModel.html">foxes.core.farm_model.FarmModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.model.html">foxes.core.model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.model.Model.html">foxes.core.model.Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.partial_wakes_model.html">foxes.core.partial_wakes_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.partial_wakes_model.PartialWakesModel.html">foxes.core.partial_wakes_model.PartialWakesModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.point_data_model.html">foxes.core.point_data_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.point_data_model.PointDataModel.html">foxes.core.point_data_model.PointDataModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.point_data_model.PointDataModelList.html">foxes.core.point_data_model.PointDataModelList</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.rotor_model.html">foxes.core.rotor_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.rotor_model.RotorModel.html">foxes.core.rotor_model.RotorModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.states.html">foxes.core.states</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.states.ExtendedStates.html">foxes.core.states.ExtendedStates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.states.States.html">foxes.core.states.States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.turbine.html">foxes.core.turbine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.turbine.Turbine.html">foxes.core.turbine.Turbine</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.turbine_model.html">foxes.core.turbine_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.turbine_model.TurbineModel.html">foxes.core.turbine_model.TurbineModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.turbine_type.html">foxes.core.turbine_type</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.turbine_type.TurbineType.html">foxes.core.turbine_type.TurbineType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.vertical_profile.html">foxes.core.vertical_profile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.vertical_profile.VerticalProfile.html">foxes.core.vertical_profile.VerticalProfile</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.wake_frame.html">foxes.core.wake_frame</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.wake_frame.WakeFrame.html">foxes.core.wake_frame.WakeFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.wake_model.html">foxes.core.wake_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.wake_model.WakeModel.html">foxes.core.wake_model.WakeModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.wake_superposition.html">foxes.core.wake_superposition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.wake_superposition.WakeSuperposition.html">foxes.core.wake_superposition.WakeSuperposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.wind_farm.html">foxes.core.wind_farm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.core.wind_farm.WindFarm.html">foxes.core.wind_farm.WindFarm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_autosummary/foxes.data.html">foxes.data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.data.farms.html">foxes.data.farms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.data.parse.html">foxes.data.parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.data.parse.parse_Pct_file_name.html">foxes.data.parse.parse_Pct_file_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.data.parse.parse_Pct_two_files.html">foxes.data.parse.parse_Pct_two_files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.data.power_ct_curves.html">foxes.data.power_ct_curves</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.data.states.html">foxes.data.states</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.data.static_data.html">foxes.data.static_data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.data.static_data.StaticData.html">foxes.data.static_data.StaticData</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.html">foxes.input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.farm_layout.html">foxes.input.farm_layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.farm_layout.add_from_csv.html">foxes.input.farm_layout.add_from_csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.farm_layout.add_from_file.html">foxes.input.farm_layout.add_from_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.farm_layout.add_from_json.html">foxes.input.farm_layout.add_from_json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.farm_layout.add_grid.html">foxes.input.farm_layout.add_grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.farm_layout.add_row.html">foxes.input.farm_layout.add_row</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.states.html">foxes.input.states</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.states.create.html">foxes.input.states.create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.states.field_data_nc.html">foxes.input.states.field_data_nc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.states.multi_height.html">foxes.input.states.multi_height</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.states.scan_ws.html">foxes.input.states.scan_ws</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.states.single.html">foxes.input.states.single</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.input.states.states_table.html">foxes.input.states.states_table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.html">foxes.models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.farm_controllers.html">foxes.models.farm_controllers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.farm_controllers.basic.html">foxes.models.farm_controllers.basic</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.farm_models.html">foxes.models.farm_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.farm_models.turbine2farm.html">foxes.models.farm_models.turbine2farm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.model_book.html">foxes.models.model_book</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.model_book.ModelBook.html">foxes.models.model_book.ModelBook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.partial_wakes.html">foxes.models.partial_wakes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.partial_wakes.axiwake.html">foxes.models.partial_wakes.axiwake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.partial_wakes.distsliced.html">foxes.models.partial_wakes.distsliced</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.partial_wakes.grid.html">foxes.models.partial_wakes.grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.partial_wakes.mapped.html">foxes.models.partial_wakes.mapped</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.partial_wakes.rotor_points.html">foxes.models.partial_wakes.rotor_points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.partial_wakes.top_hat.html">foxes.models.partial_wakes.top_hat</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.point_models.html">foxes.models.point_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.point_models.set_uniform_data.html">foxes.models.point_models.set_uniform_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.point_models.tke2ti.html">foxes.models.point_models.tke2ti</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.point_models.wake_deltas.html">foxes.models.point_models.wake_deltas</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.rotor_models.html">foxes.models.rotor_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.rotor_models.centre.html">foxes.models.rotor_models.centre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.rotor_models.grid.html">foxes.models.rotor_models.grid</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_models.html">foxes.models.turbine_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_models.calculator.html">foxes.models.turbine_models.calculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_models.kTI_model.html">foxes.models.turbine_models.kTI_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_models.power_mask.html">foxes.models.turbine_models.power_mask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_models.sector_management.html">foxes.models.turbine_models.sector_management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_models.set_XYHD.html">foxes.models.turbine_models.set_XYHD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_models.set_farm_vars.html">foxes.models.turbine_models.set_farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_models.table_factors.html">foxes.models.turbine_models.table_factors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_models.thrust2ct.html">foxes.models.turbine_models.thrust2ct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_models.yaw2yawm.html">foxes.models.turbine_models.yaw2yawm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_models.yawm2yaw.html">foxes.models.turbine_models.yawm2yaw</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_types.PCt_file.html">foxes.models.turbine_types.PCt_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_types.PCt_two_files.html">foxes.models.turbine_types.PCt_two_files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_types.null_type.html">foxes.models.turbine_types.null_type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.turbine_types.wsrho2PCt_two_files.html">foxes.models.turbine_types.wsrho2PCt_two_files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.vertical_profiles.html">foxes.models.vertical_profiles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.vertical_profiles.abl_log.html">foxes.models.vertical_profiles.abl_log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.vertical_profiles.uniform.html">foxes.models.vertical_profiles.uniform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_frames.html">foxes.models.wake_frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_frames.farm_order.html">foxes.models.wake_frames.farm_order</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_frames.rotor_wd.html">foxes.models.wake_frames.rotor_wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_frames.streamlines.html">foxes.models.wake_frames.streamlines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_frames.yawed_wakes.html">foxes.models.wake_frames.yawed_wakes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_models.html">foxes.models.wake_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_models.axisymmetric.html">foxes.models.wake_models.axisymmetric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_models.dist_sliced.html">foxes.models.wake_models.dist_sliced</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_models.gaussian.html">foxes.models.wake_models.gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_models.ti.html">foxes.models.wake_models.ti</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_models.top_hat.html">foxes.models.wake_models.top_hat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_models.wind.html">foxes.models.wake_models.wind</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_superpositions.html">foxes.models.wake_superpositions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_superpositions.linear.html">foxes.models.wake_superpositions.linear</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_superpositions.max.html">foxes.models.wake_superpositions.max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_superpositions.quadratic.html">foxes.models.wake_superpositions.quadratic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.models.wake_superpositions.ti_superp.html">foxes.models.wake_superpositions.ti_superp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.html">foxes.output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.farm_layout.html">foxes.output.farm_layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.farm_layout.FarmLayoutOutput.html">foxes.output.farm_layout.FarmLayoutOutput</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.farm_results_eval.html">foxes.output.farm_results_eval</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html">foxes.output.farm_results_eval.FarmResultsEval</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.flow_plots_2d.html">foxes.output.flow_plots_2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.flow_plots_2d.FlowPlots2D.html">foxes.output.flow_plots_2d.FlowPlots2D</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.output.html">foxes.output.output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.output.Output.html">foxes.output.output.Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.results_writer.html">foxes.output.results_writer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.results_writer.ResultsWriter.html">foxes.output.results_writer.ResultsWriter</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.rose_plot.html">foxes.output.rose_plot</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.rose_plot.RosePlotOutput.html">foxes.output.rose_plot.RosePlotOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.rose_plot.StatesRosePlotOutput.html">foxes.output.rose_plot.StatesRosePlotOutput</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.state_turbine_map.html">foxes.output.state_turbine_map</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.state_turbine_map.StateTurbineMap.html">foxes.output.state_turbine_map.StateTurbineMap</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.turbine_type_curves.html">foxes.output.turbine_type_curves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.output.turbine_type_curves.TurbineTypeCurves.html">foxes.output.turbine_type_curves.TurbineTypeCurves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.html">foxes.opt</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.constraints.html">foxes.opt.constraints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.constraints.area_geometry.html">foxes.opt.constraints.area_geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.constraints.min_dist.html">foxes.opt.constraints.min_dist</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.core.html">foxes.opt.core</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.core.farm_constraint.html">foxes.opt.core.farm_constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.core.farm_objective.html">foxes.opt.core.farm_objective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.core.farm_opt_problem.html">foxes.opt.core.farm_opt_problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.core.farm_vars_problem.html">foxes.opt.core.farm_vars_problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.core.pop_states.html">foxes.opt.core.pop_states</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.objectives.html">foxes.opt.objectives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.objectives.farm_vars.html">foxes.opt.objectives.farm_vars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.objectives.max_n_turbines.html">foxes.opt.objectives.max_n_turbines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.problems.html">foxes.opt.problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.problems.layout.html">foxes.opt.problems.layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.opt.problems.opt_farm_vars.html">foxes.opt.problems.opt_farm_vars</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.html">foxes.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.abl.html">foxes.utils.abl</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.abl.neutral.html">foxes.utils.abl.neutral</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.abl.sheared.html">foxes.utils.abl.sheared</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.abl.stable.html">foxes.utils.abl.stable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.abl.unstable.html">foxes.utils.abl.unstable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.cubic_roots.html">foxes.utils.cubic_roots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.data_book.html">foxes.utils.data_book</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.data_book.DataBook.html">foxes.utils.data_book.DataBook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.dict.html">foxes.utils.dict</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.dict.Dict.html">foxes.utils.dict.Dict</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geom2d.html">foxes.utils.geom2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geom2d.area_geometry.html">foxes.utils.geom2d.area_geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geom2d.circle.html">foxes.utils.geom2d.circle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geom2d.example_intersection.html">foxes.utils.geom2d.example_intersection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geom2d.example_union.html">foxes.utils.geom2d.example_union</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geom2d.half_plane.html">foxes.utils.geom2d.half_plane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geom2d.polygon.html">foxes.utils.geom2d.polygon</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geopandas_helpers.html">foxes.utils.geopandas_helpers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geopandas_helpers.check_import_gpd.html">foxes.utils.geopandas_helpers.check_import_gpd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geopandas_helpers.check_import_utm.html">foxes.utils.geopandas_helpers.check_import_utm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geopandas_helpers.read_shp.html">foxes.utils.geopandas_helpers.read_shp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geopandas_helpers.read_shp_polygons.html">foxes.utils.geopandas_helpers.read_shp_polygons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.geopandas_helpers.shp2csv.html">foxes.utils.geopandas_helpers.shp2csv</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.pandas_helpers.html">foxes.utils.pandas_helpers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.pandas_helpers.PandasFileHelper.html">foxes.utils.pandas_helpers.PandasFileHelper</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.plotly_helpers.html">foxes.utils.plotly_helpers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.plotly_helpers.show_plotly_fig.html">foxes.utils.plotly_helpers.show_plotly_fig</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.runners.html">foxes.utils.runners</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.runners.DaskRunner.html">foxes.utils.runners.DaskRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.runners.DefaultRunner.html">foxes.utils.runners.DefaultRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.runners.Runner.html">foxes.utils.runners.Runner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.subclasses.html">foxes.utils.subclasses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.subclasses.all_subclasses.html">foxes.utils.subclasses.all_subclasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.two_circles.html">foxes.utils.two_circles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.two_circles.area.html">foxes.utils.two_circles.area</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.two_circles.calc_area.html">foxes.utils.two_circles.calc_area</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.wind_dir.html">foxes.utils.wind_dir</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.wind_dir.delta_wd.html">foxes.utils.wind_dir.delta_wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.wind_dir.uv2wd.html">foxes.utils.wind_dir.uv2wd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.wind_dir.wd2uv.html">foxes.utils.wind_dir.wd2uv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.wind_dir.wd2wdvec.html">foxes.utils.wind_dir.wd2wdvec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_autosummary/foxes.utils.wind_dir.wdvec2wd.html">foxes.utils.wind_dir.wdvec2wd</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_autosummary/foxes.variables.html">foxes.variables</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../notebooks/data.html">Static data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/data.html#Wind-farm-layout-data">Wind farm layout data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../notebooks/data.html#test_farm_67.csv">test_farm_67.csv</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/data.html#Ambient-states-data">Ambient states data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../notebooks/data.html#WRF-Timeseries-4464.csv.gz">WRF-Timeseries-4464.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../notebooks/data.html#abl_states_6000.csv.gz">abl_states_6000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../notebooks/data.html#timeseries_3000.csv.gz">timeseries_3000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../notebooks/data.html#timeseries_8000.csv.gz">timeseries_8000.csv.gz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../notebooks/data.html#wind_rose_bremen.csv">wind_rose_bremen.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../notebooks/data.html#wind_rotation.nc">wind_rotation.nc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/data.html#Power-and-thrust-curves">Power and thrust curves</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../notebooks/data.html#DTU-10MW-D178d3-H119.csv">DTU-10MW-D178d3-H119.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../notebooks/data.html#IEA-15MW-D240-H150.csv">IEA-15MW-D240-H150.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../notebooks/data.html#IWT-7d5MW-D164-H100.csv">IWT-7d5MW-D164-H100.csv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../notebooks/data.html#NREL-5MW-D126-H90.csv">NREL-5MW-D126-H90.csv</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../notebooks/data.html#File-paths">File paths</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-1-0-alpha">v0.1.0-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-1-1-alpha">v0.1.1-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-1-2-alpha">v0.1.2-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-1-3-alpha">v0.1.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-1-4-alpha">v0.1.4-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-2-0-alpha">v0.2.0-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-2-1-alpha">v0.2.1-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-2-2-alpha">v0.2.2-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-2-3-alpha">v0.2.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-2-4-alpha">v0.2.4-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-2-5-alpha">v0.2.5-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-3-0-alpha">v0.3.0-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../history.html#v0-3-1-alpha">v0.3.1-alpha</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">foxes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>foxes.opt.problems.layout.geom_layouts.geom_reggrids</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for foxes.opt.problems.layout.geom_layouts.geom_reggrids</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">cdist</span>
+<span class="kn">from</span> <span class="nn">iwopy</span> <span class="kn">import</span> <span class="n">Problem</span>
+
+<span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
+
+<div class="viewcode-block" id="GeomRegGrids"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids">[docs]</a><span class="k">class</span> <span class="nc">GeomRegGrids</span><span class="p">(</span><span class="n">Problem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A regular grid within a boundary geometry.</span>
+
+<span class="sd">    This optimization problem does not involve</span>
+<span class="sd">    wind farms.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    boundary : foxes.utils.geom2d.AreaGeometry</span>
+<span class="sd">        The boundary geometry</span>
+<span class="sd">    min_dist : float</span>
+<span class="sd">        The minimal distance between points</span>
+<span class="sd">    n_grids : int</span>
+<span class="sd">        The number of grids</span>
+<span class="sd">    n_max : int, optional</span>
+<span class="sd">        The maximal number of points</span>
+<span class="sd">    n_row_max : int, optional</span>
+<span class="sd">        The maximal number of points in a row</span>
+<span class="sd">    max_dist : float, optional</span>
+<span class="sd">        The maximal distance between points</span>
+<span class="sd">    D : float, optional</span>
+<span class="sd">        The diameter of circle fully within boundary</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    boundary : foxes.utils.geom2d.AreaGeometry</span>
+<span class="sd">        The boundary geometry</span>
+<span class="sd">    min_dist : float</span>
+<span class="sd">        The minimal distance between points</span>
+<span class="sd">    n_grids : int</span>
+<span class="sd">        The number of grids</span>
+<span class="sd">    n_max : int</span>
+<span class="sd">        The maximal number of points</span>
+<span class="sd">    n_row_max : int</span>
+<span class="sd">        The maximal number of points in a row</span>
+<span class="sd">    max_dist : float</span>
+<span class="sd">        The maximal distance between points</span>
+<span class="sd">    D : float</span>
+<span class="sd">        The diameter of circle fully within boundary</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="GeomRegGrids.__init__"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> 
+            <span class="n">boundary</span><span class="p">,</span> 
+            <span class="n">min_dist</span><span class="p">,</span> 
+            <span class="n">n_grids</span><span class="p">,</span> 
+            <span class="n">n_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">n_row_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+            <span class="n">max_dist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">D</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;geom_reg_grids&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">boundary</span> <span class="o">=</span> <span class="n">boundary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span> <span class="o">=</span> <span class="n">n_grids</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_max</span> <span class="o">=</span> <span class="n">n_max</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_row_max</span> <span class="o">=</span> <span class="n">n_row_max</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">min_dist</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_dist</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">max_dist</span><span class="p">)</span> <span class="k">if</span> <span class="n">max_dist</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">max_dist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">=</span> <span class="n">D</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_NX</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;nx</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_NY</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;ny</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_OX</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;ox</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_OY</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;oy</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_DX</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;dx</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_DY</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;dy</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ALPHA</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;alpha</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="GeomRegGrids.initialize"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        verbosity : int</span>
+<span class="sd">            The verbosity level, 0 = silent</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">verbosity</span><span class="p">)</span>
+
+        <span class="n">pmin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">p_min</span><span class="p">()</span>
+        <span class="n">pmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">p_max</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_span</span> <span class="o">=</span> <span class="n">pmax</span> <span class="o">-</span> <span class="n">pmin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_span</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_dist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_diag</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_dist</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_dist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nrow</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_row_max</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_row_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_nrow</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_diag</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nrow</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_diag</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_nrow</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_nrow</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_nrow</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_max</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_nrow</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_max</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nrow</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nrow</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_max</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pmin</span> <span class="o">=</span> <span class="n">pmin</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_diag</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pmax</span> <span class="o">=</span> <span class="n">pmax</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span>
+        
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Grid data:&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  pmin        = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_pmin</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  pmax        = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_pmax</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  min dist    = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  max dist    = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_dist</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  n row max   = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_nrow</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  n max       = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_max</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  n grids     = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">apply_individual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_values_int</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_values_float</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="GeomRegGrids.var_names_int"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.var_names_int">[docs]</a>    <span class="k">def</span> <span class="nf">var_names_int</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The names of int variables.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        names : list of str</span>
+<span class="sd">            The names of the int variables</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_NX</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_NY</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">flat</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GeomRegGrids.initial_values_int"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.initial_values_int">[docs]</a>    <span class="k">def</span> <span class="nf">initial_values_int</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The initial values of the int variables.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        values : numpy.ndarray</span>
+<span class="sd">            Initial int values, shape: (n_vars_int,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GeomRegGrids.min_values_int"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.min_values_int">[docs]</a>    <span class="k">def</span> <span class="nf">min_values_int</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The minimal values of the integer variables.</span>
+
+<span class="sd">        Use -self.INT_INF for unbounded.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        values : numpy.ndarray</span>
+<span class="sd">            Minimal int values, shape: (n_vars_int,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GeomRegGrids.max_values_int"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.max_values_int">[docs]</a>    <span class="k">def</span> <span class="nf">max_values_int</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The maximal values of the integer variables.</span>
+
+<span class="sd">        Use self.INT_INF for unbounded.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        values : numpy.ndarray</span>
+<span class="sd">            Maximal int values, shape: (n_vars_int,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nrow</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GeomRegGrids.var_names_float"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.var_names_float">[docs]</a>    <span class="k">def</span> <span class="nf">var_names_float</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The names of float variables.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        names : list of str</span>
+<span class="sd">            The names of the float variables</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_OX</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_OY</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_DX</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_DY</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ALPHA</span><span class="p">]</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">flat</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GeomRegGrids.initial_values_float"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.initial_values_float">[docs]</a>    <span class="k">def</span> <span class="nf">initial_values_float</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The initial values of the float variables.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        values : numpy.ndarray</span>
+<span class="sd">            Initial float values, shape: (n_vars_float,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+        <span class="n">vals</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pmin</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_diag</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_span</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">vals</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span>
+        <span class="n">vals</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">vals</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="o">*</span><span class="n">n</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GeomRegGrids.min_values_float"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.min_values_float">[docs]</a>    <span class="k">def</span> <span class="nf">min_values_float</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The minimal values of the float variables.</span>
+
+<span class="sd">        Use -numpy.inf for unbounded.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        values : numpy.ndarray</span>
+<span class="sd">            Minimal float values, shape: (n_vars_float,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+        <span class="n">vals</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pmin</span>
+        <span class="n">vals</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span>
+        <span class="n">vals</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_diag</span><span class="o">/</span><span class="mi">3</span>
+        <span class="k">return</span> <span class="n">vals</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="o">*</span><span class="n">n</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GeomRegGrids.max_values_float"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.max_values_float">[docs]</a>    <span class="k">def</span> <span class="nf">max_values_float</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The maximal values of the float variables.</span>
+
+<span class="sd">        Use numpy.inf for unbounded.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        values : numpy.ndarray</span>
+<span class="sd">            Maximal float values, shape: (n_vars_float,)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+        <span class="n">vals</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pmax</span>
+        <span class="n">vals</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_dist</span>
+        <span class="n">vals</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mf">90.</span>
+        <span class="n">vals</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_diag</span><span class="o">/</span><span class="mi">3</span>
+        <span class="k">return</span> <span class="n">vals</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="o">*</span><span class="n">n</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GeomRegGrids.apply_individual"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.apply_individual">[docs]</a>    <span class="k">def</span> <span class="nf">apply_individual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apply new variables to the problem.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        vars_int : np.array</span>
+<span class="sd">            The integer variable values, shape: (n_vars_int,)</span>
+<span class="sd">        vars_float : np.array</span>
+<span class="sd">            The float variable values, shape: (n_vars_float,)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        problem_results : Any</span>
+<span class="sd">            The results of the variable application</span>
+<span class="sd">            to the problem</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>       
+        <span class="n">vint</span> <span class="o">=</span> <span class="n">vars_int</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">vflt</span> <span class="o">=</span> <span class="n">vars_float</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">nx</span> <span class="o">=</span> <span class="n">vint</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">ny</span> <span class="o">=</span> <span class="n">vint</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">ox</span> <span class="o">=</span> <span class="n">vflt</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">oy</span> <span class="o">=</span> <span class="n">vflt</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">vflt</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">vflt</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vflt</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">])</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">vflt</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">:]</span>
+        <span class="n">n_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_max</span>
+
+        <span class="n">nax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">a</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">naz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">nax</span><span class="p">)</span>
+        <span class="n">naz</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">nay</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">naz</span><span class="p">,</span> <span class="n">nax</span><span class="p">)</span>
+
+        <span class="n">valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_points</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_points</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+        <span class="n">n0</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">gi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">):</span>
+
+            <span class="n">n</span> <span class="o">=</span> <span class="n">nx</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span> <span class="o">*</span> <span class="n">ny</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span>
+            <span class="n">n1</span> <span class="o">=</span> <span class="n">n0</span> <span class="o">+</span> <span class="n">n</span>
+
+            <span class="k">if</span> <span class="n">n1</span> <span class="o">&lt;=</span> <span class="n">n_points</span><span class="p">:</span>
+                <span class="n">qts</span> <span class="o">=</span> <span class="n">pts</span><span class="p">[</span><span class="n">n0</span><span class="p">:</span><span class="n">n1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nx</span><span class="p">[</span><span class="n">gi</span><span class="p">],</span> <span class="n">ny</span><span class="p">[</span><span class="n">gi</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">qts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="p">[</span><span class="n">gi</span><span class="p">],</span> <span class="n">ny</span><span class="p">[</span><span class="n">gi</span><span class="p">],</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+
+            <span class="n">qts</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ox</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span>
+            <span class="n">qts</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">oy</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span>
+            <span class="n">qts</span><span class="p">[:]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nx</span><span class="p">[</span><span class="n">gi</span><span class="p">])[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">dx</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span> <span class="o">*</span> <span class="n">nax</span><span class="p">[</span><span class="n">gi</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">qts</span><span class="p">[:]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ny</span><span class="p">[</span><span class="n">gi</span><span class="p">])[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">dy</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span> <span class="o">*</span> <span class="n">nay</span><span class="p">[</span><span class="n">gi</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">qts</span> <span class="o">=</span> <span class="n">qts</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">n1</span> <span class="o">&gt;</span> <span class="n">n_points</span><span class="p">:</span>
+                <span class="n">n1</span> <span class="o">=</span> <span class="n">n_points</span>
+                <span class="n">qts</span> <span class="o">=</span> <span class="n">qts</span><span class="p">[:(</span><span class="n">n1</span><span class="o">-</span><span class="n">n0</span><span class="p">)]</span>
+                <span class="n">pts</span><span class="p">[</span><span class="n">n0</span><span class="p">:]</span> <span class="o">=</span> <span class="n">qts</span>
+
+            <span class="c1"># set out of boundary points invalid:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">valid</span><span class="p">[</span><span class="n">n0</span><span class="p">:</span><span class="n">n1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">points_inside</span><span class="p">(</span><span class="n">qts</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">valid</span><span class="p">[</span><span class="n">n0</span><span class="p">:</span><span class="n">n1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">points_inside</span><span class="p">(</span><span class="n">qts</span><span class="p">)</span> <span class="o">&amp;</span>
+                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">points_distance</span><span class="p">(</span><span class="n">qts</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="p">)</span>
+
+            <span class="c1"># set points invalid which are too close to other grids:</span>
+            <span class="k">if</span> <span class="n">n0</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">dists</span> <span class="o">=</span> <span class="n">cdist</span><span class="p">(</span><span class="n">qts</span><span class="p">,</span> <span class="n">pts</span><span class="p">[:</span><span class="n">n0</span><span class="p">])</span>
+                <span class="n">valid</span><span class="p">[</span><span class="n">n0</span><span class="p">:</span><span class="n">n1</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dists</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="n">n0</span> <span class="o">=</span> <span class="n">n1</span>
+            <span class="k">if</span> <span class="n">n0</span> <span class="o">&gt;=</span> <span class="n">n_points</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="k">return</span> <span class="n">pts</span><span class="p">,</span> <span class="n">valid</span></div>
+
+<div class="viewcode-block" id="GeomRegGrids.apply_population"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.apply_population">[docs]</a>    <span class="k">def</span> <span class="nf">apply_population</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apply new variables to the problem,</span>
+<span class="sd">        for a whole population.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        vars_int : np.array</span>
+<span class="sd">            The integer variable values, shape: (n_pop, n_vars_int)</span>
+<span class="sd">        vars_float : np.array</span>
+<span class="sd">            The float variable values, shape: (n_pop, n_vars_float)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        problem_results : Any</span>
+<span class="sd">            The results of the variable application</span>
+<span class="sd">            to the problem</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n_pop</span> <span class="o">=</span> <span class="n">vars_int</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">vint</span> <span class="o">=</span> <span class="n">vars_int</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_pop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">vflt</span> <span class="o">=</span> <span class="n">vars_float</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_pop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">nx</span> <span class="o">=</span> <span class="n">vint</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">ny</span> <span class="o">=</span> <span class="n">vint</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">ox</span> <span class="o">=</span> <span class="n">vflt</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">oy</span> <span class="o">=</span> <span class="n">vflt</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">vflt</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">vflt</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">3</span><span class="p">]</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vflt</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">4</span><span class="p">])</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">vflt</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">5</span><span class="p">:]</span>
+        <span class="n">n_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_max</span>
+
+        <span class="n">nax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">a</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">naz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">nax</span><span class="p">)</span>
+        <span class="n">naz</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">nay</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">naz</span><span class="p">,</span> <span class="n">nax</span><span class="p">)</span>
+
+        <span class="n">valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_pop</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_pop</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">pi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_pop</span><span class="p">):</span>
+            <span class="n">n0</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">gi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_grids</span><span class="p">):</span>
+
+                <span class="n">n</span> <span class="o">=</span> <span class="n">nx</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">]</span> <span class="o">*</span> <span class="n">ny</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">]</span>
+                <span class="n">n1</span> <span class="o">=</span> <span class="n">n0</span> <span class="o">+</span> <span class="n">n</span>
+
+                <span class="k">if</span> <span class="n">n1</span> <span class="o">&lt;=</span> <span class="n">n_points</span><span class="p">:</span>
+                    <span class="n">qts</span> <span class="o">=</span> <span class="n">pts</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">n0</span><span class="p">:</span><span class="n">n1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nx</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">],</span> <span class="n">ny</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">qts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">],</span> <span class="n">ny</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">],</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+
+                <span class="n">qts</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ox</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">]</span>
+                <span class="n">qts</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">oy</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">]</span>
+                <span class="n">qts</span><span class="p">[:]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nx</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">])[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">dx</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">]</span> <span class="o">*</span> <span class="n">nax</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">qts</span><span class="p">[:]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ny</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">])[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">dy</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">]</span> <span class="o">*</span> <span class="n">nay</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">qts</span> <span class="o">=</span> <span class="n">qts</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">n1</span> <span class="o">&gt;</span> <span class="n">n_points</span><span class="p">:</span>
+                    <span class="n">n1</span> <span class="o">=</span> <span class="n">n_points</span>
+                    <span class="n">qts</span> <span class="o">=</span> <span class="n">qts</span><span class="p">[:(</span><span class="n">n1</span><span class="o">-</span><span class="n">n0</span><span class="p">)]</span>
+                    <span class="n">pts</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">n0</span><span class="p">:]</span> <span class="o">=</span> <span class="n">qts</span>
+
+                <span class="c1"># set out of boundary points invalid:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">valid</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">n0</span><span class="p">:</span><span class="n">n1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">points_inside</span><span class="p">(</span><span class="n">qts</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">valid</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">n0</span><span class="p">:</span><span class="n">n1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">points_inside</span><span class="p">(</span><span class="n">qts</span><span class="p">)</span> <span class="o">&amp;</span>
+                        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">points_distance</span><span class="p">(</span><span class="n">qts</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="p">)</span>
+
+                <span class="c1"># set points invalid which are too close to other grids:</span>
+                <span class="k">if</span> <span class="n">n0</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">dists</span> <span class="o">=</span> <span class="n">cdist</span><span class="p">(</span><span class="n">qts</span><span class="p">,</span> <span class="n">pts</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="p">:</span><span class="n">n0</span><span class="p">])</span>
+                    <span class="n">valid</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="n">n0</span><span class="p">:</span><span class="n">n1</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dists</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
+
+                <span class="n">n0</span> <span class="o">=</span> <span class="n">n1</span>
+
+                <span class="k">if</span> <span class="n">n0</span> <span class="o">&gt;=</span> <span class="n">n_points</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+        <span class="k">return</span> <span class="n">pts</span><span class="p">,</span> <span class="n">valid</span></div>
+
+<div class="viewcode-block" id="GeomRegGrids.get_fig"><a class="viewcode-back" href="../../../../../../_autosummary/foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.html#foxes.opt.problems.layout.geom_layouts.geom_reggrids.GeomRegGrids.get_fig">[docs]</a>    <span class="k">def</span> <span class="nf">get_fig</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">true_circle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">bargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return plotly figure axis.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        xy : numpy.ndarary, optional</span>
+<span class="sd">            The xy coordinate array, shape: (n_points, 2)</span>
+<span class="sd">        valid : numpy.ndarray, optional</span>
+<span class="sd">            Boolean array of validity, shape: (n_points,)</span>
+<span class="sd">        ax : pyplot.Axis, optional</span>
+<span class="sd">            The figure axis</span>
+<span class="sd">        title : str, optional</span>
+<span class="sd">            The figure title</span>
+<span class="sd">        true_circle : bool</span>
+<span class="sd">            Draw points as circles with diameter self.D</span>
+<span class="sd">        bars : dict, optional</span>
+<span class="sd">            The boundary plot arguments</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ax : pyplot.Axis</span>
+<span class="sd">            The figure axis</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">__</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+        
+        <span class="n">hbargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;fill_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;inside_lightgray&quot;</span><span class="p">}</span>
+        <span class="n">hbargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">bargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">add_to_figure</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">hbargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">xy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">valid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">xy</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[</span><span class="n">valid</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">true_circle</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">xy</span><span class="p">:</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x [m]&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;y [m]&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">xy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Optimization area&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">l</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="k">if</span> <span class="n">xy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+                <span class="n">dists</span> <span class="o">=</span> <span class="n">cdist</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">xy</span><span class="p">)</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">dists</span><span class="p">,</span> <span class="mf">1e20</span><span class="p">)</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;N = </span><span class="si">{</span><span class="n">l</span><span class="si">}</span><span class="s2">, min_dist = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dists</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m&quot;</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ax</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Fraunhofer IWES
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #009879;
+    }
+  </style>
+
+
+</body>
+</html>
