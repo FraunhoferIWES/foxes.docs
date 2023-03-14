@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>foxes.output.farm_results_eval &mdash; foxes 0.3.1
+  <title>foxes.output.farm_results_eval &mdash; foxes 0.3.2
  documentation</title>
   
 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.3.1
+                0.3.2
 
               </div>
             
@@ -518,6 +518,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-0-alpha">v0.3.0-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-1-alpha">v0.3.1-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-2-alpha">v0.3.2-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -991,7 +992,7 @@
             <span class="k">if</span> <span class="n">delta_t</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">delta_t</span> <span class="o">=</span> <span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
             <span class="n">duration</span> <span class="o">=</span> <span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">delta_t</span>
-            <span class="n">duration_seconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">duration</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e9</span><span class="p">)</span>
+            <span class="n">duration_seconds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">duration</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e9</span><span class="p">)</span>
             <span class="n">duration_hours</span> <span class="o">=</span> <span class="n">duration_seconds</span> <span class="o">/</span> <span class="mi">3600</span>
         <span class="k">elif</span> <span class="n">hours</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">annual</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
             <span class="n">duration_hours</span> <span class="o">=</span> <span class="mi">8760</span>

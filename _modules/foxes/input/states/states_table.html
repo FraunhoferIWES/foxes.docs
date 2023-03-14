@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>foxes.input.states.states_table &mdash; foxes 0.3.1
+  <title>foxes.input.states.states_table &mdash; foxes 0.3.2
  documentation</title>
   
 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.3.1
+                0.3.2
 
               </div>
             
@@ -518,6 +518,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-2-6-alpha">v0.2.6-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-3-0-alpha">v0.3.0-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-3-1-alpha">v0.3.1-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../history.html#v0-3-2-alpha">v0.3.2-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -772,6 +773,7 @@
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">states_loc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">states_loc</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inds</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
 
         <span class="n">col_w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var2col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_N</span><span class="p">,</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
@@ -820,6 +822,18 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_N</span></div>
 
+<div class="viewcode-block" id="StatesTable.index"><a class="viewcode-back" href="../../../../_autosummary/foxes.input.states.states_table.StatesTable.html#foxes.input.states.states_table.StatesTable.index">[docs]</a>    <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The index list</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        indices : array_like</span>
+<span class="sd">            The index labels of states, or None for default integers</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inds</span></div>
+    
 <div class="viewcode-block" id="StatesTable.output_point_vars"><a class="viewcode-back" href="../../../../_autosummary/foxes.input.states.states_table.StatesTable.html#foxes.input.states.states_table.StatesTable.output_point_vars">[docs]</a>    <span class="k">def</span> <span class="nf">output_point_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The variables which are being modified by the model.</span>
