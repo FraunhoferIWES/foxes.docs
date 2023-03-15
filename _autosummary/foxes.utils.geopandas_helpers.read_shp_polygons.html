@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>foxes.utils.geopandas_helpers.read_shp_polygons &mdash; foxes 0.3.2
+  <title>foxes.utils.geopandas_helpers.read_shp_polygons &mdash; foxes 0.3.3
  documentation</title>
   
 
@@ -70,7 +70,7 @@
             
             
               <div class="version">
-                0.3.2
+                0.3.3
 
               </div>
             
@@ -440,6 +440,7 @@
 <li class="toctree-l4"><a class="reference internal" href="foxes.utils.geopandas_helpers.read_shp.html">foxes.utils.geopandas_helpers.read_shp</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">foxes.utils.geopandas_helpers.read_shp_polygons</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.utils.geopandas_helpers.shp2csv.html">foxes.utils.geopandas_helpers.shp2csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.utils.geopandas_helpers.shp2geom2d.html">foxes.utils.geopandas_helpers.shp2geom2d</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="foxes.utils.pandas_helpers.html">foxes.utils.pandas_helpers</a><ul>
@@ -522,6 +523,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-0-alpha">v0.3.0-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-1-alpha">v0.3.1-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-2-alpha">v0.3.2-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-3-alpha">v0.3.3-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -625,29 +627,27 @@
 <h1>foxes.utils.geopandas_helpers.read_shp_polygons<a class="headerlink" href="#foxes-utils-geopandas-helpers-read-shp-polygons" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="foxes.utils.geopandas_helpers.read_shp_polygons">
-<span class="sig-prename descclassname"><span class="pre">foxes.utils.geopandas_helpers.</span></span><span class="sig-name descname"><span class="pre">read_shp_polygons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Name'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geom_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_utm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ret_utm_zone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/utils/geopandas_helpers.html#read_shp_polygons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.utils.geopandas_helpers.read_shp_polygons" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reads the polygon points from csv or shp file.</p>
-<p>The points are read from geom_col,
-containing string entries like</p>
-<p>POLYGON ((6.415 54.086, 6.568 54.089, …))</p>
-<p>or</p>
-<p>MULTIPOLYGON (((7.170 55.235, …)), ((…)), …)</p>
+<span class="sig-prename descclassname"><span class="pre">foxes.utils.geopandas_helpers.</span></span><span class="sig-name descname"><span class="pre">read_shp_polygons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Name'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geom_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'geometry'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_utm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ret_utm_zone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/foxes/utils/geopandas_helpers.html#read_shp_polygons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#foxes.utils.geopandas_helpers.read_shp_polygons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the polygon points from a shp file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>fname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Path to the .csv or .shp file</p></li>
+<li><p><strong>fname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Path to the .shp file</p></li>
 <li><p><strong>names</strong> (<em>list:</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optinal</em>) – The names of the polygons to be extracted. All by
 default</p></li>
 <li><p><strong>name_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Column that contains the area names</p></li>
-<li><p><strong>geom_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – The geometry column, default ‘geom’ or ‘geometry’</p></li>
+<li><p><strong>geom_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The geometry column</p></li>
 <li><p><strong>to_utm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – Convert to UTM coordinates. If str, then UTM zone
 plus letter, e.g. “32U”</p></li>
 <li><p><strong>ret_utm_zone</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – Return UTM zone plus letter as str</p></li>
+<li><p><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em>, </em><em>optional</em>) – Additional parameters for geopandas.read_shp()</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><strong>point_dict</strong> (<em>dict</em>) – Dict with list of array of points. Key: area name,
+<li><p><strong>point_dict_exterior</strong> (<em>dict</em>) – Dict with list of array of points. Key: area name,
+Value: list:np.ndarray, shape of latter: (n_points, 2)</p></li>
+<li><p><strong>point_dict_interior</strong> (<em>dict</em>) – Dict with list of array of points. Key: area name,
 Value: list:np.ndarray, shape of latter: (n_points, 2)</p></li>
 <li><p><strong>utm_zone_str</strong> (<em>str, optional</em>) – The utem zone plus letter as str, e.g. “32U”</p></li>
 </ul>
