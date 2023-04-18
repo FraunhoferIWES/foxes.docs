@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>foxes.core.algorithm &mdash; foxes 0.3.3
+  <title>foxes.core.algorithm &mdash; foxes 0.3.4
  documentation</title>
   
 
@@ -38,6 +38,7 @@
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -67,7 +68,7 @@
             
             
               <div class="version">
-                0.3.3
+                0.3.4
 
               </div>
             
@@ -243,6 +244,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/foxes.input.html">foxes.input</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.html">foxes.input.farm_layout</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_from_csv.html">foxes.input.farm_layout.add_from_csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_from_df.html">foxes.input.farm_layout.add_from_df</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_from_file.html">foxes.input.farm_layout.add_from_file</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_from_json.html">foxes.input.farm_layout.add_from_json</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_grid.html">foxes.input.farm_layout.add_grid</a></li>
@@ -256,6 +258,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.states.scan_ws.html">foxes.input.states.scan_ws</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.states.single.html">foxes.input.states.single</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.states.states_table.html">foxes.input.states.states_table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.input.windio.html">foxes.input.windio</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.windio.windio.html">foxes.input.windio.windio</a></li>
 </ul>
 </li>
 </ul>
@@ -307,8 +313,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.CpCt_file.html">foxes.models.turbine_types.CpCt_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.CpCt_from_two.html">foxes.models.turbine_types.CpCt_from_two</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.PCt_file.html">foxes.models.turbine_types.PCt_file</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.PCt_two_files.html">foxes.models.turbine_types.PCt_two_files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.PCt_from_two.html">foxes.models.turbine_types.PCt_from_two</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.null_type.html">foxes.models.turbine_types.null_type</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.wsrho2PCt_two_files.html">foxes.models.turbine_types.wsrho2PCt_two_files</a></li>
 </ul>
@@ -521,6 +529,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-1-alpha">v0.3.1-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-2-alpha">v0.3.2-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-3-alpha">v0.3.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-4-alpha">v0.3.4-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -597,9 +606,8 @@
 <span class="kn">from</span> <span class="nn">.point_data_model</span> <span class="kn">import</span> <span class="n">PointDataModelList</span>
 <span class="kn">from</span> <span class="nn">.farm_controller</span> <span class="kn">import</span> <span class="n">FarmController</span>
 <span class="kn">from</span> <span class="nn">foxes.data</span> <span class="kn">import</span> <span class="n">StaticData</span>
-<span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">all_subclasses</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
-
 
 <div class="viewcode-block" id="Algorithm"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm">[docs]</a><span class="k">class</span> <span class="nc">Algorithm</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -989,7 +997,41 @@
         <span class="k">if</span> <span class="n">clear_mem</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialized</span><span class="p">:</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span></div></div>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Algorithm.new"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm.new">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">algo_type</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run-time algorithm factory.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo_type : str</span>
+<span class="sd">            The selected derived class name</span>
+<span class="sd">        args : tuple, optional</span>
+<span class="sd">            Additional parameters for the constructor</span>
+<span class="sd">        kwargs : dict, optional</span>
+<span class="sd">            Additional parameters for the constructor</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">algo_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">allc</span> <span class="o">=</span> <span class="n">all_subclasses</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="n">algo_type</span> <span class="ow">in</span> <span class="p">[</span><span class="n">scls</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">scls</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">scls</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">scls</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="n">algo_type</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">scls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">estr</span> <span class="o">=</span> <span class="s2">&quot;Algorithm type &#39;</span><span class="si">{}</span><span class="s2">&#39; is not defined, available types are </span><span class="se">\n</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">algo_type</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">])</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">estr</span><span class="p">)</span></div></div>
+        
 </pre></div>
 
            </div>

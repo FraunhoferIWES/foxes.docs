@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>foxes.opt.constraints.min_dist.MinDistConstraint &mdash; foxes 0.3.3
+  <title>foxes.opt.constraints.min_dist.MinDistConstraint &mdash; foxes 0.3.4
  documentation</title>
   
 
@@ -39,6 +39,7 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -70,7 +71,7 @@
             
             
               <div class="version">
-                0.3.3
+                0.3.4
 
               </div>
             
@@ -246,6 +247,7 @@
 <li class="toctree-l2"><a class="reference internal" href="foxes.input.html">foxes.input</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="foxes.input.farm_layout.html">foxes.input.farm_layout</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_from_csv.html">foxes.input.farm_layout.add_from_csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_from_df.html">foxes.input.farm_layout.add_from_df</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_from_file.html">foxes.input.farm_layout.add_from_file</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_from_json.html">foxes.input.farm_layout.add_from_json</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_grid.html">foxes.input.farm_layout.add_grid</a></li>
@@ -259,6 +261,10 @@
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.states.scan_ws.html">foxes.input.states.scan_ws</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.states.single.html">foxes.input.states.single</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.states.states_table.html">foxes.input.states.states_table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.input.windio.html">foxes.input.windio</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.windio.windio.html">foxes.input.windio.windio</a></li>
 </ul>
 </li>
 </ul>
@@ -310,8 +316,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.CpCt_file.html">foxes.models.turbine_types.CpCt_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.CpCt_from_two.html">foxes.models.turbine_types.CpCt_from_two</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.PCt_file.html">foxes.models.turbine_types.PCt_file</a></li>
-<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.PCt_two_files.html">foxes.models.turbine_types.PCt_two_files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.PCt_from_two.html">foxes.models.turbine_types.PCt_from_two</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.null_type.html">foxes.models.turbine_types.null_type</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.wsrho2PCt_two_files.html">foxes.models.turbine_types.wsrho2PCt_two_files</a></li>
 </ul>
@@ -524,6 +532,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-1-alpha">v0.3.1-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-2-alpha">v0.3.2-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-3-alpha">v0.3.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-4-alpha">v0.3.4-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -601,31 +610,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="foxes-opt-constraints-min-dist-mindistconstraint">
+  <section id="foxes-opt-constraints-min-dist-mindistconstraint">
 <h1>foxes.opt.constraints.min_dist.MinDistConstraint<a class="headerlink" href="#foxes-opt-constraints-min-dist-mindistconstraint" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="foxes.opt.constraints.min_dist.MinDistConstraint">

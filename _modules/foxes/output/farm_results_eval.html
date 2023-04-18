@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>foxes.output.farm_results_eval &mdash; foxes 0.3.3
+  <title>foxes.output.farm_results_eval &mdash; foxes 0.3.4
  documentation</title>
   
 
@@ -38,6 +38,7 @@
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -67,7 +68,7 @@
             
             
               <div class="version">
-                0.3.3
+                0.3.4
 
               </div>
             
@@ -243,6 +244,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/foxes.input.html">foxes.input</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.html">foxes.input.farm_layout</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_from_csv.html">foxes.input.farm_layout.add_from_csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_from_df.html">foxes.input.farm_layout.add_from_df</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_from_file.html">foxes.input.farm_layout.add_from_file</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_from_json.html">foxes.input.farm_layout.add_from_json</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_grid.html">foxes.input.farm_layout.add_grid</a></li>
@@ -256,6 +258,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.states.scan_ws.html">foxes.input.states.scan_ws</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.states.single.html">foxes.input.states.single</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.states.states_table.html">foxes.input.states.states_table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.input.windio.html">foxes.input.windio</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.windio.windio.html">foxes.input.windio.windio</a></li>
 </ul>
 </li>
 </ul>
@@ -307,8 +313,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.CpCt_file.html">foxes.models.turbine_types.CpCt_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.CpCt_from_two.html">foxes.models.turbine_types.CpCt_from_two</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.PCt_file.html">foxes.models.turbine_types.PCt_file</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.PCt_two_files.html">foxes.models.turbine_types.PCt_two_files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.PCt_from_two.html">foxes.models.turbine_types.PCt_from_two</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.null_type.html">foxes.models.turbine_types.null_type</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.wsrho2PCt_two_files.html">foxes.models.turbine_types.wsrho2PCt_two_files</a></li>
 </ul>
@@ -521,6 +529,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-1-alpha">v0.3.1-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-2-alpha">v0.3.2-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-3-alpha">v0.3.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-4-alpha">v0.3.4-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -950,17 +959,20 @@
 
 <div class="viewcode-block" id="FarmResultsEval.calc_turbine_yield"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_turbine_yield">[docs]</a>    <span class="k">def</span> <span class="nf">calc_turbine_yield</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="n">algo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">annual</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">ambient</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">hours</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">delta_t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">P_unit_W</span><span class="o">=</span><span class="mf">1e3</span><span class="p">,</span>
+        <span class="n">P_unit_W</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the yield per turbine</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
+<span class="sd">        algo : foxes.core.Algorithm, optional</span>
+<span class="sd">            The algorithm, for P_nominal lookup</span>
 <span class="sd">        annual : bool, optional</span>
 <span class="sd">            Flag for returing annual results, by default False</span>
 <span class="sd">        ambient : bool, optional</span>
@@ -971,7 +983,8 @@
 <span class="sd">            The time delta step in case of time series data,</span>
 <span class="sd">            by default automatically determined</span>
 <span class="sd">        P_unit_W : float</span>
-<span class="sd">            The power unit in Watts, 1000 for kW</span>
+<span class="sd">            The power unit in Watts, 1000 for kW. Looked up</span>
+<span class="sd">            in algorithm if not given</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -986,6 +999,16 @@
             <span class="n">var_in</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">P</span>
             <span class="n">var_out</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">YLD</span>
 
+        <span class="k">if</span> <span class="n">algo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">P_unit_W</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">P_unit_W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">P_UNITS</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">P_unit</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">farm_controller</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">],</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">,</span>
+            <span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">algo</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">P_unit_W</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Expecting either &#39;algo&#39; or &#39;P_unit_W&#39;&quot;</span><span class="p">)</span>
+        
         <span class="c1"># compute yield per turbine</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">hours</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

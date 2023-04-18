@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>foxes.core.data.Data &mdash; foxes 0.3.3
+  <title>foxes.core.data.Data &mdash; foxes 0.3.4
  documentation</title>
   
 
@@ -39,6 +39,7 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -70,7 +71,7 @@
             
             
               <div class="version">
-                0.3.3
+                0.3.4
 
               </div>
             
@@ -246,6 +247,7 @@
 <li class="toctree-l2"><a class="reference internal" href="foxes.input.html">foxes.input</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="foxes.input.farm_layout.html">foxes.input.farm_layout</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_from_csv.html">foxes.input.farm_layout.add_from_csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_from_df.html">foxes.input.farm_layout.add_from_df</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_from_file.html">foxes.input.farm_layout.add_from_file</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_from_json.html">foxes.input.farm_layout.add_from_json</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.farm_layout.add_grid.html">foxes.input.farm_layout.add_grid</a></li>
@@ -259,6 +261,10 @@
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.states.scan_ws.html">foxes.input.states.scan_ws</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.states.single.html">foxes.input.states.single</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.input.states.states_table.html">foxes.input.states.states_table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="foxes.input.windio.html">foxes.input.windio</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.input.windio.windio.html">foxes.input.windio.windio</a></li>
 </ul>
 </li>
 </ul>
@@ -310,8 +316,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.CpCt_file.html">foxes.models.turbine_types.CpCt_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.CpCt_from_two.html">foxes.models.turbine_types.CpCt_from_two</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.PCt_file.html">foxes.models.turbine_types.PCt_file</a></li>
-<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.PCt_two_files.html">foxes.models.turbine_types.PCt_two_files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.PCt_from_two.html">foxes.models.turbine_types.PCt_from_two</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.null_type.html">foxes.models.turbine_types.null_type</a></li>
 <li class="toctree-l4"><a class="reference internal" href="foxes.models.turbine_types.wsrho2PCt_two_files.html">foxes.models.turbine_types.wsrho2PCt_two_files</a></li>
 </ul>
@@ -524,6 +532,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-1-alpha">v0.3.1-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-2-alpha">v0.3.2-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-3-alpha">v0.3.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#v0-3-4-alpha">v0.3.4-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -599,31 +608,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="foxes-core-data-data">
+  <section id="foxes-core-data-data">
 <h1>foxes.core.data.Data<a class="headerlink" href="#foxes-core-data-data" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="foxes.core.data.Data">
@@ -709,7 +694,7 @@ of data keys</p>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#foxes.core.data.Data.pop" title="foxes.core.data.Data.pop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code></a>(k[,d])</p></td>
-<td><p>If the key is not found, return the default if given; otherwise, raise a KeyError.</p></td>
+<td><p>If key is not found, d is returned if given, otherwise KeyError is raised</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#foxes.core.data.Data.popitem" title="foxes.core.data.Data.popitem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code></a>()</p></td>
 <td><p>Remove and return a (key, value) pair as a 2-tuple.</p></td>
@@ -770,8 +755,7 @@ of data keys</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="foxes.core.data.Data.pop">
 <span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">v,</span> <span class="pre">remove</span> <span class="pre">specified</span> <span class="pre">key</span> <span class="pre">and</span> <span class="pre">return</span> <span class="pre">the</span> <span class="pre">corresponding</span> <span class="pre">value.</span></span></span><a class="headerlink" href="#foxes.core.data.Data.pop" title="Permalink to this definition">¶</a></dt>
-<dd><p>If the key is not found, return the default if given; otherwise,
-raise a KeyError.</p>
+<dd><p>If key is not found, d is returned if given, otherwise KeyError is raised</p>
 </dd></dl>
 
 <dl class="py method">

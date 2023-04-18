@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>foxes.core.data_calc_model &mdash; foxes 0.3.3
+  <title>foxes.core.data_calc_model &mdash; foxes 0.3.4
  documentation</title>
   
 
@@ -38,6 +38,7 @@
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -67,7 +68,7 @@
             
             
               <div class="version">
-                0.3.3
+                0.3.4
 
               </div>
             
@@ -243,6 +244,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/foxes.input.html">foxes.input</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.html">foxes.input.farm_layout</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_from_csv.html">foxes.input.farm_layout.add_from_csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_from_df.html">foxes.input.farm_layout.add_from_df</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_from_file.html">foxes.input.farm_layout.add_from_file</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_from_json.html">foxes.input.farm_layout.add_from_json</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.farm_layout.add_grid.html">foxes.input.farm_layout.add_grid</a></li>
@@ -256,6 +258,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.states.scan_ws.html">foxes.input.states.scan_ws</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.states.single.html">foxes.input.states.single</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.states.states_table.html">foxes.input.states.states_table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.input.windio.html">foxes.input.windio</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.input.windio.windio.html">foxes.input.windio.windio</a></li>
 </ul>
 </li>
 </ul>
@@ -307,8 +313,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.html">foxes.models.turbine_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.CpCt_file.html">foxes.models.turbine_types.CpCt_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.CpCt_from_two.html">foxes.models.turbine_types.CpCt_from_two</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.PCt_file.html">foxes.models.turbine_types.PCt_file</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.PCt_two_files.html">foxes.models.turbine_types.PCt_two_files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.PCt_from_two.html">foxes.models.turbine_types.PCt_from_two</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.null_type.html">foxes.models.turbine_types.null_type</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/foxes.models.turbine_types.wsrho2PCt_two_files.html">foxes.models.turbine_types.wsrho2PCt_two_files</a></li>
 </ul>
@@ -521,6 +529,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-1-alpha">v0.3.1-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-2-alpha">v0.3.2-alpha</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-3-alpha">v0.3.3-alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#v0-3-4-alpha">v0.3.4-alpha</a></li>
 </ul>
 </li>
 </ul>
@@ -593,11 +602,14 @@
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span>
 <span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">progress</span>
+<span class="kn">from</span> <span class="nn">dask.diagnostics</span> <span class="kn">import</span> <span class="n">ProgressBar</span>
 
 <span class="kn">from</span> <span class="nn">.model</span> <span class="kn">import</span> <span class="n">Model</span>
 <span class="kn">from</span> <span class="nn">.data</span> <span class="kn">import</span> <span class="n">Data</span>
+<span class="kn">from</span> <span class="nn">foxes.utils.runners</span> <span class="kn">import</span> <span class="n">DaskRunner</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
+
 
 
 <div class="viewcode-block" id="DataCalcModel"><a class="viewcode-back" href="../../../_autosummary/foxes.core.data_calc_model.DataCalcModel.html#foxes.core.data_calc_model.DataCalcModel">[docs]</a><span class="k">class</span> <span class="nc">DataCalcModel</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
@@ -838,15 +850,11 @@
 
         <span class="c1"># reorganize results Dataset:</span>
         <span class="n">results</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">results</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="n">FV</span><span class="o">.</span><span class="n">VARS</span><span class="p">:</span> <span class="n">out_vars</span><span class="p">})</span><span class="o">.</span><span class="n">to_dataset</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">VARS</span><span class="p">)</span><span class="o">.</span><span class="n">persist</span><span class="p">()</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="n">FV</span><span class="o">.</span><span class="n">VARS</span><span class="p">:</span> <span class="n">out_vars</span><span class="p">})</span><span class="o">.</span><span class="n">to_dataset</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">VARS</span><span class="p">)</span>
         <span class="p">)</span>
 
-        <span class="c1"># try to show progress bar:</span>
-        <span class="k">if</span> <span class="n">algo</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">progress</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="k">pass</span>
+        <span class="k">if</span> <span class="n">DaskRunner</span><span class="o">.</span><span class="n">is_distributed</span><span class="p">()</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">ProgressBar</span><span class="o">.</span><span class="n">active</span><span class="p">):</span>
+            <span class="n">progress</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">persist</span><span class="p">())</span>
 
         <span class="c1"># update data by calculation results:</span>
         <span class="k">return</span> <span class="n">results</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span></div></div>
