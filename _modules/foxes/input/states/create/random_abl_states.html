@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.input.states.create.random_abl_states - foxes 0.3.5
+        <title>foxes.input.states.create.random_abl_states - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css" />
     <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -318,32 +317,34 @@
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 
-<div class="viewcode-block" id="create_random_abl_states"><a class="viewcode-back" href="../../../../../_autosummary/foxes.input.states.create.random_abl_states.create_random_abl_states.html#foxes.input.states.create.random_abl_states.create_random_abl_states">[docs]</a><span class="k">def</span> <span class="nf">create_random_abl_states</span><span class="p">(</span>
+<div class="viewcode-block" id="create_random_abl_states"><a class="viewcode-back" href="../../../../../api_input.html#foxes.input.states.create_random_abl_states">[docs]</a><span class="k">def</span> <span class="nf">create_random_abl_states</span><span class="p">(</span>
     <span class="n">n_states</span><span class="p">,</span> <span class="n">cols_minmax</span><span class="p">,</span> <span class="n">var2col</span><span class="o">=</span><span class="p">{},</span> <span class="n">mol_abs_range</span><span class="o">=</span><span class="p">(</span><span class="mf">50.0</span><span class="p">,</span> <span class="mf">5000.0</span><span class="p">),</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create random abl states.</span>
 
-<span class="sd">    Parameters</span>
+<span class="sd">        Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    n_states : int</span>
+<span class="sd">    n_states: int</span>
 <span class="sd">        The number of states</span>
-<span class="sd">    cols_minmax : dict</span>
+<span class="sd">    cols_minmax: dict</span>
 <span class="sd">        For each variable the min and max values,</span>
 <span class="sd">        keys: variable name str, values: array_like</span>
 <span class="sd">        with length 2</span>
-<span class="sd">    var2col : dict, optional</span>
+<span class="sd">    var2col: dict, optional</span>
 <span class="sd">        Mapping from variables to column names</span>
-<span class="sd">    mol_abs_range : tuple</span>
+<span class="sd">    mol_abs_range: tuple</span>
 <span class="sd">        Min and max of allowed MOL values, set to</span>
 <span class="sd">        nan if exceeded (i.e., neutral stratification)</span>
-<span class="sd">    normalize : bool</span>
+<span class="sd">    normalize: bool</span>
 <span class="sd">        Normalize weights to 1</span>
-
+<span class="sd">        </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    data : pandas.DataFrame</span>
+<span class="sd">    data: pandas.DataFrame</span>
 <span class="sd">        The created states data</span>
+
+<span class="sd">    :group: input.states</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -369,7 +370,7 @@
     <span class="k">return</span> <span class="n">data</span></div>
 
 
-<div class="viewcode-block" id="write_random_abl_states"><a class="viewcode-back" href="../../../../../_autosummary/foxes.input.states.create.random_abl_states.write_random_abl_states.html#foxes.input.states.create.random_abl_states.write_random_abl_states">[docs]</a><span class="k">def</span> <span class="nf">write_random_abl_states</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">write_random_abl_states</span><span class="p">(</span>
     <span class="n">file_path</span><span class="p">,</span>
     <span class="n">n_states</span><span class="p">,</span>
     <span class="n">cols_minmax</span><span class="p">,</span>
@@ -381,26 +382,26 @@
     <span class="o">**</span><span class="n">kwargs</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    file_path : str</span>
+<span class="sd">    file_path: str</span>
 <span class="sd">        Path to the file</span>
-<span class="sd">    n_states : int</span>
+<span class="sd">    n_states: int</span>
 <span class="sd">        The number of states</span>
-<span class="sd">    cols_minmax : dict</span>
+<span class="sd">    cols_minmax: dict</span>
 <span class="sd">        For each variable the min and max values,</span>
 <span class="sd">        keys: variable name str, values: array_like</span>
 <span class="sd">        with length 2</span>
-<span class="sd">    var2col : dict, optional</span>
+<span class="sd">    var2col: dict, optional</span>
 <span class="sd">        Mapping from variables to column names</span>
-<span class="sd">    mol_abs_range : tuple</span>
+<span class="sd">    mol_abs_range: tuple</span>
 <span class="sd">        Min and max of allowed MOL values, set to</span>
 <span class="sd">        nan if exceeded (i.e., neutral stratification)</span>
-<span class="sd">    normalize : bool</span>
+<span class="sd">    normalize: bool</span>
 <span class="sd">        Normalize weights to 1</span>
-<span class="sd">    verbosity : int</span>
+<span class="sd">    verbosity: int</span>
 <span class="sd">        The verbosity level, 0 = silent</span>
-<span class="sd">    digits : int or auto</span>
+<span class="sd">    digits: int or auto</span>
 <span class="sd">        The number of digits to be written</span>
-<span class="sd">    kwargs : dict, optional</span>
+<span class="sd">    kwargs: dict, optional</span>
 <span class="sd">        Parameters for `pandas.DataFrame.to_csv`</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -437,7 +438,7 @@
             <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
-    <span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -452,7 +453,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -480,14 +481,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -499,8 +492,6 @@
         <script src="../../../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../../../_static/require.min.js"></script>
-        <script src="../../../../../_static/custom.js"></script>
     
   </body>
 </html>

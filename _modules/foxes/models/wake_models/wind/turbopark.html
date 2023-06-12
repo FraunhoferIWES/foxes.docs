@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.wake_models.wind.turbopark - foxes 0.3.5
+        <title>foxes.models.wake_models.wind.turbopark - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css" />
     <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -318,49 +317,55 @@
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 
-<div class="viewcode-block" id="TurbOParkWake"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.turbopark.TurbOParkWake.html#foxes.models.wake_models.wind.turbopark.TurbOParkWake">[docs]</a><span class="k">class</span> <span class="nc">TurbOParkWake</span><span class="p">(</span><span class="n">GaussianWakeModel</span><span class="p">):</span>
+<div class="viewcode-block" id="TurbOParkWake"><a class="viewcode-back" href="../../../../../api_wake_models.html#foxes.models.wake_models.wind.TurbOParkWake">[docs]</a><span class="k">class</span> <span class="nc">TurbOParkWake</span><span class="p">(</span><span class="n">GaussianWakeModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The TurbOPark wake model</span>
 
 <span class="sd">    https://iopscience.iop.org/article/10.1088/1742-6596/2265/2/022063/pdf</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    superpositions : dict</span>
-<span class="sd">        The superpositions. Key: variable name str,</span>
-<span class="sd">        value: The wake superposition model name,</span>
-<span class="sd">        will be looked up in model book</span>
-<span class="sd">    A : float</span>
-<span class="sd">        The wake growth parameter A.</span>
-<span class="sd">    sbeta_factor : float</span>
-<span class="sd">        Factor multiplying sbeta</span>
-<span class="sd">    ct_max : float</span>
-<span class="sd">        The maximal value for ct, values beyond will be limited</span>
-<span class="sd">        to this number</span>
-<span class="sd">    c1 : float</span>
-<span class="sd">        Factor from Frandsen turbulence model</span>
-<span class="sd">    c2 : float</span>
-<span class="sd">        Factor from Frandsen turbulence model</span>
-
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    A : float</span>
+<span class="sd">    A: float</span>
 <span class="sd">        The wake growth parameter A.</span>
-<span class="sd">    sbeta_factor : float</span>
+<span class="sd">    sbeta_factor: float</span>
 <span class="sd">        Factor multiplying sbeta</span>
-<span class="sd">    ct_max : float</span>
+<span class="sd">    ct_max: float</span>
 <span class="sd">        The maximal value for ct, values beyond will be limited</span>
 <span class="sd">        to this number</span>
-<span class="sd">    c1 : float</span>
+<span class="sd">    c1: float</span>
 <span class="sd">        Factor from Frandsen turbulence model</span>
-<span class="sd">    c2 : float</span>
+<span class="sd">    c2: float</span>
 <span class="sd">        Factor from Frandsen turbulence model</span>
+
+<span class="sd">    :group: models.wake_models.wind</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TurbOParkWake.__init__"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.turbopark.TurbOParkWake.html#foxes.models.wake_models.wind.turbopark.TurbOParkWake.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="TurbOParkWake.__init__"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/TurbOParkWake.__init__.html#foxes.models.wake_models.wind.TurbOParkWake.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">superposition</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">ct_max</span><span class="o">=</span><span class="mf">0.9999</span><span class="p">,</span> <span class="n">c1</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">c2</span><span class="o">=</span><span class="mf">0.8</span>
     <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        superpositions: dict</span>
+<span class="sd">            The superpositions. Key: variable name str,</span>
+<span class="sd">            value: The wake superposition model name,</span>
+<span class="sd">            will be looked up in model book</span>
+<span class="sd">        A: float</span>
+<span class="sd">            The wake growth parameter A.</span>
+<span class="sd">        sbeta_factor: float</span>
+<span class="sd">            Factor multiplying sbeta</span>
+<span class="sd">        ct_max: float</span>
+<span class="sd">            The maximal value for ct, values beyond will be limited</span>
+<span class="sd">            to this number</span>
+<span class="sd">        c1: float</span>
+<span class="sd">            Factor from Frandsen turbulence model</span>
+<span class="sd">        c2: float</span>
+<span class="sd">            Factor from Frandsen turbulence model</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">superpositions</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="n">superposition</span><span class="p">})</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
@@ -369,12 +374,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">c1</span> <span class="o">=</span> <span class="n">c1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">c2</span> <span class="o">=</span> <span class="n">c2</span></div>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TurbOParkWake.__repr__"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/TurbOParkWake.__repr__.html#foxes.models.wake_models.wind.TurbOParkWake.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">s</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
         <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(A=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="si">}</span><span class="s2">, sp=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
-        <span class="k">return</span> <span class="n">s</span>
+        <span class="k">return</span> <span class="n">s</span></div>
 
-<div class="viewcode-block" id="TurbOParkWake.init_wake_deltas"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.turbopark.TurbOParkWake.html#foxes.models.wake_models.wind.turbopark.TurbOParkWake.init_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
+<div class="viewcode-block" id="TurbOParkWake.init_wake_deltas"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/TurbOParkWake.init_wake_deltas.html#foxes.models.wake_models.wind.TurbOParkWake.init_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize wake delta storage.</span>
 
@@ -382,15 +387,15 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.Data</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata : foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        n_points : int</span>
+<span class="sd">        n_points: int</span>
 <span class="sd">            The number of wake evaluation points</span>
-<span class="sd">        wake_deltas : dict</span>
+<span class="sd">        wake_deltas: dict</span>
 <span class="sd">            The wake deltas storage, add wake deltas</span>
 <span class="sd">            on the fly. Keys: Variable name str, for which the</span>
 <span class="sd">            wake delta applies, values: numpy.ndarray with</span>
@@ -400,31 +405,31 @@
         <span class="n">n_states</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span>
         <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="TurbOParkWake.calc_amplitude_sigma_spsel"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.turbopark.TurbOParkWake.html#foxes.models.wake_models.wind.turbopark.TurbOParkWake.calc_amplitude_sigma_spsel">[docs]</a>    <span class="k">def</span> <span class="nf">calc_amplitude_sigma_spsel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="TurbOParkWake.calc_amplitude_sigma_spsel"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/TurbOParkWake.calc_amplitude_sigma_spsel.html#foxes.models.wake_models.wind.TurbOParkWake.calc_amplitude_sigma_spsel">[docs]</a>    <span class="k">def</span> <span class="nf">calc_amplitude_sigma_spsel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the amplitude and the sigma,</span>
 <span class="sd">        both depend only on x (not on r).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.Data</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata : foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        states_source_turbine : numpy.ndarray</span>
+<span class="sd">        states_source_turbine: numpy.ndarray</span>
 <span class="sd">            For each state, one turbine index for the</span>
 <span class="sd">            wake causing turbine. Shape: (n_states,)</span>
-<span class="sd">        x : numpy.ndarray</span>
+<span class="sd">        x: numpy.ndarray</span>
 <span class="sd">            The x values, shape: (n_states, n_points)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        amsi : tuple</span>
+<span class="sd">        amsi: tuple</span>
 <span class="sd">            The amplitude and sigma, both numpy.ndarray</span>
 <span class="sd">            with shape (n_sp_sel,)</span>
-<span class="sd">        sp_sel : numpy.ndarray of bool</span>
+<span class="sd">        sp_sel: numpy.ndarray of bool</span>
 <span class="sd">            The state-point selection, for which the wake</span>
 <span class="sd">            is non-zero, shape: (n_states, n_points)</span>
 
@@ -510,52 +515,33 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="p">(</span><span class="n">ampld</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)},</span> <span class="n">sp_sel</span></div></div>
 
 
-<div class="viewcode-block" id="TurbOParkWakeIX"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.turbopark.TurbOParkWakeIX.html#foxes.models.wake_models.wind.turbopark.TurbOParkWakeIX">[docs]</a><span class="k">class</span> <span class="nc">TurbOParkWakeIX</span><span class="p">(</span><span class="n">GaussianWakeModel</span><span class="p">):</span>
+<div class="viewcode-block" id="TurbOParkWakeIX"><a class="viewcode-back" href="../../../../../api_wake_models.html#foxes.models.wake_models.wind.TurbOParkWakeIX">[docs]</a><span class="k">class</span> <span class="nc">TurbOParkWakeIX</span><span class="p">(</span><span class="n">GaussianWakeModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The generalized TurbOPark wake model, integrating TI over the streamline.</span>
 
 <span class="sd">    https://iopscience.iop.org/article/10.1088/1742-6596/2265/2/022063/pdf</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    superpositions : dict</span>
-<span class="sd">        The superpositions. Key: variable name str,</span>
-<span class="sd">        value: The wake superposition model name,</span>
-<span class="sd">        will be looked up in model book</span>
-<span class="sd">    dx : float</span>
-<span class="sd">        The step size of the integral</span>
-<span class="sd">    A : float, optional</span>
-<span class="sd">        The wake growth parameter A.</span>
-<span class="sd">    sbeta_factor : float</span>
-<span class="sd">        Factor multiplying sbeta</span>
-<span class="sd">    ct_max : float</span>
-<span class="sd">        The maximal value for ct, values beyond will be limited</span>
-<span class="sd">        to this number</span>
-<span class="sd">    ti_var :  str</span>
-<span class="sd">        The TI variable</span>
-<span class="sd">    ipars : dict, optional</span>
-<span class="sd">        Additional parameters for centreline integration</span>
-
-
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    dx : float</span>
+<span class="sd">    dx: float</span>
 <span class="sd">        The step size of the integral</span>
-<span class="sd">    A : float</span>
+<span class="sd">    A: float</span>
 <span class="sd">        The wake growth parameter A.</span>
-<span class="sd">    sbeta_factor : float</span>
+<span class="sd">    sbeta_factor: float</span>
 <span class="sd">        Factor multiplying sbeta</span>
-<span class="sd">    ct_max : float</span>
+<span class="sd">    ct_max: float</span>
 <span class="sd">        The maximal value for ct, values beyond will be limited</span>
 <span class="sd">        to this number</span>
-<span class="sd">    ti_var :  str</span>
+<span class="sd">    ti_var:  str</span>
 <span class="sd">        The TI variable</span>
-<span class="sd">    ipars : dict</span>
+<span class="sd">    ipars: dict</span>
 <span class="sd">        Additional parameters for centreline integration</span>
+
+<span class="sd">    :group: models.wake_models.wind</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TurbOParkWakeIX.__init__"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.turbopark.TurbOParkWakeIX.html#foxes.models.wake_models.wind.turbopark.TurbOParkWakeIX.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="TurbOParkWakeIX.__init__"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/TurbOParkWakeIX.__init__.html#foxes.models.wake_models.wind.TurbOParkWakeIX.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">superposition</span><span class="p">,</span>
         <span class="n">dx</span><span class="p">,</span>
@@ -565,6 +551,30 @@
         <span class="n">ti_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span>
         <span class="o">**</span><span class="n">ipars</span><span class="p">,</span>
     <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        superpositions: dict</span>
+<span class="sd">            The superpositions. Key: variable name str,</span>
+<span class="sd">            value: The wake superposition model name,</span>
+<span class="sd">            will be looked up in model book</span>
+<span class="sd">        dx: float</span>
+<span class="sd">            The step size of the integral</span>
+<span class="sd">        A: float, optional</span>
+<span class="sd">            The wake growth parameter A.</span>
+<span class="sd">        sbeta_factor: float</span>
+<span class="sd">            Factor multiplying sbeta</span>
+<span class="sd">        ct_max: float</span>
+<span class="sd">            The maximal value for ct, values beyond will be limited</span>
+<span class="sd">            to this number</span>
+<span class="sd">        ti_var:  str</span>
+<span class="sd">            The TI variable</span>
+<span class="sd">        ipars: dict, optional</span>
+<span class="sd">            Additional parameters for centreline integration</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">superpositions</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="n">superposition</span><span class="p">})</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="n">dx</span>
@@ -574,12 +584,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span> <span class="o">=</span> <span class="n">ti_var</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ipars</span> <span class="o">=</span> <span class="n">ipars</span></div>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TurbOParkWakeIX.__repr__"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/TurbOParkWakeIX.__repr__.html#foxes.models.wake_models.wind.TurbOParkWakeIX.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">s</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
         <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(ti=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span><span class="si">}</span><span class="s2">, dx=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dx</span><span class="si">}</span><span class="s2">, A=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="si">}</span><span class="s2">, sp=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
-        <span class="k">return</span> <span class="n">s</span>
+        <span class="k">return</span> <span class="n">s</span></div>
 
-<div class="viewcode-block" id="TurbOParkWakeIX.init_wake_deltas"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.turbopark.TurbOParkWakeIX.html#foxes.models.wake_models.wind.turbopark.TurbOParkWakeIX.init_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
+<div class="viewcode-block" id="TurbOParkWakeIX.init_wake_deltas"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/TurbOParkWakeIX.init_wake_deltas.html#foxes.models.wake_models.wind.TurbOParkWakeIX.init_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize wake delta storage.</span>
 
@@ -587,15 +597,15 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.Data</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata : foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        n_points : int</span>
+<span class="sd">        n_points: int</span>
 <span class="sd">            The number of wake evaluation points</span>
-<span class="sd">        wake_deltas : dict</span>
+<span class="sd">        wake_deltas: dict</span>
 <span class="sd">            The wake deltas storage, add wake deltas</span>
 <span class="sd">            on the fly. Keys: Variable name str, for which the</span>
 <span class="sd">            wake delta applies, values: numpy.ndarray with</span>
@@ -605,31 +615,31 @@
         <span class="n">n_states</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span>
         <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="TurbOParkWakeIX.calc_amplitude_sigma_spsel"><a class="viewcode-back" href="../../../../../_autosummary/foxes.models.wake_models.wind.turbopark.TurbOParkWakeIX.html#foxes.models.wake_models.wind.turbopark.TurbOParkWakeIX.calc_amplitude_sigma_spsel">[docs]</a>    <span class="k">def</span> <span class="nf">calc_amplitude_sigma_spsel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="TurbOParkWakeIX.calc_amplitude_sigma_spsel"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/TurbOParkWakeIX.calc_amplitude_sigma_spsel.html#foxes.models.wake_models.wind.TurbOParkWakeIX.calc_amplitude_sigma_spsel">[docs]</a>    <span class="k">def</span> <span class="nf">calc_amplitude_sigma_spsel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the amplitude and the sigma,</span>
 <span class="sd">        both depend only on x (not on r).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.Data</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata : foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        states_source_turbine : numpy.ndarray</span>
+<span class="sd">        states_source_turbine: numpy.ndarray</span>
 <span class="sd">            For each state, one turbine index for the</span>
 <span class="sd">            wake causing turbine. Shape: (n_states,)</span>
-<span class="sd">        x : numpy.ndarray</span>
+<span class="sd">        x: numpy.ndarray</span>
 <span class="sd">            The x values, shape: (n_states, n_points)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        amsi : tuple</span>
+<span class="sd">        amsi: tuple</span>
 <span class="sd">            The amplitude and sigma, both numpy.ndarray</span>
 <span class="sd">            with shape (n_sp_sel,)</span>
-<span class="sd">        sp_sel : numpy.ndarray of bool</span>
+<span class="sd">        sp_sel: numpy.ndarray of bool</span>
 <span class="sd">            The state-point selection, for which the wake</span>
 <span class="sd">            is non-zero, shape: (n_states, n_points)</span>
 
@@ -715,7 +725,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -743,14 +753,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -762,8 +764,6 @@
         <script src="../../../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../../../_static/require.min.js"></script>
-        <script src="../../../../../_static/custom.js"></script>
     
   </body>
 </html>

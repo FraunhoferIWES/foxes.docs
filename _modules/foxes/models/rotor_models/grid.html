@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.rotor_models.grid - foxes 0.3.5
+        <title>foxes.models.rotor_models.grid - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -317,27 +316,10 @@
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 
-<div class="viewcode-block" id="GridRotor"><a class="viewcode-back" href="../../../../_autosummary/foxes.models.rotor_models.grid.GridRotor.html#foxes.models.rotor_models.grid.GridRotor">[docs]</a><span class="k">class</span> <span class="nc">GridRotor</span><span class="p">(</span><span class="n">RotorModel</span><span class="p">):</span>
+<div class="viewcode-block" id="GridRotor"><a class="viewcode-back" href="../../../../api_models.html#foxes.models.rotor_models.GridRotor">[docs]</a><span class="k">class</span> <span class="nc">GridRotor</span><span class="p">(</span><span class="n">RotorModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The regular grid rotor model, composed maximally</span>
+<span class="sd">    The weighted regular grid rotor model, composed maximally</span>
 <span class="sd">    of n x n points, possibly kicking out the outside points.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    n: int</span>
-<span class="sd">        The number of points along one direction,</span>
-<span class="sd">        maximal number of points is N = n * n</span>
-<span class="sd">    calc_vars : list of str</span>
-<span class="sd">        The variables that are calculated by the model</span>
-<span class="sd">        (Their ambients are added automatically)</span>
-<span class="sd">    reduce: bool</span>
-<span class="sd">        Flag for reduction to points actually representing</span>
-<span class="sd">        an area with overlap with the circe, recalculating</span>
-<span class="sd">        the self.weights accordingly</span>
-<span class="sd">    nint: int</span>
-<span class="sd">        Integration steps per element</span>
-<span class="sd">    name: str, optional</span>
-<span class="sd">        The model name</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -351,19 +333,42 @@
 <span class="sd">    nint: int</span>
 <span class="sd">        Integration steps per element</span>
 
+<span class="sd">    :group: models.rotor_models</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="GridRotor.__init__"><a class="viewcode-back" href="../../../../_autosummary/foxes.models.rotor_models.grid.GridRotor.html#foxes.models.rotor_models.grid.GridRotor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">calc_vars</span><span class="p">,</span> <span class="n">reduce</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nint</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+<div class="viewcode-block" id="GridRotor.__init__"><a class="viewcode-back" href="../../../../_models/rotor_models/GridRotor.__init__.html#foxes.models.rotor_models.GridRotor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">calc_vars</span><span class="p">,</span> <span class="n">reduce</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nint</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n: int</span>
+<span class="sd">            The number of points along one direction,</span>
+<span class="sd">            maximal number of points is N = n * n</span>
+<span class="sd">        calc_vars: list of str</span>
+<span class="sd">            The variables that are calculated by the model</span>
+<span class="sd">            (Their ambients are added automatically)</span>
+<span class="sd">        reduce: bool</span>
+<span class="sd">            Flag for reduction to points actually representing</span>
+<span class="sd">            an area with overlap with the circe, recalculating</span>
+<span class="sd">            the self.weights accordingly</span>
+<span class="sd">        nint: int</span>
+<span class="sd">            Integration steps per element</span>
+<span class="sd">        name: str, optional</span>
+<span class="sd">            The model name</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">calc_vars</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reduce</span> <span class="o">=</span> <span class="n">reduce</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nint</span> <span class="o">=</span> <span class="n">nint</span></div>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;(n=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2">)&quot;</span>
+<div class="viewcode-block" id="GridRotor.__repr__"><a class="viewcode-back" href="../../../../_models/rotor_models/GridRotor.__repr__.html#foxes.models.rotor_models.GridRotor.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;(n=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2">)&quot;</span></div>
 
-<div class="viewcode-block" id="GridRotor.initialize"><a class="viewcode-back" href="../../../../_autosummary/foxes.models.rotor_models.grid.GridRotor.html#foxes.models.rotor_models.grid.GridRotor.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="GridRotor.initialize"><a class="viewcode-back" href="../../../../_models/rotor_models/GridRotor.initialize.html#foxes.models.rotor_models.GridRotor.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the model.</span>
 
@@ -375,14 +380,14 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        verbosity : int</span>
+<span class="sd">        verbosity: int</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        idata : dict</span>
+<span class="sd">        idata: dict</span>
 <span class="sd">            The dict has exactly two entries: `data_vars`,</span>
 <span class="sd">            a dict with entries `name_str -&gt; (dim_tuple, data_ndarray)`;</span>
 <span class="sd">            and `coords`, a dict with entries `dim_name_str -&gt; dim_array`</span>
@@ -427,19 +432,19 @@
 
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GridRotor.n_rotor_points"><a class="viewcode-back" href="../../../../_autosummary/foxes.models.rotor_models.grid.GridRotor.html#foxes.models.rotor_models.grid.GridRotor.n_rotor_points">[docs]</a>    <span class="k">def</span> <span class="nf">n_rotor_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="GridRotor.n_rotor_points"><a class="viewcode-back" href="../../../../_models/rotor_models/GridRotor.n_rotor_points.html#foxes.models.rotor_models.GridRotor.n_rotor_points">[docs]</a>    <span class="k">def</span> <span class="nf">n_rotor_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of rotor points</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        n_rpoints : int</span>
+<span class="sd">        n_rpoints: int</span>
 <span class="sd">            The number of rotor points</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GridRotor.design_points"><a class="viewcode-back" href="../../../../_autosummary/foxes.models.rotor_models.grid.GridRotor.html#foxes.models.rotor_models.grid.GridRotor.design_points">[docs]</a>    <span class="k">def</span> <span class="nf">design_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="GridRotor.design_points"><a class="viewcode-back" href="../../../../_models/rotor_models/GridRotor.design_points.html#foxes.models.rotor_models.GridRotor.design_points">[docs]</a>    <span class="k">def</span> <span class="nf">design_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The rotor model design points.</span>
 
@@ -452,19 +457,19 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        dpoints : numpy.ndarray</span>
+<span class="sd">        dpoints: numpy.ndarray</span>
 <span class="sd">            The design points, shape: (n_points, 3)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dpoints</span></div>
 
-<div class="viewcode-block" id="GridRotor.rotor_point_weights"><a class="viewcode-back" href="../../../../_autosummary/foxes.models.rotor_models.grid.GridRotor.html#foxes.models.rotor_models.grid.GridRotor.rotor_point_weights">[docs]</a>    <span class="k">def</span> <span class="nf">rotor_point_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="GridRotor.rotor_point_weights"><a class="viewcode-back" href="../../../../_models/rotor_models/GridRotor.rotor_point_weights.html#foxes.models.rotor_models.GridRotor.rotor_point_weights">[docs]</a>    <span class="k">def</span> <span class="nf">rotor_point_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The weights of the rotor points</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        weights : numpy.ndarray</span>
+<span class="sd">        weights: numpy.ndarray</span>
 <span class="sd">            The weights of the rotor points,</span>
 <span class="sd">            add to one, shape: (n_rpoints,)</span>
 
@@ -484,7 +489,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -512,14 +517,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -531,8 +528,6 @@
         <script src="../../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../../_static/require.min.js"></script>
-        <script src="../../../../_static/custom.js"></script>
     
   </body>
 </html>

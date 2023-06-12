@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.opt.constraints.area_geometry - foxes 0.3.5
+        <title>foxes.opt.constraints.area_geometry - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -317,27 +316,10 @@
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 
 
-<div class="viewcode-block" id="AreaGeometryConstraint"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.constraints.area_geometry.AreaGeometryConstraint.html#foxes.opt.constraints.area_geometry.AreaGeometryConstraint">[docs]</a><span class="k">class</span> <span class="nc">AreaGeometryConstraint</span><span class="p">(</span><span class="n">FarmConstraint</span><span class="p">):</span>
+<div class="viewcode-block" id="AreaGeometryConstraint"><a class="viewcode-back" href="../../../../api_opt.html#foxes.opt.constraints.AreaGeometryConstraint">[docs]</a><span class="k">class</span> <span class="nc">AreaGeometryConstraint</span><span class="p">(</span><span class="n">FarmConstraint</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Constrains turbine positions to the inside</span>
 <span class="sd">    of a given area geometry.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    problem : foxes.opt.FarmOptProblem</span>
-<span class="sd">        The underlying optimization problem</span>
-<span class="sd">    name : str</span>
-<span class="sd">        The name of the constraint</span>
-<span class="sd">    geometry : foxes.utils.geom2d.AreaGeometry</span>
-<span class="sd">        The area geometry</span>
-<span class="sd">    sel_turbines : list of int, optional</span>
-<span class="sd">        The selected turbines</span>
-<span class="sd">    disc_inside : bool</span>
-<span class="sd">        Ensure full rotor disc inside boundary</span>
-<span class="sd">    D : float, optional</span>
-<span class="sd">        Use this radius for rotor disc inside condition</span>
-<span class="sd">    kwargs : dict, optional</span>
-<span class="sd">        Additional parameters for `iwopy.Constraint`</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -345,16 +327,18 @@
 <span class="sd">        The wind farm</span>
 <span class="sd">    sel_turbines: list</span>
 <span class="sd">        The selected turbines</span>
-<span class="sd">    geometry : foxes.utils.geom2d.AreaGeometry</span>
+<span class="sd">    geometry: foxes.utils.geom2d.AreaGeometry</span>
 <span class="sd">        The area geometry</span>
-<span class="sd">    disc_inside : bool</span>
+<span class="sd">    disc_inside: bool</span>
 <span class="sd">        Ensure full rotor disc inside boundary</span>
-<span class="sd">    D : float</span>
+<span class="sd">    D: float</span>
 <span class="sd">        Use this radius for rotor disc inside condition</span>
+<span class="sd">    </span>
+<span class="sd">    :group: opt.constraints</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="AreaGeometryConstraint.__init__"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.constraints.area_geometry.AreaGeometryConstraint.html#foxes.opt.constraints.area_geometry.AreaGeometryConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="AreaGeometryConstraint.__init__"><a class="viewcode-back" href="../../../../_utils/opt/constraints/AreaGeometryConstraint.__init__.html#foxes.opt.constraints.AreaGeometryConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">problem</span><span class="p">,</span>
         <span class="n">name</span><span class="p">,</span>
@@ -364,6 +348,27 @@
         <span class="n">D</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        problem : foxes.opt.FarmOptProblem</span>
+<span class="sd">            The underlying optimization problem</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of the constraint</span>
+<span class="sd">        geometry : foxes.utils.geom2d.AreaGeometry</span>
+<span class="sd">            The area geometry</span>
+<span class="sd">        sel_turbines : list of int, optional</span>
+<span class="sd">            The selected turbines</span>
+<span class="sd">        disc_inside : bool</span>
+<span class="sd">            Ensure full rotor disc inside boundary</span>
+<span class="sd">        D : float, optional</span>
+<span class="sd">            Use this radius for rotor disc inside condition</span>
+<span class="sd">        kwargs : dict, optional</span>
+<span class="sd">            Additional parameters for `iwopy.Constraint`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disc_inside</span> <span class="o">=</span> <span class="n">disc_inside</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">=</span> <span class="n">D</span>
@@ -379,7 +384,7 @@
             <span class="n">problem</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">sel_turbines</span><span class="p">,</span> <span class="n">vnames_float</span><span class="o">=</span><span class="n">vrs</span><span class="p">,</span> <span class="n">cnames</span><span class="o">=</span><span class="n">cns</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="AreaGeometryConstraint.n_components"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.constraints.area_geometry.AreaGeometryConstraint.html#foxes.opt.constraints.area_geometry.AreaGeometryConstraint.n_components">[docs]</a>    <span class="k">def</span> <span class="nf">n_components</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AreaGeometryConstraint.n_components"><a class="viewcode-back" href="../../../../_utils/opt/constraints/FarmBoundaryConstraint.html#foxes.opt.constraints.AreaGeometryConstraint.n_components">[docs]</a>    <span class="k">def</span> <span class="nf">n_components</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the number of components of the</span>
 <span class="sd">        function.</span>
@@ -392,14 +397,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sel_turbines</span></div>
 
-<div class="viewcode-block" id="AreaGeometryConstraint.vardeps_float"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.constraints.area_geometry.AreaGeometryConstraint.html#foxes.opt.constraints.area_geometry.AreaGeometryConstraint.vardeps_float">[docs]</a>    <span class="k">def</span> <span class="nf">vardeps_float</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AreaGeometryConstraint.vardeps_float"><a class="viewcode-back" href="../../../../_utils/opt/constraints/FarmBoundaryConstraint.html#foxes.opt.constraints.AreaGeometryConstraint.vardeps_float">[docs]</a>    <span class="k">def</span> <span class="nf">vardeps_float</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets the dependencies of all components</span>
 <span class="sd">        on the function float variables</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        deps : numpy.ndarray of bool</span>
+<span class="sd">        deps: numpy.ndarray of bool</span>
 <span class="sd">            The dependencies of components on function</span>
 <span class="sd">            variables, shape: (n_components, n_vars_float)</span>
 
@@ -409,26 +414,26 @@
         <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">deps</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">deps</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AreaGeometryConstraint.calc_individual"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.constraints.area_geometry.AreaGeometryConstraint.html#foxes.opt.constraints.area_geometry.AreaGeometryConstraint.calc_individual">[docs]</a>    <span class="k">def</span> <span class="nf">calc_individual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">,</span> <span class="n">problem_results</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="AreaGeometryConstraint.calc_individual"><a class="viewcode-back" href="../../../../_utils/opt/constraints/FarmBoundaryConstraint.html#foxes.opt.constraints.AreaGeometryConstraint.calc_individual">[docs]</a>    <span class="k">def</span> <span class="nf">calc_individual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">,</span> <span class="n">problem_results</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate values for a single individual of the</span>
 <span class="sd">        underlying problem.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars_int : np.array</span>
+<span class="sd">        vars_int: np.array</span>
 <span class="sd">            The integer variable values, shape: (n_vars_int,)</span>
-<span class="sd">        vars_float : np.array</span>
+<span class="sd">        vars_float: np.array</span>
 <span class="sd">            The float variable values, shape: (n_vars_float,)</span>
-<span class="sd">        problem_results : Any</span>
+<span class="sd">        problem_results: Any</span>
 <span class="sd">            The results of the variable application</span>
 <span class="sd">            to the problem</span>
-<span class="sd">        components : list of int, optional</span>
+<span class="sd">        components: list of int, optional</span>
 <span class="sd">            The selected components or None for all</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        values : np.array</span>
+<span class="sd">        values: np.array</span>
 <span class="sd">            The component values, shape: (n_sel_components,)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -448,25 +453,25 @@
 
         <span class="k">return</span> <span class="n">dists</span></div>
 
-<div class="viewcode-block" id="AreaGeometryConstraint.calc_population"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.constraints.area_geometry.AreaGeometryConstraint.html#foxes.opt.constraints.area_geometry.AreaGeometryConstraint.calc_population">[docs]</a>    <span class="k">def</span> <span class="nf">calc_population</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">,</span> <span class="n">problem_results</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="AreaGeometryConstraint.calc_population"><a class="viewcode-back" href="../../../../_utils/opt/constraints/FarmBoundaryConstraint.html#foxes.opt.constraints.AreaGeometryConstraint.calc_population">[docs]</a>    <span class="k">def</span> <span class="nf">calc_population</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">,</span> <span class="n">problem_results</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate values for all individuals of a population.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars_int : np.array</span>
+<span class="sd">        vars_int: np.array</span>
 <span class="sd">            The integer variable values, shape: (n_pop, n_vars_int)</span>
-<span class="sd">        vars_float : np.array</span>
+<span class="sd">        vars_float: np.array</span>
 <span class="sd">            The float variable values, shape: (n_pop, n_vars_float)</span>
-<span class="sd">        problem_results : Any</span>
+<span class="sd">        problem_results: Any</span>
 <span class="sd">            The results of the variable application</span>
 <span class="sd">            to the problem</span>
-<span class="sd">        components : list of int, optional</span>
+<span class="sd">        components: list of int, optional</span>
 <span class="sd">            The selected components or None for all</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        values : np.array</span>
+<span class="sd">        values: np.array</span>
 <span class="sd">            The component values, shape: (n_pop, n_sel_components)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -493,23 +498,29 @@
         <span class="k">return</span> <span class="n">dists</span></div></div>
 
 
-<div class="viewcode-block" id="FarmBoundaryConstraint"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.constraints.area_geometry.FarmBoundaryConstraint.html#foxes.opt.constraints.area_geometry.FarmBoundaryConstraint">[docs]</a><span class="k">class</span> <span class="nc">FarmBoundaryConstraint</span><span class="p">(</span><span class="n">AreaGeometryConstraint</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmBoundaryConstraint"><a class="viewcode-back" href="../../../../api_opt.html#foxes.opt.constraints.FarmBoundaryConstraint">[docs]</a><span class="k">class</span> <span class="nc">FarmBoundaryConstraint</span><span class="p">(</span><span class="n">AreaGeometryConstraint</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Constrains turbine positions to the inside of</span>
 <span class="sd">    the wind farm boundary</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    problem : foxes.opt.FarmOptProblem</span>
-<span class="sd">        The underlying optimization problem</span>
-<span class="sd">    name : str</span>
-<span class="sd">        The name of the constraint</span>
-<span class="sd">    kwargs : dict, optional</span>
-<span class="sd">        Additional parameters for `AreaGeometryConstraint`</span>
+<span class="sd">    :group: opt.constraints</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="FarmBoundaryConstraint.__init__"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.constraints.area_geometry.FarmBoundaryConstraint.html#foxes.opt.constraints.area_geometry.FarmBoundaryConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;boundary&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmBoundaryConstraint.__init__"><a class="viewcode-back" href="../../../../_utils/opt/constraints/FarmBoundaryConstraint.__init__.html#foxes.opt.constraints.FarmBoundaryConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;boundary&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        problem: foxes.opt.FarmOptProblem</span>
+<span class="sd">            The underlying optimization problem</span>
+<span class="sd">        name: str</span>
+<span class="sd">            The name of the constraint</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Additional parameters for `AreaGeometryConstraint`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">b</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">boundary</span>
         <span class="k">assert</span> <span class="n">b</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Constraint &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Missing wind farm boundary.&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
@@ -527,7 +538,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -555,14 +566,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -574,8 +577,6 @@
         <script src="../../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../../_static/require.min.js"></script>
-        <script src="../../../../_static/custom.js"></script>
     
   </body>
 </html>

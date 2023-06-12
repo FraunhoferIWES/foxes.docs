@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.output - foxes 0.3.5
+        <title>foxes.output.output - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -314,16 +313,18 @@
 <span></span><code><span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">PandasFileHelper</span><span class="p">,</span> <span class="n">all_subclasses</span>
 
 
-<div class="viewcode-block" id="Output"><a class="viewcode-back" href="../../../_autosummary/foxes.output.output.Output.html#foxes.output.output.Output">[docs]</a><span class="k">class</span> <span class="nc">Output</span><span class="p">:</span>
+<div class="viewcode-block" id="Output"><a class="viewcode-back" href="../../../api_output.html#foxes.output.Output">[docs]</a><span class="k">class</span> <span class="nc">Output</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for foxes output.</span>
 
 <span class="sd">    The job of this class is to provide handy</span>
 <span class="sd">    helper functions.</span>
 
+<span class="sd">    :group: output</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Output.write"><a class="viewcode-back" href="../../../_autosummary/foxes.output.output.Output.html#foxes.output.output.Output.write">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Output.write"><a class="viewcode-back" href="../../../_output/TurbineTypeCurves.html#foxes.output.Output.write">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">format_col2var</span><span class="o">=</span><span class="p">{},</span> <span class="n">format_dict</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Writes data to file via pandas.</span>
@@ -332,14 +333,14 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        file_path : string</span>
+<span class="sd">        file_path: string</span>
 <span class="sd">            The path to the output file</span>
-<span class="sd">        data : pandas.DataFrame</span>
+<span class="sd">        data: pandas.DataFrame</span>
 <span class="sd">            The data</span>
-<span class="sd">        format_col2var : dict</span>
+<span class="sd">        format_col2var: dict</span>
 <span class="sd">            Mapping from column names to flappy variables,</span>
 <span class="sd">            for formatting</span>
-<span class="sd">        format_dict : dict</span>
+<span class="sd">        format_dict: dict</span>
 <span class="sd">            Dictionary with format entries for columns, e.g.</span>
 <span class="sd">            {FV.P: &#39;{:.4f}&#39;}. Note that the keys are flappy variables</span>
 
@@ -354,7 +355,7 @@
 
         <span class="n">PandasFileHelper</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">fdict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Output.print_models"><a class="viewcode-back" href="../../../_autosummary/foxes.output.output.Output.html#foxes.output.output.Output.print_models">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Output.print_models"><a class="viewcode-back" href="../../../_output/TurbineTypeCurves.html#foxes.output.Output.print_models">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">print_models</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prints all model names.</span>
@@ -363,14 +364,14 @@
         <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Output.new"><a class="viewcode-back" href="../../../_autosummary/foxes.output.output.Output.html#foxes.output.output.Output.new">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Output.new"><a class="viewcode-back" href="../../../_output/TurbineTypeCurves.html#foxes.output.Output.new">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run-time output model factory.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        model_type : string</span>
+<span class="sd">        model_type: string</span>
 <span class="sd">            The selected derived class name</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -405,7 +406,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -433,14 +434,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -452,8 +445,6 @@
         <script src="../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../_static/require.min.js"></script>
-        <script src="../../../_static/custom.js"></script>
     
   </body>
 </html>

@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.turbine - foxes 0.3.5
+        <title>foxes.core.turbine - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -314,58 +313,39 @@
 <span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="Turbine"><a class="viewcode-back" href="../../../_autosummary/foxes.core.turbine.Turbine.html#foxes.core.turbine.Turbine">[docs]</a><span class="k">class</span> <span class="nc">Turbine</span><span class="p">:</span>
+<div class="viewcode-block" id="Turbine"><a class="viewcode-back" href="../../../api_foxes.html#foxes.core.Turbine">[docs]</a><span class="k">class</span> <span class="nc">Turbine</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An individual wind turbine.</span>
 
 <span class="sd">    The turbine is merely a defined by basic data</span>
 <span class="sd">    entries and a choice of turbine models.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    xy : array_like</span>
-<span class="sd">        The turbine ground position, shape: (2,)</span>
-<span class="sd">    turbine_models : list of str</span>
-<span class="sd">        The turbine model names, as they appear</span>
-<span class="sd">        in the model book</span>
-<span class="sd">    index : int, optional</span>
-<span class="sd">        The index in the wind farm</span>
-<span class="sd">    name : str, optional</span>
-<span class="sd">        The turbine name/label</span>
-<span class="sd">    models_state_sel : list of numpy.ndarray, optional</span>
-<span class="sd">        For each turbine model, the state selection</span>
-<span class="sd">        boolean array with shape (n_states,)</span>
-<span class="sd">    D : float, optional</span>
-<span class="sd">        The rotor diameter. Overwrites turbine type</span>
-<span class="sd">        settings if given</span>
-<span class="sd">    H : float, optional</span>
-<span class="sd">        The hub height. Overwrites turbine type</span>
-<span class="sd">        settings if given</span>
-
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    xy : array_like</span>
+<span class="sd">    xy: array_like</span>
 <span class="sd">        The turbine ground position, shape: (2,)</span>
-<span class="sd">    models : list of str</span>
+<span class="sd">    models: list of str</span>
 <span class="sd">        The turbine model names, as they appear</span>
 <span class="sd">        in the model book</span>
-<span class="sd">    index : int, optional</span>
+<span class="sd">    index: int, optional</span>
 <span class="sd">        The index in the wind farm</span>
-<span class="sd">    name : str, optional</span>
+<span class="sd">    name: str, optional</span>
 <span class="sd">        The turbine name/label</span>
-<span class="sd">    mstates_sel : list of numpy.ndarray, optional</span>
+<span class="sd">    mstates_sel: list of numpy.ndarray, optional</span>
 <span class="sd">        For each turbine model, the state selection</span>
 <span class="sd">        boolean array with shape (n_states,)</span>
-<span class="sd">    D : float, optional</span>
+<span class="sd">    D: float, optional</span>
 <span class="sd">        The rotor diameter. Overwrites turbine type</span>
 <span class="sd">        settings if given</span>
-<span class="sd">    H : float, optional</span>
+<span class="sd">    H: float, optional</span>
 <span class="sd">        The hub height. Overwrites turbine type</span>
 <span class="sd">        settings if given</span>
 
+<span class="sd">    :group: foxes</span>
+<span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Turbine.__init__"><a class="viewcode-back" href="../../../_autosummary/foxes.core.turbine.Turbine.html#foxes.core.turbine.Turbine.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="Turbine.__init__"><a class="viewcode-back" href="../../../_core/Turbine.__init__.html#foxes.core.Turbine.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">xy</span><span class="p">,</span>
         <span class="n">turbine_models</span><span class="o">=</span><span class="p">[],</span>
@@ -375,6 +355,31 @@
         <span class="n">D</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">H</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        xy: array_like</span>
+<span class="sd">            The turbine ground position, shape: (2,)</span>
+<span class="sd">        turbine_models: list of str</span>
+<span class="sd">            The turbine model names, as they appear</span>
+<span class="sd">            in the model book</span>
+<span class="sd">        index: int, optional</span>
+<span class="sd">            The index in the wind farm</span>
+<span class="sd">        name: str, optional</span>
+<span class="sd">            The turbine name/label</span>
+<span class="sd">        models_state_sel: list of numpy.ndarray, optional</span>
+<span class="sd">            For each turbine model, the state selection</span>
+<span class="sd">            boolean array with shape (n_states,)</span>
+<span class="sd">        D: float, optional</span>
+<span class="sd">            The rotor diameter. Overwrites turbine type</span>
+<span class="sd">            settings if given</span>
+<span class="sd">        H: float, optional</span>
+<span class="sd">            The hub height. Overwrites turbine type</span>
+<span class="sd">            settings if given</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span>
@@ -386,32 +391,32 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mstates_sel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mstates_sel</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Turbine.add_model"><a class="viewcode-back" href="../../../_autosummary/foxes.core.turbine.Turbine.html#foxes.core.turbine.Turbine.add_model">[docs]</a>    <span class="k">def</span> <span class="nf">add_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">states_sel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Turbine.add_model"><a class="viewcode-back" href="../../../_core/Turbine.add_model.html#foxes.core.Turbine.add_model">[docs]</a>    <span class="k">def</span> <span class="nf">add_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">states_sel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a turbine model to the list.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        model : foxes.core.TurbineModel</span>
+<span class="sd">        model: foxes.core.TurbineModel</span>
 <span class="sd">            The model</span>
-<span class="sd">        states_sel : numpy.ndarray of bool, optional</span>
+<span class="sd">        states_sel: numpy.ndarray of bool, optional</span>
 <span class="sd">            The states selection for the model, shape: (n_states,)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mstates_sel</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">states_sel</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Turbine.insert_model"><a class="viewcode-back" href="../../../_autosummary/foxes.core.turbine.Turbine.html#foxes.core.turbine.Turbine.insert_model">[docs]</a>    <span class="k">def</span> <span class="nf">insert_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">states_sel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Turbine.insert_model"><a class="viewcode-back" href="../../../_core/Turbine.insert_model.html#foxes.core.Turbine.insert_model">[docs]</a>    <span class="k">def</span> <span class="nf">insert_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">states_sel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Insert a turbine model into the list of models.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        index : int</span>
+<span class="sd">        index: int</span>
 <span class="sd">            The position in the model list</span>
-<span class="sd">        model : foxes.core.TurbineModel</span>
+<span class="sd">        model: foxes.core.TurbineModel</span>
 <span class="sd">            The model</span>
-<span class="sd">        states_sel : numpy.ndarray of bool, optional</span>
+<span class="sd">        states_sel: numpy.ndarray of bool, optional</span>
 <span class="sd">            The states selection for the model, shape: (n_states,)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -431,7 +436,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -459,14 +464,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -478,8 +475,6 @@
         <script src="../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../_static/require.min.js"></script>
-        <script src="../../../_static/custom.js"></script>
     
   </body>
 </html>

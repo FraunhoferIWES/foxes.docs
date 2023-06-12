@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.algorithm - foxes 0.3.5
+        <title>foxes.core.algorithm - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -324,7 +323,7 @@
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 
-<div class="viewcode-block" id="Algorithm"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm">[docs]</a><span class="k">class</span> <span class="nc">Algorithm</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<div class="viewcode-block" id="Algorithm"><a class="viewcode-back" href="../../../api_core.html#foxes.core.Algorithm">[docs]</a><span class="k">class</span> <span class="nc">Algorithm</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for algorithms.</span>
 
@@ -332,41 +331,47 @@
 <span class="sd">    calculations, and contain the calculation functions</span>
 <span class="sd">    which are meant to be called from top level code.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    mbook : foxes.ModelBook</span>
-<span class="sd">        The model book</span>
-<span class="sd">    farm : foxes.WindFarm</span>
-<span class="sd">        The wind farm</span>
-<span class="sd">    chunks : dict</span>
-<span class="sd">        The chunks choice for running in parallel with dask,</span>
-<span class="sd">        e.g. `{&quot;state&quot;: 1000}` for chunks of 1000 states</span>
-<span class="sd">    verbosity : int</span>
-<span class="sd">        The verbosity level, 0 means silent</span>
-<span class="sd">    dbook : foxes.DataBook, optional</span>
-<span class="sd">        The data book, or None for default</span>
-<span class="sd">    keep_models : list of str</span>
-<span class="sd">        Keep these models data in memory and do not finalize them</span>
-
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    mbook : foxes.ModelBook</span>
+<span class="sd">    mbook: foxes.models.ModelBook</span>
 <span class="sd">        The model book</span>
-<span class="sd">    farm : foxes.WindFarm</span>
+<span class="sd">    farm: foxes.WindFarm</span>
 <span class="sd">        The wind farm</span>
-<span class="sd">    chunks : dict</span>
+<span class="sd">    chunks: dict</span>
 <span class="sd">        The chunks choice for running in parallel with dask,</span>
 <span class="sd">        e.g. `{&quot;state&quot;: 1000}` for chunks of 1000 states</span>
-<span class="sd">    verbosity : int</span>
+<span class="sd">    verbosity: int</span>
 <span class="sd">        The verbosity level, 0 means silent</span>
-<span class="sd">    dbook : foxes.DataBook</span>
+<span class="sd">    dbook: foxes.DataBook</span>
 <span class="sd">        The data book, or None for default</span>
-<span class="sd">    keep_models : list of str</span>
+<span class="sd">    keep_models: list of str</span>
 <span class="sd">        Keep these models data in memory and do not finalize them</span>
+<span class="sd">    </span>
+<span class="sd">    :group: core</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Algorithm.__init__"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">chunks</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">,</span> <span class="n">dbook</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keep_models</span><span class="o">=</span><span class="p">[]):</span>
+<div class="viewcode-block" id="Algorithm.__init__"><a class="viewcode-back" href="../../../_core/Algorithm.__init__.html#foxes.core.Algorithm.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">chunks</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">,</span> <span class="n">dbook</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keep_models</span><span class="o">=</span><span class="p">[]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mbook: foxes.models.ModelBook</span>
+<span class="sd">            The model book</span>
+<span class="sd">        farm: foxes.WindFarm</span>
+<span class="sd">            The wind farm</span>
+<span class="sd">        chunks: dict</span>
+<span class="sd">            The chunks choice for running in parallel with dask,</span>
+<span class="sd">            e.g. `{&quot;state&quot;: 1000}` for chunks of 1000 states</span>
+<span class="sd">        verbosity: int</span>
+<span class="sd">            The verbosity level, 0 means silent</span>
+<span class="sd">        dbook: foxes.DataBook, optional</span>
+<span class="sd">            The data book, or None for default</span>
+<span class="sd">        keep_models: list of str</span>
+<span class="sd">            Keep these models data in memory and do not finalize them</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
@@ -381,7 +386,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Algorithm.print"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm.print">[docs]</a>    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Algorithm.print"><a class="viewcode-back" href="../../../_core/Algorithm.print.html#foxes.core.Algorithm.print">[docs]</a>    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Print function, based on verbosity.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -468,24 +473,24 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">xrdata</span>
 
-<div class="viewcode-block" id="Algorithm.initialize"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Algorithm.initialize"><a class="viewcode-back" href="../../../_core/Algorithm.initialize.html#foxes.core.Algorithm.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the algorithm.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Algorithm.update_idata"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm.update_idata">[docs]</a>    <span class="k">def</span> <span class="nf">update_idata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">idata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Algorithm.update_idata"><a class="viewcode-back" href="../../../_core/Algorithm.update_idata.html#foxes.core.Algorithm.update_idata">[docs]</a>    <span class="k">def</span> <span class="nf">update_idata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">idata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add to idata memory, optionally update and return idata object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        models : foxes.core.Model or list of foxes.core.Model</span>
+<span class="sd">        models: foxes.core.Model or list of foxes.core.Model</span>
 <span class="sd">            The models to initialize</span>
-<span class="sd">        idata : dict, optional</span>
+<span class="sd">        idata: dict, optional</span>
 <span class="sd">            The idata dictionary to be updated, else only add</span>
 <span class="sd">            to idata memory</span>
-<span class="sd">        verbosity : int, optional</span>
+<span class="sd">        verbosity: int, optional</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -550,7 +555,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span>
 
-<div class="viewcode-block" id="Algorithm.update_n_turbines"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm.update_n_turbines">[docs]</a>    <span class="k">def</span> <span class="nf">update_n_turbines</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Algorithm.update_n_turbines"><a class="viewcode-back" href="../../../_core/Algorithm.update_n_turbines.html#foxes.core.Algorithm.update_n_turbines">[docs]</a>    <span class="k">def</span> <span class="nf">update_n_turbines</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reset the number of turbines,</span>
 <span class="sd">        according to self.farm</span>
@@ -605,13 +610,13 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">newk</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Algorithm.get_models_data"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm.get_models_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_models_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Algorithm.get_models_data"><a class="viewcode-back" href="../../../_core/Algorithm.get_models_data.html#foxes.core.Algorithm.get_models_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_models_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates xarray from model input data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        idata : dict, optional</span>
+<span class="sd">        idata: dict, optional</span>
 <span class="sd">            The dict has exactly two entries: `data_vars`,</span>
 <span class="sd">            a dict with entries `name_str -&gt; (dim_tuple, data_ndarray)`;</span>
 <span class="sd">            and `coords`, a dict with entries `dim_name_str -&gt; dim_array`.</span>
@@ -641,15 +646,15 @@
         <span class="n">sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_sizes</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="s2">&quot;models&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_xrdata</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">sizes</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Algorithm.new_point_data"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm.new_point_data">[docs]</a>    <span class="k">def</span> <span class="nf">new_point_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">states_indices</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Algorithm.new_point_data"><a class="viewcode-back" href="../../../_core/Algorithm.new_point_data.html#foxes.core.Algorithm.new_point_data">[docs]</a>    <span class="k">def</span> <span class="nf">new_point_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">states_indices</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates a point data xarray object, containing only points.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        points : numpy.ndarray</span>
+<span class="sd">        points: numpy.ndarray</span>
 <span class="sd">            The points, shape: (n_states, n_points, 3)</span>
-<span class="sd">        states_indices : array_like, optional</span>
+<span class="sd">        states_indices: array_like, optional</span>
 <span class="sd">            The indices of the states dimension</span>
 
 <span class="sd">        Returns</span>
@@ -677,17 +682,17 @@
         <span class="n">sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_sizes</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="s2">&quot;point&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_xrdata</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">sizes</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Algorithm.finalize_model"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm.finalize_model">[docs]</a>    <span class="k">def</span> <span class="nf">finalize_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Algorithm.finalize_model"><a class="viewcode-back" href="../../../_core/Algorithm.finalize_model.html#foxes.core.Algorithm.finalize_model">[docs]</a>    <span class="k">def</span> <span class="nf">finalize_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call the finalization routine of the model,</span>
 <span class="sd">        if not to be kept.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        model : foxes.core.Model</span>
+<span class="sd">        model: foxes.core.Model</span>
 <span class="sd">            The model to be finalized, if not in the</span>
 <span class="sd">            keep_models list</span>
-<span class="sd">        verbosity : int, optional</span>
+<span class="sd">        verbosity: int, optional</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -721,13 +726,13 @@
         <span class="k">if</span> <span class="n">pr</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;-- </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Finished sub-model finalization -- &quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Algorithm.finalize"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm.finalize">[docs]</a>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_mem</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Algorithm.finalize"><a class="viewcode-back" href="../../../_core/Algorithm.finalize.html#foxes.core.Algorithm.finalize">[docs]</a>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_mem</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Finalizes the algorithm.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        clear_mem : bool</span>
+<span class="sd">        clear_mem: bool</span>
 <span class="sd">            Clear idata memory, including keep_models entries</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -736,18 +741,18 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialized</span><span class="p">:</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Algorithm.new"><a class="viewcode-back" href="../../../_autosummary/foxes.core.algorithm.Algorithm.html#foxes.core.algorithm.Algorithm.new">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Algorithm.new"><a class="viewcode-back" href="../../../_core/Algorithm.new.html#foxes.core.Algorithm.new">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">algo_type</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run-time algorithm factory.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo_type : str</span>
+<span class="sd">        algo_type: str</span>
 <span class="sd">            The selected derived class name</span>
-<span class="sd">        args : tuple, optional</span>
+<span class="sd">        args: tuple, optional</span>
 <span class="sd">            Additional parameters for the constructor</span>
-<span class="sd">        kwargs : dict, optional</span>
+<span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Additional parameters for the constructor</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -784,7 +789,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -812,14 +817,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -831,8 +828,6 @@
         <script src="../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../_static/require.min.js"></script>
-        <script src="../../../_static/custom.js"></script>
     
   </body>
 </html>

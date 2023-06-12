@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.opt.objectives.farm_vars - foxes 0.3.5
+        <title>foxes.opt.objectives.farm_vars - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -318,50 +317,30 @@
 <span class="kn">from</span> <span class="nn">foxes</span> <span class="kn">import</span> <span class="n">variables</span> <span class="k">as</span> <span class="n">FV</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
-<div class="viewcode-block" id="FarmVarObjective"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.FarmVarObjective.html#foxes.opt.objectives.farm_vars.FarmVarObjective">[docs]</a><span class="k">class</span> <span class="nc">FarmVarObjective</span><span class="p">(</span><span class="n">FarmObjective</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmVarObjective"><a class="viewcode-back" href="../../../../api_opt.html#foxes.opt.objectives.FarmVarObjective">[docs]</a><span class="k">class</span> <span class="nc">FarmVarObjective</span><span class="p">(</span><span class="n">FarmObjective</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Objectives based on farm variables.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    problem : foxes.opt.FarmOptProblem</span>
-<span class="sd">        The underlying optimization problem</span>
-<span class="sd">    name : str</span>
-<span class="sd">        The name of the objective function</span>
-<span class="sd">    variable : str</span>
-<span class="sd">        The foxes variable name</span>
-<span class="sd">    contract_states : str</span>
-<span class="sd">        Contraction rule for states: min, max, sum, mean</span>
-<span class="sd">    contract_turbines : str</span>
-<span class="sd">        Contraction rule for turbines: min, max, sum, mean</span>
-<span class="sd">    minimize : bool</span>
-<span class="sd">        Switch for maximizing or minimizing</span>
-<span class="sd">    deps : list of str</span>
-<span class="sd">        The foxes variables on which the variable depends,</span>
-<span class="sd">        or None for all</span>
-<span class="sd">    scale : float</span>
-<span class="sd">        The scaling factor</span>
-<span class="sd">    kwargs : dict, optional</span>
-<span class="sd">        Additional parameters for `FarmObjective`</span>
-
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    variable : str</span>
+<span class="sd">    variable: str</span>
 <span class="sd">        The variable name</span>
-<span class="sd">    minimize : bool</span>
+<span class="sd">    minimize: bool</span>
 <span class="sd">        Switch for maximizing or minimizing</span>
-<span class="sd">    deps : list of str</span>
+<span class="sd">    deps: list of str</span>
 <span class="sd">        The foxes variables on which the variable depends,</span>
 <span class="sd">        or None for all</span>
-<span class="sd">    rules : dict</span>
+<span class="sd">    rules: dict</span>
 <span class="sd">        Contraction rules. Key: coordinate name str, value</span>
 <span class="sd">        is str: min, max, sum, mean</span>
-<span class="sd">    scale : float</span>
+<span class="sd">    scale: float</span>
 <span class="sd">        The scaling factor</span>
+
+<span class="sd">    :group: opt.objectives</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="FarmVarObjective.__init__"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.FarmVarObjective.html#foxes.opt.objectives.farm_vars.FarmVarObjective.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="FarmVarObjective.__init__"><a class="viewcode-back" href="../../../../_utils/opt/objectives/FarmVarObjective.__init__.html#foxes.opt.objectives.FarmVarObjective.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">problem</span><span class="p">,</span>
         <span class="n">name</span><span class="p">,</span>
@@ -373,6 +352,32 @@
         <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        problem: foxes.opt.FarmOptProblem</span>
+<span class="sd">            The underlying optimization problem</span>
+<span class="sd">        name: str</span>
+<span class="sd">            The name of the objective function</span>
+<span class="sd">        variable: str</span>
+<span class="sd">            The foxes variable name</span>
+<span class="sd">        contract_states: str</span>
+<span class="sd">            Contraction rule for states: min, max, sum, mean</span>
+<span class="sd">        contract_turbines: str</span>
+<span class="sd">            Contraction rule for turbines: min, max, sum, mean</span>
+<span class="sd">        minimize: bool</span>
+<span class="sd">            Switch for maximizing or minimizing</span>
+<span class="sd">        deps: list of str</span>
+<span class="sd">            The foxes variables on which the variable depends,</span>
+<span class="sd">            or None for all</span>
+<span class="sd">        scale: float</span>
+<span class="sd">            The scaling factor</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Additional parameters for `FarmObjective`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">minimize</span> <span class="o">=</span> <span class="n">minimize</span>
@@ -380,20 +385,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rules</span> <span class="o">=</span> <span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="n">contract_states</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">:</span> <span class="n">contract_turbines</span><span class="p">}</span></div>
 
-<div class="viewcode-block" id="FarmVarObjective.initialize"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.FarmVarObjective.html#foxes.opt.objectives.farm_vars.FarmVarObjective.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmVarObjective.initialize"><a class="viewcode-back" href="../../../../_utils/opt/objectives/MinimalMaxTI.html#foxes.opt.objectives.FarmVarObjective.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        verbosity : int</span>
+<span class="sd">        verbosity: int</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">verbosity</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FarmVarObjective.n_components"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.FarmVarObjective.html#foxes.opt.objectives.farm_vars.FarmVarObjective.n_components">[docs]</a>    <span class="k">def</span> <span class="nf">n_components</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmVarObjective.n_components"><a class="viewcode-back" href="../../../../_utils/opt/objectives/MinimalMaxTI.html#foxes.opt.objectives.FarmVarObjective.n_components">[docs]</a>    <span class="k">def</span> <span class="nf">n_components</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the number of components of the</span>
 <span class="sd">        function.</span>
@@ -406,27 +410,27 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mi">1</span></div>
 
-<div class="viewcode-block" id="FarmVarObjective.maximize"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.FarmVarObjective.html#foxes.opt.objectives.farm_vars.FarmVarObjective.maximize">[docs]</a>    <span class="k">def</span> <span class="nf">maximize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmVarObjective.maximize"><a class="viewcode-back" href="../../../../_utils/opt/objectives/MinimalMaxTI.html#foxes.opt.objectives.FarmVarObjective.maximize">[docs]</a>    <span class="k">def</span> <span class="nf">maximize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns flag for maximization of each component.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        flags : np.array</span>
+<span class="sd">        flags: np.array</span>
 <span class="sd">            Bool array for component maximization,</span>
 <span class="sd">            shape: (n_components,)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimize</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="FarmVarObjective.vardeps_float"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.FarmVarObjective.html#foxes.opt.objectives.farm_vars.FarmVarObjective.vardeps_float">[docs]</a>    <span class="k">def</span> <span class="nf">vardeps_float</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmVarObjective.vardeps_float"><a class="viewcode-back" href="../../../../_utils/opt/objectives/MinimalMaxTI.html#foxes.opt.objectives.FarmVarObjective.vardeps_float">[docs]</a>    <span class="k">def</span> <span class="nf">vardeps_float</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets the dependencies of all components</span>
 <span class="sd">        on the function float variables</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        deps : numpy.ndarray of bool</span>
+<span class="sd">        deps: numpy.ndarray of bool</span>
 <span class="sd">            The dependencies of components on function</span>
 <span class="sd">            variables, shape: (n_components, n_vars_float)</span>
 
@@ -461,26 +465,26 @@
                 <span class="p">)</span>
         <span class="k">return</span> <span class="n">data</span>
 
-<div class="viewcode-block" id="FarmVarObjective.calc_individual"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.FarmVarObjective.html#foxes.opt.objectives.farm_vars.FarmVarObjective.calc_individual">[docs]</a>    <span class="k">def</span> <span class="nf">calc_individual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">,</span> <span class="n">problem_results</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmVarObjective.calc_individual"><a class="viewcode-back" href="../../../../_utils/opt/objectives/MinimalMaxTI.html#foxes.opt.objectives.FarmVarObjective.calc_individual">[docs]</a>    <span class="k">def</span> <span class="nf">calc_individual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">,</span> <span class="n">problem_results</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate values for a single individual of the</span>
 <span class="sd">        underlying problem.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars_int : np.array</span>
+<span class="sd">        vars_int: np.array</span>
 <span class="sd">            The integer variable values, shape: (n_vars_int,)</span>
-<span class="sd">        vars_float : np.array</span>
+<span class="sd">        vars_float: np.array</span>
 <span class="sd">            The float variable values, shape: (n_vars_float,)</span>
-<span class="sd">        problem_results : Any</span>
+<span class="sd">        problem_results: Any</span>
 <span class="sd">            The results of the variable application</span>
 <span class="sd">            to the problem</span>
-<span class="sd">        components : list of int, optional</span>
+<span class="sd">        components: list of int, optional</span>
 <span class="sd">            The selected components or None for all</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        values : np.array</span>
+<span class="sd">        values: np.array</span>
 <span class="sd">            The component values, shape: (n_sel_components,)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -491,25 +495,25 @@
 
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">data</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FarmVarObjective.calc_population"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.FarmVarObjective.html#foxes.opt.objectives.farm_vars.FarmVarObjective.calc_population">[docs]</a>    <span class="k">def</span> <span class="nf">calc_population</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">,</span> <span class="n">problem_results</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmVarObjective.calc_population"><a class="viewcode-back" href="../../../../_utils/opt/objectives/MinimalMaxTI.html#foxes.opt.objectives.FarmVarObjective.calc_population">[docs]</a>    <span class="k">def</span> <span class="nf">calc_population</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">,</span> <span class="n">problem_results</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate values for all individuals of a population.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars_int : np.array</span>
+<span class="sd">        vars_int: np.array</span>
 <span class="sd">            The integer variable values, shape: (n_pop, n_vars_int)</span>
-<span class="sd">        vars_float : np.array</span>
+<span class="sd">        vars_float: np.array</span>
 <span class="sd">            The float variable values, shape: (n_pop, n_vars_float)</span>
-<span class="sd">        problem_results : Any</span>
+<span class="sd">        problem_results: Any</span>
 <span class="sd">            The results of the variable application</span>
 <span class="sd">            to the problem</span>
-<span class="sd">        components : list of int, optional</span>
+<span class="sd">        components: list of int, optional</span>
 <span class="sd">            The selected components or None for all</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        values : np.array</span>
+<span class="sd">        values: np.array</span>
 <span class="sd">            The component values, shape: (n_pop, n_sel_components)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -528,25 +532,25 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract</span><span class="p">(</span><span class="n">data</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="kc">None</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="FarmVarObjective.finalize_individual"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.FarmVarObjective.html#foxes.opt.objectives.farm_vars.FarmVarObjective.finalize_individual">[docs]</a>    <span class="k">def</span> <span class="nf">finalize_individual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">,</span> <span class="n">problem_results</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmVarObjective.finalize_individual"><a class="viewcode-back" href="../../../../_utils/opt/objectives/MinimalMaxTI.html#foxes.opt.objectives.FarmVarObjective.finalize_individual">[docs]</a>    <span class="k">def</span> <span class="nf">finalize_individual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">,</span> <span class="n">problem_results</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Finalization, given the champion data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars_int : np.array</span>
+<span class="sd">        vars_int: np.array</span>
 <span class="sd">            The optimal integer variable values, shape: (n_vars_int,)</span>
-<span class="sd">        vars_float : np.array</span>
+<span class="sd">        vars_float: np.array</span>
 <span class="sd">            The optimal float variable values, shape: (n_vars_float,)</span>
-<span class="sd">        problem_results : Any</span>
+<span class="sd">        problem_results: Any</span>
 <span class="sd">            The results of the variable application</span>
 <span class="sd">            to the problem</span>
-<span class="sd">        verbosity : int</span>
+<span class="sd">        verbosity: int</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        values : np.array</span>
+<span class="sd">        values: np.array</span>
 <span class="sd">            The component values, shape: (n_components,)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -558,22 +562,24 @@
         <span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="MaxFarmPower"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.MaxFarmPower.html#foxes.opt.objectives.farm_vars.MaxFarmPower">[docs]</a><span class="k">class</span> <span class="nc">MaxFarmPower</span><span class="p">(</span><span class="n">FarmVarObjective</span><span class="p">):</span>
+<div class="viewcode-block" id="MaxFarmPower"><a class="viewcode-back" href="../../../../api_opt.html#foxes.opt.objectives.MaxFarmPower">[docs]</a><span class="k">class</span> <span class="nc">MaxFarmPower</span><span class="p">(</span><span class="n">FarmVarObjective</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Maximize the mean wind farm power</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    problem : foxes.opt.FarmOptProblem</span>
+<span class="sd">    problem: foxes.opt.FarmOptProblem</span>
 <span class="sd">        The underlying optimization problem</span>
-<span class="sd">    name : str</span>
+<span class="sd">    name: str</span>
 <span class="sd">        The name of the objective function</span>
-<span class="sd">    kwargs : dict, optional</span>
+<span class="sd">    kwargs: dict, optional</span>
 <span class="sd">        Additional parameters for `FarmVarObjective`</span>
+<span class="sd">    </span>
+<span class="sd">    :group: opt.objectives</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="MaxFarmPower.__init__"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.MaxFarmPower.html#foxes.opt.objectives.farm_vars.MaxFarmPower.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;maximize_power&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="MaxFarmPower.__init__"><a class="viewcode-back" href="../../../../_utils/opt/objectives/MaxFarmPower.__init__.html#foxes.opt.objectives.MaxFarmPower.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;maximize_power&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="s2">&quot;scale&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="n">scale</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;scale&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -597,22 +603,24 @@
         <span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="MinimalMaxTI"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.MinimalMaxTI.html#foxes.opt.objectives.farm_vars.MinimalMaxTI">[docs]</a><span class="k">class</span> <span class="nc">MinimalMaxTI</span><span class="p">(</span><span class="n">FarmVarObjective</span><span class="p">):</span>
+<div class="viewcode-block" id="MinimalMaxTI"><a class="viewcode-back" href="../../../../api_opt.html#foxes.opt.objectives.MinimalMaxTI">[docs]</a><span class="k">class</span> <span class="nc">MinimalMaxTI</span><span class="p">(</span><span class="n">FarmVarObjective</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Minimize the maximal turbine TI</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    problem : foxes.opt.FarmOptProblem</span>
+<span class="sd">    problem: foxes.opt.FarmOptProblem</span>
 <span class="sd">        The underlying optimization problem</span>
-<span class="sd">    name : str</span>
+<span class="sd">    name: str</span>
 <span class="sd">        The name of the objective function</span>
-<span class="sd">    kwargs : dict, optional</span>
+<span class="sd">    kwargs: dict, optional</span>
 <span class="sd">        Additional parameters for `FarmVarObjective`</span>
+<span class="sd">    </span>
+<span class="sd">    :group: opt.objectives</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="MinimalMaxTI.__init__"><a class="viewcode-back" href="../../../../_autosummary/foxes.opt.objectives.farm_vars.MinimalMaxTI.html#foxes.opt.objectives.farm_vars.MinimalMaxTI.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;minimize_TI&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="MinimalMaxTI.__init__"><a class="viewcode-back" href="../../../../_utils/opt/objectives/MinimalMaxTI.__init__.html#foxes.opt.objectives.MinimalMaxTI.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;minimize_TI&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">scale</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;scale&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;scale&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="mf">1.0</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">problem</span><span class="p">,</span>
@@ -638,7 +646,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -666,14 +674,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -685,8 +685,6 @@
         <script src="../../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../../_static/require.min.js"></script>
-        <script src="../../../../_static/custom.js"></script>
     
   </body>
 </html>

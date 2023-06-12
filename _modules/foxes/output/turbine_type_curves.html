@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.turbine_type_curves - foxes 0.3.5
+        <title>foxes.output.turbine_type_curves - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -325,27 +324,33 @@
 <span class="kn">from</span> <span class="nn">.output</span> <span class="kn">import</span> <span class="n">Output</span>
 
 
-<div class="viewcode-block" id="TurbineTypeCurves"><a class="viewcode-back" href="../../../_autosummary/foxes.output.turbine_type_curves.TurbineTypeCurves.html#foxes.output.turbine_type_curves.TurbineTypeCurves">[docs]</a><span class="k">class</span> <span class="nc">TurbineTypeCurves</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
+<div class="viewcode-block" id="TurbineTypeCurves"><a class="viewcode-back" href="../../../api_output.html#foxes.output.TurbineTypeCurves">[docs]</a><span class="k">class</span> <span class="nc">TurbineTypeCurves</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates power and ct curves for turbine</span>
 <span class="sd">    types, optionally including derating/boost.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    mbook : foxes.models.ModelBook</span>
-<span class="sd">        The model book</span>
-
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    mbook : foxes.models.ModelBook</span>
+<span class="sd">    mbook: foxes.models.ModelBook</span>
 <span class="sd">        The model book</span>
+<span class="sd">    </span>
+<span class="sd">    :group: output</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TurbineTypeCurves.__init__"><a class="viewcode-back" href="../../../_autosummary/foxes.output.turbine_type_curves.TurbineTypeCurves.html#foxes.output.turbine_type_curves.TurbineTypeCurves.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mbook</span><span class="p">):</span>
+<div class="viewcode-block" id="TurbineTypeCurves.__init__"><a class="viewcode-back" href="../../../_output/TurbineTypeCurves.__init__.html#foxes.output.TurbineTypeCurves.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mbook</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mbook: foxes.models.ModelBook</span>
+<span class="sd">            The model book</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mbook</span> <span class="o">=</span> <span class="n">mbook</span></div>
 
-<div class="viewcode-block" id="TurbineTypeCurves.plot_curves"><a class="viewcode-back" href="../../../_autosummary/foxes.output.turbine_type_curves.TurbineTypeCurves.html#foxes.output.turbine_type_curves.TurbineTypeCurves.plot_curves">[docs]</a>    <span class="k">def</span> <span class="nf">plot_curves</span><span class="p">(</span>
+<div class="viewcode-block" id="TurbineTypeCurves.plot_curves"><a class="viewcode-back" href="../../../_output/TurbineTypeCurves.plot_curves.html#foxes.output.TurbineTypeCurves.plot_curves">[docs]</a>    <span class="k">def</span> <span class="nf">plot_curves</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">turbine_type</span><span class="p">,</span>
         <span class="n">variables</span><span class="p">,</span>
@@ -368,43 +373,43 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        turbine_type : str</span>
+<span class="sd">        turbine_type: str</span>
 <span class="sd">            The turbine type name from the</span>
 <span class="sd">            model book</span>
-<span class="sd">        variables : str or list of str</span>
+<span class="sd">        variables: str or list of str</span>
 <span class="sd">            For example FV.P or FV.CT</span>
-<span class="sd">        P_max : float, optional</span>
+<span class="sd">        P_max: float, optional</span>
 <span class="sd">            The power mask value, if of interest</span>
-<span class="sd">        titles : list of str, optional</span>
+<span class="sd">        titles: list of str, optional</span>
 <span class="sd">            The plot titles, one for each variable</span>
-<span class="sd">        x_label : str, optional</span>
+<span class="sd">        x_label: str, optional</span>
 <span class="sd">            The x axis label</span>
-<span class="sd">        y_labels : list of str, optional</span>
+<span class="sd">        y_labels: list of str, optional</span>
 <span class="sd">            The y axis lables, one for each variable</span>
-<span class="sd">        ws_min : float</span>
+<span class="sd">        ws_min: float</span>
 <span class="sd">            The minimal wind speed</span>
-<span class="sd">        ws_max : float</span>
+<span class="sd">        ws_max: float</span>
 <span class="sd">            The maximal wind speed</span>
-<span class="sd">        ws_step : float</span>
+<span class="sd">        ws_step: float</span>
 <span class="sd">            The wind speed step size</span>
-<span class="sd">        ti : float</span>
+<span class="sd">        ti: float</span>
 <span class="sd">            The TI value</span>
-<span class="sd">        rho : float</span>
+<span class="sd">        rho: float</span>
 <span class="sd">            The air density value</span>
-<span class="sd">        axs : list of pyplot.Axis, optional</span>
+<span class="sd">        axs: list of pyplot.Axis, optional</span>
 <span class="sd">            The axis, one for each variable</span>
-<span class="sd">        figsize : tuple</span>
+<span class="sd">        figsize: tuple</span>
 <span class="sd">            The figsize argument for plt.subplots()</span>
 <span class="sd">            in case ax is not provided</span>
-<span class="sd">        pmax_args : dict, optional</span>
+<span class="sd">        pmax_args: dict, optional</span>
 <span class="sd">            Additionals parameters for plt.plot()</span>
 <span class="sd">            for power mask case</span>
-<span class="sd">        kwargs : dict, optional</span>
+<span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Additional parameters for plt.plot()</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        axs : list of pyplot.Axis</span>
+<span class="sd">        axs: list of pyplot.Axis</span>
 <span class="sd">            The plot axes, one for each variable</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -518,7 +523,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -546,14 +551,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -565,8 +562,6 @@
         <script src="../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../_static/require.min.js"></script>
-        <script src="../../../_static/custom.js"></script>
     
   </body>
 </html>

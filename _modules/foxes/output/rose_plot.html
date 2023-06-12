@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.rose_plot - foxes 0.3.5
+        <title>foxes.output.rose_plot - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -324,23 +323,29 @@
 <span class="kn">from</span> <span class="nn">.output</span> <span class="kn">import</span> <span class="n">Output</span>
 
 
-<div class="viewcode-block" id="RosePlotOutput"><a class="viewcode-back" href="../../../_autosummary/foxes.output.rose_plot.RosePlotOutput.html#foxes.output.rose_plot.RosePlotOutput">[docs]</a><span class="k">class</span> <span class="nc">RosePlotOutput</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
+<div class="viewcode-block" id="RosePlotOutput"><a class="viewcode-back" href="../../../api_output.html#foxes.output.RosePlotOutput">[docs]</a><span class="k">class</span> <span class="nc">RosePlotOutput</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for rose plot creation</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    results : xarray.Dataset</span>
-<span class="sd">        The calculation results (farm or points)</span>
-
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    results : pandas.DataFrame</span>
+<span class="sd">    results: pandas.DataFrame</span>
 <span class="sd">        The calculation results (farm or points)</span>
+
+<span class="sd">    :group: output</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RosePlotOutput.__init__"><a class="viewcode-back" href="../../../_autosummary/foxes.output.rose_plot.RosePlotOutput.html#foxes.output.rose_plot.RosePlotOutput.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+<div class="viewcode-block" id="RosePlotOutput.__init__"><a class="viewcode-back" href="../../../_output/RosePlotOutput.__init__.html#foxes.output.RosePlotOutput.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        results: xarray.Dataset</span>
+<span class="sd">            The calculation results (farm or points)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dims</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">dims</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="k">if</span> <span class="n">dims</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_rtype</span> <span class="o">=</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span>
@@ -353,21 +358,21 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="RosePlotOutput.get_data_info"><a class="viewcode-back" href="../../../_autosummary/foxes.output.rose_plot.RosePlotOutput.html#foxes.output.rose_plot.RosePlotOutput.get_data_info">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="RosePlotOutput.get_data_info"><a class="viewcode-back" href="../../../_output/StatesRosePlotOutput.html#foxes.output.RosePlotOutput.get_data_info">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_data_info</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dname</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns default description for a variable.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        dname : str</span>
+<span class="sd">        dname: str</span>
 <span class="sd">            The variable name</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        title : str</span>
+<span class="sd">        title: str</span>
 <span class="sd">            The long name of the variable</span>
-<span class="sd">        legend : str</span>
+<span class="sd">        legend: str</span>
 <span class="sd">            The legend/axis text</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -406,7 +411,7 @@
 
         <span class="k">return</span> <span class="n">dname</span><span class="p">,</span> <span class="n">dname</span></div>
 
-<div class="viewcode-block" id="RosePlotOutput.get_data"><a class="viewcode-back" href="../../../_autosummary/foxes.output.rose_plot.RosePlotOutput.html#foxes.output.rose_plot.RosePlotOutput.get_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span>
+<div class="viewcode-block" id="RosePlotOutput.get_data"><a class="viewcode-back" href="../../../_output/StatesRosePlotOutput.html#foxes.output.RosePlotOutput.get_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">sectors</span><span class="p">,</span>
         <span class="n">var</span><span class="p">,</span>
@@ -421,23 +426,23 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        sectors : int</span>
+<span class="sd">        sectors: int</span>
 <span class="sd">            The number of wind direction sectors</span>
-<span class="sd">        var : str</span>
+<span class="sd">        var: str</span>
 <span class="sd">            The data variable name</span>
-<span class="sd">        var_bins : list of float</span>
+<span class="sd">        var_bins: list of float</span>
 <span class="sd">            The variable bin seperation values</span>
-<span class="sd">        wd_var : str, optional</span>
+<span class="sd">        wd_var: str, optional</span>
 <span class="sd">            The wind direction variable name</span>
-<span class="sd">        turbine : int, optional</span>
+<span class="sd">        turbine: int, optional</span>
 <span class="sd">            Only relevant in case of farm results.</span>
 <span class="sd">            If None, mean over all turbines.</span>
 <span class="sd">            Else, data from a single turbine</span>
-<span class="sd">        point : int, optional</span>
+<span class="sd">        point: int, optional</span>
 <span class="sd">            Only relevant in case of point results.</span>
 <span class="sd">            If None, mean over all points.</span>
 <span class="sd">            Else, data from a single point</span>
-<span class="sd">        legend : str, optional</span>
+<span class="sd">        legend: str, optional</span>
 <span class="sd">            The data legend string</span>
 
 <span class="sd">        Returns</span>
@@ -481,7 +486,7 @@
 
         <span class="k">return</span> <span class="n">data</span></div>
 
-<div class="viewcode-block" id="RosePlotOutput.get_figure"><a class="viewcode-back" href="../../../_autosummary/foxes.output.rose_plot.RosePlotOutput.html#foxes.output.rose_plot.RosePlotOutput.get_figure">[docs]</a>    <span class="k">def</span> <span class="nf">get_figure</span><span class="p">(</span>
+<div class="viewcode-block" id="RosePlotOutput.get_figure"><a class="viewcode-back" href="../../../_output/StatesRosePlotOutput.html#foxes.output.RosePlotOutput.get_figure">[docs]</a>    <span class="k">def</span> <span class="nf">get_figure</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">sectors</span><span class="p">,</span>
         <span class="n">var</span><span class="p">,</span>
@@ -500,27 +505,27 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        sectors : int</span>
+<span class="sd">        sectors: int</span>
 <span class="sd">            The number of wind direction sectors</span>
-<span class="sd">        var : str</span>
+<span class="sd">        var: str</span>
 <span class="sd">            The data variable name</span>
-<span class="sd">        var_bins : list of float</span>
+<span class="sd">        var_bins: list of float</span>
 <span class="sd">            The variable bin seperation values</span>
-<span class="sd">        wd_var : str, optional</span>
+<span class="sd">        wd_var: str, optional</span>
 <span class="sd">            The wind direction variable name</span>
-<span class="sd">        turbine : int, optional</span>
+<span class="sd">        turbine: int, optional</span>
 <span class="sd">            Only relevant in case of farm results.</span>
 <span class="sd">            If None, mean over all turbines.</span>
 <span class="sd">            Else, data from a single turbine</span>
-<span class="sd">        point : int, optional</span>
+<span class="sd">        point: int, optional</span>
 <span class="sd">            Only relevant in case of point results.</span>
 <span class="sd">            If None, mean over all points.</span>
 <span class="sd">            Else, data from a single point</span>
-<span class="sd">        legend : str, optional</span>
+<span class="sd">        legend: str, optional</span>
 <span class="sd">            The data legend string</span>
-<span class="sd">        layout_dict : dict, optional</span>
+<span class="sd">        layout_dict: dict, optional</span>
 <span class="sd">            Optional parameters for the px figure layout</span>
-<span class="sd">        title_dict : dict, optional</span>
+<span class="sd">        title_dict: dict, optional</span>
 <span class="sd">            Optional parameters for the px title layout</span>
 
 <span class="sd">        Returns</span>
@@ -565,7 +570,7 @@
 
         <span class="k">return</span> <span class="n">fig</span></div>
 
-<div class="viewcode-block" id="RosePlotOutput.write_figure"><a class="viewcode-back" href="../../../_autosummary/foxes.output.rose_plot.RosePlotOutput.html#foxes.output.rose_plot.RosePlotOutput.write_figure">[docs]</a>    <span class="k">def</span> <span class="nf">write_figure</span><span class="p">(</span>
+<div class="viewcode-block" id="RosePlotOutput.write_figure"><a class="viewcode-back" href="../../../_output/StatesRosePlotOutput.html#foxes.output.RosePlotOutput.write_figure">[docs]</a>    <span class="k">def</span> <span class="nf">write_figure</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">file_name</span><span class="p">,</span>
         <span class="n">sectors</span><span class="p">,</span>
@@ -585,29 +590,29 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        file_name : str</span>
+<span class="sd">        file_name: str</span>
 <span class="sd">            Path to the output file</span>
-<span class="sd">        sectors : int</span>
+<span class="sd">        sectors: int</span>
 <span class="sd">            The number of wind direction sectors</span>
-<span class="sd">        var : str</span>
+<span class="sd">        var: str</span>
 <span class="sd">            The data variable name</span>
-<span class="sd">        var_bins : list of float</span>
+<span class="sd">        var_bins: list of float</span>
 <span class="sd">            The variable bin seperation values</span>
-<span class="sd">        wd_var : str, optional</span>
+<span class="sd">        wd_var: str, optional</span>
 <span class="sd">            The wind direction variable name</span>
-<span class="sd">        turbine : int, optional</span>
+<span class="sd">        turbine: int, optional</span>
 <span class="sd">            Only relevant in case of farm results.</span>
 <span class="sd">            If None, mean over all turbines.</span>
 <span class="sd">            Else, data from a single turbine</span>
-<span class="sd">        point : int, optional</span>
+<span class="sd">        point: int, optional</span>
 <span class="sd">            Only relevant in case of point results.</span>
 <span class="sd">            If None, mean over all points.</span>
 <span class="sd">            Else, data from a single point</span>
-<span class="sd">        legend : str, optional</span>
+<span class="sd">        legend: str, optional</span>
 <span class="sd">            The data legend string</span>
-<span class="sd">        layout_dict : dict, optional</span>
+<span class="sd">        layout_dict: dict, optional</span>
 <span class="sd">            Optional parameters for the px figure layout</span>
-<span class="sd">        title_dict : dict, optional</span>
+<span class="sd">        title_dict: dict, optional</span>
 <span class="sd">            Optional parameters for the px title layout</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -629,22 +634,24 @@
         <span class="n">fig</span><span class="o">.</span><span class="n">write_image</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="StatesRosePlotOutput"><a class="viewcode-back" href="../../../_autosummary/foxes.output.rose_plot.StatesRosePlotOutput.html#foxes.output.rose_plot.StatesRosePlotOutput">[docs]</a><span class="k">class</span> <span class="nc">StatesRosePlotOutput</span><span class="p">(</span><span class="n">RosePlotOutput</span><span class="p">):</span>
+<div class="viewcode-block" id="StatesRosePlotOutput"><a class="viewcode-back" href="../../../api_output.html#foxes.output.StatesRosePlotOutput">[docs]</a><span class="k">class</span> <span class="nc">StatesRosePlotOutput</span><span class="p">(</span><span class="n">RosePlotOutput</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for rose plot creation directly from states</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    states : foxes.core.States</span>
+<span class="sd">    states: foxes.core.States</span>
 <span class="sd">        The states from which to compute the wind rose</span>
-<span class="sd">    point : numpy.ndarray</span>
+<span class="sd">    point: numpy.ndarray</span>
 <span class="sd">        The evaluation point, shape: (3,)</span>
-<span class="sd">    mbook : foxes.models.ModelBook, optional</span>
+<span class="sd">    mbook: foxes.models.ModelBook, optional</span>
 <span class="sd">        The model book</span>
+
+<span class="sd">    :group: output</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="StatesRosePlotOutput.__init__"><a class="viewcode-back" href="../../../_autosummary/foxes.output.rose_plot.StatesRosePlotOutput.html#foxes.output.rose_plot.StatesRosePlotOutput.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">mbook</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ws_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span><span class="p">):</span>
+<div class="viewcode-block" id="StatesRosePlotOutput.__init__"><a class="viewcode-back" href="../../../_output/StatesRosePlotOutput.__init__.html#foxes.output.StatesRosePlotOutput.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">mbook</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ws_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span><span class="p">):</span>
         <span class="n">farm</span> <span class="o">=</span> <span class="n">WindFarm</span><span class="p">()</span>
         <span class="n">farm</span><span class="o">.</span><span class="n">add_turbine</span><span class="p">(</span>
             <span class="n">Turbine</span><span class="p">(</span>
@@ -675,7 +682,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -703,14 +710,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -722,8 +721,6 @@
         <script src="../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../_static/require.min.js"></script>
-        <script src="../../../_static/custom.js"></script>
     
   </body>
 </html>

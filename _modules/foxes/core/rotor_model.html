@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.rotor_model - foxes 0.3.5
+        <title>foxes.core.rotor_model - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -320,7 +319,7 @@
 <span class="kn">from</span> <span class="nn">.data</span> <span class="kn">import</span> <span class="n">Data</span>
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">wd2uv</span><span class="p">,</span> <span class="n">uv2wd</span>
 
-<div class="viewcode-block" id="RotorModel"><a class="viewcode-back" href="../../../_autosummary/foxes.core.rotor_model.RotorModel.html#foxes.core.rotor_model.RotorModel">[docs]</a><span class="k">class</span> <span class="nc">RotorModel</span><span class="p">(</span><span class="n">FarmDataModel</span><span class="p">):</span>
+<div class="viewcode-block" id="RotorModel"><a class="viewcode-back" href="../../../api_core.html#foxes.core.RotorModel">[docs]</a><span class="k">class</span> <span class="nc">RotorModel</span><span class="p">(</span><span class="n">FarmDataModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class of rotor models.</span>
 
@@ -328,36 +327,42 @@
 <span class="sd">    states, and provide rotor points and weights</span>
 <span class="sd">    for the calculation of rotor effective quantities.</span>
 
-<span class="sd">    Parameters</span>
+<span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    calc_vars : list of str</span>
+<span class="sd">    calc_vars: list of str</span>
 <span class="sd">        The variables that are calculated by the model</span>
 <span class="sd">        (Their ambients are added automatically)</span>
 
-<span class="sd">    Attributes</span>
-<span class="sd">    ----------</span>
-<span class="sd">    calc_vars : list of str</span>
-<span class="sd">        The variables that are calculated by the model</span>
-<span class="sd">        (Their ambients are added automatically)</span>
+<span class="sd">    :group: core</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RotorModel.__init__"><a class="viewcode-back" href="../../../_autosummary/foxes.core.rotor_model.RotorModel.html#foxes.core.rotor_model.RotorModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calc_vars</span><span class="p">):</span>
+<div class="viewcode-block" id="RotorModel.__init__"><a class="viewcode-back" href="../../../_models/rotor_models/CentreRotor.html#foxes.core.RotorModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calc_vars</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        calc_vars: list of str</span>
+<span class="sd">            The variables that are calculated by the model</span>
+<span class="sd">            (Their ambients are added automatically)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calc_vars</span> <span class="o">=</span> <span class="n">calc_vars</span></div>
 
-<div class="viewcode-block" id="RotorModel.output_farm_vars"><a class="viewcode-back" href="../../../_autosummary/foxes.core.rotor_model.RotorModel.html#foxes.core.rotor_model.RotorModel.output_farm_vars">[docs]</a>    <span class="k">def</span> <span class="nf">output_farm_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
+<div class="viewcode-block" id="RotorModel.output_farm_vars"><a class="viewcode-back" href="../../../_models/rotor_models/GridRotor.html#foxes.core.RotorModel.output_farm_vars">[docs]</a>    <span class="k">def</span> <span class="nf">output_farm_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The variables which are being modified by the model.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        output_vars : list of str</span>
+<span class="sd">        output_vars: list of str</span>
 <span class="sd">            The output variable names</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -365,34 +370,34 @@
             <span class="n">FV</span><span class="o">.</span><span class="n">var2amb</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_vars</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">FV</span><span class="o">.</span><span class="n">var2amb</span>
         <span class="p">]</span></div>
 
-<div class="viewcode-block" id="RotorModel.n_rotor_points"><a class="viewcode-back" href="../../../_autosummary/foxes.core.rotor_model.RotorModel.html#foxes.core.rotor_model.RotorModel.n_rotor_points">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="RotorModel.n_rotor_points"><a class="viewcode-back" href="../../../_core/RotorModel.n_rotor_points.html#foxes.core.RotorModel.n_rotor_points">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">n_rotor_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of rotor points</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        n_rpoints : int</span>
+<span class="sd">        n_rpoints: int</span>
 <span class="sd">            The number of rotor points</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="RotorModel.rotor_point_weights"><a class="viewcode-back" href="../../../_autosummary/foxes.core.rotor_model.RotorModel.html#foxes.core.rotor_model.RotorModel.rotor_point_weights">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="RotorModel.rotor_point_weights"><a class="viewcode-back" href="../../../_core/RotorModel.rotor_point_weights.html#foxes.core.RotorModel.rotor_point_weights">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">rotor_point_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The weights of the rotor points</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        weights : numpy.ndarray</span>
+<span class="sd">        weights: numpy.ndarray</span>
 <span class="sd">            The weights of the rotor points,</span>
 <span class="sd">            add to one, shape: (n_rpoints,)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="RotorModel.design_points"><a class="viewcode-back" href="../../../_autosummary/foxes.core.rotor_model.RotorModel.html#foxes.core.rotor_model.RotorModel.design_points">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="RotorModel.design_points"><a class="viewcode-back" href="../../../_core/RotorModel.design_points.html#foxes.core.RotorModel.design_points">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">design_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The rotor model design points.</span>
@@ -406,28 +411,28 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        dpoints : numpy.ndarray</span>
+<span class="sd">        dpoints: numpy.ndarray</span>
 <span class="sd">            The design points, shape: (n_points, 3)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="RotorModel.get_rotor_points"><a class="viewcode-back" href="../../../_autosummary/foxes.core.rotor_model.RotorModel.html#foxes.core.rotor_model.RotorModel.get_rotor_points">[docs]</a>    <span class="k">def</span> <span class="nf">get_rotor_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">):</span>
+<div class="viewcode-block" id="RotorModel.get_rotor_points"><a class="viewcode-back" href="../../../_models/rotor_models/GridRotor.html#foxes.core.RotorModel.get_rotor_points">[docs]</a>    <span class="k">def</span> <span class="nf">get_rotor_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates rotor points from design points.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.Data</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata : foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        points : numpy.ndarray</span>
+<span class="sd">        points: numpy.ndarray</span>
 <span class="sd">            The rotor points, shape:</span>
 <span class="sd">            (n_states, n_turbines, n_rpoints, 3)</span>
 
@@ -467,7 +472,7 @@
                 <span class="sa">f</span><span class="s2">&quot;Rotor model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: states_turbine is not None, but results shape for &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; has more than one turbine, </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
-<div class="viewcode-block" id="RotorModel.eval_rpoint_results"><a class="viewcode-back" href="../../../_autosummary/foxes.core.rotor_model.RotorModel.html#foxes.core.rotor_model.RotorModel.eval_rpoint_results">[docs]</a>    <span class="k">def</span> <span class="nf">eval_rpoint_results</span><span class="p">(</span>
+<div class="viewcode-block" id="RotorModel.eval_rpoint_results"><a class="viewcode-back" href="../../../_models/rotor_models/GridRotor.html#foxes.core.RotorModel.eval_rpoint_results">[docs]</a>    <span class="k">def</span> <span class="nf">eval_rpoint_results</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
@@ -488,22 +493,22 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.Data</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata : foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        rpoint_results : dict</span>
+<span class="sd">        rpoint_results: dict</span>
 <span class="sd">            The results at rotor points. Keys: variable str.</span>
 <span class="sd">            Values: numpy.ndarray, shape if `states_turbine`</span>
 <span class="sd">            is None: (n_states, n_turbines, n_rpoints).</span>
 <span class="sd">            Else: (n_states, 1, n_rpoints)</span>
-<span class="sd">        weights : numpy.ndarray</span>
+<span class="sd">        weights: numpy.ndarray</span>
 <span class="sd">            The rotor point weights, shape: (n_rpoints,)</span>
 <span class="sd">        states_turbine: numpy.ndarray of int, optional</span>
 <span class="sd">            The turbine indices, one per state. Shape: (n_states,)</span>
-<span class="sd">        copy_to_ambient : bool, optional</span>
+<span class="sd">        copy_to_ambient: bool, optional</span>
 <span class="sd">            If `True`, the fdata results are copied to ambient</span>
 <span class="sd">            variables after calculation</span>
 
@@ -616,7 +621,7 @@
             <span class="k">if</span> <span class="n">copy_to_ambient</span> <span class="ow">and</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">FV</span><span class="o">.</span><span class="n">var2amb</span><span class="p">:</span>
                 <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">var2amb</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="RotorModel.calculate"><a class="viewcode-back" href="../../../_autosummary/foxes.core.rotor_model.RotorModel.html#foxes.core.rotor_model.RotorModel.calculate">[docs]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span>
+<div class="viewcode-block" id="RotorModel.calculate"><a class="viewcode-back" href="../../../_models/rotor_models/GridRotor.html#foxes.core.RotorModel.calculate">[docs]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
@@ -633,23 +638,23 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.Data</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata : foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        rpoints : numpy.ndarray, optional</span>
+<span class="sd">        rpoints: numpy.ndarray, optional</span>
 <span class="sd">            The rotor points, or None for automatic for</span>
 <span class="sd">            this rotor. Shape: (n_states, n_turbines, n_rpoints, 3)</span>
-<span class="sd">        weights : numpy.ndarray, optional</span>
+<span class="sd">        weights: numpy.ndarray, optional</span>
 <span class="sd">            The rotor point weights, or None for automatic</span>
 <span class="sd">            for this rotor. Shape: (n_rpoints,)</span>
-<span class="sd">        store_rpoints : bool, optional</span>
+<span class="sd">        store_rpoints: bool, optional</span>
 <span class="sd">            Switch for storing rotor points to mdata</span>
-<span class="sd">        store_rweights : bool, optional</span>
+<span class="sd">        store_rweights: bool, optional</span>
 <span class="sd">            Switch for storing rotor point weights to mdata</span>
-<span class="sd">        store_amb_res : bool, optional</span>
+<span class="sd">        store_amb_res: bool, optional</span>
 <span class="sd">            Switch for storing ambient rotor point reults as they</span>
 <span class="sd">            come from the states to mdata</span>
 <span class="sd">        states_turbine: numpy.ndarray of int, optional</span>
@@ -657,7 +662,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        results : dict</span>
+<span class="sd">        results: dict</span>
 <span class="sd">            results dict. Keys: Variable name str. Values:</span>
 <span class="sd">            numpy.ndarray with results, shape: (n_states, n_turbines)</span>
 
@@ -729,7 +734,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -757,14 +762,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -776,8 +773,6 @@
         <script src="../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../_static/require.min.js"></script>
-        <script src="../../../_static/custom.js"></script>
     
   </body>
 </html>

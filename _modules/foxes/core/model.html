@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.model - foxes 0.3.5
+        <title>foxes.core.model - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -316,20 +315,25 @@
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span>
 
 
-<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../../../_autosummary/foxes.core.model.Model.html#foxes.core.model.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../../../api_core.html#foxes.core.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for all models.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    name : str</span>
+<span class="sd">    name: str</span>
 <span class="sd">        The model name</span>
+<span class="sd">    </span>
+<span class="sd">    :group: core</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_ids</span> <span class="o">=</span> <span class="p">{}</span>
 
-<div class="viewcode-block" id="Model.__init__"><a class="viewcode-back" href="../../../_autosummary/foxes.core.model.Model.html#foxes.core.model.Model.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.__init__"><a class="viewcode-back" href="../../../_models/vertical_profiles/ShearedProfile.html#foxes.core.Model.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="k">if</span> <span class="n">t</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ids</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_ids</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -340,9 +344,9 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.__repr__"><a class="viewcode-back" href="../../../_utils/opt/core/PopStates.html#foxes.core.Model.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">)&quot;</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">model_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -357,13 +361,13 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_id</span>
 
-<div class="viewcode-block" id="Model.var"><a class="viewcode-back" href="../../../_autosummary/foxes.core.model.Model.html#foxes.core.model.Model.var">[docs]</a>    <span class="k">def</span> <span class="nf">var</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.var"><a class="viewcode-back" href="../../../_utils/opt/core/PopStates.html#foxes.core.Model.var">[docs]</a>    <span class="k">def</span> <span class="nf">var</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates a model specific variable name.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        v : str</span>
+<span class="sd">        v: str</span>
 <span class="sd">            The variable name</span>
 
 <span class="sd">        Returns</span>
@@ -387,7 +391,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span>
 
-<div class="viewcode-block" id="Model.initialize"><a class="viewcode-back" href="../../../_autosummary/foxes.core.model.Model.html#foxes.core.model.Model.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.initialize"><a class="viewcode-back" href="../../../_models/wake_superpositions/TISuperposition.html#foxes.core.Model.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the model.</span>
 
@@ -399,14 +403,14 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        verbosity : int</span>
+<span class="sd">        verbosity: int</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        idata : dict</span>
+<span class="sd">        idata: dict</span>
 <span class="sd">            The dict has exactly two entries: `data_vars`,</span>
 <span class="sd">            a dict with entries `name_str -&gt; (dim_tuple, data_ndarray)`;</span>
 <span class="sd">            and `coords`, a dict with entries `dim_name_str -&gt; dim_array`</span>
@@ -419,15 +423,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;coords&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;data_vars&quot;</span><span class="p">:</span> <span class="p">{}}</span></div>
 
-<div class="viewcode-block" id="Model.finalize"><a class="viewcode-back" href="../../../_autosummary/foxes.core.model.Model.html#foxes.core.model.Model.finalize">[docs]</a>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.finalize"><a class="viewcode-back" href="../../../_utils/opt/core/PopStates.html#foxes.core.Model.finalize">[docs]</a>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Finalizes the model.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        verbosity : int</span>
+<span class="sd">        verbosity: int</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -437,7 +441,7 @@
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Model.get_data"><a class="viewcode-back" href="../../../_autosummary/foxes.core.model.Model.html#foxes.core.model.Model.get_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span>
+<div class="viewcode-block" id="Model.get_data"><a class="viewcode-back" href="../../../_utils/opt/core/PopStates.html#foxes.core.Model.get_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">variable</span><span class="p">,</span>
         <span class="n">data</span><span class="p">,</span>
@@ -452,13 +456,13 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        variable : str</span>
+<span class="sd">        variable: str</span>
 <span class="sd">            The variable, serves as data key</span>
-<span class="sd">        data : dict</span>
+<span class="sd">        data: dict</span>
 <span class="sd">            The data source</span>
-<span class="sd">        st_sel : numpy.ndarray of bool, optional</span>
+<span class="sd">        st_sel: numpy.ndarray of bool, optional</span>
 <span class="sd">            If given, get the specified state-turbine subset</span>
-<span class="sd">        upcast : str, optional</span>
+<span class="sd">        upcast: str, optional</span>
 <span class="sd">            Either &#39;farm&#39; or &#39;points&#39;, broadcasts potential</span>
 <span class="sd">            scalar data to numpy.ndarray with dimensions</span>
 <span class="sd">            (n_states, n_turbines) or (n_states, n_points),</span>
@@ -531,7 +535,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -559,14 +563,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -578,8 +574,6 @@
         <script src="../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../_static/require.min.js"></script>
-        <script src="../../../_static/custom.js"></script>
     
   </body>
 </html>

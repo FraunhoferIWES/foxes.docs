@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.input.states.field_data_nc - foxes 0.3.5
+        <title>foxes.input.states.field_data_nc - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -325,86 +324,51 @@
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 
-<div class="viewcode-block" id="FieldDataNC"><a class="viewcode-back" href="../../../../_autosummary/foxes.input.states.field_data_nc.FieldDataNC.html#foxes.input.states.field_data_nc.FieldDataNC">[docs]</a><span class="k">class</span> <span class="nc">FieldDataNC</span><span class="p">(</span><span class="n">States</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldDataNC"><a class="viewcode-back" href="../../../../api_input.html#foxes.input.states.FieldDataNC">[docs]</a><span class="k">class</span> <span class="nc">FieldDataNC</span><span class="p">(</span><span class="n">States</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Heterogeneous ambient states on a regular</span>
 <span class="sd">    horizontal grid in NetCDF format.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    data_source : str or xarray.Dataset</span>
-<span class="sd">        The data or the file search pattern, should end with</span>
-<span class="sd">        suffix &#39;.nc&#39;. One or many files.</span>
-<span class="sd">    output_vars : list of str</span>
-<span class="sd">        The output variables</span>
-<span class="sd">    var2ncvar : dict, optional</span>
-<span class="sd">        Mapping from variable names to variable names</span>
-<span class="sd">        in the nc file</span>
-<span class="sd">    fixed_vars : dict, optional</span>
-<span class="sd">        Uniform values for output variables, instead</span>
-<span class="sd">        of reading from data</span>
-<span class="sd">    states_coord : str</span>
-<span class="sd">        The states coordinate name in the data</span>
-<span class="sd">    x_coord : str</span>
-<span class="sd">        The x coordinate name in the data</span>
-<span class="sd">    y_coord : str</span>
-<span class="sd">        The y coordinate name in the data</span>
-<span class="sd">    h_coord : str</span>
-<span class="sd">        The height coordinate name in the data</span>
-<span class="sd">    pre_load : bool</span>
-<span class="sd">        Flag for loading all data into memory during</span>
-<span class="sd">        initialization</span>
-<span class="sd">    weight_ncvar : str, optional</span>
-<span class="sd">        Name of the weight data variable in the nc file(s)</span>
-<span class="sd">    bounds_error : bool</span>
-<span class="sd">        Flag for raising errors if bounds are exceeded</span>
-<span class="sd">    fill_value : number, optional</span>
-<span class="sd">        Fill value in case of exceeding bounds, if no bounds error</span>
-<span class="sd">    time_format : str</span>
-<span class="sd">        The datetime parsing format string</span>
-<span class="sd">    sel : dict, optional</span>
-<span class="sd">        Subset selection via xr.Dataset.sel()</span>
-<span class="sd">    verbosity : int</span>
-<span class="sd">        Verbosity level for pre_load file reading</span>
-
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    data_source : str or xarray.Dataset</span>
+<span class="sd">    data_source: str or xarray.Dataset</span>
 <span class="sd">        The data or the file search pattern, should end with</span>
 <span class="sd">        suffix &#39;.nc&#39;. One or many files.</span>
-<span class="sd">    ovars : list of str</span>
+<span class="sd">    ovars: list of str</span>
 <span class="sd">        The output variables</span>
-<span class="sd">    var2ncvar : dict</span>
+<span class="sd">    var2ncvar: dict</span>
 <span class="sd">        Mapping from variable names to variable names</span>
 <span class="sd">        in the nc file</span>
-<span class="sd">    fixed_vars : dict</span>
+<span class="sd">    fixed_vars: dict</span>
 <span class="sd">        Uniform values for output variables, instead</span>
 <span class="sd">        of reading from data</span>
-<span class="sd">    states_coord : str</span>
+<span class="sd">    states_coord: str</span>
 <span class="sd">        The states coordinate name in the data</span>
-<span class="sd">    x_coord : str</span>
+<span class="sd">    x_coord: str</span>
 <span class="sd">        The x coordinate name in the data</span>
-<span class="sd">    y_coord : str</span>
+<span class="sd">    y_coord: str</span>
 <span class="sd">        The y coordinate name in the data</span>
-<span class="sd">    h_coord : str</span>
+<span class="sd">    h_coord: str</span>
 <span class="sd">        The height coordinate name in the data</span>
-<span class="sd">    pre_load : bool</span>
+<span class="sd">    pre_load: bool</span>
 <span class="sd">        Flag for loading all data into memory during</span>
 <span class="sd">        initialization</span>
-<span class="sd">    weight_ncvar : str</span>
+<span class="sd">    weight_ncvar: str</span>
 <span class="sd">        Name of the weight data variable in the nc file(s)</span>
-<span class="sd">    bounds_error : bool</span>
+<span class="sd">    bounds_error: bool</span>
 <span class="sd">        Flag for raising errors if bounds are exceeded</span>
-<span class="sd">    fill_value : number</span>
+<span class="sd">    fill_value: number</span>
 <span class="sd">        Fill value in case of exceeding bounds, if no bounds error</span>
-<span class="sd">    time_format : str</span>
+<span class="sd">    time_format: str</span>
 <span class="sd">        The datetime parsing format string</span>
-<span class="sd">    sel : dict</span>
+<span class="sd">    sel: dict</span>
 <span class="sd">        Subset selection via xr.Dataset.sel()</span>
+
+<span class="sd">    :group: input.states</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="FieldDataNC.__init__"><a class="viewcode-back" href="../../../../_autosummary/foxes.input.states.field_data_nc.FieldDataNC.html#foxes.input.states.field_data_nc.FieldDataNC.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="FieldDataNC.__init__"><a class="viewcode-back" href="../../../../_input/states/FieldDataNC.__init__.html#foxes.input.states.FieldDataNC.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data_source</span><span class="p">,</span>
         <span class="n">output_vars</span><span class="p">,</span>
@@ -422,6 +386,47 @@
         <span class="n">sel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data_source: str or xarray.Dataset</span>
+<span class="sd">            The data or the file search pattern, should end with</span>
+<span class="sd">            suffix &#39;.nc&#39;. One or many files.</span>
+<span class="sd">        output_vars: list of str</span>
+<span class="sd">            The output variables</span>
+<span class="sd">        var2ncvar: dict, optional</span>
+<span class="sd">            Mapping from variable names to variable names</span>
+<span class="sd">            in the nc file</span>
+<span class="sd">        fixed_vars: dict, optional</span>
+<span class="sd">            Uniform values for output variables, instead</span>
+<span class="sd">            of reading from data</span>
+<span class="sd">        states_coord: str</span>
+<span class="sd">            The states coordinate name in the data</span>
+<span class="sd">        x_coord: str</span>
+<span class="sd">            The x coordinate name in the data</span>
+<span class="sd">        y_coord: str</span>
+<span class="sd">            The y coordinate name in the data</span>
+<span class="sd">        h_coord: str</span>
+<span class="sd">            The height coordinate name in the data</span>
+<span class="sd">        pre_load: bool</span>
+<span class="sd">            Flag for loading all data into memory during</span>
+<span class="sd">            initialization</span>
+<span class="sd">        weight_ncvar: str, optional</span>
+<span class="sd">            Name of the weight data variable in the nc file(s)</span>
+<span class="sd">        bounds_error: bool</span>
+<span class="sd">            Flag for raising errors if bounds are exceeded</span>
+<span class="sd">        fill_value: number, optional</span>
+<span class="sd">            Fill value in case of exceeding bounds, if no bounds error</span>
+<span class="sd">        time_format: str</span>
+<span class="sd">            The datetime parsing format string</span>
+<span class="sd">        sel: dict, optional</span>
+<span class="sd">            Subset selection via xr.Dataset.sel()</span>
+<span class="sd">        verbosity: int</span>
+<span class="sd">            Verbosity level for pre_load file reading</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span> <span class="o">=</span> <span class="n">data_source</span>
@@ -571,7 +576,7 @@
 
         <span class="k">return</span> <span class="n">data</span>
 
-<div class="viewcode-block" id="FieldDataNC.initialize"><a class="viewcode-back" href="../../../../_autosummary/foxes.input.states.field_data_nc.FieldDataNC.html#foxes.input.states.field_data_nc.FieldDataNC.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldDataNC.initialize"><a class="viewcode-back" href="../../../../_input/states/FieldDataNC.initialize.html#foxes.input.states.FieldDataNC.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the model.</span>
 
@@ -583,14 +588,14 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        verbosity : int</span>
+<span class="sd">        verbosity: int</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        idata : dict</span>
+<span class="sd">        idata: dict</span>
 <span class="sd">            The dict has exactly two entries: `data_vars`,</span>
 <span class="sd">            a dict with entries `name_str -&gt; (dim_tuple, data_ndarray)`;</span>
 <span class="sd">            and `coords`, a dict with entries `dim_name_str -&gt; dim_array`</span>
@@ -648,7 +653,7 @@
 
         <span class="k">return</span> <span class="n">idata</span></div>
 
-<div class="viewcode-block" id="FieldDataNC.size"><a class="viewcode-back" href="../../../../_autosummary/foxes.input.states.field_data_nc.FieldDataNC.html#foxes.input.states.field_data_nc.FieldDataNC.size">[docs]</a>    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldDataNC.size"><a class="viewcode-back" href="../../../../_input/states/FieldDataNC.size.html#foxes.input.states.FieldDataNC.size">[docs]</a>    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The total number of states.</span>
 
@@ -660,53 +665,53 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_N</span></div>
 
-<div class="viewcode-block" id="FieldDataNC.index"><a class="viewcode-back" href="../../../../_autosummary/foxes.input.states.field_data_nc.FieldDataNC.html#foxes.input.states.field_data_nc.FieldDataNC.index">[docs]</a>    <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldDataNC.index"><a class="viewcode-back" href="../../../../_input/states/FieldDataNC.index.html#foxes.input.states.FieldDataNC.index">[docs]</a>    <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The index list</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        indices : array_like</span>
+<span class="sd">        indices: array_like</span>
 <span class="sd">            The index labels of states, or None for default integers</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inds</span></div>
 
-<div class="viewcode-block" id="FieldDataNC.output_point_vars"><a class="viewcode-back" href="../../../../_autosummary/foxes.input.states.field_data_nc.FieldDataNC.html#foxes.input.states.field_data_nc.FieldDataNC.output_point_vars">[docs]</a>    <span class="k">def</span> <span class="nf">output_point_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldDataNC.output_point_vars"><a class="viewcode-back" href="../../../../_input/states/FieldDataNC.output_point_vars.html#foxes.input.states.FieldDataNC.output_point_vars">[docs]</a>    <span class="k">def</span> <span class="nf">output_point_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The variables which are being modified by the model.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        output_vars : list of str</span>
+<span class="sd">        output_vars: list of str</span>
 <span class="sd">            The output variable names</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ovars</span></div>
 
-<div class="viewcode-block" id="FieldDataNC.weights"><a class="viewcode-back" href="../../../../_autosummary/foxes.input.states.field_data_nc.FieldDataNC.html#foxes.input.states.field_data_nc.FieldDataNC.weights">[docs]</a>    <span class="k">def</span> <span class="nf">weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldDataNC.weights"><a class="viewcode-back" href="../../../../_input/states/FieldDataNC.weights.html#foxes.input.states.FieldDataNC.weights">[docs]</a>    <span class="k">def</span> <span class="nf">weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The statistical weights of all states.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        weights : numpy.ndarray</span>
+<span class="sd">        weights: numpy.ndarray</span>
 <span class="sd">            The weights, shape: (n_states, n_turbines)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_weights</span></div>
 
-<div class="viewcode-block" id="FieldDataNC.calculate"><a class="viewcode-back" href="../../../../_autosummary/foxes.input.states.field_data_nc.FieldDataNC.html#foxes.input.states.field_data_nc.FieldDataNC.calculate">[docs]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldDataNC.calculate"><a class="viewcode-back" href="../../../../_input/states/FieldDataNC.calculate.html#foxes.input.states.FieldDataNC.calculate">[docs]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;</span>
 <span class="sd">        The main model calculation.</span>
 
@@ -715,18 +720,18 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata : foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.Data</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata : foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        pdata : foxes.core.Data</span>
+<span class="sd">        pdata: foxes.core.Data</span>
 <span class="sd">            The point data</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        results : dict</span>
+<span class="sd">        results: dict</span>
 <span class="sd">            The resulting data, keys: output variable str.</span>
 <span class="sd">            Values: numpy.ndarray with shape (n_states, n_points)</span>
 
@@ -783,7 +788,7 @@
             <span class="n">data</span> <span class="o">=</span> <span class="n">iterp</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_dvars</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Interpolation error&quot;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;INPUT VARS : (state, heights, y, x)&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;INPUT VARS: (state, heights, y, x)&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span>
                 <span class="s2">&quot;DATA BOUNDS:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">gvars</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">gvars</span><span class="p">]</span>
             <span class="p">)</span>
@@ -824,7 +829,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -852,14 +857,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -871,8 +868,6 @@
         <script src="../../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../../_static/require.min.js"></script>
-        <script src="../../../../_static/custom.js"></script>
     
   </body>
 </html>

@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.wind_farm - foxes 0.3.5
+        <title>foxes.core.wind_farm - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -311,40 +310,46 @@
 
 
 <h1>Source code for foxes.core.wind_farm</h1><div class="highlight"><pre>
-<div class="viewcode-block" id="WindFarm"><a class="viewcode-back" href="../../../_autosummary/foxes.core.wind_farm.WindFarm.html#foxes.core.wind_farm.WindFarm">[docs]</a><span></span><code><span class="k">class</span> <span class="nc">WindFarm</span><span class="p">:</span>
+<div class="viewcode-block" id="WindFarm"><a class="viewcode-back" href="../../../api_foxes.html#foxes.core.WindFarm">[docs]</a><span></span><code><span class="k">class</span> <span class="nc">WindFarm</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The wind farm.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    name : str</span>
-<span class="sd">        The wind farm name</span>
-
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    name : str</span>
+<span class="sd">    name: str</span>
 <span class="sd">        The wind farm name</span>
-<span class="sd">    turbines : list of foxes.core.Turbine</span>
+<span class="sd">    turbines: list of foxes.core.Turbine</span>
 <span class="sd">        The wind turbines</span>
-<span class="sd">    boundary : foxes.utils.geom2d.AreaGeometry, optional</span>
+<span class="sd">    boundary: foxes.utils.geom2d.AreaGeometry, optional</span>
 <span class="sd">        The wind farm boundary</span>
+<span class="sd">    </span>
+<span class="sd">    :group: foxes</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="WindFarm.__init__"><a class="viewcode-back" href="../../../_autosummary/foxes.core.wind_farm.WindFarm.html#foxes.core.wind_farm.WindFarm.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;wind_farm&quot;</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="WindFarm.__init__"><a class="viewcode-back" href="../../../_core/WindFarm.__init__.html#foxes.core.WindFarm.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;wind_farm&quot;</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            The wind farm name</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">turbines</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">boundary</span> <span class="o">=</span> <span class="n">boundary</span></div>
 
-<div class="viewcode-block" id="WindFarm.add_turbine"><a class="viewcode-back" href="../../../_autosummary/foxes.core.wind_farm.WindFarm.html#foxes.core.wind_farm.WindFarm.add_turbine">[docs]</a>    <span class="k">def</span> <span class="nf">add_turbine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turbine</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="WindFarm.add_turbine"><a class="viewcode-back" href="../../../_core/WindFarm.add_turbine.html#foxes.core.WindFarm.add_turbine">[docs]</a>    <span class="k">def</span> <span class="nf">add_turbine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turbine</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a wind turbine to the list.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        turbine : foxes.core.Turbine</span>
+<span class="sd">        turbine: foxes.core.Turbine</span>
 <span class="sd">            The wind turbine</span>
-<span class="sd">        verbosity : int</span>
+<span class="sd">        verbosity: int</span>
 <span class="sd">            The output verbosity, 0 = silent</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -365,7 +370,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        n_turbines : int</span>
+<span class="sd">        n_turbines: int</span>
 <span class="sd">            The total number of turbines</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -378,7 +383,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        names : list of str</span>
+<span class="sd">        names: list of str</span>
 <span class="sd">            The names of all turbines</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -397,7 +402,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -425,14 +430,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -444,8 +441,6 @@
         <script src="../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../_static/require.min.js"></script>
-        <script src="../../../_static/custom.js"></script>
     
   </body>
 </html>

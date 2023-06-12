@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.farm_results_eval - foxes 0.3.5
+        <title>foxes.output.farm_results_eval - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -319,29 +318,35 @@
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 
-<div class="viewcode-block" id="FarmResultsEval"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval">[docs]</a><span class="k">class</span> <span class="nc">FarmResultsEval</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval"><a class="viewcode-back" href="../../../api_output.html#foxes.output.FarmResultsEval">[docs]</a><span class="k">class</span> <span class="nc">FarmResultsEval</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluates farm results data.</span>
 
 <span class="sd">    This sums over turbines and/or states,</span>
 <span class="sd">    given the state-turbine farm_calc results.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    farm_results : xarray.Dataset</span>
-<span class="sd">        The farm results</span>
-
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    results : xarray.Dataset</span>
+<span class="sd">    results: xarray.Dataset</span>
 <span class="sd">        The farm results</span>
+
+<span class="sd">    :group: output</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="FarmResultsEval.__init__"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.__init__"><a class="viewcode-back" href="../../../_output/FarmResultsEval.__init__.html#foxes.output.FarmResultsEval.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        farm_results: xarray.Dataset</span>
+<span class="sd">            The farm results</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">farm_results</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.weinsum"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.weinsum">[docs]</a>    <span class="k">def</span> <span class="nf">weinsum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="o">*</span><span class="nb">vars</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.weinsum"><a class="viewcode-back" href="../../../_output/FarmResultsEval.weinsum.html#foxes.output.FarmResultsEval.weinsum">[docs]</a>    <span class="k">def</span> <span class="nf">weinsum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="o">*</span><span class="nb">vars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates Einstein sum, adding weights</span>
 <span class="sd">        as last argument to the given fields.</span>
@@ -350,17 +355,17 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        rhs : str</span>
+<span class="sd">        rhs: str</span>
 <span class="sd">            The right-hand side of the einsum expression.</span>
 <span class="sd">            Convention: &#39;s&#39; for states, &#39;t&#39; for turbines</span>
-<span class="sd">        vars : tuple of str or np.ndarray</span>
+<span class="sd">        vars: tuple of str or np.ndarray</span>
 <span class="sd">            The variables mentioned in the expression,</span>
 <span class="sd">            but without the obligatory weights that will</span>
 <span class="sd">            be added at the end</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        result : np.ndarray</span>
+<span class="sd">        result: np.ndarray</span>
 <span class="sd">            The results array</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -394,20 +399,20 @@
 
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">*</span><span class="n">fields</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.reduce_states"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.reduce_states">[docs]</a>    <span class="k">def</span> <span class="nf">reduce_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_op</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.reduce_states"><a class="viewcode-back" href="../../../_output/FarmResultsEval.reduce_states.html#foxes.output.FarmResultsEval.reduce_states">[docs]</a>    <span class="k">def</span> <span class="nf">reduce_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_op</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reduces the states dimension by some operation</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars_op : dict</span>
+<span class="sd">        vars_op: dict</span>
 <span class="sd">            The operation per variable. Key: str, the variable</span>
 <span class="sd">            name. Value: str, the operation, choices</span>
 <span class="sd">            are: sum, mean, min, max.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        data : pandas.DataFrame</span>
+<span class="sd">        data: pandas.DataFrame</span>
 <span class="sd">            The results per turbine</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -439,20 +444,20 @@
 
         <span class="k">return</span> <span class="n">data</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.reduce_turbines"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.reduce_turbines">[docs]</a>    <span class="k">def</span> <span class="nf">reduce_turbines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_op</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.reduce_turbines"><a class="viewcode-back" href="../../../_output/FarmResultsEval.reduce_turbines.html#foxes.output.FarmResultsEval.reduce_turbines">[docs]</a>    <span class="k">def</span> <span class="nf">reduce_turbines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_op</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reduces the turbine dimension by some operation</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars_op : dict</span>
+<span class="sd">        vars_op: dict</span>
 <span class="sd">            The operation per variable. Key: str, the variable</span>
 <span class="sd">            name. Value: str, the operation, choices</span>
 <span class="sd">            are: sum, mean, min, max.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        data : pandas.DataFrame</span>
+<span class="sd">        data: pandas.DataFrame</span>
 <span class="sd">            The results per state</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -481,18 +486,18 @@
 
         <span class="k">return</span> <span class="n">data</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.reduce_all"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.reduce_all">[docs]</a>    <span class="k">def</span> <span class="nf">reduce_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states_op</span><span class="p">,</span> <span class="n">turbines_op</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.reduce_all"><a class="viewcode-back" href="../../../_output/FarmResultsEval.reduce_all.html#foxes.output.FarmResultsEval.reduce_all">[docs]</a>    <span class="k">def</span> <span class="nf">reduce_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states_op</span><span class="p">,</span> <span class="n">turbines_op</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reduces states and turbine dimension by some operation</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        states_op : dict</span>
+<span class="sd">        states_op: dict</span>
 <span class="sd">            The states contraction operations.</span>
 <span class="sd">            Key: str, the variable name. Value:</span>
 <span class="sd">            str, the operation, choices are:</span>
 <span class="sd">            sum, mean, min, max.</span>
-<span class="sd">        turbines_op : dict</span>
+<span class="sd">        turbines_op: dict</span>
 <span class="sd">            The turbines contraction operations.</span>
 <span class="sd">            Key: str, the variable name. Value:</span>
 <span class="sd">            str, the operation, choices are:</span>
@@ -500,7 +505,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        data : dict</span>
+<span class="sd">        data: dict</span>
 <span class="sd">            The fully contracted results</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -531,18 +536,18 @@
 
         <span class="k">return</span> <span class="n">rdata</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.calc_states_mean"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_states_mean">[docs]</a>    <span class="k">def</span> <span class="nf">calc_states_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.calc_states_mean"><a class="viewcode-back" href="../../../_output/FarmResultsEval.calc_states_mean.html#foxes.output.FarmResultsEval.calc_states_mean">[docs]</a>    <span class="k">def</span> <span class="nf">calc_states_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the mean wrt states.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars : list of str</span>
+<span class="sd">        vars: list of str</span>
 <span class="sd">            The variables</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        data : pandas.DataFrame</span>
+<span class="sd">        data: pandas.DataFrame</span>
 <span class="sd">            The results per turbine</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -550,24 +555,24 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_states</span><span class="p">({</span><span class="nb">vars</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">})</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_states</span><span class="p">({</span><span class="n">v</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">})</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.calc_states_sum"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_states_sum">[docs]</a>    <span class="k">def</span> <span class="nf">calc_states_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.calc_states_sum"><a class="viewcode-back" href="../../../_output/FarmResultsEval.calc_states_sum.html#foxes.output.FarmResultsEval.calc_states_sum">[docs]</a>    <span class="k">def</span> <span class="nf">calc_states_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the sum wrt states.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars : list of str</span>
+<span class="sd">        vars: list of str</span>
 <span class="sd">            The variables</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        data : pandas.DataFrame</span>
+<span class="sd">        data: pandas.DataFrame</span>
 <span class="sd">            The results per turbine</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_states</span><span class="p">({</span><span class="n">v</span><span class="p">:</span> <span class="s2">&quot;sum&quot;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">})</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.calc_states_std"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_states_std">[docs]</a>    <span class="k">def</span> <span class="nf">calc_states_std</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.calc_states_std"><a class="viewcode-back" href="../../../_output/FarmResultsEval.calc_states_std.html#foxes.output.FarmResultsEval.calc_states_std">[docs]</a>    <span class="k">def</span> <span class="nf">calc_states_std</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the standard deviation wrt states.</span>
 
@@ -580,88 +585,88 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_states</span><span class="p">({</span><span class="n">v</span><span class="p">:</span> <span class="s2">&quot;std&quot;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">})</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.calc_turbine_mean"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_turbine_mean">[docs]</a>    <span class="k">def</span> <span class="nf">calc_turbine_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.calc_turbine_mean"><a class="viewcode-back" href="../../../_output/FarmResultsEval.calc_turbine_mean.html#foxes.output.FarmResultsEval.calc_turbine_mean">[docs]</a>    <span class="k">def</span> <span class="nf">calc_turbine_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the mean wrt turbines.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars : list of str</span>
+<span class="sd">        vars: list of str</span>
 <span class="sd">            The variables</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        data : pandas.DataFrame</span>
+<span class="sd">        data: pandas.DataFrame</span>
 <span class="sd">            The results per state</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_turbines</span><span class="p">({</span><span class="n">v</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">})</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.calc_turbine_sum"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_turbine_sum">[docs]</a>    <span class="k">def</span> <span class="nf">calc_turbine_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.calc_turbine_sum"><a class="viewcode-back" href="../../../_output/FarmResultsEval.calc_turbine_sum.html#foxes.output.FarmResultsEval.calc_turbine_sum">[docs]</a>    <span class="k">def</span> <span class="nf">calc_turbine_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the sum wrt turbines.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars : list of str</span>
+<span class="sd">        vars: list of str</span>
 <span class="sd">            The variables</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        data : pandas.DataFrame</span>
+<span class="sd">        data: pandas.DataFrame</span>
 <span class="sd">            The results per state</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_turbines</span><span class="p">({</span><span class="n">v</span><span class="p">:</span> <span class="s2">&quot;sum&quot;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">})</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.calc_farm_mean"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_farm_mean">[docs]</a>    <span class="k">def</span> <span class="nf">calc_farm_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.calc_farm_mean"><a class="viewcode-back" href="../../../_output/FarmResultsEval.calc_farm_mean.html#foxes.output.FarmResultsEval.calc_farm_mean">[docs]</a>    <span class="k">def</span> <span class="nf">calc_farm_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the mean over states and turbines.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars : list of str</span>
+<span class="sd">        vars: list of str</span>
 <span class="sd">            The variables</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        data : dict</span>
+<span class="sd">        data: dict</span>
 <span class="sd">            The fully contracted results</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">op</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_all</span><span class="p">(</span><span class="n">states_op</span><span class="o">=</span><span class="n">op</span><span class="p">,</span> <span class="n">turbines_op</span><span class="o">=</span><span class="n">op</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.calc_farm_sum"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_farm_sum">[docs]</a>    <span class="k">def</span> <span class="nf">calc_farm_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.calc_farm_sum"><a class="viewcode-back" href="../../../_output/FarmResultsEval.calc_farm_sum.html#foxes.output.FarmResultsEval.calc_farm_sum">[docs]</a>    <span class="k">def</span> <span class="nf">calc_farm_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the sum over states and turbines.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vars : list of str</span>
+<span class="sd">        vars: list of str</span>
 <span class="sd">            The variables</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        data : dict</span>
+<span class="sd">        data: dict</span>
 <span class="sd">            The fully contracted results</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">op</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="s2">&quot;sum&quot;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_all</span><span class="p">(</span><span class="n">states_op</span><span class="o">=</span><span class="n">op</span><span class="p">,</span> <span class="n">turbines_op</span><span class="o">=</span><span class="n">op</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.calc_mean_farm_power"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_mean_farm_power">[docs]</a>    <span class="k">def</span> <span class="nf">calc_mean_farm_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.calc_mean_farm_power"><a class="viewcode-back" href="../../../_output/FarmResultsEval.calc_mean_farm_power.html#foxes.output.FarmResultsEval.calc_mean_farm_power">[docs]</a>    <span class="k">def</span> <span class="nf">calc_mean_farm_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the mean total farm power.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        ambient : bool</span>
+<span class="sd">        ambient: bool</span>
 <span class="sd">            Flag for ambient power</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        data : float</span>
+<span class="sd">        data: float</span>
 <span class="sd">            The mean wind farm power</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -669,7 +674,7 @@
         <span class="n">cdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_all</span><span class="p">(</span><span class="n">states_op</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">},</span> <span class="n">turbines_op</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="s2">&quot;sum&quot;</span><span class="p">})</span>
         <span class="k">return</span> <span class="n">cdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.calc_turbine_yield"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_turbine_yield">[docs]</a>    <span class="k">def</span> <span class="nf">calc_turbine_yield</span><span class="p">(</span>
+<div class="viewcode-block" id="FarmResultsEval.calc_turbine_yield"><a class="viewcode-back" href="../../../_output/FarmResultsEval.calc_turbine_yield.html#foxes.output.FarmResultsEval.calc_turbine_yield">[docs]</a>    <span class="k">def</span> <span class="nf">calc_turbine_yield</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">annual</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -683,18 +688,18 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm, optional</span>
+<span class="sd">        algo: foxes.core.Algorithm, optional</span>
 <span class="sd">            The algorithm, for P_nominal lookup</span>
-<span class="sd">        annual : bool, optional</span>
+<span class="sd">        annual: bool, optional</span>
 <span class="sd">            Flag for returing annual results, by default False</span>
-<span class="sd">        ambient : bool, optional</span>
+<span class="sd">        ambient: bool, optional</span>
 <span class="sd">            Flag for ambient power, by default False</span>
-<span class="sd">        hours : int, optional</span>
+<span class="sd">        hours: int, optional</span>
 <span class="sd">            The duration time in hours, if not timeseries states</span>
-<span class="sd">        delta_t : np.datetime64, optional</span>
+<span class="sd">        delta_t: np.datetime64, optional</span>
 <span class="sd">            The time delta step in case of time series data,</span>
 <span class="sd">            by default automatically determined</span>
-<span class="sd">        P_unit_W : float</span>
+<span class="sd">        P_unit_W: float</span>
 <span class="sd">            The power unit in Watts, 1000 for kW. Looked up</span>
 <span class="sd">            in algorithm if not given</span>
 
@@ -748,19 +753,19 @@
         <span class="n">yld</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">var_in</span><span class="p">:</span> <span class="n">var_out</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">yld</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.add_capacity"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.add_capacity">[docs]</a>    <span class="k">def</span> <span class="nf">add_capacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">P_nom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.add_capacity"><a class="viewcode-back" href="../../../_output/FarmResultsEval.add_capacity.html#foxes.output.FarmResultsEval.add_capacity">[docs]</a>    <span class="k">def</span> <span class="nf">add_capacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">P_nom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds capacity to the farm results</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        algo : foxes.core.Algorithm, optional</span>
+<span class="sd">        algo: foxes.core.Algorithm, optional</span>
 <span class="sd">            The algorithm, for nominal power calculation</span>
-<span class="sd">        P_nom : list of float, optional</span>
+<span class="sd">        P_nom: list of float, optional</span>
 <span class="sd">            Nominal power values for each turbine, if algo not given</span>
-<span class="sd">        ambient : bool, optional</span>
+<span class="sd">        ambient: bool, optional</span>
 <span class="sd">            Flag for calculating ambient capacity, by default False</span>
-<span class="sd">        verbosity : int</span>
+<span class="sd">        verbosity: int</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -792,28 +797,28 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Capacity added to farm results&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.calc_farm_yield"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_farm_yield">[docs]</a>    <span class="k">def</span> <span class="nf">calc_farm_yield</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turbine_yield</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">power_uncert</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.calc_farm_yield"><a class="viewcode-back" href="../../../_output/FarmResultsEval.calc_farm_yield.html#foxes.output.FarmResultsEval.calc_farm_yield">[docs]</a>    <span class="k">def</span> <span class="nf">calc_farm_yield</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turbine_yield</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">power_uncert</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates yield, P75 and P90 at the farm level</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        turbine_yield : pandas.DataFrame, optional</span>
+<span class="sd">        turbine_yield: pandas.DataFrame, optional</span>
 <span class="sd">            Yield values by turbine</span>
-<span class="sd">        power_uncert : float, optional</span>
+<span class="sd">        power_uncert: float, optional</span>
 <span class="sd">            Uncertainty in the power value. Triggers</span>
 <span class="sd">            P75 and P90 outputs</span>
-<span class="sd">        kwargs : dict, optional</span>
+<span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Parameters for calc_turbine_yield(). Apply if</span>
 <span class="sd">            turbine_yield is not given</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        farm_yield : float</span>
+<span class="sd">        farm_yield: float</span>
 <span class="sd">            Farm yield result, same unit as turbine yield</span>
-<span class="sd">        P75 : float, optional</span>
+<span class="sd">        P75: float, optional</span>
 <span class="sd">            The P75 value, same unit as turbine yield</span>
-<span class="sd">        P90 : float, optional</span>
+<span class="sd">        P90: float, optional</span>
 <span class="sd">            The P90 value, same unit as turbine yield</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -830,13 +835,13 @@
 
         <span class="k">return</span> <span class="n">farm_yield</span><span class="p">[</span><span class="s2">&quot;YLD&quot;</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.add_efficiency"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.add_efficiency">[docs]</a>    <span class="k">def</span> <span class="nf">add_efficiency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.add_efficiency"><a class="viewcode-back" href="../../../_output/FarmResultsEval.add_efficiency.html#foxes.output.FarmResultsEval.add_efficiency">[docs]</a>    <span class="k">def</span> <span class="nf">add_efficiency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds efficiency to the farm results</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        verbosity : int</span>
+<span class="sd">        verbosity: int</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -846,13 +851,13 @@
         <span class="k">if</span> <span class="n">verbosity</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Efficiency added to farm results&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FarmResultsEval.calc_farm_efficiency"><a class="viewcode-back" href="../../../_autosummary/foxes.output.farm_results_eval.FarmResultsEval.html#foxes.output.farm_results_eval.FarmResultsEval.calc_farm_efficiency">[docs]</a>    <span class="k">def</span> <span class="nf">calc_farm_efficiency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FarmResultsEval.calc_farm_efficiency"><a class="viewcode-back" href="../../../_output/FarmResultsEval.calc_farm_efficiency.html#foxes.output.FarmResultsEval.calc_farm_efficiency">[docs]</a>    <span class="k">def</span> <span class="nf">calc_farm_efficiency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates farm efficiency</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        eff : float</span>
+<span class="sd">        eff: float</span>
 <span class="sd">            The farm efficiency</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -873,7 +878,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -901,14 +906,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -920,8 +917,6 @@
         <script src="../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../_static/require.min.js"></script>
-        <script src="../../../_static/custom.js"></script>
     
   </body>
 </html>

@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.results_writer - foxes 0.3.5
+        <title>foxes.output.results_writer - foxes 0.4
  documentation</title>
       
     
@@ -39,7 +39,6 @@
     
         <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
         <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
-        <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
@@ -88,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.3.5
+            foxes 0.4
  documentation
           </span>
         </div>
@@ -176,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.3.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.3.5
+    <a href="../../../index.html" title="foxes 0.4
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.3.5
+    foxes 0.4
  documentation
   </label>
   
@@ -315,25 +314,31 @@
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 
-<div class="viewcode-block" id="ResultsWriter"><a class="viewcode-back" href="../../../_autosummary/foxes.output.results_writer.ResultsWriter.html#foxes.output.results_writer.ResultsWriter">[docs]</a><span class="k">class</span> <span class="nc">ResultsWriter</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
+<div class="viewcode-block" id="ResultsWriter"><a class="viewcode-back" href="../../../api_output.html#foxes.output.ResultsWriter">[docs]</a><span class="k">class</span> <span class="nc">ResultsWriter</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Writes results farm data to file.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    farm_results : xarray.Dataset, optional</span>
-<span class="sd">        The farm results, if data is None</span>
-<span class="sd">    data : pandas.DataFrame, optional</span>
-<span class="sd">        The data, if farm_results is None</span>
-
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    data : pandas.DataFrame</span>
+<span class="sd">    data: pandas.DataFrame</span>
 <span class="sd">        The farm results</span>
+
+<span class="sd">    :group: output</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ResultsWriter.__init__"><a class="viewcode-back" href="../../../_autosummary/foxes.output.results_writer.ResultsWriter.html#foxes.output.results_writer.ResultsWriter.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">farm_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ResultsWriter.__init__"><a class="viewcode-back" href="../../../_output/ResultsWriter.__init__.html#foxes.output.ResultsWriter.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">farm_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        farm_results: xarray.Dataset, optional</span>
+<span class="sd">            The farm results, if data is None</span>
+<span class="sd">        data: pandas.DataFrame, optional</span>
+<span class="sd">            The data, if farm_results is None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">farm_results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">farm_results</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TNAME</span><span class="p">]</span> <span class="o">=</span> <span class="n">farm_results</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TNAME</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span>
@@ -347,7 +352,7 @@
                 <span class="sa">f</span><span class="s2">&quot;ResultsWriter: Either give &#39;farm_results&#39; or &#39;data&#39; arguments&quot;</span>
             <span class="p">)</span></div>
 
-<div class="viewcode-block" id="ResultsWriter.write_csv"><a class="viewcode-back" href="../../../_autosummary/foxes.output.results_writer.ResultsWriter.html#foxes.output.results_writer.ResultsWriter.write_csv">[docs]</a>    <span class="k">def</span> <span class="nf">write_csv</span><span class="p">(</span>
+<div class="viewcode-block" id="ResultsWriter.write_csv"><a class="viewcode-back" href="../../../_output/ResultsWriter.write_csv.html#foxes.output.ResultsWriter.write_csv">[docs]</a>    <span class="k">def</span> <span class="nf">write_csv</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">file_path</span><span class="p">,</span>
         <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -360,18 +365,18 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        file_path : str</span>
+<span class="sd">        file_path: str</span>
 <span class="sd">            Path the the csv file</span>
-<span class="sd">        variables : dict or list of str, optional</span>
+<span class="sd">        variables: dict or list of str, optional</span>
 <span class="sd">            The variables to be written. If a dict, then</span>
 <span class="sd">            the keys are the foxes variables and the values</span>
 <span class="sd">            the column names. If None, then all data will be</span>
 <span class="sd">            written.</span>
-<span class="sd">        turbine_names : bool</span>
+<span class="sd">        turbine_names: bool</span>
 <span class="sd">            Use turbine names instead of turbine indices</span>
-<span class="sd">        verbosity : int</span>
+<span class="sd">        verbosity: int</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
-<span class="sd">        kwargs : dict, optional</span>
+<span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Additional parameters for Output.write()</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -411,7 +416,7 @@
         </div>
         
       </main>
-       
+      
         <footer class="md-footer">
   
   
@@ -439,14 +444,6 @@
   </div>
 </footer>
       
-
-  <style>
-    /* Sidebar header (and topbar for mobile) */
-    .wy-side-nav-search, .wy-nav-top {
-      background: #009879;
-    }
-  </style>
-
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -458,8 +455,6 @@
         <script src="../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-        <script src="../../../_static/require.min.js"></script>
-        <script src="../../../_static/custom.js"></script>
     
   </body>
 </html>
