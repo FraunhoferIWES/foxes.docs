@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.wake_models.wind.porte_agel - foxes 0.4.0
+        <title>foxes.models.wake_models.wind.porte_agel - foxes 0.4.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 0.4.0
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../../../index.html" title="foxes 0.4.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.0
+            foxes 0.4.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 0.4.0
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../../../index.html" title="foxes 0.4.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.0
+    foxes 0.4.1
  documentation
   </label>
   
@@ -338,7 +338,7 @@
 <span class="sd">    Common calculations for the wake model and the wake</span>
 <span class="sd">    frame, such that code repetitions can be avoided.</span>
 
-<span class="sd">    Based on Bastankhah &amp; Porte-Agel, 2016, </span>
+<span class="sd">    Based on Bastankhah &amp; Porte-Agel, 2016,</span>
 <span class="sd">    https://doi.org/10.1017/jfm.2016.595</span>
 
 <span class="sd">    Attributes</span>
@@ -350,7 +350,7 @@
 <span class="sd">        model parameter used to determine onset of far wake region</span>
 <span class="sd">    beta: float</span>
 <span class="sd">        model parameter used to determine onset of far wake region</span>
-<span class="sd">    </span>
+
 <span class="sd">    :group: models.wake_models.wind</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -375,7 +375,7 @@
 <div class="viewcode-block" id="PorteAgelModel.__init__"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/PorteAgelModel.__init__.html#foxes.models.wake_models.wind.PorteAgelModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ct_max</span><span class="o">=</span><span class="mf">0.9999</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.58</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.07</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        ct_max: float</span>
@@ -391,7 +391,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ct_max</span> <span class="o">=</span> <span class="n">ct_max</span>
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">PA_ALPHA</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">PA_BETA</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span></div>
-
+    
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">pars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -409,8 +409,10 @@
 
 <div class="viewcode-block" id="PorteAgelModel.calc_data"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/PorteAgelModel.calc_data.html#foxes.models.wake_models.wind.PorteAgelModel.calc_data">[docs]</a>    <span class="k">def</span> <span class="nf">calc_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
         <span class="n">fdata</span><span class="p">,</span>
+        <span class="n">pdata</span><span class="p">,</span>
         <span class="n">states_source_turbine</span><span class="p">,</span>
         <span class="n">x</span><span class="p">,</span>
         <span class="n">gamma</span><span class="p">,</span>
@@ -421,10 +423,14 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
 <span class="sd">        mdata: foxes.core.Data</span>
 <span class="sd">            The model data</span>
 <span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
+<span class="sd">        pdata: foxes.core.Data</span>
+<span class="sd">            The evaluation point data</span>
 <span class="sd">        states_source_turbine: numpy.ndarray</span>
 <span class="sd">            For each state, one turbine index for the</span>
 <span class="sd">            wake causing turbine. Shape: (n_states,)</span>
@@ -436,11 +442,6 @@
 <span class="sd">            The k parameter values, shape: (n_states, n_points)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># prepare:</span>
-        <span class="n">n_states</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span>
-        <span class="n">n_points</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">st_sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">),</span> <span class="n">states_source_turbine</span><span class="p">)</span>
-
 
         <span class="c1"># store parameters:</span>
         <span class="n">out</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">PARS</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">}</span>
@@ -451,32 +452,39 @@
         <span class="p">)</span>
 
         <span class="c1"># get D:</span>
-        <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-        <span class="n">D</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">][</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
+                            <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
 
         <span class="c1"># get ct:</span>
-        <span class="n">ct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-        <span class="n">ct</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">][</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="n">ct</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
+                            <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
         <span class="n">ct</span><span class="p">[</span><span class="n">ct</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">ct_max</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ct_max</span>
 
         <span class="c1"># select targets:</span>
         <span class="n">sp_sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mf">1e-5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ct</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sp_sel</span><span class="p">):</span>
+
             <span class="c1"># get ws:</span>
-            <span class="n">ws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-            <span class="n">ws</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">][</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="n">ws</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
+                                <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
 
             <span class="c1"># get TI:</span>
-            <span class="n">ti</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-            <span class="n">ti</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">][</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="n">ti</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
+                                <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
 
             <span class="c1"># get alpha:</span>
-            <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-            <span class="n">alpha</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">PA_ALPHA</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">data_prio</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="s2">&quot;farm&quot;</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">PA_ALPHA</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
+                                <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
 
             <span class="c1"># get beta:</span>
-            <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-            <span class="n">beta</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">PA_BETA</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">data_prio</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="s2">&quot;farm&quot;</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="n">beta</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">PA_BETA</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
+                                <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
 
             <span class="c1"># apply filter:</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
@@ -488,7 +496,7 @@
             <span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
             <span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
             <span class="n">beta</span> <span class="o">=</span> <span class="n">beta</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
-        
+
             <span class="c1"># calc theta_c0, Eq. (6.12):</span>
             <span class="n">cosg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
             <span class="n">theta</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">gamma</span> <span class="o">/</span> <span class="n">cosg</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ct</span> <span class="o">*</span> <span class="n">cosg</span><span class="p">))</span>
@@ -637,7 +645,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The Bastankhah PorteAgel wake model</span>
 
-<span class="sd">    Based on Bastankhah &amp; Porte-Agel, 2016, </span>
+<span class="sd">    Based on Bastankhah &amp; Porte-Agel, 2016,</span>
 <span class="sd">    https://doi.org/10.1017/jfm.2016.595</span>
 
 <span class="sd">    Attributes</span>
@@ -658,17 +666,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="PorteAgelWake.__init__"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/PorteAgelWake.__init__.html#foxes.models.wake_models.wind.PorteAgelWake.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> 
-            <span class="n">superposition</span><span class="p">,</span> 
-            <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-            <span class="n">ct_max</span><span class="o">=</span><span class="mf">0.9999</span><span class="p">,</span> 
-            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.58</span><span class="p">,</span> 
-            <span class="n">beta</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> 
-            <span class="n">k_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">K</span><span class="p">,</span>
-        <span class="p">):</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">superposition</span><span class="p">,</span>
+        <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ct_max</span><span class="o">=</span><span class="mf">0.9999</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.58</span><span class="p">,</span>
+        <span class="n">beta</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+        <span class="n">k_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">K</span><span class="p">,</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        superposition: dict</span>
@@ -702,8 +710,8 @@
         <span class="n">s</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
         <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">, sp=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
         <span class="k">return</span> <span class="n">s</span></div>
-
-<div class="viewcode-block" id="PorteAgelWake.init_wake_deltas"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/PorteAgelWake.init_wake_deltas.html#foxes.models.wake_models.wind.PorteAgelWake.init_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
+    
+<div class="viewcode-block" id="PorteAgelWake.init_wake_deltas"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/PorteAgelWake.init_wake_deltas.html#foxes.models.wake_models.wind.PorteAgelWake.init_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize wake delta storage.</span>
 
@@ -717,8 +725,8 @@
 <span class="sd">            The model data</span>
 <span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        n_points: int</span>
-<span class="sd">            The number of wake evaluation points</span>
+<span class="sd">        pdata: foxes.core.Data</span>
+<span class="sd">            The evaluation point data</span>
 <span class="sd">        wake_deltas: dict</span>
 <span class="sd">            The wake deltas storage, add wake deltas</span>
 <span class="sd">            on the fly. Keys: Variable name str, for which the</span>
@@ -727,9 +735,18 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">n_states</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span>
-        <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span></div>
+        <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">pdata</span><span class="o">.</span><span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PorteAgelWake.calc_wakes_spsel_x_yz"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/PorteAgelWake.calc_wakes_spsel_x_yz.html#foxes.models.wake_models.wind.PorteAgelWake.calc_wakes_spsel_x_yz">[docs]</a>    <span class="k">def</span> <span class="nf">calc_wakes_spsel_x_yz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">yz</span><span class="p">):</span>
+<div class="viewcode-block" id="PorteAgelWake.calc_wakes_spsel_x_yz"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/PorteAgelWake.calc_wakes_spsel_x_yz.html#foxes.models.wake_models.wind.PorteAgelWake.calc_wakes_spsel_x_yz">[docs]</a>    <span class="k">def</span> <span class="nf">calc_wakes_spsel_x_yz</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">algo</span><span class="p">,</span> 
+        <span class="n">mdata</span><span class="p">,</span> 
+        <span class="n">fdata</span><span class="p">,</span> 
+        <span class="n">pdata</span><span class="p">,</span> 
+        <span class="n">states_source_turbine</span><span class="p">,</span> 
+        <span class="n">x</span><span class="p">,</span> 
+        <span class="n">yz</span><span class="p">,</span>
+        <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate wake deltas.</span>
 
@@ -741,6 +758,8 @@
 <span class="sd">            The model data</span>
 <span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
+<span class="sd">        pdata: foxes.core.Data</span>
+<span class="sd">            The evaluation point data</span>
 <span class="sd">        states_source_turbine: numpy.ndarray</span>
 <span class="sd">            For each state, one turbine index for the</span>
 <span class="sd">            wake causing turbine. Shape: (n_states,)</span>
@@ -760,6 +779,7 @@
 <span class="sd">            is non-zero, shape: (n_states, n_points)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        
         <span class="c1"># prepare:</span>
         <span class="n">n_states</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span>
         <span class="n">n_points</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -768,19 +788,20 @@
 
         <span class="c1"># calculate model data:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">has_data</span><span class="p">(</span><span class="n">mdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+
             <span class="c1"># get gamma:</span>
-            <span class="n">gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-            <span class="n">gamma</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">YAWM</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="s2">&quot;farm&quot;</span><span class="p">,</span> <span class="n">data_prio</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span>
-                <span class="n">st_sel</span>
-            <span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="n">gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">YAWM</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
+                                <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
             <span class="n">gamma</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
 
             <span class="c1"># get k:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-            <span class="n">k</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="s2">&quot;farm&quot;</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;sf&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
+                                <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
 
             <span class="c1"># run calculation:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">calc_data</span><span class="p">(</span><span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">calc_data</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
 
         <span class="c1"># select targets:</span>
         <span class="n">sp_sel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">PorteAgelModel</span><span class="o">.</span><span class="n">SP_SEL</span><span class="p">,</span> <span class="n">mdata</span><span class="p">)</span>

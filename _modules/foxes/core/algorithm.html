@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.algorithm - foxes 0.4.0
+        <title>foxes.core.algorithm - foxes 0.4.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.4.0
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../index.html" title="foxes 0.4.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.0
+            foxes 0.4.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.4.0
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../index.html" title="foxes 0.4.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.0
+    foxes 0.4.1
  documentation
   </label>
   
@@ -359,14 +359,14 @@
 <span class="sd">        The verbosity level, 0 means silent</span>
 <span class="sd">    dbook: foxes.DataBook</span>
 <span class="sd">        The data book, or None for default</span>
-<span class="sd">    keep_models: list of str</span>
+<span class="sd">    keep_models: set of str</span>
 <span class="sd">        Keep these models data in memory and do not finalize them</span>
-<span class="sd">    </span>
+
 <span class="sd">    :group: core</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Algorithm.__init__"><a class="viewcode-back" href="../../../_core/Algorithm.__init__.html#foxes.core.Algorithm.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">chunks</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">,</span> <span class="n">dbook</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keep_models</span><span class="o">=</span><span class="p">[]):</span>
+<div class="viewcode-block" id="Algorithm.__init__"><a class="viewcode-back" href="../../../_core/Algorithm.__init__.html#foxes.core.Algorithm.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">chunks</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">,</span> <span class="n">dbook</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keep_models</span><span class="o">=</span><span class="nb">set</span><span class="p">()):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -383,7 +383,7 @@
 <span class="sd">            The verbosity level, 0 means silent</span>
 <span class="sd">        dbook: foxes.DataBook, optional</span>
 <span class="sd">            The data book, or None for default</span>
-<span class="sd">        keep_models: list of str</span>
+<span class="sd">        keep_models: set of str</span>
 <span class="sd">            Keep these models data in memory and do not finalize them</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -399,13 +399,24 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">dbook</span> <span class="o">=</span> <span class="n">StaticData</span><span class="p">()</span> <span class="k">if</span> <span class="n">dbook</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">dbook</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">keep_models</span> <span class="o">=</span> <span class="n">keep_models</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_idata_cl</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Algorithm.print"><a class="viewcode-back" href="../../../_core/Algorithm.print.html#foxes.core.Algorithm.print">[docs]</a>    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Algorithm.print"><a class="viewcode-back" href="../../../_core/Algorithm.print.html#foxes.core.Algorithm.print">[docs]</a>    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">vlim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Print function, based on verbosity.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        args: tuple, optional</span>
+<span class="sd">            Arguments for the print function</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Keyword arguments for the print function</span>
+<span class="sd">        vlim: int</span>
+<span class="sd">            The verbosity limit</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="n">vlim</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">__get_sizes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idata</span><span class="p">,</span> <span class="n">mtype</span><span class="p">):</span>
@@ -488,6 +499,11 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">xrdata</span>
 
+<div class="viewcode-block" id="Algorithm.chunked"><a class="viewcode-back" href="../../../_core/Algorithm.chunked.html#foxes.core.Algorithm.chunked">[docs]</a>    <span class="k">def</span> <span class="nf">chunked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ds</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span>
+                <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunks</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">}</span>
+            <span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">ds</span></div>
+
 <div class="viewcode-block" id="Algorithm.initialize"><a class="viewcode-back" href="../../../_core/Algorithm.initialize.html#foxes.core.Algorithm.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the algorithm.</span>
@@ -533,6 +549,8 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initializing model &#39;</span><span class="si">{</span><span class="n">m</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
                 <span class="n">hidata</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">hidata</span>
+                <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">and</span> <span class="n">m</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_models</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_idata_cl</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
 
                 <span class="n">pr</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">FarmController</span><span class="p">):</span>
@@ -556,6 +574,17 @@
 
             <span class="k">if</span> <span class="n">pr</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;-- </span><span class="si">{</span><span class="n">m</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Finished sub-model initialization -- &quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Algorithm.cleanup"><a class="viewcode-back" href="../../../_core/Algorithm.cleanup.html#foxes.core.Algorithm.cleanup">[docs]</a>    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cleanup after calculation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mnames</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_idata_cl</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">mname</span> <span class="ow">in</span> <span class="n">mnames</span><span class="p">:</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_idata_cl</span><span class="p">[</span><span class="n">mname</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">initialized</span> <span class="ow">and</span> <span class="n">mname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">finalize_model</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_idata_cl</span><span class="p">[</span><span class="n">mname</span><span class="p">]</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">idata_mem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -648,10 +677,10 @@
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;Algorithm &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: get_models_data called before initialization&quot;</span>
                 <span class="p">)</span>
-            <span class="n">idata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">idata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
             <span class="n">mnames</span> <span class="o">=</span> <span class="p">[</span><span class="n">mname</span> <span class="k">for</span> <span class="n">mname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">mname</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;__&quot;</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">mname</span> <span class="ow">in</span> <span class="n">mnames</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">mname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_models</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">mname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_models</span> <span class="ow">or</span> <span class="n">mname</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
                     <span class="n">hidata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mname</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">hidata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_idata_mem</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">mname</span><span class="p">)</span>
@@ -692,7 +721,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;points have wrong dimensions, expecting (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_states</span><span class="si">}</span><span class="s2">, n_points, 3), got </span><span class="si">{</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
-        <span class="n">idata</span><span class="p">[</span><span class="s2">&quot;data_vars&quot;</span><span class="p">][</span><span class="n">FC</span><span class="o">.</span><span class="n">POINTS</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">XYH</span><span class="p">),</span> <span class="n">points</span><span class="p">)</span>
+        <span class="n">idata</span><span class="p">[</span><span class="s2">&quot;data_vars&quot;</span><span class="p">][</span><span class="n">FC</span><span class="o">.</span><span class="n">POINTS</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">XYH</span><span class="p">),</span> <span class="n">points</span><span class="p">)</span>
 
         <span class="n">sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_sizes</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="s2">&quot;point&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_xrdata</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">sizes</span><span class="p">)</span></div>

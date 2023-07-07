@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.turbine_models.kTI_model - foxes 0.4.0
+        <title>foxes.models.turbine_models.kTI_model - foxes 0.4.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.4.0
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../../index.html" title="foxes 0.4.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.0
+            foxes 0.4.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.4.0
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../../index.html" title="foxes 0.4.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.0
+    foxes 0.4.1
  documentation
   </label>
   
@@ -351,7 +351,7 @@
 <div class="viewcode-block" id="kTI.__init__"><a class="viewcode-back" href="../../../../_models/turbine_models/kTI.__init__.html#foxes.models.turbine_models.kTI.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kTI</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kb</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ti_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span> <span class="n">ti_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        kTI: float, optional</span>
@@ -378,7 +378,10 @@
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">KB</span><span class="p">,</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">kb</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">kb</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="kTI.__repr__"><a class="viewcode-back" href="../../../../_models/turbine_models/kTI.__repr__.html#foxes.models.turbine_models.kTI.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="si">}</span><span class="s2">, kTI=</span><span class="si">{</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">FV</span><span class="o">.</span><span class="n">KTI</span><span class="p">)</span><span class="si">}</span><span class="s2">, ti=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="si">}</span><span class="s2">, kTI=</span><span class="si">{</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">FV</span><span class="o">.</span><span class="n">KTI</span><span class="p">)</span><span class="si">}</span><span class="s2">, ti=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="kTI.output_farm_vars"><a class="viewcode-back" href="../../../../_models/turbine_models/kTI.output_farm_vars.html#foxes.models.turbine_models.kTI.output_farm_vars">[docs]</a>    <span class="k">def</span> <span class="nf">output_farm_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -423,9 +426,9 @@
 <span class="sd">            Values: numpy.ndarray with shape (n_states, n_turbines)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">kTI</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">KTI</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">st_sel</span><span class="p">)</span>
-        <span class="n">kb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">KB</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">st_sel</span><span class="p">)</span>
-        <span class="n">ti</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">st_sel</span><span class="p">)</span>
+        <span class="n">kTI</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">KTI</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;sf&quot;</span><span class="p">,</span> <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
+        <span class="n">kb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">KB</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;sf&quot;</span><span class="p">,</span> <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
+        <span class="n">ti</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;sf&quot;</span><span class="p">,</span> <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
 
         <span class="n">k</span> <span class="o">=</span> <span class="n">fdata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">fdata</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="n">fdata</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>

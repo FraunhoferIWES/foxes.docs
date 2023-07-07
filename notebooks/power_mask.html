@@ -13,7 +13,7 @@
     
     
       
-        <title>Power mask - foxes 0.4.0
+        <title>Power mask - foxes 0.4.1
  documentation</title>
       
     
@@ -73,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 0.4.0
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.0
+    <a href="../index.html" title="foxes 0.4.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.0
+            foxes 0.4.1
  documentation
           </span>
         </div>
@@ -175,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 0.4.0
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.0
+    <a href="../index.html" title="foxes 0.4.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.0
+    foxes 0.4.1
  documentation
   </label>
   
@@ -439,6 +439,21 @@
 
             
           
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="timelines.html" class="md-nav__link">
+        <span title="/notebooks/timelines.ipynb (reference label)" class="md-ellipsis">Dynamic wakes</span>
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -530,7 +545,8 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [1]:
 </code></pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -685,7 +701,7 @@ Turbine 4, T4: NREL5MW, set_Pmax, PMask
 </code></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="c1"># run calculation with power mask:</span>
-<span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">(</span><span class="n">vars_to_amb</span><span class="o">=</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">])</span>
+<span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">()</span>
 
 <span class="n">fr</span> <span class="o">=</span> <span class="n">farm_results</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fr</span><span class="p">[[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">MAX_P</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_P</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">]])</span>
@@ -766,7 +782,7 @@ Farm power: 15.6 MW, Efficiency = 89.71 %
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [9]:
 </code></pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">(</span><span class="n">vars_to_amb</span><span class="o">=</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">farm_results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">()</span>
 <span class="n">o0</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">StateTurbineMap</span><span class="p">(</span><span class="n">farm_results</span><span class="p">)</span>
 </code></pre></div>
 </div>

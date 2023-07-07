@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.data_calc_model - foxes 0.4.0
+        <title>foxes.core.data_calc_model - foxes 0.4.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.4.0
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../index.html" title="foxes 0.4.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.0
+            foxes 0.4.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.4.0
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../index.html" title="foxes 0.4.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.0
+    foxes 0.4.1
  documentation
   </label>
   
@@ -198,6 +198,22 @@
     </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../citation.html" class="md-nav__link">
+        <span title="/citation.md (reference label)" class="md-ellipsis">Citation</span>
+      </a>
+    </li>
+  
+
     
       
       
@@ -319,7 +335,7 @@
 <span class="kn">from</span> <span class="nn">.data</span> <span class="kn">import</span> <span class="n">Data</span>
 <span class="kn">from</span> <span class="nn">foxes.utils.runners</span> <span class="kn">import</span> <span class="n">DaskRunner</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
-
+<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 
 <div class="viewcode-block" id="DataCalcModel"><a class="viewcode-back" href="../../../api_core.html#foxes.core.DataCalcModel">[docs]</a><span class="k">class</span> <span class="nc">DataCalcModel</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -378,10 +394,16 @@
         <span class="n">out_vars</span><span class="p">,</span>
         <span class="n">out_dims</span><span class="p">,</span>
         <span class="n">calc_pars</span><span class="p">,</span>
+        <span class="n">init_vars</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Wrapper that mitigates between apply_ufunc and `calculate`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">n_prev</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">init_vars</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n_prev</span><span class="p">:</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="n">ldata</span><span class="p">[:</span><span class="n">n_prev</span><span class="p">]</span>
+            <span class="n">ldata</span> <span class="o">=</span> <span class="n">ldata</span><span class="p">[</span><span class="n">n_prev</span><span class="p">:]</span>
 
         <span class="c1"># reconstruct original data:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
@@ -391,7 +413,6 @@
 
             <span class="n">hdata</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">ldata</span><span class="p">[</span><span class="n">v2l</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">v2l</span> <span class="k">else</span> <span class="n">edata</span><span class="p">[</span><span class="n">v2e</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvars</span><span class="p">}</span>
             <span class="n">hdims</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">ldims</span><span class="p">[</span><span class="n">v2l</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">v2l</span> <span class="k">else</span> <span class="n">edims</span><span class="p">[</span><span class="n">v2e</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvars</span><span class="p">}</span>
-
             <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Data</span><span class="p">(</span><span class="n">hdata</span><span class="p">,</span> <span class="n">hdims</span><span class="p">,</span> <span class="n">loop_dims</span><span class="p">))</span>
 
             <span class="k">del</span> <span class="n">hdata</span><span class="p">,</span> <span class="n">hdims</span><span class="p">,</span> <span class="n">v2l</span><span class="p">,</span> <span class="n">v2e</span>
@@ -409,10 +430,22 @@
         <span class="c1"># add zero output data arrays:</span>
         <span class="n">odims</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">out_dims</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">out_vars</span><span class="p">}</span>
         <span class="n">odata</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">oshape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+            <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">oshape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span> 
+            <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">init_vars</span> 
+            <span class="k">else</span> <span class="n">prev</span><span class="p">[</span><span class="n">init_vars</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">out_vars</span>
             <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n_prev</span> <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">odata</span>
+            <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">X</span> <span class="ow">in</span> <span class="n">odata</span> <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">X</span> <span class="ow">in</span> <span class="n">odata</span>
+            <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span> <span class="ow">in</span> <span class="n">odata</span> <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">H</span> <span class="ow">in</span> <span class="n">odata</span><span class="p">):</span>
+            <span class="n">txyh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+            <span class="n">txyh</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">odata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">]</span>
+            <span class="n">txyh</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">odata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">]</span>
+            <span class="n">txyh</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">odata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">]</span>
+            <span class="n">odata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">]</span> <span class="o">=</span> <span class="n">txyh</span>
+            <span class="n">odims</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">XYH</span><span class="p">)</span>
+            <span class="k">del</span> <span class="n">txyh</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Data</span><span class="p">(</span><span class="n">odata</span><span class="p">,</span> <span class="n">odims</span><span class="p">,</span> <span class="n">loop_dims</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
@@ -420,6 +453,11 @@
             <span class="n">odims</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
             <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">odata</span><span class="p">,</span> <span class="n">odims</span><span class="p">,</span> <span class="n">loop_dims</span><span class="p">)</span>
         <span class="k">del</span> <span class="n">odims</span><span class="p">,</span> <span class="n">odata</span>
+
+        <span class="c1"># link chunk state indices from mdata to fdata and pdata:</span>
+        <span class="k">if</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span>
 
         <span class="c1"># run model calculation:</span>
         <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">calc_pars</span><span class="p">)</span>
@@ -450,7 +488,8 @@
         <span class="k">return</span> <span class="n">data</span>
 
 <div class="viewcode-block" id="DataCalcModel.run_calculation"><a class="viewcode-back" href="../../../_core/DataCalcModel.run_calculation.html#foxes.core.DataCalcModel.run_calculation">[docs]</a>    <span class="k">def</span> <span class="nf">run_calculation</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">out_vars</span><span class="p">,</span> <span class="n">loop_dims</span><span class="p">,</span> <span class="n">out_core_vars</span><span class="p">,</span> <span class="o">**</span><span class="n">calc_pars</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">out_vars</span><span class="p">,</span> <span class="n">loop_dims</span><span class="p">,</span> <span class="n">out_core_vars</span><span class="p">,</span> 
+        <span class="n">initial_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">calc_pars</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Starts the model calculation in parallel, via</span>
@@ -474,6 +513,8 @@
 <span class="sd">            `FC.VARS` for variables dimension (required)</span>
 <span class="sd">        calc_pars: dict, optional</span>
 <span class="sd">            Additional arguments for the `calculate` function</span>
+<span class="sd">        initial_results: xarray.Dataset, optional</span>
+<span class="sd">            Initial results</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -498,6 +539,15 @@
         <span class="n">evars</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">edims</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">dvars</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ivars</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">idims</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">initial_results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ds</span> <span class="o">=</span> <span class="n">initial_results</span>
+            <span class="n">hvarsl</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">loopd</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="p">))]</span>
+            <span class="n">ldata</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ds</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvarsl</span><span class="p">]</span>
+            <span class="n">idims</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ds</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvarsl</span><span class="p">]</span>
+            <span class="n">ivars</span> <span class="o">+=</span> <span class="n">hvarsl</span>
+
         <span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
             <span class="n">hvarsl</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">loopd</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="p">))]</span>
             <span class="n">ldata</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ds</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvarsl</span><span class="p">]</span>
@@ -544,14 +594,16 @@
             <span class="n">out_vars</span><span class="o">=</span><span class="n">out_vars</span><span class="p">,</span>
             <span class="n">out_dims</span><span class="o">=</span><span class="n">out_dims</span><span class="p">,</span>
             <span class="n">calc_pars</span><span class="o">=</span><span class="n">calc_pars</span><span class="p">,</span>
+            <span class="n">init_vars</span><span class="o">=</span><span class="n">ivars</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># run parallel computation:</span>
+        <span class="n">iidims</span> <span class="o">=</span> <span class="p">[[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">loopd</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">idims</span><span class="p">]</span>
         <span class="n">icdims</span> <span class="o">=</span> <span class="p">[[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">loopd</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ldims</span><span class="p">]</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_calc</span><span class="p">,</span>
             <span class="o">*</span><span class="n">ldata</span><span class="p">,</span>
-            <span class="n">input_core_dims</span><span class="o">=</span><span class="n">icdims</span><span class="p">,</span>
+            <span class="n">input_core_dims</span><span class="o">=</span><span class="n">iidims</span><span class="o">+</span><span class="n">icdims</span><span class="p">,</span>
             <span class="n">output_core_dims</span><span class="o">=</span><span class="p">[</span><span class="n">out_core_vars</span><span class="p">],</span>
             <span class="n">output_dtypes</span><span class="o">=</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">],</span>
             <span class="n">dask</span><span class="o">=</span><span class="s2">&quot;parallelized&quot;</span><span class="p">,</span>

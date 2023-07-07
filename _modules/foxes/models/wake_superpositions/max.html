@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.wake_superpositions.max - foxes 0.4.0
+        <title>foxes.models.wake_superpositions.max - foxes 0.4.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.4.0
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../../index.html" title="foxes 0.4.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.0
+            foxes 0.4.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.4.0
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../../index.html" title="foxes 0.4.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.0
+    foxes 0.4.1
  documentation
   </label>
   
@@ -342,15 +342,17 @@
 <span class="sd">    ----------</span>
 <span class="sd">    scalings: dict or number or str</span>
 <span class="sd">        The scaling rules</span>
+<span class="sd">    svars: list of str</span>
+<span class="sd">        The scaling variables</span>
 
 <span class="sd">    :group: models.wake_superpositions</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="MaxSuperposition.__init__"><a class="viewcode-back" href="../../../../_models/wake_superpositions/MaxSuperposition.__init__.html#foxes.models.wake_superpositions.MaxSuperposition.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalings</span><span class="p">):</span>
+<div class="viewcode-block" id="MaxSuperposition.__init__"><a class="viewcode-back" href="../../../../_models/wake_superpositions/MaxSuperposition.__init__.html#foxes.models.wake_superpositions.MaxSuperposition.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalings</span><span class="p">,</span> <span class="n">svars</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        scalings: dict or number or str</span>
@@ -359,10 +361,42 @@
 <span class="sd">            - `source_turbine`: Scale by source turbine value of variable</span>
 <span class="sd">            - `source_turbine_amb`: Scale by source turbine ambient value of variable</span>
 <span class="sd">            - `source_turbine_&lt;var&gt;`: Scale by source turbine value of variable &lt;var&gt;</span>
+<span class="sd">        svars: list of str, optional</span>
+<span class="sd">            The scaling variables</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scalings</span> <span class="o">=</span> <span class="n">scalings</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scalings</span> <span class="o">=</span> <span class="n">scalings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">svars</span> <span class="o">=</span> <span class="n">svars</span></div>
+
+<div class="viewcode-block" id="MaxSuperposition.input_farm_vars"><a class="viewcode-back" href="../../../../_models/wake_superpositions/MaxSuperposition.input_farm_vars.html#foxes.models.wake_superpositions.MaxSuperposition.input_farm_vars">[docs]</a>    <span class="k">def</span> <span class="nf">input_farm_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The variables which are needed for running</span>
+<span class="sd">        the model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        input_vars: list of str</span>
+<span class="sd">            The input variable names</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">svars</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">svars</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scalings</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scalings</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="p">(</span>
+            <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scalings</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scalings</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">15</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">scalings</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;source_turbine_&quot;</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">scalings</span><span class="p">[</span><span class="mi">15</span><span class="p">:]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Unable to determine scaling variable for scaling = &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">scalings</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MaxSuperposition.initialize"><a class="viewcode-back" href="../../../../_models/wake_superpositions/MaxSuperposition.initialize.html#foxes.models.wake_superpositions.MaxSuperposition.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -397,6 +431,7 @@
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
         <span class="n">fdata</span><span class="p">,</span>
+        <span class="n">pdata</span><span class="p">,</span>
         <span class="n">states_source_turbine</span><span class="p">,</span>
         <span class="n">sel_sp</span><span class="p">,</span>
         <span class="n">variable</span><span class="p">,</span>
@@ -414,6 +449,8 @@
 <span class="sd">            The model data</span>
 <span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
+<span class="sd">        pdata: foxes.core.Data</span>
+<span class="sd">            The evaluation point data</span>
 <span class="sd">        states_source_turbine: numpy.ndarray</span>
 <span class="sd">            For each state, one turbine index for the</span>
 <span class="sd">            wake causing turbine. Shape: (n_states,)</span>
@@ -506,7 +543,14 @@
             <span class="p">)</span></div>
 
 <div class="viewcode-block" id="MaxSuperposition.calc_final_wake_delta"><a class="viewcode-back" href="../../../../_models/wake_superpositions/MaxSuperposition.calc_final_wake_delta.html#foxes.models.wake_superpositions.MaxSuperposition.calc_final_wake_delta">[docs]</a>    <span class="k">def</span> <span class="nf">calc_final_wake_delta</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">amb_results</span><span class="p">,</span> <span class="n">wake_delta</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">algo</span><span class="p">,</span> 
+        <span class="n">mdata</span><span class="p">,</span> 
+        <span class="n">fdata</span><span class="p">,</span> 
+        <span class="n">pdata</span><span class="p">,</span>
+        <span class="n">variable</span><span class="p">,</span>
+        <span class="n">amb_results</span><span class="p">,</span> 
+        <span class="n">wake_delta</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the final wake delta after adding all</span>
@@ -520,6 +564,8 @@
 <span class="sd">            The model data</span>
 <span class="sd">        fdata: foxes.core.Data</span>
 <span class="sd">            The farm data</span>
+<span class="sd">        pdata: foxes.core.Data</span>
+<span class="sd">            The evaluation point data</span>
 <span class="sd">        variable: str</span>
 <span class="sd">            The variable name for which the wake deltas applies</span>
 <span class="sd">        amb_results: numpy.ndarray</span>

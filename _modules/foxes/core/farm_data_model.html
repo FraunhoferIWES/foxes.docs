@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.farm_data_model - foxes 0.4.0
+        <title>foxes.core.farm_data_model - foxes 0.4.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.4.0
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../index.html" title="foxes 0.4.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.0
+            foxes 0.4.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.4.0
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../index.html" title="foxes 0.4.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.0
+    foxes 0.4.1
  documentation
   </label>
   
@@ -330,6 +330,7 @@
 <span class="kn">from</span> <span class="nn">.data_calc_model</span> <span class="kn">import</span> <span class="n">DataCalcModel</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
+
 <div class="viewcode-block" id="FarmDataModel"><a class="viewcode-back" href="../../../api_core.html#foxes.core.FarmDataModel">[docs]</a><span class="k">class</span> <span class="nc">FarmDataModel</span><span class="p">(</span><span class="n">DataCalcModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for models that modify</span>
@@ -342,7 +343,7 @@
 <span class="sd">        running the rotor model.</span>
 
 <span class="sd">    :group: core</span>
-<span class="sd">    </span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="FarmDataModel.__init__"><a class="viewcode-back" href="../../../_models/turbine_models/YAWM2YAW.html#foxes.core.FarmDataModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pre_rotor</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -457,7 +458,7 @@
 <span class="sd">    ----------</span>
 <span class="sd">    models: list of foxes.core.FarmDataModel</span>
 <span class="sd">        The model list</span>
-<span class="sd">    </span>
+
 <span class="sd">    :group: core</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -465,7 +466,7 @@
 <div class="viewcode-block" id="FarmDataModelList.__init__"><a class="viewcode-back" href="../../../_core/FarmDataModelList.__init__.html#foxes.core.FarmDataModelList.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="p">[]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        models: list of foxes.core.FarmDataModel</span>
@@ -486,6 +487,19 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FarmDataModelList.keep"><a class="viewcode-back" href="../../../_core/FarmDataModelList.keep.html#foxes.core.FarmDataModelList.keep">[docs]</a>    <span class="k">def</span> <span class="nf">keep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add model and all sub models to</span>
+<span class="sd">        the keep_models list</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The algorithm</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">algo</span><span class="o">.</span><span class="n">keep_models</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="FarmDataModelList.output_farm_vars"><a class="viewcode-back" href="../../../_core/FarmDataModelList.output_farm_vars.html#foxes.core.FarmDataModelList.output_farm_vars">[docs]</a>    <span class="k">def</span> <span class="nf">output_farm_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>

@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.opt.core.farm_opt_problem - foxes 0.4.0
+        <title>foxes.opt.core.farm_opt_problem - foxes 0.4.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.4.0
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../../index.html" title="foxes 0.4.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.0
+            foxes 0.4.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.4.0
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../../index.html" title="foxes 0.4.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.0
+    foxes 0.4.1
  documentation
   </label>
   
@@ -364,7 +364,7 @@
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        name: str</span>
@@ -523,7 +523,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">exclude</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_org_states_name</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">keep_models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_org_states_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">keep_models</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_org_states_name</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">mname</span><span class="p">,</span> <span class="n">idata</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">idata_mem</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">mname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclude</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mname</span><span class="p">:</span>
                 <span class="n">keep</span> <span class="o">=</span> <span class="kc">True</span>
@@ -535,7 +535,7 @@
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">keep</span><span class="p">:</span>
                         <span class="k">break</span>
                 <span class="k">if</span> <span class="n">keep</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">keep_models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mname</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">keep_models</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">mname</span><span class="p">)</span>
 
 <div class="viewcode-block" id="FarmOptProblem.initialize"><a class="viewcode-back" href="../../../../_utils/opt/core/FarmOptProblem.initialize.html#foxes.opt.core.FarmOptProblem.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drop_vars</span><span class="o">=</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">],</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -652,7 +652,9 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">farm_results</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">point_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">calc_points</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">farm_results</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">))</span>
+            <span class="n">point_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">calc_points</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">farm_results</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+            <span class="p">)</span>
             <span class="k">return</span> <span class="n">farm_results</span><span class="p">,</span> <span class="n">point_results</span></div>
 
 <div class="viewcode-block" id="FarmOptProblem.apply_population"><a class="viewcode-back" href="../../../../_utils/opt/problems/layoutRegularLayoutOptProblem.html#foxes.opt.core.FarmOptProblem.apply_population">[docs]</a>    <span class="k">def</span> <span class="nf">apply_population</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_int</span><span class="p">,</span> <span class="n">vars_float</span><span class="p">):</span>
@@ -687,9 +689,11 @@
             <span class="n">n_pop</span> <span class="o">=</span> <span class="n">farm_results</span><span class="p">[</span><span class="s2">&quot;n_pop&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
             <span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
             <span class="n">pop_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_pop</span><span class="p">,</span> <span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-            <span class="n">pop_points</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:</span> <span class="p">,</span> <span class="p">:]</span>
-            <span class="n">pop_points</span> <span class="o">=</span> <span class="n">pop_points</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_pop</span><span class="o">*</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="n">point_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">calc_points</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">farm_results</span><span class="p">,</span> <span class="n">pop_points</span><span class="p">))</span>
+            <span class="n">pop_points</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+            <span class="n">pop_points</span> <span class="o">=</span> <span class="n">pop_points</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_pop</span> <span class="o">*</span> <span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="n">point_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">calc_points</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">farm_results</span><span class="p">,</span> <span class="n">pop_points</span><span class="p">)</span>
+            <span class="p">)</span>
             <span class="k">return</span> <span class="n">farm_results</span><span class="p">,</span> <span class="n">point_results</span></div>
 
 <div class="viewcode-block" id="FarmOptProblem.add_to_layout_figure"><a class="viewcode-back" href="../../../../_utils/opt/problems/layoutRegularLayoutOptProblem.html#foxes.opt.core.FarmOptProblem.add_to_layout_figure">[docs]</a>    <span class="k">def</span> <span class="nf">add_to_layout_figure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>

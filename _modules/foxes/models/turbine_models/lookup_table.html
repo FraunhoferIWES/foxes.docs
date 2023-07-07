@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.turbine_models.lookup_table - foxes 0.4.0
+        <title>foxes.models.turbine_models.lookup_table - foxes 0.4.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.4.0
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../../index.html" title="foxes 0.4.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.0
+            foxes 0.4.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.4.0
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.0
+    <a href="../../../../index.html" title="foxes 0.4.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.0
+    foxes 0.4.1
  documentation
   </label>
   
@@ -356,18 +356,18 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="LookupTable.__init__"><a class="viewcode-back" href="../../../../_models/turbine_models/LookupTable.__init__.html#foxes.models.turbine_models.LookupTable.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> 
-            <span class="n">data_source</span><span class="p">,</span>
-            <span class="n">input_vars</span><span class="p">,</span>
-            <span class="n">output_vars</span><span class="p">,</span>
-            <span class="n">varmap</span><span class="o">=</span><span class="p">{},</span>
-            <span class="n">pd_file_read_pars</span><span class="o">=</span><span class="p">{},</span>
-            <span class="n">xr_interp_args</span><span class="o">=</span><span class="p">{},</span>
-            <span class="o">**</span><span class="n">kwargs</span>
-        <span class="p">):</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">data_source</span><span class="p">,</span>
+        <span class="n">input_vars</span><span class="p">,</span>
+        <span class="n">output_vars</span><span class="p">,</span>
+        <span class="n">varmap</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">pd_file_read_pars</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">xr_interp_args</span><span class="o">=</span><span class="p">{},</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        data_source: str or pandas.DataFrame</span>
@@ -384,7 +384,7 @@
 <span class="sd">        xr_interp_args: dict</span>
 <span class="sd">            Parameters for xarray interpolation method</span>
 <span class="sd">        kwargs: dict, optional</span>
-<span class="sd">            Additional parameters, added as default </span>
+<span class="sd">            Additional parameters, added as default</span>
 <span class="sd">            values if not in data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -401,7 +401,9 @@
 
         <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">input_vars</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Default input parameter &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; not in list of inputs </span><span class="si">{</span><span class="n">input_vars</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Default input parameter &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; not in list of inputs </span><span class="si">{</span><span class="n">input_vars</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="LookupTable.output_farm_vars"><a class="viewcode-back" href="../../../../_models/turbine_models/LookupTable.output_farm_vars.html#foxes.models.turbine_models.LookupTable.output_farm_vars">[docs]</a>    <span class="k">def</span> <span class="nf">output_farm_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
@@ -447,39 +449,42 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Reading file </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">PandasFileHelper</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_rpars</span><span class="p">)</span>
-        
+
             <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Preparing interpolation data&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">varmap</span><span class="p">):</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">varmap</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">input_vars</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_vars</span><span class="p">]</span>
             <span class="n">data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_vars</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_vars</span><span class="p">}</span>
+            <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_vars</span>
+            <span class="p">}</span>
 
             <span class="n">dvars</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">oname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_vars</span><span class="p">:</span>
                 <span class="n">pivot_matrix</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_vars</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">oname</span><span class="p">])</span>
                 <span class="n">dvars</span><span class="p">[</span><span class="n">oname</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">input_vars</span><span class="p">,</span> 
-                    <span class="n">pivot_matrix</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">pivot_matrix</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">levshape</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">input_vars</span><span class="p">,</span>
+                    <span class="n">pivot_matrix</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+                        <span class="n">pivot_matrix</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">levshape</span>
+                    <span class="p">),</span>
                 <span class="p">)</span>
-            
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="n">dvars</span><span class="p">)</span>        
-             
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="n">dvars</span><span class="p">)</span>
+
             <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">()</span>
                 <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
                 <span class="nb">print</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span></div>
-    
+
 <div class="viewcode-block" id="LookupTable.calculate"><a class="viewcode-back" href="../../../../_models/turbine_models/LookupTable.calculate.html#foxes.models.turbine_models.LookupTable.calculate">[docs]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">st_sel</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;</span>
 <span class="sd">        The main model calculation.</span>
@@ -508,9 +513,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">indata</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">v</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">data_prio</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="s2">&quot;farm&quot;</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">],</span>
-                <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;_z&quot;</span><span class="p">]</span>
-            <span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_vars</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span> <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">],</span>
+                <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;_z&quot;</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_vars</span>
         <span class="p">}</span>
 
         <span class="n">odata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="o">**</span><span class="n">indata</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_xargs</span><span class="p">)</span>
