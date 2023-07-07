@@ -393,7 +393,7 @@
         <span class="n">s</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
         <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(A=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="si">}</span><span class="s2">, sp=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
         <span class="k">return</span> <span class="n">s</span></div>
-    
+
 <div class="viewcode-block" id="TurbOParkWake.init_wake_deltas"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/TurbOParkWake.init_wake_deltas.html#foxes.models.wake_models.wind.TurbOParkWake.init_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize wake delta storage.</span>
@@ -422,13 +422,13 @@
 
 <div class="viewcode-block" id="TurbOParkWake.calc_amplitude_sigma_spsel"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/TurbOParkWake.calc_amplitude_sigma_spsel.html#foxes.models.wake_models.wind.TurbOParkWake.calc_amplitude_sigma_spsel">[docs]</a>    <span class="k">def</span> <span class="nf">calc_amplitude_sigma_spsel</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">algo</span><span class="p">,</span> 
-        <span class="n">mdata</span><span class="p">,</span> 
-        <span class="n">fdata</span><span class="p">,</span> 
+        <span class="n">algo</span><span class="p">,</span>
+        <span class="n">mdata</span><span class="p">,</span>
+        <span class="n">fdata</span><span class="p">,</span>
         <span class="n">pdata</span><span class="p">,</span>
-        <span class="n">states_source_turbine</span><span class="p">,</span> 
+        <span class="n">states_source_turbine</span><span class="p">,</span>
         <span class="n">x</span><span class="p">,</span>
-        <span class="p">):</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the amplitude and the sigma,</span>
 <span class="sd">        both depend only on x (not on r).</span>
@@ -461,9 +461,16 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># get ct:</span>
-        <span class="n">ct</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
-                            <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                            <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
+        <span class="n">ct</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">,</span>
+            <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span>
+            <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span>
+            <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
+            <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
+            <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span>
+            <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">ct</span><span class="p">[</span><span class="n">ct</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">ct_max</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ct_max</span>
 
         <span class="c1"># select targets:</span>
@@ -474,15 +481,29 @@
             <span class="n">ct</span> <span class="o">=</span> <span class="n">ct</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
 
             <span class="c1"># get D:</span>
-            <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
-                                <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
+            <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
+                <span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">,</span>
+                <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span>
+                <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span>
+                <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
+                <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
+                <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span>
+                <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="n">D</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
 
             <span class="c1"># get TI:</span>
-            <span class="n">ati</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">AMB_TI</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
-                                <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
+            <span class="n">ati</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
+                <span class="n">FV</span><span class="o">.</span><span class="n">AMB_TI</span><span class="p">,</span>
+                <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span>
+                <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span>
+                <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
+                <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
+                <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span>
+                <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="n">ati</span> <span class="o">=</span> <span class="n">ati</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
 
             <span class="c1"># calculate sigma:</span>
@@ -612,7 +633,7 @@
         <span class="n">s</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
         <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(ti=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span><span class="si">}</span><span class="s2">, dx=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dx</span><span class="si">}</span><span class="s2">, A=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="si">}</span><span class="s2">, sp=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
         <span class="k">return</span> <span class="n">s</span></div>
-    
+
 <div class="viewcode-block" id="TurbOParkWakeIX.init_wake_deltas"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/TurbOParkWakeIX.init_wake_deltas.html#foxes.models.wake_models.wind.TurbOParkWakeIX.init_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize wake delta storage.</span>
@@ -641,13 +662,13 @@
 
 <div class="viewcode-block" id="TurbOParkWakeIX.calc_amplitude_sigma_spsel"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/TurbOParkWakeIX.calc_amplitude_sigma_spsel.html#foxes.models.wake_models.wind.TurbOParkWakeIX.calc_amplitude_sigma_spsel">[docs]</a>    <span class="k">def</span> <span class="nf">calc_amplitude_sigma_spsel</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">algo</span><span class="p">,</span> 
-        <span class="n">mdata</span><span class="p">,</span> 
-        <span class="n">fdata</span><span class="p">,</span> 
+        <span class="n">algo</span><span class="p">,</span>
+        <span class="n">mdata</span><span class="p">,</span>
+        <span class="n">fdata</span><span class="p">,</span>
         <span class="n">pdata</span><span class="p">,</span>
-        <span class="n">states_source_turbine</span><span class="p">,</span> 
+        <span class="n">states_source_turbine</span><span class="p">,</span>
         <span class="n">x</span><span class="p">,</span>
-        <span class="p">):</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the amplitude and the sigma,</span>
 <span class="sd">        both depend only on x (not on r).</span>
@@ -680,9 +701,16 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># get ct:</span>
-        <span class="n">ct</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
-                            <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                            <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
+        <span class="n">ct</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">,</span>
+            <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span>
+            <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span>
+            <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
+            <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
+            <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span>
+            <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">ct</span><span class="p">[</span><span class="n">ct</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">ct_max</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ct_max</span>
 
         <span class="c1"># select targets:</span>
@@ -693,9 +721,16 @@
             <span class="n">ct</span> <span class="o">=</span> <span class="n">ct</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
 
             <span class="c1"># get D:</span>
-            <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> 
-                                <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">)</span>
+            <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
+                <span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">,</span>
+                <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span>
+                <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span>
+                <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
+                <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
+                <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span>
+                <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="n">D</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
 
             <span class="c1"># calculate sigma:</span>

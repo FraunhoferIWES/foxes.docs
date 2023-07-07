@@ -381,14 +381,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">sizes</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__run_entry_checks</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">__auto_update</span><span class="p">()</span></div>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of states</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        int:</span>
@@ -401,7 +401,7 @@
     <span class="k">def</span> <span class="nf">n_turbines</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of turbines</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        int:</span>
@@ -414,7 +414,7 @@
     <span class="k">def</span> <span class="nf">n_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of points</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        int:</span>
@@ -433,7 +433,7 @@
 <span class="sd">            Return the state counter instead of the index</span>
 <span class="sd">        algo: foxes.core.Algorithm, optional</span>
 <span class="sd">            The algorithm, required for state counter</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        int:</span>
@@ -451,7 +451,6 @@
             <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span></div>
 
     <span class="k">def</span> <span class="nf">__auto_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="n">dims</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span>
 
@@ -477,7 +476,6 @@
             <span class="bp">self</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">][:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__run_entry_checks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="p">):</span>
-
         <span class="c1"># remove axes of size 1, added by dask for extra loop dimensions:</span>
         <span class="k">if</span> <span class="n">dims</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
@@ -492,11 +490,11 @@
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                         <span class="sa">f</span><span class="s2">&quot;Inconsistent size for data entry &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;, dimension &#39;</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&#39;: Expecting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="si">}</span><span class="s2">, found </span><span class="si">{</span><span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">ci</span><span class="p">]</span><span class="si">}</span><span class="s2"> in shape </span><span class="si">{</span><span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span>
                     <span class="p">)</span>
-            
+
 <div class="viewcode-block" id="Data.add"><a class="viewcode-back" href="../../../_core/Data.add.html#foxes.core.Data.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add data entry</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        name: str</span>
@@ -505,7 +503,7 @@
 <span class="sd">            The data</span>
 <span class="sd">        dims: tuple of str</span>
 <span class="sd">            The dimensions</span>
-<span class="sd">        </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">dims</span>
@@ -514,15 +512,15 @@
 
 <div class="viewcode-block" id="Data.from_points"><a class="viewcode-back" href="../../../_core/Data.from_points.html#foxes.core.Data.from_points">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_points</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span> 
-        <span class="n">points</span><span class="p">,</span> 
-        <span class="n">data</span><span class="o">=</span><span class="p">{},</span> 
-        <span class="n">dims</span><span class="o">=</span><span class="p">{},</span>  
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">points</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">dims</span><span class="o">=</span><span class="p">{},</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pdata&quot;</span><span class="p">,</span>
-        <span class="p">):</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create from points</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        points: np.ndarray</span>
@@ -534,7 +532,7 @@
 <span class="sd">            of data keys</span>
 <span class="sd">        name: str</span>
 <span class="sd">            The data container name</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        pdata: Data</span>
@@ -542,7 +540,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span> <span class="ow">or</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expecting points shape (n_states, n_points, 3), got </span><span class="si">{</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Expecting points shape (n_states, n_points, 3), got </span><span class="si">{</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
         <span class="n">data</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">POINTS</span><span class="p">]</span> <span class="o">=</span> <span class="n">points</span>
         <span class="n">dims</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">POINTS</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">XYH</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">],</span> <span class="n">name</span><span class="p">)</span></div></div>

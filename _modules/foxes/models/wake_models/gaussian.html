@@ -341,14 +341,14 @@
 
 <div class="viewcode-block" id="GaussianWakeModel.calc_amplitude_sigma_spsel"><a class="viewcode-back" href="../../../../_models/wake_models/GaussianWakeModel.calc_amplitude_sigma_spsel.html#foxes.models.wake_models.GaussianWakeModel.calc_amplitude_sigma_spsel">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">calc_amplitude_sigma_spsel</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">algo</span><span class="p">,</span> 
-            <span class="n">mdata</span><span class="p">,</span> 
-            <span class="n">fdata</span><span class="p">,</span> 
-            <span class="n">pdata</span><span class="p">,</span>
-            <span class="n">states_source_turbine</span><span class="p">,</span> 
-            <span class="n">x</span><span class="p">,</span>
-        <span class="p">):</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">algo</span><span class="p">,</span>
+        <span class="n">mdata</span><span class="p">,</span>
+        <span class="n">fdata</span><span class="p">,</span>
+        <span class="n">pdata</span><span class="p">,</span>
+        <span class="n">states_source_turbine</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">,</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the amplitude and the sigma,</span>
 <span class="sd">        both depend only on x (not on r).</span>
@@ -382,15 +382,15 @@
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="GaussianWakeModel.calc_wakes_spsel_x_r"><a class="viewcode-back" href="../../../../_models/wake_models/wind/TurbOParkWakeIX.html#foxes.models.wake_models.GaussianWakeModel.calc_wakes_spsel_x_r">[docs]</a>    <span class="k">def</span> <span class="nf">calc_wakes_spsel_x_r</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> 
-            <span class="n">algo</span><span class="p">,</span> 
-            <span class="n">mdata</span><span class="p">,</span> 
-            <span class="n">fdata</span><span class="p">,</span> 
-            <span class="n">pdata</span><span class="p">,</span>
-            <span class="n">states_source_turbine</span><span class="p">,</span> 
-            <span class="n">x</span><span class="p">,</span> 
-            <span class="n">r</span><span class="p">,</span>
-        <span class="p">):</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">algo</span><span class="p">,</span>
+        <span class="n">mdata</span><span class="p">,</span>
+        <span class="n">fdata</span><span class="p">,</span>
+        <span class="n">pdata</span><span class="p">,</span>
+        <span class="n">states_source_turbine</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">,</span>
+        <span class="n">r</span><span class="p">,</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate wake deltas.</span>
 
@@ -431,7 +431,7 @@
         <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">amsi</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">ampld</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">amsi</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
             <span class="n">wdeltas</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">ampld</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">rsel</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">wdeltas</span><span class="p">,</span> <span class="n">sp_sel</span></div></div>
 </code></pre></div>
 

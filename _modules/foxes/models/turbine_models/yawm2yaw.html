@@ -331,6 +331,7 @@
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
+
 <div class="viewcode-block" id="YAWM2YAW"><a class="viewcode-back" href="../../../../api_models.html#foxes.models.turbine_models.YAWM2YAW">[docs]</a><span class="k">class</span> <span class="nc">YAWM2YAW</span><span class="p">(</span><span class="n">TurbineModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculates absolute yaw (i.e. YAWM) from delta</span>
@@ -383,10 +384,12 @@
 <span class="sd">            Values: numpy.ndarray with shape (n_states, n_turbines)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">yawm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">YAWM</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> 
-                            <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
-        <span class="n">wd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> 
-                            <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
+        <span class="n">yawm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">YAWM</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
+        <span class="n">wd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span> <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
 
         <span class="n">yaw</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">YAW</span><span class="p">]</span>
         <span class="n">yaw</span><span class="p">[</span><span class="n">st_sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">wd</span> <span class="o">+</span> <span class="n">yawm</span><span class="p">,</span> <span class="mf">360.0</span><span class="p">)</span>

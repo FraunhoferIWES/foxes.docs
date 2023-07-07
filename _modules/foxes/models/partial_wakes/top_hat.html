@@ -424,7 +424,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">keep</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rotor_model</span><span class="o">.</span><span class="n">keep</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span></div>
-        
+
 <div class="viewcode-block" id="PartialTopHat.new_wake_deltas"><a class="viewcode-back" href="../../../../_models/partial_wakes/PartialTopHat.new_wake_deltas.html#foxes.models.partial_wakes.PartialTopHat.new_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">new_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates new initial wake deltas, filled</span>
@@ -444,7 +444,7 @@
 <span class="sd">        wake_deltas: dict</span>
 <span class="sd">            Keys: Variable name str, values: any</span>
 <span class="sd">        pdata: foxes.core.Data</span>
-<span class="sd">            The evaluation point data </span>
+<span class="sd">            The evaluation point data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pdata</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">])</span>
@@ -456,12 +456,12 @@
         <span class="k">return</span> <span class="n">wake_deltas</span><span class="p">,</span> <span class="n">pdata</span></div>
 
 <div class="viewcode-block" id="PartialTopHat.contribute_to_wake_deltas"><a class="viewcode-back" href="../../../../_models/partial_wakes/PartialTopHat.contribute_to_wake_deltas.html#foxes.models.partial_wakes.PartialTopHat.contribute_to_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">contribute_to_wake_deltas</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> 
-        <span class="n">algo</span><span class="p">,</span> 
-        <span class="n">mdata</span><span class="p">,</span> 
-        <span class="n">fdata</span><span class="p">,</span> 
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">algo</span><span class="p">,</span>
+        <span class="n">mdata</span><span class="p">,</span>
+        <span class="n">fdata</span><span class="p">,</span>
         <span class="n">pdata</span><span class="p">,</span>
-        <span class="n">states_source_turbine</span><span class="p">,</span> 
+        <span class="n">states_source_turbine</span><span class="p">,</span>
         <span class="n">wake_deltas</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -527,7 +527,15 @@
                     <span class="n">hwr</span> <span class="o">=</span> <span class="n">wr</span><span class="p">[</span><span class="n">sel_sp</span><span class="p">]</span>
 
                     <span class="n">clw</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">calc_centreline_wake_deltas</span><span class="p">(</span>
-                        <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">sel_sp</span><span class="p">,</span> <span class="n">hx</span><span class="p">,</span> <span class="n">hwr</span><span class="p">,</span> <span class="n">hct</span>
+                        <span class="n">algo</span><span class="p">,</span>
+                        <span class="n">mdata</span><span class="p">,</span>
+                        <span class="n">fdata</span><span class="p">,</span>
+                        <span class="n">pdata</span><span class="p">,</span>
+                        <span class="n">states_source_turbine</span><span class="p">,</span>
+                        <span class="n">sel_sp</span><span class="p">,</span>
+                        <span class="n">hx</span><span class="p">,</span>
+                        <span class="n">hwr</span><span class="p">,</span>
+                        <span class="n">hct</span><span class="p">,</span>
                     <span class="p">)</span>
                     <span class="k">del</span> <span class="n">hx</span><span class="p">,</span> <span class="n">hct</span>
 
@@ -557,13 +565,13 @@
                         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="PartialTopHat.evaluate_results"><a class="viewcode-back" href="../../../../_models/partial_wakes/PartialTopHat.evaluate_results.html#foxes.models.partial_wakes.PartialTopHat.evaluate_results">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate_results</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> 
-        <span class="n">algo</span><span class="p">,</span> 
-        <span class="n">mdata</span><span class="p">,</span> 
-        <span class="n">fdata</span><span class="p">,</span> 
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">algo</span><span class="p">,</span>
+        <span class="n">mdata</span><span class="p">,</span>
+        <span class="n">fdata</span><span class="p">,</span>
         <span class="n">pdata</span><span class="p">,</span>
-        <span class="n">wake_deltas</span><span class="p">,</span> 
-        <span class="n">states_turbine</span><span class="p">,</span> 
+        <span class="n">wake_deltas</span><span class="p">,</span>
+        <span class="n">states_turbine</span><span class="p">,</span>
         <span class="n">amb_res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -600,7 +608,9 @@
 
         <span class="n">amb_res_in</span> <span class="o">=</span> <span class="n">amb_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">amb_res_in</span><span class="p">:</span>
-            <span class="n">amb_res</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">rotor_model</span><span class="o">.</span><span class="n">from_data_or_store</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">AMB_RPOINT_RESULTS</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">)</span> 
+            <span class="n">amb_res</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">rotor_model</span><span class="o">.</span><span class="n">from_data_or_store</span><span class="p">(</span>
+                <span class="n">FC</span><span class="o">.</span><span class="n">AMB_RPOINT_RESULTS</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span>
+            <span class="p">)</span>
 
         <span class="n">wres</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">st_sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">),</span> <span class="n">states_turbine</span><span class="p">)</span>
