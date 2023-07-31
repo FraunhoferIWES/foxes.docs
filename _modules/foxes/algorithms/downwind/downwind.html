@@ -330,10 +330,10 @@
 <span class="kn">import</span> <span class="nn">foxes.models</span> <span class="k">as</span> <span class="nn">fm</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">models</span> <span class="k">as</span> <span class="n">dm</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">models</span> <span class="k">as</span> <span class="n">mdls</span>
 
 
-<div class="viewcode-block" id="Downwind"><a class="viewcode-back" href="../../../../api_algorithms.html#foxes.algorithms.Downwind">[docs]</a><span class="k">class</span> <span class="nc">Downwind</span><span class="p">(</span><span class="n">Algorithm</span><span class="p">):</span>
+<div class="viewcode-block" id="Downwind"><a class="viewcode-back" href="../../../../api_algorithms_downwind.html#foxes.algorithms.Downwind">[docs]</a><span class="k">class</span> <span class="nc">Downwind</span><span class="p">(</span><span class="n">Algorithm</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The downwind algorithm.</span>
 
@@ -362,9 +362,23 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">FarmWakesCalculation</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">FarmWakesCalculation</span>
-    <span class="n">PointWakesCalculation</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">point_wakes_calc</span><span class="o">.</span><span class="n">PointWakesCalculation</span>
-    <span class="n">SetAmbPointResults</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">set_amb_point_results</span><span class="o">.</span><span class="n">SetAmbPointResults</span>
+<div class="viewcode-block" id="Downwind.get_model"><a class="viewcode-back" href="../../../../_algorithms/Downwind.get_model.html#foxes.algorithms.Downwind.get_model">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the algorithm specific model</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            The model name</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        model: foxes.core.model</span>
+<span class="sd">            The model</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">mdls</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Downwind.__init__"><a class="viewcode-back" href="../../../../_algorithms/Downwind.__init__.html#foxes.algorithms.Downwind.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -540,7 +554,7 @@
         <span class="p">)</span>
 
         <span class="c1"># 4) calculate turbine order:</span>
-        <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">CalcOrder</span><span class="p">())</span>
+        <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;CalcOrder&quot;</span><span class="p">)())</span>
         <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;calc_order&quot;</span>
         <span class="n">calc_pars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calc_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">{}))</span>
 
@@ -551,13 +565,13 @@
 
         <span class="c1"># 6) copy results to ambient, requires self.farm_vars:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">farm_vars</span> <span class="o">=</span> <span class="n">mlist</span><span class="o">.</span><span class="n">output_farm_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">SetAmbFarmResults</span><span class="p">())</span>
+        <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;SetAmbFarmResults&quot;</span><span class="p">)())</span>
         <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;set_amb_results&quot;</span>
         <span class="n">calc_pars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calc_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">{}))</span>
 
         <span class="c1"># 7) calculate wake effects:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">ambient</span><span class="p">:</span>
-            <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FarmWakesCalculation</span><span class="p">())</span>
+            <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;FarmWakesCalculation&quot;</span><span class="p">)())</span>
             <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;calc_wakes&quot;</span>
             <span class="n">calc_pars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calc_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">{}))</span>
 
@@ -698,14 +712,16 @@
 
         <span class="c1"># 2) transfer ambient results:</span>
         <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="n">dm</span><span class="o">.</span><span class="n">SetAmbPointResults</span><span class="p">(</span><span class="n">point_vars</span><span class="o">=</span><span class="nb">vars</span><span class="p">,</span> <span class="n">vars_to_amb</span><span class="o">=</span><span class="n">vars_to_amb</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;SetAmbPointResults&quot;</span><span class="p">)(</span>
+                <span class="n">point_vars</span><span class="o">=</span><span class="nb">vars</span><span class="p">,</span> <span class="n">vars_to_amb</span><span class="o">=</span><span class="n">vars_to_amb</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;set_amb_results&quot;</span>
         <span class="n">calc_pars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calc_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">{}))</span>
 
         <span class="c1"># 3) calc wake effects:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">ambient</span><span class="p">:</span>
-            <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">PointWakesCalculation</span><span class="p">(</span><span class="nb">vars</span><span class="p">,</span> <span class="n">emodels</span><span class="p">,</span> <span class="n">emodels_cpars</span><span class="p">))</span>
+            <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;PointWakesCalculation&quot;</span><span class="p">)(</span>
+                <span class="nb">vars</span><span class="p">,</span> <span class="n">emodels</span><span class="p">,</span> <span class="n">emodels_cpars</span><span class="p">))</span>
             <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;calc_wakes&quot;</span>
             <span class="n">calc_pars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calc_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">{}))</span>
 

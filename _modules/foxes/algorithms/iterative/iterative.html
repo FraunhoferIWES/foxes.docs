@@ -329,10 +329,10 @@
 
 <span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">FarmDataModelList</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">models</span> <span class="k">as</span> <span class="n">im</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">models</span> <span class="k">as</span> <span class="n">mdls</span>
 
 
-<div class="viewcode-block" id="Iterative"><a class="viewcode-back" href="../../../../api_algorithms.html#foxes.algorithms.Iterative">[docs]</a><span class="k">class</span> <span class="nc">Iterative</span><span class="p">(</span><span class="n">Downwind</span><span class="p">):</span>
+<div class="viewcode-block" id="Iterative"><a class="viewcode-back" href="../../../../api_algorithms_iterative.html#foxes.algorithms.Iterative">[docs]</a><span class="k">class</span> <span class="nc">Iterative</span><span class="p">(</span><span class="n">Downwind</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Iterative calculation of farm data.</span>
 
@@ -347,7 +347,26 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">FarmWakesCalculation</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">FarmWakesCalculation</span>
+<div class="viewcode-block" id="Iterative.get_model"><a class="viewcode-back" href="../../../../_algorithms/Iterative.get_model.html#foxes.algorithms.Iterative.get_model">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the algorithm specific model</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            The model name</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        model: foxes.core.model</span>
+<span class="sd">            The model</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">mdls</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Iterative.__init__"><a class="viewcode-back" href="../../../../_algorithms/Iterative.__init__.html#foxes.algorithms.Iterative.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">max_it</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conv_crit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -370,7 +389,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">max_it</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span> <span class="k">if</span> <span class="n">max_it</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">max_it</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv_crit</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">DefaultConv</span><span class="p">()</span> <span class="k">if</span> <span class="n">conv_crit</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">conv_crit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_crit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;DefaultConv&quot;</span><span class="p">)()</span> <span class="k">if</span> <span class="n">conv_crit</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">conv_crit</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_it</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mlist</span> <span class="o">=</span> <span class="kc">None</span></div>
 
@@ -425,7 +444,7 @@
         <span class="n">mlist</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_calc&quot;</span>
 
         <span class="c1"># add model that calculates wake effects:</span>
-        <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FarmWakesCalculation</span><span class="p">())</span>
+        <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;FarmWakesCalculation&quot;</span><span class="p">)())</span>
         <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;calc_wakes&quot;</span>
         <span class="n">calc_pars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calc_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">{}))</span>
 
