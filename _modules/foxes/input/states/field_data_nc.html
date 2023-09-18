@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.input.states.field_data_nc - foxes 0.4.2
+        <title>foxes.input.states.field_data_nc - foxes 0.4.3
  documentation</title>
       
     
@@ -37,7 +37,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.a60204c58f5e4ff66.min.css?v=63f51f50" />
+        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.4.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.2
+    <a href="../../../../index.html" title="foxes 0.4.3
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4.3
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.2
+            foxes 0.4.3
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.4.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.2
+    <a href="../../../../index.html" title="foxes 0.4.3
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.3
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.2
+    foxes 0.4.3
  documentation
   </label>
   
@@ -328,9 +328,7 @@
 <span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">RegularGridInterpolator</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interpn</span>
 
 <span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">States</span>
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">wd2uv</span><span class="p">,</span> <span class="n">uv2wd</span>
@@ -376,8 +374,10 @@
 <span class="sd">        Fill value in case of exceeding bounds, if no bounds error</span>
 <span class="sd">    time_format: str</span>
 <span class="sd">        The datetime parsing format string</span>
-<span class="sd">    sel: dict</span>
-<span class="sd">        Subset selection via xr.Dataset.sel()</span>
+<span class="sd">    interp_nans: bool</span>
+<span class="sd">        Linearly interpolate nan values</span>
+<span class="sd">    interpn_pars: dict, optional</span>
+<span class="sd">        Additional parameters for scipy.interpolate.interpn</span>
 
 <span class="sd">    :group: input.states</span>
 
@@ -395,11 +395,12 @@
         <span class="n">h_coord</span><span class="o">=</span><span class="s2">&quot;height&quot;</span><span class="p">,</span>
         <span class="n">pre_load</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">weight_ncvar</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">bounds_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">fill_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">time_format</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">_%H:%M:%S&quot;</span><span class="p">,</span>
         <span class="n">sel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">isel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">interp_nans</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">interpn_pars</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
@@ -430,16 +431,18 @@
 <span class="sd">            initialization</span>
 <span class="sd">        weight_ncvar: str, optional</span>
 <span class="sd">            Name of the weight data variable in the nc file(s)</span>
-<span class="sd">        bounds_error: bool</span>
-<span class="sd">            Flag for raising errors if bounds are exceeded</span>
-<span class="sd">        fill_value: number, optional</span>
-<span class="sd">            Fill value in case of exceeding bounds, if no bounds error</span>
 <span class="sd">        time_format: str</span>
 <span class="sd">            The datetime parsing format string</span>
 <span class="sd">        sel: dict, optional</span>
 <span class="sd">            Subset selection via xr.Dataset.sel()</span>
+<span class="sd">        isel: dict, optional</span>
+<span class="sd">            Subset selection via xr.Dataset.isel()</span>
+<span class="sd">        interp_nans: bool</span>
+<span class="sd">            Linearly interpolate nan values</span>
 <span class="sd">        verbosity: int</span>
 <span class="sd">            Verbosity level for pre_load file reading</span>
+<span class="sd">        interpn_pars: dict, optional</span>
+<span class="sd">            Additional parameters for scipy.interpolate.interpn</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -453,10 +456,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">h_coord</span> <span class="o">=</span> <span class="n">h_coord</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weight_ncvar</span> <span class="o">=</span> <span class="n">weight_ncvar</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pre_load</span> <span class="o">=</span> <span class="n">pre_load</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bounds_error</span> <span class="o">=</span> <span class="n">bounds_error</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fill_value</span> <span class="o">=</span> <span class="n">fill_value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time_format</span> <span class="o">=</span> <span class="n">time_format</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sel</span> <span class="o">=</span> <span class="n">sel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">isel</span> <span class="o">=</span> <span class="n">isel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interpn_pars</span> <span class="o">=</span> <span class="n">interpn_pars</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interp_nans</span> <span class="o">=</span> <span class="n">interp_nans</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">var2ncvar</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">v</span><span class="p">:</span> <span class="n">var2ncvar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">output_vars</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fixed_vars</span>
@@ -493,12 +497,16 @@
                 <span class="n">coords</span><span class="o">=</span><span class="s2">&quot;minimal&quot;</span><span class="p">,</span>
                 <span class="n">compat</span><span class="o">=</span><span class="s2">&quot;override&quot;</span><span class="p">,</span>
             <span class="p">)</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>
-                <span class="n">dss</span> <span class="o">=</span> <span class="n">ds</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sel</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sel</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">pre_load</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span> <span class="o">=</span> <span class="n">dss</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_get_inds</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span> <span class="o">=</span> <span class="n">ds</span>
+        
+        <span class="k">if</span> <span class="n">sel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sel</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">isel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isel</span><span class="p">)</span>      
+        <span class="k">if</span> <span class="n">pre_load</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_get_inds</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_get_inds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -591,6 +599,23 @@
 
         <span class="k">return</span> <span class="n">data</span>
 
+    <span class="k">def</span> <span class="nf">output_point_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The variables which are being modified by the model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        output_vars: list of str</span>
+<span class="sd">            The output variable names</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ovars</span>
+    
 <div class="viewcode-block" id="FieldDataNC.initialize"><a class="viewcode-back" href="../../../../_input/states/FieldDataNC.initialize.html#foxes.input.states.FieldDataNC.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the model.</span>
@@ -775,6 +800,9 @@
             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_data</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
             <span class="k">del</span> <span class="n">ds</span>
+        <span class="n">n_h</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+        <span class="n">n_y</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">n_x</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
         <span class="c1"># translate WS, WD into U, V:</span>
         <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ovars</span> <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ovars</span><span class="p">:</span>
@@ -784,7 +812,8 @@
                 <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dkys</span>
                 <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed_vars</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span>
             <span class="p">)</span>
-            <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">wd2uv</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">wdwsi</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_dkys</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dkys</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]]</span>
+            <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">wdwsi</span><span class="p">]</span> <span class="o">=</span> <span class="n">wd2uv</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
             <span class="k">del</span> <span class="n">ws</span><span class="p">,</span> <span class="n">wd</span>
 
         <span class="c1"># prepare points:</span>
@@ -793,14 +822,28 @@
         <span class="n">pts</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">sts</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
         <span class="n">pts</span> <span class="o">=</span> <span class="n">pts</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span> <span class="o">*</span> <span class="n">n_pts</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
         <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">gvars</span> <span class="o">=</span> <span class="p">(</span><span class="n">sts</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+        <span class="c1"># interpolate nan values:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interp_nans</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span>
+                    <span class="n">gvars</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">]),</span>
+                <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+                    <span class="n">v</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">vi</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="o">*</span><span class="n">n_h</span><span class="o">*</span><span class="n">n_y</span><span class="o">*</span><span class="n">n_x</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">vi</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dkys</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;backward&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_h</span><span class="p">,</span> <span class="n">n_y</span><span class="p">,</span> <span class="n">n_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_dvars</span><span class="p">)</span>
+            <span class="k">del</span> <span class="n">df</span>
 
         <span class="c1"># interpolate:</span>
-        <span class="n">gvars</span> <span class="o">=</span> <span class="p">(</span><span class="n">sts</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-        <span class="n">iterp</span> <span class="o">=</span> <span class="n">RegularGridInterpolator</span><span class="p">(</span>
-            <span class="n">gvars</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds_error</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fill_value</span>
-        <span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">iterp</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_dvars</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">interpn</span><span class="p">(</span>
+                <span class="n">gvars</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">pts</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">interpn_pars</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_dvars</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Interpolation error&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;INPUT VARS: (state, heights, y, x)&quot;</span><span class="p">)</span>
@@ -811,12 +854,31 @@
                 <span class="s2">&quot;EVAL BOUNDS:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pts</span><span class="o">.</span><span class="n">T</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pts</span><span class="o">.</span><span class="n">T</span><span class="p">]</span>
             <span class="p">)</span>
             <span class="k">raise</span> <span class="n">e</span>
-        <span class="k">del</span> <span class="n">pts</span><span class="p">,</span> <span class="n">iterp</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">gvars</span>
+        <span class="k">del</span> <span class="n">pts</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">gvars</span>
+
+        <span class="c1"># interpolate nan values:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interp_nans</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">sts</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_pts</span><span class="p">)),</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;point&quot;</span><span class="p">]),</span>
+                <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+                    <span class="n">v</span><span class="p">:</span> <span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">vi</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="o">*</span><span class="n">n_pts</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">vi</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dkys</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+            <span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="o">*</span><span class="n">n_pts</span><span class="p">)</span>
+            <span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="o">*</span><span class="n">n_pts</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">])</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;backward&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;point&quot;</span><span class="p">])</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_dvars</span><span class="p">)</span>
+            <span class="k">del</span> <span class="n">df</span>
 
         <span class="c1"># set output:</span>
         <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ovars</span> <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ovars</span><span class="p">:</span>
-            <span class="n">uv</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">uv</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">wdwsi</span><span class="p">]</span>
             <span class="n">out</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">out</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">]</span> <span class="o">=</span> <span class="n">uv2wd</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
             <span class="k">del</span> <span class="n">uv</span>
@@ -861,7 +923,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.1.
+    7.0.1.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -880,7 +942,7 @@
     <script id="__config" type="application/json">{"base": "../../../..", "features": [], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
       
-        <script src="../../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js?v=1e7b0789"></script>
+        <script src="../../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
