@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.algorithms.iterative.models.convergence - foxes 0.4.3
+        <title>foxes.algorithms.iterative.models.convergence - foxes 0.4.5
  documentation</title>
       
     
@@ -37,7 +37,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx_immaterial_theme.9dcb20399d0097661.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx_immaterial_theme.a60204c58f5e4ff66.min.css?v=63f51f50" />
     <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 0.4.3
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.3
+    <a href="../../../../../index.html" title="foxes 0.4.5
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.4.5
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.3
+            foxes 0.4.5
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 0.4.3
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.3
+    <a href="../../../../../index.html" title="foxes 0.4.5
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.5
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.3
+    foxes 0.4.5
  documentation
   </label>
   
@@ -332,7 +332,9 @@
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">delta_wd</span>
 
 
-<div class="viewcode-block" id="ConvCrit"><a class="viewcode-back" href="../../../../../api_algorithms_iterative.html#foxes.algorithms.iterative.ConvCrit">[docs]</a><span class="k">class</span> <span class="nc">ConvCrit</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<div class="viewcode-block" id="ConvCrit">
+<a class="viewcode-back" href="../../../../../api_algorithms_iterative.html#foxes.algorithms.iterative.ConvCrit">[docs]</a>
+<span class="k">class</span> <span class="nc">ConvCrit</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for convergence criteria</span>
 
@@ -345,7 +347,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ConvCrit.__init__"><a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCrit.__init__.html#foxes.algorithms.iterative.ConvCrit.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ConvCrit.__init__">
+<a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCrit.__init__.html#foxes.algorithms.iterative.ConvCrit.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -357,7 +361,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span></div>
 
-<div class="viewcode-block" id="ConvCrit.check_converged"><a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCrit.check_converged.html#foxes.algorithms.iterative.ConvCrit.check_converged">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="ConvCrit.check_converged">
+<a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCrit.check_converged.html#foxes.algorithms.iterative.ConvCrit.check_converged">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">check_converged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">prev_results</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check convergence criteria.</span>
@@ -383,7 +390,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="ConvCrit.get_deltas"><a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCrit.get_deltas.html#foxes.algorithms.iterative.ConvCrit.get_deltas">[docs]</a>    <span class="nd">@abstractmethod</span>
+
+<div class="viewcode-block" id="ConvCrit.get_deltas">
+<a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCrit.get_deltas.html#foxes.algorithms.iterative.ConvCrit.get_deltas">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">get_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the most recent evaluation deltas.</span>
@@ -394,10 +404,14 @@
 <span class="sd">            The most recent evaluation deltas</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div></div>
+        <span class="k">pass</span></div>
+</div>
 
 
-<div class="viewcode-block" id="ConvCritList"><a class="viewcode-back" href="../../../../../api_algorithms_iterative.html#foxes.algorithms.iterative.ConvCritList">[docs]</a><span class="k">class</span> <span class="nc">ConvCritList</span><span class="p">(</span><span class="n">ConvCrit</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ConvCritList">
+<a class="viewcode-back" href="../../../../../api_algorithms_iterative.html#foxes.algorithms.iterative.ConvCritList">[docs]</a>
+<span class="k">class</span> <span class="nc">ConvCritList</span><span class="p">(</span><span class="n">ConvCrit</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A list of convergence criteria</span>
 
@@ -410,7 +424,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ConvCritList.__init__"><a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCritList.__init__.html#foxes.algorithms.iterative.ConvCritList.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crits</span><span class="o">=</span><span class="p">[],</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ConvCritList.__init__">
+<a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCritList.__init__.html#foxes.algorithms.iterative.ConvCritList.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crits</span><span class="o">=</span><span class="p">[],</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -425,7 +441,10 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">crits</span> <span class="o">=</span> <span class="n">crits</span></div>
 
-<div class="viewcode-block" id="ConvCritList.add_crit"><a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCritList.add_crit.html#foxes.algorithms.iterative.ConvCritList.add_crit">[docs]</a>    <span class="k">def</span> <span class="nf">add_crit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crit</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ConvCritList.add_crit">
+<a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCritList.add_crit.html#foxes.algorithms.iterative.ConvCritList.add_crit">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_crit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crit</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a convergence criterion</span>
 
@@ -437,7 +456,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">crits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">crit</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ConvCritList.check_converged"><a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCritList.check_converged.html#foxes.algorithms.iterative.ConvCritList.check_converged">[docs]</a>    <span class="k">def</span> <span class="nf">check_converged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">prev_results</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ConvCritList.check_converged">
+<a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCritList.check_converged.html#foxes.algorithms.iterative.ConvCritList.check_converged">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_converged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">prev_results</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check convergence criteria.</span>
 
@@ -468,7 +490,10 @@
 
         <span class="k">return</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="ConvCritList.get_deltas"><a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCritList.get_deltas.html#foxes.algorithms.iterative.ConvCritList.get_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">get_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ConvCritList.get_deltas">
+<a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvCritList.get_deltas.html#foxes.algorithms.iterative.ConvCritList.get_deltas">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the most recent evaluation deltas.</span>
 
@@ -480,10 +505,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_failed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_failed</span><span class="o">.</span><span class="n">get_deltas</span><span class="p">()</span>
-        <span class="k">return</span> <span class="p">{}</span></div></div>
+        <span class="k">return</span> <span class="p">{}</span></div>
+</div>
 
 
-<div class="viewcode-block" id="ConvVarDelta"><a class="viewcode-back" href="../../../../../api_algorithms_iterative.html#foxes.algorithms.iterative.ConvVarDelta">[docs]</a><span class="k">class</span> <span class="nc">ConvVarDelta</span><span class="p">(</span><span class="n">ConvCrit</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ConvVarDelta">
+<a class="viewcode-back" href="../../../../../api_algorithms_iterative.html#foxes.algorithms.iterative.ConvVarDelta">[docs]</a>
+<span class="k">class</span> <span class="nc">ConvVarDelta</span><span class="p">(</span><span class="n">ConvCrit</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Requires convergence of a selection of variables.</span>
 
@@ -499,7 +528,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ConvVarDelta.__init__"><a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvVarDelta.__init__.html#foxes.algorithms.iterative.ConvVarDelta.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span> <span class="n">wd_vars</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ConvVarDelta.__init__">
+<a class="viewcode-back" href="../../../../../_algorithms/iterative/ConvVarDelta.__init__.html#foxes.algorithms.iterative.ConvVarDelta.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span> <span class="n">wd_vars</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -523,7 +554,10 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span> <span class="o">=</span> <span class="p">{}</span></div>
 
-<div class="viewcode-block" id="ConvVarDelta.check_converged"><a class="viewcode-back" href="../../../../../_algorithms/iterative/DefaultConv.html#foxes.algorithms.iterative.ConvVarDelta.check_converged">[docs]</a>    <span class="k">def</span> <span class="nf">check_converged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">prev_results</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ConvVarDelta.check_converged">
+<a class="viewcode-back" href="../../../../../_algorithms/iterative/DefaultConv.html#foxes.algorithms.iterative.ConvVarDelta.check_converged">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_converged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">prev_results</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check convergence criteria.</span>
 
@@ -573,7 +607,10 @@
 
         <span class="k">return</span> <span class="n">ok</span></div>
 
-<div class="viewcode-block" id="ConvVarDelta.get_deltas"><a class="viewcode-back" href="../../../../../_algorithms/iterative/DefaultConv.html#foxes.algorithms.iterative.ConvVarDelta.get_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">get_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ConvVarDelta.get_deltas">
+<a class="viewcode-back" href="../../../../../_algorithms/iterative/DefaultConv.html#foxes.algorithms.iterative.ConvVarDelta.get_deltas">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the most recent evaluation deltas.</span>
 
@@ -583,10 +620,14 @@
 <span class="sd">            The most recent evaluation deltas</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span></div>
+</div>
 
 
-<div class="viewcode-block" id="DefaultConv"><a class="viewcode-back" href="../../../../../api_algorithms_iterative.html#foxes.algorithms.iterative.DefaultConv">[docs]</a><span class="k">class</span> <span class="nc">DefaultConv</span><span class="p">(</span><span class="n">ConvVarDelta</span><span class="p">):</span>
+
+<div class="viewcode-block" id="DefaultConv">
+<a class="viewcode-back" href="../../../../../api_algorithms_iterative.html#foxes.algorithms.iterative.DefaultConv">[docs]</a>
+<span class="k">class</span> <span class="nc">DefaultConv</span><span class="p">(</span><span class="n">ConvVarDelta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Default convergence criteria.</span>
 
@@ -594,7 +635,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DefaultConv.__init__"><a class="viewcode-back" href="../../../../../_algorithms/iterative/DefaultConv.__init__.html#foxes.algorithms.iterative.DefaultConv.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DefaultConv.__init__">
+<a class="viewcode-back" href="../../../../../_algorithms/iterative/DefaultConv.__init__.html#foxes.algorithms.iterative.DefaultConv.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -603,7 +646,9 @@
                 <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">:</span> <span class="mf">1e-5</span><span class="p">,</span>
                 <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">:</span> <span class="mf">1e-6</span><span class="p">,</span>
             <span class="p">}</span>
-        <span class="p">)</span></div></div>
+        <span class="p">)</span></div>
+</div>
+
 </code></pre></div>
 
 
@@ -635,7 +680,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.0.1.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -654,7 +699,7 @@
     <script id="__config" type="application/json">{"base": "../../../../..", "features": [], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
       
-        <script src="../../../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js"></script>
+        <script src="../../../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js?v=1e7b0789"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
