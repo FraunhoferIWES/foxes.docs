@@ -13,7 +13,7 @@
     
     
       
-        <title>Wind sector management - foxes 0.4.5
+        <title>Wind sector management - foxes 0.5
  documentation</title>
       
     
@@ -73,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 0.4.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.5
+    <a href="../index.html" title="foxes 0.5
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.5
  documentation" data-md-component="logo">
       
   
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.5
+            foxes 0.5
  documentation
           </span>
         </div>
@@ -175,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 0.4.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.5
+    <a href="../index.html" title="foxes 0.5
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.5
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.5
+    foxes 0.5
  documentation
   </label>
   
@@ -454,6 +454,21 @@
 
             
           
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blockage.html" class="md-nav__link">
+        <span title="/notebooks/blockage.ipynb (reference label)" class="md-ellipsis">Blockage modelling</span>
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -539,7 +554,7 @@
 
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js'></script>
-<script>require=requirejs;</script><h1 id="Wind-sector-management">Wind sector management<a class="headerlink" href="#Wind-sector-management" title="Link to this heading">¶</a></h1>
+<script>require=requirejs;</script><h1 id="Wind-sector-management">Wind sector management<a class="headerlink" href="#Wind-sector-management" title="Permalink to this heading">¶</a></h1>
 <p>In this example we switch off, derate or boost turbines according to wind conditions. Here are our imports:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [1]:
@@ -573,20 +588,11 @@
 </code></pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/data/jonas/gits/wakes/foxes/foxes/output/rose_plot.py:174: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
-  grp = data[[wd_var, lgd, &#34;frequency&#34;]].groupby([wd_var, lgd])
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_sector_man_4_1.svg" src="../_images/notebooks_sector_man_4_1.svg" /></div>
+<img alt="../_images/notebooks_sector_man_4_0.svg" src="../_images/notebooks_sector_man_4_0.svg" /></div>
 </div>
 <p>The rules of wind sector management can either be given by a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> readable file like <code class="docutils literal notranslate"><span class="pre">.csv</span></code>, or directly by a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> object. Here we are persuing the latter option, for a wind farm that consists of two turbines, labelled <code class="docutils literal notranslate"><span class="pre">T0</span></code> and <code class="docutils literal notranslate"><span class="pre">T1</span></code>, where turbine <code class="docutils literal notranslate"><span class="pre">T1</span></code> is located east of turbine <code class="docutils literal notranslate"><span class="pre">T0</span></code>. This creates the table of rules:</p>
 <div class="nbinput docutils container">
@@ -815,36 +821,14 @@ Turbine 1, T1: NREL-5MW, sector_rules, PMask
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/data/jonas/gits/wakes/foxes/foxes/output/rose_plot.py:174: FutureWarning:
-
-The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
-
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_sector_man_16_1.svg" src="../_images/notebooks_sector_man_16_1.svg" /></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/data/jonas/gits/wakes/foxes/foxes/output/rose_plot.py:174: FutureWarning:
-
-The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
-
-</pre></div></div>
+<img alt="../_images/notebooks_sector_man_16_0.svg" src="../_images/notebooks_sector_man_16_0.svg" /></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_sector_man_16_3.svg" src="../_images/notebooks_sector_man_16_3.svg" /></div>
+<img alt="../_images/notebooks_sector_man_16_1.svg" src="../_images/notebooks_sector_man_16_1.svg" /></div>
 </div>
 <p>The wind sector management has the following effects (compare to the <code class="docutils literal notranslate"><span class="pre">rules</span></code> table above):</p>
 <ul class="simple">
@@ -921,7 +905,7 @@ The default of observed=False is deprecated and will be changed to True in a fut
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.2.6.
+    7.1.2.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

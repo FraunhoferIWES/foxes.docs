@@ -346,3 +346,26 @@ Enjoy - we are awaiting comments and issues, thanks for testing.
 
 **Full Changelog**: [https://github.com/FraunhoferIWES/foxes/commits/v0.4.5](https://github.com/FraunhoferIWES/foxes/commits/v0.4.5)
 
+## v0.5
+
+- Dependencies:
+  - Dropping support for Python 3.7, due to `netcdf4` dependency
+- Core:
+  - Simplified model initialization/finalization. Removing the `keep_models` idea, instead all models are now kept in the algorithm's idata memory until finalization. Adding a new model now mostly requires that the `sub_models` and the `load_data` functions are overloaded, if applicable. The `initialize` and `finalize` only need to be addressed explicitly in non-standard cases.
+- Algorithms:
+  - New algorithm: `Sequential`, step wise evaluation of states for simulation environments that do not support chunking
+  - Improved: `Iterative` now supports under-relaxation of parameters
+- Output:
+  - New sub package: `output.flow_plots_2d` is now a package instead of a module
+- Models:
+  - This version introduces induction models for modelling blockage effects.
+  - New induction model: `RHB`, the classic Rankine-half-body model.
+- Examples:
+  - New example: `sequential`, demonstrating the usage of the sequential algorithm
+  - New example: `induction_RHB`, showing the Rankine-half-body model for blockage
+- Notebooks:
+  - New notebook: `blockage.ipynb`, demonstrating how to apply the RHB induction model to a wind farm
+
+**Full Changelog**: [https://github.com/FraunhoferIWES/foxes/commits/v0.5](https://github.com/FraunhoferIWES/foxes/commits/v0.5)
+
+

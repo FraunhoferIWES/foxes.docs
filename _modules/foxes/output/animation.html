@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.animation - foxes 0.4.5
+        <title>foxes.output.animation - foxes 0.5
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.4.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.5
+    <a href="../../../index.html" title="foxes 0.5
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.5
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.5
+            foxes 0.5
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.4.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.5
+    <a href="../../../index.html" title="foxes 0.5
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.5
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.5
+    foxes 0.5
  documentation
   </label>
   
@@ -327,9 +327,8 @@
 <h1>Source code for foxes.output.animation</h1><div class="highlight"><pre>
 <span></span><code><span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
 
-<div class="viewcode-block" id="Animator">
-<a class="viewcode-back" href="../../../api_output.html#foxes.output.Animator">[docs]</a>
-<span class="k">class</span> <span class="nc">Animator</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Animator"><a class="viewcode-back" href="../../../api_output.html#foxes.output.Animator">[docs]</a><span class="k">class</span> <span class="nc">Animator</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates an animation from generators</span>
 <span class="sd">    that yield lists of artists.</span>
@@ -343,9 +342,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Animator.__init__">
-<a class="viewcode-back" href="../../../_output/Animator.__init__.html#foxes.output.Animator.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Animator.__init__"><a class="viewcode-back" href="../../../_output/Animator.__init__.html#foxes.output.Animator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -358,27 +355,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="o">=</span> <span class="n">fig</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_gens</span> <span class="o">=</span> <span class="p">[]</span></div>
 
-    
-<div class="viewcode-block" id="Animator.add_generator">
-<a class="viewcode-back" href="../../../_output/Animator.add_generator.html#foxes.output.Animator.add_generator">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gen</span><span class="p">):</span>
+<div class="viewcode-block" id="Animator.add_generator"><a class="viewcode-back" href="../../../_output/Animator.add_generator.html#foxes.output.Animator.add_generator">[docs]</a>    <span class="k">def</span> <span class="nf">add_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gen</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a generator.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        gen: Generator</span>
 <span class="sd">            A generator that yields (fig, list of Artist)</span>
-<span class="sd">        </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_gens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span></div>
-
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">generators</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The artist generators</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        gens: list of generators</span>
@@ -386,10 +379,8 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gens</span>
-    
-<div class="viewcode-block" id="Animator.animate">
-<a class="viewcode-back" href="../../../_output/Animator.animate.html#foxes.output.Animator.animate">[docs]</a>
-    <span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Animator.animate"><a class="viewcode-back" href="../../../_output/Animator.animate.html#foxes.output.Animator.animate">[docs]</a>    <span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create the animation</span>
 
@@ -408,32 +399,32 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generators</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
-        
+
         <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating animation data&quot;</span><span class="p">)</span>
 
         <span class="n">si</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">arts</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-
             <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Frame </span><span class="si">{</span><span class="n">si</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
             <span class="n">harts</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">generators</span><span class="p">:</span>
-
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">y</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 
                     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expecting yield (fig, artists) from generator </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                    
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;Expecting yield (fig, artists) from generator </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="p">)</span>
+
                     <span class="n">fig</span><span class="p">,</span> <span class="n">artists</span> <span class="o">=</span> <span class="n">y</span>
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="o">=</span> <span class="n">fig</span>
                     <span class="k">elif</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="p">:</span>
                         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wrong figure returned by generator </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                    
+
                     <span class="n">harts</span> <span class="o">+=</span> <span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">artists</span><span class="p">]</span>
 
                 <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
@@ -452,10 +443,7 @@
         <span class="n">kwa</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">ArtistAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">arts</span><span class="p">,</span> <span class="o">**</span><span class="n">kwa</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">ani</span></div>
-</div>
-
-
+        <span class="k">return</span> <span class="n">ani</span></div></div>
 </code></pre></div>
 
 
@@ -487,7 +475,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.2.6.
+    7.1.2.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

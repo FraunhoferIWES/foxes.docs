@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.partial_wakes_model - foxes 0.4.5
+        <title>foxes.core.partial_wakes_model - foxes 0.5
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.4.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.5
+    <a href="../../../index.html" title="foxes 0.5
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.5
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.5
+            foxes 0.5
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.4.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.5
+    <a href="../../../index.html" title="foxes 0.5
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.5
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.5
+    foxes 0.5
  documentation
   </label>
   
@@ -331,9 +331,7 @@
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">all_subclasses</span>
 
 
-<div class="viewcode-block" id="PartialWakesModel">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.PartialWakesModel">[docs]</a>
-<span class="k">class</span> <span class="nc">PartialWakesModel</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<div class="viewcode-block" id="PartialWakesModel"><a class="viewcode-back" href="../../../api_core.html#foxes.core.PartialWakesModel">[docs]</a><span class="k">class</span> <span class="nc">PartialWakesModel</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for partial wakes models.</span>
 
@@ -351,9 +349,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="PartialWakesModel.__init__">
-<a class="viewcode-back" href="../../../_core/PartialWakesModel.__init__.html#foxes.core.PartialWakesModel.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wake_models</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wake_frame</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="PartialWakesModel.__init__"><a class="viewcode-back" href="../../../_core/PartialWakesModel.__init__.html#foxes.core.PartialWakesModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wake_models</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wake_frame</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -371,18 +367,21 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_wmodels</span> <span class="o">=</span> <span class="n">wake_models</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_wframe</span> <span class="o">=</span> <span class="n">wake_frame</span></div>
 
+<div class="viewcode-block" id="PartialWakesModel.sub_models"><a class="viewcode-back" href="../../../_models/partial_wakes/RotorPoints.html#foxes.core.PartialWakesModel.sub_models">[docs]</a>    <span class="k">def</span> <span class="nf">sub_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List of all sub-models</span>
 
-<div class="viewcode-block" id="PartialWakesModel.initialize">
-<a class="viewcode-back" href="../../../_models/partial_wakes/RotorPoints.html#foxes.core.PartialWakesModel.initialize">[docs]</a>
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        smdls: list of foxes.core.Model</span>
+<span class="sd">            Names of all sub models</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_frame</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PartialWakesModel.initialize"><a class="viewcode-back" href="../../../_models/partial_wakes/RotorPoints.html#foxes.core.PartialWakesModel.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the model.</span>
-
-<span class="sd">        This includes loading all required data from files. The model</span>
-<span class="sd">        should return all array type data as part of the idata return</span>
-<span class="sd">        dictionary (and not store it under self, for memory reasons). This</span>
-<span class="sd">        data will then be chunked and provided as part of the mdata object</span>
-<span class="sd">        during calculations.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -391,45 +390,12 @@
 <span class="sd">        verbosity: int</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        idata: dict</span>
-<span class="sd">            The dict has exactly two entries: `data_vars`,</span>
-<span class="sd">            a dict with entries `name_str -&gt; (dim_tuple, data_ndarray)`;</span>
-<span class="sd">            and `coords`, a dict with entries `dim_name_str -&gt; dim_array`</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">wake_models</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wmodels</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wmodels</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_frame</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">wake_frame</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wframe</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wframe</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span></div>
 
-        <span class="n">idata</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-        <span class="n">algo</span><span class="o">.</span><span class="n">update_idata</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">,</span> <span class="n">idata</span><span class="o">=</span><span class="n">idata</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">idata</span></div>
-
-
-<div class="viewcode-block" id="PartialWakesModel.keep">
-<a class="viewcode-back" href="../../../_models/partial_wakes/RotorPoints.html#foxes.core.PartialWakesModel.keep">[docs]</a>
-    <span class="k">def</span> <span class="nf">keep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add model and all sub models to</span>
-<span class="sd">        the keep_models list</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        algo: foxes.core.Algorithm</span>
-<span class="sd">            The algorithm</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">keep</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">:</span>
-            <span class="n">w</span><span class="o">.</span><span class="n">keep</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_frame</span><span class="o">.</span><span class="n">keep</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="PartialWakesModel.new_wake_deltas">
-<a class="viewcode-back" href="../../../_core/PartialWakesModel.new_wake_deltas.html#foxes.core.PartialWakesModel.new_wake_deltas">[docs]</a>
-    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="PartialWakesModel.new_wake_deltas"><a class="viewcode-back" href="../../../_core/PartialWakesModel.new_wake_deltas.html#foxes.core.PartialWakesModel.new_wake_deltas">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">new_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates new initial wake deltas, filled</span>
@@ -454,10 +420,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-
-<div class="viewcode-block" id="PartialWakesModel.contribute_to_wake_deltas">
-<a class="viewcode-back" href="../../../_core/PartialWakesModel.contribute_to_wake_deltas.html#foxes.core.PartialWakesModel.contribute_to_wake_deltas">[docs]</a>
-    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="PartialWakesModel.contribute_to_wake_deltas"><a class="viewcode-back" href="../../../_core/PartialWakesModel.contribute_to_wake_deltas.html#foxes.core.PartialWakesModel.contribute_to_wake_deltas">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">contribute_to_wake_deltas</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
@@ -491,10 +454,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-
-<div class="viewcode-block" id="PartialWakesModel.evaluate_results">
-<a class="viewcode-back" href="../../../_core/PartialWakesModel.evaluate_results.html#foxes.core.PartialWakesModel.evaluate_results">[docs]</a>
-    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="PartialWakesModel.evaluate_results"><a class="viewcode-back" href="../../../_core/PartialWakesModel.evaluate_results.html#foxes.core.PartialWakesModel.evaluate_results">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">evaluate_results</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
@@ -535,10 +495,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-
-<div class="viewcode-block" id="PartialWakesModel.new">
-<a class="viewcode-back" href="../../../_models/partial_wakes/RotorPoints.html#foxes.core.PartialWakesModel.new">[docs]</a>
-    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="PartialWakesModel.new"><a class="viewcode-back" href="../../../_models/partial_wakes/RotorPoints.html#foxes.core.PartialWakesModel.new">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pwake_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run-time partial wakes factory.</span>
@@ -565,9 +522,7 @@
             <span class="n">estr</span> <span class="o">=</span> <span class="s2">&quot;Partial wakes model type &#39;</span><span class="si">{}</span><span class="s2">&#39; is not defined, available types are </span><span class="se">\n</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="n">pwake_type</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">])</span>
             <span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">estr</span><span class="p">)</span></div>
-</div>
-
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">estr</span><span class="p">)</span></div></div>
 </code></pre></div>
 
 
@@ -599,7 +554,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.2.6.
+    7.1.2.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

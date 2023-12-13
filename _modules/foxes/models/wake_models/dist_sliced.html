@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.wake_models.dist_sliced - foxes 0.4.5
+        <title>foxes.models.wake_models.dist_sliced - foxes 0.5
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.4.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.5
+    <a href="../../../../index.html" title="foxes 0.5
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.5
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.5
+            foxes 0.5
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.4.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.5
+    <a href="../../../../index.html" title="foxes 0.5
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.5
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.5
+    foxes 0.5
  documentation
   </label>
   
@@ -330,9 +330,7 @@
 <span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WakeModel</span>
 
 
-<div class="viewcode-block" id="DistSlicedWakeModel">
-<a class="viewcode-back" href="../../../../api_wake_models.html#foxes.models.wake_models.DistSlicedWakeModel">[docs]</a>
-<span class="k">class</span> <span class="nc">DistSlicedWakeModel</span><span class="p">(</span><span class="n">WakeModel</span><span class="p">):</span>
+<div class="viewcode-block" id="DistSlicedWakeModel"><a class="viewcode-back" href="../../../../api_wake_models.html#foxes.models.wake_models.DistSlicedWakeModel">[docs]</a><span class="k">class</span> <span class="nc">DistSlicedWakeModel</span><span class="p">(</span><span class="n">WakeModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for wake models for which</span>
 <span class="sd">    the x-denpendency can be separated from the</span>
@@ -355,9 +353,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DistSlicedWakeModel.__init__">
-<a class="viewcode-back" href="../../../../_models/wake_models/GaussianWakeModel.html#foxes.models.wake_models.DistSlicedWakeModel.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">superpositions</span><span class="p">):</span>
+<div class="viewcode-block" id="DistSlicedWakeModel.__init__"><a class="viewcode-back" href="../../../../_models/wake_models/GaussianWakeModel.html#foxes.models.wake_models.DistSlicedWakeModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">superpositions</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -372,10 +368,19 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span> <span class="o">=</span> <span class="n">superpositions</span></div>
 
+<div class="viewcode-block" id="DistSlicedWakeModel.sub_models"><a class="viewcode-back" href="../../../../_models/wake_models/wind/TurbOParkWakeIX.html#foxes.models.wake_models.DistSlicedWakeModel.sub_models">[docs]</a>    <span class="k">def</span> <span class="nf">sub_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List of all sub-models</span>
 
-<div class="viewcode-block" id="DistSlicedWakeModel.initialize">
-<a class="viewcode-back" href="../../../../_models/wake_models/wind/TurbOParkWakeIX.html#foxes.models.wake_models.DistSlicedWakeModel.initialize">[docs]</a>
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        smdls: list of foxes.core.Model</span>
+<span class="sd">            Names of all sub models</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">superp</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="DistSlicedWakeModel.initialize"><a class="viewcode-back" href="../../../../_models/wake_models/wind/TurbOParkWakeIX.html#foxes.models.wake_models.DistSlicedWakeModel.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the model.</span>
 
@@ -403,34 +408,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">superp</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">v</span><span class="p">:</span> <span class="n">algo</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">wake_superpositions</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
         <span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span></div>
 
-        <span class="n">idata</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-        <span class="n">algo</span><span class="o">.</span><span class="n">update_idata</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">superp</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">idata</span><span class="o">=</span><span class="n">idata</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">idata</span></div>
-
-
-<div class="viewcode-block" id="DistSlicedWakeModel.keep">
-<a class="viewcode-back" href="../../../../_models/wake_models/wind/TurbOParkWakeIX.html#foxes.models.wake_models.DistSlicedWakeModel.keep">[docs]</a>
-    <span class="k">def</span> <span class="nf">keep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add model and all sub models to</span>
-<span class="sd">        the keep_models list</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        algo: foxes.core.Algorithm</span>
-<span class="sd">            The algorithm</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">keep</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">superp</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="n">v</span><span class="o">.</span><span class="n">keep</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="DistSlicedWakeModel.calc_wakes_spsel_x_yz">
-<a class="viewcode-back" href="../../../../_models/wake_models/DistSlicedWakeModel.calc_wakes_spsel_x_yz.html#foxes.models.wake_models.DistSlicedWakeModel.calc_wakes_spsel_x_yz">[docs]</a>
-    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="DistSlicedWakeModel.calc_wakes_spsel_x_yz"><a class="viewcode-back" href="../../../../_models/wake_models/DistSlicedWakeModel.calc_wakes_spsel_x_yz.html#foxes.models.wake_models.DistSlicedWakeModel.calc_wakes_spsel_x_yz">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">calc_wakes_spsel_x_yz</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
@@ -475,10 +455,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-
-<div class="viewcode-block" id="DistSlicedWakeModel.contribute_to_wake_deltas">
-<a class="viewcode-back" href="../../../../_models/wake_models/wind/TurbOParkWakeIX.html#foxes.models.wake_models.DistSlicedWakeModel.contribute_to_wake_deltas">[docs]</a>
-    <span class="k">def</span> <span class="nf">contribute_to_wake_deltas</span><span class="p">(</span>
+<div class="viewcode-block" id="DistSlicedWakeModel.contribute_to_wake_deltas"><a class="viewcode-back" href="../../../../_models/wake_models/wind/TurbOParkWakeIX.html#foxes.models.wake_models.DistSlicedWakeModel.contribute_to_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">contribute_to_wake_deltas</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
@@ -544,10 +521,7 @@
                 <span class="n">hdel</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
             <span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="DistSlicedWakeModel.finalize_wake_deltas">
-<a class="viewcode-back" href="../../../../_models/wake_models/wind/TurbOParkWakeIX.html#foxes.models.wake_models.DistSlicedWakeModel.finalize_wake_deltas">[docs]</a>
-    <span class="k">def</span> <span class="nf">finalize_wake_deltas</span><span class="p">(</span>
+<div class="viewcode-block" id="DistSlicedWakeModel.finalize_wake_deltas"><a class="viewcode-back" href="../../../../_models/wake_models/wind/TurbOParkWakeIX.html#foxes.models.wake_models.DistSlicedWakeModel.finalize_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">finalize_wake_deltas</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
@@ -585,28 +559,7 @@
         <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">superp</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">wake_deltas</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">calc_final_wake_delta</span><span class="p">(</span>
                 <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">amb_results</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">wake_deltas</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
-            <span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="DistSlicedWakeModel.finalize">
-<a class="viewcode-back" href="../../../../_models/wake_models/wind/TurbOParkWake.html#foxes.models.wake_models.DistSlicedWakeModel.finalize">[docs]</a>
-    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Finalizes the model.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        algo: foxes.core.Algorithm</span>
-<span class="sd">            The calculation algorithm</span>
-<span class="sd">        verbosity: int</span>
-<span class="sd">            The verbosity level, 0 = silent</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">superp</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="n">s</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span></div>
-</div>
-
+            <span class="p">)</span></div></div>
 </code></pre></div>
 
 
@@ -638,7 +591,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.2.6.
+    7.1.2.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

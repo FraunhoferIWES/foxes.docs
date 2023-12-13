@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.wake_frame - foxes 0.4.5
+        <title>foxes.core.wake_frame - foxes 0.5
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.4.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.5
+    <a href="../../../index.html" title="foxes 0.5
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.5
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.5
+            foxes 0.5
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.4.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.5
+    <a href="../../../index.html" title="foxes 0.5
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.5
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.5
+    foxes 0.5
  documentation
   </label>
   
@@ -335,9 +335,7 @@
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 
 
-<div class="viewcode-block" id="WakeFrame">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.WakeFrame">[docs]</a>
-<span class="k">class</span> <span class="nc">WakeFrame</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<div class="viewcode-block" id="WakeFrame"><a class="viewcode-back" href="../../../api_core.html#foxes.core.WakeFrame">[docs]</a><span class="k">class</span> <span class="nc">WakeFrame</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for wake frames.</span>
 
@@ -352,9 +350,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="WakeFrame.calc_order">
-<a class="viewcode-back" href="../../../_core/WakeFrame.calc_order.html#foxes.core.WakeFrame.calc_order">[docs]</a>
-    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="WakeFrame.calc_order"><a class="viewcode-back" href="../../../_core/WakeFrame.calc_order.html#foxes.core.WakeFrame.calc_order">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">calc_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;</span>
 <span class="sd">        Calculates the order of turbine evaluation.</span>
@@ -379,10 +375,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-
-<div class="viewcode-block" id="WakeFrame.get_wake_coos">
-<a class="viewcode-back" href="../../../_core/WakeFrame.get_wake_coos.html#foxes.core.WakeFrame.get_wake_coos">[docs]</a>
-    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="WakeFrame.get_wake_coos"><a class="viewcode-back" href="../../../_core/WakeFrame.get_wake_coos.html#foxes.core.WakeFrame.get_wake_coos">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">get_wake_coos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate wake coordinates.</span>
@@ -410,10 +403,46 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
+<div class="viewcode-block" id="WakeFrame.get_wake_modelling_data"><a class="viewcode-back" href="../../../_models/wake_frames/YawedWakes.html#foxes.core.WakeFrame.get_wake_modelling_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_wake_modelling_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">algo</span><span class="p">,</span>
+        <span class="n">variable</span><span class="p">,</span>
+        <span class="n">states_source_turbine</span><span class="p">,</span>
+        <span class="n">fdata</span><span class="p">,</span>
+        <span class="n">pdata</span><span class="p">,</span>
+        <span class="n">states0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return data that is required for computing the</span>
+<span class="sd">        wake from source turbines to evaluation points.</span>
 
-<div class="viewcode-block" id="WakeFrame.get_centreline_points">
-<a class="viewcode-back" href="../../../_core/WakeFrame.get_centreline_points.html#foxes.core.WakeFrame.get_centreline_points">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_centreline_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm, optional</span>
+<span class="sd">            The algorithm, needed for data from previous iteration</span>
+<span class="sd">        variable: str</span>
+<span class="sd">            The variable, serves as data key</span>
+<span class="sd">        states_source_turbine: numpy.ndarray</span>
+<span class="sd">            For each state, one turbine index for the</span>
+<span class="sd">            wake causing turbine. Shape: (n_states,)</span>
+<span class="sd">        fdata: foxes.core.Data</span>
+<span class="sd">            The farm data</span>
+<span class="sd">        pdata: foxes.core.Data</span>
+<span class="sd">            The evaluation point data</span>
+<span class="sd">        states0: numpy.ndarray, optional</span>
+<span class="sd">            The states of wake creation</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n_states</span> <span class="o">=</span> <span class="n">fdata</span><span class="o">.</span><span class="n">n_states</span>
+        <span class="n">n_points</span> <span class="o">=</span> <span class="n">pdata</span><span class="o">.</span><span class="n">n_points</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">)</span> <span class="k">if</span> <span class="n">states0</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">states0</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">variable</span><span class="p">][</span><span class="n">s</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="WakeFrame.get_centreline_points"><a class="viewcode-back" href="../../../_core/WakeFrame.get_centreline_points.html#foxes.core.WakeFrame.get_centreline_points">[docs]</a>    <span class="k">def</span> <span class="nf">get_centreline_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets the points along the centreline for given</span>
 <span class="sd">        values of x.</span>
@@ -442,10 +471,7 @@
             <span class="sa">f</span><span class="s2">&quot;Wake frame &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Centreline points requested but not implemented.&quot;</span>
         <span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="WakeFrame.calc_centreline_integral">
-<a class="viewcode-back" href="../../../_models/wake_frames/YawedWakes.html#foxes.core.WakeFrame.calc_centreline_integral">[docs]</a>
-    <span class="k">def</span> <span class="nf">calc_centreline_integral</span><span class="p">(</span>
+<div class="viewcode-block" id="WakeFrame.calc_centreline_integral"><a class="viewcode-back" href="../../../_models/wake_frames/YawedWakes.html#foxes.core.WakeFrame.calc_centreline_integral">[docs]</a>    <span class="k">def</span> <span class="nf">calc_centreline_integral</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
@@ -515,7 +541,7 @@
         <span class="n">pdata</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span>
             <span class="n">pts</span><span class="p">,</span>
             <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vrs</span><span class="p">},</span>
-            <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vrs</span><span class="p">}</span>
+            <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vrs</span><span class="p">},</span>
         <span class="p">)</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">)</span>
         <span class="n">pdata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
@@ -534,7 +560,9 @@
 
         <span class="c1"># calc wakes:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">ambient</span><span class="p">:</span>
-            <span class="n">wcalc</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;PointWakesCalculation&quot;</span><span class="p">)(</span><span class="n">vrs</span><span class="p">,</span> <span class="n">wake_models</span><span class="o">=</span><span class="n">wake_models</span><span class="p">)</span>
+            <span class="n">wcalc</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;PointWakesCalculation&quot;</span><span class="p">)(</span>
+                <span class="n">vrs</span><span class="p">,</span> <span class="n">wake_models</span><span class="o">=</span><span class="n">wake_models</span>
+            <span class="p">)</span>
             <span class="n">wcalc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">wsrc</span> <span class="o">=</span> <span class="n">states_source_turbine</span> <span class="k">if</span> <span class="n">self_wake</span> <span class="k">else</span> <span class="kc">None</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">wcalc</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">wsrc</span><span class="p">)</span>
@@ -561,9 +589,7 @@
             <span class="o">**</span><span class="n">ipars</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">results</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="n">n_vars</span><span class="p">)</span></div>
-</div>
-
+        <span class="k">return</span> <span class="n">results</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="n">n_vars</span><span class="p">)</span></div></div>
 </code></pre></div>
 
 
@@ -595,7 +621,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.2.6.
+    7.1.2.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

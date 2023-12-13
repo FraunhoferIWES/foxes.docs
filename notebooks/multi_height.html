@@ -13,7 +13,7 @@
     
     
       
-        <title>Multi-height wind data - foxes 0.4.5
+        <title>Multi-height wind data - foxes 0.5
  documentation</title>
       
     
@@ -73,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 0.4.5
- documentation" class="md-header__button md-logo" aria-label="foxes 0.4.5
+    <a href="../index.html" title="foxes 0.5
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.5
  documentation" data-md-component="logo">
       
   
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.4.5
+            foxes 0.5
  documentation
           </span>
         </div>
@@ -175,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 0.4.5
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.4.5
+    <a href="../index.html" title="foxes 0.5
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.5
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.4.5
+    foxes 0.5
  documentation
   </label>
   
@@ -454,6 +454,21 @@
 
             
           
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blockage.html" class="md-nav__link">
+        <span title="/notebooks/blockage.ipynb (reference label)" class="md-ellipsis">Blockage modelling</span>
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -539,7 +554,7 @@
 
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js'></script>
-<script>require=requirejs;</script><h1 id="Multi-height-wind-data">Multi-height wind data<a class="headerlink" href="#Multi-height-wind-data" title="Link to this heading">¶</a></h1>
+<script>require=requirejs;</script><h1 id="Multi-height-wind-data">Multi-height wind data<a class="headerlink" href="#Multi-height-wind-data" title="Permalink to this heading">¶</a></h1>
 <p>In this example we explore the calculation of multi-height wind data, as for example obtained from WRF results or downloaded from the <a class="reference external" href="https://map.neweuropeanwindatlas.eu/">NEWA website</a> at a single point.</p>
 <p>Here we will use the static data file <code class="docutils literal notranslate"><span class="pre">WRF-Timeseries-4464.csv.gz</span></code> that is part of the <code class="docutils literal notranslate"><span class="pre">foxes</span></code> static data. It has the following data structure:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>Time,WS-50,WS-75,...,WS-500,WD-50,WD-75,...,WD-500,TKE-50,TKE-75,...,TKE-500,RHO
@@ -615,20 +630,11 @@
 </code></pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/data/jonas/gits/wakes/foxes/foxes/output/rose_plot.py:174: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
-  grp = data[[wd_var, lgd, &#34;frequency&#34;]].groupby([wd_var, lgd])
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_multi_height_7_1.svg" src="../_images/notebooks_multi_height_7_1.svg" /></div>
+<img alt="../_images/notebooks_multi_height_7_0.svg" src="../_images/notebooks_multi_height_7_0.svg" /></div>
 </div>
 <p>Our file has already the default column names as expected by <code class="docutils literal notranslate"><span class="pre">foxes</span></code>. However, otherwise you can use the <code class="docutils literal notranslate"><span class="pre">var2col</span></code> option as a mapping from the expected to the actual column names, if needed. Note that the <code class="docutils literal notranslate"><span class="pre">heights</span></code> are searched for all output variables that are neither mentioned in <code class="docutils literal notranslate"><span class="pre">fixed_vars</span></code> not appear as height independent column names (e.g. <code class="docutils literal notranslate"><span class="pre">RHO</span></code> instead of <code class="docutils literal notranslate"><span class="pre">RHO-50</span></code>, etc.).</p>
 <p>Let’s next setup our algorithm:</p>
@@ -822,7 +828,7 @@ Annual farm yield : 131.84 GWh
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.2.6.
+    7.1.2.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
