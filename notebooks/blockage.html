@@ -13,7 +13,7 @@
     
     
       
-        <title>Blockage modelling - foxes 0.5.1
+        <title>Blockage modelling - foxes 0.5.2
  documentation</title>
       
     
@@ -37,8 +37,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.a60204c58f5e4ff66.min.css?v=63f51f50" />
-        <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.01df5be22ee815f6a.min.css?v=af6841d5" />
+        <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -73,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 0.5.1
- documentation" class="md-header__button md-logo" aria-label="foxes 0.5.1
+    <a href="../index.html" title="foxes 0.5.2
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2
  documentation" data-md-component="logo">
       
   
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.5.1
+            foxes 0.5.2
  documentation
           </span>
         </div>
@@ -175,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 0.5.1
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.1
+    <a href="../index.html" title="foxes 0.5.2
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.5.1
+    foxes 0.5.2
  documentation
   </label>
   
@@ -625,8 +625,8 @@
 </div>
 </div>
 <p>For induction models, the <code class="docutils literal notranslate"><span class="pre">Iterative</span></code> algorithm should be invoked. This is due to the fact that upstream turbines can be influenced by the induction zone of a turbine, which the <code class="docutils literal notranslate"><span class="pre">Downstream</span></code> algorithm simply would not notice.</p>
-<p>By default the <code class="docutils literal notranslate"><span class="pre">Iterative</span></code> algorithm applies under-relaxation of the variable <code class="docutils literal notranslate"><span class="pre">FV.CT</span></code>, corresponding to parameter choice <code class="docutils literal notranslate"><span class="pre">urelax={FV.CT:</span> <span class="pre">0.5}</span></code>. This means that for each iteration the freshly calculated value is mixed with the result from the previous iteration. This avoids wakes switching on and off repeatedly between subsequent iterations in some cases, ensuring convergence also in the vicinity of the cut-in and cut-out regions of the thrust curve. The convergence criteria can also be
-modified by setting the parameter <code class="docutils literal notranslate"><span class="pre">conv_crit</span></code>, see API.</p>
+<p>By default the <code class="docutils literal notranslate"><span class="pre">Iterative</span></code> algorithm applies under-relaxation of the variable <code class="docutils literal notranslate"><span class="pre">FV.CT</span></code>, corresponding to calling <code class="docutils literal notranslate"><span class="pre">aglo.set_urelax(pre_wake={FV.CT:</span> <span class="pre">0.5})</span></code> before calculations. This means that for each iteration the freshly calculated value is mixed with the result from the previous iteration. This avoids wakes switching on and off repeatedly between subsequent iterations in some cases, ensuring convergence also in the vicinity of the cut-in and cut-out regions of the thrust curve. The
+convergence criteria can also be modified by setting the parameter <code class="docutils literal notranslate"><span class="pre">conv_crit</span></code>, see API.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [4]:
 </code></pre></div>
@@ -636,7 +636,7 @@ modified by setting the parameter <code class="docutils literal notranslate"><sp
     <span class="n">farm</span><span class="p">,</span>
     <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span>
     <span class="n">rotor_model</span><span class="o">=</span><span class="s2">&quot;centre&quot;</span><span class="p">,</span>
-    <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;RHB&quot;</span><span class="p">,</span> <span class="s2">&quot;Bastankhah_linear_lim_k004&quot;</span><span class="p">],</span>
+    <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;RHB&quot;</span><span class="p">,</span> <span class="s2">&quot;Bastankhah025_linear_lim_k004&quot;</span><span class="p">],</span>
     <span class="n">wake_frame</span><span class="o">=</span><span class="s2">&quot;rotor_wd&quot;</span><span class="p">,</span>
     <span class="n">partial_wakes_model</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
     <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span> <span class="mi">4000</span><span class="p">},</span>
@@ -678,10 +678,10 @@ Initializing model &#39;basic_ctrl_postr&#39;
 Initializing model &#39;basic_ctrl&#39;
 Initializing model &#39;rotor_wd&#39;
 Partial wakes &#39;auto&#39;: Applying RotorPoints to [&#39;RHB&#39;]
-Partial wakes &#39;auto&#39;: Applying PartialAxiwake to [&#39;Bastankhah_linear_lim_k004&#39;]
+Partial wakes &#39;auto&#39;: Applying PartialAxiwake to [&#39;Bastankhah025_linear_lim_k004&#39;]
 Initializing model &#39;RHB&#39;
-Initializing model &#39;linear_lim&#39;
-Initializing model &#39;Bastankhah_linear_lim_k004&#39;
+Initializing model &#39;ws_linear_lim&#39;
+Initializing model &#39;Bastankhah025_linear_lim_k004&#39;
 Initializing model &#39;RotorPoints1&#39;
 Initializing model &#39;PartialAxiwake10&#39;
 Initializing model &#39;auto&#39;
@@ -699,8 +699,8 @@ Initializing model &#39;auto&#39;
   wake frame: rotor_wd (RotorWD)
 --------------------------------------------------
   wakes:
-    0) RHB (RHB)
-    1) Bastankhah_linear_lim_k004 (BastankhahWake)(k=0.04, sp=linear_lim)
+    0) RHB (RankineHalfBody)
+    1) Bastankhah025_linear_lim_k004 (Bastankhah2014)(k=0.04, sp=ws_linear_lim)
 --------------------------------------------------
   turbine models:
     0) DTU10MW (PCtFile)
@@ -729,7 +729,7 @@ Initializing model &#39;Iterative_calc&#39;
 07) FarmWakesCalculation
 --------------------------------------------------
 
-[########################################] | 100% Completed | 101.41 ms
+[########################################] | 100% Completed | 101.64 ms
 
 Input data:
 
@@ -754,8 +754,8 @@ Calculating 1 states for 48 turbines
 
 Algorithm Iterative: Iteration 1
 
-[########################################] | 100% Completed | 101.63 ms
-[########################################] | 100% Completed | 103.62 ms
+[########################################] | 100% Completed | 102.40 ms
+[########################################] | 100% Completed | 104.10 ms
 
 DefaultConv: Convergence check
   REWS: delta = 7.255e-01, lim = 1.000e-05  --  FAILED
@@ -764,8 +764,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 2
 
-[########################################] | 100% Completed | 101.35 ms
-[########################################] | 100% Completed | 101.58 ms
+[########################################] | 100% Completed | 101.70 ms
+[########################################] | 100% Completed | 102.65 ms
 
 DefaultConv: Convergence check
   REWS: delta = 1.314e-01, lim = 1.000e-05  --  FAILED
@@ -774,8 +774,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 3
 
-[########################################] | 100% Completed | 101.27 ms
-[########################################] | 100% Completed | 101.73 ms
+[########################################] | 100% Completed | 101.47 ms
+[########################################] | 100% Completed | 102.27 ms
 
 DefaultConv: Convergence check
   REWS: delta = 2.071e-02, lim = 1.000e-05  --  FAILED
@@ -784,8 +784,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 4
 
-[########################################] | 100% Completed | 101.14 ms
-[########################################] | 100% Completed | 159.88 ms
+[########################################] | 100% Completed | 102.10 ms
+[########################################] | 100% Completed | 150.29 ms
 
 DefaultConv: Convergence check
   REWS: delta = 1.193e-03, lim = 1.000e-05  --  FAILED
@@ -794,8 +794,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 5
 
-[########################################] | 100% Completed | 101.12 ms
-[########################################] | 100% Completed | 102.00 ms
+[########################################] | 100% Completed | 101.82 ms
+[########################################] | 100% Completed | 104.54 ms
 
 DefaultConv: Convergence check
   REWS: delta = 8.805e-04, lim = 1.000e-05  --  FAILED
@@ -804,8 +804,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 6
 
-[########################################] | 100% Completed | 101.05 ms
-[########################################] | 100% Completed | 105.17 ms
+[########################################] | 100% Completed | 101.58 ms
+[########################################] | 100% Completed | 103.88 ms
 
 DefaultConv: Convergence check
   REWS: delta = 4.138e-04, lim = 1.000e-05  --  FAILED
@@ -814,8 +814,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 7
 
-[########################################] | 100% Completed | 101.36 ms
-[########################################] | 100% Completed | 101.78 ms
+[########################################] | 100% Completed | 101.86 ms
+[########################################] | 100% Completed | 106.25 ms
 
 DefaultConv: Convergence check
   REWS: delta = 2.236e-04, lim = 1.000e-05  --  FAILED
@@ -824,8 +824,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 8
 
-[########################################] | 100% Completed | 101.30 ms
-[########################################] | 100% Completed | 102.08 ms
+[########################################] | 100% Completed | 102.18 ms
+[########################################] | 100% Completed | 102.18 ms
 
 DefaultConv: Convergence check
   REWS: delta = 1.168e-04, lim = 1.000e-05  --  FAILED
@@ -834,8 +834,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 9
 
-[########################################] | 100% Completed | 101.51 ms
-[########################################] | 100% Completed | 104.03 ms
+[########################################] | 100% Completed | 101.75 ms
+[########################################] | 100% Completed | 102.64 ms
 
 DefaultConv: Convergence check
   REWS: delta = 6.126e-05, lim = 1.000e-05  --  FAILED
@@ -844,8 +844,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 10
 
-[########################################] | 100% Completed | 101.47 ms
-[########################################] | 100% Completed | 105.89 ms
+[########################################] | 100% Completed | 101.86 ms
+[########################################] | 100% Completed | 111.61 ms
 
 DefaultConv: Convergence check
   REWS: delta = 3.203e-05, lim = 1.000e-05  --  FAILED
@@ -854,8 +854,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 11
 
-[########################################] | 100% Completed | 101.26 ms
-[########################################] | 100% Completed | 105.90 ms
+[########################################] | 100% Completed | 101.40 ms
+[########################################] | 100% Completed | 103.63 ms
 
 DefaultConv: Convergence check
   REWS: delta = 1.672e-05, lim = 1.000e-05  --  FAILED
@@ -864,8 +864,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 12
 
-[########################################] | 100% Completed | 101.10 ms
-[########################################] | 100% Completed | 101.97 ms
+[########################################] | 100% Completed | 102.83 ms
+[########################################] | 100% Completed | 102.09 ms
 
 DefaultConv: Convergence check
   REWS: delta = 8.713e-06, lim = 1.000e-05  --  OK
@@ -874,8 +874,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 13
 
-[########################################] | 100% Completed | 101.17 ms
-[########################################] | 100% Completed | 102.99 ms
+[########################################] | 100% Completed | 101.39 ms
+[########################################] | 100% Completed | 101.97 ms
 
 DefaultConv: Convergence check
   REWS: delta = 4.534e-06, lim = 1.000e-05  --  OK
@@ -884,8 +884,8 @@ DefaultConv: Convergence check
 
 Algorithm Iterative: Iteration 14
 
-[########################################] | 100% Completed | 101.81 ms
-[########################################] | 100% Completed | 101.61 ms
+[########################################] | 100% Completed | 102.07 ms
+[########################################] | 100% Completed | 103.50 ms
 
 DefaultConv: Convergence check
   REWS: delta = 2.356e-06, lim = 1.000e-05  --  OK
@@ -952,11 +952,11 @@ Data variables: (12/25)
 <span class="n">g</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">gen_states_fig_xy</span><span class="p">(</span>
     <span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span>
     <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
-    <span class="n">resolution</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">resolution</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">xspace</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
     <span class="n">yspace</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-    <span class="n">levels</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">vmax</span><span class="o">=</span><span class="mf">7.95</span><span class="p">,</span>
+    <span class="n">levels</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="c1">#vmax=7.95,</span>
 <span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1087,9 +1087,8 @@ Data variables: (12/25)
     <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
       
-        <script src="../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js?v=1e7b0789"></script>
+        <script src="../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script>window.MathJax = {"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script id="MathJax-script" src="../_static/mathjax/tex-mml-chtml.js?v=cadf963e"></script>
     

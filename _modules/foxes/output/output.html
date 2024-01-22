@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.output - foxes 0.5.1
+        <title>foxes.output.output - foxes 0.5.2
  documentation</title>
       
     
@@ -37,7 +37,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.a60204c58f5e4ff66.min.css?v=63f51f50" />
+        <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.01df5be22ee815f6a.min.css?v=af6841d5" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.5.1
- documentation" class="md-header__button md-logo" aria-label="foxes 0.5.1
+    <a href="../../../index.html" title="foxes 0.5.2
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.5.1
+            foxes 0.5.2
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.5.1
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.1
+    <a href="../../../index.html" title="foxes 0.5.2
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.5.1
+    foxes 0.5.2
  documentation
   </label>
   
@@ -325,8 +325,9 @@
 
 
 <h1>Source code for foxes.output.output</h1><div class="highlight"><pre>
-<span></span><code><span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">PandasFileHelper</span><span class="p">,</span> <span class="n">all_subclasses</span>
+<span></span><code><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
+<span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">PandasFileHelper</span><span class="p">,</span> <span class="n">all_subclasses</span>
 
 <div class="viewcode-block" id="Output"><a class="viewcode-back" href="../../../api_output.html#foxes.output.Output">[docs]</a><span class="k">class</span> <span class="nc">Output</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -335,12 +336,53 @@
 <span class="sd">    The job of this class is to provide handy</span>
 <span class="sd">    helper functions.</span>
 
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    out_dir: pathlib.Path</span>
+<span class="sd">        The output file directory</span>
+<span class="sd">    out_fname_fun: Function, optional</span>
+<span class="sd">        Modifies file names by f(fname)</span>
+
 <span class="sd">    :group: output</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Output.write"><a class="viewcode-back" href="../../../_output/TurbineTypeCurves.html#foxes.output.Output.write">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">format_col2var</span><span class="o">=</span><span class="p">{},</span> <span class="n">format_dict</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Output.__init__"><a class="viewcode-back" href="../../../_output/Output.__init__.html#foxes.output.Output.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out_fname_fun</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        out_dir: str, optional</span>
+<span class="sd">            The output file directory</span>
+<span class="sd">        out_fname_fun: Function, optional</span>
+<span class="sd">            Modifies file names by f(fname)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">out_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">out_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_fname_fun</span> <span class="o">=</span> <span class="n">out_fname_fun</span></div>
+    
+<div class="viewcode-block" id="Output.get_fpath"><a class="viewcode-back" href="../../../_output/TurbineTypeCurves.html#foxes.output.Output.get_fpath">[docs]</a>    <span class="k">def</span> <span class="nf">get_fpath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the total file path</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fname: str</span>
+<span class="sd">            The file name</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        fpath: pathlib.Path</span>
+<span class="sd">            The total file path</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fnm</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_fname_fun</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fnm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_fname_fun</span><span class="p">(</span><span class="n">fnm</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="o">/</span><span class="n">fnm</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">fnm</span></div>
+
+<div class="viewcode-block" id="Output.write"><a class="viewcode-back" href="../../../_output/TurbineTypeCurves.html#foxes.output.Output.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">format_col2var</span><span class="o">=</span><span class="p">{},</span> <span class="n">format_dict</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Writes data to file via pandas.</span>
 
@@ -348,16 +390,16 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        file_path: string</span>
-<span class="sd">            The path to the output file</span>
+<span class="sd">        file_name: str</span>
+<span class="sd">            The output file name</span>
 <span class="sd">        data: pandas.DataFrame</span>
 <span class="sd">            The data</span>
 <span class="sd">        format_col2var: dict</span>
-<span class="sd">            Mapping from column names to flappy variables,</span>
+<span class="sd">            Mapping from column names to foxes variables,</span>
 <span class="sd">            for formatting</span>
 <span class="sd">        format_dict: dict</span>
 <span class="sd">            Dictionary with format entries for columns, e.g.</span>
-<span class="sd">            {FV.P: &#39;{:.4f}&#39;}. Note that the keys are flappy variables</span>
+<span class="sd">            {FV.P: &#39;{:.4f}&#39;}. Note that the keys are foxes variables</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fdict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -368,8 +410,9 @@
             <span class="k">elif</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">PandasFileHelper</span><span class="o">.</span><span class="n">DEFAULT_FORMAT_DICT</span><span class="p">:</span>
                 <span class="n">fdict</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">PandasFileHelper</span><span class="o">.</span><span class="n">DEFAULT_FORMAT_DICT</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
 
-        <span class="n">PandasFileHelper</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">fdict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
-
+        <span class="n">fpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_fpath</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+        <span class="n">PandasFileHelper</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fpath</span><span class="p">,</span> <span class="n">fdict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    
 <div class="viewcode-block" id="Output.print_models"><a class="viewcode-back" href="../../../_output/TurbineTypeCurves.html#foxes.output.Output.print_models">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">print_models</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -380,7 +423,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Output.new"><a class="viewcode-back" href="../../../_output/TurbineTypeCurves.html#foxes.output.Output.new">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run-time output model factory.</span>
 
@@ -388,6 +431,10 @@
 <span class="sd">        ----------</span>
 <span class="sd">        model_type: string</span>
 <span class="sd">            The selected derived class name</span>
+<span class="sd">        args: tuple, optional</span>
+<span class="sd">            Additional parameters for the constructor</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Additional parameters for the constructor</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -400,7 +447,7 @@
         <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">scls</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">scls</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="n">model_type</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="n">scls</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">scls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">estr</span> <span class="o">=</span> <span class="s2">&quot;Output type &#39;</span><span class="si">{}</span><span class="s2">&#39; is not defined, available types are </span><span class="se">\n</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -457,7 +504,7 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
       
-        <script src="../../../_static/sphinx_immaterial_theme.1b5b7a2d5891aec19.min.js?v=1e7b0789"></script>
+        <script src="../../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
