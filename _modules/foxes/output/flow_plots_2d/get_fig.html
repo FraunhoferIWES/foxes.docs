@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.flow_plots_2d.get_fig - foxes 0.5.2
+        <title>foxes.output.flow_plots_2d.get_fig - foxes 0.5.2.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.5.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2
+    <a href="../../../../index.html" title="foxes 0.5.2.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.5.2
+            foxes 0.5.2.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.5.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2
+    <a href="../../../../index.html" title="foxes 0.5.2.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.5.2
+    foxes 0.5.2.1
  documentation
   </label>
   
@@ -331,6 +331,7 @@
 
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">wd2uv</span>
 
+
 <div class="viewcode-block" id="get_fig"><a class="viewcode-back" href="../../../../_output/flow_plots_2d/get_fig.html#foxes.output.flow_plots_2d.get_fig">[docs]</a><span class="k">def</span> <span class="nf">get_fig</span><span class="p">(</span>
     <span class="n">var</span><span class="p">,</span>
     <span class="n">fig</span><span class="p">,</span>
@@ -350,6 +351,8 @@
     <span class="n">vlabel</span><span class="p">,</span>
     <span class="n">ret_state</span><span class="p">,</span>
     <span class="n">ret_im</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">quiv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">invert_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">animated</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -394,6 +397,10 @@
 <span class="sd">        Flag for state index return</span>
 <span class="sd">    ret_im: bool</span>
 <span class="sd">        Flag for image return</span>
+<span class="sd">    vmin: float, optional</span>
+<span class="sd">        The minimal variable value</span>
+<span class="sd">    vmax: float, optional</span>
+<span class="sd">        The maximal variable value</span>
 <span class="sd">    quiv: tuple, optional</span>
 <span class="sd">        The quiver data: (n, pars, wd, ws)</span>
 <span class="sd">    invert_axis: str, optional</span>
@@ -435,6 +442,8 @@
             <span class="n">zz</span><span class="p">,</span>
             <span class="n">shading</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
             <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+            <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
+            <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
             <span class="n">animated</span><span class="o">=</span><span class="n">animated</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -446,6 +455,8 @@
             <span class="n">zz</span><span class="p">,</span>
             <span class="n">levels</span><span class="o">=</span><span class="n">levels</span><span class="p">,</span>
             <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+            <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
+            <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
             <span class="c1"># animated=animated,</span>
         <span class="p">)</span>
 
@@ -464,15 +475,18 @@
     <span class="n">hax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
 
     <span class="n">ttl</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">if</span> <span class="n">animated</span> <span class="ow">and</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">animated</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;State </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">s</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">title</span>
         <span class="n">ttl</span> <span class="o">=</span> <span class="n">hax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
             <span class="mf">0.5</span><span class="p">,</span>
             <span class="mf">1.05</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;State </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">t</span><span class="p">,</span>
             <span class="n">backgroundcolor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
             <span class="n">transform</span><span class="o">=</span><span class="n">hax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
             <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
@@ -506,8 +520,6 @@
         <span class="n">out</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">out</span></div>
-
-
 </code></pre></div>
 
 

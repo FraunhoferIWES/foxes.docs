@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.exec_python - foxes 0.5.2
+        <title>foxes.utils.exec_python - foxes 0.5.2.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.5.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2
+    <a href="../../../index.html" title="foxes 0.5.2.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.5.2
+            foxes 0.5.2.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.5.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2
+    <a href="../../../index.html" title="foxes 0.5.2.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.5.2
+    foxes 0.5.2.1
  documentation
   </label>
   
@@ -330,14 +330,15 @@
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
+
 <div class="viewcode-block" id="exec_python"><a class="viewcode-back" href="../../../api_utils.html#foxes.utils.exec_python">[docs]</a><span class="k">def</span> <span class="nf">exec_python</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">indicator</span><span class="o">=</span><span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="nb">globals</span><span class="o">=</span><span class="nb">globals</span><span class="p">(),</span> <span class="nb">locals</span><span class="o">=</span><span class="p">{}):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Executes strings that start with the</span>
 <span class="sd">    indicator as python commands, returns one value</span>
 
-<span class="sd">    Example: </span>
+<span class="sd">    Example:</span>
 <span class="sd">    s = &quot;%p%N=10;p=np.zeros((N,3));p[:,0]=50;p[:,1]=np.linspace(0,7000,N);p[:,2]=119&quot;</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    s: list, dict or object</span>
@@ -350,13 +351,13 @@
 <span class="sd">        The global namespace</span>
 <span class="sd">    locals: dict</span>
 <span class="sd">        The local namespace</span>
-<span class="sd">        </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    out: list, dict or object</span>
 <span class="sd">        The same structure, but all python</span>
 <span class="sd">        strings evaluated</span>
-<span class="sd">    </span>
+
 <span class="sd">    :group: utils</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -369,7 +370,9 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">ilist</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">indicator</span><span class="p">)</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ilist</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expecting at most 2 occurences of &#39;</span><span class="si">{</span><span class="n">indicator</span><span class="si">}</span><span class="s2">&#39;, found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ilist</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Expecting at most 2 occurences of &#39;</span><span class="si">{</span><span class="n">indicator</span><span class="si">}</span><span class="s2">&#39;, found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ilist</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
                 <span class="n">v</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">ilist</span>
                 <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">newline</span><span class="p">):</span>
                     <span class="n">exec</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="nb">globals</span><span class="p">,</span> <span class="nb">locals</span><span class="p">)</span>

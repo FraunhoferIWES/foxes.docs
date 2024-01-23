@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.wake_frame - foxes 0.5.2
+        <title>foxes.core.wake_frame - foxes 0.5.2.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.5.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2
+    <a href="../../../index.html" title="foxes 0.5.2.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.5.2
+            foxes 0.5.2.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.5.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2
+    <a href="../../../index.html" title="foxes 0.5.2.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.5.2
+    foxes 0.5.2.1
  documentation
   </label>
   
@@ -562,9 +562,7 @@
 
         <span class="c1"># calc wakes:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">ambient</span><span class="p">:</span>
-            <span class="n">wcalc</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;PointWakesCalculation&quot;</span><span class="p">)(</span>
-                <span class="n">wake_models</span><span class="o">=</span><span class="n">wake_models</span>
-            <span class="p">)</span>
+            <span class="n">wcalc</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;PointWakesCalculation&quot;</span><span class="p">)(</span><span class="n">wake_models</span><span class="o">=</span><span class="n">wake_models</span><span class="p">)</span>
             <span class="n">wcalc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">wsrc</span> <span class="o">=</span> <span class="n">states_source_turbine</span> <span class="k">if</span> <span class="n">self_wake</span> <span class="k">else</span> <span class="kc">None</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">wcalc</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">wsrc</span><span class="p">)</span>
@@ -621,11 +619,12 @@
                     <span class="k">return</span> <span class="n">scls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">estr</span> <span class="o">=</span> <span class="s2">&quot;Wake frame type &#39;</span><span class="si">{}</span><span class="s2">&#39; is not defined, available types are </span><span class="se">\n</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">wframe_type</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">])</span>
+            <span class="n">estr</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s2">&quot;Wake frame type &#39;</span><span class="si">{}</span><span class="s2">&#39; is not defined, available types are </span><span class="se">\n</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">wframe_type</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">])</span>
+                <span class="p">)</span>
             <span class="p">)</span>
             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">estr</span><span class="p">)</span></div></div>
-        
 </code></pre></div>
 
 

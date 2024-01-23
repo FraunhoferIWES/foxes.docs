@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.turbine_types.CpCt_from_two - foxes 0.5.2
+        <title>foxes.models.turbine_types.CpCt_from_two - foxes 0.5.2.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.5.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2
+    <a href="../../../../index.html" title="foxes 0.5.2.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.5.2
+            foxes 0.5.2.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.5.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2
+    <a href="../../../../index.html" title="foxes 0.5.2.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.5.2
+    foxes 0.5.2.1
  documentation
   </label>
   
@@ -398,12 +398,14 @@
         <span class="n">ws_delta</span> <span class="o">=</span> <span class="mf">0.0001</span>
         <span class="n">ws_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
         <span class="n">ws_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
-        <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">ws_max</span> <span class="o">-</span> <span class="n">ws_min</span><span class="p">)</span><span class="o">/</span><span class="n">ws_delta</span><span class="p">)</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">ws_max</span> <span class="o">-</span> <span class="n">ws_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">ws_delta</span><span class="p">)</span>
 
         <span class="n">data_P</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
         <span class="n">data_P</span><span class="p">[</span><span class="s2">&quot;ws&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ws_min</span><span class="p">,</span> <span class="n">ws_max</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">data_P</span><span class="p">[</span><span class="s2">&quot;cp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">data_P</span><span class="p">[</span><span class="s2">&quot;ws&quot;</span><span class="p">],</span> <span class="n">ws</span><span class="p">,</span> <span class="n">cp</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">data_P</span><span class="p">[</span><span class="s2">&quot;P&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">data_P</span><span class="p">[</span><span class="s2">&quot;cp&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">data_P</span><span class="p">[</span><span class="s2">&quot;ws&quot;</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span> <span class="o">/</span> <span class="n">FC</span><span class="o">.</span><span class="n">P_UNITS</span><span class="p">[</span><span class="n">P_unit</span><span class="p">]</span>
+        <span class="n">data_P</span><span class="p">[</span><span class="s2">&quot;P&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mf">0.5</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">data_P</span><span class="p">[</span><span class="s2">&quot;cp&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">data_P</span><span class="p">[</span><span class="s2">&quot;ws&quot;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">/</span> <span class="n">FC</span><span class="o">.</span><span class="n">P_UNITS</span><span class="p">[</span><span class="n">P_unit</span><span class="p">]</span>
+        <span class="p">)</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">data_P</span><span class="p">,</span>
