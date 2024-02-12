@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.wake_frames.yawed_wakes - foxes 0.5.2.1
+        <title>foxes.models.wake_frames.yawed_wakes - foxes 0.6
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.5.2.1
- documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2.1
+    <a href="../../../../index.html" title="foxes 0.6
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.6
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.5.2.1
+            foxes 0.6
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.5.2.1
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2.1
+    <a href="../../../../index.html" title="foxes 0.6
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.6
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.5.2.1
+    foxes 0.6
  documentation
   </label>
   
@@ -328,7 +328,10 @@
 <span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WakeFrame</span>
-<span class="kn">from</span> <span class="nn">foxes.models.wake_models.wind.bastankhah16</span> <span class="kn">import</span> <span class="n">Bastankhah2016Model</span>
+<span class="kn">from</span> <span class="nn">foxes.models.wake_models.wind.bastankhah16</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Bastankhah2016Model</span><span class="p">,</span>
+    <span class="n">Bastankhah2016</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 <span class="kn">from</span> <span class="nn">.rotor_wd</span> <span class="kn">import</span> <span class="n">RotorWD</span>
@@ -350,6 +353,8 @@
 <span class="sd">    ----------</span>
 <span class="sd">    model: Bastankhah2016Model</span>
 <span class="sd">        The model for computing common data</span>
+<span class="sd">    model_pars: dict</span>
+<span class="sd">        Model parameters</span>
 <span class="sd">    K: float</span>
 <span class="sd">        The wake growth parameter k. If not given here</span>
 <span class="sd">        it will be searched in the farm data.</span>
@@ -365,14 +370,12 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="YawedWakes.__init__"><a class="viewcode-back" href="../../../../_models/wake_frames/YawedWakes.__init__.html#foxes.models.wake_frames.YawedWakes.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="YawedWakes.__init__"><a class="viewcode-back" href="../../../../_foxes/models/wake_frames/YawedWakes.__init__.html#foxes.models.wake_frames.YawedWakes.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">ct_max</span><span class="o">=</span><span class="mf">0.9999</span><span class="p">,</span>
-        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.58</span><span class="p">,</span>
-        <span class="n">beta</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
         <span class="n">base_frame</span><span class="o">=</span><span class="n">RotorWD</span><span class="p">(),</span>
         <span class="n">k_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">K</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
@@ -382,29 +385,26 @@
 <span class="sd">        k: float, optional</span>
 <span class="sd">            The wake growth parameter k. If not given here</span>
 <span class="sd">            it will be searched in the farm data, by default None</span>
-<span class="sd">        ct_max: float, optional</span>
-<span class="sd">            The maximal value for ct, values beyond will be limited</span>
-<span class="sd">            to this number, by default 0.9999</span>
-<span class="sd">        alpha: float, optional</span>
-<span class="sd">            model parameter used to determine onset of far wake region</span>
-<span class="sd">        beta: float, optional</span>
-<span class="sd">            model parameter used to determine onset of far wake region</span>
 <span class="sd">        base_frame: foxes.core.WakeFrame</span>
 <span class="sd">            The wake frame from which to start</span>
 <span class="sd">        k_var: str</span>
 <span class="sd">            The variable name for k</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Additional parameters for the Bastankhah2016Model,</span>
+<span class="sd">            if not found in wake model</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">base_frame</span> <span class="o">=</span> <span class="n">base_frame</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">Bastankhah2016Model</span><span class="p">(</span><span class="n">ct_max</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_pars</span> <span class="o">=</span> <span class="n">kwargs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span> <span class="o">=</span> <span class="n">k_var</span>
 
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k_var</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">YAWM</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="YawedWakes.sub_models"><a class="viewcode-back" href="../../../../_models/wake_frames/YawedWakes.sub_models.html#foxes.models.wake_frames.YawedWakes.sub_models">[docs]</a>    <span class="k">def</span> <span class="nf">sub_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="YawedWakes.sub_models"><a class="viewcode-back" href="../../../../_foxes/models/wake_frames/YawedWakes.sub_models.html#foxes.models.wake_frames.YawedWakes.sub_models">[docs]</a>    <span class="k">def</span> <span class="nf">sub_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        List of all sub-models</span>
 
@@ -414,9 +414,41 @@
 <span class="sd">            Names of all sub models</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">base_frame</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">base_frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="YawedWakes.calc_order"><a class="viewcode-back" href="../../../../_models/wake_frames/YawedWakes.calc_order.html#foxes.models.wake_frames.YawedWakes.calc_order">[docs]</a>    <span class="k">def</span> <span class="nf">calc_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">):</span>
+<div class="viewcode-block" id="YawedWakes.initialize"><a class="viewcode-back" href="../../../../_foxes/models/wake_frames/YawedWakes.initialize.html#foxes.models.wake_frames.YawedWakes.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        verbosity: int</span>
+<span class="sd">            The verbosity level, 0 = silent</span>
+<span class="sd">        force: bool</span>
+<span class="sd">            Overwrite existing data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialized</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">wake_models</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">Bastankhah2016</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span><span class="o">.</span><span class="n">initialized</span><span class="p">:</span>
+                        <span class="n">w</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">,</span> <span class="n">force</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">model</span>
+                    <span class="k">if</span> <span class="n">w</span><span class="o">.</span><span class="n">k_var</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">:</span>
+                        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">))</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">Bastankhah2016Model</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">model_pars</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">wake_models</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s2">&quot;k_var&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">w</span><span class="o">.</span><span class="n">k_var</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">:</span>
+                        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">))</span>
+                        <span class="k">break</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">,</span> <span class="n">force</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="YawedWakes.calc_order"><a class="viewcode-back" href="../../../../_foxes/models/wake_frames/YawedWakes.calc_order.html#foxes.models.wake_frames.YawedWakes.calc_order">[docs]</a>    <span class="k">def</span> <span class="nf">calc_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;</span>
 <span class="sd">        Calculates the order of turbine evaluation.</span>
 
@@ -449,7 +481,7 @@
         <span class="n">gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
             <span class="n">FV</span><span class="o">.</span><span class="n">YAWM</span><span class="p">,</span>
             <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span>
-            <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span>
+            <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;wfs&quot;</span><span class="p">,</span>
             <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
             <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
             <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span>
@@ -505,7 +537,7 @@
             <span class="c1"># apply deflection:</span>
             <span class="n">y</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span> <span class="o">-=</span> <span class="n">ydef</span>
 
-<div class="viewcode-block" id="YawedWakes.get_wake_coos"><a class="viewcode-back" href="../../../../_models/wake_frames/YawedWakes.get_wake_coos.html#foxes.models.wake_frames.YawedWakes.get_wake_coos">[docs]</a>    <span class="k">def</span> <span class="nf">get_wake_coos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">):</span>
+<div class="viewcode-block" id="YawedWakes.get_wake_coos"><a class="viewcode-back" href="../../../../_foxes/models/wake_frames/YawedWakes.get_wake_coos.html#foxes.models.wake_frames.YawedWakes.get_wake_coos">[docs]</a>    <span class="k">def</span> <span class="nf">get_wake_coos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate wake coordinates.</span>
 
@@ -543,7 +575,7 @@
 
         <span class="k">return</span> <span class="n">xyz</span></div>
 
-<div class="viewcode-block" id="YawedWakes.get_centreline_points"><a class="viewcode-back" href="../../../../_models/wake_frames/YawedWakes.get_centreline_points.html#foxes.models.wake_frames.YawedWakes.get_centreline_points">[docs]</a>    <span class="k">def</span> <span class="nf">get_centreline_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="YawedWakes.get_centreline_points"><a class="viewcode-back" href="../../../../_foxes/models/wake_frames/YawedWakes.get_centreline_points.html#foxes.models.wake_frames.YawedWakes.get_centreline_points">[docs]</a>    <span class="k">def</span> <span class="nf">get_centreline_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets the points along the centreline for given</span>
 <span class="sd">        values of x.</span>
@@ -616,7 +648,7 @@
       <div class="md-copyright">
   
     <div class="md-footer-copyright__highlight">
-        &#169; Copyright 2023, Fraunhofer IWES.
+        &#169; Copyright 2024, Fraunhofer IWES.
         
     </div>
   

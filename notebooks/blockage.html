@@ -13,7 +13,7 @@
     
     
       
-        <title>Blockage modelling - foxes 0.5.2.1
+        <title>Blockage modelling - foxes 0.6
  documentation</title>
       
     
@@ -73,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 0.5.2.1
- documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2.1
+    <a href="../index.html" title="foxes 0.6
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.6
  documentation" data-md-component="logo">
       
   
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.5.2.1
+            foxes 0.6
  documentation
           </span>
         </div>
@@ -175,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 0.5.2.1
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2.1
+    <a href="../index.html" title="foxes 0.6
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.6
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.5.2.1
+    foxes 0.6
  documentation
   </label>
   
@@ -484,6 +484,21 @@
 
             
           
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blockage_comparison.html" class="md-nav__link">
+        <span title="/notebooks/blockage_comparison.ipynb (reference label)" class="md-ellipsis">Blockage model comparison</span>
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -635,7 +650,7 @@ convergence criteria can also be modified by setting the parameter <code class="
     <span class="n">mbook</span><span class="p">,</span>
     <span class="n">farm</span><span class="p">,</span>
     <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span>
-    <span class="n">rotor_model</span><span class="o">=</span><span class="s2">&quot;centre&quot;</span><span class="p">,</span>
+    <span class="n">rotor_model</span><span class="o">=</span><span class="s2">&quot;grid36&quot;</span><span class="p">,</span>
     <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;RHB&quot;</span><span class="p">,</span> <span class="s2">&quot;Bastankhah025_linear_lim_k004&quot;</span><span class="p">],</span>
     <span class="n">wake_frame</span><span class="o">=</span><span class="s2">&quot;rotor_wd&quot;</span><span class="p">,</span>
     <span class="n">partial_wakes_model</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
@@ -669,7 +684,7 @@ Algorithm Iterative: Iteration 0
 Initializing algorithm &#39;Iterative&#39;
 Initializing model &#39;Iterative&#39;
 Initializing model &#39;SingleStateStates&#39;
-Initializing model &#39;centre&#39;
+Initializing model &#39;grid36&#39;
 Initializing model &#39;basic_ctrl_prer&#39;
 Initializing model &#39;DTU10MW&#39;
 Turbine type &#39;DTU10MW&#39;: Reading static data from context &#39;power_ct_curve&#39;
@@ -679,8 +694,8 @@ Initializing model &#39;basic_ctrl&#39;
 Initializing model &#39;rotor_wd&#39;
 Partial wakes &#39;auto&#39;: Applying RotorPoints to [&#39;RHB&#39;]
 Partial wakes &#39;auto&#39;: Applying PartialAxiwake to [&#39;Bastankhah025_linear_lim_k004&#39;]
+Initializing model &#39;Madsen&#39;
 Initializing model &#39;RHB&#39;
-Initializing model &#39;ws_linear_lim&#39;
 Initializing model &#39;Bastankhah025_linear_lim_k004&#39;
 Initializing model &#39;RotorPoints1&#39;
 Initializing model &#39;PartialAxiwake10&#39;
@@ -693,7 +708,7 @@ Initializing model &#39;auto&#39;
   n_turbines: 48
 --------------------------------------------------
   states   : SingleStateStates (SingleStateStates)
-  rotor    : centre (CentreRotor)
+  rotor    : grid36 (GridRotor)(n=6)
   controller: basic_ctrl (BasicFarmController)
   partialwks: auto (Mapped)
   wake frame: rotor_wd (RotorWD)
@@ -721,7 +736,7 @@ Initializing model &#39;Iterative_calc&#39;
 00) SetXYHD_t2f
 01) basic_ctrl
 02) calc_yaw_CentreRotor1
-03) centre
+03) grid36
 04) CalcOrder
 05) basic_ctrl
   05.0) Post-rotor: DTU10MW
@@ -729,7 +744,7 @@ Initializing model &#39;Iterative_calc&#39;
 07) FarmWakesCalculation
 --------------------------------------------------
 
-[########################################] | 100% Completed | 102.14 ms
+[########################################] | 100% Completed | 101.88 ms
 
 Input data:
 
@@ -750,147 +765,147 @@ Chunks: {&#39;state&#39;: None, &#39;point&#39;: 4000}
 
 
 Calculating 1 states for 48 turbines
-[########################################] | 100% Completed | 102.55 ms
+[########################################] | 100% Completed | 102.91 ms
 
 Algorithm Iterative: Iteration 1
 
-[########################################] | 100% Completed | 102.72 ms
-[########################################] | 100% Completed | 102.83 ms
+[########################################] | 100% Completed | 102.22 ms
+[########################################] | 100% Completed | 102.51 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 7.255e-01, lim = 1.000e-05  --  FAILED
+  REWS: delta = 1.414e+00, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 5.379e-03, lim = 1.000e-06  --  FAILED
+  CT  : delta = 8.024e-03, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 2
 
-[########################################] | 100% Completed | 103.11 ms
-[########################################] | 100% Completed | 102.28 ms
+[########################################] | 100% Completed | 101.81 ms
+[########################################] | 100% Completed | 106.04 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 1.314e-01, lim = 1.000e-05  --  FAILED
+  REWS: delta = 6.799e-01, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 2.330e-03, lim = 1.000e-06  --  FAILED
+  CT  : delta = 1.190e-03, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 3
 
-[########################################] | 100% Completed | 101.97 ms
-[########################################] | 100% Completed | 102.04 ms
+[########################################] | 100% Completed | 101.79 ms
+[########################################] | 100% Completed | 102.48 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 2.071e-02, lim = 1.000e-05  --  FAILED
+  REWS: delta = 3.019e-01, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 1.206e-03, lim = 1.000e-06  --  FAILED
+  CT  : delta = 1.659e-03, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 4
 
-[########################################] | 100% Completed | 102.48 ms
-[########################################] | 100% Completed | 142.97 ms
+[########################################] | 100% Completed | 101.88 ms
+[########################################] | 100% Completed | 148.88 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 1.193e-03, lim = 1.000e-05  --  FAILED
+  REWS: delta = 1.254e-01, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 5.979e-04, lim = 1.000e-06  --  FAILED
+  CT  : delta = 3.777e-04, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 5
 
-[########################################] | 100% Completed | 102.78 ms
-[########################################] | 100% Completed | 102.34 ms
+[########################################] | 100% Completed | 101.53 ms
+[########################################] | 100% Completed | 102.01 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 8.805e-04, lim = 1.000e-05  --  FAILED
+  REWS: delta = 4.966e-02, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 2.997e-04, lim = 1.000e-06  --  FAILED
+  CT  : delta = 3.488e-04, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 6
 
-[########################################] | 100% Completed | 103.14 ms
-[########################################] | 100% Completed | 104.07 ms
+[########################################] | 100% Completed | 102.17 ms
+[########################################] | 100% Completed | 102.87 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 4.138e-04, lim = 1.000e-05  --  FAILED
+  REWS: delta = 1.876e-02, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 1.565e-04, lim = 1.000e-06  --  FAILED
+  CT  : delta = 1.125e-04, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 7
 
-[########################################] | 100% Completed | 102.17 ms
-[########################################] | 100% Completed | 104.47 ms
+[########################################] | 100% Completed | 102.16 ms
+[########################################] | 100% Completed | 102.81 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 2.236e-04, lim = 1.000e-05  --  FAILED
+  REWS: delta = 6.906e-03, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 8.270e-05, lim = 1.000e-06  --  FAILED
+  CT  : delta = 7.697e-05, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 8
 
 [########################################] | 100% Completed | 102.34 ms
-[########################################] | 100% Completed | 102.37 ms
+[########################################] | 100% Completed | 102.80 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 1.168e-04, lim = 1.000e-05  --  FAILED
+  REWS: delta = 2.448e-03, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 4.358e-05, lim = 1.000e-06  --  FAILED
+  CT  : delta = 3.103e-05, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 9
 
-[########################################] | 100% Completed | 101.98 ms
-[########################################] | 100% Completed | 102.71 ms
+[########################################] | 100% Completed | 101.90 ms
+[########################################] | 100% Completed | 102.10 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 6.126e-05, lim = 1.000e-05  --  FAILED
+  REWS: delta = 8.622e-04, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 2.291e-05, lim = 1.000e-06  --  FAILED
+  CT  : delta = 1.790e-05, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 10
 
-[########################################] | 100% Completed | 103.02 ms
-[########################################] | 100% Completed | 101.81 ms
+[########################################] | 100% Completed | 102.06 ms
+[########################################] | 100% Completed | 102.74 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 3.203e-05, lim = 1.000e-05  --  FAILED
+  REWS: delta = 2.922e-04, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 1.202e-05, lim = 1.000e-06  --  FAILED
+  CT  : delta = 8.086e-06, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 11
 
-[########################################] | 100% Completed | 101.84 ms
-[########################################] | 100% Completed | 101.97 ms
+[########################################] | 100% Completed | 102.03 ms
+[########################################] | 100% Completed | 102.18 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 1.672e-05, lim = 1.000e-05  --  FAILED
+  REWS: delta = 1.008e-04, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 6.290e-06, lim = 1.000e-06  --  FAILED
+  CT  : delta = 4.324e-06, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 12
 
-[########################################] | 100% Completed | 102.42 ms
-[########################################] | 100% Completed | 102.00 ms
+[########################################] | 100% Completed | 101.71 ms
+[########################################] | 100% Completed | 101.31 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 8.713e-06, lim = 1.000e-05  --  OK
+  REWS: delta = 3.288e-05, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 3.286e-06, lim = 1.000e-06  --  FAILED
+  CT  : delta = 2.059e-06, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 13
 
-[########################################] | 100% Completed | 101.98 ms
-[########################################] | 100% Completed | 102.67 ms
+[########################################] | 100% Completed | 101.47 ms
+[########################################] | 100% Completed | 102.19 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 4.534e-06, lim = 1.000e-05  --  OK
+  REWS: delta = 1.141e-05, lim = 1.000e-05  --  FAILED
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 1.714e-06, lim = 1.000e-06  --  FAILED
+  CT  : delta = 1.067e-06, lim = 1.000e-06  --  FAILED
 
 Algorithm Iterative: Iteration 14
 
-[########################################] | 100% Completed | 103.30 ms
+[########################################] | 100% Completed | 102.16 ms
 [########################################] | 100% Completed | 102.16 ms
 
 DefaultConv: Convergence check
-  REWS: delta = 2.356e-06, lim = 1.000e-05  --  OK
+  REWS: delta = 3.541e-06, lim = 1.000e-05  --  OK
   TI  : delta = 0.000e+00, lim = 1.000e-06  --  OK
-  CT  : delta = 8.926e-07, lim = 1.000e-06  --  OK
+  CT  : delta = 5.226e-07, lim = 1.000e-06  --  OK
 
 Algorithm Iterative: Convergence reached.
 
@@ -956,7 +971,6 @@ Data variables: (12/25)
     <span class="n">xspace</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
     <span class="n">yspace</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
     <span class="n">levels</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-    <span class="c1">#vmax=7.95,</span>
 <span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1001,6 +1015,254 @@ Data variables: (12/25)
 <img alt="../_images/notebooks_blockage_16_0.png" src="../_images/notebooks_blockage_16_0.png" />
 </div>
 </div>
+<p>Now we investigate the effect of mirroring turbines to account for the speed up effect due to the constrictions from the ground and boundary layer. For this we create a wind farm which consists of only one turbine:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [9]:
+</code></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">farm</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">WindFarm</span><span class="p">()</span>
+<span class="n">farm</span><span class="o">.</span><span class="n">add_turbine</span><span class="p">(</span><span class="n">foxes</span><span class="o">.</span><span class="n">Turbine</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;DTU10MW&quot;</span><span class="p">]))</span>
+</code></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Turbine 0, T0: DTU10MW
+</pre></div></div>
+</div>
+<p>Here we calculate farm results for 3 scenarios using only the Rankine Half Body model: 1) No ground effect 2) Using the ground as mirror 3) Using the height 1000m as a mirror for the boundary layer</p>
+<p>A flow plot for each scenario is generated, along with a windspeed profile comparison.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [10]:
+</code></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="c1"># set up figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">states</span><span class="o">.</span><span class="n">ws</span> <span class="o">*</span> <span class="mf">0.5</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">npoints</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">profile_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">npoints</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">bmodel</span> <span class="o">=</span> <span class="s2">&quot;RHB&quot;</span>
+<span class="n">mirror_combo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;No mirror&quot;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="s2">&quot;Ground mirror&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">bmodel</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]},</span>
+    <span class="s2">&quot;Ground and 500m mirror&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">bmodel</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">]},</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="n">foxes</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">runners</span><span class="o">.</span><span class="n">DaskRunner</span><span class="p">()</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">mirror</span><span class="p">,</span> <span class="n">mirrors</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mirror_combo</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+
+        <span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Iterative</span><span class="p">(</span>
+            <span class="n">mbook</span><span class="p">,</span>
+            <span class="n">farm</span><span class="p">,</span>
+            <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span>
+            <span class="n">rotor_model</span><span class="o">=</span><span class="s2">&quot;grid36&quot;</span><span class="p">,</span>
+            <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="n">bmodel</span><span class="p">],</span>
+            <span class="n">wake_frame</span><span class="o">=</span><span class="s2">&quot;rotor_wd&quot;</span><span class="p">,</span>
+            <span class="n">partial_wakes_model</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+            <span class="n">wake_mirrors</span><span class="o">=</span><span class="n">mirrors</span><span class="p">,</span>
+            <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span> <span class="mi">4000</span><span class="p">},</span>
+            <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">farm_results</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">)</span>
+
+        <span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FlowPlots2D</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">,</span> <span class="n">runner</span><span class="o">=</span><span class="n">runner</span><span class="p">)</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">gen_states_fig_xz</span><span class="p">(</span>
+            <span class="n">var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+            <span class="n">xmin</span><span class="o">=-</span><span class="mi">300</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+            <span class="n">zmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zmax</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+            <span class="n">levels</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+            <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">mirror</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+        <span class="c1"># get point data for profile plot and store in df</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">npoints</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="n">points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200</span>
+        <span class="n">points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="n">npoints</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">point_results</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">calc_points</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">farm_results</span><span class="p">,</span> <span class="n">points</span><span class="p">))</span>
+        <span class="n">profile_pts</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="c1"># x points, WS</span>
+        <span class="n">profile_pts</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="c1">#  y points, z values</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Algorithm Iterative: Iteration 0
+
+[########################################] | 100% Completed | 101.92 ms
+[########################################] | 100% Completed | 102.65 ms
+[########################################] | 100% Completed | 101.31 ms
+[########################################] | 100% Completed | 102.44 ms
+Partial wakes &#39;auto&#39;: Applying RotorPoints to [&#39;RHB&#39;]
+[########################################] | 100% Completed | 101.56 ms
+[########################################] | 100% Completed | 102.43 ms
+[########################################] | 100% Completed | 103.16 ms
+
+Algorithm Iterative: Iteration 0
+
+[########################################] | 100% Completed | 101.67 ms
+[########################################] | 100% Completed | 104.10 ms
+[########################################] | 100% Completed | 102.26 ms
+[########################################] | 100% Completed | 104.19 ms
+Partial wakes &#39;auto&#39;: Applying RotorPoints to [&#39;WakeMirror_RHB&#39;]
+[########################################] | 100% Completed | 101.99 ms
+[########################################] | 100% Completed | 102.44 ms
+[########################################] | 100% Completed | 104.27 ms
+
+Algorithm Iterative: Iteration 0
+
+[########################################] | 100% Completed | 101.60 ms
+[########################################] | 100% Completed | 101.50 ms
+[########################################] | 100% Completed | 103.40 ms
+[########################################] | 100% Completed | 105.20 ms
+Partial wakes &#39;auto&#39;: Applying RotorPoints to [&#39;WakeMirror1_RHB&#39;]
+[########################################] | 100% Completed | 102.05 ms
+[########################################] | 100% Completed | 102.64 ms
+[########################################] | 100% Completed | 102.08 ms
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_blockage_20_1.png" src="../_images/notebooks_blockage_20_1.png" />
+</div>
+</div>
+<p>Now we plot the wind speed profile in front of the row of turbines at x=-200 and y=0. Here we observe the additional blockage effect caused by the mirrored turbines:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [11]:
+</code></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="s2">&quot;-.&quot;</span><span class="p">,</span><span class="s2">&quot;:&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">mirror</span><span class="p">,</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mirror_combo</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">profile_pts</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">],</span><span class="n">profile_pts</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">mirror</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Profile comparison&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Wind speed [m/s]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_blockage_22_0.png" src="../_images/notebooks_blockage_22_0.png" />
+</div>
+</div>
+<p>While the ground mirror seems to have a noticable effect in this example, the reflection from the imagined top of the boundary layer at 500 m seems to be small at the rotor relevant heights.</p>
+<p>Let’s finish by looking at the flow in a more realistic modelling setting. As an example, we apply the <code class="docutils literal notranslate"><span class="pre">SelfSimilar2020</span></code> induction model with ground effects to a stable ambient wind speed profile, and combine this with the <code class="docutils literal notranslate"><span class="pre">Bastankhah2016</span></code> wake deficit model:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [12]:
+</code></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">states</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">SingleStateStates</span><span class="p">(</span>
+    <span class="n">ws</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">wd</span><span class="o">=</span><span class="mf">270.0</span><span class="p">,</span> <span class="n">ti</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mf">1.225</span><span class="p">,</span> <span class="n">z0</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">MOL</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
+    <span class="n">profiles</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="s2">&quot;ABLLogStableWsProfile&quot;</span><span class="p">})</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+<span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
+
+<span class="n">bmodels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;None&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;SelfSimilar2020&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;SelfSimilar2020&quot;</span><span class="p">]}</span>
+<span class="k">with</span> <span class="n">foxes</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">runners</span><span class="o">.</span><span class="n">DaskRunner</span><span class="p">()</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">bname</span><span class="p">,</span> <span class="n">wakes0</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bmodels</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+
+        <span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Iterative</span><span class="p">(</span>
+            <span class="n">mbook</span><span class="p">,</span>
+            <span class="n">farm</span><span class="p">,</span>
+            <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span>
+            <span class="n">rotor_model</span><span class="o">=</span><span class="s2">&quot;grid36&quot;</span><span class="p">,</span>
+            <span class="n">wake_models</span><span class="o">=</span><span class="n">wakes0</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;IECTI2019_quartic&quot;</span><span class="p">,</span> <span class="s2">&quot;Bastankhah2016_linear_lim_k004&quot;</span><span class="p">],</span>
+            <span class="n">wake_frame</span><span class="o">=</span><span class="s2">&quot;rotor_wd&quot;</span><span class="p">,</span>
+            <span class="n">partial_wakes_model</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+            <span class="n">wake_mirrors</span><span class="o">=</span><span class="p">{</span><span class="n">bmodel</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]},</span>
+            <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span> <span class="mi">4000</span><span class="p">},</span>
+            <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">farm_results</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">)</span>
+
+        <span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FlowPlots2D</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">,</span> <span class="n">runner</span><span class="o">=</span><span class="n">runner</span><span class="p">)</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">gen_states_fig_xz</span><span class="p">(</span>
+            <span class="n">var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">xmin</span><span class="o">=-</span><span class="mi">1000</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span>
+            <span class="n">zmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zmax</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+            <span class="n">levels</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+            <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Induction: </span><span class="si">{</span><span class="n">bname</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Algorithm Iterative: Iteration 0
+
+[########################################] | 100% Completed | 102.17 ms
+[########################################] | 100% Completed | 104.83 ms
+[########################################] | 100% Completed | 102.28 ms
+[########################################] | 100% Completed | 103.14 ms
+
+Algorithm Iterative: Iteration 0
+
+[########################################] | 100% Completed | 101.44 ms
+[########################################] | 100% Completed | 106.06 ms
+[########################################] | 100% Completed | 102.02 ms
+[########################################] | 100% Completed | 103.02 ms
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_blockage_25_1.png" src="../_images/notebooks_blockage_25_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div></div>
+</div>
 
 
 
@@ -1038,13 +1300,13 @@ Data variables: (12/25)
       
       
         
-        <a href="../api.html" class="md-footer__link md-footer__link--next" aria-label="Next: API" rel="next">
+        <a href="blockage_comparison.html" class="md-footer__link md-footer__link--next" aria-label="Next: Blockage model comparison" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              API
+              Blockage model comparison
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -1062,7 +1324,7 @@ Data variables: (12/25)
       <div class="md-copyright">
   
     <div class="md-footer-copyright__highlight">
-        &#169; Copyright 2023, Fraunhofer IWES.
+        &#169; Copyright 2024, Fraunhofer IWES.
         
     </div>
   

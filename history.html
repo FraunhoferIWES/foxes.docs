@@ -13,7 +13,7 @@
     
     
       
-        <title>History - foxes 0.5.2.1
+        <title>History - foxes 0.6
  documentation</title>
       
     
@@ -77,8 +77,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="foxes 0.5.2.1
- documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2.1
+    <a href="index.html" title="foxes 0.6
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.6
  documentation" data-md-component="logo">
       
   
@@ -91,7 +91,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.5.2.1
+            foxes 0.6
  documentation
           </span>
         </div>
@@ -179,14 +179,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="foxes 0.5.2.1
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2.1
+    <a href="index.html" title="foxes 0.6
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.6
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.5.2.1
+    foxes 0.6
  documentation
   </label>
   
@@ -521,6 +521,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#v0-6" class="md-nav__link">
+    <span title="/history.md#v0-6 (reference label)" class="md-ellipsis">v0.<wbr>6</span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -746,6 +753,13 @@
         <li class="md-nav__item">
   <a href="#v0-5-2-1" class="md-nav__link">
     <span title="/history.md#v0-5-2-1 (reference label)" class="md-ellipsis">v0.<wbr>5.<wbr>2.<wbr>1</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0-6" class="md-nav__link">
+    <span title="/history.md#v0-6 (reference label)" class="md-ellipsis">v0.<wbr>6</span>
   </a>
   
 </li>
@@ -1452,6 +1466,65 @@
 </li>
 </ul>
 <p><strong>Full Changelog</strong>: <a class="reference external" href="https://github.com/FraunhoferIWES/foxes/commits/v0.5.2.1">https://github.com/FraunhoferIWES/foxes/commits/v0.5.2.1</a></p>
+<h2 id="v0-6">v0.6<a class="headerlink" href="#v0-6" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Dependencies:</p>
+<ul>
+<li><p>Replacing dependency on <code class="docutils literal notranslate"><span class="pre">plotly</span></code> by dependency on <code class="docutils literal notranslate"><span class="pre">windrose</span></code>, since the latter is lighter</p></li>
+</ul>
+</li>
+<li><p>Core:</p>
+<ul>
+<li><p>This version introduces <code class="docutils literal notranslate"><span class="pre">AxialInductionModel</span></code> classes, computing the axial induction factor <code class="docutils literal notranslate"><span class="pre">a(ct)</span></code></p></li>
+</ul>
+</li>
+<li><p>Wake models:</p>
+<ul>
+<li><p>Reformulating <code class="docutils literal notranslate"><span class="pre">beta</span></code> in terms of induction in <code class="docutils literal notranslate"><span class="pre">Bastankhah2014</span></code> and <code class="docutils literal notranslate"><span class="pre">CrespoHernandez</span></code></p></li>
+<li><p>New default: <code class="docutils literal notranslate"><span class="pre">Bastankhah2014</span></code>, <code class="docutils literal notranslate"><span class="pre">Bastankhah2016</span></code>, <code class="docutils literal notranslate"><span class="pre">TurbOPark</span></code> and <code class="docutils literal notranslate"><span class="pre">TurbOParkIX</span></code> now with default axial induction model <code class="docutils literal notranslate"><span class="pre">Madsen</span></code></p></li>
+<li><p>New induction wake models: <code class="docutils literal notranslate"><span class="pre">Rathmann</span></code>, <code class="docutils literal notranslate"><span class="pre">SelfSimilar</span></code> and <code class="docutils literal notranslate"><span class="pre">SelfSimilar2020</span></code>, for blockage modelling</p></li>
+<li><p>Introducing <code class="docutils literal notranslate"><span class="pre">WakeMirror</span></code> wrapper around wake models, modelling wake reflection from ground or horizontal plane via virtual mirrored turbines</p></li>
+</ul>
+</li>
+<li><p>Wake frames:</p>
+<ul>
+<li><p>Renaming <code class="docutils literal notranslate"><span class="pre">Streamlines</span></code> to <code class="docutils literal notranslate"><span class="pre">Streamlines2D</span></code>, no changes in model book names</p></li>
+</ul>
+</li>
+<li><p>Axial induction models:</p>
+<ul>
+<li><p>New induction model: <code class="docutils literal notranslate"><span class="pre">BetzAxialInduction</span></code>, the classic <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">0.5(1</span> <span class="pre">-</span> <span class="pre">sqrt(1-ct))</span></code> relation. In the model book this is called <code class="docutils literal notranslate"><span class="pre">Betz</span></code>.</p></li>
+<li><p>New induction model: <code class="docutils literal notranslate"><span class="pre">MadsenAxialInduction</span></code>, a third-order polynomial approximation of <code class="docutils literal notranslate"><span class="pre">a(ct)</span></code>. In the model book this is called <code class="docutils literal notranslate"><span class="pre">Madsen</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Output:</p>
+<ul>
+<li><p>Improved: <code class="docutils literal notranslate"><span class="pre">FlowPlots2D</span></code> now includes an option for indicating the rotor disk by a colored line</p></li>
+<li><p>Improved: <code class="docutils literal notranslate"><span class="pre">RosePlotOutput</span></code> no longer depends on <code class="docutils literal notranslate"><span class="pre">plotly</span></code>, but on the new utility <code class="docutils literal notranslate"><span class="pre">TabWindroseAxes</span></code></p></li>
+</ul>
+</li>
+<li><p>Utils:</p>
+<ul>
+<li><p>New: <code class="docutils literal notranslate"><span class="pre">TabWindroseAxes</span></code>, a derivative of <code class="docutils literal notranslate"><span class="pre">windrose.WindroseAxes</span></code> for input data that is based on bins with weights (and not timeseries)</p></li>
+</ul>
+</li>
+<li><p>Notebooks:</p>
+<ul>
+<li><p>New: <code class="docutils literal notranslate"><span class="pre">blockage_comparison.ipynb</span></code>, comparing four turbine induction models</p></li>
+</ul>
+</li>
+<li><p>Bug fixes:</p>
+<ul>
+<li><p>Fix for bug in <code class="docutils literal notranslate"><span class="pre">Streamlines2D</span></code> when used in combination with <code class="docutils literal notranslate"><span class="pre">WakeMirror</span></code></p></li>
+</ul>
+</li>
+<li><p>Tests:</p>
+<ul>
+<li><p>Fresh <code class="docutils literal notranslate"><span class="pre">flappy</span></code> v0.6.2 test data for all Bastankhah and CrespoHernandez wakes, also without the <code class="docutils literal notranslate"><span class="pre">sbeta</span></code> limitation</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Full Changelog</strong>: <a class="reference external" href="https://github.com/FraunhoferIWES/foxes/commits/v0.6">https://github.com/FraunhoferIWES/foxes/commits/v0.6</a></p>
 
 
 
@@ -1498,7 +1571,7 @@
       <div class="md-copyright">
   
     <div class="md-footer-copyright__highlight">
-        &#169; Copyright 2023, Fraunhofer IWES.
+        &#169; Copyright 2024, Fraunhofer IWES.
         
     </div>
   

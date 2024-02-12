@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.flow_plots_2d.get_fig - foxes 0.5.2.1
+        <title>foxes.output.flow_plots_2d.get_fig - foxes 0.6
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.5.2.1
- documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2.1
+    <a href="../../../../index.html" title="foxes 0.6
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.6
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.5.2.1
+            foxes 0.6
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.5.2.1
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2.1
+    <a href="../../../../index.html" title="foxes 0.6
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.6
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.5.2.1
+    foxes 0.6
  documentation
   </label>
   
@@ -332,7 +332,7 @@
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">wd2uv</span>
 
 
-<div class="viewcode-block" id="get_fig"><a class="viewcode-back" href="../../../../_output/flow_plots_2d/get_fig.html#foxes.output.flow_plots_2d.get_fig">[docs]</a><span class="k">def</span> <span class="nf">get_fig</span><span class="p">(</span>
+<div class="viewcode-block" id="get_fig"><a class="viewcode-back" href="../../../../_foxes/output/flow_plots_2d/get_fig.html#foxes.output.flow_plots_2d.get_fig">[docs]</a><span class="k">def</span> <span class="nf">get_fig</span><span class="p">(</span>
     <span class="n">var</span><span class="p">,</span>
     <span class="n">fig</span><span class="p">,</span>
     <span class="n">figsize</span><span class="p">,</span>
@@ -356,6 +356,7 @@
     <span class="n">quiv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">invert_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">animated</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">show_rotor_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function that creates the flow image plot.</span>
@@ -407,6 +408,9 @@
 <span class="sd">        Which axis to invert, either x or y</span>
 <span class="sd">    animated: bool</span>
 <span class="sd">        Switch for usage for an animation</span>
+<span class="sd">    show_rotor_dict: dict, optional</span>
+<span class="sd">        Parameters for indicating the rotor plane</span>
+<span class="sd">        by a line</span>
 
 <span class="sd">    Yields</span>
 <span class="sd">    ------</span>
@@ -501,6 +505,45 @@
     <span class="k">elif</span> <span class="n">invert_axis</span> <span class="o">==</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span>
         <span class="n">hax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
 
+    <span class="c1"># add rotor position:</span>
+    <span class="k">if</span> <span class="n">show_rotor_dict</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">show_rotor_dict</span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">D</span><span class="p">)))</span>  <span class="c1"># array to hold change to turbine coords</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">xlabel</span> <span class="o">==</span> <span class="s2">&quot;x [m]&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ylabel</span> <span class="o">==</span> <span class="s2">&quot;y [m]&quot;</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">show_rotor_dict</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">show_rotor_dict</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span>
+            <span class="n">turb_angle</span> <span class="o">=</span> <span class="n">show_rotor_dict</span><span class="p">[</span><span class="s2">&quot;turb_angle&quot;</span><span class="p">]</span>
+            <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">turb_angle</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">360</span><span class="p">))</span>
+            <span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">D</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+            <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">D</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">xlabel</span> <span class="o">==</span> <span class="s2">&quot;x [m]&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ylabel</span> <span class="o">==</span> <span class="s2">&quot;z [m]&quot;</span><span class="p">):</span>
+            <span class="c1"># get hub heights for use as y coords in plot</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">show_rotor_dict</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">show_rotor_dict</span><span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">]</span>
+            <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">D</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># don&#39;t show yaw in xz plot</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">xlabel</span> <span class="o">==</span> <span class="s2">&quot;y [m]&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ylabel</span> <span class="o">==</span> <span class="s2">&quot;z [m]&quot;</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">show_rotor_dict</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">show_rotor_dict</span><span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">]</span>
+            <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">D</span> <span class="o">/</span> <span class="mi">2</span>
+
+        <span class="c1"># plot each rotor</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">show_rotor_dict</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">D</span><span class="p">)):</span>
+            <span class="n">turb_x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
+            <span class="n">turb_x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
+            <span class="n">turb_y1</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
+            <span class="n">turb_y2</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
+            <span class="n">hax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">turb_x1</span><span class="p">,</span> <span class="n">turb_x2</span><span class="p">],</span>
+                <span class="p">[</span><span class="n">turb_y1</span><span class="p">,</span> <span class="n">turb_y2</span><span class="p">],</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+                <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+                <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="p">)</span>
+
     <span class="k">if</span> <span class="n">add_bar</span><span class="p">:</span>
         <span class="n">divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">hax</span><span class="p">)</span>
         <span class="n">cax</span> <span class="o">=</span> <span class="n">divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;5%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
@@ -545,7 +588,7 @@
       <div class="md-copyright">
   
     <div class="md-footer-copyright__highlight">
-        &#169; Copyright 2023, Fraunhofer IWES.
+        &#169; Copyright 2024, Fraunhofer IWES.
         
     </div>
   

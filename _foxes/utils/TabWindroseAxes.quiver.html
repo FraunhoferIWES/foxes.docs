@@ -1,0 +1,594 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="">
+    
+    
+      
+        <title>foxes.utils.TabWindroseAxes.quiver - foxes 0.6
+ documentation</title>
+      
+    
+    
+      
+        
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../../_static/sphinx_immaterial_theme.01df5be22ee815f6a.min.css?v=af6841d5" />
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="foxes 0.6
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.6
+ documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            foxes 0.6
+ documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              foxes.utils.TabWindroseAxes.quiver
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FraunhoferIWES/foxes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    foxes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="foxes 0.6
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.6
+ documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+    </a>
+    foxes 0.6
+ documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FraunhoferIWES/foxes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    foxes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../citation.html" class="md-nav__link">
+        <span title="/citation.md (reference label)" class="md-ellipsis">Citation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation.html" class="md-nav__link">
+        <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples.html" class="md-nav__link">
+        <span title="/examples.rst (reference label)" class="md-ellipsis">Examples</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api.html" class="md-nav__link">
+        <span title="/api.rst (reference label)" class="md-ellipsis">API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/data.html" class="md-nav__link">
+        <span title="/notebooks/data.ipynb (reference label)" class="md-ellipsis">Static data</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history.html" class="md-nav__link">
+        <span title="/history.md (reference label)" class="md-ellipsis">History</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+<dl class="py method objdesc">
+<dt class="sig sig-object highlight py">
+<span class="sig-prename descclassname"><span class="pre">foxes.utils.</span><span class="pre">TabWindroseAxes.</span></span><span class="sig-name descname"><span class="pre">quiver</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em></span><span class="sig-paren">)</span></dt>
+<dd><p>Plot a 2D field of arrows.</p>
+<p>Call signature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="n">quiver</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">],</span> <span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="p">[</span><span class="n">C</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p><em>X</em>, <em>Y</em> define the arrow locations, <em>U</em>, <em>V</em> define the arrow directions, and
+<em>C</em> optionally sets the color.</p>
+<p><strong>Arrow length</strong></p>
+<p>The default settings auto-scales the length of the arrows to a reasonable size.
+To change this behavior see the <em>scale</em> and <em>scale_units</em> parameters.</p>
+<p><strong>Arrow shape</strong></p>
+<p>The arrow shape is determined by <em>width</em>, <em>headwidth</em>, <em>headlength</em> and
+<em>headaxislength</em>. See the notes below.</p>
+<p><strong>Arrow styling</strong></p>
+<p>Each arrow is internally represented by a filled polygon with a default edge
+linewidth of 0. As a result, an arrow is rather a filled area, not a line with
+a head, and <cite>.PolyCollection</cite> properties like <em>linewidth</em>, <em>edgecolor</em>,
+<em>facecolor</em>, etc. act accordingly.</p>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h2>
+<dl>
+<dt>X, Y<span class="classifier">1D or 2D array-like, optional</span></dt><dd><p>The x and y coordinates of the arrow locations.</p>
+<p>If not given, they will be generated as a uniform integer meshgrid based
+on the dimensions of <em>U</em> and <em>V</em>.</p>
+<p>If <em>X</em> and <em>Y</em> are 1D but <em>U</em>, <em>V</em> are 2D, <em>X</em>, <em>Y</em> are expanded to 2D
+using <code class="docutils literal notranslate"><span class="pre">X,</span> <span class="pre">Y</span> <span class="pre">=</span> <span class="pre">np.meshgrid(X,</span> <span class="pre">Y)</span></code>. In this case <code class="docutils literal notranslate"><span class="pre">len(X)</span></code> and <code class="docutils literal notranslate"><span class="pre">len(Y)</span></code>
+must match the column and row dimensions of <em>U</em> and <em>V</em>.</p>
+</dd>
+<dt>U, V<span class="classifier">1D or 2D array-like</span></dt><dd><p>The x and y direction components of the arrow vectors. The interpretation
+of these components (in data or in screen space) depends on <em>angles</em>.</p>
+<p><em>U</em> and <em>V</em> must have the same number of elements, matching the number of
+arrow locations in  <em>X</em>, <em>Y</em>. <em>U</em> and <em>V</em> may be masked. Locations masked
+in any of <em>U</em>, <em>V</em>, and <em>C</em> will not be drawn.</p>
+</dd>
+<dt>C<span class="classifier">1D or 2D array-like, optional</span></dt><dd><p>Numeric data that defines the arrow colors by colormapping via <em>norm</em> and
+<em>cmap</em>.</p>
+<p>This does not support explicit colors. If you want to set colors directly,
+use <em>color</em> instead.  The size of <em>C</em> must match the number of arrow
+locations.</p>
+</dd>
+<dt>angles<span class="classifier">{‘uv’, ‘xy’} or array-like, default: ‘uv’</span></dt><dd><p>Method for determining the angle of the arrows.</p>
+<ul>
+<li><p>‘uv’: Arrow direction in screen coordinates. Use this if the arrows
+symbolize a quantity that is not based on <em>X</em>, <em>Y</em> data coordinates.</p>
+<p>If <em>U</em> == <em>V</em> the orientation of the arrow on the plot is 45 degrees
+counter-clockwise from the  horizontal axis (positive to the right).</p>
+</li>
+<li><p>‘xy’: Arrow direction in data coordinates, i.e. the arrows point from
+(x, y) to (x+u, y+v). Use this e.g. for plotting a gradient field.</p></li>
+<li><p>Arbitrary angles may be specified explicitly as an array of values
+in degrees, counter-clockwise from the horizontal axis.</p>
+<p>In this case <em>U</em>, <em>V</em> is only used to determine the length of the
+arrows.</p>
+</li>
+</ul>
+<p>Note: inverting a data axis will correspondingly invert the
+arrows only with <code class="docutils literal notranslate"><span class="pre">angles='xy'</span></code>.</p>
+</dd>
+<dt>pivot<span class="classifier">{‘tail’, ‘mid’, ‘middle’, ‘tip’}, default: ‘tail’</span></dt><dd><p>The part of the arrow that is anchored to the <em>X</em>, <em>Y</em> grid. The arrow
+rotates about this point.</p>
+<p>‘mid’ is a synonym for ‘middle’.</p>
+</dd>
+<dt>scale<span class="classifier">float, optional</span></dt><dd><p>Scales the length of the arrow inversely.</p>
+<p>Number of data units per arrow length unit, e.g., m/s per plot width; a
+smaller scale parameter makes the arrow longer. Default is <em>None</em>.</p>
+<p>If <em>None</em>, a simple autoscaling algorithm is used, based on the average
+vector length and the number of vectors. The arrow length unit is given by
+the <em>scale_units</em> parameter.</p>
+</dd>
+<dt>scale_units<span class="classifier">{‘width’, ‘height’, ‘dots’, ‘inches’, ‘x’, ‘y’, ‘xy’}, optional</span></dt><dd><p>If the <em>scale</em> kwarg is <em>None</em>, the arrow length unit. Default is <em>None</em>.</p>
+<p>e.g. <em>scale_units</em> is ‘inches’, <em>scale</em> is 2.0, and <code class="docutils literal notranslate"><span class="pre">(u,</span> <span class="pre">v)</span> <span class="pre">=</span> <span class="pre">(1,</span> <span class="pre">0)</span></code>,
+then the vector will be 0.5 inches long.</p>
+<p>If <em>scale_units</em> is ‘width’ or ‘height’, then the vector will be half the
+width/height of the axes.</p>
+<p>If <em>scale_units</em> is ‘x’ then the vector will be 0.5 x-axis
+units. To plot vectors in the x-y plane, with u and v having
+the same units as x and y, use
+<code class="docutils literal notranslate"><span class="pre">angles='xy',</span> <span class="pre">scale_units='xy',</span> <span class="pre">scale=1</span></code>.</p>
+</dd>
+<dt>units<span class="classifier">{‘width’, ‘height’, ‘dots’, ‘inches’, ‘x’, ‘y’, ‘xy’}, default: ‘width’</span></dt><dd><p>Affects the arrow size (except for the length). In particular, the shaft
+<em>width</em> is measured in multiples of this unit.</p>
+<p>Supported values are:</p>
+<ul class="simple">
+<li><p>‘width’, ‘height’: The width or height of the Axes.</p></li>
+<li><p>‘dots’, ‘inches’: Pixels or inches based on the figure dpi.</p></li>
+<li><p>‘x’, ‘y’, ‘xy’: <em>X</em>, <em>Y</em> or <span class="math notranslate nohighlight">\(\sqrt{X^2 + Y^2}\)</span> in data units.</p></li>
+</ul>
+<p>The following table summarizes how these values affect the visible arrow
+size under zooming and figure size changes:</p>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>units</p></th>
+<th class="head"><p>zoom</p></th>
+<th class="head"><p>figure size change</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>‘x’, ‘y’, ‘xy’</p></td>
+<td><p>arrow size scales</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘width’, ‘height’</p></td>
+<td><p>—</p></td>
+<td><p>arrow size scales</p></td>
+</tr>
+<tr class="row-even"><td><p>‘dots’, ‘inches’</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>width<span class="classifier">float, optional</span></dt><dd><p>Shaft width in arrow units. All head parameters are relative to <em>width</em>.</p>
+<p>The default depends on choice of <em>units</em> above, and number of vectors;
+a typical starting value is about 0.005 times the width of the plot.</p>
+</dd>
+<dt>headwidth<span class="classifier">float, default: 3</span></dt><dd><p>Head width as multiple of shaft <em>width</em>. See the notes below.</p>
+</dd>
+<dt>headlength<span class="classifier">float, default: 5</span></dt><dd><p>Head length as multiple of shaft <em>width</em>. See the notes below.</p>
+</dd>
+<dt>headaxislength<span class="classifier">float, default: 4.5</span></dt><dd><p>Head length at shaft intersection as multiple of shaft <em>width</em>.
+See the notes below.</p>
+</dd>
+<dt>minshaft<span class="classifier">float, default: 1</span></dt><dd><p>Length below which arrow scales, in units of head length. Do not
+set this to less than 1, or small arrows will look terrible!</p>
+</dd>
+<dt>minlength<span class="classifier">float, default: 1</span></dt><dd><p>Minimum length as a multiple of shaft width; if an arrow length
+is less than this, plot a dot (hexagon) of this diameter instead.</p>
+</dd>
+<dt>color<span class="classifier">color or color sequence, optional</span></dt><dd><p>Explicit color(s) for the arrows. If <em>C</em> has been set, <em>color</em> has no
+effect.</p>
+<p>This is a synonym for the <cite>.PolyCollection</cite> <em>facecolor</em> parameter.</p>
+</dd>
+</dl>
+<h2 id="other-parameters">Other Parameters<a class="headerlink" href="#other-parameters" title="Permalink to this heading">¶</a></h2>
+<dl>
+<dt>data<span class="classifier">indexable object, optional</span></dt><dd><p>If given, all parameters also accept a string <code class="docutils literal notranslate"><span class="pre">s</span></code>, which is
+interpreted as <code class="docutils literal notranslate"><span class="pre">data[s]</span></code> (unless this raises an exception).</p>
+</dd>
+<dt><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs<span class="classifier"><cite>~matplotlib.collections.PolyCollection</cite> properties, optional</span></dt><dd><p>All other keyword arguments are passed on to <cite>.PolyCollection</cite>:</p>
+<p>Properties:
+agg_filter: a filter function, which takes a (m, n, 3) float array and a dpi value, and returns a (m, n, 3) array and two offsets from the bottom left corner of the image
+alpha: array-like or scalar or None
+animated: bool
+antialiased or aa or antialiaseds: bool or list of bools
+array: array-like or None
+capstyle: <cite>.CapStyle</cite> or {‘butt’, ‘projecting’, ‘round’}
+clim: (vmin: float, vmax: float)
+clip_box: <cite>.Bbox</cite>
+clip_on: bool
+clip_path: Patch or (Path, Transform) or None
+cmap: <cite>.Colormap</cite> or str or None
+color: color or list of RGBA tuples
+edgecolor or ec or edgecolors: color or list of colors or ‘face’
+facecolor or facecolors or fc: color or list of colors
+figure: <cite>.Figure</cite>
+gid: str
+hatch: {‘/’, ‘\’, ‘|’, ‘-’, ‘+’, ‘x’, ‘o’, ‘O’, ‘.’, ‘*’}
+in_layout: bool
+joinstyle: <cite>.JoinStyle</cite> or {‘miter’, ‘round’, ‘bevel’}
+label: object
+linestyle or dashes or linestyles or ls: str or tuple or list thereof
+linewidth or linewidths or lw: float or list of floats
+mouseover: bool
+norm: <cite>.Normalize</cite> or str or None
+offset_transform or transOffset: unknown
+offsets: (N, 2) or (2,) array-like
+path_effects: <cite>.AbstractPathEffect</cite>
+paths: list of array-like
+picker: None or bool or float or callable
+pickradius: unknown
+rasterized: bool
+sizes: <cite>numpy.ndarray</cite> or None
+sketch_params: (scale: float, length: float, randomness: float)
+snap: bool or None
+transform: <cite>.Transform</cite>
+url: str
+urls: list of str or None
+verts: list of array-like
+verts_and_codes: unknown
+visible: bool
+zorder: float</p>
+</dd>
+</dl>
+<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Permalink to this heading">¶</a></h2>
+<p><cite>~matplotlib.quiver.Quiver</cite></p>
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
+<p>.Axes.quiverkey : Add a key to a quiver plot.</p>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permalink to this heading">¶</a></h2>
+<p><strong>Arrow shape</strong></p>
+<p>The arrow is drawn as a polygon using the nodes as shown below. The values
+<em>headwidth</em>, <em>headlength</em>, and <em>headaxislength</em> are in units of <em>width</em>.</p>
+<a class="reference internal image-reference" href="_static/quiver_sizes.svg"><img alt="_static/quiver_sizes.svg" src="_static/quiver_sizes.svg" width="500px" /></a>
+<p>The defaults give a slightly swept-back arrow. Here are some guidelines how to
+get other head shapes:</p>
+<ul class="simple">
+<li><p>To make the head a triangle, make <em>headaxislength</em> the same as <em>headlength</em>.</p></li>
+<li><p>To make the arrow more pointed, reduce <em>headwidth</em> or increase <em>headlength</em>
+and <em>headaxislength</em>.</p></li>
+<li><p>To make the head smaller relative to the shaft, scale down all the head
+parameters proportionally.</p></li>
+<li><p>To remove the head completely, set all <em>head</em> parameters to 0.</p></li>
+<li><p>To get a diamond-shaped head, make <em>headaxislength</em> larger than <em>headlength</em>.</p></li>
+<li><p>Warning: For <em>headaxislength</em> &lt; (<em>headlength</em> / <em>headwidth</em>), the “headaxis”
+nodes (i.e. the ones connecting the head with the shaft) will protrude out
+of the head in forward direction so that the arrow head looks broken.</p></li>
+</ul>
+</dd></dl>
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright 2024, Fraunhofer IWES.
+        
+    </div>
+  
+    Created using
+    <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
+    7.1.2.
+     and
+    <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script id="MathJax-script" src="../../_static/mathjax/tex-mml-chtml.js?v=cadf963e"></script>
+    
+  </body>
+</html>

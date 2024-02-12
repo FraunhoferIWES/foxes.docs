@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.wake_models.wind.jensen - foxes 0.5.2.1
+        <title>foxes.models.wake_models.wind.jensen - foxes 0.6
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 0.5.2.1
- documentation" class="md-header__button md-logo" aria-label="foxes 0.5.2.1
+    <a href="../../../../../index.html" title="foxes 0.6
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.6
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.5.2.1
+            foxes 0.6
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 0.5.2.1
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.5.2.1
+    <a href="../../../../../index.html" title="foxes 0.6
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.6
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.5.2.1
+    foxes 0.6
  documentation
   </label>
   
@@ -348,7 +348,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="JensenWake.__init__"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/JensenWake.__init__.html#foxes.models.wake_models.wind.JensenWake.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">superposition</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ct_max</span><span class="o">=</span><span class="mf">0.9999</span><span class="p">,</span> <span class="n">k_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
+<div class="viewcode-block" id="JensenWake.__init__"><a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/JensenWake.__init__.html#foxes.models.wake_models.wind.JensenWake.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">superposition</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">K</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -361,25 +361,24 @@
 <span class="sd">        k: float, optional</span>
 <span class="sd">            The wake growth parameter k. If not given here</span>
 <span class="sd">            it will be searched in the farm data.</span>
-<span class="sd">        ct_max: float</span>
-<span class="sd">            The maximal value for ct, values beyond will be limited</span>
-<span class="sd">            to this number</span>
 <span class="sd">        k_var: str</span>
 <span class="sd">            The variable name for k</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Additional parameters for the base class</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">superpositions</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="n">superposition</span><span class="p">},</span> <span class="n">ct_max</span><span class="o">=</span><span class="n">ct_max</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">superpositions</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="n">superposition</span><span class="p">},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span> <span class="o">=</span> <span class="n">k_var</span>
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k_var</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="JensenWake.__repr__"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/JensenWake.__repr__.html#foxes.models.wake_models.wind.JensenWake.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="JensenWake.__repr__"><a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/JensenWake.__repr__.html#foxes.models.wake_models.wind.JensenWake.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">k</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">)</span>
         <span class="n">s</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
         <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">, sp=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
         <span class="k">return</span> <span class="n">s</span></div>
 
-<div class="viewcode-block" id="JensenWake.init_wake_deltas"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/JensenWake.init_wake_deltas.html#foxes.models.wake_models.wind.JensenWake.init_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
+<div class="viewcode-block" id="JensenWake.init_wake_deltas"><a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/JensenWake.init_wake_deltas.html#foxes.models.wake_models.wind.JensenWake.init_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize wake delta storage.</span>
 
@@ -405,7 +404,7 @@
         <span class="n">n_states</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span>
         <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">pdata</span><span class="o">.</span><span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="JensenWake.calc_wake_radius"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/JensenWake.calc_wake_radius.html#foxes.models.wake_models.wind.JensenWake.calc_wake_radius">[docs]</a>    <span class="k">def</span> <span class="nf">calc_wake_radius</span><span class="p">(</span>
+<div class="viewcode-block" id="JensenWake.calc_wake_radius"><a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/JensenWake.calc_wake_radius.html#foxes.models.wake_models.wind.JensenWake.calc_wake_radius">[docs]</a>    <span class="k">def</span> <span class="nf">calc_wake_radius</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
@@ -473,7 +472,7 @@
 
         <span class="k">return</span> <span class="n">R</span> <span class="o">+</span> <span class="n">k</span> <span class="o">*</span> <span class="n">x</span></div>
 
-<div class="viewcode-block" id="JensenWake.calc_centreline_wake_deltas"><a class="viewcode-back" href="../../../../../_models/wake_models/wind/JensenWake.calc_centreline_wake_deltas.html#foxes.models.wake_models.wind.JensenWake.calc_centreline_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">calc_centreline_wake_deltas</span><span class="p">(</span>
+<div class="viewcode-block" id="JensenWake.calc_centreline_wake_deltas"><a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/JensenWake.calc_centreline_wake_deltas.html#foxes.models.wake_models.wind.JensenWake.calc_centreline_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">calc_centreline_wake_deltas</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
@@ -527,7 +526,9 @@
         <span class="n">R</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">][</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="n">R</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="o">-</span><span class="p">((</span><span class="n">R</span> <span class="o">/</span> <span class="n">wake_r</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">ct</span><span class="p">))}</span></div></div>
+        <span class="n">twoa</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">ct2a</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="o">-</span><span class="p">((</span><span class="n">R</span> <span class="o">/</span> <span class="n">wake_r</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">twoa</span><span class="p">}</span></div></div>
 </code></pre></div>
 
 
@@ -553,7 +554,7 @@
       <div class="md-copyright">
   
     <div class="md-footer-copyright__highlight">
-        &#169; Copyright 2023, Fraunhofer IWES.
+        &#169; Copyright 2024, Fraunhofer IWES.
         
     </div>
   

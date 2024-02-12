@@ -1,0 +1,409 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="">
+    
+    
+      
+        <title>foxes.utils.exec_python - foxes 0.6
+ documentation</title>
+      
+    
+    
+      
+        
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../../_static/sphinx_immaterial_theme.01df5be22ee815f6a.min.css?v=af6841d5" />
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="foxes 0.6
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.6
+ documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            foxes 0.6
+ documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              foxes.utils.exec_python
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FraunhoferIWES/foxes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    foxes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="foxes 0.6
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.6
+ documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+    </a>
+    foxes 0.6
+ documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FraunhoferIWES/foxes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    foxes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../citation.html" class="md-nav__link">
+        <span title="/citation.md (reference label)" class="md-ellipsis">Citation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation.html" class="md-nav__link">
+        <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples.html" class="md-nav__link">
+        <span title="/examples.rst (reference label)" class="md-ellipsis">Examples</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api.html" class="md-nav__link">
+        <span title="/api.rst (reference label)" class="md-ellipsis">API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/data.html" class="md-nav__link">
+        <span title="/notebooks/data.ipynb (reference label)" class="md-ellipsis">Static data</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history.html" class="md-nav__link">
+        <span title="/history.md (reference label)" class="md-ellipsis">History</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight sig-wrap py">
+<span class="sig-prename descclassname"><span class="pre">foxes.utils.</span></span><span class="sig-name descname"><span class="pre">exec_python</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">indicator='%'</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">newline=';'</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">globals={'__builtins__':</span> <span class="pre">{'ArithmeticError':</span> <span class="pre">&lt;class</span> <span class="pre">'ArithmeticError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'AssertionError':</span> <span class="pre">&lt;class</span> <span class="pre">'AssertionError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'AttributeError':</span> <span class="pre">&lt;class</span> <span class="pre">'AttributeError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'BaseException':</span> <span class="pre">&lt;class</span> <span class="pre">'BaseException'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'BlockingIOError':</span> <span class="pre">&lt;class</span> <span class="pre">'BlockingIOError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'BrokenPipeError':</span> <span class="pre">&lt;class</span> <span class="pre">'BrokenPipeError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'BufferError':</span> <span class="pre">&lt;class</span> <span class="pre">'BufferError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'BytesWarning':</span> <span class="pre">&lt;class</span> <span class="pre">'BytesWarning'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ChildProcessError':</span> <span class="pre">&lt;class</span> <span class="pre">'ChildProcessError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ConnectionAbortedError':</span> <span class="pre">&lt;class</span> <span class="pre">'ConnectionAbortedError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ConnectionError':</span> <span class="pre">&lt;class</span> <span class="pre">'ConnectionError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ConnectionRefusedError':</span> <span class="pre">&lt;class</span> <span class="pre">'ConnectionRefusedError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ConnectionResetError':</span> <span class="pre">&lt;class</span> <span class="pre">'ConnectionResetError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'DeprecationWarning':</span> <span class="pre">&lt;class</span> <span class="pre">'DeprecationWarning'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'EOFError':</span> <span class="pre">&lt;class</span> <span class="pre">'EOFError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'Ellipsis':</span> <span class="pre">Ellipsis</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'EnvironmentError':</span> <span class="pre">&lt;class</span> <span class="pre">'OSError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'Exception':</span> <span class="pre">&lt;class</span> <span class="pre">'Exception'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'False':</span> <span class="pre">False</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'FileExistsError':</span> <span class="pre">&lt;class</span> <span class="pre">'FileExistsError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'FileNotFoundError':</span> <span class="pre">&lt;class</span> <span class="pre">'FileNotFoundError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'FloatingPointError':</span> <span class="pre">&lt;class</span> <span class="pre">'FloatingPointError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'FutureWarning':</span> <span class="pre">&lt;class</span> <span class="pre">'FutureWarning'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'GeneratorExit':</span> <span class="pre">&lt;class</span> <span class="pre">'GeneratorExit'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'IOError':</span> <span class="pre">&lt;class</span> <span class="pre">'OSError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ImportError':</span> <span class="pre">&lt;class</span> <span class="pre">'ImportError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ImportWarning':</span> <span class="pre">&lt;class</span> <span class="pre">'ImportWarning'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'IndentationError':</span> <span class="pre">&lt;class</span> <span class="pre">'IndentationError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'IndexError':</span> <span class="pre">&lt;class</span> <span class="pre">'IndexError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'InterruptedError':</span> <span class="pre">&lt;class</span> <span class="pre">'InterruptedError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'IsADirectoryError':</span> <span class="pre">&lt;class</span> <span class="pre">'IsADirectoryError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'KeyError':</span> <span class="pre">&lt;class</span> <span class="pre">'KeyError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'KeyboardInterrupt':</span> <span class="pre">&lt;class</span> <span class="pre">'KeyboardInterrupt'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'LookupError':</span> <span class="pre">&lt;class</span> <span class="pre">'LookupError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'MemoryError':</span> <span class="pre">&lt;class</span> <span class="pre">'MemoryError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ModuleNotFoundError':</span> <span class="pre">&lt;class</span> <span class="pre">'ModuleNotFoundError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'NameError':</span> <span class="pre">&lt;class</span> <span class="pre">'NameError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'None':</span> <span class="pre">None</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'NotADirectoryError':</span> <span class="pre">&lt;class</span> <span class="pre">'NotADirectoryError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'NotImplemented':</span> <span class="pre">NotImplemented</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'NotImplementedError':</span> <span class="pre">&lt;class</span> <span class="pre">'NotImplementedError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'OSError':</span> <span class="pre">&lt;class</span> <span class="pre">'OSError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'OverflowError':</span> <span class="pre">&lt;class</span> <span class="pre">'OverflowError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'PendingDeprecationWarning':</span> <span class="pre">&lt;class</span> <span class="pre">'PendingDeprecationWarning'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'PermissionError':</span> <span class="pre">&lt;class</span> <span class="pre">'PermissionError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ProcessLookupError':</span> <span class="pre">&lt;class</span> <span class="pre">'ProcessLookupError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'RecursionError':</span> <span class="pre">&lt;class</span> <span class="pre">'RecursionError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ReferenceError':</span> <span class="pre">&lt;class</span> <span class="pre">'ReferenceError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ResourceWarning':</span> <span class="pre">&lt;class</span> <span class="pre">'ResourceWarning'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'RuntimeError':</span> <span class="pre">&lt;class</span> <span class="pre">'RuntimeError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'RuntimeWarning':</span> <span class="pre">&lt;class</span> <span class="pre">'RuntimeWarning'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'StopAsyncIteration':</span> <span class="pre">&lt;class</span> <span class="pre">'StopAsyncIteration'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'StopIteration':</span> <span class="pre">&lt;class</span> <span class="pre">'StopIteration'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'SyntaxError':</span> <span class="pre">&lt;class</span> <span class="pre">'SyntaxError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'SyntaxWarning':</span> <span class="pre">&lt;class</span> <span class="pre">'SyntaxWarning'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'SystemError':</span> <span class="pre">&lt;class</span> <span class="pre">'SystemError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'SystemExit':</span> <span class="pre">&lt;class</span> <span class="pre">'SystemExit'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'TabError':</span> <span class="pre">&lt;class</span> <span class="pre">'TabError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'TimeoutError':</span> <span class="pre">&lt;class</span> <span class="pre">'TimeoutError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'True':</span> <span class="pre">True</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'TypeError':</span> <span class="pre">&lt;class</span> <span class="pre">'TypeError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'UnboundLocalError':</span> <span class="pre">&lt;class</span> <span class="pre">'UnboundLocalError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'UnicodeDecodeError':</span> <span class="pre">&lt;class</span> <span class="pre">'UnicodeDecodeError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'UnicodeEncodeError':</span> <span class="pre">&lt;class</span> <span class="pre">'UnicodeEncodeError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'UnicodeError':</span> <span class="pre">&lt;class</span> <span class="pre">'UnicodeError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'UnicodeTranslateError':</span> <span class="pre">&lt;class</span> <span class="pre">'UnicodeTranslateError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'UnicodeWarning':</span> <span class="pre">&lt;class</span> <span class="pre">'UnicodeWarning'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'UserWarning':</span> <span class="pre">&lt;class</span> <span class="pre">'UserWarning'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ValueError':</span> <span class="pre">&lt;class</span> <span class="pre">'ValueError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'Warning':</span> <span class="pre">&lt;class</span> <span class="pre">'Warning'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ZeroDivisionError':</span> <span class="pre">&lt;class</span> <span class="pre">'ZeroDivisionError'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__build_class__':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">__build_class__&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__debug__':</span> <span class="pre">True</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__doc__':</span> <span class="pre">&quot;Built-in</span> <span class="pre">functions</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">exceptions</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">and</span> <span class="pre">other</span> <span class="pre">objects.\n\nNoteworthy:</span> <span class="pre">None</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">`nil'</span> <span class="pre">object;</span> <span class="pre">Ellipsis</span> <span class="pre">represents</span> <span class="pre">`...'</span> <span class="pre">in</span> <span class="pre">slices.&quot;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__import__':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">__import__&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__loader__':</span> <span class="pre">&lt;class</span> <span class="pre">'_frozen_importlib.BuiltinImporter'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__name__':</span> <span class="pre">'builtins'</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__package__':</span> <span class="pre">''</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__pybind11_internals_v4_gcc_libstdcpp_cxxabi1014__':</span> <span class="pre">&lt;capsule</span> <span class="pre">object</span> <span class="pre">NULL&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__spec__':</span> <span class="pre">ModuleSpec(name='builtins'</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">loader=&lt;class</span> <span class="pre">'_frozen_importlib.BuiltinImporter'&gt;)</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'abs':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">abs&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'all':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">all&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'any':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">any&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ascii':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">ascii&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'bin':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">bin&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'bool':</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'breakpoint':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">breakpoint&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'bytearray':</span> <span class="pre">&lt;class</span> <span class="pre">'bytearray'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'bytes':</span> <span class="pre">&lt;class</span> <span class="pre">'bytes'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'callable':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">callable&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'chr':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">chr&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'classmethod':</span> <span class="pre">&lt;class</span> <span class="pre">'classmethod'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'compile':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">compile&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'complex':</span> <span class="pre">&lt;class</span> <span class="pre">'complex'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'copyright':</span> <span class="pre">Copyright</span> <span class="pre">(c)</span> <span class="pre">2001-2021</span> <span class="pre">Python</span> <span class="pre">Software</span> <span class="pre">Foundation.</span> <span class="pre">All</span> <span class="pre">Rights</span> <span class="pre">Reserved.</span>&#160; <span class="pre">Copyright</span> <span class="pre">(c)</span> <span class="pre">2000</span> <span class="pre">BeOpen.com.</span> <span class="pre">All</span> <span class="pre">Rights</span> <span class="pre">Reserved.</span>&#160; <span class="pre">Copyright</span> <span class="pre">(c)</span> <span class="pre">1995-2001</span> <span class="pre">Corporation</span> <span class="pre">for</span> <span class="pre">National</span> <span class="pre">Research</span> <span class="pre">Initiatives.</span> <span class="pre">All</span> <span class="pre">Rights</span> <span class="pre">Reserved.</span>&#160; <span class="pre">Copyright</span> <span class="pre">(c)</span> <span class="pre">1991-1995</span> <span class="pre">Stichting</span> <span class="pre">Mathematisch</span> <span class="pre">Centrum</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">Amsterdam.</span> <span class="pre">All</span> <span class="pre">Rights</span> <span class="pre">Reserved.</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'credits':</span>&#160;&#160;&#160;&#160; <span class="pre">Thanks</span> <span class="pre">to</span> <span class="pre">CWI</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">CNRI</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">BeOpen.com</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">Zope</span> <span class="pre">Corporation</span> <span class="pre">and</span> <span class="pre">a</span> <span class="pre">cast</span> <span class="pre">of</span> <span class="pre">thousands</span>&#160;&#160;&#160;&#160; <span class="pre">for</span> <span class="pre">supporting</span> <span class="pre">Python</span> <span class="pre">development.</span>&#160; <span class="pre">See</span> <span class="pre">www.python.org</span> <span class="pre">for</span> <span class="pre">more</span> <span class="pre">information.</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'delattr':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">delattr&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'dict':</span> <span class="pre">&lt;class</span> <span class="pre">'dict'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'dir':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">dir&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'divmod':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">divmod&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'enumerate':</span> <span class="pre">&lt;class</span> <span class="pre">'enumerate'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'eval':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">eval&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'exec':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">exec&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'exit':</span> <span class="pre">Use</span> <span class="pre">exit()</span> <span class="pre">or</span> <span class="pre">Ctrl-D</span> <span class="pre">(i.e.</span> <span class="pre">EOF)</span> <span class="pre">to</span> <span class="pre">exit</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'filter':</span> <span class="pre">&lt;class</span> <span class="pre">'filter'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'float':</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'format':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">format&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'frozenset':</span> <span class="pre">&lt;class</span> <span class="pre">'frozenset'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'getattr':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">getattr&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'globals':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">globals&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'hasattr':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">hasattr&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'hash':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">hash&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'help':</span> <span class="pre">Type</span> <span class="pre">help()</span> <span class="pre">for</span> <span class="pre">interactive</span> <span class="pre">help</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">or</span> <span class="pre">help(object)</span> <span class="pre">for</span> <span class="pre">help</span> <span class="pre">about</span> <span class="pre">object.</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'hex':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">hex&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'id':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">id&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'input':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">input&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'int':</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'isinstance':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">isinstance&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'issubclass':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">issubclass&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'iter':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">iter&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'len':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">len&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'license':</span> <span class="pre">Type</span> <span class="pre">license()</span> <span class="pre">to</span> <span class="pre">see</span> <span class="pre">the</span> <span class="pre">full</span> <span class="pre">license</span> <span class="pre">text</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'list':</span> <span class="pre">&lt;class</span> <span class="pre">'list'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'locals':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">locals&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'map':</span> <span class="pre">&lt;class</span> <span class="pre">'map'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'max':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">max&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'memoryview':</span> <span class="pre">&lt;class</span> <span class="pre">'memoryview'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'min':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">min&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'next':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">next&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'object':</span> <span class="pre">&lt;class</span> <span class="pre">'object'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'oct':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">oct&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'open':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">open&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'ord':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">ord&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'pow':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">pow&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'print':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">print&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'property':</span> <span class="pre">&lt;class</span> <span class="pre">'property'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'quit':</span> <span class="pre">Use</span> <span class="pre">quit()</span> <span class="pre">or</span> <span class="pre">Ctrl-D</span> <span class="pre">(i.e.</span> <span class="pre">EOF)</span> <span class="pre">to</span> <span class="pre">exit</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'range':</span> <span class="pre">&lt;class</span> <span class="pre">'range'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'repr':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">repr&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'reversed':</span> <span class="pre">&lt;class</span> <span class="pre">'reversed'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'round':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">round&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'set':</span> <span class="pre">&lt;class</span> <span class="pre">'set'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'setattr':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">setattr&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'slice':</span> <span class="pre">&lt;class</span> <span class="pre">'slice'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'sorted':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">sorted&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'staticmethod':</span> <span class="pre">&lt;class</span> <span class="pre">'staticmethod'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'str':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'sum':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">sum&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'super':</span> <span class="pre">&lt;class</span> <span class="pre">'super'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'tuple':</span> <span class="pre">&lt;class</span> <span class="pre">'tuple'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'type':</span> <span class="pre">&lt;class</span> <span class="pre">'type'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'vars':</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">vars&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'zip':</span> <span class="pre">&lt;class</span> <span class="pre">'zip'&gt;}</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__cached__':</span> <span class="pre">'/home/jonas/gits/wakes/foxes/foxes/utils/__pycache__/exec_python.cpython-38.pyc'</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__doc__':</span> <span class="pre">None</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__file__':</span> <span class="pre">'/home/jonas/gits/wakes/foxes/foxes/utils/exec_python.py'</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__loader__':</span> <span class="pre">&lt;_frozen_importlib_external.SourceFileLoader</span> <span class="pre">object&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__name__':</span> <span class="pre">'foxes.utils.exec_python'</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__package__':</span> <span class="pre">'foxes.utils'</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'__spec__':</span> <span class="pre">ModuleSpec(name='foxes.utils.exec_python'</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">loader=&lt;_frozen_importlib_external.SourceFileLoader</span> <span class="pre">object&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">origin='/home/jonas/gits/wakes/foxes/foxes/utils/exec_python.py')</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'exec_python':</span> <span class="pre">&lt;function</span> <span class="pre">exec_python&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'np':</span> <span class="pre">&lt;module</span> <span class="pre">'numpy'</span> <span class="pre">from</span> <span class="pre">'/home/jonas/venv/foxes/lib/python3.8/site-packages/numpy/__init__.py'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'pd':</span> <span class="pre">&lt;module</span> <span class="pre">'pandas'</span> <span class="pre">from</span> <span class="pre">'/home/jonas/venv/foxes/lib/python3.8/site-packages/pandas/__init__.py'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'plt':</span> <span class="pre">&lt;module</span> <span class="pre">'matplotlib.pyplot'</span> <span class="pre">from</span> <span class="pre">'/home/jonas/venv/foxes/lib/python3.8/site-packages/matplotlib/pyplot.py'&gt;</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">'xr':</span> <span class="pre">&lt;module</span> <span class="pre">'xarray'</span> <span class="pre">from</span> <span class="pre">'/home/jonas/venv/foxes/lib/python3.8/site-packages/xarray/__init__.py'&gt;}</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">locals={}</span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/foxes/utils/exec_python.html#exec_python"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Executes strings that start with the
+indicator as python commands, returns one value</p>
+<p>Example:
+s = “%p%N=10;p=np.zeros((N,3));p[:,0]=50;p[:,1]=np.linspace(0,7000,N);p[:,2]=119”</p>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h2>
+<dl class="simple">
+<dt>s: list, dict or object</dt><dd><p>The source to by analyzed</p>
+</dd>
+<dt>indicator: str</dt><dd><p>The indicator that trigger python evaluation</p>
+</dd>
+<dt>newline: str</dt><dd><p>The new line indicator</p>
+</dd>
+<dt>globals: dict</dt><dd><p>The global namespace</p>
+</dd>
+<dt>locals: dict</dt><dd><p>The local namespace</p>
+</dd>
+</dl>
+<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Permalink to this heading">¶</a></h2>
+<dl class="simple">
+<dt>out: list, dict or object</dt><dd><p>The same structure, but all python
+strings evaluated</p>
+</dd>
+</dl>
+</dd></dl>
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright 2024, Fraunhofer IWES.
+        
+    </div>
+  
+    Created using
+    <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
+    7.1.2.
+     and
+    <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+  </body>
+</html>

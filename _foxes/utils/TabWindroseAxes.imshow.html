@@ -1,0 +1,560 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="">
+    
+    
+      
+        <title>foxes.utils.TabWindroseAxes.imshow - foxes 0.6
+ documentation</title>
+      
+    
+    
+      
+        
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../../_static/sphinx_immaterial_theme.01df5be22ee815f6a.min.css?v=af6841d5" />
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="foxes 0.6
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.6
+ documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            foxes 0.6
+ documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              foxes.utils.TabWindroseAxes.imshow
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FraunhoferIWES/foxes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    foxes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="foxes 0.6
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.6
+ documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+    </a>
+    foxes 0.6
+ documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FraunhoferIWES/foxes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    foxes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../citation.html" class="md-nav__link">
+        <span title="/citation.md (reference label)" class="md-ellipsis">Citation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation.html" class="md-nav__link">
+        <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples.html" class="md-nav__link">
+        <span title="/examples.rst (reference label)" class="md-ellipsis">Examples</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api.html" class="md-nav__link">
+        <span title="/api.rst (reference label)" class="md-ellipsis">API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/data.html" class="md-nav__link">
+        <span title="/notebooks/data.ipynb (reference label)" class="md-ellipsis">Static data</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history.html" class="md-nav__link">
+        <span title="/history.md (reference label)" class="md-ellipsis">History</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+<dl class="py method objdesc">
+<dt class="sig sig-object highlight sig-wrap py">
+<span class="sig-prename descclassname"><span class="pre">foxes.utils.</span><span class="pre">TabWindroseAxes.</span></span><span class="sig-name descname"><span class="pre">imshow</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">aspect</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">interpolation</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">extent</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">interpolation_stage</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">filternorm</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">True</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">filterrad</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">4.0</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">resample</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em></span><span class="sig-paren">)</span></dt>
+<dd><p>Display data as an image, i.e., on a 2D regular raster.</p>
+<p>The input may either be actual RGB(A) data, or 2D scalar data, which
+will be rendered as a pseudocolor image. For displaying a grayscale
+image set up the colormapping using the parameters
+<code class="docutils literal notranslate"><span class="pre">cmap='gray',</span> <span class="pre">vmin=0,</span> <span class="pre">vmax=255</span></code>.</p>
+<p>The number of pixels used to render an image is set by the Axes size
+and the <em>dpi</em> of the figure. This can lead to aliasing artifacts when
+the image is resampled because the displayed image size will usually
+not match the size of <em>X</em> (see
+<span class="xref std std-doc">/gallery/images_contours_and_fields/image_antialiasing</span>).
+The resampling can be controlled via the <em>interpolation</em> parameter
+and/or <a href="#id1"><span class="problematic" id="id2">:rc:`image.interpolation`</span></a>.</p>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h2>
+<dl>
+<dt>X<span class="classifier">array-like or PIL image</span></dt><dd><p>The image data. Supported array shapes are:</p>
+<ul class="simple">
+<li><p>(M, N): an image with scalar data. The values are mapped to
+colors using normalization and a colormap. See parameters <em>norm</em>,
+<em>cmap</em>, <em>vmin</em>, <em>vmax</em>.</p></li>
+<li><p>(M, N, 3): an image with RGB values (0-1 float or 0-255 int).</p></li>
+<li><p>(M, N, 4): an image with RGBA values (0-1 float or 0-255 int),
+i.e. including transparency.</p></li>
+</ul>
+<p>The first two dimensions (M, N) define the rows and columns of
+the image.</p>
+<p>Out-of-range RGB(A) values are clipped.</p>
+</dd>
+<dt>cmap<span class="classifier">str or <cite>~matplotlib.colors.Colormap</cite>, default: <a href="#id3"><span class="problematic" id="id4">:rc:`image.cmap`</span></a></span></dt><dd><p>The Colormap instance or registered colormap name used to map scalar data
+to colors.</p>
+<p>This parameter is ignored if <em>X</em> is RGB(A).</p>
+</dd>
+<dt>norm<span class="classifier">str or <cite>~matplotlib.colors.Normalize</cite>, optional</span></dt><dd><p>The normalization method used to scale scalar data to the [0, 1] range
+before mapping to colors using <em>cmap</em>. By default, a linear scaling is
+used, mapping the lowest value to 0 and the highest to 1.</p>
+<p>If given, this can be one of the following:</p>
+<ul class="simple">
+<li><p>An instance of <cite>.Normalize</cite> or one of its subclasses
+(see <span class="xref std std-doc">/tutorials/colors/colormapnorms</span>).</p></li>
+<li><p>A scale name, i.e. one of “linear”, “log”, “symlog”, “logit”, etc.  For a
+list of available scales, call <cite>matplotlib.scale.get_scale_names()</cite>.
+In that case, a suitable <cite>.Normalize</cite> subclass is dynamically generated
+and instantiated.</p></li>
+</ul>
+<p>This parameter is ignored if <em>X</em> is RGB(A).</p>
+</dd>
+<dt>vmin, vmax<span class="classifier">float, optional</span></dt><dd><p>When using scalar data and no explicit <em>norm</em>, <em>vmin</em> and <em>vmax</em> define
+the data range that the colormap covers. By default, the colormap covers
+the complete value range of the supplied data. It is an error to use
+<em>vmin</em>/<em>vmax</em> when a <em>norm</em> instance is given (but using a <cite>str</cite> <em>norm</em>
+name together with <em>vmin</em>/<em>vmax</em> is acceptable).</p>
+<p>This parameter is ignored if <em>X</em> is RGB(A).</p>
+</dd>
+<dt>aspect<span class="classifier">{‘equal’, ‘auto’} or float, default: <a href="#id5"><span class="problematic" id="id6">:rc:`image.aspect`</span></a></span></dt><dd><p>The aspect ratio of the Axes.  This parameter is particularly
+relevant for images since it determines whether data pixels are
+square.</p>
+<p>This parameter is a shortcut for explicitly calling
+<cite>.Axes.set_aspect</cite>. See there for further details.</p>
+<ul class="simple">
+<li><p>‘equal’: Ensures an aspect ratio of 1. Pixels will be square
+(unless pixel sizes are explicitly made non-square in data
+coordinates using <em>extent</em>).</p></li>
+<li><p>‘auto’: The Axes is kept fixed and the aspect is adjusted so
+that the data fit in the Axes. In general, this will result in
+non-square pixels.</p></li>
+</ul>
+</dd>
+<dt>interpolation<span class="classifier">str, default: <a href="#id7"><span class="problematic" id="id8">:rc:`image.interpolation`</span></a></span></dt><dd><p>The interpolation method used.</p>
+<p>Supported values are ‘none’, ‘antialiased’, ‘nearest’, ‘bilinear’,
+‘bicubic’, ‘spline16’, ‘spline36’, ‘hanning’, ‘hamming’, ‘hermite’,
+‘kaiser’, ‘quadric’, ‘catrom’, ‘gaussian’, ‘bessel’, ‘mitchell’,
+‘sinc’, ‘lanczos’, ‘blackman’.</p>
+<p>The data <em>X</em> is resampled to the pixel size of the image on the
+figure canvas, using the interpolation method to either up- or
+downsample the data.</p>
+<p>If <em>interpolation</em> is ‘none’, then for the ps, pdf, and svg
+backends no down- or upsampling occurs, and the image data is
+passed to the backend as a native image.  Note that different ps,
+pdf, and svg viewers may display these raw pixels differently. On
+other backends, ‘none’ is the same as ‘nearest’.</p>
+<p>If <em>interpolation</em> is the default ‘antialiased’, then ‘nearest’
+interpolation is used if the image is upsampled by more than a
+factor of three (i.e. the number of display pixels is at least
+three times the size of the data array).  If the upsampling rate is
+smaller than 3, or the image is downsampled, then ‘hanning’
+interpolation is used to act as an anti-aliasing filter, unless the
+image happens to be upsampled by exactly a factor of two or one.</p>
+<p>See
+<span class="xref std std-doc">/gallery/images_contours_and_fields/interpolation_methods</span>
+for an overview of the supported interpolation methods, and
+<span class="xref std std-doc">/gallery/images_contours_and_fields/image_antialiasing</span> for
+a discussion of image antialiasing.</p>
+<p>Some interpolation methods require an additional radius parameter,
+which can be set by <em>filterrad</em>. Additionally, the antigrain image
+resize filter is controlled by the parameter <em>filternorm</em>.</p>
+</dd>
+<dt>interpolation_stage<span class="classifier">{‘data’, ‘rgba’}, default: ‘data’</span></dt><dd><p>If ‘data’, interpolation
+is carried out on the data provided by the user.  If ‘rgba’, the
+interpolation is carried out after the colormapping has been
+applied (visual interpolation).</p>
+</dd>
+<dt>alpha<span class="classifier">float or array-like, optional</span></dt><dd><p>The alpha blending value, between 0 (transparent) and 1 (opaque).
+If <em>alpha</em> is an array, the alpha blending values are applied pixel
+by pixel, and <em>alpha</em> must have the same shape as <em>X</em>.</p>
+</dd>
+<dt>origin<span class="classifier">{‘upper’, ‘lower’}, default: <a href="#id9"><span class="problematic" id="id10">:rc:`image.origin`</span></a></span></dt><dd><p>Place the [0, 0] index of the array in the upper left or lower
+left corner of the Axes. The convention (the default) ‘upper’ is
+typically used for matrices and images.</p>
+<p>Note that the vertical axis points upward for ‘lower’
+but downward for ‘upper’.</p>
+<p>See the <span class="xref std std-doc">/tutorials/intermediate/imshow_extent</span> tutorial for
+examples and a more detailed description.</p>
+</dd>
+<dt>extent<span class="classifier">floats (left, right, bottom, top), optional</span></dt><dd><p>The bounding box in data coordinates that the image will fill.
+These values may be unitful and match the units of the Axes.
+The image is stretched individually along x and y to fill the box.</p>
+<p>The default extent is determined by the following conditions.
+Pixels have unit size in data coordinates. Their centers are on
+integer coordinates, and their center coordinates range from 0 to
+columns-1 horizontally and from 0 to rows-1 vertically.</p>
+<p>Note that the direction of the vertical axis and thus the default
+values for top and bottom depend on <em>origin</em>:</p>
+<ul class="simple">
+<li><p>For <code class="docutils literal notranslate"><span class="pre">origin</span> <span class="pre">==</span> <span class="pre">'upper'</span></code> the default is
+<code class="docutils literal notranslate"><span class="pre">(-0.5,</span> <span class="pre">numcols-0.5,</span> <span class="pre">numrows-0.5,</span> <span class="pre">-0.5)</span></code>.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">origin</span> <span class="pre">==</span> <span class="pre">'lower'</span></code> the default is
+<code class="docutils literal notranslate"><span class="pre">(-0.5,</span> <span class="pre">numcols-0.5,</span> <span class="pre">-0.5,</span> <span class="pre">numrows-0.5)</span></code>.</p></li>
+</ul>
+<p>See the <span class="xref std std-doc">/tutorials/intermediate/imshow_extent</span> tutorial for
+examples and a more detailed description.</p>
+</dd>
+<dt>filternorm<span class="classifier">bool, default: True</span></dt><dd><p>A parameter for the antigrain image resize filter (see the
+antigrain documentation).  If <em>filternorm</em> is set, the filter
+normalizes integer values and corrects the rounding errors. It
+doesn’t do anything with the source floating point values, it
+corrects only integers according to the rule of 1.0 which means
+that any sum of pixel weights must be equal to 1.0.  So, the
+filter function must produce a graph of the proper shape.</p>
+</dd>
+<dt>filterrad<span class="classifier">float &gt; 0, default: 4.0</span></dt><dd><p>The filter radius for filters that have a radius parameter, i.e.
+when interpolation is one of: ‘sinc’, ‘lanczos’ or ‘blackman’.</p>
+</dd>
+<dt>resample<span class="classifier">bool, default: <a href="#id11"><span class="problematic" id="id12">:rc:`image.resample`</span></a></span></dt><dd><p>When <em>True</em>, use a full resampling method.  When <em>False</em>, only
+resample when the output image is larger than the input image.</p>
+</dd>
+<dt>url<span class="classifier">str, optional</span></dt><dd><p>Set the url of the created <cite>.AxesImage</cite>. See <cite>.Artist.set_url</cite>.</p>
+</dd>
+</dl>
+<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Permalink to this heading">¶</a></h2>
+<p><cite>~matplotlib.image.AxesImage</cite></p>
+<h2 id="other-parameters">Other Parameters<a class="headerlink" href="#other-parameters" title="Permalink to this heading">¶</a></h2>
+<dl>
+<dt>data<span class="classifier">indexable object, optional</span></dt><dd><p>If given, all parameters also accept a string <code class="docutils literal notranslate"><span class="pre">s</span></code>, which is
+interpreted as <code class="docutils literal notranslate"><span class="pre">data[s]</span></code> (unless this raises an exception).</p>
+</dd>
+<dt><a href="#id13"><span class="problematic" id="id14">**</span></a>kwargs<span class="classifier"><cite>~matplotlib.artist.Artist</cite> properties</span></dt><dd><p>These parameters are passed on to the constructor of the
+<cite>.AxesImage</cite> artist.</p>
+</dd>
+</dl>
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
+<p>matshow : Plot a matrix or an array as an image.</p>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permalink to this heading">¶</a></h2>
+<p>Unless <em>extent</em> is used, pixel centers will be located at integer
+coordinates. In other words: the origin will coincide with the center
+of pixel (0, 0).</p>
+<p>There are two common representations for RGB images with an alpha
+channel:</p>
+<ul class="simple">
+<li><p>Straight (unassociated) alpha: R, G, and B channels represent the
+color of the pixel, disregarding its opacity.</p></li>
+<li><p>Premultiplied (associated) alpha: R, G, and B channels represent
+the color of the pixel, adjusted for its opacity by multiplication.</p></li>
+</ul>
+<p><cite>~matplotlib.pyplot.imshow</cite> expects RGB images adopting the straight
+(unassociated) alpha representation.</p>
+</dd></dl>
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright 2024, Fraunhofer IWES.
+        
+    </div>
+  
+    Created using
+    <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
+    7.1.2.
+     and
+    <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+  </body>
+</html>
