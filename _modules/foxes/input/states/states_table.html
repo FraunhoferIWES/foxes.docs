@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.input.states.states_table - foxes 0.6
+        <title>foxes.input.states.states_table - foxes 0.6.1
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.6
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6
+    <a href="../../../../index.html" title="foxes 0.6.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.6.1
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6
+            foxes 0.6.1
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.6
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6
+    <a href="../../../../index.html" title="foxes 0.6.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6
+    foxes 0.6.1
  documentation
   </label>
   
@@ -327,10 +327,11 @@
 <h1>Source code for foxes.input.states.states_table</h1><div class="highlight"><pre>
 <span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">xarray</span> <span class="kn">import</span> <span class="n">Dataset</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">States</span><span class="p">,</span> <span class="n">VerticalProfile</span>
-<span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">PandasFileHelper</span>
+<span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">PandasFileHelper</span><span class="p">,</span> <span class="n">read_tab_file</span>
 <span class="kn">from</span> <span class="nn">foxes.data</span> <span class="kn">import</span> <span class="n">STATES</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
@@ -706,6 +707,121 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">RDICT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;index_col&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;parse_dates&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]}</span></div>
+
+
+<div class="viewcode-block" id="TabStates"><a class="viewcode-back" href="../../../../api_input.html#foxes.input.states.TabStates">[docs]</a><span class="k">class</span> <span class="nc">TabStates</span><span class="p">(</span><span class="n">StatesTable</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    States created from a single tab file</span>
+
+<span class="sd">    :group: input.states</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TabStates.__init__"><a class="viewcode-back" href="../../../../_foxes/input/states/TabStates.__init__.html#foxes.input.states.TabStates.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_source</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data_source: str or xarray.Dataset</span>
+<span class="sd">            The tab file data file name, or its data</span>
+<span class="sd">        args: tuple, optional</span>
+<span class="sd">            Additional parameters for StatesTable</span>
+<span class="sd">        normalize: bool</span>
+<span class="sd">            Normalize the tab file data</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Additional parameters for StatesTable</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_normalize</span> <span class="o">=</span> <span class="n">normalize</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_source</span><span class="p">,</span> <span class="n">Dataset</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tab_source</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tab_data</span> <span class="o">=</span> <span class="n">data_source</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_source</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tab_source</span> <span class="o">=</span> <span class="n">data_source</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tab_data</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Expecting str, Path or xarray.Dataset as data_source, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data_source</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data_source</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TabStates.load_data"><a class="viewcode-back" href="../../../../_foxes/input/states/TabStates.load_data.html#foxes.input.states.TabStates.load_data">[docs]</a>    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load and/or create all model data that is subject to chunking.</span>
+
+<span class="sd">        Such data should not be stored under self, for memory reasons. The</span>
+<span class="sd">        data returned here will automatically be chunked and then provided</span>
+<span class="sd">        as part of the mdata object during calculations.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        verbosity: int</span>
+<span class="sd">            The verbosity level, 0 = silent</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        idata: dict</span>
+<span class="sd">            The dict has exactly two entries: `data_vars`,</span>
+<span class="sd">            a dict with entries `name_str -&gt; (dim_tuple, data_ndarray)`;</span>
+<span class="sd">            and `coords`, a dict with entries `dim_name_str -&gt; dim_array`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tab_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tab_source</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">verbosity</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Reading static data &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_tab_source</span><span class="si">}</span><span class="s2">&#39; from context &#39;</span><span class="si">{</span><span class="n">STATES</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+                        <span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_tab_source</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">dbook</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span>
+                        <span class="n">STATES</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tab_source</span><span class="p">,</span> <span class="n">check_raw</span><span class="o">=</span><span class="kc">False</span>
+                    <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">verbosity</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Path: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_tab_source</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">verbosity</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Reading file </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_tab_source</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tab_data</span> <span class="o">=</span> <span class="n">read_tab_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tab_source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize</span><span class="p">)</span>
+
+            <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tab_data</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;factor_ws&quot;</span><span class="p">]</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tab_data</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;shift_wd&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">b</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: shift_wd = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> is not supported, expecting zero&quot;</span>
+                <span class="p">)</span>
+
+            <span class="n">wd0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tab_data</span><span class="p">[</span><span class="s2">&quot;wd&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+            <span class="n">ws0</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tab_data</span><span class="p">[</span><span class="s2">&quot;ws&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+            <span class="p">)</span>
+            <span class="n">ws0</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">ws0</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">ws0</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+            <span class="n">n_ws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tab_data</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s2">&quot;ws&quot;</span><span class="p">]</span>
+            <span class="n">n_wd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tab_data</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s2">&quot;wd&quot;</span><span class="p">]</span>
+            <span class="n">ws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_ws</span><span class="p">,</span> <span class="n">n_wd</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+            <span class="n">wd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_ws</span><span class="p">,</span> <span class="n">n_wd</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+            <span class="n">ws</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">ws0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="n">wd</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">wd0</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+
+            <span class="n">wd_freq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tab_data</span><span class="p">[</span><span class="s2">&quot;wd_freq&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">/</span> <span class="mi">100</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tab_data</span><span class="p">[</span><span class="s2">&quot;ws_freq&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">wd_freq</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">1000</span>
+
+            <span class="n">sel</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sel</span><span class="p">)),</span>
+                <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+                    <span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="n">ws</span><span class="p">[</span><span class="n">sel</span><span class="p">],</span>
+                    <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">:</span> <span class="n">wd</span><span class="p">[</span><span class="n">sel</span><span class="p">],</span>
+                    <span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">:</span> <span class="n">weights</span><span class="p">[</span><span class="n">sel</span><span class="p">],</span>
+                <span class="p">},</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span>
+
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span></div></div>
 </code></pre></div>
 
 
