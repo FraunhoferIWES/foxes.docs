@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.turbine_models.LookupTable.calculate - foxes 0.6.2
+        <title>foxes.models.turbine_models.LookupTable.calculate - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -327,23 +359,22 @@
 <dl class="py method objdesc">
 <dt class="sig sig-object highlight py">
 <span class="sig-prename descclassname"><span class="pre">foxes.models.turbine_models.</span><span class="pre">LookupTable.</span></span><span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">mdata</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">fdata</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">st_sel</span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/foxes/models/turbine_models/lookup_table.html#LookupTable.calculate"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>”
-The main model calculation.</p>
+<dd><p>The main model calculation.</p>
 <p>This function is executed on a single chunk of data,
 all computations should be based on numpy arrays.</p>
-<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h2>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt>algo: foxes.core.Algorithm</dt><dd><p>The calculation algorithm</p>
 </dd>
-<dt>mdata: foxes.core.Data</dt><dd><p>The model data</p>
+<dt>mdata: foxes.core.MData</dt><dd><p>The model data</p>
 </dd>
-<dt>fdata: foxes.core.Data</dt><dd><p>The farm data</p>
+<dt>fdata: foxes.core.FData</dt><dd><p>The farm data</p>
 </dd>
-<dt>st_sel: numpy.ndarray of bool</dt><dd><p>The state-turbine selection,
-shape: (n_states, n_turbines)</p>
+<dt>st_sel: slice or numpy.ndarray of bool</dt><dd><p>The state-turbine selection,
+for shape: (n_states, n_turbines)</p>
 </dd>
 </dl>
-<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Permalink to this heading">¶</a></h2>
+<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt>results: dict</dt><dd><p>The resulting data, keys: output variable str.
 Values: numpy.ndarray with shape (n_states, n_turbines)</p>
@@ -382,7 +413,7 @@ Values: numpy.ndarray with shape (n_states, n_turbines)</p>
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -403,7 +434,6 @@ Values: numpy.ndarray with shape (n_states, n_turbines)</p>
       
         <script src="../../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
   </body>
 </html>

@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.wake_model - foxes 0.6.2
+        <title>foxes.core.wake_model - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -326,13 +358,18 @@
 
 <h1>Source code for foxes.core.wake_model</h1><div class="highlight"><pre>
 <span></span><code><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">all_subclasses</span>
+<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
+<span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 <span class="kn">from</span> <span class="nn">.model</span> <span class="kn">import</span> <span class="n">Model</span>
 
 
-<div class="viewcode-block" id="WakeModel"><a class="viewcode-back" href="../../../api_core.html#foxes.core.WakeModel">[docs]</a><span class="k">class</span> <span class="nc">WakeModel</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<div class="viewcode-block" id="WakeModel">
+<a class="viewcode-back" href="../../../api_core.html#foxes.core.WakeModel">[docs]</a>
+<span class="k">class</span> <span class="nc">WakeModel</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for wake models.</span>
 
@@ -340,80 +377,96 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="WakeModel.init_wake_deltas"><a class="viewcode-back" href="../../../_foxes/models/wake_models/TopHatWakeModel.html#foxes.core.WakeModel.init_wake_deltas">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">affects_downwind</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initialize wake delta storage.</span>
+<span class="sd">        Flag for downwind or upwind effects</span>
+<span class="sd">        on other turbines</span>
 
-<span class="sd">        They are added on the fly to the wake_deltas dict.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dwnd: bool</span>
+<span class="sd">            Flag for downwind effects by this model</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="WakeModel.new_wake_deltas">
+<a class="viewcode-back" href="../../../_foxes/models/wake_models/wind/TurbOParkWake.html#foxes.core.WakeModel.new_wake_deltas">[docs]</a>
+    <span class="k">def</span> <span class="nf">new_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates new empty wake delta arrays.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata: foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.MData</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata: foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.FData</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        pdata: foxes.core.Data</span>
-<span class="sd">            The evaluation point data</span>
+<span class="sd">        tdata: foxes.core.TData</span>
+<span class="sd">            The target point data</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">        wake_deltas: dict</span>
-<span class="sd">            The wake deltas storage, add wake deltas</span>
-<span class="sd">            on the fly. Keys: Variable name str, for which the</span>
-<span class="sd">            wake delta applies, values: numpy.ndarray with</span>
-<span class="sd">            shape (n_states, n_points, ...)</span>
+<span class="sd">            Key: variable name, value: The zero filled</span>
+<span class="sd">            wake deltas, shape: (n_states, n_turbines, n_rpoints, ...)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">return</span> <span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">tdata</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TARGETS</span><span class="p">][</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">])}</span></div>
 
-<div class="viewcode-block" id="WakeModel.contribute_to_wake_deltas"><a class="viewcode-back" href="../../../_foxes/core/WakeModel.contribute_to_wake_deltas.html#foxes.core.WakeModel.contribute_to_wake_deltas">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">contribute_to_wake_deltas</span><span class="p">(</span>
+
+<div class="viewcode-block" id="WakeModel.contribute">
+<a class="viewcode-back" href="../../../_foxes/core/WakeModel.contribute.html#foxes.core.WakeModel.contribute">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">contribute</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
         <span class="n">fdata</span><span class="p">,</span>
-        <span class="n">pdata</span><span class="p">,</span>
-        <span class="n">states_source_turbine</span><span class="p">,</span>
+        <span class="n">tdata</span><span class="p">,</span>
+        <span class="n">downwind_index</span><span class="p">,</span>
         <span class="n">wake_coos</span><span class="p">,</span>
         <span class="n">wake_deltas</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Calculate the contribution to the wake deltas</span>
-<span class="sd">        by this wake model.</span>
-
-<span class="sd">        Modifies wake_deltas on the fly.</span>
+<span class="sd">        Modifies wake deltas at target points by</span>
+<span class="sd">        contributions from the specified wake source turbines.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata: foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.MData</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata: foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.FData</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        pdata: foxes.core.Data</span>
-<span class="sd">            The evaluation point data</span>
-<span class="sd">        states_source_turbine: numpy.ndarray</span>
-<span class="sd">            For each state, one turbine index for the</span>
-<span class="sd">            wake causing turbine. Shape: (n_states,)</span>
+<span class="sd">        tdata: foxes.core.TData</span>
+<span class="sd">            The target point data</span>
+<span class="sd">        downwind_index: int</span>
+<span class="sd">            The index of the wake causing turbine</span>
+<span class="sd">            in the downwnd order</span>
 <span class="sd">        wake_coos: numpy.ndarray</span>
 <span class="sd">            The wake frame coordinates of the evaluation</span>
-<span class="sd">            points, shape: (n_states, n_points, 3)</span>
+<span class="sd">            points, shape: (n_states, n_targets, n_tpoints, 3)</span>
 <span class="sd">        wake_deltas: dict</span>
-<span class="sd">            The wake deltas, are being modified ob the fly.</span>
-<span class="sd">            Key: Variable name str, for which the</span>
-<span class="sd">            wake delta applies, values: numpy.ndarray with</span>
-<span class="sd">            shape (n_states, n_points, ...)</span>
+<span class="sd">            The wake deltas. Key: variable name,</span>
+<span class="sd">            value: numpy.ndarray with shape</span>
+<span class="sd">            (n_states, n_targets, n_tpoints, ...)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="WakeModel.finalize_wake_deltas"><a class="viewcode-back" href="../../../_foxes/models/wake_models/induction/SelfSimilar2020.html#foxes.core.WakeModel.finalize_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">finalize_wake_deltas</span><span class="p">(</span>
+
+<div class="viewcode-block" id="WakeModel.finalize_wake_deltas">
+<a class="viewcode-back" href="../../../_foxes/models/wake_models/induction/SelfSimilar2020.html#foxes.core.WakeModel.finalize_wake_deltas">[docs]</a>
+    <span class="k">def</span> <span class="nf">finalize_wake_deltas</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
         <span class="n">fdata</span><span class="p">,</span>
-        <span class="n">pdata</span><span class="p">,</span>
         <span class="n">amb_results</span><span class="p">,</span>
         <span class="n">wake_deltas</span><span class="p">,</span>
     <span class="p">):</span>
@@ -426,26 +479,26 @@
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata: foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.MData</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata: foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.FData</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        pdata: foxes.core.Data</span>
-<span class="sd">            The evaluation point data</span>
 <span class="sd">        amb_results: dict</span>
 <span class="sd">            The ambient results, key: variable name str,</span>
-<span class="sd">            values: numpy.ndarray with shape (n_states, n_points)</span>
+<span class="sd">            values: numpy.ndarray with shape</span>
+<span class="sd">            (n_states, n_targets, n_tpoints)</span>
 <span class="sd">        wake_deltas: dict</span>
-<span class="sd">            The wake deltas, are being modified ob the fly.</span>
-<span class="sd">            Key: Variable name str, for which the wake delta</span>
-<span class="sd">            applies, values: numpy.ndarray with shape</span>
-<span class="sd">            (n_states, n_points, ...) before evaluation,</span>
-<span class="sd">            numpy.ndarray with shape (n_states, n_points) afterwards</span>
+<span class="sd">            The wake deltas object at the selected target</span>
+<span class="sd">            turbines. Key: variable str, value: numpy.ndarray</span>
+<span class="sd">            with shape (n_states, n_targets, n_tpoints)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="WakeModel.new"><a class="viewcode-back" href="../../../_foxes/models/wake_models/wind/TurbOParkWakeIX.html#foxes.core.WakeModel.new">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="WakeModel.new">
+<a class="viewcode-back" href="../../../_foxes/models/wake_models/wind/TurbOParkWakeIX.html#foxes.core.WakeModel.new">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">wmodel_type</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run-time wake model factory.</span>
@@ -478,7 +531,35 @@
                     <span class="n">wmodel_type</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">])</span>
                 <span class="p">)</span>
             <span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">estr</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">estr</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="TurbineInductionModel">
+<a class="viewcode-back" href="../../../api_core.html#foxes.core.TurbineInductionModel">[docs]</a>
+<span class="k">class</span> <span class="nc">TurbineInductionModel</span><span class="p">(</span><span class="n">WakeModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract base class for turbine induction models.</span>
+
+<span class="sd">    :group: core</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">affects_downwind</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag for downwind or upwind effects</span>
+<span class="sd">        on other turbines</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dwnd: bool</span>
+<span class="sd">            Flag for downwind effects by this model</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
 </code></pre></div>
 
 
@@ -510,7 +591,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

@@ -13,7 +13,7 @@
     
     
       
-        <title>scipy.spatial.distance - foxes 0.6.2
+        <title>scipy.spatial.distance - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -387,7 +419,6 @@
 <span class="sd">   dice             -- the Dice dissimilarity.</span>
 <span class="sd">   hamming          -- the Hamming distance.</span>
 <span class="sd">   jaccard          -- the Jaccard distance.</span>
-<span class="sd">   kulsinski        -- the Kulsinski distance.</span>
 <span class="sd">   kulczynski1      -- the Kulczynski 1 distance.</span>
 <span class="sd">   rogerstanimoto   -- the Rogers-Tanimoto dissimilarity.</span>
 <span class="sd">   russellrao       -- the Russell-Rao dissimilarity.</span>
@@ -416,7 +447,6 @@
     <span class="s1">&#39;is_valid_y&#39;</span><span class="p">,</span>
     <span class="s1">&#39;jaccard&#39;</span><span class="p">,</span>
     <span class="s1">&#39;jensenshannon&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;kulsinski&#39;</span><span class="p">,</span>
     <span class="s1">&#39;kulczynski1&#39;</span><span class="p">,</span>
     <span class="s1">&#39;mahalanobis&#39;</span><span class="p">,</span>
     <span class="s1">&#39;minkowski&#39;</span><span class="p">,</span>
@@ -434,11 +464,12 @@
 <span class="p">]</span>
 
 
+<span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">dataclasses</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span>
 
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 <span class="kn">from</span> <span class="nn">scipy._lib._util</span> <span class="kn">import</span> <span class="n">_asarray_validated</span>
@@ -450,7 +481,6 @@
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_distance_pybind</span>
 
-<span class="kn">from</span> <span class="nn">.._lib.deprecation</span> <span class="kn">import</span> <span class="n">_deprecated</span>
 
 <span class="k">def</span> <span class="nf">_copy_array_if_base_present</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Copy the array if its base points to a parent array.&quot;&quot;&quot;</span>
@@ -551,7 +581,9 @@
     <span class="n">w</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;double&#39;</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">w</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Weights must have same size as input vector. </span><span class="si">%d</span><span class="s2"> vs. </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Weights must have same size as input vector. </span><span class="si">%d</span><span class="s2"> vs. </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n</span><span class="p">)</span>
+        <span class="p">)</span>
 
     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_validate_weights</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">kwargs</span>
@@ -570,7 +602,7 @@
                              <span class="s2">&quot;are required.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
             <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">CV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+        <span class="n">CV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
         <span class="n">VI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">CV</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;VI&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_convert_to_double</span><span class="p">(</span><span class="n">VI</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">kwargs</span>
@@ -607,7 +639,7 @@
     <span class="k">if</span> <span class="n">V</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
             <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
@@ -629,7 +661,7 @@
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input vector should be 1-D.&quot;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_validate_weights</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_validate_weights</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">):</span>
     <span class="n">w</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">w</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input weights should be all non-negative&quot;</span><span class="p">)</span>
@@ -645,10 +677,10 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    u : (M,N) array_like</span>
-<span class="sd">        Input array.</span>
+<span class="sd">        Input array with M points in N dimensions.</span>
 <span class="sd">    v : (O,N) array_like</span>
-<span class="sd">        Input array.</span>
-<span class="sd">    seed : int or None</span>
+<span class="sd">        Input array with O points in N dimensions.</span>
+<span class="sd">    seed : int or None, optional</span>
 <span class="sd">        Local `numpy.random.RandomState` seed. Default is 0, a random</span>
 <span class="sd">        shuffling of u and v that guarantees reproducibility.</span>
 
@@ -668,6 +700,10 @@
 <span class="sd">    ValueError</span>
 <span class="sd">        An exception is thrown if `u` and `v` do not have</span>
 <span class="sd">        the same number of columns.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    scipy.spatial.procrustes : Another similarity test for two data sets</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -689,10 +725,6 @@
 <span class="sd">           calculating the exact Hausdorff distance.&quot; IEEE Transactions On</span>
 <span class="sd">           Pattern Analysis And Machine Intelligence, vol. 37 pp. 2153-63,</span>
 <span class="sd">           2015.</span>
-
-<span class="sd">    See Also</span>
-<span class="sd">    --------</span>
-<span class="sd">    scipy.spatial.procrustes : Another similarity test for two data sets</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -855,9 +887,7 @@
 
 <span class="sd">    .. math::</span>
 
-<span class="sd">       {\\|u-v\\|}_2^2</span>
-
-<span class="sd">       \\left(\\sum{(w_i |(u_i - v_i)|^2)}\\right)</span>
+<span class="sd">       \\sum_i{w_i |u_i - v_i|^2}</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -933,22 +963,49 @@
 <span class="sd">    correlation : double</span>
 <span class="sd">        The correlation distance between 1-D array `u` and `v`.</span>
 
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Find the correlation between two arrays.</span>
+
+<span class="sd">    &gt;&gt;&gt; from scipy.spatial.distance import correlation</span>
+<span class="sd">    &gt;&gt;&gt; correlation([1, 0, 1], [1, 1, 0])</span>
+<span class="sd">    1.5</span>
+
+<span class="sd">    Using a weighting array, the correlation can be calculated as:</span>
+
+<span class="sd">    &gt;&gt;&gt; correlation([1, 0, 1], [1, 1, 0], w=[0.9, 0.1, 0.1])</span>
+<span class="sd">    1.1</span>
+
+<span class="sd">    If centering is not needed, the correlation can be calculated as:</span>
+
+<span class="sd">    &gt;&gt;&gt; correlation([1, 0, 1], [1, 1, 0], centered=False)</span>
+<span class="sd">    0.5</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">u</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">w</span> <span class="o">=</span> <span class="n">_validate_weights</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">/</span> <span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">centered</span><span class="p">:</span>
-        <span class="n">umu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
-        <span class="n">vmu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">umu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+            <span class="n">vmu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">umu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+            <span class="n">vmu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
         <span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="n">umu</span>
         <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">-</span> <span class="n">vmu</span>
-    <span class="n">uv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
-    <span class="n">uu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
-    <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
-    <span class="n">dist</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">uv</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uu</span> <span class="o">*</span> <span class="n">vv</span><span class="p">)</span>
-    <span class="c1"># Return absolute value to avoid small negative value due to rounding</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">vw</span> <span class="o">=</span> <span class="n">v</span> <span class="o">*</span> <span class="n">w</span>
+        <span class="n">uw</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="n">w</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vw</span><span class="p">,</span> <span class="n">uw</span> <span class="o">=</span> <span class="n">v</span><span class="p">,</span> <span class="n">u</span>
+    <span class="n">uv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">vw</span><span class="p">)</span>
+    <span class="n">uu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">uw</span><span class="p">)</span>
+    <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vw</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">uv</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uu</span> <span class="o">*</span> <span class="n">vv</span><span class="p">)</span>
+    <span class="c1"># Clip the result to avoid rounding error</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">cosine</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -993,8 +1050,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># cosine distance is also referred to as &#39;uncentered correlation&#39;,</span>
     <span class="c1">#   or &#39;reflective correlation&#39;</span>
-    <span class="c1"># clamp the result to 0-2</span>
-    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">correlation</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">centered</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="mf">2.0</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">correlation</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">centered</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">hamming</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -1048,7 +1104,11 @@
     <span class="n">u_ne_v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">!=</span> <span class="n">v</span>
     <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">w</span> <span class="o">=</span> <span class="n">_validate_weights</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">u_ne_v</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">w</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;w&#39; should have the same length as &#39;u&#39; and &#39;v&#39;.&quot;</span><span class="p">)</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">/</span> <span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u_ne_v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">u_ne_v</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">jaccard</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -1120,73 +1180,9 @@
         <span class="n">w</span> <span class="o">=</span> <span class="n">_validate_weights</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
         <span class="n">nonzero</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">nonzero</span>
         <span class="n">unequal_nonzero</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">unequal_nonzero</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">(</span><span class="n">unequal_nonzero</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">(</span><span class="n">nonzero</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">unequal_nonzero</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">nonzero</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span> <span class="k">if</span> <span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-
-
-<span class="nd">@_deprecated</span><span class="p">(</span><span class="s2">&quot;Kulsinski has been deprecated from scipy.spatial.distance&quot;</span>
-             <span class="s2">&quot; in SciPy 1.9.0 and it will be removed in SciPy 1.11.0.&quot;</span>
-             <span class="s2">&quot; It is superseded by scipy.spatial.distance.kulczynski1.&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">kulsinski</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Compute the Kulsinski dissimilarity between two boolean 1-D arrays.</span>
-
-<span class="sd">    The Kulsinski dissimilarity between two boolean 1-D arrays `u` and `v`,</span>
-<span class="sd">    is defined as</span>
-
-<span class="sd">    .. math::</span>
-
-<span class="sd">         \\frac{c_{TF} + c_{FT} - c_{TT} + n}</span>
-<span class="sd">              {c_{FT} + c_{TF} + n}</span>
-
-<span class="sd">    where :math:`c_{ij}` is the number of occurrences of</span>
-<span class="sd">    :math:`\\mathtt{u[k]} = i` and :math:`\\mathtt{v[k]} = j` for</span>
-<span class="sd">    :math:`k &lt; n`.</span>
-
-<span class="sd">    .. deprecated:: 0.12.0</span>
-<span class="sd">        `kulsinski` has been deprecated from `scipy.spatial.distance` in</span>
-<span class="sd">        SciPy 1.9.0 and it will be removed in SciPy 1.11.0. It is superseded</span>
-<span class="sd">        by `scipy.spatial.distance.kulczynski1`.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    u : (N,) array_like, bool</span>
-<span class="sd">        Input array.</span>
-<span class="sd">    v : (N,) array_like, bool</span>
-<span class="sd">        Input array.</span>
-<span class="sd">    w : (N,) array_like, optional</span>
-<span class="sd">        The weights for each value in `u` and `v`. Default is None,</span>
-<span class="sd">        which gives each value a weight of 1.0</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    kulsinski : double</span>
-<span class="sd">        The Kulsinski distance between vectors `u` and `v`.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from scipy.spatial import distance</span>
-<span class="sd">    &gt;&gt;&gt; distance.kulsinski([1, 0, 0], [0, 1, 0])</span>
-<span class="sd">    1.0</span>
-<span class="sd">    &gt;&gt;&gt; distance.kulsinski([1, 0, 0], [1, 1, 0])</span>
-<span class="sd">    0.75</span>
-<span class="sd">    &gt;&gt;&gt; distance.kulsinski([1, 0, 0], [2, 1, 0])</span>
-<span class="sd">    0.33333333333333331</span>
-<span class="sd">    &gt;&gt;&gt; distance.kulsinski([1, 0, 0], [3, 1, 0])</span>
-<span class="sd">    -0.5</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">w</span> <span class="o">=</span> <span class="n">_validate_weights</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="p">(</span><span class="n">nff</span><span class="p">,</span> <span class="n">nft</span><span class="p">,</span> <span class="n">ntf</span><span class="p">,</span> <span class="n">ntt</span><span class="p">)</span> <span class="o">=</span> <span class="n">_nbool_correspond_all</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="p">(</span><span class="n">ntf</span> <span class="o">+</span> <span class="n">nft</span> <span class="o">-</span> <span class="n">ntt</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ntf</span> <span class="o">+</span> <span class="n">nft</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">kulczynski1</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -1261,7 +1257,14 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the standardized Euclidean distance between two 1-D arrays.</span>
 
-<span class="sd">    The standardized Euclidean distance between `u` and `v`.</span>
+<span class="sd">    The standardized Euclidean distance between two n-vectors `u` and `v` is</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">       \\sqrt{\\sum\\limits_i \\frac{1}{V_i} \\left(u_i-v_i \\right)^2}</span>
+
+<span class="sd">    ``V`` is the variance vector; ``V[I]`` is the variance computed over all the i-th</span>
+<span class="sd">    components of the points. If not passed, it is automatically computed.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1960,7 +1963,7 @@
     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">ntf</span> <span class="o">+</span> <span class="n">nft</span><span class="p">))</span> <span class="o">/</span> <span class="n">denom</span>
 
 
-<span class="n">_convert_to_double</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">_convert_to_type</span><span class="p">,</span> <span class="n">out_type</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+<span class="n">_convert_to_double</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">_convert_to_type</span><span class="p">,</span> <span class="n">out_type</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 <span class="n">_convert_to_bool</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">_convert_to_type</span><span class="p">,</span> <span class="n">out_type</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 
 <span class="c1"># adding python-only wrappers to _distance_wrap module</span>
@@ -1988,33 +1991,7 @@
             <span class="k">return</span> <span class="n">_cdist_callable</span><span class="p">(</span>
                 <span class="n">XA</span><span class="p">,</span> <span class="n">XB</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="n">dm</span> <span class="o">=</span> <span class="n">_prepare_out_argument</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">,</span> <span class="p">(</span><span class="n">mA</span><span class="p">,</span> <span class="n">mB</span><span class="p">))</span>
-        <span class="c1"># get cdist wrapper</span>
-        <span class="n">cdist_fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">_distance_wrap</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;cdist_</span><span class="si">{</span><span class="n">metric_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">typ</span><span class="si">}</span><span class="s1">_wrap&#39;</span><span class="p">)</span>
-        <span class="n">cdist_fn</span><span class="p">(</span><span class="n">XA</span><span class="p">,</span> <span class="n">XB</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">dm</span>
-
-
-<span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">CDistWeightedMetricWrapper</span><span class="p">:</span>
-    <span class="n">metric_name</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">weighted_metric</span><span class="p">:</span> <span class="nb">str</span>
-
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">XA</span><span class="p">,</span> <span class="n">XB</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">XA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">XA</span><span class="p">)</span>
-        <span class="n">XB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">XB</span><span class="p">)</span>
-        <span class="n">mA</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">XA</span><span class="o">.</span><span class="n">shape</span>
-        <span class="n">mB</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">XB</span><span class="o">.</span><span class="n">shape</span>
-        <span class="n">metric_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span>
-        <span class="n">XA</span><span class="p">,</span> <span class="n">XB</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">_validate_cdist_input</span><span class="p">(</span>
-            <span class="n">XA</span><span class="p">,</span> <span class="n">XB</span><span class="p">,</span> <span class="n">mA</span><span class="p">,</span> <span class="n">mB</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">_METRICS</span><span class="p">[</span><span class="n">metric_name</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">dm</span> <span class="o">=</span> <span class="n">_prepare_out_argument</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">,</span> <span class="p">(</span><span class="n">mA</span><span class="p">,</span> <span class="n">mB</span><span class="p">))</span>
-
-        <span class="n">w</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">metric_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weighted_metric</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span>
-
+        <span class="n">dm</span> <span class="o">=</span> <span class="n">_prepare_out_argument</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="n">mA</span><span class="p">,</span> <span class="n">mB</span><span class="p">))</span>
         <span class="c1"># get cdist wrapper</span>
         <span class="n">cdist_fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">_distance_wrap</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;cdist_</span><span class="si">{</span><span class="n">metric_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">typ</span><span class="si">}</span><span class="s1">_wrap&#39;</span><span class="p">)</span>
         <span class="n">cdist_fn</span><span class="p">(</span><span class="n">XA</span><span class="p">,</span> <span class="n">XB</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2039,32 +2016,7 @@
             <span class="k">return</span> <span class="n">_pdist_callable</span><span class="p">(</span>
                 <span class="n">X</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="n">dm</span> <span class="o">=</span> <span class="n">_prepare_out_argument</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">,</span> <span class="p">(</span><span class="n">out_size</span><span class="p">,))</span>
-        <span class="c1"># get pdist wrapper</span>
-        <span class="n">pdist_fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">_distance_wrap</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;pdist_</span><span class="si">{</span><span class="n">metric_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">typ</span><span class="si">}</span><span class="s1">_wrap&#39;</span><span class="p">)</span>
-        <span class="n">pdist_fn</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">dm</span>
-
-
-<span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">PDistWeightedMetricWrapper</span><span class="p">:</span>
-    <span class="n">metric_name</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">weighted_metric</span><span class="p">:</span> <span class="nb">str</span>
-
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
-        <span class="n">metric_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span>
-        <span class="n">X</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">_validate_pdist_input</span><span class="p">(</span>
-            <span class="n">X</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">_METRICS</span><span class="p">[</span><span class="n">metric_name</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">out_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">m</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">//</span> <span class="mi">2</span>
-        <span class="n">dm</span> <span class="o">=</span> <span class="n">_prepare_out_argument</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">,</span> <span class="p">(</span><span class="n">out_size</span><span class="p">,))</span>
-
-        <span class="n">w</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">metric_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weighted_metric</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span>
-
+        <span class="n">dm</span> <span class="o">=</span> <span class="n">_prepare_out_argument</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="n">out_size</span><span class="p">,))</span>
         <span class="c1"># get pdist wrapper</span>
         <span class="n">pdist_fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">_distance_wrap</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;pdist_</span><span class="si">{</span><span class="n">metric_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">typ</span><span class="si">}</span><span class="s1">_wrap&#39;</span><span class="p">)</span>
         <span class="n">pdist_fn</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2076,7 +2028,7 @@
     <span class="c1"># Name of python distance function</span>
     <span class="n">canonical_name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="c1"># All aliases, including canonical_name</span>
-    <span class="n">aka</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">aka</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="c1"># unvectorized distance function</span>
     <span class="n">dist_func</span><span class="p">:</span> <span class="n">Callable</span>
     <span class="c1"># Optimized cdist function</span>
@@ -2089,7 +2041,7 @@
     <span class="c1"># list of supported types:</span>
     <span class="c1"># X (pdist) and XA (cdist) are used to choose the type. if there is no</span>
     <span class="c1"># match the first type is used. Default double</span>
-    <span class="n">types</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;double&#39;</span><span class="p">])</span>
+    <span class="n">types</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;double&#39;</span><span class="p">])</span>
     <span class="c1"># true if out array must be C-contiguous</span>
     <span class="n">requires_contiguous_out</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -2143,8 +2095,8 @@
         <span class="n">aka</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dice&#39;</span><span class="p">},</span>
         <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bool&#39;</span><span class="p">],</span>
         <span class="n">dist_func</span><span class="o">=</span><span class="n">dice</span><span class="p">,</span>
-        <span class="n">cdist_func</span><span class="o">=</span><span class="n">CDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;dice&#39;</span><span class="p">),</span>
-        <span class="n">pdist_func</span><span class="o">=</span><span class="n">PDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;dice&#39;</span><span class="p">),</span>
+        <span class="n">cdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">cdist_dice</span><span class="p">,</span>
+        <span class="n">pdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">pdist_dice</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">MetricInfo</span><span class="p">(</span>
         <span class="n">canonical_name</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span>
@@ -2159,16 +2111,16 @@
         <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="s1">&#39;bool&#39;</span><span class="p">],</span>
         <span class="n">validator</span><span class="o">=</span><span class="n">_validate_hamming_kwargs</span><span class="p">,</span>
         <span class="n">dist_func</span><span class="o">=</span><span class="n">hamming</span><span class="p">,</span>
-        <span class="n">cdist_func</span><span class="o">=</span><span class="n">CDistWeightedMetricWrapper</span><span class="p">(</span><span class="s1">&#39;hamming&#39;</span><span class="p">,</span> <span class="s1">&#39;hamming&#39;</span><span class="p">),</span>
-        <span class="n">pdist_func</span><span class="o">=</span><span class="n">PDistWeightedMetricWrapper</span><span class="p">(</span><span class="s1">&#39;hamming&#39;</span><span class="p">,</span> <span class="s1">&#39;hamming&#39;</span><span class="p">),</span>
+        <span class="n">cdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">cdist_hamming</span><span class="p">,</span>
+        <span class="n">pdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">pdist_hamming</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">MetricInfo</span><span class="p">(</span>
         <span class="n">canonical_name</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span>
         <span class="n">aka</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="s1">&#39;jacc&#39;</span><span class="p">,</span> <span class="s1">&#39;ja&#39;</span><span class="p">,</span> <span class="s1">&#39;j&#39;</span><span class="p">},</span>
         <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="s1">&#39;bool&#39;</span><span class="p">],</span>
         <span class="n">dist_func</span><span class="o">=</span><span class="n">jaccard</span><span class="p">,</span>
-        <span class="n">cdist_func</span><span class="o">=</span><span class="n">CDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;jaccard&#39;</span><span class="p">),</span>
-        <span class="n">pdist_func</span><span class="o">=</span><span class="n">PDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;jaccard&#39;</span><span class="p">),</span>
+        <span class="n">cdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">cdist_jaccard</span><span class="p">,</span>
+        <span class="n">pdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">pdist_jaccard</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">MetricInfo</span><span class="p">(</span>
         <span class="n">canonical_name</span><span class="o">=</span><span class="s1">&#39;jensenshannon&#39;</span><span class="p">,</span>
@@ -2178,20 +2130,12 @@
         <span class="n">pdist_func</span><span class="o">=</span><span class="n">PDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;jensenshannon&#39;</span><span class="p">),</span>
     <span class="p">),</span>
     <span class="n">MetricInfo</span><span class="p">(</span>
-        <span class="n">canonical_name</span><span class="o">=</span><span class="s1">&#39;kulsinski&#39;</span><span class="p">,</span>
-        <span class="n">aka</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;kulsinski&#39;</span><span class="p">},</span>
-        <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bool&#39;</span><span class="p">],</span>
-        <span class="n">dist_func</span><span class="o">=</span><span class="n">kulsinski</span><span class="p">,</span>
-        <span class="n">cdist_func</span><span class="o">=</span><span class="n">CDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;kulsinski&#39;</span><span class="p">),</span>
-        <span class="n">pdist_func</span><span class="o">=</span><span class="n">PDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;kulsinski&#39;</span><span class="p">),</span>
-    <span class="p">),</span>
-    <span class="n">MetricInfo</span><span class="p">(</span>
         <span class="n">canonical_name</span><span class="o">=</span><span class="s1">&#39;kulczynski1&#39;</span><span class="p">,</span>
         <span class="n">aka</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;kulczynski1&#39;</span><span class="p">},</span>
         <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bool&#39;</span><span class="p">],</span>
         <span class="n">dist_func</span><span class="o">=</span><span class="n">kulczynski1</span><span class="p">,</span>
-        <span class="n">cdist_func</span><span class="o">=</span><span class="n">CDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;kulczynski1&#39;</span><span class="p">),</span>
-        <span class="n">pdist_func</span><span class="o">=</span><span class="n">PDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;kulczynski1&#39;</span><span class="p">),</span>
+        <span class="n">cdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">cdist_kulczynski1</span><span class="p">,</span>
+        <span class="n">pdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">pdist_kulczynski1</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">MetricInfo</span><span class="p">(</span>
         <span class="n">canonical_name</span><span class="o">=</span><span class="s1">&#39;mahalanobis&#39;</span><span class="p">,</span>
@@ -2214,16 +2158,16 @@
         <span class="n">aka</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rogerstanimoto&#39;</span><span class="p">},</span>
         <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bool&#39;</span><span class="p">],</span>
         <span class="n">dist_func</span><span class="o">=</span><span class="n">rogerstanimoto</span><span class="p">,</span>
-        <span class="n">cdist_func</span><span class="o">=</span><span class="n">CDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;rogerstanimoto&#39;</span><span class="p">),</span>
-        <span class="n">pdist_func</span><span class="o">=</span><span class="n">PDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;rogerstanimoto&#39;</span><span class="p">),</span>
+        <span class="n">cdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">cdist_rogerstanimoto</span><span class="p">,</span>
+        <span class="n">pdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">pdist_rogerstanimoto</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">MetricInfo</span><span class="p">(</span>
         <span class="n">canonical_name</span><span class="o">=</span><span class="s1">&#39;russellrao&#39;</span><span class="p">,</span>
         <span class="n">aka</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;russellrao&#39;</span><span class="p">},</span>
         <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bool&#39;</span><span class="p">],</span>
         <span class="n">dist_func</span><span class="o">=</span><span class="n">russellrao</span><span class="p">,</span>
-        <span class="n">cdist_func</span><span class="o">=</span><span class="n">CDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;russellrao&#39;</span><span class="p">),</span>
-        <span class="n">pdist_func</span><span class="o">=</span><span class="n">PDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;russellrao&#39;</span><span class="p">),</span>
+        <span class="n">cdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">cdist_russellrao</span><span class="p">,</span>
+        <span class="n">pdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">pdist_russellrao</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">MetricInfo</span><span class="p">(</span>
         <span class="n">canonical_name</span><span class="o">=</span><span class="s1">&#39;seuclidean&#39;</span><span class="p">,</span>
@@ -2238,16 +2182,16 @@
         <span class="n">aka</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;sokalmichener&#39;</span><span class="p">},</span>
         <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bool&#39;</span><span class="p">],</span>
         <span class="n">dist_func</span><span class="o">=</span><span class="n">sokalmichener</span><span class="p">,</span>
-        <span class="n">cdist_func</span><span class="o">=</span><span class="n">CDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;sokalmichener&#39;</span><span class="p">),</span>
-        <span class="n">pdist_func</span><span class="o">=</span><span class="n">PDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;sokalmichener&#39;</span><span class="p">),</span>
+        <span class="n">cdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">cdist_sokalmichener</span><span class="p">,</span>
+        <span class="n">pdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">pdist_sokalmichener</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">MetricInfo</span><span class="p">(</span>
         <span class="n">canonical_name</span><span class="o">=</span><span class="s1">&#39;sokalsneath&#39;</span><span class="p">,</span>
         <span class="n">aka</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;sokalsneath&#39;</span><span class="p">},</span>
         <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bool&#39;</span><span class="p">],</span>
         <span class="n">dist_func</span><span class="o">=</span><span class="n">sokalsneath</span><span class="p">,</span>
-        <span class="n">cdist_func</span><span class="o">=</span><span class="n">CDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;sokalsneath&#39;</span><span class="p">),</span>
-        <span class="n">pdist_func</span><span class="o">=</span><span class="n">PDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;sokalsneath&#39;</span><span class="p">),</span>
+        <span class="n">cdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">cdist_sokalsneath</span><span class="p">,</span>
+        <span class="n">pdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">pdist_sokalsneath</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">MetricInfo</span><span class="p">(</span>
         <span class="n">canonical_name</span><span class="o">=</span><span class="s1">&#39;sqeuclidean&#39;</span><span class="p">,</span>
@@ -2261,15 +2205,15 @@
         <span class="n">aka</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;yule&#39;</span><span class="p">},</span>
         <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bool&#39;</span><span class="p">],</span>
         <span class="n">dist_func</span><span class="o">=</span><span class="n">yule</span><span class="p">,</span>
-        <span class="n">cdist_func</span><span class="o">=</span><span class="n">CDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;yule&#39;</span><span class="p">),</span>
-        <span class="n">pdist_func</span><span class="o">=</span><span class="n">PDistMetricWrapper</span><span class="p">(</span><span class="s1">&#39;yule&#39;</span><span class="p">),</span>
+        <span class="n">cdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">cdist_yule</span><span class="p">,</span>
+        <span class="n">pdist_func</span><span class="o">=</span><span class="n">_distance_pybind</span><span class="o">.</span><span class="n">pdist_yule</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">]</span>
 
 <span class="n">_METRICS</span> <span class="o">=</span> <span class="p">{</span><span class="n">info</span><span class="o">.</span><span class="n">canonical_name</span><span class="p">:</span> <span class="n">info</span> <span class="k">for</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">_METRIC_INFOS</span><span class="p">}</span>
-<span class="n">_METRIC_ALIAS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">alias</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+<span class="n">_METRIC_ALIAS</span> <span class="o">=</span> <span class="p">{</span><span class="n">alias</span><span class="p">:</span> <span class="n">info</span>
                      <span class="k">for</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">_METRIC_INFOS</span>
-                     <span class="k">for</span> <span class="n">alias</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">aka</span><span class="p">)</span>
+                     <span class="k">for</span> <span class="n">alias</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">aka</span><span class="p">}</span>
 
 <span class="n">_METRICS_NAMES</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_METRICS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
@@ -2295,6 +2239,9 @@
 <span class="sd">        &#39;mahalanobis&#39;, &#39;matching&#39;, &#39;minkowski&#39;, &#39;rogerstanimoto&#39;,</span>
 <span class="sd">        &#39;russellrao&#39;, &#39;seuclidean&#39;, &#39;sokalmichener&#39;, &#39;sokalsneath&#39;,</span>
 <span class="sd">        &#39;sqeuclidean&#39;, &#39;yule&#39;.</span>
+<span class="sd">    out : ndarray, optional</span>
+<span class="sd">        The output array.</span>
+<span class="sd">        If not None, condensed distance matrix Y is stored in this array.</span>
 <span class="sd">    **kwargs : dict, optional</span>
 <span class="sd">        Extra arguments to `metric`: refer to each metric documentation for a</span>
 <span class="sd">        list of all possible arguments.</span>
@@ -2315,10 +2262,6 @@
 <span class="sd">        VI : ndarray</span>
 <span class="sd">        The inverse of the covariance matrix for Mahalanobis.</span>
 <span class="sd">        Default: inv(cov(X.T)).T</span>
-
-<span class="sd">        out : ndarray.</span>
-<span class="sd">        The output array</span>
-<span class="sd">        If not None, condensed distance matrix Y is stored in this array.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -2535,6 +2478,33 @@
 
 <span class="sd">          dm = pdist(X, &#39;sokalsneath&#39;)</span>
 
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from scipy.spatial.distance import pdist</span>
+
+<span class="sd">    ``x`` is an array of five points in three-dimensional space.</span>
+
+<span class="sd">    &gt;&gt;&gt; x = np.array([[2, 0, 2], [2, 2, 3], [-2, 4, 5], [0, 1, 9], [2, 2, 4]])</span>
+
+<span class="sd">    ``pdist(x)`` with no additional arguments computes the 10 pairwise</span>
+<span class="sd">    Euclidean distances:</span>
+
+<span class="sd">    &gt;&gt;&gt; pdist(x)</span>
+<span class="sd">    array([2.23606798, 6.40312424, 7.34846923, 2.82842712, 4.89897949,</span>
+<span class="sd">           6.40312424, 1.        , 5.38516481, 4.58257569, 5.47722558])</span>
+
+<span class="sd">    The following computes the pairwise Minkowski distances with ``p = 3.5``:</span>
+
+<span class="sd">    &gt;&gt;&gt; pdist(x, metric=&#39;minkowski&#39;, p=3.5)</span>
+<span class="sd">    array([2.04898923, 5.1154929 , 7.02700737, 2.43802731, 4.19042714,</span>
+<span class="sd">           6.03956994, 1.        , 4.45128103, 4.10636143, 5.0619695 ])</span>
+
+<span class="sd">    The pairwise city block or Manhattan distances:</span>
+
+<span class="sd">    &gt;&gt;&gt; pdist(x, metric=&#39;cityblock&#39;)</span>
+<span class="sd">    array([ 3., 11., 10.,  4.,  8.,  9.,  1.,  9.,  7.,  8.])</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># You can also call this as:</span>
     <span class="c1">#     Y = pdist(X, &#39;test_abc&#39;)</span>
@@ -2632,8 +2602,42 @@
 <span class="sd">    In SciPy 0.19.0, ``squareform`` stopped casting all input types to</span>
 <span class="sd">    float64, and started returning arrays of the same dtype as the input.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from scipy.spatial.distance import pdist, squareform</span>
 
+<span class="sd">    ``x`` is an array of five points in three-dimensional space.</span>
+
+<span class="sd">    &gt;&gt;&gt; x = np.array([[2, 0, 2], [2, 2, 3], [-2, 4, 5], [0, 1, 9], [2, 2, 4]])</span>
+
+<span class="sd">    ``pdist(x)`` computes the Euclidean distances between each pair of</span>
+<span class="sd">    points in ``x``.  The distances are returned in a one-dimensional</span>
+<span class="sd">    array with length ``5*(5 - 1)/2 = 10``.</span>
+
+<span class="sd">    &gt;&gt;&gt; distvec = pdist(x)</span>
+<span class="sd">    &gt;&gt;&gt; distvec</span>
+<span class="sd">    array([2.23606798, 6.40312424, 7.34846923, 2.82842712, 4.89897949,</span>
+<span class="sd">           6.40312424, 1.        , 5.38516481, 4.58257569, 5.47722558])</span>
+
+<span class="sd">    ``squareform(distvec)`` returns the 5x5 distance matrix.</span>
+
+<span class="sd">    &gt;&gt;&gt; m = squareform(distvec)</span>
+<span class="sd">    &gt;&gt;&gt; m</span>
+<span class="sd">    array([[0.        , 2.23606798, 6.40312424, 7.34846923, 2.82842712],</span>
+<span class="sd">           [2.23606798, 0.        , 4.89897949, 6.40312424, 1.        ],</span>
+<span class="sd">           [6.40312424, 4.89897949, 0.        , 5.38516481, 4.58257569],</span>
+<span class="sd">           [7.34846923, 6.40312424, 5.38516481, 0.        , 5.47722558],</span>
+<span class="sd">           [2.82842712, 1.        , 4.58257569, 5.47722558, 0.        ]])</span>
+
+<span class="sd">    When given a square distance matrix ``m``, ``squareform(m)`` returns</span>
+<span class="sd">    the one-dimensional condensed distance vector associated with the</span>
+<span class="sd">    matrix.  In this case, we recover ``distvec``.</span>
+
+<span class="sd">    &gt;&gt;&gt; squareform(m)</span>
+<span class="sd">    array([2.23606798, 6.40312424, 7.34846923, 2.82842712, 4.89897949,</span>
+<span class="sd">           6.40312424, 1.        , 5.38516481, 4.58257569, 5.47722558])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
     <span class="n">s</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
@@ -2738,6 +2742,37 @@
 <span class="sd">    the diagonal are ignored if they are within the tolerance specified</span>
 <span class="sd">    by `tol`.</span>
 
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from scipy.spatial.distance import is_valid_dm</span>
+
+<span class="sd">    This matrix is a valid distance matrix.</span>
+
+<span class="sd">    &gt;&gt;&gt; d = np.array([[0.0, 1.1, 1.2, 1.3],</span>
+<span class="sd">    ...               [1.1, 0.0, 1.0, 1.4],</span>
+<span class="sd">    ...               [1.2, 1.0, 0.0, 1.5],</span>
+<span class="sd">    ...               [1.3, 1.4, 1.5, 0.0]])</span>
+<span class="sd">    &gt;&gt;&gt; is_valid_dm(d)</span>
+<span class="sd">    True</span>
+
+<span class="sd">    In the following examples, the input is not a valid distance matrix.</span>
+
+<span class="sd">    Not square:</span>
+
+<span class="sd">    &gt;&gt;&gt; is_valid_dm([[0, 2, 2], [2, 0, 2]])</span>
+<span class="sd">    False</span>
+
+<span class="sd">    Nonzero diagonal element:</span>
+
+<span class="sd">    &gt;&gt;&gt; is_valid_dm([[0, 1, 1], [1, 2, 3], [1, 3, 0]])</span>
+<span class="sd">    False</span>
+
+<span class="sd">    Not symmetric:</span>
+
+<span class="sd">    &gt;&gt;&gt; is_valid_dm([[0, 1, 3], [2, 0, 1], [3, 1, 0]])</span>
+<span class="sd">    False</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
     <span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
@@ -2766,26 +2801,23 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">D</span> <span class="o">-</span> <span class="n">D</span><span class="o">.</span><span class="n">T</span> <span class="o">&lt;=</span> <span class="n">tol</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s1">&#39;Distance matrix </span><span class="se">\&#39;</span><span class="si">%s</span><span class="se">\&#39;</span><span class="s1"> must be &#39;</span>
-                                      <span class="s1">&#39;symmetric within tolerance </span><span class="si">%5.5f</span><span class="s1">.&#39;</span><span class="p">)</span>
-                                     <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tol</span><span class="p">))</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distance matrix </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="se">\&#39;</span><span class="s1"> must be &#39;</span>
+                                     <span class="sa">f</span><span class="s1">&#39;symmetric within tolerance </span><span class="si">{</span><span class="n">tol</span><span class="si">:</span><span class="s1">5.5f</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Distance matrix must be symmetric within&#39;</span>
-                                     <span class="s1">&#39; tolerance </span><span class="si">%5.5f</span><span class="s1">.&#39;</span> <span class="o">%</span> <span class="n">tol</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Distance matrix must be symmetric within &#39;</span>
+                                     <span class="s1">&#39;tolerance </span><span class="si">%5.5f</span><span class="s1">.&#39;</span> <span class="o">%</span> <span class="n">tol</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">&lt;=</span> <span class="n">tol</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s1">&#39;Distance matrix </span><span class="se">\&#39;</span><span class="si">%s</span><span class="se">\&#39;</span><span class="s1"> diagonal must be&#39;</span>
-                                      <span class="s1">&#39; close to zero within tolerance </span><span class="si">%5.5f</span><span class="s1">.&#39;</span><span class="p">)</span>
-                                     <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tol</span><span class="p">))</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distance matrix </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="se">\&#39;</span><span class="s1"> diagonal must be &#39;</span>
+                                     <span class="sa">f</span><span class="s1">&#39;close to zero within tolerance </span><span class="si">{</span><span class="n">tol</span><span class="si">:</span><span class="s1">5.5f</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s1">&#39;Distance matrix </span><span class="se">\&#39;</span><span class="si">%s</span><span class="se">\&#39;</span><span class="s1"> diagonal must be&#39;</span>
-                                      <span class="s1">&#39; close to zero within tolerance </span><span class="si">%5.5f</span><span class="s1">.&#39;</span><span class="p">)</span>
-                                     <span class="o">%</span> <span class="n">tol</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s1">&#39;Distance matrix </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> diagonal must be close &#39;</span>
+                                      <span class="s1">&#39;to zero within tolerance </span><span class="si">{:5.5f}</span><span class="s1">.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">tol</span><span class="p">))</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">throw</span><span class="p">:</span>
             <span class="k">raise</span>
         <span class="k">if</span> <span class="n">warning</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">return</span> <span class="n">valid</span>
 
@@ -2813,6 +2845,29 @@
 <span class="sd">    name : bool, optional</span>
 <span class="sd">        Used when referencing the offending variable in the</span>
 <span class="sd">        warning or exception message.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bool</span>
+<span class="sd">        True if the input array is a valid condensed distance matrix,</span>
+<span class="sd">        False otherwise.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from scipy.spatial.distance import is_valid_y</span>
+
+<span class="sd">    This vector is a valid condensed distance matrix.  The length is 6,</span>
+<span class="sd">    which corresponds to ``n = 4``, since ``4*(4 - 1)/2`` is 6.</span>
+
+<span class="sd">    &gt;&gt;&gt; v = [1.0, 1.2, 1.0, 0.5, 1.3, 0.9]</span>
+<span class="sd">    &gt;&gt;&gt; is_valid_y(v)</span>
+<span class="sd">    True</span>
+
+<span class="sd">    An input vector with length, say, 7, is not a valid condensed distance</span>
+<span class="sd">    matrix.</span>
+
+<span class="sd">    &gt;&gt;&gt; is_valid_y([1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7])</span>
+<span class="sd">    False</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
@@ -2842,7 +2897,7 @@
         <span class="k">if</span> <span class="n">throw</span><span class="p">:</span>
             <span class="k">raise</span>
         <span class="k">if</span> <span class="n">warning</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">return</span> <span class="n">valid</span>
 
@@ -2862,6 +2917,15 @@
 <span class="sd">    num_obs_dm : int</span>
 <span class="sd">        The number of observations in the redundant distance matrix.</span>
 
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Find the number of original observations corresponding</span>
+<span class="sd">    to a square redundant distance matrix d.</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; from scipy.spatial.distance import num_obs_dm</span>
+<span class="sd">    &gt;&gt;&gt; d = [[0, 100, 200], [100, 0, 150], [200, 150, 0]]</span>
+<span class="sd">    &gt;&gt;&gt; num_obs_dm(d)</span>
+<span class="sd">    3</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
     <span class="n">is_valid_dm</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">throw</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
@@ -2883,6 +2947,15 @@
 <span class="sd">    n : int</span>
 <span class="sd">        The number of observations in the condensed distance matrix `Y`.</span>
 
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Find the number of original observations corresponding to a</span>
+<span class="sd">    condensed distance matrix Y.</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; from scipy.spatial.distance import num_obs_y</span>
+<span class="sd">    &gt;&gt;&gt; Y = [1, 2, 3.5, 7, 10, 4]</span>
+<span class="sd">    &gt;&gt;&gt; num_obs_y(Y)</span>
+<span class="sd">    4</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
     <span class="n">is_valid_y</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">throw</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
@@ -2905,7 +2978,7 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Output array has incorrect shape.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">out</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">c_contiguous</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Output array must be C-contiguous.&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">out</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">out</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Output array must be double type.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">out</span>
 
@@ -2913,7 +2986,7 @@
 <span class="k">def</span> <span class="nf">_pdist_callable</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">out_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">//</span> <span class="mi">2</span>
-    <span class="n">dm</span> <span class="o">=</span> <span class="n">_prepare_out_argument</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">,</span> <span class="p">(</span><span class="n">out_size</span><span class="p">,))</span>
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">_prepare_out_argument</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="n">out_size</span><span class="p">,))</span>
     <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
@@ -2925,14 +2998,16 @@
 <span class="k">def</span> <span class="nf">_cdist_callable</span><span class="p">(</span><span class="n">XA</span><span class="p">,</span> <span class="n">XB</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">mA</span> <span class="o">=</span> <span class="n">XA</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">mB</span> <span class="o">=</span> <span class="n">XB</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">dm</span> <span class="o">=</span> <span class="n">_prepare_out_argument</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">,</span> <span class="p">(</span><span class="n">mA</span><span class="p">,</span> <span class="n">mB</span><span class="p">))</span>
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">_prepare_out_argument</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="n">mA</span><span class="p">,</span> <span class="n">mB</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mA</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mB</span><span class="p">):</span>
             <span class="n">dm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">metric</span><span class="p">(</span><span class="n">XA</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">XB</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">dm</span>
 
 
-<div class="viewcode-block" id="cdist"><a class="viewcode-back" href="../../../_foxes/utils/opt/problems/layout/geom_layouts/objectivescdist.html#foxes.opt.problems.layout.geom_layouts.constraints.cdist">[docs]</a><span class="k">def</span> <span class="nf">cdist</span><span class="p">(</span><span class="n">XA</span><span class="p">,</span> <span class="n">XB</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="cdist">
+<a class="viewcode-back" href="../../../_foxes/utils/opt/problems/layout/geom_layouts/objectivescdist.html#foxes.opt.problems.layout.geom_layouts.constraints.cdist">[docs]</a>
+<span class="k">def</span> <span class="nf">cdist</span><span class="p">(</span><span class="n">XA</span><span class="p">,</span> <span class="n">XB</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute distance between each pair of the two collections of inputs.</span>
 
@@ -3277,6 +3352,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;2nd argument metric must be a string identifier &#39;</span>
                         <span class="s1">&#39;or a function.&#39;</span><span class="p">)</span></div>
+
 </code></pre></div>
 
 
@@ -3308,7 +3384,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

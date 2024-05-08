@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.model - foxes 0.6.2
+        <title>foxes.core.model - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -328,12 +360,15 @@
 <span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 <span class="kn">from</span> <span class="nn">.data</span> <span class="kn">import</span> <span class="n">Data</span>
 
 
-<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../../../api_core.html#foxes.core.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<div class="viewcode-block" id="Model">
+<a class="viewcode-back" href="../../../api_core.html#foxes.core.Model">[docs]</a>
+<span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for all models.</span>
 
@@ -348,7 +383,9 @@
 
     <span class="n">_ids</span> <span class="o">=</span> <span class="p">{}</span>
 
-<div class="viewcode-block" id="Model.__init__"><a class="viewcode-back" href="../../../_foxes/models/vertical_profiles/ShearedProfile.html#foxes.core.Model.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.__init__">
+<a class="viewcode-back" href="../../../_foxes/models/vertical_profiles/ShearedProfile.html#foxes.core.Model.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -363,9 +400,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_store</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Model.__repr__"><a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+
+<div class="viewcode-block" id="Model.__repr__">
+<a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.__repr__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">()&quot;</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">model_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -380,7 +420,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_id</span>
 
-<div class="viewcode-block" id="Model.var"><a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.var">[docs]</a>    <span class="k">def</span> <span class="nf">var</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.var">
+<a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.var">[docs]</a>
+    <span class="k">def</span> <span class="nf">var</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates a model specific variable name.</span>
 
@@ -397,6 +439,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -410,7 +453,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span>
 
-<div class="viewcode-block" id="Model.sub_models"><a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.sub_models">[docs]</a>    <span class="k">def</span> <span class="nf">sub_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Model.sub_models">
+<a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.sub_models">[docs]</a>
+    <span class="k">def</span> <span class="nf">sub_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        List of all sub-models</span>
 
@@ -422,7 +467,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[]</span></div>
 
-<div class="viewcode-block" id="Model.load_data"><a class="viewcode-back" href="../../../_foxes/models/wake_superpositions/WSQuadratic.html#foxes.core.Model.load_data">[docs]</a>    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Model.load_data">
+<a class="viewcode-back" href="../../../_foxes/models/wake_superpositions/WSQuadratic.html#foxes.core.Model.load_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Load and/or create all model data that is subject to chunking.</span>
 
@@ -447,7 +495,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;coords&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;data_vars&quot;</span><span class="p">:</span> <span class="p">{}}</span></div>
 
-<div class="viewcode-block" id="Model.initialize"><a class="viewcode-back" href="../../../_foxes/models/wake_superpositions/WSQuadratic.html#foxes.core.Model.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Model.initialize">
+<a class="viewcode-back" href="../../../_foxes/models/wake_superpositions/WSQuadratic.html#foxes.core.Model.initialize">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the model.</span>
 
@@ -478,7 +529,10 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="Model.finalize"><a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.finalize">[docs]</a>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Model.finalize">
+<a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.finalize">[docs]</a>
+    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Finalizes the model.</span>
 
@@ -507,19 +561,22 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_store</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Model.get_data"><a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.get_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Model.get_data">
+<a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.get_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">variable</span><span class="p">,</span>
         <span class="n">target</span><span class="p">,</span>
         <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;smfp&quot;</span><span class="p">,</span>
         <span class="n">mdata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">fdata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">pdata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">states_source_turbine</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">upcast</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">tdata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">downwind_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">accept_none</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">accept_nan</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">algo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">upcast</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Getter for a data entry in the model object</span>
@@ -530,26 +587,24 @@
 <span class="sd">        variable: str</span>
 <span class="sd">            The variable, serves as data key</span>
 <span class="sd">        target: str, optional</span>
-<span class="sd">            The dimensions identifier for the output, e.g</span>
-<span class="sd">            FC.STATE_TURBINE, FC.STATE_POINT</span>
+<span class="sd">            The dimensions identifier for the output,</span>
+<span class="sd">            FC.STATE_TURBINE, FC.STATE_TARGET or</span>
+<span class="sd">            FC.STATE_TARGET_TPOINT</span>
 <span class="sd">        lookup: str</span>
 <span class="sd">            The order of data sources. Combination of:</span>
 <span class="sd">            &#39;s&#39; for self,</span>
 <span class="sd">            &#39;m&#39; for mdata,</span>
 <span class="sd">            &#39;f&#39; for fdata,</span>
-<span class="sd">            &#39;p&#39; for pdata,</span>
+<span class="sd">            &#39;t&#39; for tdata,</span>
 <span class="sd">            &#39;w&#39; for wake modelling data</span>
 <span class="sd">        mdata: foxes.core.Data, optional</span>
 <span class="sd">            The model data</span>
 <span class="sd">        fdata: foxes.core.Data, optional</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        pdata: foxes.core.Data, optional</span>
-<span class="sd">            The evaluation point data</span>
-<span class="sd">        states_source_turbine: numpy.ndarray, optional</span>
-<span class="sd">            For each state, one turbine index for the</span>
-<span class="sd">            wake causing turbine. Shape: (n_states,)</span>
-<span class="sd">        upcast: bool, optional</span>
-<span class="sd">            Upcast array to dims if data is scalar</span>
+<span class="sd">        tdata: foxes.core.Data, optional</span>
+<span class="sd">            The target point data</span>
+<span class="sd">        downwind_index: int, optional</span>
+<span class="sd">            The index in the downwind order</span>
 <span class="sd">        data_prio: bool</span>
 <span class="sd">            First search the data source, then the object</span>
 <span class="sd">        accept_none: bool</span>
@@ -558,145 +613,234 @@
 <span class="sd">            Do not throw an error if data entry is np.nan</span>
 <span class="sd">        algo: foxes.core.Algorithm, optional</span>
 <span class="sd">            The algorithm, needed for data from previous iteration</span>
+<span class="sd">        upcast: bool</span>
+<span class="sd">            Flag for ensuring targets dimension,</span>
+<span class="sd">            otherwise dimension 1 is entered</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">def</span> <span class="nf">_geta</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-            <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="bp">self</span><span class="p">]</span> <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="bp">self</span><span class="p">]</span> <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="s2">&quot;states_i0&quot;</span><span class="p">:</span>
-                    <span class="n">out</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">states_i0</span><span class="p">(</span><span class="n">counter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                        <span class="k">return</span> <span class="n">out</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">try</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="s2">&quot;states_i0&quot;</span><span class="p">:</span>
+                        <span class="n">out</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">states_i0</span><span class="p">(</span><span class="n">counter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="k">return</span> <span class="n">out</span>
+                    <span class="k">else</span><span class="p">:</span>
                         <span class="n">out</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                             <span class="k">return</span> <span class="n">out</span>
-                    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-                        <span class="k">pass</span>
+                <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                    <span class="k">pass</span>
             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Failed to determine &#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&#39;. Maybe add to arguments of get_data: mdata, fdata, pdata, algo?&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Failed to determine &#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&#39;. Maybe add to arguments of get_data: mdata, fdata, tdata, algo?&quot;</span>
             <span class="p">)</span>
 
         <span class="n">n_states</span> <span class="o">=</span> <span class="n">_geta</span><span class="p">(</span><span class="s2">&quot;n_states&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="p">:</span>
             <span class="n">n_turbines</span> <span class="o">=</span> <span class="n">_geta</span><span class="p">(</span><span class="s2">&quot;n_turbines&quot;</span><span class="p">)</span>
             <span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">:</span>
-            <span class="n">n_points</span> <span class="o">=</span> <span class="n">_geta</span><span class="p">(</span><span class="s2">&quot;n_points&quot;</span><span class="p">)</span>
-            <span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">)</span>
+            <span class="n">shp</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="p">:</span>
+            <span class="n">n_targets</span> <span class="o">=</span> <span class="n">_geta</span><span class="p">(</span><span class="s2">&quot;n_targets&quot;</span><span class="p">)</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">)</span>
+            <span class="n">shp</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_targets</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET_TPOINT</span><span class="p">:</span>
+            <span class="n">n_targets</span> <span class="o">=</span> <span class="n">_geta</span><span class="p">(</span><span class="s2">&quot;n_targets&quot;</span><span class="p">)</span>
+            <span class="n">n_tpoints</span> <span class="o">=</span> <span class="n">_geta</span><span class="p">(</span><span class="s2">&quot;n_tpoints&quot;</span><span class="p">)</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span>
+            <span class="n">shp</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_targets</span><span class="p">,</span> <span class="n">n_tpoints</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Wrong parameter &#39;target = </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&#39;. Choices: </span><span class="si">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Wrong parameter &#39;target = </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&#39;. Choices: </span><span class="si">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET_TPOINT</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
         <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">out_dims</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">lookup</span><span class="p">:</span>
             <span class="c1"># lookup self:</span>
             <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="s2">&quot;s&quot;</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable</span><span class="p">):</span>
                 <span class="n">a</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable</span><span class="p">)</span>
-
-                <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">upcast</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">upcast</span><span class="p">:</span>
+                        <span class="n">out</span> <span class="o">=</span> <span class="n">a</span>
+                        <span class="n">out_dims</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="p">:</span>
                         <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
                         <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">a</span>
-                    <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">:</span>
-                        <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+                        <span class="n">out_dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="p">:</span>
+                        <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_targets</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
                         <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">a</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-                            <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Wrong parameter &#39;target = </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&#39; for &#39;upcast = True&#39; in get_data. Choose: FC.STATE_TURBINE, FC.STATE_POINT&quot;</span>
+                        <span class="n">out_dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET_TPOINT</span><span class="p">:</span>
+                        <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
+                            <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_targets</span><span class="p">,</span> <span class="n">n_tpoints</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span>
                         <span class="p">)</span>
-
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">out</span> <span class="o">=</span> <span class="n">a</span>
+                        <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">a</span>
+                        <span class="n">out_dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
             <span class="c1"># lookup mdata:</span>
             <span class="k">elif</span> <span class="p">(</span>
                 <span class="n">s</span> <span class="o">==</span> <span class="s2">&quot;m&quot;</span>
                 <span class="ow">and</span> <span class="n">mdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                 <span class="ow">and</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">mdata</span>
-                <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">mdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span>
-                <span class="ow">and</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">mdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">variable</span><span class="p">][:</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="n">dims</span>
+                <span class="ow">and</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">mdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span> <span class="o">==</span> <span class="n">dims</span>
             <span class="p">):</span>
                 <span class="n">out</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                <span class="n">out_dims</span> <span class="o">=</span> <span class="n">dims</span>
 
             <span class="c1"># lookup fdata:</span>
             <span class="k">elif</span> <span class="p">(</span>
                 <span class="n">s</span> <span class="o">==</span> <span class="s2">&quot;f&quot;</span>
                 <span class="ow">and</span> <span class="n">fdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                 <span class="ow">and</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">fdata</span>
-                <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">fdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span>
-                <span class="ow">and</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">fdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">variable</span><span class="p">][:</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">fdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
             <span class="p">):</span>
-                <span class="c1"># direct fdata:</span>
-                <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TURBINE</span><span class="p">:</span>
-                    <span class="n">out</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
-
-                <span class="c1"># translate state-turbine to state-point data:</span>
-                <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span> <span class="ow">and</span> <span class="n">states_source_turbine</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="c1"># from fdata, uniform for points:</span>
-                    <span class="n">st_sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">),</span> <span class="n">states_source_turbine</span><span class="p">)</span>
-                    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-                    <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">variable</span><span class="p">][</span><span class="n">st_sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
-
-                    <span class="c1"># from previous iteration, if requested:</span>
-                    <span class="k">if</span> <span class="n">pdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATES_SEL</span> <span class="ow">in</span> <span class="n">pdata</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span>
-                            <span class="n">states_source_turbine</span> <span class="o">==</span> <span class="n">pdata</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_SOURCE_TURBINE</span><span class="p">]</span>
-                        <span class="p">):</span>
-                            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                                <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Mismatch of &#39;states_source_turbine&#39;. Expected </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">pdata</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_SOURCE_TURBINE</span><span class="p">])</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">states_source_turbine</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-                            <span class="p">)</span>
-
-                        <span class="n">i0</span> <span class="o">=</span> <span class="n">_geta</span><span class="p">(</span><span class="s2">&quot;states_i0&quot;</span><span class="p">)</span>
-                        <span class="n">sp</span> <span class="o">=</span> <span class="n">pdata</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATES_SEL</span><span class="p">]</span>
-                        <span class="n">sel</span> <span class="o">=</span> <span class="n">sp</span> <span class="o">&lt;</span> <span class="n">i0</span>
-                        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
-                            <span class="k">if</span> <span class="n">algo</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="s2">&quot;prev_farm_results&quot;</span><span class="p">):</span>
-                                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-                                    <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Argument algo is either not given, or not an iterative algorithm&quot;</span>
-                                <span class="p">)</span>
-
-                            <span class="n">prev_fdata</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="s2">&quot;prev_farm_results&quot;</span><span class="p">)</span>
-                            <span class="k">if</span> <span class="n">prev_fdata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                                <span class="n">out</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-                            <span class="k">else</span><span class="p">:</span>
-                                <span class="n">st</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-                                <span class="n">st</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">states_source_turbine</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
-                                <span class="n">out</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev_fdata</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span>
-                                    <span class="n">sp</span><span class="p">[</span><span class="n">sel</span><span class="p">],</span> <span class="n">st</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
-                                <span class="p">]</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                <span class="n">out_dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
 
             <span class="c1"># lookup pdata:</span>
             <span class="k">elif</span> <span class="p">(</span>
-                <span class="n">s</span> <span class="o">==</span> <span class="s2">&quot;p&quot;</span>
-                <span class="ow">and</span> <span class="n">pdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                <span class="ow">and</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">pdata</span>
-                <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">pdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span>
-                <span class="ow">and</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">pdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">variable</span><span class="p">][:</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="n">dims</span>
+                <span class="n">s</span> <span class="o">==</span> <span class="s2">&quot;t&quot;</span>
+                <span class="ow">and</span> <span class="n">tdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">tdata</span>
+                <span class="ow">and</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span>
             <span class="p">):</span>
-                <span class="n">out</span> <span class="o">=</span> <span class="n">pdata</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="n">tdata</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
+                <span class="n">out_dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span>
 
             <span class="c1"># lookup wake modelling data:</span>
             <span class="k">elif</span> <span class="p">(</span>
                 <span class="n">s</span> <span class="o">==</span> <span class="s2">&quot;w&quot;</span>
-                <span class="ow">and</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span>
                 <span class="ow">and</span> <span class="n">fdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                <span class="ow">and</span> <span class="n">pdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="n">tdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                 <span class="ow">and</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">fdata</span>
-                <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">fdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span>
-                <span class="ow">and</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">fdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">variable</span><span class="p">][:</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
-                <span class="ow">and</span> <span class="n">states_source_turbine</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">fdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="n">downwind_index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                 <span class="ow">and</span> <span class="n">algo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
             <span class="p">):</span>
-                <span class="n">out</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">wake_frame</span><span class="o">.</span><span class="n">get_wake_modelling_data</span><span class="p">(</span>
-                    <span class="n">algo</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span>
+                <span class="n">out</span><span class="p">,</span> <span class="n">out_dims</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">wake_frame</span><span class="o">.</span><span class="n">get_wake_modelling_data</span><span class="p">(</span>
+                    <span class="n">algo</span><span class="p">,</span>
+                    <span class="n">variable</span><span class="p">,</span>
+                    <span class="n">downwind_index</span><span class="p">,</span>
+                    <span class="n">fdata</span><span class="p">,</span>
+                    <span class="n">tdata</span><span class="o">=</span><span class="n">tdata</span><span class="p">,</span>
+                    <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+                    <span class="n">upcast</span><span class="o">=</span><span class="n">upcast</span><span class="p">,</span>
                 <span class="p">)</span>
 
             <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">break</span>
+
+        <span class="c1"># cast dimensions:</span>
+        <span class="k">if</span> <span class="n">out_dims</span> <span class="o">!=</span> <span class="n">dims</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">out_dims</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">upcast</span><span class="p">:</span>
+                    <span class="n">out0</span> <span class="o">=</span> <span class="n">out</span>
+                    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+                    <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out0</span>
+                    <span class="n">out_dims</span> <span class="o">=</span> <span class="n">dims</span>
+                    <span class="k">del</span> <span class="n">out0</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">out_dims</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">])</span>
+
+            <span class="k">elif</span> <span class="n">out_dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">downwind_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Require downwind_index for target </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> and out dims </span><span class="si">{</span><span class="n">out_dims</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                <span class="n">out0</span> <span class="o">=</span> <span class="n">out</span><span class="p">[:,</span> <span class="n">downwind_index</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">out0</span> <span class="o">=</span> <span class="n">out0</span><span class="p">[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">upcast</span><span class="p">:</span>
+                    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+                    <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out0</span>
+                    <span class="n">out_dims</span> <span class="o">=</span> <span class="n">dims</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">out</span> <span class="o">=</span> <span class="n">out0</span>
+                    <span class="n">out_dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">del</span> <span class="n">out0</span>
+
+            <span class="k">elif</span> <span class="n">out_dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">out0</span> <span class="o">=</span> <span class="n">out</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">out0</span> <span class="o">=</span> <span class="n">out0</span><span class="p">[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+                    <span class="n">out_dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">upcast</span><span class="p">:</span>
+                    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+                    <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out0</span>
+                    <span class="n">out_dims</span> <span class="o">=</span> <span class="n">dims</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">out</span> <span class="o">=</span> <span class="n">out0</span>
+                <span class="k">del</span> <span class="n">out0</span>
+
+            <span class="k">elif</span> <span class="n">out_dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">out0</span> <span class="o">=</span> <span class="n">out</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">out0</span> <span class="o">=</span> <span class="n">out0</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+                    <span class="n">out_dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">upcast</span><span class="p">:</span>
+                    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+                    <span class="n">out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">out0</span>
+                    <span class="n">out_dims</span> <span class="o">=</span> <span class="n">dims</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">out</span> <span class="o">=</span> <span class="n">out0</span>
+                <span class="k">del</span> <span class="n">out0</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;No casting implemented for target </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> and out dims </span><span class="si">{</span><span class="n">out_dims</span><span class="si">}</span><span class="s2"> fo upcast </span><span class="si">{</span><span class="n">upcast</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+        <span class="c1"># data from other chunks, only with iterations:</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">target</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET_TPOINT</span><span class="p">]</span>
+            <span class="ow">and</span> <span class="n">fdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">fdata</span>
+            <span class="ow">and</span> <span class="n">tdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATES_SEL</span> <span class="ow">in</span> <span class="n">tdata</span>
+        <span class="p">):</span>
+            <span class="k">if</span> <span class="n">out_dims</span> <span class="o">!=</span> <span class="n">dims</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Iteration data found for variable &#39;</span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s2">&#39;, but missing upcast: out_dims = </span><span class="si">{</span><span class="n">out_dims</span><span class="si">}</span><span class="s2">, expecting </span><span class="si">{</span><span class="n">dims</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">downwind_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Require downwind_index for obtaining results from previous iteration&quot;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">tdata</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_SOURCE_ORDERI</span><span class="p">]</span> <span class="o">!=</span> <span class="n">downwind_index</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Expecting downwind_index </span><span class="si">{</span><span class="n">tdata</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_SOURCE_ORDERI</span><span class="p">]</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="n">downwind_index</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">algo</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Iteration data found for variable &#39;</span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s2">&#39;, requiring algo&quot;</span>
+                <span class="p">)</span>
+
+            <span class="n">i0</span> <span class="o">=</span> <span class="n">_geta</span><span class="p">(</span><span class="s2">&quot;states_i0&quot;</span><span class="p">)</span>
+            <span class="n">sts</span> <span class="o">=</span> <span class="n">tdata</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATES_SEL</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span> <span class="ow">and</span> <span class="n">tdata</span><span class="o">.</span><span class="n">n_tpoints</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># find the mean index and round it to nearest integer:</span>
+                <span class="n">sts</span> <span class="o">=</span> <span class="n">tdata</span><span class="o">.</span><span class="n">tpoint_mean</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATES_SEL</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+                <span class="n">sts</span> <span class="o">=</span> <span class="p">(</span><span class="n">sts</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span>
+            <span class="n">sel</span> <span class="o">=</span> <span class="n">sts</span> <span class="o">&lt;</span> <span class="n">i0</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="s2">&quot;prev_farm_results&quot;</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Iteration data found for variable &#39;</span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s2">&#39;, requiring iterative algorithm&quot;</span>
+                    <span class="p">)</span>
+                <span class="n">prev_fres</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="s2">&quot;prev_farm_results&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">prev_fres</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">prev_data</span> <span class="o">=</span> <span class="n">prev_fres</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span><span class="n">sts</span><span class="p">[</span><span class="n">sel</span><span class="p">],</span> <span class="n">downwind_index</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="p">:</span>
+                        <span class="n">out</span><span class="p">[</span><span class="n">sel</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">prev_data</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">out</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev_data</span>
+                    <span class="k">del</span> <span class="n">prev_fres</span><span class="p">,</span> <span class="n">prev_data</span>
 
         <span class="c1"># check for None:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">accept_none</span> <span class="ow">and</span> <span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -716,7 +860,10 @@
 
         <span class="k">return</span> <span class="n">out</span></div>
 
-<div class="viewcode-block" id="Model.data_to_store"><a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.data_to_store">[docs]</a>    <span class="k">def</span> <span class="nf">data_to_store</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Model.data_to_store">
+<a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.data_to_store">[docs]</a>
+    <span class="k">def</span> <span class="nf">data_to_store</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds data from mdata to the local store, intended</span>
 <span class="sd">        for iterative runs.</span>
@@ -737,10 +884,15 @@
                 <span class="n">data</span><span class="o">=</span><span class="p">{},</span> <span class="n">dims</span><span class="o">=</span><span class="p">{},</span> <span class="n">loop_dims</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">loop_dims</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i0</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="p">[</span><span class="n">i0</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="p">[</span><span class="n">i0</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">dims</span> <span class="k">else</span> <span class="kc">None</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="p">[</span><span class="n">i0</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="p">[</span><span class="n">i0</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">deepcopy</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">name</span><span class="p">])</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">dims</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span></div>
 
-<div class="viewcode-block" id="Model.from_data_or_store"><a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.from_data_or_store">[docs]</a>    <span class="k">def</span> <span class="nf">from_data_or_store</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">ret_dims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Model.from_data_or_store">
+<a class="viewcode-back" href="../../../_foxes/utils/opt/core/PopStates.html#foxes.core.Model.from_data_or_store">[docs]</a>
+    <span class="k">def</span> <span class="nf">from_data_or_store</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">ret_dims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get data from mdata or local store</span>
 
@@ -777,38 +929,8 @@
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="p">[</span><span class="n">i0</span><span class="p">][</span><span class="n">name</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">if</span> <span class="n">ret_dims</span> <span class="k">else</span> <span class="kc">None</span></div>
+</div>
 
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    @classmethod</span>
-<span class="sd">    def reduce_states(cls, sel_states, objs):</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-<span class="sd">        Modifies the given objects by selecting a</span>
-<span class="sd">        subset of states.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        sel_states: list of int</span>
-<span class="sd">            The states selection</span>
-<span class="sd">        objs: list of foxes.core.Data</span>
-<span class="sd">            The objects, e.g. [mdata, fdata, pdata]</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        mobjs: list of foxes.core.Data</span>
-<span class="sd">            The modified objects with reduced</span>
-<span class="sd">            states dimension</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-<span class="sd">        out = []</span>
-<span class="sd">        for o in objs:</span>
-<span class="sd">            data = {</span>
-<span class="sd">                v: d[sel_states] if o.dims[v][0] == FC.STATE else d</span>
-<span class="sd">                for v, d in o.items()</span>
-<span class="sd">            }</span>
-<span class="sd">            out.append(Data(data, o.dims, loop_dims=o.loop_dims, name=o.name))</span>
-
-<span class="sd">        return out</span>
-<span class="sd">        &#39;&#39;&#39;</span></div>
 </code></pre></div>
 
 
@@ -840,7 +962,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

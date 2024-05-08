@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.TabWindroseAxes.set_title - foxes 0.6.2
+        <title>foxes.utils.TabWindroseAxes.set_title - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -331,11 +363,20 @@
 <p>Set one of the three available Axes titles. The available titles
 are positioned above the Axes in the center, flush with the left
 edge, and flush with the right edge.</p>
-<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h2>
-<dl>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<dl class="simple">
 <dt>label<span class="classifier">str</span></dt><dd><p>Text to use for the title</p>
 </dd>
-<dt>fontdict<span class="classifier">dict</span></dt><dd><p>A dictionary controlling the appearance of the title text,
+</dl>
+<p>fontdict : dict</p>
+<blockquote>
+<div><div class="admonition">
+<p class="admonition-title">Discouraged</p>
+<p>The use of <em>fontdict</em> is discouraged. Parameters should be passed as
+individual keyword arguments or using dictionary-unpacking
+<code class="docutils literal notranslate"><span class="pre">set_title(...,</span> <span class="pre">**fontdict)</span></code>.</p>
+</div>
+<p>A dictionary controlling the appearance of the title text,
 the default <em>fontdict</em> is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">],</span>
  <span class="s1">&#39;fontweight&#39;</span><span class="p">:</span> <span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titleweight&#39;</span><span class="p">],</span>
@@ -344,7 +385,8 @@ the default <em>fontdict</em> is:</p>
  <span class="s1">&#39;horizontalalignment&#39;</span><span class="p">:</span> <span class="n">loc</span><span class="p">}</span>
 </code></pre></div>
 </div>
-</dd>
+</div></blockquote>
+<dl>
 <dt>loc<span class="classifier">{‘center’, ‘left’, ‘right’}, default: <a href="#id1"><span class="problematic" id="id2">:rc:`axes.titlelocation`</span></a></span></dt><dd><p>Which title to set.</p>
 </dd>
 <dt>y<span class="classifier">float, default: <a href="#id3"><span class="problematic" id="id4">:rc:`axes.titley`</span></a></span></dt><dd><p>Vertical Axes location for the title (1.0 is the top).  If
@@ -354,12 +396,12 @@ determined automatically to avoid decorators on the Axes.</p>
 <dt>pad<span class="classifier">float, default: <a href="#id7"><span class="problematic" id="id8">:rc:`axes.titlepad`</span></a></span></dt><dd><p>The offset of the title from the top of the Axes, in points.</p>
 </dd>
 </dl>
-<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Permalink to this heading">¶</a></h2>
+<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt><cite>.Text</cite></dt><dd><p>The matplotlib text instance representing the title</p>
 </dd>
 </dl>
-<h2 id="other-parameters">Other Parameters<a class="headerlink" href="#other-parameters" title="Permalink to this heading">¶</a></h2>
+<h2 id="other-parameters">Other Parameters<a class="headerlink" href="#other-parameters" title="Link to this heading">¶</a></h2>
 <dl>
 <dt><a href="#id9"><span class="problematic" id="id10">**</span></a>kwargs<span class="classifier"><cite>~matplotlib.text.Text</cite> properties</span></dt><dd><p>Other keyword arguments are text properties, see <cite>.Text</cite> for a list
 of valid text properties.</p>
@@ -398,7 +440,7 @@ of valid text properties.</p>
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -419,7 +461,6 @@ of valid text properties.</p>
       
         <script src="../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
   </body>
 </html>

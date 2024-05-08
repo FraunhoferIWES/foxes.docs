@@ -1,0 +1,836 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="">
+    
+    
+      
+        <title>Models - foxes 0.7
+ documentation</title>
+      
+    
+    
+      
+        
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="_static/sphinx_immaterial_theme.eaee958e8db0b4370.min.css?v=0db274d5" />
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#model-types" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
+ documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            foxes 0.7
+ documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Models
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FraunhoferIWES/foxes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    foxes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
+ documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+    </a>
+    foxes 0.7
+ documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FraunhoferIWES/foxes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    foxes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="citation.html" class="md-nav__link">
+        <span title="/citation.md (reference label)" class="md-ellipsis">Citation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model-types" class="md-nav__link">
+    <span title="/models.rst#model-types (reference label)" class="md-ellipsis">Model types</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rotor-models" class="md-nav__link">
+    <span title="/models.rst#rotor-models (reference label)" class="md-ellipsis">Rotor models</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#turbine-types" class="md-nav__link">
+    <span title="/models.rst#turbine-types (reference label)" class="md-ellipsis">Turbine types</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wake-frames" class="md-nav__link">
+    <span title="/models.rst#wake-frames (reference label)" class="md-ellipsis">Wake frames</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wake-models" class="md-nav__link">
+    <span title="/models.rst#wake-models (reference label)" class="md-ellipsis">Wake models</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partial-wakes" class="md-nav__link">
+    <span title="/models.rst#partial-wakes (reference label)" class="md-ellipsis">Partial wakes</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#turbine-models" class="md-nav__link">
+    <span title="/models.rst#turbine-models (reference label)" class="md-ellipsis">Turbine models</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#id1" class="md-nav__link">
+    <span title="/models.rst#id1 (reference label)" class="md-ellipsis">Turbine types</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#point-models" class="md-nav__link">
+    <span title="/models.rst#point-models (reference label)" class="md-ellipsis">Point models</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vertical-profiles" class="md-nav__link">
+    <span title="/models.rst#vertical-profiles (reference label)" class="md-ellipsis">Vertical profiles</span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples.html" class="md-nav__link">
+        <span title="/examples.rst (reference label)" class="md-ellipsis">Examples</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api.html" class="md-nav__link">
+        <span title="/api.rst (reference label)" class="md-ellipsis">API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/data.html" class="md-nav__link">
+        <span title="/notebooks/data.ipynb (reference label)" class="md-ellipsis">Static data</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="history.html" class="md-nav__link">
+        <span title="/history.md (reference label)" class="md-ellipsis">History</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model-types" class="md-nav__link">
+    <span title="/models.rst#model-types (reference label)" class="md-ellipsis">Model types</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rotor-models" class="md-nav__link">
+    <span title="/models.rst#rotor-models (reference label)" class="md-ellipsis">Rotor models</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#turbine-types" class="md-nav__link">
+    <span title="/models.rst#turbine-types (reference label)" class="md-ellipsis">Turbine types</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wake-frames" class="md-nav__link">
+    <span title="/models.rst#wake-frames (reference label)" class="md-ellipsis">Wake frames</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wake-models" class="md-nav__link">
+    <span title="/models.rst#wake-models (reference label)" class="md-ellipsis">Wake models</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partial-wakes" class="md-nav__link">
+    <span title="/models.rst#partial-wakes (reference label)" class="md-ellipsis">Partial wakes</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#turbine-models" class="md-nav__link">
+    <span title="/models.rst#turbine-models (reference label)" class="md-ellipsis">Turbine models</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#id1" class="md-nav__link">
+    <span title="/models.rst#id1 (reference label)" class="md-ellipsis">Turbine types</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#point-models" class="md-nav__link">
+    <span title="/models.rst#point-models (reference label)" class="md-ellipsis">Point models</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vertical-profiles" class="md-nav__link">
+    <span title="/models.rst#vertical-profiles (reference label)" class="md-ellipsis">Vertical profiles</span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+<h1 id="models">Models<a class="headerlink" href="#models" title="Link to this heading">¶</a></h1>
+<h2 id="model-types">Model types<a class="headerlink" href="#model-types" title="Link to this heading">¶</a></h2>
+<p>The results of <em>foxes</em> runs depend on a number of model choices by the user:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#rotor-models"><span class="std std-ref">Rotor models</span></a>: Evaluate the flow field at the rotor and compute ambient rotor equivalent quantities.</p></li>
+<li><p><a class="reference internal" href="#id1"><span class="std std-ref">Turbine types</span></a>: Define rotor diameter and hub height, and provide thrust coefficient and power yield depending on rotor equivalent quantities.</p></li>
+<li><p><a class="reference internal" href="#wake-frames"><span class="std std-ref">Wake frames</span></a>: Determine the path of wake propagation and the local coordinate system that follows the centreline of the wake.</p></li>
+<li><p><a class="reference internal" href="#wake-models"><span class="std std-ref">Wake models</span></a>: Compute wake deltas for flow quantities in the wake of a turbine.</p></li>
+<li><p><a class="reference internal" href="#partial-wakes"><span class="std std-ref">Partial wakes</span></a>: Compute rotor disc averages of wake effects, i.e., the partial wakes models calculate the rotor effective wake deltas.</p></li>
+<li><p><a class="reference internal" href="#turbine-models"><span class="std std-ref">Turbine models</span></a>: Each wind turbine within the wind farm can have individual turbine model choices. For each state and turbine, those compute data from currently existing data.</p></li>
+<li><p><a class="reference internal" href="#id1"><span class="std std-ref">Turbine types</span></a>: Turbine types are turbine models that define the rotor and provide power and thrust coefficients.</p></li>
+<li><p><a class="reference internal" href="#point-models"><span class="std std-ref">Point models</span></a>: Calculate point-based data during the evaluation of <cite>algo.calc_points()</cite>, or as a modification of ambient states., like those from the ambient input states.</p></li>
+<li><p><a class="reference internal" href="#vertical-profiles"><span class="std std-ref">Vertical profiles</span></a>: Analytical vertical profiles transform uniform ambient states into height dependent inflow.</p></li>
+</ul>
+<p>All concrete models are stored in the so-called <code class="code docutils literal notranslate"><span class="pre">ModelBook</span></code> object under
+a name string, see <a class="reference internal" href="notebooks/model_book.html#The-model-book"><span class="std std-ref">this example</span></a>.</p>
+<h2 id="rotor-models">Rotor models<a class="headerlink" href="#rotor-models" title="Link to this heading">¶</a></h2>
+<p>Rotor models evaluate the flow field at the rotor and compute ambient rotor equivalent quantities, for example the rotor averaged
+background wind speed. See <a class="reference internal" href="notebooks/rotor_models.html#Rotor-model-visualizations"><span class="std std-ref">here</span></a> for a list of available
+models and rotor point visualizations.</p>
+<h2 id="turbine-types">Turbine types<a class="headerlink" href="#turbine-types" title="Link to this heading">¶</a></h2>
+<p>Turbine type models define rotor diameter and hub height, and provide thrust coefficient and power yield depending on rotor equivalent quantities.
+They are either chosen from the provided <a class="reference internal" href="notebooks/data.html#Power-and-thrust-curves"><span class="std std-ref">static data</span></a> by their model name (e.g. <em>DTU10MW</em>),
+or added to the model book.</p>
+<p>For example, a turbine type of a 5 MW turbine based on a csv file with
+columns <em>ws</em> for wind speed, <em>P</em> for power and <em>ct</em> for thrust
+coefficients can be added as</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span class="n">mbook</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">ModelBook</span><span class="p">()</span>
+<span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="s2">&quot;turbine1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">turbine_types</span><span class="o">.</span><span class="n">PCtFile</span><span class="p">(</span>
+    <span class="s2">&quot;turbine1.csv&quot;</span><span class="p">,</span>
+    <span class="n">col_ws</span><span class="o">=</span><span class="s2">&quot;ws&quot;</span><span class="p">,</span>
+    <span class="n">col_P</span><span class="o">=</span><span class="s2">&quot;P&quot;</span><span class="p">,</span>
+    <span class="n">col_ct</span><span class="o">=</span><span class="s2">&quot;ct&quot;</span><span class="p">,</span>
+    <span class="n">D</span><span class="o">=</span><span class="mf">100.5</span><span class="p">,</span>
+    <span class="n">H</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
+    <span class="n">P_nominal</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+    <span class="n">P_unit</span><span class="o">=</span><span class="s2">&quot;kW&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div></blockquote>
+<p>If the file name follows the convention</p>
+<p><code class="code docutils literal notranslate"><span class="pre">name-&lt;power&gt;MW-D&lt;rotor</span> <span class="pre">diameter&gt;-H&lt;hub</span> <span class="pre">height&gt;.csv</span></code></p>
+<p>where <cite>d</cite> replaces the dot for digits, then the above could be reduced to</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="s2">&quot;turbine1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">turbine_types</span><span class="o">.</span><span class="n">PCtFile</span><span class="p">(</span>
+    <span class="s2">&quot;turbine1-5MW-D100d5-H120.csv&quot;</span><span class="p">,</span>
+    <span class="n">col_ws</span><span class="o">=</span><span class="s2">&quot;ws&quot;</span><span class="p">,</span>
+    <span class="n">col_P</span><span class="o">=</span><span class="s2">&quot;P&quot;</span><span class="p">,</span>
+    <span class="n">col_ct</span><span class="o">=</span><span class="s2">&quot;ct&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div></blockquote>
+<p>Turbine type models can also be based on other input data, e.g. <cite>cp</cite> instead
+of power, or other input files. The list of available turbine type classes
+can be found <a class="reference internal" href="api_models.html#foxes-models-turbine-types"><span class="std std-ref">here</span></a> in the API.</p>
+<h2 id="wake-frames">Wake frames<a class="headerlink" href="#wake-frames" title="Link to this heading">¶</a></h2>
+<p>Wake frames determine the path of wake propagation, for example parallel to the
+wind direction at the rotor, or along a streamline, and the local coordinate system
+that follows the centreline of the wake.</p>
+<p>Wake frames also determine the downwind
+order of the turbines, so chosing straight wakes for cases with spatially
+heterogeneous background flow can cause wrong results in multiple ways.</p>
+<p>The wake coordinates are defined as follows:</p>
+<ul class="simple">
+<li><p>The origin is at the rotor centre,</p></li>
+<li><p>the <cite>x</cite> coordinate folows the centreline path of the wake,</p></li>
+<li><p>the <cite>z</cite> coordinate starts pointing upwards at the rotor, then follows the centreline orthogonally,</p></li>
+<li><p>the <cite>y</cite> coordinate closes the right-handed coordinate frame, i.e., it follows from the cross product of <cite>z</cite> with <cite>x</cite>.</p></li>
+</ul>
+<p>The available wake frame classes are listed
+<a class="reference internal" href="api_models.html#foxes-models-wake-frames"><span class="std std-ref">here in the API</span></a>. The <a class="reference internal" href="notebooks/model_book.html#The-model-book"><span class="std std-ref">default model book</span></a>
+contains many pre-defined wake frames, for example:</p>
+<ul class="simple">
+<li><p><cite>rotor_wd</cite>: Straight wakes, following the wind direction measured at the centre of the wake causing rotor.</p></li>
+<li><p><cite>yawed</cite>, <cite>yawed_k002</cite>, <cite>yawed_k004</cite>: Wake bending due to yaw misalignment of the rotor, as represented by the <cite>YAWM</cite> variable. See <a class="reference internal" href="notebooks/yawed_wake.html#Yawed-rotor-wakes"><span class="std std-ref">this example</span></a>.</p></li>
+<li><p><cite>streamlines_X</cite>: Streamline (or streaklines) following steady-state wakes, for a virtual time step of <cite>X = 1, 5, 10, 50, 100, 500</cite> seconds. See <a class="reference internal" href="notebooks/heterogeneous.html#Heterogeneous-flow"><span class="std std-ref">this example</span></a>.</p></li>
+<li><p><cite>timelines</cite>, <cite>timelines_X</cite>: Dynamic flow following wakes for spatially homogeneous wind data, optionally with time step of <cite>X = 1s, 10s, 30s, 1min, 10min, 30min</cite>. See <a class="reference internal" href="notebooks/timelines.html#Dynamic-wakes-1"><span class="std std-ref">this example</span></a>.</p></li>
+<li><p><cite>seq_dyn_wakes</cite>, <cite>seq_dyn_wakes_X</cite>: Sequential state evaluation (caution: slow, no state chunking), optionally with time step of <cite>X = 1s, 10s, 30s, 1min, 10min, 30min</cite>. See <a class="reference internal" href="notebooks/sequential.html#Dynamic-wakes-2"><span class="std std-ref">this example</span></a>.</p></li>
+</ul>
+<h2 id="wake-models">Wake models<a class="headerlink" href="#wake-models" title="Link to this heading">¶</a></h2>
+<p>Wake models compute wake deltas for flow quantities in the wake. Wind speed deficits and turbulence
+intensity deltas are often computed by two separate wake models, but could also stem from a single model.</p>
+<p>The wake model classes can be found <a class="reference internal" href="api_wake_models.html#foxes-models-wake-models"><span class="std std-ref">here in the API</span></a>.
+They are organized into three sub-packages, according to their purpose and target variables:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="api_wake_models.html#foxes-models-wake-models-wind"><span class="std std-ref">wind</span></a>: Wind deficit models, computing negative deltas for the wind speed variable <cite>WS</cite>,</p></li>
+<li><p><a class="reference internal" href="api_wake_models.html#foxes-models-wake-models-ti"><span class="std std-ref">ti</span></a>: Positive wake deltas acting on the variable <cite>TI</cite>, modelling the turbulence increase within the wake region,</p></li>
+<li><p><a class="reference internal" href="api_wake_models.html#foxes-models-wake-models-induction"><span class="std std-ref">induction</span></a>: Individual turbine induction models acting as wind speed deltas, which, in combination, model wind farm blockage effects.</p></li>
+</ul>
+<p>Note that <cite>wind</cite> and <cite>ti</cite> wake models affect downstream turbines, while <cite>induction</cite> models
+mainly affect upstream and stream-orthogonal turbines. During calulations, a list of
+wake models is expected, so in principle, a wind deficit model, a TI wake model and a turbine
+induction model can be combined. If an induction model is included in the
+list of model selections, the <a class="reference internal" href="api_algorithms_iterative.html#iterative-algorithm"><span class="std std-ref">Iterative algorithm</span></a> has to be applied.</p>
+<p>All wake model classes are implemented according to their mathematical nature, i.e.,
+if applicable, they are derived from one of the following types:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="_foxes/models/wake_models/DistSlicedWakeModel.html"><span class="std std-ref">DistSlicedWakeModel</span></a>: The wake delta depends on the wake frame coordinate <cite>x</cite> differently than on <cite>(y, z)</cite>, e.g., the <cite>x</cite> dependency can be factorized.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/wake_models/AxisymmetricWakeModel.html"><span class="std std-ref">AxisymmetricWakeModel</span></a>: Dist-sliced wake with axial symmetry, i.e., the wake can be described by <cite>x</cite> and a radial wake frame coordinate <cite>r</cite>.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/wake_models/GaussianWakeModel.html"><span class="std std-ref">GaussianWakeModel</span></a>: Axisymmetric wake that follows a Gaussian function, where the standard deviation <cite>sigma(x)</cite> depends on <cite>x</cite> only.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/wake_models/TopHatWakeModel.html"><span class="std std-ref">TopHatWakeModel</span></a>: Axisymmetric wake that is independent of <cite>r</cite> within the top-hat shape, and zero outside.</p></li>
+</ul>
+<p>The reasoning behind this is that the partial wakes models can then
+build upon the underlying shape of the wake.</p>
+<p>Wake superposition is part of the responsibility of the wake model. Most models expect
+a choice of the underlying <a class="reference internal" href="api_models.html#foxes-models-wake-superpositions"><span class="std std-ref">wake superposition model</span></a>
+in their constructor, in terms of their respective name in the <a class="reference internal" href="notebooks/model_book.html#The-model-book"><span class="std std-ref">model book</span></a>.
+Examples are <cite>ws_linear</cite> for linear wind deficit superposition, or <cite>ti_quadratic</cite>
+for quadratic TI wake increase superposition.</p>
+<p>The list of wake models in the <a class="reference internal" href="notebooks/model_book.html#The-model-book"><span class="std std-ref">default model book</span></a> is long,
+but that is mainly due to the resulting combinations of wake model
+classes with superposition models and wake parameter choices.</p>
+<h2 id="partial-wakes">Partial wakes<a class="headerlink" href="#partial-wakes" title="Link to this heading">¶</a></h2>
+<p>Partial wakes models compute rotor disc averages of wake effects, i.e.,
+the partial wakes models calculate the rotor effective wake deltas.</p>
+<p>Some of the partial wakes models make use of the mathematical structure of
+the associated wake model:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="_foxes/models/partial_wakes/PartialCentre.html"><span class="std std-ref">PartialCentre</span></a>: Only evaluate wakes at rotor centres. This is fast, but not accurate.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/partial_wakes/RotorPoints.html"><span class="std std-ref">RotorPoints</span></a>: Evaluate the wake model at exactly the rotor points, then take the average of the combined result. For large number of rotor points this is accurate, but potentially slow.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/partial_wakes/PartialTopHat.html"><span class="std std-ref">PartialTopHat</span></a>: Compute the overlap of the wake circle with the rotor disc. This is mathematically exact and fast, but limited to wakes with top-hat shapes.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/partial_wakes/PartialAxiwake.html"><span class="std std-ref">PartialAxiwake</span></a>: Compute the numerical integral of axi-symmetric wakes with the rotor disc. This needs less evaluation points than grid-type wake averaging.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/partial_wakes/PartialSegregated.html"><span class="std std-ref">PartialSegregated</span></a>: Abstract base class for segregated wake averaging, which means adding the averaged wake to the averaged background result (in contrast to <cite>RotorPoints</cite>).</p></li>
+<li><p><a class="reference internal" href="_foxes/models/partial_wakes/PartialGrid.html"><span class="std std-ref">PartialGrid</span></a>: Segregated partial wakes evaluated at points of a <a class="reference internal" href="notebooks/rotor_models.html#GridRotor"><span class="std std-ref">grid-type rotor</span></a> (which is usually not equal to the selected rotor model).</p></li>
+</ul>
+<p>In the <a class="reference internal" href="notebooks/model_book.html#The-model-book"><span class="std std-ref">default model book</span></a>, concrete instances of the above partial wakes models
+can be found under the names</p>
+<ul class="simple">
+<li><p><cite>centre</cite>: The centre point model,</p></li>
+<li><p><cite>rotor_points</cite>: The rotor points model,</p></li>
+<li><p><cite>top_hat</cite>: The top-hat model,</p></li>
+<li><p><cite>axiwakeN</cite>: The axiwake model, with <cite>N = 2, 3, …, 10, 20</cite>, representing <cite>n</cite> steps for the discretization of the integral over each downstream rotor,</p></li>
+<li><p><cite>gridN</cite>: The grid model with <cite>N = 4, 9, 16, 25, 36, …, 100, 400</cite> points.</p></li>
+</ul>
+<p>Partial wakes are now chosen when costructing the algorithm object.
+There are several ways of specifying partial wakes model choices for
+the selected wake models:</p>
+<ul class="simple">
+<li><p>by a dictionary, which maps wake model names to model choices (or default choices, if not found),</p></li>
+<li><p>or by a list, where the mapping to the wake models is in order of appearance,</p></li>
+<li><p>or by a string, in which case all models are either mapped to the given model, or, if that fails with <cite>TypeError</cite>, to their defaults,</p></li>
+<li><p>or by <cite>None</cite>, which means all models are mapped to the default choice.</p></li>
+</ul>
+<p>A verification of the different partial wakes models
+is carried out in this example: <a class="reference internal" href="notebooks/partial_wakes.html#Partial-wakes-verification"><span class="std std-ref">Partial wakes verification</span></a>
+All types approach the correct rotor average for high point
+counts, but with different efficiency.</p>
+<h2 id="turbine-models">Turbine models<a class="headerlink" href="#turbine-models" title="Link to this heading">¶</a></h2>
+<p>Each wind turbine within the wind farm can have individual turbine model choices.
+For each state and turbine, those compute data from currently existing data.</p>
+<p>The list of available turbine model classes can be found
+<a class="reference internal" href="api_models.html#foxes-models-turbine-models"><span class="std std-ref">here in the API</span></a>. For example:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="_foxes/models/turbine_models/kTI.html"><span class="std std-ref">kTI</span></a>: Computes the wake expansion coefficient <cite>k</cite> as a linear function of <cite>TI</cite>: <cite>k = kb + kTI * TI</cite>. All models that do not specify <cite>k</cite> explicitly (i.e, <cite>k=None</cite> in the constructor), will then use this result when computing wake deltas.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/turbine_models/SetFarmVars.html"><span class="std std-ref">SetFarmVars</span></a>: Set any farm variable to any state-turbine data array, or sub-array (nan values are ignored), either initially (<cite>pre_rotor=True</cite>) or after the wake calculation.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/turbine_models/PowerMask.html"><span class="std std-ref">PowerMask</span></a>: Curtail or boost the turbine by re-setting the maximal power of the turbine, see <a class="reference internal" href="notebooks/power_mask.html#Power-mask"><span class="std std-ref">this example</span></a>.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/turbine_models/SectorManagement.html"><span class="std std-ref">SectorManagement</span></a>: Modify farm variables if wind speed and/or wind direction values are within certain ranges, see <a class="reference internal" href="notebooks/sector_man.html#Wind-sector-management"><span class="std std-ref">this example</span></a>.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/turbine_models/YAW2YAWM.html"><span class="std std-ref">YAW2YAWM</span></a> and <cite>YAWM2YAW&lt;foxes.models.turbine_models.YAWM2YAW&gt;</cite>: Compute absolute yaw angles from yaw misalignment, and vice-versa.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/turbine_models/Calculator.html"><span class="std std-ref">Calculator</span></a>: Apply any user-written function that calculates values of farm variables.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/turbine_models/LookupTable.html"><span class="std std-ref">LookupTable</span></a>: Use a lookup-table for the computation of farm variables.</p></li>
+</ul>
+<h2 id="id1">Turbine types<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>Turbine types are turbine models that define basic rotor data, like rotor diameter,
+hub height and nominal power, and evaluate the power and thrust coefficient curves.</p>
+<p>The currently available turbine types are listed <a class="reference internal" href="api_models.html#foxes-models-turbine-types"><span class="std std-ref">here in the API</span></a>.
+Notice that several inputs are supported, e.g. power or power coefficient curves,
+air density dependent data, etc.</p>
+<h2 id="point-models">Point models<a class="headerlink" href="#point-models" title="Link to this heading">¶</a></h2>
+<p>Calculate point-based data during the evaluation of <cite>algo.calc_points()</cite>,
+or as a modification of ambient states.</p>
+<p>Point models can be added to ambient states objects, simply by the <cite>+</cite> operation.</p>
+<p>The list of available point models can be found <a class="reference internal" href="api_models.html#foxes-models-point-models"><span class="std std-ref">here in the API</span></a>.
+For example:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="_foxes/models/point_models/WakeDeltas.html"><span class="std std-ref">WakeDeltas</span></a>: Subtract backgrounds from waked results.</p></li>
+<li><p><a class="reference internal" href="_foxes/models/point_models/TKE2TI.html"><span class="std std-ref">TKE2TI</span></a>: Compute <cite>TI</cite> from turbulent kinetic energy data, as for example provided by mesoscale simulations.</p></li>
+</ul>
+<h2 id="vertical-profiles">Vertical profiles<a class="headerlink" href="#vertical-profiles" title="Link to this heading">¶</a></h2>
+<p>Analytical vertical profiles transform uniform ambient states into height dependent inflow.</p>
+<p>The list of available vertical profiles can be found <a class="reference internal" href="api_models.html#foxes-models-vertical-profiles"><span class="std std-ref">here in the API</span></a>.
+they can be added to uniform ambient states as in the following example, here for
+a Monin-Obukhof dependent log-profile:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span class="n">states</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">StatesTable</span><span class="p">(</span>
+    <span class="n">data_source</span><span class="o">=</span><span class="s2">&quot;abl_states_6000.csv.gz&quot;</span><span class="p">,</span>
+    <span class="n">output_vars</span><span class="o">=</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">MOL</span><span class="p">],</span>
+    <span class="n">var2col</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="s2">&quot;ws&quot;</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">:</span> <span class="s2">&quot;wd&quot;</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">:</span> <span class="s2">&quot;ti&quot;</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">MOL</span><span class="p">:</span> <span class="s2">&quot;mol&quot;</span><span class="p">},</span>
+    <span class="n">fixed_vars</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">:</span> <span class="mf">1.225</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">Z0</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">:</span> <span class="mf">100.0</span><span class="p">},</span>
+    <span class="n">profiles</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="s2">&quot;ABLLogWsProfile&quot;</span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div></blockquote>
+<p>Notice the required variable <cite>FV.H</cite>, denoting the reference height of the
+provided wind data, as well as roughness length <cite>FV.Z0</cite> and Monin-Obukhof length <cite>FV.MOL</cite>.</p>
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="overview.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview - how to setup foxes" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Overview - how to setup foxes
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="examples.html" class="md-footer__link md-footer__link--next" aria-label="Next: Examples" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Examples
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright 2024, Fraunhofer IWES.
+        
+    </div>
+  
+    Created using
+    <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
+    7.2.6.
+     and
+    <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    
+  </body>
+</html>

@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.turbine_models.power_mask - foxes 0.6.2
+        <title>foxes.models.turbine_models.power_mask - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -333,7 +365,9 @@
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">cubic_roots</span>
 
 
-<div class="viewcode-block" id="PowerMask"><a class="viewcode-back" href="../../../../api_models.html#foxes.models.turbine_models.PowerMask">[docs]</a><span class="k">class</span> <span class="nc">PowerMask</span><span class="p">(</span><span class="n">TurbineModel</span><span class="p">):</span>
+<div class="viewcode-block" id="PowerMask">
+<a class="viewcode-back" href="../../../../api_models.html#foxes.models.turbine_models.PowerMask">[docs]</a>
+<span class="k">class</span> <span class="nc">PowerMask</span><span class="p">(</span><span class="n">TurbineModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Invokes a maximal power value.</span>
 
@@ -351,12 +385,18 @@
 <span class="sd">        The wind speed variable for power lookup</span>
 <span class="sd">    factor_P: float</span>
 <span class="sd">        The power unit factor, e.g. 1000 for kW</span>
+<span class="sd">    P_lim: float</span>
+<span class="sd">        Threshold power delta for boosts</span>
+<span class="sd">    induction: foxes.core.AxialInductionModel</span>
+<span class="sd">        The induction model</span>
 
 <span class="sd">    :group: models.turbine_models</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="PowerMask.__init__"><a class="viewcode-back" href="../../../../_foxes/models/turbine_models/PowerMask.__init__.html#foxes.models.turbine_models.PowerMask.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_ws_P</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">REWS3</span><span class="p">,</span> <span class="n">factor_P</span><span class="o">=</span><span class="mf">1.0e3</span><span class="p">):</span>
+<div class="viewcode-block" id="PowerMask.__init__">
+<a class="viewcode-back" href="../../../../_foxes/models/turbine_models/PowerMask.__init__.html#foxes.models.turbine_models.PowerMask.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_ws_P</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">REWS3</span><span class="p">,</span> <span class="n">factor_P</span><span class="o">=</span><span class="mf">1.0e3</span><span class="p">,</span> <span class="n">P_lim</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Betz&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -366,14 +406,33 @@
 <span class="sd">            The wind speed variable for power lookup</span>
 <span class="sd">        factor_P: float</span>
 <span class="sd">            The power unit factor, e.g. 1000 for kW</span>
+<span class="sd">        P_lim: float</span>
+<span class="sd">            Threshold power delta for boosts</span>
+<span class="sd">        induction: foxes.core.AxialInductionModel or str</span>
+<span class="sd">            The induction model</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">var_ws_P</span> <span class="o">=</span> <span class="n">var_ws_P</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">factor_P</span> <span class="o">=</span> <span class="n">factor_P</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factor_P</span> <span class="o">=</span> <span class="n">factor_P</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P_lim</span> <span class="o">=</span> <span class="n">P_lim</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">induction</span> <span class="o">=</span> <span class="n">induction</span></div>
 
-<div class="viewcode-block" id="PowerMask.output_farm_vars"><a class="viewcode-back" href="../../../../_foxes/models/turbine_models/PowerMask.output_farm_vars.html#foxes.models.turbine_models.PowerMask.output_farm_vars">[docs]</a>    <span class="k">def</span> <span class="nf">output_farm_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PowerMask.__repr__">
+<a class="viewcode-back" href="../../../../_foxes/models/turbine_models/PowerMask.__repr__.html#foxes.models.turbine_models.PowerMask.__repr__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">iname</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">induction</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;var_ws_P=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">var_ws_P</span><span class="si">}</span><span class="s2">, P_lim=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">P_lim</span><span class="si">}</span><span class="s2">, induction=</span><span class="si">{</span><span class="n">iname</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+
+
+<div class="viewcode-block" id="PowerMask.output_farm_vars">
+<a class="viewcode-back" href="../../../../_foxes/models/turbine_models/PowerMask.output_farm_vars.html#foxes.models.turbine_models.PowerMask.output_farm_vars">[docs]</a>
+    <span class="k">def</span> <span class="nf">output_farm_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The variables which are being modified by the model.</span>
 
@@ -390,7 +449,25 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="PowerMask.initialize"><a class="viewcode-back" href="../../../../_foxes/models/turbine_models/PowerMask.initialize.html#foxes.models.turbine_models.PowerMask.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PowerMask.sub_models">
+<a class="viewcode-back" href="../../../../_foxes/models/turbine_models/PowerMask.sub_models.html#foxes.models.turbine_models.PowerMask.sub_models">[docs]</a>
+    <span class="k">def</span> <span class="nf">sub_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List of all sub-models</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        smdls: list of foxes.core.Model</span>
+<span class="sd">            All sub models</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="PowerMask.initialize">
+<a class="viewcode-back" href="../../../../_foxes/models/turbine_models/PowerMask.initialize.html#foxes.models.turbine_models.PowerMask.initialize">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the model.</span>
 
@@ -402,6 +479,8 @@
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">induction</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">axial_induction</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">]</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_P_rated</span> <span class="o">=</span> <span class="p">[]</span>
@@ -414,35 +493,71 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_P_rated</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Pnom</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_P_rated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_P_rated</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PowerMask.update_P_ct"><a class="viewcode-back" href="../../../../_foxes/models/turbine_models/PowerMask.update_P_ct.html#foxes.models.turbine_models.PowerMask.update_P_ct">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">update_P_ct</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">max_P</span><span class="p">,</span> <span class="n">rated_P</span><span class="p">,</span> <span class="n">factor_P</span><span class="p">,</span> <span class="n">var_ws</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">REWS3</span><span class="p">,</span> <span class="n">P_lim</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PowerMask.calculate">
+<a class="viewcode-back" href="../../../../_foxes/models/turbine_models/PowerMask.calculate.html#foxes.models.turbine_models.PowerMask.calculate">[docs]</a>
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">st_sel</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The main model calculation.</span>
+
+<span class="sd">        This function is executed on a single chunk of data,</span>
+<span class="sd">        all computations should be based on numpy arrays.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        mdata: foxes.core.MData</span>
+<span class="sd">            The model data</span>
+<span class="sd">        fdata: foxes.core.FData</span>
+<span class="sd">            The farm data</span>
+<span class="sd">        st_sel: slice or numpy.ndarray of bool</span>
+<span class="sd">            The state-turbine selection,</span>
+<span class="sd">            for shape: (n_states, n_turbines)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        results: dict</span>
+<span class="sd">            The resulting data, keys: output variable str.</span>
+<span class="sd">            Values: numpy.ndarray with shape (n_states, n_turbines)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># prepare:</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">]</span>
+        <span class="n">max_P</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">MAX_P</span><span class="p">]</span>
+        <span class="n">P_rated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_P_rated</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+
         <span class="c1"># select power entries for which this is active:</span>
-        <span class="n">P</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">]</span>
-        <span class="n">sel</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">max_P</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>
-            <span class="p">((</span><span class="n">max_P</span> <span class="o">&lt;</span> <span class="n">rated_P</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">P</span> <span class="o">&gt;</span> <span class="n">max_P</span><span class="p">))</span>
-            <span class="o">|</span> <span class="p">((</span><span class="n">max_P</span> <span class="o">&gt;</span> <span class="n">rated_P</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">P</span> <span class="o">&gt;</span> <span class="n">rated_P</span> <span class="o">-</span> <span class="n">P_lim</span><span class="p">))</span>
+        <span class="n">sel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">fdata</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="n">fdata</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="n">sel</span><span class="p">[</span><span class="n">st_sel</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">sel</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">sel</span>
+            <span class="o">&amp;</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">max_P</span><span class="p">)</span>
+            <span class="o">&amp;</span> <span class="p">(</span>
+                <span class="p">((</span><span class="n">max_P</span> <span class="o">&lt;</span> <span class="n">P_rated</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">P</span> <span class="o">&gt;</span> <span class="n">max_P</span><span class="p">))</span>
+                <span class="o">|</span> <span class="p">((</span><span class="n">max_P</span> <span class="o">&gt;</span> <span class="n">P_rated</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">P</span> <span class="o">&gt;</span> <span class="n">P_rated</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">P_lim</span><span class="p">))</span>
+            <span class="p">)</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
             <span class="c1"># apply selection:</span>
             <span class="n">max_P</span> <span class="o">=</span> <span class="n">max_P</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
-            <span class="n">ws</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">var_ws</span><span class="p">][</span><span class="n">sel</span><span class="p">]</span>
-            <span class="n">rho</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">][</span><span class="n">sel</span><span class="p">]</span>
-            <span class="n">r</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">][</span><span class="n">sel</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">ws</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">var_ws_P</span><span class="p">][</span><span class="n">sel</span><span class="p">]</span>
+            <span class="n">rho</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">][</span><span class="n">sel</span><span class="p">]</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">][</span><span class="n">sel</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
             <span class="n">P</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
-            <span class="n">ct</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">][</span><span class="n">sel</span><span class="p">]</span>
-            <span class="n">ct</span><span class="p">[</span><span class="n">ct</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+            <span class="n">ct</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">][</span><span class="n">sel</span><span class="p">]</span>
 
             <span class="c1"># calculate power efficiency e of turbine</span>
             <span class="c1"># e is the ratio of the cp derived from the power curve</span>
             <span class="c1"># and the theoretical cp from the turbine induction</span>
-            <span class="n">cp</span> <span class="o">=</span> <span class="n">P</span> <span class="o">/</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ws</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">factor_P</span>
-            <span class="n">a</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ct</span><span class="p">))</span>
+            <span class="n">cp</span> <span class="o">=</span> <span class="n">P</span> <span class="o">/</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ws</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">factor_P</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">ct2a</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
             <span class="n">cp_a</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span>
             <span class="n">e</span> <span class="o">=</span> <span class="n">cp</span> <span class="o">/</span> <span class="n">cp_a</span>
             <span class="k">del</span> <span class="n">cp</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">cp_a</span><span class="p">,</span> <span class="n">ct</span><span class="p">,</span> <span class="n">P</span>
 
             <span class="c1"># calculating new cp for changed power</span>
-            <span class="n">cp</span> <span class="o">=</span> <span class="n">max_P</span> <span class="o">/</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ws</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">factor_P</span>
+            <span class="n">cp</span> <span class="o">=</span> <span class="n">max_P</span> <span class="o">/</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ws</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">factor_P</span>
 
             <span class="c1"># find roots:</span>
             <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cp</span><span class="p">)</span>
@@ -457,46 +572,14 @@
             <span class="k">del</span> <span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">,</span> <span class="n">rts</span>
 
             <span class="c1"># set results:</span>
-            <span class="n">P</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">]</span>
-            <span class="n">ct</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">]</span>
+            <span class="n">P</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">]</span>
+            <span class="n">ct</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">]</span>
             <span class="n">P</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_P</span>
-            <span class="n">ct</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span></div>
+            <span class="n">ct</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PowerMask.calculate"><a class="viewcode-back" href="../../../../_foxes/models/turbine_models/PowerMask.calculate.html#foxes.models.turbine_models.PowerMask.calculate">[docs]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">st_sel</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;</span>
-<span class="sd">        The main model calculation.</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">:</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">],</span> <span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">:</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">]}</span></div>
+</div>
 
-<span class="sd">        This function is executed on a single chunk of data,</span>
-<span class="sd">        all computations should be based on numpy arrays.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        algo: foxes.core.Algorithm</span>
-<span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata: foxes.core.Data</span>
-<span class="sd">            The model data</span>
-<span class="sd">        fdata: foxes.core.Data</span>
-<span class="sd">            The farm data</span>
-<span class="sd">        st_sel: numpy.ndarray of bool</span>
-<span class="sd">            The state-turbine selection,</span>
-<span class="sd">            shape: (n_states, n_turbines)</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        results: dict</span>
-<span class="sd">            The resulting data, keys: output variable str.</span>
-<span class="sd">            Values: numpy.ndarray with shape (n_states, n_turbines)</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="c1"># prepare:</span>
-        <span class="n">max_P</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">MAX_P</span><span class="p">]</span>
-        <span class="n">rated_P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_P_rated</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
-
-        <span class="c1"># calculate:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">update_P_ct</span><span class="p">(</span><span class="n">fdata</span><span class="p">,</span> <span class="n">max_P</span><span class="p">,</span> <span class="n">rated_P</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">factor_P</span><span class="p">,</span> <span class="n">var_ws</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">var_ws_P</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">:</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">P</span><span class="p">],</span> <span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">:</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">]}</span></div></div>
 </code></pre></div>
 
 
@@ -528,7 +611,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

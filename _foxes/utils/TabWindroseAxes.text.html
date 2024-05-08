@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.TabWindroseAxes.text - foxes 0.6.2
+        <title>foxes.utils.TabWindroseAxes.text - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -328,8 +360,11 @@
 <dt class="sig sig-object highlight py">
 <span class="sig-prename descclassname"><span class="pre">foxes.utils.</span><span class="pre">TabWindroseAxes.</span></span><span class="sig-name descname"><span class="pre">text</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">fontdict</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em></span><span class="sig-paren">)</span></dt>
 <dd><p>Add text to the Axes.</p>
-<p>Add the text <em>s</em> to the Axes at location <em>x</em>, <em>y</em> in data coordinates.</p>
-<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h2>
+<p>Add the text <em>s</em> to the Axes at location <em>x</em>, <em>y</em> in data coordinates,
+with a default <code class="docutils literal notranslate"><span class="pre">horizontalalignment</span></code> on the <code class="docutils literal notranslate"><span class="pre">left</span></code> and
+<code class="docutils literal notranslate"><span class="pre">verticalalignment</span></code> at the <code class="docutils literal notranslate"><span class="pre">baseline</span></code>. See
+<span class="xref std std-doc">/gallery/text_labels_and_annotations/text_alignment</span>.</p>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt>x, y<span class="classifier">float</span></dt><dd><p>The position to place the text. By default, this is in data
 coordinates. The coordinate system can be changed using the
@@ -337,30 +372,39 @@ coordinates. The coordinate system can be changed using the
 </dd>
 <dt>s<span class="classifier">str</span></dt><dd><p>The text.</p>
 </dd>
-<dt>fontdict<span class="classifier">dict, default: None</span></dt><dd><p>A dictionary to override the default text properties. If fontdict
-is None, the defaults are determined by <cite>.rcParams</cite>.</p>
-</dd>
 </dl>
-<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Permalink to this heading">¶</a></h2>
+<p>fontdict : dict, default: None</p>
+<blockquote>
+<div><div class="admonition">
+<p class="admonition-title">Discouraged</p>
+<p>The use of <em>fontdict</em> is discouraged. Parameters should be passed as
+individual keyword arguments or using dictionary-unpacking
+<code class="docutils literal notranslate"><span class="pre">text(...,</span> <span class="pre">**fontdict)</span></code>.</p>
+</div>
+<p>A dictionary to override the default text properties. If fontdict
+is None, the defaults are determined by <cite>.rcParams</cite>.</p>
+</div></blockquote>
+<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt><cite>.Text</cite></dt><dd><p>The created <cite>.Text</cite> instance.</p>
 </dd>
 </dl>
-<h2 id="other-parameters">Other Parameters<a class="headerlink" href="#other-parameters" title="Permalink to this heading">¶</a></h2>
+<h2 id="other-parameters">Other Parameters<a class="headerlink" href="#other-parameters" title="Link to this heading">¶</a></h2>
 <dl>
 <dt><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs<span class="classifier"><cite>~matplotlib.text.Text</cite> properties.</span></dt><dd><p>Other miscellaneous text parameters.</p>
 <p>Properties:
 agg_filter: a filter function, which takes a (m, n, 3) float array and a dpi value, and returns a (m, n, 3) array and two offsets from the bottom left corner of the image
 alpha: scalar or None
 animated: bool
+antialiased: bool
 backgroundcolor: color
 bbox: dict with properties for <cite>.patches.FancyBboxPatch</cite>
 clip_box: unknown
 clip_on: unknown
 clip_path: unknown
 color or c: color
-figure: <cite>.Figure</cite>
-fontfamily or family: {FONTNAME, ‘serif’, ‘sans-serif’, ‘cursive’, ‘fantasy’, ‘monospace’}
+figure: <cite>~matplotlib.figure.Figure</cite>
+fontfamily or family or fontname: {FONTNAME, ‘serif’, ‘sans-serif’, ‘cursive’, ‘fantasy’, ‘monospace’}
 fontproperties or font or font_properties: <cite>.font_manager.FontProperties</cite> or <cite>str</cite> or <cite>pathlib.Path</cite>
 fontsize or size: float or {‘xx-small’, ‘x-small’, ‘small’, ‘medium’, ‘large’, ‘x-large’, ‘xx-large’}
 fontstretch or stretch: {a numeric value in range 0-1000, ‘ultra-condensed’, ‘extra-condensed’, ‘condensed’, ‘semi-condensed’, ‘normal’, ‘semi-expanded’, ‘expanded’, ‘extra-expanded’, ‘ultra-expanded’}
@@ -376,7 +420,7 @@ math_fontfamily: str
 mouseover: bool
 multialignment or ma: {‘left’, ‘right’, ‘center’}
 parse_math: bool
-path_effects: <cite>.AbstractPathEffect</cite>
+path_effects: list of <cite>.AbstractPathEffect</cite>
 picker: None or bool or float or callable
 position: (float, float)
 rasterized: bool
@@ -385,11 +429,11 @@ rotation_mode: {None, ‘default’, ‘anchor’}
 sketch_params: (scale: float, length: float, randomness: float)
 snap: bool or None
 text: object
-transform: <cite>.Transform</cite>
+transform: <cite>~matplotlib.transforms.Transform</cite>
 transform_rotates_text: bool
 url: str
 usetex: bool or None
-verticalalignment or va: {‘bottom’, ‘baseline’, ‘center’, ‘center_baseline’, ‘top’}
+verticalalignment or va: {‘baseline’, ‘bottom’, ‘center’, ‘center_baseline’, ‘top’}
 visible: bool
 wrap: bool
 x: float
@@ -397,7 +441,7 @@ y: float
 zorder: float</p>
 </dd>
 </dl>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>Individual keyword arguments can be used to override any given
 parameter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
@@ -451,7 +495,7 @@ properties.  For example:</p>
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -472,7 +516,6 @@ properties.  For example:</p>
       
         <script src="../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
   </body>
 </html>

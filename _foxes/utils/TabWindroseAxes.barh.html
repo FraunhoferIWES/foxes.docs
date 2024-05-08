@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.TabWindroseAxes.barh - foxes 0.6.2
+        <title>foxes.utils.TabWindroseAxes.barh - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -333,16 +365,22 @@ dimensions are given by <em>width</em> and <em>height</em>. The horizontal basel
 is <em>left</em> (default 0).</p>
 <p>Many parameters can take either a single value applying to all bars
 or a sequence of values, one for each bar.</p>
-<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h2>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
 <dl>
 <dt>y<span class="classifier">float or array-like</span></dt><dd><p>The y coordinates of the bars. See also <em>align</em> for the
 alignment of the bars to the coordinates.</p>
 </dd>
 <dt>width<span class="classifier">float or array-like</span></dt><dd><p>The width(s) of the bars.</p>
+<p>Note that if <em>left</em> has units (e.g. datetime), <em>width</em> should be in
+units that are a difference from the value of <em>left</em> (e.g. timedelta).</p>
 </dd>
 <dt>height<span class="classifier">float or array-like, default: 0.8</span></dt><dd><p>The heights of the bars.</p>
+<p>Note that if <em>y</em> has units (e.g. datetime), then <em>height</em> should be in
+units that are a difference (e.g. timedelta) around the <em>y</em> values.</p>
 </dd>
 <dt>left<span class="classifier">float or array-like, default: 0</span></dt><dd><p>The x coordinates of the left side(s) of the bars.</p>
+<p>Note that if <em>left</em> has units, then the x-axis will get a Locator and
+Formatter appropriate for the units (e.g. dates, or categorical).</p>
 </dd>
 <dt>align<span class="classifier">{‘center’, ‘edge’}, default: ‘center’</span></dt><dd><p>Alignment of the base to the <em>y</em> coordinates*:</p>
 <ul class="simple">
@@ -354,12 +392,12 @@ positions.</p></li>
 <code class="docutils literal notranslate"><span class="pre">align='edge'</span></code>.</p>
 </dd>
 </dl>
-<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Permalink to this heading">¶</a></h2>
+<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt><cite>.BarContainer</cite></dt><dd><p>Container with all the bars and optionally errorbars.</p>
 </dd>
 </dl>
-<h2 id="other-parameters">Other Parameters<a class="headerlink" href="#other-parameters" title="Permalink to this heading">¶</a></h2>
+<h2 id="other-parameters">Other Parameters<a class="headerlink" href="#other-parameters" title="Link to this heading">¶</a></h2>
 <dl>
 <dt>color<span class="classifier">color or list of color, optional</span></dt><dd><p>The colors of the bar faces.</p>
 </dd>
@@ -413,13 +451,13 @@ animated: bool
 antialiased or aa: bool or None
 bounds: (left, bottom, width, height)
 capstyle: <cite>.CapStyle</cite> or {‘butt’, ‘projecting’, ‘round’}
-clip_box: <cite>.Bbox</cite>
+clip_box: <cite>~matplotlib.transforms.BboxBase</cite> or None
 clip_on: bool
 clip_path: Patch or (Path, Transform) or None
 color: color
 edgecolor or ec: color or None
 facecolor or fc: color or None
-figure: <cite>.Figure</cite>
+figure: <cite>~matplotlib.figure.Figure</cite>
 fill: bool
 gid: str
 hatch: {‘/’, ‘\’, ‘|’, ‘-’, ‘+’, ‘x’, ‘o’, ‘O’, ‘.’, ‘*’}
@@ -430,12 +468,12 @@ label: object
 linestyle or ls: {‘-’, ‘–’, ‘-.’, ‘:’, ‘’, (offset, on-off-seq), …}
 linewidth or lw: float or None
 mouseover: bool
-path_effects: <cite>.AbstractPathEffect</cite>
+path_effects: list of <cite>.AbstractPathEffect</cite>
 picker: None or bool or float or callable
 rasterized: bool
 sketch_params: (scale: float, length: float, randomness: float)
 snap: bool or None
-transform: <cite>.Transform</cite>
+transform: <cite>~matplotlib.transforms.Transform</cite>
 url: str
 visible: bool
 width: unknown
@@ -445,9 +483,9 @@ y: unknown
 zorder: float</p>
 </dd>
 </dl>
-<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
 <p>bar : Plot a vertical bar plot.</p>
-<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permalink to this heading">¶</a></h2>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h2>
 <p>Stacked bars can be achieved by passing individual <em>left</em> values per
 bar. See
 <span class="xref std std-doc">/gallery/lines_bars_and_markers/horizontal_barchart_distribution</span>.</p>
@@ -484,7 +522,7 @@ bar. See
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -505,7 +543,6 @@ bar. See
       
         <script src="../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
   </body>
 </html>

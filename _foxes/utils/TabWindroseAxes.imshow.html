@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.TabWindroseAxes.imshow - foxes 0.6.2
+        <title>foxes.utils.TabWindroseAxes.imshow - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -330,16 +362,16 @@
 <dd><p>Display data as an image, i.e., on a 2D regular raster.</p>
 <p>The input may either be actual RGB(A) data, or 2D scalar data, which
 will be rendered as a pseudocolor image. For displaying a grayscale
-image set up the colormapping using the parameters
+image, set up the colormapping using the parameters
 <code class="docutils literal notranslate"><span class="pre">cmap='gray',</span> <span class="pre">vmin=0,</span> <span class="pre">vmax=255</span></code>.</p>
 <p>The number of pixels used to render an image is set by the Axes size
-and the <em>dpi</em> of the figure. This can lead to aliasing artifacts when
-the image is resampled because the displayed image size will usually
+and the figure <em>dpi</em>. This can lead to aliasing artifacts when
+the image is resampled, because the displayed image size will usually
 not match the size of <em>X</em> (see
 <span class="xref std std-doc">/gallery/images_contours_and_fields/image_antialiasing</span>).
 The resampling can be controlled via the <em>interpolation</em> parameter
 and/or <a href="#id1"><span class="problematic" id="id2">:rc:`image.interpolation`</span></a>.</p>
-<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h2>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
 <dl>
 <dt>X<span class="classifier">array-like or PIL image</span></dt><dd><p>The image data. Supported array shapes are:</p>
 <ul class="simple">
@@ -364,7 +396,7 @@ used, mapping the lowest value to 0 and the highest to 1.</p>
 <p>If given, this can be one of the following:</p>
 <ul class="simple">
 <li><p>An instance of <cite>.Normalize</cite> or one of its subclasses
-(see <span class="xref std std-doc">/tutorials/colors/colormapnorms</span>).</p></li>
+(see <span class="xref std std-ref">colormapnorms</span>).</p></li>
 <li><p>A scale name, i.e. one of “linear”, “log”, “symlog”, “logit”, etc.  For a
 list of available scales, call <cite>matplotlib.scale.get_scale_names()</cite>.
 In that case, a suitable <cite>.Normalize</cite> subclass is dynamically generated
@@ -379,7 +411,7 @@ the complete value range of the supplied data. It is an error to use
 name together with <em>vmin</em>/<em>vmax</em> is acceptable).</p>
 <p>This parameter is ignored if <em>X</em> is RGB(A).</p>
 </dd>
-<dt>aspect<span class="classifier">{‘equal’, ‘auto’} or float, default: <a href="#id5"><span class="problematic" id="id6">:rc:`image.aspect`</span></a></span></dt><dd><p>The aspect ratio of the Axes.  This parameter is particularly
+<dt>aspect<span class="classifier">{‘equal’, ‘auto’} or float or None, default: None</span></dt><dd><p>The aspect ratio of the Axes.  This parameter is particularly
 relevant for images since it determines whether data pixels are
 square.</p>
 <p>This parameter is a shortcut for explicitly calling
@@ -392,6 +424,10 @@ coordinates using <em>extent</em>).</p></li>
 that the data fit in the Axes. In general, this will result in
 non-square pixels.</p></li>
 </ul>
+<p>Normally, None (the default) means to use <a href="#id5"><span class="problematic" id="id6">:rc:`image.aspect`</span></a>.  However, if
+the image uses a transform that does not contain the axes data transform,
+then None means to not modify the axes aspect at all (in that case, directly
+call <cite>.Axes.set_aspect</cite> if desired).</p>
 </dd>
 <dt>interpolation<span class="classifier">str, default: <a href="#id7"><span class="problematic" id="id8">:rc:`image.interpolation`</span></a></span></dt><dd><p>The interpolation method used.</p>
 <p>Supported values are ‘none’, ‘antialiased’, ‘nearest’, ‘bilinear’,
@@ -436,7 +472,7 @@ left corner of the Axes. The convention (the default) ‘upper’ is
 typically used for matrices and images.</p>
 <p>Note that the vertical axis points upward for ‘lower’
 but downward for ‘upper’.</p>
-<p>See the <span class="xref std std-doc">/tutorials/intermediate/imshow_extent</span> tutorial for
+<p>See the <span class="xref std std-ref">imshow_extent</span> tutorial for
 examples and a more detailed description.</p>
 </dd>
 <dt>extent<span class="classifier">floats (left, right, bottom, top), optional</span></dt><dd><p>The bounding box in data coordinates that the image will fill.
@@ -454,7 +490,7 @@ values for top and bottom depend on <em>origin</em>:</p>
 <li><p>For <code class="docutils literal notranslate"><span class="pre">origin</span> <span class="pre">==</span> <span class="pre">'lower'</span></code> the default is
 <code class="docutils literal notranslate"><span class="pre">(-0.5,</span> <span class="pre">numcols-0.5,</span> <span class="pre">-0.5,</span> <span class="pre">numrows-0.5)</span></code>.</p></li>
 </ul>
-<p>See the <span class="xref std std-doc">/tutorials/intermediate/imshow_extent</span> tutorial for
+<p>See the <span class="xref std std-ref">imshow_extent</span> tutorial for
 examples and a more detailed description.</p>
 </dd>
 <dt>filternorm<span class="classifier">bool, default: True</span></dt><dd><p>A parameter for the antigrain image resize filter (see the
@@ -474,9 +510,9 @@ resample when the output image is larger than the input image.</p>
 <dt>url<span class="classifier">str, optional</span></dt><dd><p>Set the url of the created <cite>.AxesImage</cite>. See <cite>.Artist.set_url</cite>.</p>
 </dd>
 </dl>
-<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Permalink to this heading">¶</a></h2>
+<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
 <p><cite>~matplotlib.image.AxesImage</cite></p>
-<h2 id="other-parameters">Other Parameters<a class="headerlink" href="#other-parameters" title="Permalink to this heading">¶</a></h2>
+<h2 id="other-parameters">Other Parameters<a class="headerlink" href="#other-parameters" title="Link to this heading">¶</a></h2>
 <dl>
 <dt>data<span class="classifier">indexable object, optional</span></dt><dd><p>If given, all parameters also accept a string <code class="docutils literal notranslate"><span class="pre">s</span></code>, which is
 interpreted as <code class="docutils literal notranslate"><span class="pre">data[s]</span></code> (unless this raises an exception).</p>
@@ -485,9 +521,9 @@ interpreted as <code class="docutils literal notranslate"><span class="pre">data
 <cite>.AxesImage</cite> artist.</p>
 </dd>
 </dl>
-<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
 <p>matshow : Plot a matrix or an array as an image.</p>
-<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permalink to this heading">¶</a></h2>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h2>
 <p>Unless <em>extent</em> is used, pixel centers will be located at integer
 coordinates. In other words: the origin will coincide with the center
 of pixel (0, 0).</p>
@@ -534,7 +570,7 @@ the color of the pixel, adjusted for its opacity by multiplication.</p></li>
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -555,7 +591,6 @@ the color of the pixel, adjusted for its opacity by multiplication.</p></li>
       
         <script src="../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
   </body>
 </html>

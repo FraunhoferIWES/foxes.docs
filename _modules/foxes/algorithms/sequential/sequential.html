@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.algorithms.sequential.sequential - foxes 0.6.2
+        <title>foxes.algorithms.sequential.sequential - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -331,12 +363,14 @@
 <span class="kn">from</span> <span class="nn">foxes.algorithms.downwind.downwind</span> <span class="kn">import</span> <span class="n">Downwind</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
-<span class="kn">from</span> <span class="nn">foxes.core.data</span> <span class="kn">import</span> <span class="n">Data</span>
+<span class="kn">from</span> <span class="nn">foxes.core.data</span> <span class="kn">import</span> <span class="n">MData</span><span class="p">,</span> <span class="n">FData</span><span class="p">,</span> <span class="n">TData</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">models</span> <span class="k">as</span> <span class="n">mdls</span>
 
 
-<div class="viewcode-block" id="Sequential"><a class="viewcode-back" href="../../../../api_algorithms_sequential.html#foxes.algorithms.Sequential">[docs]</a><span class="k">class</span> <span class="nc">Sequential</span><span class="p">(</span><span class="n">Downwind</span><span class="p">):</span>
+<div class="viewcode-block" id="Sequential">
+<a class="viewcode-back" href="../../../../api_algorithms_sequential.html#foxes.algorithms.Sequential">[docs]</a>
+<span class="k">class</span> <span class="nc">Sequential</span><span class="p">(</span><span class="n">Downwind</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A sequential calculation of states without chunking.</span>
 
@@ -357,12 +391,15 @@
 <span class="sd">        The points of interest, shape: (n_states, n_points, 3)</span>
 <span class="sd">    plugins: list of foxes.algorithm.sequential.SequentialIterPlugin</span>
 <span class="sd">        The plugins, updated with every iteration</span>
-
+<span class="sd">    outputs: list of str</span>
+<span class="sd">        The output variables</span>
 <span class="sd">    :group: algorithms.sequential</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Sequential.get_model"><a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.get_model.html#foxes.algorithms.Sequential.get_model">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Sequential.get_model">
+<a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.get_model.html#foxes.algorithms.Sequential.get_model">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the algorithm specific model</span>
@@ -383,17 +420,20 @@
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Sequential.__init__"><a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.__init__.html#foxes.algorithms.Sequential.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Sequential.__init__">
+<a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.__init__.html#foxes.algorithms.Sequential.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">mbook</span><span class="p">,</span>
         <span class="n">farm</span><span class="p">,</span>
         <span class="n">states</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="n">points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">ambient</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">calc_pars</span><span class="o">=</span><span class="p">{},</span>
-        <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span> <span class="mi">10000</span><span class="p">},</span>
+        <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span> <span class="mi">4000</span><span class="p">},</span>
         <span class="n">plugins</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -401,8 +441,6 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        mbook: foxes.ModelBook</span>
-<span class="sd">            The model book</span>
 <span class="sd">        farm: foxes.WindFarm</span>
 <span class="sd">            The wind farm</span>
 <span class="sd">        states: foxes.core.States</span>
@@ -420,20 +458,22 @@
 <span class="sd">            The xarray.Dataset chunk parameters</span>
 <span class="sd">        plugins: list of foxes.algorithm.sequential.SequentialIterPlugin</span>
 <span class="sd">            The plugins, updated with every iteration</span>
+<span class="sd">        outputs: list of str, optional</span>
+<span class="sd">            The output variables</span>
 <span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Additional arguments for Downwind</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">mdls</span><span class="o">.</span><span class="n">SeqState</span><span class="p">(</span><span class="n">states</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="n">chunks</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">farm</span><span class="p">,</span> <span class="n">mdls</span><span class="o">.</span><span class="n">SeqState</span><span class="p">(</span><span class="n">states</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="n">chunks</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ambient</span> <span class="o">=</span> <span class="n">ambient</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calc_pars</span> <span class="o">=</span> <span class="n">calc_pars</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">states0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">states</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span> <span class="o">=</span> <span class="n">plugins</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="n">outputs</span> <span class="k">if</span> <span class="n">outputs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_FARM_OUTPUTS</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_i</span> <span class="o">=</span> <span class="kc">None</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">iterating</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -448,7 +488,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_i</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Sequential.__iter__"><a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.__iter__.html#foxes.algorithms.Sequential.__iter__">[docs]</a>    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Sequential.__iter__">
+<a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.__iter__.html#foxes.algorithms.Sequential.__iter__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the iterator&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterating</span><span class="p">:</span>
@@ -462,7 +504,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_counter</span> <span class="o">=</span> <span class="mi">0</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_mlist</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_pars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collect_farm_models</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">calc_pars</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ambient</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_pars</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ambient</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mlist</span><span class="o">.</span><span class="n">initialized</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_mlist</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span>
@@ -482,14 +524,14 @@
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output farm variables:&quot;</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">farm_vars</span><span class="p">))</span>
                 <span class="nb">print</span><span class="p">()</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">_mdata</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mdata</span> <span class="o">=</span> <span class="n">MData</span><span class="p">(</span>
                 <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mdata</span><span class="p">[</span><span class="s2">&quot;data_vars&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
                 <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mdata</span><span class="p">[</span><span class="s2">&quot;data_vars&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
                 <span class="n">loop_dims</span><span class="o">=</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">],</span>
                 <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mdata&quot;</span><span class="p">,</span>
             <span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">_fdata</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fdata</span> <span class="o">=</span> <span class="n">FData</span><span class="p">(</span>
                 <span class="n">data</span><span class="o">=</span><span class="p">{</span>
                     <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
                     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_vars</span>
@@ -509,14 +551,13 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Output point variables:&quot;</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pvars</span><span class="p">),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
                 <span class="n">n_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_pdata</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tdata</span> <span class="o">=</span> <span class="n">TData</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span>
                     <span class="n">data</span><span class="o">=</span><span class="p">{</span>
-                        <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+                        <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
                         <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pvars</span>
                     <span class="p">},</span>
-                    <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pvars</span><span class="p">},</span>
-                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pdata&quot;</span><span class="p">,</span>
+                    <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pvars</span><span class="p">},</span>
                 <span class="p">)</span>
 
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="p">:</span>
@@ -524,7 +565,10 @@
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="Sequential.__next__"><a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.__next__.html#foxes.algorithms.Sequential.__next__">[docs]</a>    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Sequential.__next__">
+<a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.__next__.html#foxes.algorithms.Sequential.__next__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run calculation for current step, then iterate to next&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inds</span><span class="p">):</span>
@@ -534,7 +578,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">_indx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_i</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_weights</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_i</span><span class="p">]</span>
 
-            <span class="n">mdata</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span>
+            <span class="n">mdata</span> <span class="o">=</span> <span class="n">MData</span><span class="p">(</span>
                 <span class="n">data</span><span class="o">=</span><span class="p">{</span>
                     <span class="n">v</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_i</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="k">else</span> <span class="n">d</span>
                     <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mdata</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
@@ -544,7 +588,7 @@
                 <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mdata&quot;</span><span class="p">,</span>
             <span class="p">)</span>
 
-            <span class="n">fdata</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span>
+            <span class="n">fdata</span> <span class="o">=</span> <span class="n">FData</span><span class="p">(</span>
                 <span class="n">data</span><span class="o">=</span><span class="p">{</span>
                     <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
                     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_vars</span>
@@ -561,7 +605,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_fdata</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
             <span class="n">fres</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
-                <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">)},</span>
+                <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]},</span>
                 <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">),</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">fres</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
             <span class="p">)</span>
             <span class="n">fres</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TNAME</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">,),</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_names</span><span class="p">)</span>
@@ -577,25 +621,28 @@
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">n_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="n">pdata</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span>
+                <span class="n">tdata</span> <span class="o">=</span> <span class="n">TData</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
                     <span class="n">data</span><span class="o">=</span><span class="p">{</span>
-                        <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pvars</span>
+                        <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pvars</span>
                     <span class="p">},</span>
-                    <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pvars</span><span class="p">},</span>
-                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pdata&quot;</span><span class="p">,</span>
+                    <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pvars</span><span class="p">},</span>
                 <span class="p">)</span>
 
                 <span class="n">pres</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plist</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_calc_pars_p</span>
+                    <span class="bp">self</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_calc_pars_p</span>
                 <span class="p">)</span>
 
                 <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">pres</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_pdata</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_tdata</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
                 <span class="n">pres</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
-                    <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_points</span><span class="p">)},</span>
-                    <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">),</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">pres</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+                    <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]},</span>
+                    <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span>
+                        <span class="n">v</span><span class="p">:</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">),</span> <span class="n">d</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">pres</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="p">},</span>
                 <span class="p">)</span>
 
                 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="p">:</span>
@@ -617,6 +664,7 @@
                 <span class="n">p</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
             <span class="k">raise</span> <span class="ne">StopIteration</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -657,6 +705,29 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">_indx</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterating</span> <span class="k">else</span> <span class="kc">None</span>
 
+<div class="viewcode-block" id="Sequential.states_i0">
+<a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.states_i0.html#foxes.algorithms.Sequential.states_i0">[docs]</a>
+    <span class="k">def</span> <span class="nf">states_i0</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">counter</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns counter or index</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        counter: bool</span>
+<span class="sd">            Flag for counter</span>
+<span class="sd">        algo: object, optional</span>
+<span class="sd">            Dummy argument, due to consistency with</span>
+<span class="sd">            foxes.core.Data.states_i0</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        i0: int</span>
+<span class="sd">            The counter or index</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="k">if</span> <span class="n">counter</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span></div>
+
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">weight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -677,7 +748,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        d: foxes.core.Data</span>
+<span class="sd">        d: foxes.core.MData</span>
 <span class="sd">            The current model data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -690,24 +761,24 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        d: foxes.core.Data</span>
+<span class="sd">        d: foxes.core.FData</span>
 <span class="sd">            The current farm data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fdata</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">pdata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tdata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the current point data</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        d: foxes.core.Data</span>
+<span class="sd">        d: foxes.core.TData</span>
 <span class="sd">            The current point data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pdata</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterating</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tdata</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterating</span> <span class="k">else</span> <span class="kc">None</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">farm_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -730,6 +801,19 @@
             <span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">ORDER</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">ORDER</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">results</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">prev_farm_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Alias for farm_results</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        results: xarray.Dataset</span>
+<span class="sd">            The overall farm results</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">cur_farm_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -776,7 +860,7 @@
                 <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_points</span><span class="p">),</span>
                 <span class="n">FC</span><span class="o">.</span><span class="n">XYH</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
             <span class="p">},</span>
-            <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pdata</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+            <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tdata</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">results</span>
@@ -804,19 +888,24 @@
                 <span class="n">FC</span><span class="o">.</span><span class="n">XYH</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
             <span class="p">},</span>
             <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span>
-                <span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pdata</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tdata</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
             <span class="p">},</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">results</span>
 
-<div class="viewcode-block" id="Sequential.calc_farm"><a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.calc_farm.html#foxes.algorithms.Sequential.calc_farm">[docs]</a>    <span class="k">def</span> <span class="nf">calc_farm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Sequential.calc_farm">
+<a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.calc_farm.html#foxes.algorithms.Sequential.calc_farm">[docs]</a>
+    <span class="k">def</span> <span class="nf">calc_farm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterating</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;calc_farm call is only allowed during iterations&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cur_farm_results</span></div>
 
-<div class="viewcode-block" id="Sequential.calc_points"><a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.calc_points.html#foxes.algorithms.Sequential.calc_points">[docs]</a>    <span class="k">def</span> <span class="nf">calc_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Sequential.calc_points">
+<a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.calc_points.html#foxes.algorithms.Sequential.calc_points">[docs]</a>
+    <span class="k">def</span> <span class="nf">calc_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterating</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;calc_points call is only allowed during iterations&quot;</span><span class="p">)</span>
 
@@ -828,13 +917,13 @@
         <span class="n">pvars</span> <span class="o">=</span> <span class="n">plist</span><span class="o">.</span><span class="n">output_point_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="n">mdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_models_idata</span><span class="p">()</span>
-        <span class="n">mdata</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span>
+        <span class="n">mdata</span> <span class="o">=</span> <span class="n">MData</span><span class="p">(</span>
             <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">mdata</span><span class="p">[</span><span class="s2">&quot;data_vars&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
             <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">mdata</span><span class="p">[</span><span class="s2">&quot;data_vars&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
             <span class="n">loop_dims</span><span class="o">=</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">],</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mdata&quot;</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">mdata</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span>
+        <span class="n">mdata</span> <span class="o">=</span> <span class="n">MData</span><span class="p">(</span>
             <span class="n">data</span><span class="o">=</span><span class="p">{</span>
                 <span class="n">v</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">counter</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="k">if</span> <span class="n">mdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="k">else</span> <span class="n">d</span>
                 <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">mdata</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
@@ -844,29 +933,33 @@
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mdata&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="n">fdata</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span>
+        <span class="n">fdata</span> <span class="o">=</span> <span class="n">FData</span><span class="p">(</span>
             <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">farm_results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_vars</span><span class="p">},</span>
             <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_vars</span><span class="p">},</span>
             <span class="n">loop_dims</span><span class="o">=</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">],</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fdata&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="n">pdata</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span>
+        <span class="n">tdata</span> <span class="o">=</span> <span class="n">TData</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span>
             <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
-            <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pvars</span><span class="p">},</span>
-            <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pvars</span><span class="p">},</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pdata&quot;</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pvars</span><span class="p">},</span>
+            <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pvars</span><span class="p">},</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tdata&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="n">pres</span> <span class="o">=</span> <span class="n">plist</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">calc_pars</span><span class="p">)</span>
+        <span class="n">pres</span> <span class="o">=</span> <span class="n">plist</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">calc_pars</span><span class="p">)</span>
         <span class="n">pres</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
-            <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">index</span><span class="p">(),</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_points</span><span class="p">)},</span>
-            <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">),</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">pres</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+            <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">index</span><span class="p">()},</span>
+            <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span>
+                <span class="n">v</span><span class="p">:</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">),</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">pres</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">},</span>
         <span class="p">)</span>
 
         <span class="c1"># plist.finalize(self, self.verbosity)</span>
 
-        <span class="k">return</span> <span class="n">pres</span></div></div>
+        <span class="k">return</span> <span class="n">pres</span></div>
+</div>
+
 </code></pre></div>
 
 
@@ -898,7 +991,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

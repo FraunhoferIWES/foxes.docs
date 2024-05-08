@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.algorithms.Downwind - foxes 0.6.2
+        <title>foxes.algorithms.Downwind - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -331,34 +363,41 @@
 <p>The turbines are evaluated once, in the order
 that is calculated by the provided <cite>TurbineOrder</cite>
 object.</p>
-<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading">¶</a></h2>
+<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt>states: foxes.core.States</dt><dd><p>The ambient states</p>
 </dd>
-<dt>wake_models: list of foxes.core.WakeModel</dt><dd><p>The wake models, applied to all turbines</p>
+<dt>wake_models: dict</dt><dd><p>The wake models. Key: wake model name,
+value: foxes.core.WakeModel</p>
 </dd>
 <dt>rotor_model: foxes.core.RotorModel</dt><dd><p>The rotor model, for all turbines</p>
 </dd>
 <dt>wake_frame: foxes.core.WakeFrame</dt><dd><p>The wake frame</p>
 </dd>
-<dt>partial_wakes_model: foxes.core.PartialWakesModel</dt><dd><p>The partial wakes model</p>
+<dt>partial_wakes: dict</dt><dd><p>The partial wakes mapping. Key: wake model name,
+value: foxes.core.PartialWakesModel</p>
 </dd>
 <dt>farm_controller: foxes.core.FarmController</dt><dd><p>The farm controller</p>
 </dd>
 <dt>n_states: int</dt><dd><p>The number of states</p>
 </dd>
 </dl>
-<h2 id="public-members">Public members<a class="headerlink" href="#public-members" title="Permalink to this heading">¶</a></h2>
+<h2 id="public-members">Public members<a class="headerlink" href="#public-members" title="Link to this heading">¶</a></h2>
+<dl class="py attribute summary objdesc">
+<dt class="sig sig-object highlight sig-wrap py">
+<a class="sig-name descname pseudo-toc-entry reference internal" href="Downwind.DEFAULT_FARM_OUTPUTS.html" title="foxes.algorithms.Downwind.DEFAULT_FARM_OUTPUTS (Python attribute)"><span class="sig-name descname pseudo-toc-entry"><span class="pre">DEFAULT_FARM_OUTPUTS</span></span></a><span class="p"> <span class="pre">=</span> </span><code class="code python docutils literal highlight highlight-python"><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;AMB_WD&#39;</span><span class="p">,</span> <span class="s1">&#39;AMB_REWS&#39;</span><span class="p">,</span> <span class="s1">&#39;AMB_TI&#39;</span><span class="p">,</span> <span class="s1">&#39;AMB_RHO&#39;</span><span class="p">,</span> <span class="s1">&#39;AMB_P&#39;</span><span class="p">,</span> <span class="s1">&#39;WD&#39;</span><span class="p">,</span> <span class="s1">&#39;REWS&#39;</span><span class="p">,</span> <span class="s1">&#39;YAW&#39;</span><span class="p">,</span> <span class="s1">&#39;TI&#39;</span><span class="p">,</span> <span class="s1">&#39;CT&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;order&#39;</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">]</span></code></dt>
+<dd></dd></dl>
+
 <dl class="py method summary objdesc">
 <dt class="sig sig-object highlight py">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><a class="sig-name descname pseudo-toc-entry reference internal" href="Downwind.get_model.html" title="foxes.algorithms.Downwind.get_model (Python method) — Get the algorithm specific model"><span class="sig-name descname pseudo-toc-entry"><span class="pre">get_model</span></span></a><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">name</span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/foxes/algorithms/downwind/downwind.html#Downwind.get_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Get the algorithm specific model</p>
+<a class="sig-name descname pseudo-toc-entry reference internal" href="Downwind.__init__.html" title="foxes.algorithms.Downwind.__init__ (Python method) — Constructor."><span class="sig-name descname pseudo-toc-entry"><span class="pre">Downwind</span></span></a><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">farm</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">states</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">wake_models</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">rotor_model</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">&#39;centre&#39;</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="p"><span class="pre">...</span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/foxes/algorithms/downwind/downwind.html#Downwind.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Constructor.</p>
 </dd></dl>
 
 <dl class="py method summary objdesc">
 <dt class="sig sig-object highlight py">
-<a class="sig-name descname pseudo-toc-entry reference internal" href="Downwind.__init__.html" title="foxes.algorithms.Downwind.__init__ (Python method) — Constructor."><span class="sig-name descname pseudo-toc-entry"><span class="pre">Downwind</span></span></a><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">mbook</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">farm</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">states</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">wake_models</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="p"><span class="pre">...</span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/foxes/algorithms/downwind/downwind.html#Downwind.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Constructor.</p>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><a class="sig-name descname pseudo-toc-entry reference internal" href="Downwind.get_model.html" title="foxes.algorithms.Downwind.get_model (Python method) — Get the algorithm specific model"><span class="sig-name descname pseudo-toc-entry"><span class="pre">get_model</span></span></a><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">name</span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/foxes/algorithms/downwind/downwind.html#Downwind.get_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Get the algorithm specific model</p>
 </dd></dl>
 
 <dl class="py method summary objdesc">
@@ -381,7 +420,7 @@ object.</p>
 
 <dl class="py method summary objdesc">
 <dt class="sig sig-object highlight py">
-<a class="sig-name descname pseudo-toc-entry reference internal" href="Downwind.calc_farm.html" title="foxes.algorithms.Downwind.calc_farm (Python method) — Calculate farm data."><span class="sig-name descname pseudo-toc-entry"><span class="pre">calc_farm</span></span></a><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">calc_parameters</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="p">{}</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">persist</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">True</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">finalize</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">True</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="p"><span class="pre">...</span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/foxes/algorithms/downwind/downwind.html#Downwind.calc_farm"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<a class="sig-name descname pseudo-toc-entry reference internal" href="Downwind.calc_farm.html" title="foxes.algorithms.Downwind.calc_farm (Python method) — Calculate farm data."><span class="sig-name descname pseudo-toc-entry"><span class="pre">calc_farm</span></span></a><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">outputs</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">calc_parameters</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="p">{}</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">persist</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">True</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="p"><span class="pre">...</span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/foxes/algorithms/downwind/downwind.html#Downwind.calc_farm"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Calculate farm data.</p>
 </dd></dl>
 
@@ -554,7 +593,7 @@ for iterative runs.</p>
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -575,7 +614,6 @@ for iterative runs.</p>
       
         <script src="../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
   </body>
 </html>

@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.partial_wakes.axiwake - foxes 0.6.2
+        <title>foxes.models.partial_wakes.axiwake - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -327,14 +359,17 @@
 <h1>Source code for foxes.models.partial_wakes.axiwake</h1><div class="highlight"><pre>
 <span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">PartialWakesModel</span><span class="p">,</span> <span class="n">Data</span>
 <span class="kn">from</span> <span class="nn">foxes.models.wake_models.axisymmetric</span> <span class="kn">import</span> <span class="n">AxisymmetricWakeModel</span>
 <span class="kn">from</span> <span class="nn">foxes.utils.two_circles</span> <span class="kn">import</span> <span class="n">calc_area</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
+<span class="kn">from</span> <span class="nn">.centre</span> <span class="kn">import</span> <span class="n">PartialCentre</span>
 
-<div class="viewcode-block" id="PartialAxiwake"><a class="viewcode-back" href="../../../../api_models.html#foxes.models.partial_wakes.PartialAxiwake">[docs]</a><span class="k">class</span> <span class="nc">PartialAxiwake</span><span class="p">(</span><span class="n">PartialWakesModel</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PartialAxiwake">
+<a class="viewcode-back" href="../../../../api_models.html#foxes.models.partial_wakes.PartialAxiwake">[docs]</a>
+<span class="k">class</span> <span class="nc">PartialAxiwake</span><span class="p">(</span><span class="n">PartialCentre</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Partial wake calculation for axial wake models.</span>
 
@@ -349,14 +384,14 @@
 <span class="sd">    ----------</span>
 <span class="sd">    n: int</span>
 <span class="sd">        The number of radial evaluation points</span>
-<span class="sd">    rotor_model: foxes.core.RotorModel</span>
-<span class="sd">        The rotor model, default is the one from the algorithm</span>
 
 <span class="sd">    :group: models.partial_wakes</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="PartialAxiwake.__init__"><a class="viewcode-back" href="../../../../_foxes/models/partial_wakes/PartialAxiwake.__init__.html#foxes.models.partial_wakes.PartialAxiwake.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">wake_models</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wake_frame</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rotor_model</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="PartialAxiwake.__init__">
+<a class="viewcode-back" href="../../../../_foxes/models/partial_wakes/PartialAxiwake.__init__.html#foxes.models.partial_wakes.PartialAxiwake.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -364,147 +399,99 @@
 <span class="sd">        ----------</span>
 <span class="sd">        n: int</span>
 <span class="sd">            The number of radial evaluation points</span>
-<span class="sd">        wake_models: list of foxes.core.WakeModel, optional</span>
-<span class="sd">            The wake models, default are the ones from the algorithm</span>
-<span class="sd">        wake_frame: foxes.core.WakeFrame, optional</span>
-<span class="sd">            The wake frame, default is the one from the algorithm</span>
-<span class="sd">        rotor_model: foxes.core.RotorModel, optional</span>
-<span class="sd">            The rotor model, default is the one from the algorithm</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">wake_models</span><span class="p">,</span> <span class="n">wake_frame</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span></div>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rotor_model</span> <span class="o">=</span> <span class="n">rotor_model</span></div>
 
-<div class="viewcode-block" id="PartialAxiwake.__repr__"><a class="viewcode-back" href="../../../../_foxes/models/partial_wakes/PartialAxiwake.__repr__.html#foxes.models.partial_wakes.PartialAxiwake.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;(n=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+<div class="viewcode-block" id="PartialAxiwake.__repr__">
+<a class="viewcode-back" href="../../../../_foxes/models/partial_wakes/PartialAxiwake.__repr__.html#foxes.models.partial_wakes.PartialAxiwake.__repr__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(n=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2">)&quot;</span></div>
 
-<div class="viewcode-block" id="PartialAxiwake.initialize"><a class="viewcode-back" href="../../../../_foxes/models/partial_wakes/PartialAxiwake.initialize.html#foxes.models.partial_wakes.PartialAxiwake.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initializes the model.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        algo: foxes.core.Algorithm</span>
-<span class="sd">            The calculation algorithm</span>
-<span class="sd">        verbosity: int</span>
-<span class="sd">            The verbosity level, 0 = silent</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotor_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">rotor_model</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">rotor_model</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">AxisymmetricWakeModel</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Partial wakes &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Cannot be applied to wake model &#39;</span><span class="si">{</span><span class="n">w</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;, since not an AxisymmetricWakeModel&quot;</span>
-                <span class="p">)</span></div>
-
-<div class="viewcode-block" id="PartialAxiwake.sub_models"><a class="viewcode-back" href="../../../../_foxes/models/partial_wakes/PartialAxiwake.sub_models.html#foxes.models.partial_wakes.PartialAxiwake.sub_models">[docs]</a>    <span class="k">def</span> <span class="nf">sub_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        List of all sub-models</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        smdls: list of foxes.core.Model</span>
-<span class="sd">            All sub models</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">sub_models</span><span class="p">()</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">rotor_model</span><span class="p">]</span></div>
-
-<div class="viewcode-block" id="PartialAxiwake.new_wake_deltas"><a class="viewcode-back" href="../../../../_foxes/models/partial_wakes/PartialAxiwake.new_wake_deltas.html#foxes.models.partial_wakes.PartialAxiwake.new_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">new_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates new initial wake deltas, filled</span>
-<span class="sd">        with zeros.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        algo: foxes.core.Algorithm</span>
-<span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata: foxes.core.Data</span>
-<span class="sd">            The model data</span>
-<span class="sd">        fdata: foxes.core.Data</span>
-<span class="sd">            The farm data</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        wake_deltas: dict</span>
-<span class="sd">            Keys: Variable name str, values: any</span>
-<span class="sd">        pdata: foxes.core.Data</span>
-<span class="sd">            The evaluation point data</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">pdata</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">])</span>
-
-        <span class="n">wake_deltas</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">:</span>
-            <span class="n">w</span><span class="o">.</span><span class="n">init_wake_deltas</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">wake_deltas</span><span class="p">,</span> <span class="n">pdata</span></div>
-
-<div class="viewcode-block" id="PartialAxiwake.contribute_to_wake_deltas"><a class="viewcode-back" href="../../../../_foxes/models/partial_wakes/PartialAxiwake.contribute_to_wake_deltas.html#foxes.models.partial_wakes.PartialAxiwake.contribute_to_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">contribute_to_wake_deltas</span><span class="p">(</span>
+<div class="viewcode-block" id="PartialAxiwake.contribute">
+<a class="viewcode-back" href="../../../../_foxes/models/partial_wakes/PartialAxiwake.contribute.html#foxes.models.partial_wakes.PartialAxiwake.contribute">[docs]</a>
+    <span class="k">def</span> <span class="nf">contribute</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
         <span class="n">fdata</span><span class="p">,</span>
-        <span class="n">pdata</span><span class="p">,</span>
-        <span class="n">states_source_turbine</span><span class="p">,</span>
+        <span class="n">tdata</span><span class="p">,</span>
+        <span class="n">downwind_index</span><span class="p">,</span>
         <span class="n">wake_deltas</span><span class="p">,</span>
+        <span class="n">wmodel</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Modifies wake deltas by contributions from the</span>
-<span class="sd">        specified wake source turbines.</span>
+<span class="sd">        Modifies wake deltas at target points by</span>
+<span class="sd">        contributions from the specified wake source turbines.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata: foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.MData</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata: foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.FData</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        pdata: foxes.core.Data</span>
-<span class="sd">            The evaluation point data</span>
-<span class="sd">        states_source_turbine: numpy.ndarray of int</span>
-<span class="sd">            For each state, one turbine index corresponding</span>
-<span class="sd">            to the wake causing turbine. Shape: (n_states,)</span>
-<span class="sd">        wake_deltas: Any</span>
-<span class="sd">            The wake deltas object created by the</span>
-<span class="sd">            `new_wake_deltas` function</span>
+<span class="sd">        tdata: foxes.core.TData</span>
+<span class="sd">            The target point data</span>
+<span class="sd">        downwind_index: int</span>
+<span class="sd">            The index of the wake causing turbine</span>
+<span class="sd">            in the downwnd order</span>
+<span class="sd">        wake_deltas: dict</span>
+<span class="sd">            The wake deltas. Key: variable name,</span>
+<span class="sd">            value: numpy.ndarray with shape</span>
+<span class="sd">            (n_states, n_targets, n_tpoints, ...)</span>
+<span class="sd">        wmodel: foxes.core.WakeModel</span>
+<span class="sd">            The wake model</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wmodel</span><span class="p">,</span> <span class="n">AxisymmetricWakeModel</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Partial wakes &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Cannot be applied to wake model &#39;</span><span class="si">{</span><span class="n">wmodel</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;, since not an AxisymmetricWakeModel&quot;</span>
+            <span class="p">)</span>
+
         <span class="c1"># prepare:</span>
         <span class="n">n_states</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span>
-        <span class="n">n_turbines</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_turbines</span>
-        <span class="n">D</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">]</span>
+        <span class="n">n_targets</span> <span class="o">=</span> <span class="n">tdata</span><span class="o">.</span><span class="n">n_targets</span>
 
-        <span class="c1"># calc coordinates to rotor centres:</span>
-        <span class="n">wcoos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_frame</span><span class="o">.</span><span class="n">get_wake_coos</span><span class="p">(</span>
-            <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">states_source_turbine</span>
+        <span class="c1"># get D:</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">,</span>
+            <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="p">,</span>
+            <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
+            <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
+            <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
+            <span class="n">tdata</span><span class="o">=</span><span class="n">tdata</span><span class="p">,</span>
+            <span class="n">downwind_index</span><span class="o">=</span><span class="n">downwind_index</span><span class="p">,</span>
+            <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="p">)</span>
 
+        <span class="c1"># calc coordinates to rotor centres:</span>
+        <span class="n">wcoos</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">wake_frame</span><span class="o">.</span><span class="n">get_wake_coos</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">,</span> <span class="n">downwind_index</span><span class="p">)</span>
+
         <span class="c1"># prepare x and r coordinates:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">wcoos</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="n">wcoos</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">wcoos</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">wcoos</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
         <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_targets</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
         <span class="k">del</span> <span class="n">wcoos</span>
 
         <span class="c1"># prepare circle section area calculation:</span>
-        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_targets</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
         <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 
         <span class="c1"># get normalized 2D vector between rotor and wake centres:</span>
-        <span class="n">sel</span> <span class="o">=</span> <span class="n">R</span> <span class="o">&gt;</span> <span class="mf">0.0</span>
+        <span class="n">sel</span> <span class="o">=</span> <span class="n">R</span> <span class="o">&gt;</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
             <span class="n">n</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">/=</span> <span class="n">R</span><span class="p">[</span><span class="n">sel</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="o">~</span><span class="n">sel</span><span class="p">):</span>
             <span class="n">n</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">][</span><span class="o">~</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
         <span class="c1"># case wake centre outside rotor disk:</span>
-        <span class="n">sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mf">1e-5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">R</span> <span class="o">&gt;</span> <span class="n">D</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">R</span> <span class="o">&gt;</span> <span class="n">D</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
             <span class="n">n_sel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span>
             <span class="n">Rsel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_sel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
@@ -526,7 +513,7 @@
             <span class="k">del</span> <span class="n">hA</span><span class="p">,</span> <span class="n">Rsel</span><span class="p">,</span> <span class="n">Dsel</span><span class="p">,</span> <span class="n">R1</span><span class="p">,</span> <span class="n">R2</span>
 
         <span class="c1"># case wake centre inside rotor disk:</span>
-        <span class="n">sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mf">1e-5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">R</span> <span class="o">&lt;</span> <span class="n">D</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">R</span> <span class="o">&lt;</span> <span class="n">D</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
             <span class="n">n_sel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span>
             <span class="n">Rsel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_sel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
@@ -552,104 +539,34 @@
             <span class="n">weights</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">hA</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">hA</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
             <span class="k">del</span> <span class="n">hA</span><span class="p">,</span> <span class="n">hr</span><span class="p">,</span> <span class="n">Rsel</span><span class="p">,</span> <span class="n">Dsel</span><span class="p">,</span> <span class="n">R1</span><span class="p">,</span> <span class="n">R2</span>
 
-        <span class="c1"># evaluate wake models:</span>
-        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">:</span>
-            <span class="n">wdeltas</span><span class="p">,</span> <span class="n">sp_sel</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">calc_wakes_spsel_x_r</span><span class="p">(</span>
-                <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span>
-            <span class="p">)</span>
+        <span class="c1"># evaluate wake model:</span>
+        <span class="n">wdeltas</span><span class="p">,</span> <span class="n">st_sel</span> <span class="o">=</span> <span class="n">wmodel</span><span class="o">.</span><span class="n">calc_wakes_x_r</span><span class="p">(</span>
+            <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">,</span> <span class="n">downwind_index</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span>
+        <span class="p">)</span>
 
-            <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">wdel</span> <span class="ow">in</span> <span class="n">wdeltas</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ps,ps-&gt;p&quot;</span><span class="p">,</span> <span class="n">wdel</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">wdel</span> <span class="ow">in</span> <span class="n">wdeltas</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;sn,sn-&gt;s&quot;</span><span class="p">,</span> <span class="n">wdel</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="n">st_sel</span><span class="p">])</span>
 
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="n">superp</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">superp</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
-                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Missing wake superposition entry for variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; in wake model &#39;</span><span class="si">{</span><span class="n">w</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;, found </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">superp</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span><span class="si">}</span><span class="s2">&quot;</span>
-                    <span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">superp</span> <span class="o">=</span> <span class="n">wmodel</span><span class="o">.</span><span class="n">superp</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Missing wake superposition entry for variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; in wake model &#39;</span><span class="si">{</span><span class="n">wmodel</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;, found </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">wmodel</span><span class="o">.</span><span class="n">superp</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
 
-                <span class="n">wake_deltas</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">superp</span><span class="o">.</span><span class="n">calc_wakes_plus_wake</span><span class="p">(</span>
-                    <span class="n">algo</span><span class="p">,</span>
-                    <span class="n">mdata</span><span class="p">,</span>
-                    <span class="n">fdata</span><span class="p">,</span>
-                    <span class="n">pdata</span><span class="p">,</span>
-                    <span class="n">states_source_turbine</span><span class="p">,</span>
-                    <span class="n">sp_sel</span><span class="p">,</span>
-                    <span class="n">v</span><span class="p">,</span>
-                    <span class="n">wake_deltas</span><span class="p">[</span><span class="n">v</span><span class="p">],</span>
-                    <span class="n">d</span><span class="p">,</span>
-                <span class="p">)</span></div>
+            <span class="n">wake_deltas</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">superp</span><span class="o">.</span><span class="n">add_wake</span><span class="p">(</span>
+                <span class="n">algo</span><span class="p">,</span>
+                <span class="n">mdata</span><span class="p">,</span>
+                <span class="n">fdata</span><span class="p">,</span>
+                <span class="n">tdata</span><span class="p">,</span>
+                <span class="n">downwind_index</span><span class="p">,</span>
+                <span class="n">st_sel</span><span class="p">,</span>
+                <span class="n">v</span><span class="p">,</span>
+                <span class="n">wake_deltas</span><span class="p">[</span><span class="n">v</span><span class="p">],</span>
+                <span class="n">d</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span>
+            <span class="p">)</span></div>
+</div>
 
-<div class="viewcode-block" id="PartialAxiwake.evaluate_results"><a class="viewcode-back" href="../../../../_foxes/models/partial_wakes/PartialAxiwake.evaluate_results.html#foxes.models.partial_wakes.PartialAxiwake.evaluate_results">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate_results</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">algo</span><span class="p">,</span>
-        <span class="n">mdata</span><span class="p">,</span>
-        <span class="n">fdata</span><span class="p">,</span>
-        <span class="n">pdata</span><span class="p">,</span>
-        <span class="n">wake_deltas</span><span class="p">,</span>
-        <span class="n">states_turbine</span><span class="p">,</span>
-        <span class="n">amb_res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Updates the farm data according to the wake</span>
-<span class="sd">        deltas.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        algo: foxes.core.Algorithm</span>
-<span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata: foxes.core.Data</span>
-<span class="sd">            The model data</span>
-<span class="sd">        fdata: foxes.core.Data</span>
-<span class="sd">            The farm data</span>
-<span class="sd">            Modified in-place by this function</span>
-<span class="sd">        pdata: foxes.core.Data</span>
-<span class="sd">            The evaluation point data</span>
-<span class="sd">        wake_deltas: Any</span>
-<span class="sd">            The wake deltas object, created by the</span>
-<span class="sd">            `new_wake_deltas` function and filled</span>
-<span class="sd">            by `contribute_to_wake_deltas`</span>
-<span class="sd">        states_turbine: numpy.ndarray of int</span>
-<span class="sd">            For each state, the index of one turbine</span>
-<span class="sd">            for which to evaluate the wake deltas.</span>
-<span class="sd">            Shape: (n_states,)</span>
-<span class="sd">        amb_res: dict, optional</span>
-<span class="sd">            Ambient states results. Keys: var str, values:</span>
-<span class="sd">            numpy.ndarray of shape (n_states, n_points)</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">weights</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">rotor_model</span><span class="o">.</span><span class="n">from_data_or_store</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">RWEIGHTS</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">)</span>
-        <span class="n">rpoints</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">rotor_model</span><span class="o">.</span><span class="n">from_data_or_store</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">RPOINTS</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">)</span>
-        <span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">,</span> <span class="n">n_rpoints</span><span class="p">,</span> <span class="n">__</span> <span class="o">=</span> <span class="n">rpoints</span><span class="o">.</span><span class="n">shape</span>
-
-        <span class="n">amb_res_in</span> <span class="o">=</span> <span class="n">amb_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">amb_res_in</span><span class="p">:</span>
-            <span class="n">amb_res</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">rotor_model</span><span class="o">.</span><span class="n">from_data_or_store</span><span class="p">(</span>
-                <span class="n">FC</span><span class="o">.</span><span class="n">AMB_RPOINT_RESULTS</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span>
-            <span class="p">)</span>
-
-        <span class="n">wres</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">st_sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">),</span> <span class="n">states_turbine</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">ares</span> <span class="ow">in</span> <span class="n">amb_res</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">wres</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">ares</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">,</span> <span class="n">n_rpoints</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
-
-        <span class="n">wdel</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">wake_deltas</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">wdel</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">:</span>
-            <span class="n">w</span><span class="o">.</span><span class="n">finalize_wake_deltas</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">wres</span><span class="p">,</span> <span class="n">wdel</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">wres</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">wake_deltas</span><span class="p">:</span>
-                <span class="n">wres</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+=</span> <span class="n">wdel</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
-                <span class="k">if</span> <span class="n">amb_res_in</span><span class="p">:</span>
-                    <span class="n">amb_res</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">st_sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">wres</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
-            <span class="n">wres</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">wres</span><span class="p">[</span><span class="n">v</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">]</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">rotor_model</span><span class="o">.</span><span class="n">eval_rpoint_results</span><span class="p">(</span>
-            <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">wres</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">states_turbine</span><span class="o">=</span><span class="n">states_turbine</span>
-        <span class="p">)</span></div></div>
 </code></pre></div>
 
 
@@ -681,7 +598,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

@@ -13,7 +13,7 @@
     
     
       
-        <title>Single row of turbines - foxes 0.6.2
+        <title>Single row of turbines - foxes 0.7
  documentation</title>
       
     
@@ -73,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -175,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -238,6 +238,38 @@
 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -245,7 +277,7 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
       
       
       
@@ -253,33 +285,18 @@
         <div class="md-nav__link md-nav__link--index ">
           <a href="../examples.html"><span title="/examples.rst (reference label)" class="md-ellipsis">Examples</span></a>
           
-            <label for="__nav_3">
+            <label for="__nav_5">
               <span class="md-nav__icon md-icon"></span>
             </label>
           
         </div>
       
       <nav class="md-nav" aria-label="Examples" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           <span title="/examples.rst (reference label)" class="md-ellipsis">Examples</span>
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="overview.html" class="md-nav__link">
-        <span title="/notebooks/overview.ipynb (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
-      </a>
-    </li>
-  
-
-            
           
             
               
@@ -499,6 +516,21 @@
 
             
           
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="partial_wakes.html" class="md-nav__link">
+        <span title="/notebooks/partial_wakes.ipynb (reference label)" class="md-ellipsis">Partial wakes verification</span>
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -584,7 +616,7 @@
 
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js'></script>
-<script>require=requirejs;</script><h1 id="Single-row-of-turbines">Single row of turbines<a class="headerlink" href="#Single-row-of-turbines" title="Permalink to this heading">¶</a></h1>
+<script>require=requirejs;</script><h1 id="Single-row-of-turbines">Single row of turbines<a class="headerlink" href="#Single-row-of-turbines" title="Link to this heading">¶</a></h1>
 <p>We start with the imports for this example:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [1]:
@@ -640,7 +672,7 @@
 
 <span class="c1"># setup the calculation algorithm:</span>
 <span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Downwind</span><span class="p">(</span>
-    <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Jensen_linear_k007&quot;</span><span class="p">]</span>
+    <span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Jensen_linear_k007&quot;</span><span class="p">],</span> <span class="n">mbook</span><span class="o">=</span><span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
@@ -662,25 +694,25 @@
 <div class="highlight"><pre>
 
 Farm results:
- &lt;xarray.Dataset&gt;
-Dimensions:    (state: 1, turbine: 5)
+ &lt;xarray.Dataset&gt; Size: 1kB
+Dimensions:     (state: 1, turbine: 5)
 Coordinates:
-  * state      (state) int64 0
+  * state       (state) int64 8B 0
 Dimensions without coordinates: turbine
-Data variables: (12/25)
-    AMB_CT     (state, turbine) float64 0.79 0.79 0.79 0.79 0.79
-    AMB_P      (state, turbine) float64 2.519e+03 2.519e+03 ... 2.519e+03
-    AMB_REWS   (state, turbine) float64 9.0 9.0 9.0 9.0 9.0
-    AMB_REWS2  (state, turbine) float64 9.0 9.0 9.0 9.0 9.0
-    AMB_REWS3  (state, turbine) float64 9.0 9.0 9.0 9.0 9.0
-    AMB_RHO    (state, turbine) float64 1.225 1.225 1.225 1.225 1.225
-    ...         ...
-    X          (state, turbine) float64 0.0 800.0 1.6e+03 2.4e+03 3.2e+03
-    Y          (state, turbine) float64 0.0 0.0 0.0 0.0 0.0
-    YAW        (state, turbine) float64 270.0 270.0 270.0 270.0 270.0
-    order      (state, turbine) int64 0 1 2 3 4
-    weight     (state, turbine) float64 1.0 1.0 1.0 1.0 1.0
-    tname      (turbine) &lt;U2 &#39;T0&#39; &#39;T1&#39; &#39;T2&#39; &#39;T3&#39; &#39;T4&#39;
+Data variables: (12/27)
+    AMB_CT      (state, turbine) float64 40B 0.79 0.79 0.79 0.79 0.79
+    AMB_P       (state, turbine) float64 40B 2.519e+03 2.519e+03 ... 2.519e+03
+    AMB_REWS    (state, turbine) float64 40B 9.0 9.0 9.0 9.0 9.0
+    AMB_REWS2   (state, turbine) float64 40B 9.0 9.0 9.0 9.0 9.0
+    AMB_REWS3   (state, turbine) float64 40B 9.0 9.0 9.0 9.0 9.0
+    AMB_RHO     (state, turbine) float64 40B 1.225 1.225 1.225 1.225 1.225
+    ...          ...
+    YAW         (state, turbine) float64 40B 270.0 270.0 270.0 270.0 270.0
+    order       (state, turbine) int64 40B 0 1 2 3 4
+    order_inv   (state, turbine) int64 40B 0 1 2 3 4
+    order_ssel  (state, turbine) int64 40B 0 0 0 0 0
+    weight      (state, turbine) float64 40B 1.0 1.0 1.0 1.0 1.0
+    tname       (turbine) &lt;U2 40B &#39;T0&#39; &#39;T1&#39; &#39;T2&#39; &#39;T3&#39; &#39;T4&#39;
 </pre></div></div>
 </div>
 <p>For a convenient summary printout we can easily convert the results into a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>:</p>
@@ -741,20 +773,20 @@ state turbine
 <div class="highlight"><pre>
 
 Point results:
- &lt;xarray.Dataset&gt;
+ &lt;xarray.Dataset&gt; Size: 512kB
 Dimensions:  (state: 1, point: 8000)
 Coordinates:
-  * state    (state) int64 0
+  * state    (state) int64 8B 0
 Dimensions without coordinates: point
 Data variables:
-    TI       (state, point) float64 0.12 0.12 0.12 0.12 ... 0.12 0.12 0.12 0.12
-    WS       (state, point) float64 9.0 9.0 9.0 9.0 ... 8.916 8.916 8.916 8.916
-    RHO      (state, point) float64 1.225 1.225 1.225 ... 1.225 1.225 1.225
-    WD       (state, point) float64 270.0 270.0 270.0 ... 270.0 270.0 270.0
-    AMB_TI   (state, point) float64 0.12 0.12 0.12 0.12 ... 0.12 0.12 0.12 0.12
-    AMB_WS   (state, point) float64 9.0 9.0 9.0 9.0 9.0 ... 9.0 9.0 9.0 9.0 9.0
-    AMB_RHO  (state, point) float64 1.225 1.225 1.225 ... 1.225 1.225 1.225
-    AMB_WD   (state, point) float64 270.0 270.0 270.0 ... 270.0 270.0 270.0
+    WS       (state, point) float64 64kB 9.0 9.0 9.0 9.0 ... 8.916 8.916 8.916
+    TI       (state, point) float64 64kB 0.12 0.12 0.12 0.12 ... 0.12 0.12 0.12
+    WD       (state, point) float64 64kB 270.0 270.0 270.0 ... 270.0 270.0 270.0
+    RHO      (state, point) float64 64kB 1.225 1.225 1.225 ... 1.225 1.225 1.225
+    AMB_WS   (state, point) float64 64kB 9.0 9.0 9.0 9.0 9.0 ... 9.0 9.0 9.0 9.0
+    AMB_TI   (state, point) float64 64kB 0.12 0.12 0.12 0.12 ... 0.12 0.12 0.12
+    AMB_WD   (state, point) float64 64kB 270.0 270.0 270.0 ... 270.0 270.0 270.0
+    AMB_RHO  (state, point) float64 64kB 1.225 1.225 1.225 ... 1.225 1.225 1.225
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -850,7 +882,7 @@ Data variables:
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

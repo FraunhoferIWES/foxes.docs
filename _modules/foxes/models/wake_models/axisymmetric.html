@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.wake_models.axisymmetric - foxes 0.6.2
+        <title>foxes.models.wake_models.axisymmetric - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -331,7 +363,9 @@
 <span class="kn">from</span> <span class="nn">foxes.models.wake_models.dist_sliced</span> <span class="kn">import</span> <span class="n">DistSlicedWakeModel</span>
 
 
-<div class="viewcode-block" id="AxisymmetricWakeModel"><a class="viewcode-back" href="../../../../api_wake_models.html#foxes.models.wake_models.AxisymmetricWakeModel">[docs]</a><span class="k">class</span> <span class="nc">AxisymmetricWakeModel</span><span class="p">(</span><span class="n">DistSlicedWakeModel</span><span class="p">):</span>
+<div class="viewcode-block" id="AxisymmetricWakeModel">
+<a class="viewcode-back" href="../../../../api_wake_models.html#foxes.models.wake_models.AxisymmetricWakeModel">[docs]</a>
+<span class="k">class</span> <span class="nc">AxisymmetricWakeModel</span><span class="p">(</span><span class="n">DistSlicedWakeModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for wake models</span>
 <span class="sd">    that depend on (x, r) separately.</span>
@@ -343,14 +377,16 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="AxisymmetricWakeModel.calc_wakes_spsel_x_r"><a class="viewcode-back" href="../../../../_foxes/models/wake_models/AxisymmetricWakeModel.calc_wakes_spsel_x_r.html#foxes.models.wake_models.AxisymmetricWakeModel.calc_wakes_spsel_x_r">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">calc_wakes_spsel_x_r</span><span class="p">(</span>
+<div class="viewcode-block" id="AxisymmetricWakeModel.calc_wakes_x_r">
+<a class="viewcode-back" href="../../../../_foxes/models/wake_models/AxisymmetricWakeModel.calc_wakes_x_r.html#foxes.models.wake_models.AxisymmetricWakeModel.calc_wakes_x_r">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">calc_wakes_x_r</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
         <span class="n">fdata</span><span class="p">,</span>
-        <span class="n">pdata</span><span class="p">,</span>
-        <span class="n">states_source_turbine</span><span class="p">,</span>
+        <span class="n">tdata</span><span class="p">,</span>
+        <span class="n">downwind_index</span><span class="p">,</span>
         <span class="n">x</span><span class="p">,</span>
         <span class="n">r</span><span class="p">,</span>
     <span class="p">):</span>
@@ -361,40 +397,42 @@
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata: foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.MData</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata: foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.FData</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        pdata: foxes.core.Data</span>
-<span class="sd">            The evaluation point data</span>
-<span class="sd">        states_source_turbine: numpy.ndarray</span>
-<span class="sd">            For each state, one turbine index for the</span>
-<span class="sd">            wake causing turbine. Shape: (n_states,)</span>
+<span class="sd">        tdata: foxes.core.TData</span>
+<span class="sd">            The target point data</span>
+<span class="sd">        downwind_index: int</span>
+<span class="sd">            The index in the downwind order</span>
 <span class="sd">        x: numpy.ndarray</span>
-<span class="sd">            The x values, shape: (n_states, n_points)</span>
+<span class="sd">            The x values, shape: (n_states, n_targets)</span>
 <span class="sd">        r: numpy.ndarray</span>
 <span class="sd">            The radial values for each x value, shape:</span>
-<span class="sd">            (n_states, n_points, n_r_per_x, 2)</span>
+<span class="sd">            (n_states, n_targets, n_yz_per_target)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        wdeltas: dict</span>
 <span class="sd">            The wake deltas. Key: variable name str,</span>
-<span class="sd">            value: numpy.ndarray, shape: (n_sp_sel, n_r_per_x)</span>
-<span class="sd">        sp_sel: numpy.ndarray of bool</span>
-<span class="sd">            The state-point selection, for which the wake</span>
-<span class="sd">            is non-zero, shape: (n_states, n_points)</span>
+<span class="sd">            value: numpy.ndarray, shape: (n_st_sel, n_r_per_x)</span>
+<span class="sd">        st_sel: numpy.ndarray of bool</span>
+<span class="sd">            The state-target selection, for which the wake</span>
+<span class="sd">            is non-zero, shape: (n_states, n_targets)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="AxisymmetricWakeModel.calc_wakes_spsel_x_yz"><a class="viewcode-back" href="../../../../_foxes/models/wake_models/wind/TurbOParkWakeIX.html#foxes.models.wake_models.AxisymmetricWakeModel.calc_wakes_spsel_x_yz">[docs]</a>    <span class="k">def</span> <span class="nf">calc_wakes_spsel_x_yz</span><span class="p">(</span>
+
+<div class="viewcode-block" id="AxisymmetricWakeModel.calc_wakes_x_yz">
+<a class="viewcode-back" href="../../../../_foxes/models/wake_models/wind/TurbOParkWakeIX.html#foxes.models.wake_models.AxisymmetricWakeModel.calc_wakes_x_yz">[docs]</a>
+    <span class="k">def</span> <span class="nf">calc_wakes_x_yz</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
         <span class="n">fdata</span><span class="p">,</span>
-        <span class="n">pdata</span><span class="p">,</span>
-        <span class="n">states_source_turbine</span><span class="p">,</span>
+        <span class="n">tdata</span><span class="p">,</span>
+        <span class="n">downwind_index</span><span class="p">,</span>
         <span class="n">x</span><span class="p">,</span>
         <span class="n">yz</span><span class="p">,</span>
     <span class="p">):</span>
@@ -405,35 +443,34 @@
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata: foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.MData</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata: foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.FData</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        pdata: foxes.core.Data</span>
-<span class="sd">            The evaluation point data</span>
-<span class="sd">        states_source_turbine: numpy.ndarray</span>
-<span class="sd">            For each state, one turbine index for the</span>
-<span class="sd">            wake causing turbine. Shape: (n_states,)</span>
+<span class="sd">        tdata: foxes.core.TData</span>
+<span class="sd">            The target point data</span>
+<span class="sd">        downwind_index: int</span>
+<span class="sd">            The index in the downwind order</span>
 <span class="sd">        x: numpy.ndarray</span>
-<span class="sd">            The x values, shape: (n_states, n_points)</span>
+<span class="sd">            The x values, shape: (n_states, n_targets)</span>
 <span class="sd">        yz: numpy.ndarray</span>
 <span class="sd">            The yz values for each x value, shape:</span>
-<span class="sd">            (n_states, n_points, n_yz_per_x, 2)</span>
+<span class="sd">            (n_states, n_targets, n_yz_per_target, 2)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        wdeltas: dict</span>
 <span class="sd">            The wake deltas. Key: variable name str,</span>
-<span class="sd">            value: numpy.ndarray, shape: (n_sp_sel, n_yz_per_x)</span>
-<span class="sd">        sp_sel: numpy.ndarray of bool</span>
-<span class="sd">            The state-point selection, for which the wake</span>
-<span class="sd">            is non-zero, shape: (n_states, n_points)</span>
+<span class="sd">            value: numpy.ndarray, shape: (n_st_sel, n_yz_per_target)</span>
+<span class="sd">        st_sel: numpy.ndarray of bool</span>
+<span class="sd">            The state-target selection, for which the wake</span>
+<span class="sd">            is non-zero, shape: (n_states, n_targets)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">yz</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_wakes_spsel_x_r</span><span class="p">(</span>
-            <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">states_source_turbine</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span>
-        <span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_wakes_x_r</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">,</span> <span class="n">downwind_index</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span></div>
+</div>
+
 </code></pre></div>
 
 
@@ -465,7 +502,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

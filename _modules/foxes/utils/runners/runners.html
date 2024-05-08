@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.runners.runners - foxes 0.6.2
+        <title>foxes.utils.runners.runners - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -333,7 +365,9 @@
 <span class="kn">from</span> <span class="nn">dask.diagnostics</span> <span class="kn">import</span> <span class="n">ProgressBar</span>
 
 
-<div class="viewcode-block" id="Runner"><a class="viewcode-back" href="../../../../api_utils.html#foxes.utils.runners.Runner">[docs]</a><span class="k">class</span> <span class="nc">Runner</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<div class="viewcode-block" id="Runner">
+<a class="viewcode-back" href="../../../../api_utils.html#foxes.utils.runners.Runner">[docs]</a>
+<span class="k">class</span> <span class="nc">Runner</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for runners.</span>
 
@@ -341,14 +375,20 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Runner.__init__"><a class="viewcode-back" href="../../../../_foxes/utils/runners/Runner.__init__.html#foxes.utils.runners.Runner.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Runner.__init__">
+<a class="viewcode-back" href="../../../../_foxes/utils/runners/Runner.__init__.html#foxes.utils.runners.Runner.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_initialized</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Runner.initialize"><a class="viewcode-back" href="../../../../_foxes/utils/runners/Runner.initialize.html#foxes.utils.runners.Runner.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Runner.initialize">
+<a class="viewcode-back" href="../../../../_foxes/utils/runners/Runner.initialize.html#foxes.utils.runners.Runner.initialize">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the runner</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_initialized</span> <span class="o">=</span> <span class="kc">True</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -367,7 +407,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="Runner.run"><a class="viewcode-back" href="../../../../_foxes/utils/runners/Runner.run.html#foxes.utils.runners.Runner.run">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="Runner.run">
+<a class="viewcode-back" href="../../../../_foxes/utils/runners/Runner.run.html#foxes.utils.runners.Runner.run">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{}):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs the given function.</span>
@@ -389,17 +431,24 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="Runner.finalize"><a class="viewcode-back" href="../../../../_foxes/utils/runners/Runner.finalize.html#foxes.utils.runners.Runner.finalize">[docs]</a>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Runner.finalize">
+<a class="viewcode-back" href="../../../../_foxes/utils/runners/Runner.finalize.html#foxes.utils.runners.Runner.finalize">[docs]</a>
+    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Finalize the runner</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_initialized</span> <span class="o">=</span> <span class="kc">False</span></div>
 
+
     <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="DefaultRunner"><a class="viewcode-back" href="../../../../api_utils.html#foxes.utils.runners.DefaultRunner">[docs]</a><span class="k">class</span> <span class="nc">DefaultRunner</span><span class="p">(</span><span class="n">Runner</span><span class="p">):</span>
+
+<div class="viewcode-block" id="DefaultRunner">
+<a class="viewcode-back" href="../../../../api_utils.html#foxes.utils.runners.DefaultRunner">[docs]</a>
+<span class="k">class</span> <span class="nc">DefaultRunner</span><span class="p">(</span><span class="n">Runner</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for default function execution.</span>
 
@@ -407,7 +456,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DefaultRunner.run"><a class="viewcode-back" href="../../../../_foxes/utils/runners/DefaultRunner.run.html#foxes.utils.runners.DefaultRunner.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{}):</span>
+<div class="viewcode-block" id="DefaultRunner.run">
+<a class="viewcode-back" href="../../../../_foxes/utils/runners/DefaultRunner.run.html#foxes.utils.runners.DefaultRunner.run">[docs]</a>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{}):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs the given function.</span>
 
@@ -426,10 +477,14 @@
 <span class="sd">            The functions return value</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</div>
 
 
-<div class="viewcode-block" id="DaskRunner"><a class="viewcode-back" href="../../../../api_utils.html#foxes.utils.runners.DaskRunner">[docs]</a><span class="k">class</span> <span class="nc">DaskRunner</span><span class="p">(</span><span class="n">Runner</span><span class="p">):</span>
+
+<div class="viewcode-block" id="DaskRunner">
+<a class="viewcode-back" href="../../../../api_utils.html#foxes.utils.runners.DaskRunner">[docs]</a>
+<span class="k">class</span> <span class="nc">DaskRunner</span><span class="p">(</span><span class="n">Runner</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for function execution via dask</span>
 
@@ -450,7 +505,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DaskRunner.__init__"><a class="viewcode-back" href="../../../../_foxes/utils/runners/DaskRunner.__init__.html#foxes.utils.runners.DaskRunner.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="DaskRunner.__init__">
+<a class="viewcode-back" href="../../../../_foxes/utils/runners/DaskRunner.__init__.html#foxes.utils.runners.DaskRunner.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">scheduler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">n_workers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -509,7 +566,10 @@
         <span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">=</span> <span class="s2">&quot;distributed&quot;</span></div>
 
-<div class="viewcode-block" id="DaskRunner.is_distributed"><a class="viewcode-back" href="../../../../_foxes/utils/runners/DaskRunner.is_distributed.html#foxes.utils.runners.DaskRunner.is_distributed">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="DaskRunner.is_distributed">
+<a class="viewcode-back" href="../../../../_foxes/utils/runners/DaskRunner.is_distributed.html#foxes.utils.runners.DaskRunner.is_distributed">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">is_distributed</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">get_client</span><span class="p">()</span>
@@ -517,21 +577,23 @@
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="DaskRunner.initialize"><a class="viewcode-back" href="../../../../_foxes/utils/runners/DaskRunner.initialize.html#foxes.utils.runners.DaskRunner.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="DaskRunner.initialize">
+<a class="viewcode-back" href="../../../../_foxes/utils/runners/DaskRunner.initialize.html#foxes.utils.runners.DaskRunner.initialize">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the runner</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dask</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">scheduler</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="p">)</span>
-        
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">==</span> <span class="s2">&quot;dthreads&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Launching local dask cluster..&quot;</span><span class="p">)</span>
 
             <span class="n">cargs</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cluster_args</span><span class="p">)</span>
             <span class="k">del</span> <span class="n">cargs</span><span class="p">[</span><span class="s2">&quot;processes&quot;</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span>
-                <span class="n">processes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">client_args</span><span class="p">,</span> <span class="o">**</span><span class="n">cargs</span><span class="p">)</span>
-            
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">client_args</span><span class="p">,</span> <span class="o">**</span><span class="n">cargs</span><span class="p">)</span>
+
             <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dashboard: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">dashboard_link</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">==</span> <span class="s2">&quot;distributed&quot;</span><span class="p">:</span>
@@ -560,14 +622,20 @@
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="DaskRunner.print"><a class="viewcode-back" href="../../../../_foxes/utils/runners/DaskRunner.print.html#foxes.utils.runners.DaskRunner.print">[docs]</a>    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="DaskRunner.print">
+<a class="viewcode-back" href="../../../../_foxes/utils/runners/DaskRunner.print.html#foxes.utils.runners.DaskRunner.print">[docs]</a>
+    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prints if verbosity is not zero</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DaskRunner.run"><a class="viewcode-back" href="../../../../_foxes/utils/runners/DaskRunner.run.html#foxes.utils.runners.DaskRunner.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{}):</span>
+
+<div class="viewcode-block" id="DaskRunner.run">
+<a class="viewcode-back" href="../../../../_foxes/utils/runners/DaskRunner.run.html#foxes.utils.runners.DaskRunner.run">[docs]</a>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{}):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs the given function.</span>
 
@@ -594,7 +662,10 @@
 
         <span class="k">return</span> <span class="n">results</span></div>
 
-<div class="viewcode-block" id="DaskRunner.finalize"><a class="viewcode-back" href="../../../../_foxes/utils/runners/DaskRunner.finalize.html#foxes.utils.runners.DaskRunner.finalize">[docs]</a>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="DaskRunner.finalize">
+<a class="viewcode-back" href="../../../../_foxes/utils/runners/DaskRunner.finalize.html#foxes.utils.runners.DaskRunner.finalize">[docs]</a>
+    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Finallize the runner</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -605,7 +676,9 @@
 
         <span class="n">dask</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span></div></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span></div>
+</div>
+
 </code></pre></div>
 
 
@@ -637,7 +710,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

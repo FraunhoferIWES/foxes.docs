@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.TabWindroseAxes.csd - foxes 0.6.2
+        <title>foxes.utils.TabWindroseAxes.csd - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -338,7 +370,7 @@ to compute <span class="math notranslate nohighlight">\(P_{xy}\)</span>, with a 
 loss due to windowing.</p>
 <p>If len(<em>x</em>) &lt; <em>NFFT</em> or len(<em>y</em>) &lt; <em>NFFT</em>, they will be zero
 padded to <em>NFFT</em>.</p>
-<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h2>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
 <dl>
 <dt>x, y<span class="classifier">1-D arrays or sequences</span></dt><dd><p>Arrays or sequences containing the data.</p>
 </dd>
@@ -389,7 +421,7 @@ and then filtered and downsampled to baseband.</p>
 <dt>return_line<span class="classifier">bool, default: False</span></dt><dd><p>Whether to include the line object plotted in the returned values.</p>
 </dd>
 </dl>
-<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Permalink to this heading">¶</a></h2>
+<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
 <dl>
 <dt>Pxy<span class="classifier">1-D array</span></dt><dd><p>The values for the cross spectrum <span class="math notranslate nohighlight">\(P_{xy}\)</span> before scaling
 (complex valued).</p>
@@ -400,7 +432,7 @@ and then filtered and downsampled to baseband.</p>
 Only returned if <em>return_line</em> is True.</p>
 </dd>
 </dl>
-<h2 id="other-parameters">Other Parameters<a class="headerlink" href="#other-parameters" title="Permalink to this heading">¶</a></h2>
+<h2 id="other-parameters">Other Parameters<a class="headerlink" href="#other-parameters" title="Link to this heading">¶</a></h2>
 <dl>
 <dt>data<span class="classifier">indexable object, optional</span></dt><dd><p>If given, the following parameters also accept a string <code class="docutils literal notranslate"><span class="pre">s</span></code>, which is
 interpreted as <code class="docutils literal notranslate"><span class="pre">data[s]</span></code> (unless this raises an exception):</p>
@@ -412,7 +444,7 @@ agg_filter: a filter function, which takes a (m, n, 3) float array and a dpi val
 alpha: scalar or None
 animated: bool
 antialiased or aa: bool
-clip_box: <cite>.Bbox</cite>
+clip_box: <cite>~matplotlib.transforms.BboxBase</cite> or None
 clip_on: bool
 clip_path: Patch or (Path, Transform) or None
 color or c: color
@@ -421,7 +453,7 @@ dash_joinstyle: <cite>.JoinStyle</cite> or {‘miter’, ‘round’, ‘bevel�
 dashes: sequence of floats (on/off ink in points) or (None, None)
 data: (2, N) array or two 1D arrays
 drawstyle or ds: {‘default’, ‘steps’, ‘steps-pre’, ‘steps-mid’, ‘steps-post’}, default: ‘default’
-figure: <cite>.Figure</cite>
+figure: <cite>~matplotlib.figure.Figure</cite>
 fillstyle: {‘full’, ‘left’, ‘right’, ‘bottom’, ‘top’, ‘none’}
 gapcolor: color or None
 gid: str
@@ -437,9 +469,9 @@ markerfacecoloralt or mfcalt: color
 markersize or ms: float
 markevery: None or int or (int, int) or slice or list[int] or float or (float, float) or list[bool]
 mouseover: bool
-path_effects: <cite>.AbstractPathEffect</cite>
+path_effects: list of <cite>.AbstractPathEffect</cite>
 picker: float or callable[[Artist, Event], tuple[bool, dict]]
-pickradius: unknown
+pickradius: float
 rasterized: bool
 sketch_params: (scale: float, length: float, randomness: float)
 snap: bool or None
@@ -453,13 +485,13 @@ ydata: 1D array
 zorder: float</p>
 </dd>
 </dl>
-<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
 <p>psd : is equivalent to setting <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">x</span></code>.</p>
-<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permalink to this heading">¶</a></h2>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h2>
 <p>For plotting, the power is plotted as
 <span class="math notranslate nohighlight">\(10 \log_{10}(P_{xy})\)</span> for decibels, though <span class="math notranslate nohighlight">\(P_{xy}\)</span> itself
 is returned.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2 id="references">References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <p>Bendat &amp; Piersol – Random Data: Analysis and Measurement Procedures,
 John Wiley &amp; Sons (1986)</p>
 </dd></dl>
@@ -495,7 +527,7 @@ John Wiley &amp; Sons (1986)</p>
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -516,7 +548,6 @@ John Wiley &amp; Sons (1986)</p>
       
         <script src="../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
         <script>window.MathJax = {"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script id="MathJax-script" src="../../_static/mathjax/tex-mml-chtml.js?v=cadf963e"></script>
     

@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.vertical_profile - foxes 0.6.2
+        <title>foxes.core.vertical_profile - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -331,7 +363,9 @@
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">all_subclasses</span>
 
 
-<div class="viewcode-block" id="VerticalProfile"><a class="viewcode-back" href="../../../api_core.html#foxes.core.VerticalProfile">[docs]</a><span class="k">class</span> <span class="nc">VerticalProfile</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<div class="viewcode-block" id="VerticalProfile">
+<a class="viewcode-back" href="../../../api_core.html#foxes.core.VerticalProfile">[docs]</a>
+<span class="k">class</span> <span class="nc">VerticalProfile</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for vertical profiles.</span>
 
@@ -339,7 +373,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="VerticalProfile.input_vars"><a class="viewcode-back" href="../../../_foxes/core/VerticalProfile.input_vars.html#foxes.core.VerticalProfile.input_vars">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="VerticalProfile.input_vars">
+<a class="viewcode-back" href="../../../_foxes/core/VerticalProfile.input_vars.html#foxes.core.VerticalProfile.input_vars">[docs]</a>
+    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">input_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The input variables needed for the profile</span>
@@ -353,15 +389,18 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[]</span></div>
 
-<div class="viewcode-block" id="VerticalProfile.calculate"><a class="viewcode-back" href="../../../_foxes/core/VerticalProfile.calculate.html#foxes.core.VerticalProfile.calculate">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">heights</span><span class="p">):</span>
+
+<div class="viewcode-block" id="VerticalProfile.calculate">
+<a class="viewcode-back" href="../../../_foxes/core/VerticalProfile.calculate.html#foxes.core.VerticalProfile.calculate">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tdata</span><span class="p">,</span> <span class="n">heights</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run the profile calculation.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        data: dict</span>
-<span class="sd">            The input data</span>
+<span class="sd">        tdata: dict</span>
+<span class="sd">            The target point data</span>
 <span class="sd">        heights: numpy.ndarray</span>
 <span class="sd">            The evaluation heights</span>
 
@@ -374,7 +413,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="VerticalProfile.new"><a class="viewcode-back" href="../../../_foxes/models/vertical_profiles/UniformProfile.html#foxes.core.VerticalProfile.new">[docs]</a>    <span class="nd">@classmethod</span>
+
+<div class="viewcode-block" id="VerticalProfile.new">
+<a class="viewcode-back" href="../../../_foxes/models/vertical_profiles/UniformProfile.html#foxes.core.VerticalProfile.new">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">profile_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run-time profile factory.</span>
@@ -401,7 +443,9 @@
             <span class="n">estr</span> <span class="o">=</span> <span class="s2">&quot;Vertical profile type &#39;</span><span class="si">{}</span><span class="s2">&#39; is not defined, available types are </span><span class="se">\n</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="n">profile_type</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">])</span>
             <span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">estr</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">estr</span><span class="p">)</span></div>
+</div>
+
 </code></pre></div>
 
 
@@ -433,7 +477,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

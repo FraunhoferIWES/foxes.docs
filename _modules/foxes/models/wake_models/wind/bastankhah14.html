@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.wake_models.wind.bastankhah14 - foxes 0.6.2
+        <title>foxes.models.wake_models.wind.bastankhah14 - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../../../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -332,7 +364,9 @@
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 
-<div class="viewcode-block" id="Bastankhah2014"><a class="viewcode-back" href="../../../../../api_wake_models.html#foxes.models.wake_models.wind.Bastankhah2014">[docs]</a><span class="k">class</span> <span class="nc">Bastankhah2014</span><span class="p">(</span><span class="n">GaussianWakeModel</span><span class="p">):</span>
+<div class="viewcode-block" id="Bastankhah2014">
+<a class="viewcode-back" href="../../../../../api_wake_models.html#foxes.models.wake_models.wind.Bastankhah2014">[docs]</a>
+<span class="k">class</span> <span class="nc">Bastankhah2014</span><span class="p">(</span><span class="n">GaussianWakeModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The Bastankhah 2014 wake model</span>
 
@@ -359,7 +393,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Bastankhah2014.__init__"><a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/Bastankhah2014.__init__.html#foxes.models.wake_models.wind.Bastankhah2014.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="Bastankhah2014.__init__">
+<a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/Bastankhah2014.__init__.html#foxes.models.wake_models.wind.Bastankhah2014.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">superposition</span><span class="p">,</span>
         <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -372,10 +408,8 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        superpositions: dict</span>
-<span class="sd">            The superpositions. Key: variable name str,</span>
-<span class="sd">            value: The wake superposition model name,</span>
-<span class="sd">            will be looked up in model book</span>
+<span class="sd">        superposition: str</span>
+<span class="sd">            The wind speed deficit superposition.</span>
 <span class="sd">        k: float, optional</span>
 <span class="sd">            The wake growth parameter k. If not given here</span>
 <span class="sd">            it will be searched in the farm data.</span>
@@ -395,13 +429,27 @@
 
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k_var</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Bastankhah2014.__repr__"><a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/Bastankhah2014.__repr__.html#foxes.models.wake_models.wind.Bastankhah2014.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Bastankhah2014.__repr__">
+<a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/Bastankhah2014.__repr__.html#foxes.models.wake_models.wind.Bastankhah2014.__repr__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">k</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">)</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">, sp=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="n">iname</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">induction</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">, induction=</span><span class="si">{</span><span class="n">iname</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, k_var=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;)&quot;</span>
         <span class="k">return</span> <span class="n">s</span></div>
 
-<div class="viewcode-block" id="Bastankhah2014.sub_models"><a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/Bastankhah2014.sub_models.html#foxes.models.wake_models.wind.Bastankhah2014.sub_models">[docs]</a>    <span class="k">def</span> <span class="nf">sub_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Bastankhah2014.sub_models">
+<a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/Bastankhah2014.sub_models.html#foxes.models.wake_models.wind.Bastankhah2014.sub_models">[docs]</a>
+    <span class="k">def</span> <span class="nf">sub_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        List of all sub-models</span>
 
@@ -413,7 +461,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Bastankhah2014.initialize"><a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/Bastankhah2014.initialize.html#foxes.models.wake_models.wind.Bastankhah2014.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Bastankhah2014.initialize">
+<a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/Bastankhah2014.initialize.html#foxes.models.wake_models.wind.Bastankhah2014.initialize">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the model.</span>
 
@@ -431,38 +482,16 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">induction</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">axial_induction</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">]</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">,</span> <span class="n">force</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Bastankhah2014.init_wake_deltas"><a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/Bastankhah2014.init_wake_deltas.html#foxes.models.wake_models.wind.Bastankhah2014.init_wake_deltas">[docs]</a>    <span class="k">def</span> <span class="nf">init_wake_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">pdata</span><span class="p">,</span> <span class="n">wake_deltas</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initialize wake delta storage.</span>
 
-<span class="sd">        They are added on the fly to the wake_deltas dict.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        algo: foxes.core.Algorithm</span>
-<span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata: foxes.core.Data</span>
-<span class="sd">            The model data</span>
-<span class="sd">        fdata: foxes.core.Data</span>
-<span class="sd">            The farm data</span>
-<span class="sd">        pdata: foxes.core.Data</span>
-<span class="sd">            The evaluation point data</span>
-<span class="sd">        wake_deltas: dict</span>
-<span class="sd">            The wake deltas storage, add wake deltas</span>
-<span class="sd">            on the fly. Keys: Variable name str, for which the</span>
-<span class="sd">            wake delta applies, values: numpy.ndarray with</span>
-<span class="sd">            shape (n_states, n_points, ...)</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="n">pdata</span><span class="o">.</span><span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Bastankhah2014.calc_amplitude_sigma_spsel"><a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/Bastankhah2014.calc_amplitude_sigma_spsel.html#foxes.models.wake_models.wind.Bastankhah2014.calc_amplitude_sigma_spsel">[docs]</a>    <span class="k">def</span> <span class="nf">calc_amplitude_sigma_spsel</span><span class="p">(</span>
+<div class="viewcode-block" id="Bastankhah2014.calc_amplitude_sigma">
+<a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/Bastankhah2014.calc_amplitude_sigma.html#foxes.models.wake_models.wind.Bastankhah2014.calc_amplitude_sigma">[docs]</a>
+    <span class="k">def</span> <span class="nf">calc_amplitude_sigma</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
         <span class="n">fdata</span><span class="p">,</span>
-        <span class="n">pdata</span><span class="p">,</span>
-        <span class="n">states_source_turbine</span><span class="p">,</span>
+        <span class="n">tdata</span><span class="p">,</span>
+        <span class="n">downwind_index</span><span class="p">,</span>
         <span class="n">x</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -473,72 +502,69 @@
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata: foxes.core.Data</span>
+<span class="sd">        mdata: foxes.core.MData</span>
 <span class="sd">            The model data</span>
-<span class="sd">        fdata: foxes.core.Data</span>
+<span class="sd">        fdata: foxes.core.FData</span>
 <span class="sd">            The farm data</span>
-<span class="sd">        pdata: foxes.core.Data</span>
-<span class="sd">            The evaluation point data</span>
-<span class="sd">        states_source_turbine: numpy.ndarray</span>
-<span class="sd">            For each state, one turbine index for the</span>
-<span class="sd">            wake causing turbine. Shape: (n_states,)</span>
+<span class="sd">        tdata: foxes.core.TData</span>
+<span class="sd">            The target point data</span>
+<span class="sd">        downwind_index: int</span>
+<span class="sd">            The index in the downwind order</span>
 <span class="sd">        x: numpy.ndarray</span>
-<span class="sd">            The x values, shape: (n_states, n_points)</span>
+<span class="sd">            The x values, shape: (n_states, n_targets)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        amsi: tuple</span>
 <span class="sd">            The amplitude and sigma, both numpy.ndarray</span>
-<span class="sd">            with shape (n_sp_sel,)</span>
-<span class="sd">        sp_sel: numpy.ndarray of bool</span>
-<span class="sd">            The state-point selection, for which the wake</span>
-<span class="sd">            is non-zero, shape: (n_states, n_points)</span>
+<span class="sd">            with shape (n_st_sel,)</span>
+<span class="sd">        st_sel: numpy.ndarray of bool</span>
+<span class="sd">            The state-target selection, for which the wake</span>
+<span class="sd">            is non-zero, shape: (n_states, n_targets)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># get ct:</span>
         <span class="n">ct</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
             <span class="n">FV</span><span class="o">.</span><span class="n">CT</span><span class="p">,</span>
-            <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span>
+            <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="p">,</span>
             <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
             <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
             <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
-            <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span>
+            <span class="n">tdata</span><span class="o">=</span><span class="n">tdata</span><span class="p">,</span>
+            <span class="n">downwind_index</span><span class="o">=</span><span class="n">downwind_index</span><span class="p">,</span>
             <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># select targets:</span>
-        <span class="n">sp_sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mf">1e-5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ct</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sp_sel</span><span class="p">):</span>
+        <span class="n">st_sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ct</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">st_sel</span><span class="p">):</span>
             <span class="c1"># apply selection:</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
-            <span class="n">ct</span> <span class="o">=</span> <span class="n">ct</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">st_sel</span><span class="p">]</span>
+            <span class="n">ct</span> <span class="o">=</span> <span class="n">ct</span><span class="p">[</span><span class="n">st_sel</span><span class="p">]</span>
 
             <span class="c1"># get D:</span>
             <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
                 <span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">,</span>
-                <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span>
+                <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="p">,</span>
                 <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
                 <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
                 <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
-                <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span>
+                <span class="n">tdata</span><span class="o">=</span><span class="n">tdata</span><span class="p">,</span>
+                <span class="n">downwind_index</span><span class="o">=</span><span class="n">downwind_index</span><span class="p">,</span>
                 <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">,</span>
-            <span class="p">)</span>
-            <span class="n">D</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
+            <span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
 
             <span class="c1"># get k:</span>
             <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">,</span>
-                <span class="n">FC</span><span class="o">.</span><span class="n">STATE_POINT</span><span class="p">,</span>
+                <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="p">,</span>
                 <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;sw&quot;</span><span class="p">,</span>
                 <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
                 <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
-                <span class="n">pdata</span><span class="o">=</span><span class="n">pdata</span><span class="p">,</span>
+                <span class="n">tdata</span><span class="o">=</span><span class="n">tdata</span><span class="p">,</span>
+                <span class="n">downwind_index</span><span class="o">=</span><span class="n">downwind_index</span><span class="p">,</span>
                 <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                <span class="n">states_source_turbine</span><span class="o">=</span><span class="n">states_source_turbine</span><span class="p">,</span>
-            <span class="p">)</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
+            <span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
 
             <span class="c1"># calculate sigma:</span>
             <span class="c1"># beta = 0.5 * (1 + np.sqrt(1.0 - ct)) / np.sqrt(1.0 - ct)</span>
@@ -553,12 +579,14 @@
 
         <span class="c1"># case no targets:</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">sp_sel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
-            <span class="n">n_sp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sp_sel</span><span class="p">)</span>
+            <span class="n">st_sel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+            <span class="n">n_sp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">st_sel</span><span class="p">)</span>
             <span class="n">ampld</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_sp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
             <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_sp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="p">(</span><span class="n">ampld</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)},</span> <span class="n">sp_sel</span></div></div>
+        <span class="k">return</span> <span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="p">(</span><span class="n">ampld</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)},</span> <span class="n">st_sel</span></div>
+</div>
+
 </code></pre></div>
 
 
@@ -590,7 +618,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   

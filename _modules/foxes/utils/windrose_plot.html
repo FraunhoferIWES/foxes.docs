@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.windrose_plot - foxes 0.6.2
+        <title>foxes.utils.windrose_plot - foxes 0.7
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.6.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../index.html" title="foxes 0.7
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.6.2
+            foxes 0.7
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.6.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.6.2
+    <a href="../../../index.html" title="foxes 0.7
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.6.2
+    foxes 0.7
  documentation
   </label>
   
@@ -226,6 +226,38 @@
     <li class="md-nav__item">
       <a href="../../../installation.html" class="md-nav__link">
         <span title="/installation.md (reference label)" class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../overview.html" class="md-nav__link">
+        <span title="/overview.md (reference label)" class="md-ellipsis">Overview -<wbr> how to setup foxes</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../models.html" class="md-nav__link">
+        <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
       </a>
     </li>
   
@@ -334,7 +366,9 @@
 <span class="n">DPI_DEFAULT</span> <span class="o">=</span> <span class="mi">80</span>
 
 
-<div class="viewcode-block" id="TabWindroseAxes"><a class="viewcode-back" href="../../../api_utils.html#foxes.utils.TabWindroseAxes">[docs]</a><span class="k">class</span> <span class="nc">TabWindroseAxes</span><span class="p">(</span><span class="n">WindroseAxes</span><span class="p">):</span>
+<div class="viewcode-block" id="TabWindroseAxes">
+<a class="viewcode-back" href="../../../api_utils.html#foxes.utils.TabWindroseAxes">[docs]</a>
+<span class="k">class</span> <span class="nc">TabWindroseAxes</span><span class="p">(</span><span class="n">WindroseAxes</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A derivate of the wind rose axes that runs</span>
 <span class="sd">    on stochastic data (bins with weights) instead</span>
@@ -344,7 +378,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TabWindroseAxes.from_ax"><a class="viewcode-back" href="../../../_foxes/utils/TabWindroseAxes.from_ax.html#foxes.utils.TabWindroseAxes.from_ax">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="TabWindroseAxes.from_ax">
+<a class="viewcode-back" href="../../../_foxes/utils/TabWindroseAxes.from_ax.html#foxes.utils.TabWindroseAxes.from_ax">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_ax</span><span class="p">(</span>
         <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -371,6 +407,7 @@
             <span class="k">return</span> <span class="n">ax</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">ax</span></div>
+
 
     <span class="k">def</span> <span class="nf">_init_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
@@ -431,6 +468,7 @@
             <span class="n">angle</span> <span class="o">=</span> <span class="mf">360.0</span> <span class="o">/</span> <span class="n">nsector</span>
             <span class="n">dir_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">angle</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">360.0</span> <span class="o">+</span> <span class="n">angle</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
             <span class="n">dir_edges</span> <span class="o">=</span> <span class="n">dir_bins</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
             <span class="n">dir_edges</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">dir_edges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">dir_edges</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">dir_bins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -446,11 +484,14 @@
             <span class="n">bins</span><span class="p">,</span>
             <span class="n">table</span><span class="p">,</span>
         <span class="p">)</span>
-
         <span class="k">return</span> <span class="n">bins</span><span class="p">,</span> <span class="n">nbins</span><span class="p">,</span> <span class="n">nsector</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">angles</span><span class="p">,</span> <span class="n">kwargs</span>
 
-<div class="viewcode-block" id="TabWindroseAxes.legend"><a class="viewcode-back" href="../../../_foxes/utils/TabWindroseAxes.legend.html#foxes.utils.TabWindroseAxes.legend">[docs]</a>    <span class="k">def</span> <span class="nf">legend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+<div class="viewcode-block" id="TabWindroseAxes.legend">
+<a class="viewcode-back" href="../../../_foxes/utils/TabWindroseAxes.legend.html#foxes.utils.TabWindroseAxes.legend">[docs]</a>
+    <span class="k">def</span> <span class="nf">legend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</div>
+
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
@@ -508,7 +549,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.1.2.
+    7.2.6.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
