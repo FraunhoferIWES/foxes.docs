@@ -13,7 +13,7 @@
     
     
       
-        <title>Models - foxes 0.7
+        <title>Models - foxes 0.7.1
  documentation</title>
       
     
@@ -77,8 +77,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="foxes 0.7
- documentation" class="md-header__button md-logo" aria-label="foxes 0.7
+    <a href="index.html" title="foxes 0.7.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7.1
  documentation" data-md-component="logo">
       
   
@@ -91,7 +91,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.7
+            foxes 0.7.1
  documentation
           </span>
         </div>
@@ -179,14 +179,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="foxes 0.7
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
+    <a href="index.html" title="foxes 0.7.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.7
+    foxes 0.7.1
  documentation
   </label>
   
@@ -338,13 +338,6 @@
         <li class="md-nav__item">
   <a href="#turbine-models" class="md-nav__link">
     <span title="/models.rst#turbine-models (reference label)" class="md-ellipsis">Turbine models</span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#id1" class="md-nav__link">
-    <span title="/models.rst#id1 (reference label)" class="md-ellipsis">Turbine types</span>
   </a>
   
 </li>
@@ -510,13 +503,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#id1" class="md-nav__link">
-    <span title="/models.rst#id1 (reference label)" class="md-ellipsis">Turbine types</span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#point-models" class="md-nav__link">
     <span title="/models.rst#point-models (reference label)" class="md-ellipsis">Point models</span>
   </a>
@@ -549,21 +535,20 @@
 <p>The results of <em>foxes</em> runs depend on a number of model choices by the user:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#rotor-models"><span class="std std-ref">Rotor models</span></a>: Evaluate the flow field at the rotor and compute ambient rotor equivalent quantities.</p></li>
-<li><p><a class="reference internal" href="#id1"><span class="std std-ref">Turbine types</span></a>: Define rotor diameter and hub height, and provide thrust coefficient and power yield depending on rotor equivalent quantities.</p></li>
+<li><p><a class="reference internal" href="#turbine-types"><span class="std std-ref">Turbine types</span></a>: Define rotor diameter and hub height, and provide thrust coefficient and power yield depending on rotor equivalent quantities.</p></li>
 <li><p><a class="reference internal" href="#wake-frames"><span class="std std-ref">Wake frames</span></a>: Determine the path of wake propagation and the local coordinate system that follows the centreline of the wake.</p></li>
 <li><p><a class="reference internal" href="#wake-models"><span class="std std-ref">Wake models</span></a>: Compute wake deltas for flow quantities in the wake of a turbine.</p></li>
 <li><p><a class="reference internal" href="#partial-wakes"><span class="std std-ref">Partial wakes</span></a>: Compute rotor disc averages of wake effects, i.e., the partial wakes models calculate the rotor effective wake deltas.</p></li>
 <li><p><a class="reference internal" href="#turbine-models"><span class="std std-ref">Turbine models</span></a>: Each wind turbine within the wind farm can have individual turbine model choices. For each state and turbine, those compute data from currently existing data.</p></li>
-<li><p><a class="reference internal" href="#id1"><span class="std std-ref">Turbine types</span></a>: Turbine types are turbine models that define the rotor and provide power and thrust coefficients.</p></li>
 <li><p><a class="reference internal" href="#point-models"><span class="std std-ref">Point models</span></a>: Calculate point-based data during the evaluation of <cite>algo.calc_points()</cite>, or as a modification of ambient states., like those from the ambient input states.</p></li>
 <li><p><a class="reference internal" href="#vertical-profiles"><span class="std std-ref">Vertical profiles</span></a>: Analytical vertical profiles transform uniform ambient states into height dependent inflow.</p></li>
 </ul>
 <p>All concrete models are stored in the so-called <code class="code docutils literal notranslate"><span class="pre">ModelBook</span></code> object under
-a name string, see <a class="reference internal" href="notebooks/model_book.html#The-model-book"><span class="std std-ref">this example</span></a>.</p>
+a name string (or a name string template that is provided by a so-called model factory),
+see <a class="reference internal" href="notebooks/model_book.html#The-model-book"><span class="std std-ref">this example</span></a>.</p>
 <h2 id="rotor-models">Rotor models<a class="headerlink" href="#rotor-models" title="Link to this heading">¶</a></h2>
 <p>Rotor models evaluate the flow field at the rotor and compute ambient rotor equivalent quantities, for example the rotor averaged
-background wind speed. See <a class="reference internal" href="notebooks/rotor_models.html#Rotor-model-visualizations"><span class="std std-ref">here</span></a> for a list of available
-models and rotor point visualizations.</p>
+background wind speed. The list of available models and also rotor point visualizations can be found <a class="reference internal" href="notebooks/rotor_models.html#Rotor-model-visualizations"><span class="std std-ref">in this example</span></a>.</p>
 <h2 id="turbine-types">Turbine types<a class="headerlink" href="#turbine-types" title="Link to this heading">¶</a></h2>
 <p>Turbine type models define rotor diameter and hub height, and provide thrust coefficient and power yield depending on rotor equivalent quantities.
 They are either chosen from the provided <a class="reference internal" href="notebooks/data.html#Power-and-thrust-curves"><span class="std std-ref">static data</span></a> by their model name (e.g. <em>DTU10MW</em>),
@@ -621,10 +606,10 @@ heterogeneous background flow can cause wrong results in multiple ways.</p>
 contains many pre-defined wake frames, for example:</p>
 <ul class="simple">
 <li><p><cite>rotor_wd</cite>: Straight wakes, following the wind direction measured at the centre of the wake causing rotor.</p></li>
-<li><p><cite>yawed</cite>, <cite>yawed_k002</cite>, <cite>yawed_k004</cite>: Wake bending due to yaw misalignment of the rotor, as represented by the <cite>YAWM</cite> variable. See <a class="reference internal" href="notebooks/yawed_wake.html#Yawed-rotor-wakes"><span class="std std-ref">this example</span></a>.</p></li>
-<li><p><cite>streamlines_X</cite>: Streamline (or streaklines) following steady-state wakes, for a virtual time step of <cite>X = 1, 5, 10, 50, 100, 500</cite> seconds. See <a class="reference internal" href="notebooks/heterogeneous.html#Heterogeneous-flow"><span class="std std-ref">this example</span></a>.</p></li>
-<li><p><cite>timelines</cite>, <cite>timelines_X</cite>: Dynamic flow following wakes for spatially homogeneous wind data, optionally with time step of <cite>X = 1s, 10s, 30s, 1min, 10min, 30min</cite>. See <a class="reference internal" href="notebooks/timelines.html#Dynamic-wakes-1"><span class="std std-ref">this example</span></a>.</p></li>
-<li><p><cite>seq_dyn_wakes</cite>, <cite>seq_dyn_wakes_X</cite>: Sequential state evaluation (caution: slow, no state chunking), optionally with time step of <cite>X = 1s, 10s, 30s, 1min, 10min, 30min</cite>. See <a class="reference internal" href="notebooks/sequential.html#Dynamic-wakes-2"><span class="std std-ref">this example</span></a>.</p></li>
+<li><p><cite>yawed</cite>, <cite>yawed_k&lt;k&gt;</cite>: Wake bending due to yaw misalignment of the rotor, as represented by the <cite>YAWM</cite> variable. See <a class="reference internal" href="notebooks/yawed_wake.html#Yawed-rotor-wakes"><span class="std std-ref">this example</span></a>.</p></li>
+<li><p><cite>streamlines_&lt;step&gt;</cite>: Streamline (or streaklines) following steady-state wakes, for a virtual time step of <cite>step</cite> seconds. See <a class="reference internal" href="notebooks/heterogeneous.html#Heterogeneous-flow"><span class="std std-ref">this example</span></a>.</p></li>
+<li><p><cite>timelines</cite>, <cite>timelines_&lt;dt&gt;</cite>: Dynamic flow following wakes for spatially homogeneous wind data, optionally with time step <cite>dt</cite>, e.g. <cite>dt=10s</cite> or <cite>dt=1min</cite>, or other values with one of those two units. See <a class="reference internal" href="notebooks/timelines.html#Dynamic-wakes-1"><span class="std std-ref">this example</span></a>.</p></li>
+<li><p><cite>seq_dyn_wakes</cite>, <cite>seq_dyn_wakes_&lt;dt&gt;</cite>: Sequential state evaluation (caution: slow, no state chunking), optionally with time step <cite>dt</cite>, e.g. <cite>dt=10s</cite> or <cite>dt=1min</cite>, or other values with one of those two units. See <a class="reference internal" href="notebooks/sequential.html#Dynamic-wakes-2"><span class="std std-ref">this example</span></a>.</p></li>
 </ul>
 <h2 id="wake-models">Wake models<a class="headerlink" href="#wake-models" title="Link to this heading">¶</a></h2>
 <p>Wake models compute wake deltas for flow quantities in the wake. Wind speed deficits and turbulence
@@ -656,9 +641,28 @@ a choice of the underlying <a class="reference internal" href="api_models.html#f
 in their constructor, in terms of their respective name in the <a class="reference internal" href="notebooks/model_book.html#The-model-book"><span class="std std-ref">model book</span></a>.
 Examples are <cite>ws_linear</cite> for linear wind deficit superposition, or <cite>ti_quadratic</cite>
 for quadratic TI wake increase superposition.</p>
-<p>The list of wake models in the <a class="reference internal" href="notebooks/model_book.html#The-model-book"><span class="std std-ref">default model book</span></a> is long,
-but that is mainly due to the resulting combinations of wake model
-classes with superposition models and wake parameter choices.</p>
+<p>The list of wake model name templates in the <a class="reference internal" href="notebooks/model_book.html#The-model-book"><span class="std std-ref">default model book</span></a> is long,
+but that is mainly due to variations of various constructor argument choices. Typical examples are</p>
+<ul class="simple">
+<li><p><cite>Jensen_&lt;superposition&gt;_k&lt;k&gt;</cite>: The classic Jensen wind deficit model, with any of the available <a class="reference internal" href="api_models.html#foxes-models-wake-superpositions"><span class="std std-ref">wake superposition models</span></a> for wind speed, and any value for the wake growth parameter <cite>k</cite>.</p></li>
+<li><p><cite>Bastankhah2014_&lt;superposition&gt;_k&lt;k&gt;</cite>: The Gaussian wind deficit model by <a class="reference external" href="https://doi.org/10.1016/j.renene.2014.01.002">Bastankhah and Porté-Agel from 2014</a>, with any of the available <a class="reference internal" href="api_models.html#foxes-models-wake-superpositions"><span class="std std-ref">wake superposition models</span></a> for wind speed, and any value for the wake growth parameter <cite>k</cite>.</p></li>
+<li><p><cite>Bastankhah2016_&lt;superposition&gt;_k&lt;k&gt;</cite>: The wind deficit model by <a class="reference external" href="https://doi.org/10.1017/jfm.2016.595">Bastankhah and Porté-Agel from 2016</a>, with any of the available <a class="reference internal" href="api_models.html#foxes-models-wake-superpositions"><span class="std std-ref">wake superposition models</span></a> for wind speed, and any value for the wake growth parameter <cite>k</cite>.</p></li>
+<li><p><cite>TurbOPark_&lt;superposition&gt;_k&lt;k&gt;</cite>: The Gaussian wind deficit model by <a class="reference external" href="https://iopscience.iop.org/article/10.1088/1742-6596/2265/2/022063/pdf">Pedersen et al. from 2022</a>, with any of the available <a class="reference internal" href="api_models.html#foxes-models-wake-superpositions"><span class="std std-ref">wake superposition models</span></a> for wind speed, and any value for the wake growth parameter <cite>k</cite>.</p></li>
+<li><p><cite>CrespoHernandez_&lt;superposition&gt;_k&lt;k&gt;</cite>: The top-hat TI addition wake model by <a class="reference external" href="https://doi.org/10.1016/0167-6105(95)00033-X">Crespo and Hernandez from 1996</a>, with any of the available <a class="reference internal" href="api_models.html#foxes-models-wake-superpositions"><span class="std std-ref">wake superposition models</span></a> for TI, and any value for the wake growth parameter <cite>k</cite>.</p></li>
+<li><p><cite>IECTI2019_&lt;superposition&gt;</cite>: The top-hat TI addition wake model by <a class="reference external" href="http://orbit.dtu.dk/files/3750291/2009_31.pdf">Frandsen from 2019</a>, with any of the available <a class="reference internal" href="api_models.html#foxes-models-wake-superpositions"><span class="std std-ref">wake superposition models</span></a> for TI.</p></li>
+</ul>
+<p>The wake growth parameter <cite>k</cite> follows the convention in the above name templates that the
+dot after the zero is to be skipped, e.g., “004” represents the value 0.04. The <cite>superposition</cite> parameter is
+for example <cite>linear</cite> for the choice <cite>ws_linear</cite> or <cite>ti_linear</cite>, depending if the wake model targets wind speed or TI
+(cf. the <a class="reference internal" href="notebooks/model_book.html#The-model-book"><span class="std std-ref">model book</span></a> example).</p>
+<p>There are also model name templates in the default model book for the above
+models that do not specify the <cite>k</cite> parameter, e.g.
+<cite>Jensen_&lt;superposition&gt;</cite> for the Jensen model.
+In that case the <cite>k</cite> will be searched in the list of
+farm variables, which means that the values have to be provided by some other model.
+Typically this task is done by a <a class="reference internal" href="_foxes/models/turbine_models/kTI.html"><span class="std std-ref">kTI</span></a> turbine model,
+cf. Section <a class="reference internal" href="#turbine-models"><span class="std std-ref">Turbine models</span></a> below, but also other turbine models (or an optimization)
+could address this variable.</p>
 <h2 id="partial-wakes">Partial wakes<a class="headerlink" href="#partial-wakes" title="Link to this heading">¶</a></h2>
 <p>Partial wakes models compute rotor disc averages of wake effects, i.e.,
 the partial wakes models calculate the rotor effective wake deltas.</p>
@@ -678,8 +682,8 @@ can be found under the names</p>
 <li><p><cite>centre</cite>: The centre point model,</p></li>
 <li><p><cite>rotor_points</cite>: The rotor points model,</p></li>
 <li><p><cite>top_hat</cite>: The top-hat model,</p></li>
-<li><p><cite>axiwakeN</cite>: The axiwake model, with <cite>N = 2, 3, …, 10, 20</cite>, representing <cite>n</cite> steps for the discretization of the integral over each downstream rotor,</p></li>
-<li><p><cite>gridN</cite>: The grid model with <cite>N = 4, 9, 16, 25, 36, …, 100, 400</cite> points.</p></li>
+<li><p><cite>axiwake&lt;n&gt;</cite>: The axiwake model, with <cite>n</cite> representing the number of steps for the discretization of the integral over each downstream rotor,</p></li>
+<li><p><cite>grid&lt;n2&gt;</cite>: The grid model with <cite>n2</cite> representing the number of points in a regular square grid.</p></li>
 </ul>
 <p>Partial wakes are now chosen when costructing the algorithm object.
 There are several ways of specifying partial wakes model choices for
@@ -708,12 +712,6 @@ For each state and turbine, those compute data from currently existing data.</p>
 <li><p><a class="reference internal" href="_foxes/models/turbine_models/Calculator.html"><span class="std std-ref">Calculator</span></a>: Apply any user-written function that calculates values of farm variables.</p></li>
 <li><p><a class="reference internal" href="_foxes/models/turbine_models/LookupTable.html"><span class="std std-ref">LookupTable</span></a>: Use a lookup-table for the computation of farm variables.</p></li>
 </ul>
-<h2 id="id1">Turbine types<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
-<p>Turbine types are turbine models that define basic rotor data, like rotor diameter,
-hub height and nominal power, and evaluate the power and thrust coefficient curves.</p>
-<p>The currently available turbine types are listed <a class="reference internal" href="api_models.html#foxes-models-turbine-types"><span class="std std-ref">here in the API</span></a>.
-Notice that several inputs are supported, e.g. power or power coefficient curves,
-air density dependent data, etc.</p>
 <h2 id="point-models">Point models<a class="headerlink" href="#point-models" title="Link to this heading">¶</a></h2>
 <p>Calculate point-based data during the evaluation of <cite>algo.calc_points()</cite>,
 or as a modification of ambient states.</p>
@@ -830,7 +828,6 @@ provided wind data, as well as roughness length <cite>FV.Z0</cite> and Monin-Obu
       
         <script src="_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
   </body>
 </html>

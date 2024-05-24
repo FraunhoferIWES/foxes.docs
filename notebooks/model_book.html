@@ -13,7 +13,7 @@
     
     
       
-        <title>The model book - foxes 0.7
+        <title>The model book - foxes 0.7.1
  documentation</title>
       
     
@@ -73,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 0.7
- documentation" class="md-header__button md-logo" aria-label="foxes 0.7
+    <a href="../index.html" title="foxes 0.7.1
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7.1
  documentation" data-md-component="logo">
       
   
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.7
+            foxes 0.7.1
  documentation
           </span>
         </div>
@@ -175,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 0.7
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.7
+    <a href="../index.html" title="foxes 0.7.1
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.1
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.7
+    foxes 0.7.1
  documentation
   </label>
   
@@ -316,6 +316,21 @@
         <span title="/notebooks/model_book.ipynb (reference label)" class="md-ellipsis">The model book</span>
       </a>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rotor_models.html" class="md-nav__link">
+        <span title="/notebooks/rotor_models.ipynb (reference label)" class="md-ellipsis">Rotor model visualizations</span>
+      </a>
     </li>
   
 
@@ -655,42 +670,22 @@ farm_models
 farm_PMask: Turbine2FarmModel(PowerMask(var_ws_P=REWS3, P_lim=100, induction=Betz))
 farm_hubh_data: Turbine2FarmModel(RotorCentreCalc())
 farm_kTI: Turbine2FarmModel(kTI(kTI=None, kb=0, ti_var=TI, k_var=k))
-farm_kTI_02: Turbine2FarmModel(kTI(kTI=0.2, kb=0, ti_var=TI, k_var=k))
-farm_kTI_04: Turbine2FarmModel(kTI(kTI=0.4, kb=0, ti_var=TI, k_var=k))
-farm_kTI_05: Turbine2FarmModel(kTI(kTI=0.5, kb=0, ti_var=TI, k_var=k))
 farm_kTI_amb: Turbine2FarmModel(kTI(kTI=None, kb=0, ti_var=AMB_TI, k_var=k))
-farm_kTI_amb_02: Turbine2FarmModel(kTI(kTI=0.2, kb=0, ti_var=AMB_TI, k_var=k))
-farm_kTI_amb_04: Turbine2FarmModel(kTI(kTI=0.4, kb=0, ti_var=AMB_TI, k_var=k))
-farm_kTI_amb_05: Turbine2FarmModel(kTI(kTI=0.5, kb=0, ti_var=AMB_TI, k_var=k))
 farm_thrust2ct: Turbine2FarmModel(Thrust2Ct(thrust_var=T, var_ws_ct=REWS2))
 farm_yaw2yawm: Turbine2FarmModel(YAW2YAWM())
 farm_yawm2yaw: Turbine2FarmModel(YAWM2YAW())
 
 partial_wakes
 -------------
-axiwake10: PartialAxiwake(n=10)
-axiwake2: PartialAxiwake(n=2)
-axiwake20: PartialAxiwake(n=20)
-axiwake3: PartialAxiwake(n=3)
-axiwake4: PartialAxiwake(n=4)
-axiwake5: PartialAxiwake(n=5)
-axiwake6: PartialAxiwake(n=6)
-axiwake7: PartialAxiwake(n=7)
-axiwake8: PartialAxiwake(n=8)
-axiwake9: PartialAxiwake(n=9)
 centre: PartialCentre()
-grid100: PartialGrid(rotor_model=GridRotor18)
-grid16: PartialGrid(rotor_model=GridRotor12)
-grid25: PartialGrid(rotor_model=GridRotor13)
-grid36: PartialGrid(rotor_model=GridRotor14)
-grid4: PartialGrid(rotor_model=GridRotor10)
-grid400: PartialGrid(rotor_model=GridRotor19)
-grid49: PartialGrid(rotor_model=GridRotor15)
-grid64: PartialGrid(rotor_model=GridRotor16)
-grid81: PartialGrid(rotor_model=GridRotor17)
-grid9: PartialGrid(rotor_model=GridRotor11)
 rotor_points: RotorPoints()
 top_hat: PartialTopHat()
+
+axiwake&lt;n&gt;: PartialAxiwake with
+  n=(Number of evaluation points)
+
+grid&lt;n2&gt;: PartialGrid with
+  n2=(Number of points in square grid)
 
 point_models
 ------------
@@ -699,42 +694,52 @@ tke2ti: TKE2TI()
 rotor_models
 ------------
 centre: CentreRotor()
-grid100: GridRotor(n=10)
-grid16: GridRotor(n=4)
-grid25: GridRotor(n=5)
-grid36: GridRotor(n=6)
-grid4: GridRotor(n=2)
-grid400: GridRotor(n=20)
-grid49: GridRotor(n=7)
-grid64: GridRotor(n=8)
-grid81: GridRotor(n=9)
-grid9: GridRotor(n=3)
-level10: LevelRotor(n=10)
-level2: LevelRotor(n=2)
-level20: LevelRotor(n=20)
-level3: LevelRotor(n=3)
-level4: LevelRotor(n=4)
-level5: LevelRotor(n=5)
-level6: LevelRotor(n=6)
-level7: LevelRotor(n=7)
-level8: LevelRotor(n=8)
-level9: LevelRotor(n=9)
+
+grid&lt;n2&gt;: GridRotor with
+  calc_vars=[&#39;REWS&#39;, &#39;REWS2&#39;, &#39;REWS3&#39;, &#39;TI&#39;, &#39;RHO&#39;]
+  reduce=True
+  n2=(Number of points in square grid)
+
+raw_grid&lt;n2&gt;: GridRotor with
+  calc_vars=[&#39;REWS&#39;, &#39;REWS2&#39;, &#39;REWS3&#39;, &#39;TI&#39;, &#39;RHO&#39;]
+  reduce=False
+  n2=(Number of points in square grid)
+
+level&lt;n&gt;: LevelRotor with
+  calc_vars=[&#39;REWS&#39;, &#39;REWS2&#39;, &#39;REWS3&#39;, &#39;TI&#39;, &#39;RHO&#39;]
+  reduce=True
+  n=(Number of vertical levels)
+
+raw_level&lt;n&gt;: LevelRotor with
+  calc_vars=[&#39;REWS&#39;, &#39;REWS2&#39;, &#39;REWS3&#39;, &#39;TI&#39;, &#39;RHO&#39;]
+  reduce=False
+  n=(Number of vertical levels)
 
 turbine_models
 --------------
 PMask: PowerMask(var_ws_P=REWS3, P_lim=100, induction=Betz)
 hubh_data: RotorCentreCalc()
 kTI: kTI(kTI=None, kb=0, ti_var=TI, k_var=k)
-kTI_02: kTI(kTI=0.2, kb=0, ti_var=TI, k_var=k)
-kTI_04: kTI(kTI=0.4, kb=0, ti_var=TI, k_var=k)
-kTI_05: kTI(kTI=0.5, kb=0, ti_var=TI, k_var=k)
 kTI_amb: kTI(kTI=None, kb=0, ti_var=AMB_TI, k_var=k)
-kTI_amb_02: kTI(kTI=0.2, kb=0, ti_var=AMB_TI, k_var=k)
-kTI_amb_04: kTI(kTI=0.4, kb=0, ti_var=AMB_TI, k_var=k)
-kTI_amb_05: kTI(kTI=0.5, kb=0, ti_var=AMB_TI, k_var=k)
 thrust2ct: Thrust2Ct(thrust_var=T, var_ws_ct=REWS2)
 yaw2yawm: YAW2YAWM()
 yawm2yaw: YAWM2YAW()
+
+kTI_&lt;kTI&gt;_&lt;kb&gt;: kTI with
+  kTI=(Value, e.g. 004 for 0.04)
+  kb=(Value, e.g. 004 for 0.04)
+
+kTI_&lt;kTI&gt;: kTI with
+  kTI=(Value, e.g. 004 for 0.04)
+
+kTI_amb_&lt;kTI&gt;_&lt;kb&gt;: kTI with
+  ti_var=AMB_TI
+  kTI=(Value, e.g. 004 for 0.04)
+  kb=(Value, e.g. 004 for 0.04)
+
+kTI_amb_&lt;kTI&gt;: kTI with
+  ti_var=AMB_TI
+  kTI=(Value, e.g. 004 for 0.04)
 
 turbine_types
 -------------
@@ -748,698 +753,135 @@ wake_frames
 -----------
 rotor_wd: RotorWD()
 rotor_wd_farmo: FarmOrder()
-seq_dyn_wakes: SeqDynamicWakes(dt_min=None)
-seq_dyn_wakes_10min: SeqDynamicWakes(dt_min=10)
-seq_dyn_wakes_10s: SeqDynamicWakes(dt_min=0.16666666666666666)
-seq_dyn_wakes_1min: SeqDynamicWakes(dt_min=1)
-seq_dyn_wakes_1s: SeqDynamicWakes(dt_min=0.016666666666666666)
-seq_dyn_wakes_30min: SeqDynamicWakes(dt_min=30)
-seq_dyn_wakes_30s: SeqDynamicWakes(dt_min=0.5)
-streamlines_1: Streamlines2D(step=1.0)
-streamlines_10: Streamlines2D(step=10.0)
-streamlines_100: Streamlines2D(step=100.0)
-streamlines_100_farmo: FarmOrder()
-streamlines_100_yawed: YawedWakes(k_var=k)
-streamlines_10_farmo: FarmOrder()
-streamlines_10_yawed: YawedWakes(k_var=k)
-streamlines_1_farmo: FarmOrder()
-streamlines_1_yawed: YawedWakes(k_var=k)
-streamlines_5: Streamlines2D(step=5.0)
-streamlines_50: Streamlines2D(step=50.0)
-streamlines_500: Streamlines2D(step=500.0)
-streamlines_500_farmo: FarmOrder()
-streamlines_500_yawed: YawedWakes(k_var=k)
-streamlines_50_farmo: FarmOrder()
-streamlines_50_yawed: YawedWakes(k_var=k)
-streamlines_5_farmo: FarmOrder()
-streamlines_5_yawed: YawedWakes(k_var=k)
 timelines: Timelines(dt_min=None)
-timelines_10min: Timelines(dt_min=10)
-timelines_10s: Timelines(dt_min=0.16666666666666666)
-timelines_1km: Timelines(dt_min=None)
-timelines_1min: Timelines(dt_min=1)
-timelines_1s: Timelines(dt_min=0.016666666666666666)
-timelines_30min: Timelines(dt_min=30)
-timelines_30s: Timelines(dt_min=0.5)
 yawed: YawedWakes(k_var=k)
-yawed_k002: YawedWakes(k=0.02)
-yawed_k004: YawedWakes(k=0.04)
+
+yawed_k&lt;k&gt;: YawedWakes with
+  k=(Value, e.g. 004 for 0.04)
+
+streamlines_&lt;step&gt;: Streamlines2D with
+  step=(Step size in m)
+
+streamlines_&lt;step&gt;: Streamlines2D with
+  step=(Step size in m)
+
+timelines_&lt;dt&gt;: Timelines with
+  dt=(Time step, e.g &#39;10s&#39;, &#39;1min&#39; etc.)
+
+seq_dyn_wakes_&lt;dt&gt;: SeqDynamicWakes with
+  dt=(Time step, e.g &#39;10s&#39;, &#39;1min&#39; etc.)
 
 wake_models
 -----------
-Bastankhah025B_cubic: Bastankhah2014(ws_cubic, induction=Betz, k_var=k)
-Bastankhah025B_cubic_amb: Bastankhah2014(ws_cubic_amb, induction=Betz, k_var=k)
-Bastankhah025B_cubic_amb_k002: Bastankhah2014(ws_cubic_amb, induction=Betz, k=0.02)
-Bastankhah025B_cubic_amb_k004: Bastankhah2014(ws_cubic_amb, induction=Betz, k=0.04)
-Bastankhah025B_cubic_k002: Bastankhah2014(ws_cubic, induction=Betz, k=0.02)
-Bastankhah025B_cubic_k004: Bastankhah2014(ws_cubic, induction=Betz, k=0.04)
-Bastankhah025B_linear: Bastankhah2014(ws_linear, induction=Betz, k_var=k)
-Bastankhah025B_linear_amb: Bastankhah2014(ws_linear_amb, induction=Betz, k_var=k)
-Bastankhah025B_linear_amb_k002: Bastankhah2014(ws_linear_amb, induction=Betz, k=0.02)
-Bastankhah025B_linear_amb_k004: Bastankhah2014(ws_linear_amb, induction=Betz, k=0.04)
-Bastankhah025B_linear_amb_lim: Bastankhah2014(ws_linear_amb_lim, induction=Betz, k_var=k)
-Bastankhah025B_linear_amb_lim_k002: Bastankhah2014(ws_linear_amb_lim, induction=Betz, k=0.02)
-Bastankhah025B_linear_amb_lim_k004: Bastankhah2014(ws_linear_amb_lim, induction=Betz, k=0.04)
-Bastankhah025B_linear_k002: Bastankhah2014(ws_linear, induction=Betz, k=0.02)
-Bastankhah025B_linear_k004: Bastankhah2014(ws_linear, induction=Betz, k=0.04)
-Bastankhah025B_linear_lim: Bastankhah2014(ws_linear_lim, induction=Betz, k_var=k)
-Bastankhah025B_linear_lim_k002: Bastankhah2014(ws_linear_lim, induction=Betz, k=0.02)
-Bastankhah025B_linear_lim_k004: Bastankhah2014(ws_linear_lim, induction=Betz, k=0.04)
-Bastankhah025B_max_amb: Bastankhah2014(ws_max_amb, induction=Betz, k_var=k)
-Bastankhah025B_max_amb_k002: Bastankhah2014(ws_max_amb, induction=Betz, k=0.02)
-Bastankhah025B_max_amb_k004: Bastankhah2014(ws_max_amb, induction=Betz, k=0.04)
-Bastankhah025B_product: Bastankhah2014(ws_product, induction=Betz, k_var=k)
-Bastankhah025B_product_k002: Bastankhah2014(ws_product, induction=Betz, k=0.02)
-Bastankhah025B_product_k004: Bastankhah2014(ws_product, induction=Betz, k=0.04)
-Bastankhah025B_product_lim: Bastankhah2014(ws_product_lim, induction=Betz, k_var=k)
-Bastankhah025B_product_lim_k002: Bastankhah2014(ws_product_lim, induction=Betz, k=0.02)
-Bastankhah025B_product_lim_k004: Bastankhah2014(ws_product_lim, induction=Betz, k=0.04)
-Bastankhah025B_quadratic: Bastankhah2014(ws_quadratic, induction=Betz, k_var=k)
-Bastankhah025B_quadratic_amb: Bastankhah2014(ws_quadratic_amb, induction=Betz, k_var=k)
-Bastankhah025B_quadratic_amb_k002: Bastankhah2014(ws_quadratic_amb, induction=Betz, k=0.02)
-Bastankhah025B_quadratic_amb_k004: Bastankhah2014(ws_quadratic_amb, induction=Betz, k=0.04)
-Bastankhah025B_quadratic_amb_lim: Bastankhah2014(ws_quadratic_amb_lim, induction=Betz, k_var=k)
-Bastankhah025B_quadratic_amb_lim_k002: Bastankhah2014(ws_quadratic_amb_lim, induction=Betz, k=0.02)
-Bastankhah025B_quadratic_amb_lim_k004: Bastankhah2014(ws_quadratic_amb_lim, induction=Betz, k=0.04)
-Bastankhah025B_quadratic_k002: Bastankhah2014(ws_quadratic, induction=Betz, k=0.02)
-Bastankhah025B_quadratic_k004: Bastankhah2014(ws_quadratic, induction=Betz, k=0.04)
-Bastankhah025B_quadratic_lim: Bastankhah2014(ws_quadratic_lim, induction=Betz, k_var=k)
-Bastankhah025B_quadratic_lim_k002: Bastankhah2014(ws_quadratic_lim, induction=Betz, k=0.02)
-Bastankhah025B_quadratic_lim_k004: Bastankhah2014(ws_quadratic_lim, induction=Betz, k=0.04)
-Bastankhah025B_quartic: Bastankhah2014(ws_quartic, induction=Betz, k_var=k)
-Bastankhah025B_quartic_amb: Bastankhah2014(ws_quartic_amb, induction=Betz, k_var=k)
-Bastankhah025B_quartic_amb_k002: Bastankhah2014(ws_quartic_amb, induction=Betz, k=0.02)
-Bastankhah025B_quartic_amb_k004: Bastankhah2014(ws_quartic_amb, induction=Betz, k=0.04)
-Bastankhah025B_quartic_k002: Bastankhah2014(ws_quartic, induction=Betz, k=0.02)
-Bastankhah025B_quartic_k004: Bastankhah2014(ws_quartic, induction=Betz, k=0.04)
-Bastankhah025B_wmax: Bastankhah2014(ws_wmax, induction=Betz, k_var=k)
-Bastankhah025B_wmax_k002: Bastankhah2014(ws_wmax, induction=Betz, k=0.02)
-Bastankhah025B_wmax_k004: Bastankhah2014(ws_wmax, induction=Betz, k=0.04)
-Bastankhah025_cubic: Bastankhah2014(ws_cubic, induction=Madsen, k_var=k)
-Bastankhah025_cubic_amb: Bastankhah2014(ws_cubic_amb, induction=Madsen, k_var=k)
-Bastankhah025_cubic_amb_k002: Bastankhah2014(ws_cubic_amb, induction=Madsen, k=0.02)
-Bastankhah025_cubic_amb_k004: Bastankhah2014(ws_cubic_amb, induction=Madsen, k=0.04)
-Bastankhah025_cubic_k002: Bastankhah2014(ws_cubic, induction=Madsen, k=0.02)
-Bastankhah025_cubic_k004: Bastankhah2014(ws_cubic, induction=Madsen, k=0.04)
-Bastankhah025_linear: Bastankhah2014(ws_linear, induction=Madsen, k_var=k)
-Bastankhah025_linear_amb: Bastankhah2014(ws_linear_amb, induction=Madsen, k_var=k)
-Bastankhah025_linear_amb_k002: Bastankhah2014(ws_linear_amb, induction=Madsen, k=0.02)
-Bastankhah025_linear_amb_k004: Bastankhah2014(ws_linear_amb, induction=Madsen, k=0.04)
-Bastankhah025_linear_amb_lim: Bastankhah2014(ws_linear_amb_lim, induction=Madsen, k_var=k)
-Bastankhah025_linear_amb_lim_k002: Bastankhah2014(ws_linear_amb_lim, induction=Madsen, k=0.02)
-Bastankhah025_linear_amb_lim_k004: Bastankhah2014(ws_linear_amb_lim, induction=Madsen, k=0.04)
-Bastankhah025_linear_k002: Bastankhah2014(ws_linear, induction=Madsen, k=0.02)
-Bastankhah025_linear_k004: Bastankhah2014(ws_linear, induction=Madsen, k=0.04)
-Bastankhah025_linear_lim: Bastankhah2014(ws_linear_lim, induction=Madsen, k_var=k)
-Bastankhah025_linear_lim_k002: Bastankhah2014(ws_linear_lim, induction=Madsen, k=0.02)
-Bastankhah025_linear_lim_k004: Bastankhah2014(ws_linear_lim, induction=Madsen, k=0.04)
-Bastankhah025_max_amb: Bastankhah2014(ws_max_amb, induction=Madsen, k_var=k)
-Bastankhah025_max_amb_k002: Bastankhah2014(ws_max_amb, induction=Madsen, k=0.02)
-Bastankhah025_max_amb_k004: Bastankhah2014(ws_max_amb, induction=Madsen, k=0.04)
-Bastankhah025_product: Bastankhah2014(ws_product, induction=Madsen, k_var=k)
-Bastankhah025_product_k002: Bastankhah2014(ws_product, induction=Madsen, k=0.02)
-Bastankhah025_product_k004: Bastankhah2014(ws_product, induction=Madsen, k=0.04)
-Bastankhah025_product_lim: Bastankhah2014(ws_product_lim, induction=Madsen, k_var=k)
-Bastankhah025_product_lim_k002: Bastankhah2014(ws_product_lim, induction=Madsen, k=0.02)
-Bastankhah025_product_lim_k004: Bastankhah2014(ws_product_lim, induction=Madsen, k=0.04)
-Bastankhah025_quadratic: Bastankhah2014(ws_quadratic, induction=Madsen, k_var=k)
-Bastankhah025_quadratic_amb: Bastankhah2014(ws_quadratic_amb, induction=Madsen, k_var=k)
-Bastankhah025_quadratic_amb_k002: Bastankhah2014(ws_quadratic_amb, induction=Madsen, k=0.02)
-Bastankhah025_quadratic_amb_k004: Bastankhah2014(ws_quadratic_amb, induction=Madsen, k=0.04)
-Bastankhah025_quadratic_amb_lim: Bastankhah2014(ws_quadratic_amb_lim, induction=Madsen, k_var=k)
-Bastankhah025_quadratic_amb_lim_k002: Bastankhah2014(ws_quadratic_amb_lim, induction=Madsen, k=0.02)
-Bastankhah025_quadratic_amb_lim_k004: Bastankhah2014(ws_quadratic_amb_lim, induction=Madsen, k=0.04)
-Bastankhah025_quadratic_k002: Bastankhah2014(ws_quadratic, induction=Madsen, k=0.02)
-Bastankhah025_quadratic_k004: Bastankhah2014(ws_quadratic, induction=Madsen, k=0.04)
-Bastankhah025_quadratic_lim: Bastankhah2014(ws_quadratic_lim, induction=Madsen, k_var=k)
-Bastankhah025_quadratic_lim_k002: Bastankhah2014(ws_quadratic_lim, induction=Madsen, k=0.02)
-Bastankhah025_quadratic_lim_k004: Bastankhah2014(ws_quadratic_lim, induction=Madsen, k=0.04)
-Bastankhah025_quartic: Bastankhah2014(ws_quartic, induction=Madsen, k_var=k)
-Bastankhah025_quartic_amb: Bastankhah2014(ws_quartic_amb, induction=Madsen, k_var=k)
-Bastankhah025_quartic_amb_k002: Bastankhah2014(ws_quartic_amb, induction=Madsen, k=0.02)
-Bastankhah025_quartic_amb_k004: Bastankhah2014(ws_quartic_amb, induction=Madsen, k=0.04)
-Bastankhah025_quartic_k002: Bastankhah2014(ws_quartic, induction=Madsen, k=0.02)
-Bastankhah025_quartic_k004: Bastankhah2014(ws_quartic, induction=Madsen, k=0.04)
-Bastankhah025_wmax: Bastankhah2014(ws_wmax, induction=Madsen, k_var=k)
-Bastankhah025_wmax_k002: Bastankhah2014(ws_wmax, induction=Madsen, k=0.02)
-Bastankhah025_wmax_k004: Bastankhah2014(ws_wmax, induction=Madsen, k=0.04)
-Bastankhah2014B_cubic: Bastankhah2014(ws_cubic, induction=Betz, k_var=k)
-Bastankhah2014B_cubic_amb: Bastankhah2014(ws_cubic_amb, induction=Betz, k_var=k)
-Bastankhah2014B_cubic_amb_k002: Bastankhah2014(ws_cubic_amb, induction=Betz, k=0.02)
-Bastankhah2014B_cubic_amb_k004: Bastankhah2014(ws_cubic_amb, induction=Betz, k=0.04)
-Bastankhah2014B_cubic_k002: Bastankhah2014(ws_cubic, induction=Betz, k=0.02)
-Bastankhah2014B_cubic_k004: Bastankhah2014(ws_cubic, induction=Betz, k=0.04)
-Bastankhah2014B_linear: Bastankhah2014(ws_linear, induction=Betz, k_var=k)
-Bastankhah2014B_linear_amb: Bastankhah2014(ws_linear_amb, induction=Betz, k_var=k)
-Bastankhah2014B_linear_amb_k002: Bastankhah2014(ws_linear_amb, induction=Betz, k=0.02)
-Bastankhah2014B_linear_amb_k004: Bastankhah2014(ws_linear_amb, induction=Betz, k=0.04)
-Bastankhah2014B_linear_amb_lim: Bastankhah2014(ws_linear_amb_lim, induction=Betz, k_var=k)
-Bastankhah2014B_linear_amb_lim_k002: Bastankhah2014(ws_linear_amb_lim, induction=Betz, k=0.02)
-Bastankhah2014B_linear_amb_lim_k004: Bastankhah2014(ws_linear_amb_lim, induction=Betz, k=0.04)
-Bastankhah2014B_linear_k002: Bastankhah2014(ws_linear, induction=Betz, k=0.02)
-Bastankhah2014B_linear_k004: Bastankhah2014(ws_linear, induction=Betz, k=0.04)
-Bastankhah2014B_linear_lim: Bastankhah2014(ws_linear_lim, induction=Betz, k_var=k)
-Bastankhah2014B_linear_lim_k002: Bastankhah2014(ws_linear_lim, induction=Betz, k=0.02)
-Bastankhah2014B_linear_lim_k004: Bastankhah2014(ws_linear_lim, induction=Betz, k=0.04)
-Bastankhah2014B_max_amb: Bastankhah2014(ws_max_amb, induction=Betz, k_var=k)
-Bastankhah2014B_max_amb_k002: Bastankhah2014(ws_max_amb, induction=Betz, k=0.02)
-Bastankhah2014B_max_amb_k004: Bastankhah2014(ws_max_amb, induction=Betz, k=0.04)
-Bastankhah2014B_product: Bastankhah2014(ws_product, induction=Betz, k_var=k)
-Bastankhah2014B_product_k002: Bastankhah2014(ws_product, induction=Betz, k=0.02)
-Bastankhah2014B_product_k004: Bastankhah2014(ws_product, induction=Betz, k=0.04)
-Bastankhah2014B_product_lim: Bastankhah2014(ws_product_lim, induction=Betz, k_var=k)
-Bastankhah2014B_product_lim_k002: Bastankhah2014(ws_product_lim, induction=Betz, k=0.02)
-Bastankhah2014B_product_lim_k004: Bastankhah2014(ws_product_lim, induction=Betz, k=0.04)
-Bastankhah2014B_quadratic: Bastankhah2014(ws_quadratic, induction=Betz, k_var=k)
-Bastankhah2014B_quadratic_amb: Bastankhah2014(ws_quadratic_amb, induction=Betz, k_var=k)
-Bastankhah2014B_quadratic_amb_k002: Bastankhah2014(ws_quadratic_amb, induction=Betz, k=0.02)
-Bastankhah2014B_quadratic_amb_k004: Bastankhah2014(ws_quadratic_amb, induction=Betz, k=0.04)
-Bastankhah2014B_quadratic_amb_lim: Bastankhah2014(ws_quadratic_amb_lim, induction=Betz, k_var=k)
-Bastankhah2014B_quadratic_amb_lim_k002: Bastankhah2014(ws_quadratic_amb_lim, induction=Betz, k=0.02)
-Bastankhah2014B_quadratic_amb_lim_k004: Bastankhah2014(ws_quadratic_amb_lim, induction=Betz, k=0.04)
-Bastankhah2014B_quadratic_k002: Bastankhah2014(ws_quadratic, induction=Betz, k=0.02)
-Bastankhah2014B_quadratic_k004: Bastankhah2014(ws_quadratic, induction=Betz, k=0.04)
-Bastankhah2014B_quadratic_lim: Bastankhah2014(ws_quadratic_lim, induction=Betz, k_var=k)
-Bastankhah2014B_quadratic_lim_k002: Bastankhah2014(ws_quadratic_lim, induction=Betz, k=0.02)
-Bastankhah2014B_quadratic_lim_k004: Bastankhah2014(ws_quadratic_lim, induction=Betz, k=0.04)
-Bastankhah2014B_quartic: Bastankhah2014(ws_quartic, induction=Betz, k_var=k)
-Bastankhah2014B_quartic_amb: Bastankhah2014(ws_quartic_amb, induction=Betz, k_var=k)
-Bastankhah2014B_quartic_amb_k002: Bastankhah2014(ws_quartic_amb, induction=Betz, k=0.02)
-Bastankhah2014B_quartic_amb_k004: Bastankhah2014(ws_quartic_amb, induction=Betz, k=0.04)
-Bastankhah2014B_quartic_k002: Bastankhah2014(ws_quartic, induction=Betz, k=0.02)
-Bastankhah2014B_quartic_k004: Bastankhah2014(ws_quartic, induction=Betz, k=0.04)
-Bastankhah2014B_wmax: Bastankhah2014(ws_wmax, induction=Betz, k_var=k)
-Bastankhah2014B_wmax_k002: Bastankhah2014(ws_wmax, induction=Betz, k=0.02)
-Bastankhah2014B_wmax_k004: Bastankhah2014(ws_wmax, induction=Betz, k=0.04)
-Bastankhah2014_cubic: Bastankhah2014(ws_cubic, induction=Madsen, k_var=k)
-Bastankhah2014_cubic_amb: Bastankhah2014(ws_cubic_amb, induction=Madsen, k_var=k)
-Bastankhah2014_cubic_amb_k002: Bastankhah2014(ws_cubic_amb, induction=Madsen, k=0.02)
-Bastankhah2014_cubic_amb_k004: Bastankhah2014(ws_cubic_amb, induction=Madsen, k=0.04)
-Bastankhah2014_cubic_k002: Bastankhah2014(ws_cubic, induction=Madsen, k=0.02)
-Bastankhah2014_cubic_k004: Bastankhah2014(ws_cubic, induction=Madsen, k=0.04)
-Bastankhah2014_linear: Bastankhah2014(ws_linear, induction=Madsen, k_var=k)
-Bastankhah2014_linear_amb: Bastankhah2014(ws_linear_amb, induction=Madsen, k_var=k)
-Bastankhah2014_linear_amb_k002: Bastankhah2014(ws_linear_amb, induction=Madsen, k=0.02)
-Bastankhah2014_linear_amb_k004: Bastankhah2014(ws_linear_amb, induction=Madsen, k=0.04)
-Bastankhah2014_linear_amb_lim: Bastankhah2014(ws_linear_amb_lim, induction=Madsen, k_var=k)
-Bastankhah2014_linear_amb_lim_k002: Bastankhah2014(ws_linear_amb_lim, induction=Madsen, k=0.02)
-Bastankhah2014_linear_amb_lim_k004: Bastankhah2014(ws_linear_amb_lim, induction=Madsen, k=0.04)
-Bastankhah2014_linear_k002: Bastankhah2014(ws_linear, induction=Madsen, k=0.02)
-Bastankhah2014_linear_k004: Bastankhah2014(ws_linear, induction=Madsen, k=0.04)
-Bastankhah2014_linear_lim: Bastankhah2014(ws_linear_lim, induction=Madsen, k_var=k)
-Bastankhah2014_linear_lim_k002: Bastankhah2014(ws_linear_lim, induction=Madsen, k=0.02)
-Bastankhah2014_linear_lim_k004: Bastankhah2014(ws_linear_lim, induction=Madsen, k=0.04)
-Bastankhah2014_max_amb: Bastankhah2014(ws_max_amb, induction=Madsen, k_var=k)
-Bastankhah2014_max_amb_k002: Bastankhah2014(ws_max_amb, induction=Madsen, k=0.02)
-Bastankhah2014_max_amb_k004: Bastankhah2014(ws_max_amb, induction=Madsen, k=0.04)
-Bastankhah2014_product: Bastankhah2014(ws_product, induction=Madsen, k_var=k)
-Bastankhah2014_product_k002: Bastankhah2014(ws_product, induction=Madsen, k=0.02)
-Bastankhah2014_product_k004: Bastankhah2014(ws_product, induction=Madsen, k=0.04)
-Bastankhah2014_product_lim: Bastankhah2014(ws_product_lim, induction=Madsen, k_var=k)
-Bastankhah2014_product_lim_k002: Bastankhah2014(ws_product_lim, induction=Madsen, k=0.02)
-Bastankhah2014_product_lim_k004: Bastankhah2014(ws_product_lim, induction=Madsen, k=0.04)
-Bastankhah2014_quadratic: Bastankhah2014(ws_quadratic, induction=Madsen, k_var=k)
-Bastankhah2014_quadratic_amb: Bastankhah2014(ws_quadratic_amb, induction=Madsen, k_var=k)
-Bastankhah2014_quadratic_amb_k002: Bastankhah2014(ws_quadratic_amb, induction=Madsen, k=0.02)
-Bastankhah2014_quadratic_amb_k004: Bastankhah2014(ws_quadratic_amb, induction=Madsen, k=0.04)
-Bastankhah2014_quadratic_amb_lim: Bastankhah2014(ws_quadratic_amb_lim, induction=Madsen, k_var=k)
-Bastankhah2014_quadratic_amb_lim_k002: Bastankhah2014(ws_quadratic_amb_lim, induction=Madsen, k=0.02)
-Bastankhah2014_quadratic_amb_lim_k004: Bastankhah2014(ws_quadratic_amb_lim, induction=Madsen, k=0.04)
-Bastankhah2014_quadratic_k002: Bastankhah2014(ws_quadratic, induction=Madsen, k=0.02)
-Bastankhah2014_quadratic_k004: Bastankhah2014(ws_quadratic, induction=Madsen, k=0.04)
-Bastankhah2014_quadratic_lim: Bastankhah2014(ws_quadratic_lim, induction=Madsen, k_var=k)
-Bastankhah2014_quadratic_lim_k002: Bastankhah2014(ws_quadratic_lim, induction=Madsen, k=0.02)
-Bastankhah2014_quadratic_lim_k004: Bastankhah2014(ws_quadratic_lim, induction=Madsen, k=0.04)
-Bastankhah2014_quartic: Bastankhah2014(ws_quartic, induction=Madsen, k_var=k)
-Bastankhah2014_quartic_amb: Bastankhah2014(ws_quartic_amb, induction=Madsen, k_var=k)
-Bastankhah2014_quartic_amb_k002: Bastankhah2014(ws_quartic_amb, induction=Madsen, k=0.02)
-Bastankhah2014_quartic_amb_k004: Bastankhah2014(ws_quartic_amb, induction=Madsen, k=0.04)
-Bastankhah2014_quartic_k002: Bastankhah2014(ws_quartic, induction=Madsen, k=0.02)
-Bastankhah2014_quartic_k004: Bastankhah2014(ws_quartic, induction=Madsen, k=0.04)
-Bastankhah2014_wmax: Bastankhah2014(ws_wmax, induction=Madsen, k_var=k)
-Bastankhah2014_wmax_k002: Bastankhah2014(ws_wmax, induction=Madsen, k=0.02)
-Bastankhah2014_wmax_k004: Bastankhah2014(ws_wmax, induction=Madsen, k=0.04)
-Bastankhah2016B_cubic: Bastankhah2016(ws_cubic, induction=Betz, k_var=k)
-Bastankhah2016B_cubic_amb: Bastankhah2016(ws_cubic_amb, induction=Betz, k_var=k)
-Bastankhah2016B_cubic_amb_k002: Bastankhah2016(ws_cubic_amb, induction=Betz, k=0.02)
-Bastankhah2016B_cubic_amb_k004: Bastankhah2016(ws_cubic_amb, induction=Betz, k=0.04)
-Bastankhah2016B_cubic_k002: Bastankhah2016(ws_cubic, induction=Betz, k=0.02)
-Bastankhah2016B_cubic_k004: Bastankhah2016(ws_cubic, induction=Betz, k=0.04)
-Bastankhah2016B_linear: Bastankhah2016(ws_linear, induction=Betz, k_var=k)
-Bastankhah2016B_linear_amb: Bastankhah2016(ws_linear_amb, induction=Betz, k_var=k)
-Bastankhah2016B_linear_amb_k002: Bastankhah2016(ws_linear_amb, induction=Betz, k=0.02)
-Bastankhah2016B_linear_amb_k004: Bastankhah2016(ws_linear_amb, induction=Betz, k=0.04)
-Bastankhah2016B_linear_amb_lim: Bastankhah2016(ws_linear_amb_lim, induction=Betz, k_var=k)
-Bastankhah2016B_linear_amb_lim_k002: Bastankhah2016(ws_linear_amb_lim, induction=Betz, k=0.02)
-Bastankhah2016B_linear_amb_lim_k004: Bastankhah2016(ws_linear_amb_lim, induction=Betz, k=0.04)
-Bastankhah2016B_linear_k002: Bastankhah2016(ws_linear, induction=Betz, k=0.02)
-Bastankhah2016B_linear_k004: Bastankhah2016(ws_linear, induction=Betz, k=0.04)
-Bastankhah2016B_linear_lim: Bastankhah2016(ws_linear_lim, induction=Betz, k_var=k)
-Bastankhah2016B_linear_lim_k002: Bastankhah2016(ws_linear_lim, induction=Betz, k=0.02)
-Bastankhah2016B_linear_lim_k004: Bastankhah2016(ws_linear_lim, induction=Betz, k=0.04)
-Bastankhah2016B_max_amb: Bastankhah2016(ws_max_amb, induction=Betz, k_var=k)
-Bastankhah2016B_max_amb_k002: Bastankhah2016(ws_max_amb, induction=Betz, k=0.02)
-Bastankhah2016B_max_amb_k004: Bastankhah2016(ws_max_amb, induction=Betz, k=0.04)
-Bastankhah2016B_product: Bastankhah2016(ws_product, induction=Betz, k_var=k)
-Bastankhah2016B_product_k002: Bastankhah2016(ws_product, induction=Betz, k=0.02)
-Bastankhah2016B_product_k004: Bastankhah2016(ws_product, induction=Betz, k=0.04)
-Bastankhah2016B_product_lim: Bastankhah2016(ws_product_lim, induction=Betz, k_var=k)
-Bastankhah2016B_product_lim_k002: Bastankhah2016(ws_product_lim, induction=Betz, k=0.02)
-Bastankhah2016B_product_lim_k004: Bastankhah2016(ws_product_lim, induction=Betz, k=0.04)
-Bastankhah2016B_quadratic: Bastankhah2016(ws_quadratic, induction=Betz, k_var=k)
-Bastankhah2016B_quadratic_amb: Bastankhah2016(ws_quadratic_amb, induction=Betz, k_var=k)
-Bastankhah2016B_quadratic_amb_k002: Bastankhah2016(ws_quadratic_amb, induction=Betz, k=0.02)
-Bastankhah2016B_quadratic_amb_k004: Bastankhah2016(ws_quadratic_amb, induction=Betz, k=0.04)
-Bastankhah2016B_quadratic_amb_lim: Bastankhah2016(ws_quadratic_amb_lim, induction=Betz, k_var=k)
-Bastankhah2016B_quadratic_amb_lim_k002: Bastankhah2016(ws_quadratic_amb_lim, induction=Betz, k=0.02)
-Bastankhah2016B_quadratic_amb_lim_k004: Bastankhah2016(ws_quadratic_amb_lim, induction=Betz, k=0.04)
-Bastankhah2016B_quadratic_k002: Bastankhah2016(ws_quadratic, induction=Betz, k=0.02)
-Bastankhah2016B_quadratic_k004: Bastankhah2016(ws_quadratic, induction=Betz, k=0.04)
-Bastankhah2016B_quadratic_lim: Bastankhah2016(ws_quadratic_lim, induction=Betz, k_var=k)
-Bastankhah2016B_quadratic_lim_k002: Bastankhah2016(ws_quadratic_lim, induction=Betz, k=0.02)
-Bastankhah2016B_quadratic_lim_k004: Bastankhah2016(ws_quadratic_lim, induction=Betz, k=0.04)
-Bastankhah2016B_quartic: Bastankhah2016(ws_quartic, induction=Betz, k_var=k)
-Bastankhah2016B_quartic_amb: Bastankhah2016(ws_quartic_amb, induction=Betz, k_var=k)
-Bastankhah2016B_quartic_amb_k002: Bastankhah2016(ws_quartic_amb, induction=Betz, k=0.02)
-Bastankhah2016B_quartic_amb_k004: Bastankhah2016(ws_quartic_amb, induction=Betz, k=0.04)
-Bastankhah2016B_quartic_k002: Bastankhah2016(ws_quartic, induction=Betz, k=0.02)
-Bastankhah2016B_quartic_k004: Bastankhah2016(ws_quartic, induction=Betz, k=0.04)
-Bastankhah2016B_wmax: Bastankhah2016(ws_wmax, induction=Betz, k_var=k)
-Bastankhah2016B_wmax_k002: Bastankhah2016(ws_wmax, induction=Betz, k=0.02)
-Bastankhah2016B_wmax_k004: Bastankhah2016(ws_wmax, induction=Betz, k=0.04)
-Bastankhah2016_cubic: Bastankhah2016(ws_cubic, induction=Madsen, k_var=k)
-Bastankhah2016_cubic_amb: Bastankhah2016(ws_cubic_amb, induction=Madsen, k_var=k)
-Bastankhah2016_cubic_amb_k002: Bastankhah2016(ws_cubic_amb, induction=Madsen, k=0.02)
-Bastankhah2016_cubic_amb_k004: Bastankhah2016(ws_cubic_amb, induction=Madsen, k=0.04)
-Bastankhah2016_cubic_k002: Bastankhah2016(ws_cubic, induction=Madsen, k=0.02)
-Bastankhah2016_cubic_k004: Bastankhah2016(ws_cubic, induction=Madsen, k=0.04)
-Bastankhah2016_linear: Bastankhah2016(ws_linear, induction=Madsen, k_var=k)
-Bastankhah2016_linear_amb: Bastankhah2016(ws_linear_amb, induction=Madsen, k_var=k)
-Bastankhah2016_linear_amb_k002: Bastankhah2016(ws_linear_amb, induction=Madsen, k=0.02)
-Bastankhah2016_linear_amb_k004: Bastankhah2016(ws_linear_amb, induction=Madsen, k=0.04)
-Bastankhah2016_linear_amb_lim: Bastankhah2016(ws_linear_amb_lim, induction=Madsen, k_var=k)
-Bastankhah2016_linear_amb_lim_k002: Bastankhah2016(ws_linear_amb_lim, induction=Madsen, k=0.02)
-Bastankhah2016_linear_amb_lim_k004: Bastankhah2016(ws_linear_amb_lim, induction=Madsen, k=0.04)
-Bastankhah2016_linear_k002: Bastankhah2016(ws_linear, induction=Madsen, k=0.02)
-Bastankhah2016_linear_k004: Bastankhah2016(ws_linear, induction=Madsen, k=0.04)
-Bastankhah2016_linear_lim: Bastankhah2016(ws_linear_lim, induction=Madsen, k_var=k)
-Bastankhah2016_linear_lim_k002: Bastankhah2016(ws_linear_lim, induction=Madsen, k=0.02)
-Bastankhah2016_linear_lim_k004: Bastankhah2016(ws_linear_lim, induction=Madsen, k=0.04)
-Bastankhah2016_max_amb: Bastankhah2016(ws_max_amb, induction=Madsen, k_var=k)
-Bastankhah2016_max_amb_k002: Bastankhah2016(ws_max_amb, induction=Madsen, k=0.02)
-Bastankhah2016_max_amb_k004: Bastankhah2016(ws_max_amb, induction=Madsen, k=0.04)
-Bastankhah2016_product: Bastankhah2016(ws_product, induction=Madsen, k_var=k)
-Bastankhah2016_product_k002: Bastankhah2016(ws_product, induction=Madsen, k=0.02)
-Bastankhah2016_product_k004: Bastankhah2016(ws_product, induction=Madsen, k=0.04)
-Bastankhah2016_product_lim: Bastankhah2016(ws_product_lim, induction=Madsen, k_var=k)
-Bastankhah2016_product_lim_k002: Bastankhah2016(ws_product_lim, induction=Madsen, k=0.02)
-Bastankhah2016_product_lim_k004: Bastankhah2016(ws_product_lim, induction=Madsen, k=0.04)
-Bastankhah2016_quadratic: Bastankhah2016(ws_quadratic, induction=Madsen, k_var=k)
-Bastankhah2016_quadratic_amb: Bastankhah2016(ws_quadratic_amb, induction=Madsen, k_var=k)
-Bastankhah2016_quadratic_amb_k002: Bastankhah2016(ws_quadratic_amb, induction=Madsen, k=0.02)
-Bastankhah2016_quadratic_amb_k004: Bastankhah2016(ws_quadratic_amb, induction=Madsen, k=0.04)
-Bastankhah2016_quadratic_amb_lim: Bastankhah2016(ws_quadratic_amb_lim, induction=Madsen, k_var=k)
-Bastankhah2016_quadratic_amb_lim_k002: Bastankhah2016(ws_quadratic_amb_lim, induction=Madsen, k=0.02)
-Bastankhah2016_quadratic_amb_lim_k004: Bastankhah2016(ws_quadratic_amb_lim, induction=Madsen, k=0.04)
-Bastankhah2016_quadratic_k002: Bastankhah2016(ws_quadratic, induction=Madsen, k=0.02)
-Bastankhah2016_quadratic_k004: Bastankhah2016(ws_quadratic, induction=Madsen, k=0.04)
-Bastankhah2016_quadratic_lim: Bastankhah2016(ws_quadratic_lim, induction=Madsen, k_var=k)
-Bastankhah2016_quadratic_lim_k002: Bastankhah2016(ws_quadratic_lim, induction=Madsen, k=0.02)
-Bastankhah2016_quadratic_lim_k004: Bastankhah2016(ws_quadratic_lim, induction=Madsen, k=0.04)
-Bastankhah2016_quartic: Bastankhah2016(ws_quartic, induction=Madsen, k_var=k)
-Bastankhah2016_quartic_amb: Bastankhah2016(ws_quartic_amb, induction=Madsen, k_var=k)
-Bastankhah2016_quartic_amb_k002: Bastankhah2016(ws_quartic_amb, induction=Madsen, k=0.02)
-Bastankhah2016_quartic_amb_k004: Bastankhah2016(ws_quartic_amb, induction=Madsen, k=0.04)
-Bastankhah2016_quartic_k002: Bastankhah2016(ws_quartic, induction=Madsen, k=0.02)
-Bastankhah2016_quartic_k004: Bastankhah2016(ws_quartic, induction=Madsen, k=0.04)
-Bastankhah2016_wmax: Bastankhah2016(ws_wmax, induction=Madsen, k_var=k)
-Bastankhah2016_wmax_k002: Bastankhah2016(ws_wmax, induction=Madsen, k=0.02)
-Bastankhah2016_wmax_k004: Bastankhah2016(ws_wmax, induction=Madsen, k=0.04)
-CrespoHernandez_ambti_cubic: CrespoHernandezTIWake(ti_cubic, induction=Betz, k_var=k)
-CrespoHernandez_ambti_linear: CrespoHernandezTIWake(ti_linear, induction=Betz, k_var=k)
-CrespoHernandez_ambti_max: CrespoHernandezTIWake(ti_max, induction=Betz, k_var=k)
-CrespoHernandez_ambti_quadratic: CrespoHernandezTIWake(ti_quadratic, induction=Betz, k_var=k)
-CrespoHernandez_ambti_quartic: CrespoHernandezTIWake(ti_quartic, induction=Betz, k_var=k)
-CrespoHernandez_cubic: CrespoHernandezTIWake(ti_cubic, induction=Betz, k_var=k)
-CrespoHernandez_cubic_k002: CrespoHernandezTIWake(ti_cubic, induction=Betz, k=0.02)
-CrespoHernandez_linear: CrespoHernandezTIWake(ti_linear, induction=Betz, k_var=k)
-CrespoHernandez_linear_k002: CrespoHernandezTIWake(ti_linear, induction=Betz, k=0.02)
-CrespoHernandez_max: CrespoHernandezTIWake(ti_max, induction=Betz, k_var=k)
-CrespoHernandez_max_k002: CrespoHernandezTIWake(ti_max, induction=Betz, k=0.02)
-CrespoHernandez_quadratic: CrespoHernandezTIWake(ti_quadratic, induction=Betz, k_var=k)
-CrespoHernandez_quadratic_k002: CrespoHernandezTIWake(ti_quadratic, induction=Betz, k=0.02)
-CrespoHernandez_quartic: CrespoHernandezTIWake(ti_quartic, induction=Betz, k_var=k)
-CrespoHernandez_quartic_k002: CrespoHernandezTIWake(ti_quartic, induction=Betz, k=0.02)
-IECTI2005_cubic: IECTIWake(ti_cubic, induction=Betz, k=0.19076020221856677)
-IECTI2005_linear: IECTIWake(ti_linear, induction=Betz, k=0.19076020221856677)
-IECTI2005_max: IECTIWake(ti_max, induction=Betz, k=0.19076020221856677)
-IECTI2005_quadratic: IECTIWake(ti_quadratic, induction=Betz, k=0.19076020221856677)
-IECTI2005_quartic: IECTIWake(ti_quartic, induction=Betz, k=0.19076020221856677)
-IECTI2019_cubic: IECTIWake(ti_cubic, induction=Betz, k=0.19076020221856677)
-IECTI2019_linear: IECTIWake(ti_linear, induction=Betz, k=0.19076020221856677)
-IECTI2019_max: IECTIWake(ti_max, induction=Betz, k=0.19076020221856677)
-IECTI2019_quadratic: IECTIWake(ti_quadratic, induction=Betz, k=0.19076020221856677)
-IECTI2019_quartic: IECTIWake(ti_quartic, induction=Betz, k=0.19076020221856677)
-Jensen_cubic: JensenWake(ws_cubic, induction=Betz, k_var=k)
-Jensen_cubic_amb: JensenWake(ws_cubic_amb, induction=Betz, k_var=k)
-Jensen_cubic_amb_k002: JensenWake(ws_cubic_amb, induction=Betz, k=0.02)
-Jensen_cubic_amb_k004: JensenWake(ws_cubic_amb, induction=Betz, k=0.04)
-Jensen_cubic_amb_k007: JensenWake(ws_cubic_amb, induction=Betz, k=0.07)
-Jensen_cubic_amb_k0075: JensenWake(ws_cubic_amb, induction=Betz, k=0.075)
-Jensen_cubic_k002: JensenWake(ws_cubic, induction=Betz, k=0.02)
-Jensen_cubic_k004: JensenWake(ws_cubic, induction=Betz, k=0.04)
-Jensen_cubic_k007: JensenWake(ws_cubic, induction=Betz, k=0.07)
-Jensen_cubic_k0075: JensenWake(ws_cubic, induction=Betz, k=0.075)
-Jensen_linear: JensenWake(ws_linear, induction=Betz, k_var=k)
-Jensen_linear_amb: JensenWake(ws_linear_amb, induction=Betz, k_var=k)
-Jensen_linear_amb_k002: JensenWake(ws_linear_amb, induction=Betz, k=0.02)
-Jensen_linear_amb_k004: JensenWake(ws_linear_amb, induction=Betz, k=0.04)
-Jensen_linear_amb_k007: JensenWake(ws_linear_amb, induction=Betz, k=0.07)
-Jensen_linear_amb_k0075: JensenWake(ws_linear_amb, induction=Betz, k=0.075)
-Jensen_linear_amb_lim: JensenWake(ws_linear_amb_lim, induction=Betz, k_var=k)
-Jensen_linear_amb_lim_k002: JensenWake(ws_linear_amb_lim, induction=Betz, k=0.02)
-Jensen_linear_amb_lim_k004: JensenWake(ws_linear_amb_lim, induction=Betz, k=0.04)
-Jensen_linear_amb_lim_k007: JensenWake(ws_linear_amb_lim, induction=Betz, k=0.07)
-Jensen_linear_amb_lim_k0075: JensenWake(ws_linear_amb_lim, induction=Betz, k=0.075)
-Jensen_linear_k002: JensenWake(ws_linear, induction=Betz, k=0.02)
-Jensen_linear_k004: JensenWake(ws_linear, induction=Betz, k=0.04)
-Jensen_linear_k007: JensenWake(ws_linear, induction=Betz, k=0.07)
-Jensen_linear_k0075: JensenWake(ws_linear, induction=Betz, k=0.075)
-Jensen_linear_lim: JensenWake(ws_linear_lim, induction=Betz, k_var=k)
-Jensen_linear_lim_k002: JensenWake(ws_linear_lim, induction=Betz, k=0.02)
-Jensen_linear_lim_k004: JensenWake(ws_linear_lim, induction=Betz, k=0.04)
-Jensen_linear_lim_k007: JensenWake(ws_linear_lim, induction=Betz, k=0.07)
-Jensen_linear_lim_k0075: JensenWake(ws_linear_lim, induction=Betz, k=0.075)
-Jensen_max_amb: JensenWake(ws_max_amb, induction=Betz, k_var=k)
-Jensen_max_amb_k002: JensenWake(ws_max_amb, induction=Betz, k=0.02)
-Jensen_max_amb_k004: JensenWake(ws_max_amb, induction=Betz, k=0.04)
-Jensen_max_amb_k007: JensenWake(ws_max_amb, induction=Betz, k=0.07)
-Jensen_max_amb_k0075: JensenWake(ws_max_amb, induction=Betz, k=0.075)
-Jensen_product: JensenWake(ws_product, induction=Betz, k_var=k)
-Jensen_product_k002: JensenWake(ws_product, induction=Betz, k=0.02)
-Jensen_product_k004: JensenWake(ws_product, induction=Betz, k=0.04)
-Jensen_product_k007: JensenWake(ws_product, induction=Betz, k=0.07)
-Jensen_product_k0075: JensenWake(ws_product, induction=Betz, k=0.075)
-Jensen_product_lim: JensenWake(ws_product_lim, induction=Betz, k_var=k)
-Jensen_product_lim_k002: JensenWake(ws_product_lim, induction=Betz, k=0.02)
-Jensen_product_lim_k004: JensenWake(ws_product_lim, induction=Betz, k=0.04)
-Jensen_product_lim_k007: JensenWake(ws_product_lim, induction=Betz, k=0.07)
-Jensen_product_lim_k0075: JensenWake(ws_product_lim, induction=Betz, k=0.075)
-Jensen_quadratic: JensenWake(ws_quadratic, induction=Betz, k_var=k)
-Jensen_quadratic_amb: JensenWake(ws_quadratic_amb, induction=Betz, k_var=k)
-Jensen_quadratic_amb_k002: JensenWake(ws_quadratic_amb, induction=Betz, k=0.02)
-Jensen_quadratic_amb_k004: JensenWake(ws_quadratic_amb, induction=Betz, k=0.04)
-Jensen_quadratic_amb_k007: JensenWake(ws_quadratic_amb, induction=Betz, k=0.07)
-Jensen_quadratic_amb_k0075: JensenWake(ws_quadratic_amb, induction=Betz, k=0.075)
-Jensen_quadratic_amb_lim: JensenWake(ws_quadratic_amb_lim, induction=Betz, k_var=k)
-Jensen_quadratic_amb_lim_k002: JensenWake(ws_quadratic_amb_lim, induction=Betz, k=0.02)
-Jensen_quadratic_amb_lim_k004: JensenWake(ws_quadratic_amb_lim, induction=Betz, k=0.04)
-Jensen_quadratic_amb_lim_k007: JensenWake(ws_quadratic_amb_lim, induction=Betz, k=0.07)
-Jensen_quadratic_amb_lim_k0075: JensenWake(ws_quadratic_amb_lim, induction=Betz, k=0.075)
-Jensen_quadratic_k002: JensenWake(ws_quadratic, induction=Betz, k=0.02)
-Jensen_quadratic_k004: JensenWake(ws_quadratic, induction=Betz, k=0.04)
-Jensen_quadratic_k007: JensenWake(ws_quadratic, induction=Betz, k=0.07)
-Jensen_quadratic_k0075: JensenWake(ws_quadratic, induction=Betz, k=0.075)
-Jensen_quadratic_lim: JensenWake(ws_quadratic_lim, induction=Betz, k_var=k)
-Jensen_quadratic_lim_k002: JensenWake(ws_quadratic_lim, induction=Betz, k=0.02)
-Jensen_quadratic_lim_k004: JensenWake(ws_quadratic_lim, induction=Betz, k=0.04)
-Jensen_quadratic_lim_k007: JensenWake(ws_quadratic_lim, induction=Betz, k=0.07)
-Jensen_quadratic_lim_k0075: JensenWake(ws_quadratic_lim, induction=Betz, k=0.075)
-Jensen_quartic: JensenWake(ws_quartic, induction=Betz, k_var=k)
-Jensen_quartic_amb: JensenWake(ws_quartic_amb, induction=Betz, k_var=k)
-Jensen_quartic_amb_k002: JensenWake(ws_quartic_amb, induction=Betz, k=0.02)
-Jensen_quartic_amb_k004: JensenWake(ws_quartic_amb, induction=Betz, k=0.04)
-Jensen_quartic_amb_k007: JensenWake(ws_quartic_amb, induction=Betz, k=0.07)
-Jensen_quartic_amb_k0075: JensenWake(ws_quartic_amb, induction=Betz, k=0.075)
-Jensen_quartic_k002: JensenWake(ws_quartic, induction=Betz, k=0.02)
-Jensen_quartic_k004: JensenWake(ws_quartic, induction=Betz, k=0.04)
-Jensen_quartic_k007: JensenWake(ws_quartic, induction=Betz, k=0.07)
-Jensen_quartic_k0075: JensenWake(ws_quartic, induction=Betz, k=0.075)
-Jensen_wmax: JensenWake(ws_wmax, induction=Betz, k_var=k)
-Jensen_wmax_k002: JensenWake(ws_wmax, induction=Betz, k=0.02)
-Jensen_wmax_k004: JensenWake(ws_wmax, induction=Betz, k=0.04)
-Jensen_wmax_k007: JensenWake(ws_wmax, induction=Betz, k=0.07)
-Jensen_wmax_k0075: JensenWake(ws_wmax, induction=Betz, k=0.075)
 RHB: RankineHalfBody(induction=Madsen)
 Rathmann: Rathmann(induction=Madsen)
 SelfSimilar: SelfSimilar(gamma=1.1, induction=Madsen)
 SelfSimilar2020: SelfSimilar2020(gamma=1.1, induction=Madsen)
-TurbOParkB_cubic_A002: TurbOParkWake(ws_cubic, A=0.02, induction=Betz)
-TurbOParkB_cubic_A004: TurbOParkWake(ws_cubic, A=0.04, induction=Betz)
-TurbOParkB_cubic_amb_A002: TurbOParkWake(ws_cubic_amb, A=0.02, induction=Betz)
-TurbOParkB_cubic_amb_A004: TurbOParkWake(ws_cubic_amb, A=0.04, induction=Betz)
-TurbOParkB_linear_A002: TurbOParkWake(ws_linear, A=0.02, induction=Betz)
-TurbOParkB_linear_A004: TurbOParkWake(ws_linear, A=0.04, induction=Betz)
-TurbOParkB_linear_amb_A002: TurbOParkWake(ws_linear_amb, A=0.02, induction=Betz)
-TurbOParkB_linear_amb_A004: TurbOParkWake(ws_linear_amb, A=0.04, induction=Betz)
-TurbOParkB_linear_amb_lim_A002: TurbOParkWake(ws_linear_amb_lim, A=0.02, induction=Betz)
-TurbOParkB_linear_amb_lim_A004: TurbOParkWake(ws_linear_amb_lim, A=0.04, induction=Betz)
-TurbOParkB_linear_lim_A002: TurbOParkWake(ws_linear_lim, A=0.02, induction=Betz)
-TurbOParkB_linear_lim_A004: TurbOParkWake(ws_linear_lim, A=0.04, induction=Betz)
-TurbOParkB_max_amb_A002: TurbOParkWake(ws_max_amb, A=0.02, induction=Betz)
-TurbOParkB_max_amb_A004: TurbOParkWake(ws_max_amb, A=0.04, induction=Betz)
-TurbOParkB_product_A002: TurbOParkWake(ws_product, A=0.02, induction=Betz)
-TurbOParkB_product_A004: TurbOParkWake(ws_product, A=0.04, induction=Betz)
-TurbOParkB_product_lim_A002: TurbOParkWake(ws_product_lim, A=0.02, induction=Betz)
-TurbOParkB_product_lim_A004: TurbOParkWake(ws_product_lim, A=0.04, induction=Betz)
-TurbOParkB_quadratic_A002: TurbOParkWake(ws_quadratic, A=0.02, induction=Betz)
-TurbOParkB_quadratic_A004: TurbOParkWake(ws_quadratic, A=0.04, induction=Betz)
-TurbOParkB_quadratic_amb_A002: TurbOParkWake(ws_quadratic_amb, A=0.02, induction=Betz)
-TurbOParkB_quadratic_amb_A004: TurbOParkWake(ws_quadratic_amb, A=0.04, induction=Betz)
-TurbOParkB_quadratic_amb_lim_A002: TurbOParkWake(ws_quadratic_amb_lim, A=0.02, induction=Betz)
-TurbOParkB_quadratic_amb_lim_A004: TurbOParkWake(ws_quadratic_amb_lim, A=0.04, induction=Betz)
-TurbOParkB_quadratic_lim_A002: TurbOParkWake(ws_quadratic_lim, A=0.02, induction=Betz)
-TurbOParkB_quadratic_lim_A004: TurbOParkWake(ws_quadratic_lim, A=0.04, induction=Betz)
-TurbOParkB_quartic_A002: TurbOParkWake(ws_quartic, A=0.02, induction=Betz)
-TurbOParkB_quartic_A004: TurbOParkWake(ws_quartic, A=0.04, induction=Betz)
-TurbOParkB_quartic_amb_A002: TurbOParkWake(ws_quartic_amb, A=0.02, induction=Betz)
-TurbOParkB_quartic_amb_A004: TurbOParkWake(ws_quartic_amb, A=0.04, induction=Betz)
-TurbOParkB_wmax_A002: TurbOParkWake(ws_wmax, A=0.02, induction=Betz)
-TurbOParkB_wmax_A004: TurbOParkWake(ws_wmax, A=0.04, induction=Betz)
-TurbOParkIX_cubic_A002_dx001: TurbOParkWakeIX(ws_cubic, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_cubic_A002_dx1: TurbOParkWakeIX(ws_cubic, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_cubic_A002_dx10: TurbOParkWakeIX(ws_cubic, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_cubic_A002_dx100: TurbOParkWakeIX(ws_cubic, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_cubic_A002_dx5: TurbOParkWakeIX(ws_cubic, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_cubic_A002_dx50: TurbOParkWakeIX(ws_cubic, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_cubic_A004_dx001: TurbOParkWakeIX(ws_cubic, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_cubic_A004_dx1: TurbOParkWakeIX(ws_cubic, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_cubic_A004_dx10: TurbOParkWakeIX(ws_cubic, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_cubic_A004_dx100: TurbOParkWakeIX(ws_cubic, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_cubic_A004_dx5: TurbOParkWakeIX(ws_cubic, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_cubic_A004_dx50: TurbOParkWakeIX(ws_cubic, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_cubic_amb_A002_dx001: TurbOParkWakeIX(ws_cubic_amb, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_cubic_amb_A002_dx1: TurbOParkWakeIX(ws_cubic_amb, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_cubic_amb_A002_dx10: TurbOParkWakeIX(ws_cubic_amb, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_cubic_amb_A002_dx100: TurbOParkWakeIX(ws_cubic_amb, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_cubic_amb_A002_dx5: TurbOParkWakeIX(ws_cubic_amb, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_cubic_amb_A002_dx50: TurbOParkWakeIX(ws_cubic_amb, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_cubic_amb_A004_dx001: TurbOParkWakeIX(ws_cubic_amb, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_cubic_amb_A004_dx1: TurbOParkWakeIX(ws_cubic_amb, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_cubic_amb_A004_dx10: TurbOParkWakeIX(ws_cubic_amb, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_cubic_amb_A004_dx100: TurbOParkWakeIX(ws_cubic_amb, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_cubic_amb_A004_dx5: TurbOParkWakeIX(ws_cubic_amb, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_cubic_amb_A004_dx50: TurbOParkWakeIX(ws_cubic_amb, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_A002_dx001: TurbOParkWakeIX(ws_linear, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_linear_A002_dx1: TurbOParkWakeIX(ws_linear, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_A002_dx10: TurbOParkWakeIX(ws_linear, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_A002_dx100: TurbOParkWakeIX(ws_linear, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_A002_dx5: TurbOParkWakeIX(ws_linear, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_A002_dx50: TurbOParkWakeIX(ws_linear, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_A004_dx001: TurbOParkWakeIX(ws_linear, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_linear_A004_dx1: TurbOParkWakeIX(ws_linear, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_A004_dx10: TurbOParkWakeIX(ws_linear, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_A004_dx100: TurbOParkWakeIX(ws_linear, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_A004_dx5: TurbOParkWakeIX(ws_linear, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_A004_dx50: TurbOParkWakeIX(ws_linear, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_amb_A002_dx001: TurbOParkWakeIX(ws_linear_amb, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_linear_amb_A002_dx1: TurbOParkWakeIX(ws_linear_amb, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_amb_A002_dx10: TurbOParkWakeIX(ws_linear_amb, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_amb_A002_dx100: TurbOParkWakeIX(ws_linear_amb, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_amb_A002_dx5: TurbOParkWakeIX(ws_linear_amb, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_amb_A002_dx50: TurbOParkWakeIX(ws_linear_amb, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_amb_A004_dx001: TurbOParkWakeIX(ws_linear_amb, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_linear_amb_A004_dx1: TurbOParkWakeIX(ws_linear_amb, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_amb_A004_dx10: TurbOParkWakeIX(ws_linear_amb, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_amb_A004_dx100: TurbOParkWakeIX(ws_linear_amb, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_amb_A004_dx5: TurbOParkWakeIX(ws_linear_amb, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_amb_A004_dx50: TurbOParkWakeIX(ws_linear_amb, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_amb_lim_A002_dx001: TurbOParkWakeIX(ws_linear_amb_lim, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_linear_amb_lim_A002_dx1: TurbOParkWakeIX(ws_linear_amb_lim, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_amb_lim_A002_dx10: TurbOParkWakeIX(ws_linear_amb_lim, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_amb_lim_A002_dx100: TurbOParkWakeIX(ws_linear_amb_lim, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_amb_lim_A002_dx5: TurbOParkWakeIX(ws_linear_amb_lim, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_amb_lim_A002_dx50: TurbOParkWakeIX(ws_linear_amb_lim, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_amb_lim_A004_dx001: TurbOParkWakeIX(ws_linear_amb_lim, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_linear_amb_lim_A004_dx1: TurbOParkWakeIX(ws_linear_amb_lim, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_amb_lim_A004_dx10: TurbOParkWakeIX(ws_linear_amb_lim, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_amb_lim_A004_dx100: TurbOParkWakeIX(ws_linear_amb_lim, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_amb_lim_A004_dx5: TurbOParkWakeIX(ws_linear_amb_lim, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_amb_lim_A004_dx50: TurbOParkWakeIX(ws_linear_amb_lim, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_lim_A002_dx001: TurbOParkWakeIX(ws_linear_lim, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_linear_lim_A002_dx1: TurbOParkWakeIX(ws_linear_lim, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_lim_A002_dx10: TurbOParkWakeIX(ws_linear_lim, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_lim_A002_dx100: TurbOParkWakeIX(ws_linear_lim, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_lim_A002_dx5: TurbOParkWakeIX(ws_linear_lim, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_lim_A002_dx50: TurbOParkWakeIX(ws_linear_lim, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_linear_lim_A004_dx001: TurbOParkWakeIX(ws_linear_lim, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_linear_lim_A004_dx1: TurbOParkWakeIX(ws_linear_lim, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_lim_A004_dx10: TurbOParkWakeIX(ws_linear_lim, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_lim_A004_dx100: TurbOParkWakeIX(ws_linear_lim, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_lim_A004_dx5: TurbOParkWakeIX(ws_linear_lim, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_linear_lim_A004_dx50: TurbOParkWakeIX(ws_linear_lim, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_max_amb_A002_dx001: TurbOParkWakeIX(ws_max_amb, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_max_amb_A002_dx1: TurbOParkWakeIX(ws_max_amb, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_max_amb_A002_dx10: TurbOParkWakeIX(ws_max_amb, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_max_amb_A002_dx100: TurbOParkWakeIX(ws_max_amb, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_max_amb_A002_dx5: TurbOParkWakeIX(ws_max_amb, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_max_amb_A002_dx50: TurbOParkWakeIX(ws_max_amb, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_max_amb_A004_dx001: TurbOParkWakeIX(ws_max_amb, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_max_amb_A004_dx1: TurbOParkWakeIX(ws_max_amb, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_max_amb_A004_dx10: TurbOParkWakeIX(ws_max_amb, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_max_amb_A004_dx100: TurbOParkWakeIX(ws_max_amb, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_max_amb_A004_dx5: TurbOParkWakeIX(ws_max_amb, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_max_amb_A004_dx50: TurbOParkWakeIX(ws_max_amb, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_product_A002_dx001: TurbOParkWakeIX(ws_product, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_product_A002_dx1: TurbOParkWakeIX(ws_product, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_product_A002_dx10: TurbOParkWakeIX(ws_product, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_product_A002_dx100: TurbOParkWakeIX(ws_product, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_product_A002_dx5: TurbOParkWakeIX(ws_product, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_product_A002_dx50: TurbOParkWakeIX(ws_product, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_product_A004_dx001: TurbOParkWakeIX(ws_product, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_product_A004_dx1: TurbOParkWakeIX(ws_product, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_product_A004_dx10: TurbOParkWakeIX(ws_product, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_product_A004_dx100: TurbOParkWakeIX(ws_product, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_product_A004_dx5: TurbOParkWakeIX(ws_product, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_product_A004_dx50: TurbOParkWakeIX(ws_product, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_product_lim_A002_dx001: TurbOParkWakeIX(ws_product_lim, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_product_lim_A002_dx1: TurbOParkWakeIX(ws_product_lim, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_product_lim_A002_dx10: TurbOParkWakeIX(ws_product_lim, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_product_lim_A002_dx100: TurbOParkWakeIX(ws_product_lim, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_product_lim_A002_dx5: TurbOParkWakeIX(ws_product_lim, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_product_lim_A002_dx50: TurbOParkWakeIX(ws_product_lim, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_product_lim_A004_dx001: TurbOParkWakeIX(ws_product_lim, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_product_lim_A004_dx1: TurbOParkWakeIX(ws_product_lim, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_product_lim_A004_dx10: TurbOParkWakeIX(ws_product_lim, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_product_lim_A004_dx100: TurbOParkWakeIX(ws_product_lim, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_product_lim_A004_dx5: TurbOParkWakeIX(ws_product_lim, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_product_lim_A004_dx50: TurbOParkWakeIX(ws_product_lim, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_A002_dx001: TurbOParkWakeIX(ws_quadratic, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_A002_dx1: TurbOParkWakeIX(ws_quadratic, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_A002_dx10: TurbOParkWakeIX(ws_quadratic, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_A002_dx100: TurbOParkWakeIX(ws_quadratic, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_A002_dx5: TurbOParkWakeIX(ws_quadratic, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_A002_dx50: TurbOParkWakeIX(ws_quadratic, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_A004_dx001: TurbOParkWakeIX(ws_quadratic, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_A004_dx1: TurbOParkWakeIX(ws_quadratic, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_A004_dx10: TurbOParkWakeIX(ws_quadratic, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_A004_dx100: TurbOParkWakeIX(ws_quadratic, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_A004_dx5: TurbOParkWakeIX(ws_quadratic, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_A004_dx50: TurbOParkWakeIX(ws_quadratic, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_amb_A002_dx001: TurbOParkWakeIX(ws_quadratic_amb, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_amb_A002_dx1: TurbOParkWakeIX(ws_quadratic_amb, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_amb_A002_dx10: TurbOParkWakeIX(ws_quadratic_amb, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_amb_A002_dx100: TurbOParkWakeIX(ws_quadratic_amb, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_amb_A002_dx5: TurbOParkWakeIX(ws_quadratic_amb, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_amb_A002_dx50: TurbOParkWakeIX(ws_quadratic_amb, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_amb_A004_dx001: TurbOParkWakeIX(ws_quadratic_amb, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_amb_A004_dx1: TurbOParkWakeIX(ws_quadratic_amb, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_amb_A004_dx10: TurbOParkWakeIX(ws_quadratic_amb, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_amb_A004_dx100: TurbOParkWakeIX(ws_quadratic_amb, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_amb_A004_dx5: TurbOParkWakeIX(ws_quadratic_amb, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_amb_A004_dx50: TurbOParkWakeIX(ws_quadratic_amb, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_amb_lim_A002_dx001: TurbOParkWakeIX(ws_quadratic_amb_lim, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_amb_lim_A002_dx1: TurbOParkWakeIX(ws_quadratic_amb_lim, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_amb_lim_A002_dx10: TurbOParkWakeIX(ws_quadratic_amb_lim, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_amb_lim_A002_dx100: TurbOParkWakeIX(ws_quadratic_amb_lim, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_amb_lim_A002_dx5: TurbOParkWakeIX(ws_quadratic_amb_lim, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_amb_lim_A002_dx50: TurbOParkWakeIX(ws_quadratic_amb_lim, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_amb_lim_A004_dx001: TurbOParkWakeIX(ws_quadratic_amb_lim, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_amb_lim_A004_dx1: TurbOParkWakeIX(ws_quadratic_amb_lim, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_amb_lim_A004_dx10: TurbOParkWakeIX(ws_quadratic_amb_lim, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_amb_lim_A004_dx100: TurbOParkWakeIX(ws_quadratic_amb_lim, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_amb_lim_A004_dx5: TurbOParkWakeIX(ws_quadratic_amb_lim, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_amb_lim_A004_dx50: TurbOParkWakeIX(ws_quadratic_amb_lim, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_lim_A002_dx001: TurbOParkWakeIX(ws_quadratic_lim, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_lim_A002_dx1: TurbOParkWakeIX(ws_quadratic_lim, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_lim_A002_dx10: TurbOParkWakeIX(ws_quadratic_lim, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_lim_A002_dx100: TurbOParkWakeIX(ws_quadratic_lim, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_lim_A002_dx5: TurbOParkWakeIX(ws_quadratic_lim, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_lim_A002_dx50: TurbOParkWakeIX(ws_quadratic_lim, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_quadratic_lim_A004_dx001: TurbOParkWakeIX(ws_quadratic_lim, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_lim_A004_dx1: TurbOParkWakeIX(ws_quadratic_lim, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_lim_A004_dx10: TurbOParkWakeIX(ws_quadratic_lim, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_lim_A004_dx100: TurbOParkWakeIX(ws_quadratic_lim, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_lim_A004_dx5: TurbOParkWakeIX(ws_quadratic_lim, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_quadratic_lim_A004_dx50: TurbOParkWakeIX(ws_quadratic_lim, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_quartic_A002_dx001: TurbOParkWakeIX(ws_quartic, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_quartic_A002_dx1: TurbOParkWakeIX(ws_quartic, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_quartic_A002_dx10: TurbOParkWakeIX(ws_quartic, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_quartic_A002_dx100: TurbOParkWakeIX(ws_quartic, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_quartic_A002_dx5: TurbOParkWakeIX(ws_quartic, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_quartic_A002_dx50: TurbOParkWakeIX(ws_quartic, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_quartic_A004_dx001: TurbOParkWakeIX(ws_quartic, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_quartic_A004_dx1: TurbOParkWakeIX(ws_quartic, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_quartic_A004_dx10: TurbOParkWakeIX(ws_quartic, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_quartic_A004_dx100: TurbOParkWakeIX(ws_quartic, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_quartic_A004_dx5: TurbOParkWakeIX(ws_quartic, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_quartic_A004_dx50: TurbOParkWakeIX(ws_quartic, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_quartic_amb_A002_dx001: TurbOParkWakeIX(ws_quartic_amb, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_quartic_amb_A002_dx1: TurbOParkWakeIX(ws_quartic_amb, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_quartic_amb_A002_dx10: TurbOParkWakeIX(ws_quartic_amb, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_quartic_amb_A002_dx100: TurbOParkWakeIX(ws_quartic_amb, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_quartic_amb_A002_dx5: TurbOParkWakeIX(ws_quartic_amb, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_quartic_amb_A002_dx50: TurbOParkWakeIX(ws_quartic_amb, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_quartic_amb_A004_dx001: TurbOParkWakeIX(ws_quartic_amb, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_quartic_amb_A004_dx1: TurbOParkWakeIX(ws_quartic_amb, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_quartic_amb_A004_dx10: TurbOParkWakeIX(ws_quartic_amb, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_quartic_amb_A004_dx100: TurbOParkWakeIX(ws_quartic_amb, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_quartic_amb_A004_dx5: TurbOParkWakeIX(ws_quartic_amb, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_quartic_amb_A004_dx50: TurbOParkWakeIX(ws_quartic_amb, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOParkIX_wmax_A002_dx001: TurbOParkWakeIX(ws_wmax, ti=TI, dx=0.01, A=0.02, induction=Madsen)
-TurbOParkIX_wmax_A002_dx1: TurbOParkWakeIX(ws_wmax, ti=TI, dx=1.0, A=0.02, induction=Madsen)
-TurbOParkIX_wmax_A002_dx10: TurbOParkWakeIX(ws_wmax, ti=TI, dx=10.0, A=0.02, induction=Madsen)
-TurbOParkIX_wmax_A002_dx100: TurbOParkWakeIX(ws_wmax, ti=TI, dx=100.0, A=0.02, induction=Madsen)
-TurbOParkIX_wmax_A002_dx5: TurbOParkWakeIX(ws_wmax, ti=TI, dx=5.0, A=0.02, induction=Madsen)
-TurbOParkIX_wmax_A002_dx50: TurbOParkWakeIX(ws_wmax, ti=TI, dx=50.0, A=0.02, induction=Madsen)
-TurbOParkIX_wmax_A004_dx001: TurbOParkWakeIX(ws_wmax, ti=TI, dx=0.01, A=0.04, induction=Madsen)
-TurbOParkIX_wmax_A004_dx1: TurbOParkWakeIX(ws_wmax, ti=TI, dx=1.0, A=0.04, induction=Madsen)
-TurbOParkIX_wmax_A004_dx10: TurbOParkWakeIX(ws_wmax, ti=TI, dx=10.0, A=0.04, induction=Madsen)
-TurbOParkIX_wmax_A004_dx100: TurbOParkWakeIX(ws_wmax, ti=TI, dx=100.0, A=0.04, induction=Madsen)
-TurbOParkIX_wmax_A004_dx5: TurbOParkWakeIX(ws_wmax, ti=TI, dx=5.0, A=0.04, induction=Madsen)
-TurbOParkIX_wmax_A004_dx50: TurbOParkWakeIX(ws_wmax, ti=TI, dx=50.0, A=0.04, induction=Madsen)
-TurbOPark_cubic_A002: TurbOParkWake(ws_cubic, A=0.02, induction=Madsen)
-TurbOPark_cubic_A004: TurbOParkWake(ws_cubic, A=0.04, induction=Madsen)
-TurbOPark_cubic_amb_A002: TurbOParkWake(ws_cubic_amb, A=0.02, induction=Madsen)
-TurbOPark_cubic_amb_A004: TurbOParkWake(ws_cubic_amb, A=0.04, induction=Madsen)
-TurbOPark_linear_A002: TurbOParkWake(ws_linear, A=0.02, induction=Madsen)
-TurbOPark_linear_A004: TurbOParkWake(ws_linear, A=0.04, induction=Madsen)
-TurbOPark_linear_amb_A002: TurbOParkWake(ws_linear_amb, A=0.02, induction=Madsen)
-TurbOPark_linear_amb_A004: TurbOParkWake(ws_linear_amb, A=0.04, induction=Madsen)
-TurbOPark_linear_amb_lim_A002: TurbOParkWake(ws_linear_amb_lim, A=0.02, induction=Madsen)
-TurbOPark_linear_amb_lim_A004: TurbOParkWake(ws_linear_amb_lim, A=0.04, induction=Madsen)
-TurbOPark_linear_lim_A002: TurbOParkWake(ws_linear_lim, A=0.02, induction=Madsen)
-TurbOPark_linear_lim_A004: TurbOParkWake(ws_linear_lim, A=0.04, induction=Madsen)
-TurbOPark_max_amb_A002: TurbOParkWake(ws_max_amb, A=0.02, induction=Madsen)
-TurbOPark_max_amb_A004: TurbOParkWake(ws_max_amb, A=0.04, induction=Madsen)
-TurbOPark_product_A002: TurbOParkWake(ws_product, A=0.02, induction=Madsen)
-TurbOPark_product_A004: TurbOParkWake(ws_product, A=0.04, induction=Madsen)
-TurbOPark_product_lim_A002: TurbOParkWake(ws_product_lim, A=0.02, induction=Madsen)
-TurbOPark_product_lim_A004: TurbOParkWake(ws_product_lim, A=0.04, induction=Madsen)
-TurbOPark_quadratic_A002: TurbOParkWake(ws_quadratic, A=0.02, induction=Madsen)
-TurbOPark_quadratic_A004: TurbOParkWake(ws_quadratic, A=0.04, induction=Madsen)
-TurbOPark_quadratic_amb_A002: TurbOParkWake(ws_quadratic_amb, A=0.02, induction=Madsen)
-TurbOPark_quadratic_amb_A004: TurbOParkWake(ws_quadratic_amb, A=0.04, induction=Madsen)
-TurbOPark_quadratic_amb_lim_A002: TurbOParkWake(ws_quadratic_amb_lim, A=0.02, induction=Madsen)
-TurbOPark_quadratic_amb_lim_A004: TurbOParkWake(ws_quadratic_amb_lim, A=0.04, induction=Madsen)
-TurbOPark_quadratic_lim_A002: TurbOParkWake(ws_quadratic_lim, A=0.02, induction=Madsen)
-TurbOPark_quadratic_lim_A004: TurbOParkWake(ws_quadratic_lim, A=0.04, induction=Madsen)
-TurbOPark_quartic_A002: TurbOParkWake(ws_quartic, A=0.02, induction=Madsen)
-TurbOPark_quartic_A004: TurbOParkWake(ws_quartic, A=0.04, induction=Madsen)
-TurbOPark_quartic_amb_A002: TurbOParkWake(ws_quartic_amb, A=0.02, induction=Madsen)
-TurbOPark_quartic_amb_A004: TurbOParkWake(ws_quartic_amb, A=0.04, induction=Madsen)
-TurbOPark_wmax_A002: TurbOParkWake(ws_wmax, A=0.02, induction=Madsen)
-TurbOPark_wmax_A004: TurbOParkWake(ws_wmax, A=0.04, induction=Madsen)
+
+Jensen_&lt;superposition&gt;_k&lt;k&gt;: JensenWake with
+  superposition=(Superposition, e.g. linear for ws_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+Jensen_&lt;superposition&gt;: JensenWake with
+  superposition=(Superposition, e.g. linear for ws_linear)
+
+Bastankhah2014_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2014 with
+  sbeta_factor=0.2
+  superposition=(Superposition, e.g. linear for ws_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+Bastankhah2014_&lt;superposition&gt;: Bastankhah2014 with
+  sbeta_factor=0.2
+  superposition=(Superposition, e.g. linear for ws_linear)
+
+Bastankhah2014B_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2014 with
+  sbeta_factor=0.2
+  induction=Betz
+  superposition=(Superposition, e.g. linear for ws_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+Bastankhah2014B_&lt;superposition&gt;: Bastankhah2014 with
+  sbeta_factor=0.2
+  induction=Betz
+  superposition=(Superposition, e.g. linear for ws_linear)
+
+Bastankhah025_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2014 with
+  sbeta_factor=0.25
+  superposition=(Superposition, e.g. linear for ws_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+Bastankhah025_&lt;superposition&gt;: Bastankhah2014 with
+  sbeta_factor=0.25
+  superposition=(Superposition, e.g. linear for ws_linear)
+
+Bastankhah025B_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2014 with
+  sbeta_factor=0.25
+  induction=Betz
+  superposition=(Superposition, e.g. linear for ws_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+Bastankhah025B_&lt;superposition&gt;: Bastankhah2014 with
+  sbeta_factor=0.25
+  induction=Betz
+  superposition=(Superposition, e.g. linear for ws_linear)
+
+Bastankhah2016_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2016 with
+  superposition=(Superposition, e.g. linear for ws_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+Bastankhah2016_&lt;superposition&gt;: Bastankhah2016 with
+  superposition=(Superposition, e.g. linear for ws_linear)
+
+Bastankhah2016B_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2016 with
+  induction=Betz
+  superposition=(Superposition, e.g. linear for ws_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+Bastankhah2016B_&lt;superposition&gt;: Bastankhah2016 with
+  induction=Betz
+  superposition=(Superposition, e.g. linear for ws_linear)
+
+TurbOPark_&lt;superposition&gt;_k&lt;k&gt;: TurbOParkWake with
+  superposition=(Superposition, e.g. linear for ws_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+TurbOPark_&lt;superposition&gt;: TurbOParkWake with
+  superposition=(Superposition, e.g. linear for ws_linear)
+
+TurbOParkB_&lt;superposition&gt;_k&lt;k&gt;: TurbOParkWake with
+  induction=Betz
+  superposition=(Superposition, e.g. linear for ws_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+TurbOParkB_&lt;superposition&gt;: TurbOParkWake with
+  induction=Betz
+  superposition=(Superposition, e.g. linear for ws_linear)
+
+TurbOParkIX_&lt;superposition&gt;_k&lt;k&gt;_dx&lt;dx&gt;: TurbOParkWakeIX with
+  superposition=(Superposition, e.g. linear for ws_linear)
+  k=(Value, e.g. 004 for 0.04)
+  dx=(Integration step in m)
+
+TurbOParkIX_&lt;superposition&gt;_dx&lt;dx&gt;: TurbOParkWakeIX with
+  superposition=(Superposition, e.g. linear for ws_linear)
+  dx=(Integration step in m)
+
+CrespoHernandez_&lt;superposition&gt;_k&lt;k&gt;: CrespoHernandezTIWake with
+  use_ambti=False
+  superposition=(Superposition, e.g. linear for ti_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+CrespoHernandez_&lt;superposition&gt;: CrespoHernandezTIWake with
+  use_ambti=False
+  superposition=(Superposition, e.g. linear for ti_linear)
+
+IECTI2005_&lt;superposition&gt;: IECTIWake with
+  iec_type=2005
+  superposition=(Superposition, e.g. linear for ti_linear)
+
+IECTI2019_&lt;superposition&gt;: IECTIWake with
+  iec_type=2019
+  superposition=(Superposition, e.g. linear for ti_linear)
 
 wake_superpositions
 -------------------
@@ -1450,26 +892,60 @@ ti_quadratic: TIQuadratic(superp_to_amb=quadratic)
 ti_quartic: TIPow(pow=4, superp_to_amb=quadratic)
 ws_cubic: WSPow(pow=3, scale_amb=False, lim_low=None, lim_high=None)
 ws_cubic_amb: WSPow(pow=3, scale_amb=True, lim_low=None, lim_high=None)
+ws_cubic_loc: WSPowLocal(pow=3, lim_low=None, lim_high=None)
+ws_cubic_loc_lim: WSPowLocal(pow=3, lim_low=0.0001, lim_high=None)
 ws_linear: WSLinear(scale_amb=False, lim_low=None, lim_high=None)
 ws_linear_amb: WSLinear(scale_amb=True, lim_low=None, lim_high=None)
 ws_linear_amb_lim: WSLinear(scale_amb=True, lim_low=0.0001, lim_high=None)
 ws_linear_lim: WSLinear(scale_amb=False, lim_low=0.0001, lim_high=None)
+ws_linear_loc: WSLinearLocal(lim_low=None, lim_high=None)
+ws_linear_loc_lim: WSLinearLocal(lim_low=0.0001, lim_high=None)
 ws_max: WSMax(scale_amb=False, lim_low=None, lim_high=None)
 ws_max_amb: WSMax(scale_amb=True, lim_low=None, lim_high=None)
+ws_max_loc: WSMaxLocal(lim_low=None, lim_high=None)
+ws_max_loc_lim: WSMaxLocal(lim_low=0.0001, lim_high=None)
 ws_product: WSProduct(lim_low=None, lim_high=None)
 ws_product_lim: WSProduct(lim_low=0.0001, lim_high=None)
 ws_quadratic: WSQuadratic(scale_amb=False, lim_low=None, lim_high=None)
 ws_quadratic_amb: WSQuadratic(scale_amb=True, lim_low=None, lim_high=None)
 ws_quadratic_amb_lim: WSQuadratic(scale_amb=True, lim_low=0.0001, lim_high=None)
 ws_quadratic_lim: WSQuadratic(scale_amb=False, lim_low=0.0001, lim_high=None)
+ws_quadratic_loc: WSQuadraticLocal(lim_low=None, lim_high=None)
+ws_quadratic_loc_lim: WSQuadraticLocal(lim_low=0.0001, lim_high=None)
 ws_quartic: WSPow(pow=4, scale_amb=False, lim_low=None, lim_high=None)
 ws_quartic_amb: WSPow(pow=4, scale_amb=True, lim_low=None, lim_high=None)
+ws_quartic_loc: WSPowLocal(pow=4, lim_low=None, lim_high=None)
+ws_quartic_loc_lim: WSPowLocal(pow=4, lim_low=0.0001, lim_high=None)
 
+</pre></div></div>
+</div>
+<p>Notice the model factories, creating models based on parameter values that are being parsed from the name string, e.g.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>Jensen_&lt;superposition&gt;_k&lt;k&gt;: JensenWake with
+  superposition=(Superposition, e.g. linear for ws_linear)
+  k=(Value, e.g. 004 for 0.04)
+</code></pre></div>
+</div>
+<p>For any existing superpositon model name string and any value for the wake growth parameter <code class="docutils literal notranslate"><span class="pre">k</span></code>, the model can be created according to the stated model name template <code class="docutils literal notranslate"><span class="pre">Jensen_&lt;superposition&gt;_k&lt;k&gt;</span></code>. For example, selecting quadratic superposition and <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">0.075</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [3]:
+</code></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">mbook</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="s2">&quot;Jensen_quadratic_k0075&quot;</span><span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>Out[3]:
+</code></pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+JensenWake(ws_quadratic, induction=Betz, k=0.075)
 </pre></div></div>
 </div>
 <p>You can simply add a model by storing the model object under the new model name, for example:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [4]:
 </code></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">mbook</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="s2">&quot;my_Jensen&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">JensenWake</span><span class="p">(</span>
@@ -1479,7 +955,7 @@ ws_quartic_amb: WSPow(pow=4, scale_amb=True, lim_low=None, lim_high=None)
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [5]:
 </code></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">mbook</span><span class="o">.</span><span class="n">print_toc</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">&quot;wake_models&quot;</span><span class="p">,</span> <span class="n">search</span><span class="o">=</span><span class="s2">&quot;Jensen&quot;</span><span class="p">)</span>
@@ -1493,87 +969,15 @@ ws_quartic_amb: WSPow(pow=4, scale_amb=True, lim_low=None, lim_high=None)
 <div class="highlight"><pre>
 wake_models
 -----------
-Jensen_cubic: JensenWake(ws_cubic, induction=Betz, k_var=k)
-Jensen_cubic_amb: JensenWake(ws_cubic_amb, induction=Betz, k_var=k)
-Jensen_cubic_amb_k002: JensenWake(ws_cubic_amb, induction=Betz, k=0.02)
-Jensen_cubic_amb_k004: JensenWake(ws_cubic_amb, induction=Betz, k=0.04)
-Jensen_cubic_amb_k007: JensenWake(ws_cubic_amb, induction=Betz, k=0.07)
-Jensen_cubic_amb_k0075: JensenWake(ws_cubic_amb, induction=Betz, k=0.075)
-Jensen_cubic_k002: JensenWake(ws_cubic, induction=Betz, k=0.02)
-Jensen_cubic_k004: JensenWake(ws_cubic, induction=Betz, k=0.04)
-Jensen_cubic_k007: JensenWake(ws_cubic, induction=Betz, k=0.07)
-Jensen_cubic_k0075: JensenWake(ws_cubic, induction=Betz, k=0.075)
-Jensen_linear: JensenWake(ws_linear, induction=Betz, k_var=k)
-Jensen_linear_amb: JensenWake(ws_linear_amb, induction=Betz, k_var=k)
-Jensen_linear_amb_k002: JensenWake(ws_linear_amb, induction=Betz, k=0.02)
-Jensen_linear_amb_k004: JensenWake(ws_linear_amb, induction=Betz, k=0.04)
-Jensen_linear_amb_k007: JensenWake(ws_linear_amb, induction=Betz, k=0.07)
-Jensen_linear_amb_k0075: JensenWake(ws_linear_amb, induction=Betz, k=0.075)
-Jensen_linear_amb_lim: JensenWake(ws_linear_amb_lim, induction=Betz, k_var=k)
-Jensen_linear_amb_lim_k002: JensenWake(ws_linear_amb_lim, induction=Betz, k=0.02)
-Jensen_linear_amb_lim_k004: JensenWake(ws_linear_amb_lim, induction=Betz, k=0.04)
-Jensen_linear_amb_lim_k007: JensenWake(ws_linear_amb_lim, induction=Betz, k=0.07)
-Jensen_linear_amb_lim_k0075: JensenWake(ws_linear_amb_lim, induction=Betz, k=0.075)
-Jensen_linear_k002: JensenWake(ws_linear, induction=Betz, k=0.02)
-Jensen_linear_k004: JensenWake(ws_linear, induction=Betz, k=0.04)
-Jensen_linear_k007: JensenWake(ws_linear, induction=Betz, k=0.07)
-Jensen_linear_k0075: JensenWake(ws_linear, induction=Betz, k=0.075)
-Jensen_linear_lim: JensenWake(ws_linear_lim, induction=Betz, k_var=k)
-Jensen_linear_lim_k002: JensenWake(ws_linear_lim, induction=Betz, k=0.02)
-Jensen_linear_lim_k004: JensenWake(ws_linear_lim, induction=Betz, k=0.04)
-Jensen_linear_lim_k007: JensenWake(ws_linear_lim, induction=Betz, k=0.07)
-Jensen_linear_lim_k0075: JensenWake(ws_linear_lim, induction=Betz, k=0.075)
-Jensen_max_amb: JensenWake(ws_max_amb, induction=Betz, k_var=k)
-Jensen_max_amb_k002: JensenWake(ws_max_amb, induction=Betz, k=0.02)
-Jensen_max_amb_k004: JensenWake(ws_max_amb, induction=Betz, k=0.04)
-Jensen_max_amb_k007: JensenWake(ws_max_amb, induction=Betz, k=0.07)
-Jensen_max_amb_k0075: JensenWake(ws_max_amb, induction=Betz, k=0.075)
-Jensen_product: JensenWake(ws_product, induction=Betz, k_var=k)
-Jensen_product_k002: JensenWake(ws_product, induction=Betz, k=0.02)
-Jensen_product_k004: JensenWake(ws_product, induction=Betz, k=0.04)
-Jensen_product_k007: JensenWake(ws_product, induction=Betz, k=0.07)
-Jensen_product_k0075: JensenWake(ws_product, induction=Betz, k=0.075)
-Jensen_product_lim: JensenWake(ws_product_lim, induction=Betz, k_var=k)
-Jensen_product_lim_k002: JensenWake(ws_product_lim, induction=Betz, k=0.02)
-Jensen_product_lim_k004: JensenWake(ws_product_lim, induction=Betz, k=0.04)
-Jensen_product_lim_k007: JensenWake(ws_product_lim, induction=Betz, k=0.07)
-Jensen_product_lim_k0075: JensenWake(ws_product_lim, induction=Betz, k=0.075)
-Jensen_quadratic: JensenWake(ws_quadratic, induction=Betz, k_var=k)
-Jensen_quadratic_amb: JensenWake(ws_quadratic_amb, induction=Betz, k_var=k)
-Jensen_quadratic_amb_k002: JensenWake(ws_quadratic_amb, induction=Betz, k=0.02)
-Jensen_quadratic_amb_k004: JensenWake(ws_quadratic_amb, induction=Betz, k=0.04)
-Jensen_quadratic_amb_k007: JensenWake(ws_quadratic_amb, induction=Betz, k=0.07)
-Jensen_quadratic_amb_k0075: JensenWake(ws_quadratic_amb, induction=Betz, k=0.075)
-Jensen_quadratic_amb_lim: JensenWake(ws_quadratic_amb_lim, induction=Betz, k_var=k)
-Jensen_quadratic_amb_lim_k002: JensenWake(ws_quadratic_amb_lim, induction=Betz, k=0.02)
-Jensen_quadratic_amb_lim_k004: JensenWake(ws_quadratic_amb_lim, induction=Betz, k=0.04)
-Jensen_quadratic_amb_lim_k007: JensenWake(ws_quadratic_amb_lim, induction=Betz, k=0.07)
-Jensen_quadratic_amb_lim_k0075: JensenWake(ws_quadratic_amb_lim, induction=Betz, k=0.075)
-Jensen_quadratic_k002: JensenWake(ws_quadratic, induction=Betz, k=0.02)
-Jensen_quadratic_k004: JensenWake(ws_quadratic, induction=Betz, k=0.04)
-Jensen_quadratic_k007: JensenWake(ws_quadratic, induction=Betz, k=0.07)
 Jensen_quadratic_k0075: JensenWake(ws_quadratic, induction=Betz, k=0.075)
-Jensen_quadratic_lim: JensenWake(ws_quadratic_lim, induction=Betz, k_var=k)
-Jensen_quadratic_lim_k002: JensenWake(ws_quadratic_lim, induction=Betz, k=0.02)
-Jensen_quadratic_lim_k004: JensenWake(ws_quadratic_lim, induction=Betz, k=0.04)
-Jensen_quadratic_lim_k007: JensenWake(ws_quadratic_lim, induction=Betz, k=0.07)
-Jensen_quadratic_lim_k0075: JensenWake(ws_quadratic_lim, induction=Betz, k=0.075)
-Jensen_quartic: JensenWake(ws_quartic, induction=Betz, k_var=k)
-Jensen_quartic_amb: JensenWake(ws_quartic_amb, induction=Betz, k_var=k)
-Jensen_quartic_amb_k002: JensenWake(ws_quartic_amb, induction=Betz, k=0.02)
-Jensen_quartic_amb_k004: JensenWake(ws_quartic_amb, induction=Betz, k=0.04)
-Jensen_quartic_amb_k007: JensenWake(ws_quartic_amb, induction=Betz, k=0.07)
-Jensen_quartic_amb_k0075: JensenWake(ws_quartic_amb, induction=Betz, k=0.075)
-Jensen_quartic_k002: JensenWake(ws_quartic, induction=Betz, k=0.02)
-Jensen_quartic_k004: JensenWake(ws_quartic, induction=Betz, k=0.04)
-Jensen_quartic_k007: JensenWake(ws_quartic, induction=Betz, k=0.07)
-Jensen_quartic_k0075: JensenWake(ws_quartic, induction=Betz, k=0.075)
-Jensen_wmax: JensenWake(ws_wmax, induction=Betz, k_var=k)
-Jensen_wmax_k002: JensenWake(ws_wmax, induction=Betz, k=0.02)
-Jensen_wmax_k004: JensenWake(ws_wmax, induction=Betz, k=0.04)
-Jensen_wmax_k007: JensenWake(ws_wmax, induction=Betz, k=0.07)
-Jensen_wmax_k0075: JensenWake(ws_wmax, induction=Betz, k=0.075)
 my_Jensen: JensenWake(ws_linear_lim, induction=Betz, k=0.042)
+
+Jensen_&lt;superposition&gt;_k&lt;k&gt;: JensenWake with
+  superposition=(Superposition, e.g. linear for ws_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+Jensen_&lt;superposition&gt;: JensenWake with
+  superposition=(Superposition, e.g. linear for ws_linear)
 
 </pre></div></div>
 </div>
@@ -1615,13 +1019,13 @@ my_Jensen: JensenWake(ws_linear_lim, induction=Betz, k=0.042)
       
       
         
-        <a href="single_row.html" class="md-footer__link md-footer__link--next" aria-label="Next: Single row of turbines" rel="next">
+        <a href="rotor_models.html" class="md-footer__link md-footer__link--next" aria-label="Next: Rotor model visualizations" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Single row of turbines
+              Rotor model visualizations
             </div>
           </div>
           <div class="md-footer__button md-icon">
