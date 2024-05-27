@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.TabWindroseAxes.set_xticks - foxes 0.7.1
+        <title>foxes.utils.TabWindroseAxes.set_xticks - foxes 0.7.2
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../index.html" title="foxes 0.7.1
- documentation" class="md-header__button md-logo" aria-label="foxes 0.7.1
+    <a href="../../index.html" title="foxes 0.7.2
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7.2
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.7.1
+            foxes 0.7.2
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../index.html" title="foxes 0.7.1
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.1
+    <a href="../../index.html" title="foxes 0.7.2
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.2
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.7.1
+    foxes 0.7.2
  documentation
   </label>
   
@@ -358,30 +358,26 @@
 
 <dl class="py method objdesc">
 <dt class="sig sig-object highlight sig-wrap py">
-<span class="sig-prename descclassname"><span class="pre">foxes.utils.</span><span class="pre">TabWindroseAxes.</span></span><span class="sig-name descname"><span class="pre">set_xticks</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">ticks</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">minor</span></span><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">False</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em></span><span class="sig-paren">)</span></dt>
+<span class="sig-prename descclassname"><span class="pre">foxes.utils.</span><span class="pre">TabWindroseAxes.</span></span><span class="sig-name descname"><span class="pre">set_xticks</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">ticks</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">minor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em></span><span class="sig-paren">)</span></dt>
 <dd><p>Set the xaxis’ tick locations and optionally tick labels.</p>
 <p>If necessary, the view limits of the Axis are expanded so that all
 given ticks are visible.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
 <dl>
-<dt>ticks<span class="classifier">1D array-like</span></dt><dd><p>Array of tick locations.  The axis <cite>.Locator</cite> is replaced by a
-<cite>~.ticker.FixedLocator</cite>.</p>
-<p>The values may be either floats or in axis units.</p>
-<p>Pass an empty list to remove all ticks:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="n">set_xticks</span><span class="p">([])</span>
-</code></pre></div>
-</div>
+<dt>ticks<span class="classifier">1D array-like</span></dt><dd><p>Array of tick locations (either floats or in axis units). The axis
+<cite>.Locator</cite> is replaced by a <cite>~.ticker.FixedLocator</cite>.</p>
+<p>Pass an empty list (<code class="docutils literal notranslate"><span class="pre">set_xticks([])</span></code>) to remove all ticks.</p>
 <p>Some tick formatters will not label arbitrary tick positions;
 e.g. log formatters only label decade ticks by default. In
 such a case you can set a formatter explicitly on the axis
 using <cite>.Axis.set_major_formatter</cite> or provide formatted
 <em>labels</em> yourself.</p>
 </dd>
-<dt>labels<span class="classifier">list of str, optional</span></dt><dd><p>Tick labels for each location in <em>ticks</em>. <em>labels</em> must be of the same
-length as <em>ticks</em>. If not set, the labels are generate using the axis
-tick <cite>.Formatter</cite>.</p>
+<dt>labels<span class="classifier">list of str, optional</span></dt><dd><p>Tick labels for each location in <em>ticks</em>; must have the same length as
+<em>ticks</em>. If set, the labels are used as is, via a <cite>.FixedFormatter</cite>.
+If not set, the labels are generated using the axis tick <cite>.Formatter</cite>.</p>
 </dd>
-<dt>minor<span class="classifier">bool, default: False</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">False</span></code>, set the major ticks; if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the minor ticks.</p>
+<dt>minor<span class="classifier">bool, default: False</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">False</span></code>, set only the major ticks; if <code class="docutils literal notranslate"><span class="pre">True</span></code>, only the minor ticks.</p>
 </dd>
 <dt><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs</dt><dd><p><cite>.Text</cite> properties for the labels. Using these is only allowed if
 you pass <em>labels</em>. In other cases, please use <cite>~.Axes.tick_params</cite>.</p>
@@ -425,7 +421,7 @@ ticks.</p>
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.2.6.
+    7.3.7.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -446,6 +442,7 @@ ticks.</p>
       
         <script src="../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
   </body>
 </html>

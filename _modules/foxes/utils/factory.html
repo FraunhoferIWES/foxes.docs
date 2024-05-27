@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.factory - foxes 0.7.1
+        <title>foxes.utils.factory - foxes 0.7.2
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.7.1
- documentation" class="md-header__button md-logo" aria-label="foxes 0.7.1
+    <a href="../../../index.html" title="foxes 0.7.2
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7.2
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.7.1
+            foxes 0.7.2
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.7.1
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.1
+    <a href="../../../index.html" title="foxes 0.7.2
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.2
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.7.1
+    foxes 0.7.2
  documentation
   </label>
   
@@ -357,15 +357,18 @@
 
 
 <h1>Source code for foxes.utils.factory</h1><div class="highlight"><pre>
-<span></span><code><span class="kn">from</span> <span class="nn">.dict</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">.dict</span> <span class="kn">import</span> <span class="n">Dict</span>
+
 
 <div class="viewcode-block" id="Factory">
-<a class="viewcode-back" href="../../../api_utils.html#foxes.models.model_book.Factory">[docs]</a>
+<a class="viewcode-back" href="../../../api_utils.html#foxes.utils.Factory">[docs]</a>
 <span class="k">class</span> <span class="nc">Factory</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Constructs objects from a choice of allowed </span>
+<span class="sd">    Constructs objects from a choice of allowed</span>
 <span class="sd">    constructor parameters</span>
-<span class="sd">    </span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    base: class</span>
@@ -383,27 +386,28 @@
 <span class="sd">        Hints for print_toc, only for variables for which the</span>
 <span class="sd">        options are functions or missing</span>
 <span class="sd">    options: dict</span>
-<span class="sd">        For each variable, e.g. A, B or C, the list or dict </span>
+<span class="sd">        For each variable, e.g. A, B or C, the list or dict</span>
 <span class="sd">        or function that maps a str to the actual value</span>
 
 <span class="sd">    :group: utils</span>
-<span class="sd">    </span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="Factory.__init__">
-<a class="viewcode-back" href="../../../_foxes/utils/Factory.__init__.html#foxes.models.model_book.Factory.__init__">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/utils/Factory.__init__.html#foxes.utils.Factory.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">base</span><span class="p">,</span>
-            <span class="n">name_template</span><span class="p">,</span>
-            <span class="n">args</span><span class="o">=</span><span class="p">(),</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="p">{},</span>
-            <span class="n">var2arg</span><span class="o">=</span><span class="p">{},</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{},</span>
-            <span class="o">**</span><span class="n">options</span><span class="p">,</span>
-        <span class="p">):</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">base</span><span class="p">,</span>
+        <span class="n">name_template</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">=</span><span class="p">(),</span>
+        <span class="n">kwargs</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">var2arg</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">hints</span><span class="o">=</span><span class="p">{},</span>
+        <span class="o">**</span><span class="n">options</span><span class="p">,</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        base: class</span>
@@ -421,9 +425,9 @@
 <span class="sd">            Hints for print_toc, only for variables for which the</span>
 <span class="sd">            options are functions or missing</span>
 <span class="sd">        options: dict</span>
-<span class="sd">            For each variable, e.g. A, B or C, the list or dict </span>
+<span class="sd">            For each variable, e.g. A, B or C, the list or dict</span>
 <span class="sd">            or function that maps a str to the actual value</span>
-<span class="sd">        </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">base</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name_template</span> <span class="o">=</span> <span class="n">name_template</span>
@@ -434,7 +438,9 @@
 
         <span class="n">parts</span> <span class="o">=</span> <span class="n">name_template</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&gt;&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Expecting at least one variable in template, pattern &#39;&lt;..&gt;&#39;&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Expecting at least one variable in template, pattern &#39;&lt;..&gt;&#39;&quot;</span>
+            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_vars</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pre</span> <span class="o">=</span> <span class="p">[]</span>
@@ -442,7 +448,13 @@
             <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">parts2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&lt;&quot;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts2</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: incomplete pattern brackets &#39;&lt;..&gt;&#39;&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: incomplete pattern brackets &#39;&lt;..&gt;&#39; between variables, e.g. &#39;_&#39;&quot;</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Missing seperator like &#39;_&#39; in template between variables &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_vars</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39; and &#39;</span><span class="si">{</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+                    <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_pre</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parts2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_vars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parts2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
@@ -452,35 +464,43 @@
             <span class="k">for</span> <span class="n">vi</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">):</span>
                 <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pre</span><span class="p">[</span><span class="n">vi</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">vi</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">p</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Require indicator before variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; in template, e.g. &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&gt;&#39;&quot;</span><span class="p">)</span>
-        
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Require indicator before variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; in template, e.g. &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&gt;&#39;&quot;</span>
+                    <span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_pre</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">_options&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span>  <span class="ow">in</span> <span class="n">options</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">options</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; found in options, but not in template&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; found in options, but not in template&quot;</span>
+                <span class="p">)</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
                 <span class="n">o</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">o</span><span class="p">}</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
                 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">o</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Found option for variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; that is not a str, </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Found option for variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; that is not a str, </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_pre</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">_options_</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">o</span><span class="p">)</span>
             <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="s2">&quot;__call__&quot;</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">o</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; has option of type &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39;. Only list, tuple, dict or function are supported&quot;</span><span class="p">)</span></div>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; has option of type &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39;. Only list, tuple, dict or function are supported&quot;</span>
+                <span class="p">)</span></div>
 
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">name_prefix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The beginning of the name template</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        nbase: str</span>
 <span class="sd">            The beginning of the name template</span>
-<span class="sd">        </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pre</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -488,32 +508,32 @@
     <span class="k">def</span> <span class="nf">name_suffix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The ending of the name template</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        nbase: str</span>
 <span class="sd">            The ending of the name template</span>
-<span class="sd">        </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pre</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The list of variables</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        vrs: list of str</span>
 <span class="sd">            The variables</span>
-<span class="sd">        </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vars</span>
-    
+
 <div class="viewcode-block" id="Factory.__str__">
-<a class="viewcode-back" href="../../../_foxes/utils/Factory.__str__.html#foxes.models.model_book.Factory.__str__">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/utils/Factory.__str__.html#foxes.utils.Factory.__str__">[docs]</a>
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; String representation &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;String representation&quot;&quot;&quot;</span>
         <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name_template</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> with&quot;</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -524,13 +544,13 @@
                 <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">hints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(value)&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">return</span> <span class="n">s</span></div>
 
-    
+
 <div class="viewcode-block" id="Factory.check_match">
-<a class="viewcode-back" href="../../../_foxes/utils/Factory.check_match.html#foxes.models.model_book.Factory.check_match">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/utils/Factory.check_match.html#foxes.utils.Factory.check_match">[docs]</a>
     <span class="k">def</span> <span class="nf">check_match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tests if a name matches the template</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        name: str</span>
@@ -540,7 +560,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        success: bool</span>
 <span class="sd">            True if the template is matched</span>
-<span class="sd">        </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data_str</span> <span class="o">=</span> <span class="n">name</span>
         <span class="k">for</span> <span class="n">vi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">)):</span>
@@ -551,7 +571,7 @@
                 <span class="k">return</span> <span class="kc">False</span>
             <span class="n">data_str</span> <span class="o">=</span> <span class="n">data_str</span><span class="p">[</span><span class="n">j</span><span class="p">:]</span>
 
-            <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pre</span><span class="p">[</span><span class="n">vi</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pre</span><span class="p">[</span><span class="n">vi</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">q</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
                 <span class="n">i</span> <span class="o">=</span> <span class="n">data_str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
                 <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
@@ -559,50 +579,45 @@
                     <span class="k">return</span> <span class="kc">False</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">data_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        
+
         <span class="k">return</span> <span class="kc">True</span></div>
 
 
 <div class="viewcode-block" id="Factory.construct">
-<a class="viewcode-back" href="../../../_foxes/utils/Factory.construct.html#foxes.models.model_book.Factory.construct">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/utils/Factory.construct.html#foxes.utils.Factory.construct">[docs]</a>
     <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an object of the base class.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        name: str</span>
 <span class="sd">            The name, matching the template</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        obj: object</span>
 <span class="sd">            The instance of the base class</span>
-<span class="sd">        </span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">data_str</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="n">wlist</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">vi</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">):</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pre</span><span class="p">[</span><span class="n">vi</span><span class="p">]</span>
-            <span class="n">i</span> <span class="o">=</span> <span class="n">data_str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-            <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_str</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Name &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; not matching template&quot;</span><span class="p">)</span>
-            <span class="n">data_str</span> <span class="o">=</span> <span class="n">data_str</span><span class="p">[</span><span class="n">j</span><span class="p">:]</span>
 
-            <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pre</span><span class="p">[</span><span class="n">vi</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">q</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-                <span class="n">i</span> <span class="o">=</span> <span class="n">data_str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-                <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_str</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Name &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; not matching template&quot;</span><span class="p">)</span>
-                <span class="n">wlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_str</span><span class="p">[:</span><span class="n">i</span><span class="p">])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">wlist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">pi</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pre</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="p">:]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="p">(</span><span class="n">pi</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Name &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; not matching template&quot;</span>
+                    <span class="p">)</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="n">j</span> <span class="p">:</span> <span class="n">j</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">wlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_str</span><span class="p">)</span>
-                <span class="n">data_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="p">:]</span>
+            <span class="k">if</span> <span class="n">pi</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">wlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">vi</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">):</span>          
+        <span class="k">for</span> <span class="n">vi</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">):</span>
             <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var2arg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">wlist</span><span class="p">[</span><span class="n">vi</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
@@ -620,28 +635,30 @@
 </div>
 
 
+
 <div class="viewcode-block" id="FDict">
-<a class="viewcode-back" href="../../../api_utils.html#foxes.models.model_book.FDict">[docs]</a>
+<a class="viewcode-back" href="../../../api_utils.html#foxes.utils.FDict">[docs]</a>
 <span class="k">class</span> <span class="nc">FDict</span><span class="p">(</span><span class="n">Dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A dictionary with factory support</span>
-<span class="sd">    </span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    store_created: bool</span>
 <span class="sd">        Flag for storing created objects</span>
 <span class="sd">    factories: list of foxes.utils.Factory</span>
 <span class="sd">        The factories</span>
-<span class="sd">    </span>
+
 <span class="sd">    :group: utils</span>
-<span class="sd">    </span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="FDict.__init__">
-<a class="viewcode-back" href="../../../_foxes/models/model_book/FDict.__init__.html#foxes.models.model_book.FDict.__init__">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/utils/FDict.__init__.html#foxes.utils.FDict.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">store_created</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        args: tuple, optional</span>
@@ -650,7 +667,7 @@
 <span class="sd">            Flag for storing created objects</span>
 <span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Parameters for the base class</span>
-<span class="sd">        </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">store_created</span> <span class="o">=</span> <span class="n">store_created</span>
@@ -658,25 +675,25 @@
 
 
 <div class="viewcode-block" id="FDict.add_factory">
-<a class="viewcode-back" href="../../../_foxes/models/model_book/FDict.add_factory.html#foxes.models.model_book.FDict.add_factory">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/utils/FDict.add_factory.html#foxes.utils.FDict.add_factory">[docs]</a>
     <span class="k">def</span> <span class="nf">add_factory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        args: tuple, optional</span>
 <span class="sd">            Parameters for the Factory constructor</span>
 <span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Parameters for the Factory constructor</span>
-<span class="sd">        </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">f</span> <span class="o">=</span> <span class="n">Factory</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">gi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
             <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span>
             <span class="k">if</span> <span class="p">(</span>
-                <span class="n">g</span><span class="o">.</span><span class="n">name_prefix</span> <span class="o">==</span> <span class="n">f</span><span class="o">.</span><span class="n">name_prefix</span> 
+                <span class="n">g</span><span class="o">.</span><span class="n">name_prefix</span> <span class="o">==</span> <span class="n">f</span><span class="o">.</span><span class="n">name_prefix</span>
                 <span class="ow">and</span> <span class="n">g</span><span class="o">.</span><span class="n">name_suffix</span> <span class="o">==</span> <span class="n">f</span><span class="o">.</span><span class="n">name_suffix</span>
                 <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span>
             <span class="p">):</span>
@@ -689,7 +706,7 @@
 
 
 <div class="viewcode-block" id="FDict.__contains__">
-<a class="viewcode-back" href="../../../_foxes/models/model_book/FDict.__contains__.html#foxes.models.model_book.FDict.__contains__">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/utils/FDict.__contains__.html#foxes.utils.FDict.__contains__">[docs]</a>
     <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="n">found</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
@@ -700,7 +717,7 @@
 
 
 <div class="viewcode-block" id="FDict.__getitem__">
-<a class="viewcode-back" href="../../../_foxes/models/model_book/FDict.__getitem__.html#foxes.models.model_book.FDict.__getitem__">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/utils/FDict.__getitem__.html#foxes.utils.FDict.__getitem__">[docs]</a>
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
@@ -719,7 +736,6 @@
         <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></div>
 </div>
 
-                
 </code></pre></div>
 
 
@@ -751,7 +767,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.2.6.
+    7.3.7.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
