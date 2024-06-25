@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.algorithms.downwind.downwind - foxes 0.7.2
+        <title>foxes.algorithms.downwind.downwind - foxes 0.7.3
  documentation</title>
       
     
@@ -37,7 +37,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.eaee958e8db0b4370.min.css?v=0db274d5" />
+        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.8b7122b5930e63132.min.css?v=abb87162" />
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.7.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.7.2
+    <a href="../../../../index.html" title="foxes 0.7.3
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7.3
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.7.2
+            foxes 0.7.3
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.7.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.2
+    <a href="../../../../index.html" title="foxes 0.7.3
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.3
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.7.2
+    foxes 0.7.3
  documentation
   </label>
   
@@ -389,6 +389,9 @@
 <span class="sd">    partial_wakes: dict</span>
 <span class="sd">        The partial wakes mapping. Key: wake model name,</span>
 <span class="sd">        value: foxes.core.PartialWakesModel</span>
+<span class="sd">    ground_models: dict</span>
+<span class="sd">        The ground models mapping. Key: wake model name,</span>
+<span class="sd">        value: foxes.core.GroundModel</span>
 <span class="sd">    farm_controller: foxes.core.FarmController</span>
 <span class="sd">        The farm controller</span>
 <span class="sd">    n_states: int</span>
@@ -428,9 +431,9 @@
         <span class="n">rotor_model</span><span class="o">=</span><span class="s2">&quot;centre&quot;</span><span class="p">,</span>
         <span class="n">wake_frame</span><span class="o">=</span><span class="s2">&quot;rotor_wd&quot;</span><span class="p">,</span>
         <span class="n">partial_wakes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ground_models</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">farm_controller</span><span class="o">=</span><span class="s2">&quot;basic_ctrl&quot;</span><span class="p">,</span>
         <span class="n">chunks</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span> <span class="mi">4000</span><span class="p">},</span>
-        <span class="n">wake_mirrors</span><span class="o">=</span><span class="p">{},</span>
         <span class="n">mbook</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">dbook</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -456,15 +459,15 @@
 <span class="sd">        partial_wakes: dict, list or str, optional</span>
 <span class="sd">            The partial wakes mapping. Key: wake model name,</span>
 <span class="sd">            value: partial wake model name</span>
+<span class="sd">        ground_models: dict, list or str, optional</span>
+<span class="sd">            The ground models mapping. Key: wake model name,</span>
+<span class="sd">            value: ground model name</span>
 <span class="sd">        farm_controller: str</span>
 <span class="sd">            The farm controller. Will be</span>
 <span class="sd">            looked up in the model book</span>
 <span class="sd">        chunks: dict</span>
 <span class="sd">            The chunks choice for running in parallel with dask,</span>
 <span class="sd">            e.g. `{&quot;state&quot;: 1000}` for chunks of 1000 states</span>
-<span class="sd">        wake_mirrors: dict</span>
-<span class="sd">            Switch on wake mirrors for wake models.</span>
-<span class="sd">            Key: wake model name, value: list of heights</span>
 <span class="sd">        mbook: foxes.ModelBook, optional</span>
 <span class="sd">            The model book</span>
 <span class="sd">        dbook: foxes.DataBook, optional</span>
@@ -492,51 +495,60 @@
         <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">wake_models</span><span class="p">:</span>
             <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
             <span class="n">m</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">w</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
 
-            <span class="c1"># optionally add wake mirrors:</span>
-            <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">wake_mirrors</span><span class="p">:</span>
-                <span class="n">hts</span> <span class="o">=</span> <span class="n">wake_mirrors</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">WakeMirror</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="nb">list</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">heights</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">list</span><span class="p">(</span><span class="n">hts</span><span class="p">):</span>
-                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                            <span class="sa">f</span><span class="s2">&quot;Wake model &#39;</span><span class="si">{</span><span class="n">w</span><span class="si">}</span><span class="s2">&#39; is mirrored with heights </span><span class="si">{</span><span class="n">m</span><span class="o">.</span><span class="n">heights</span><span class="si">}</span><span class="s2">, cannot apply WakeMirror with heights </span><span class="si">{</span><span class="n">hts</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">def</span> <span class="nf">_set_wspecific</span><span class="p">(</span><span class="n">descr</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">deffunc</span><span class="p">,</span> <span class="n">mbooks</span><span class="p">,</span> <span class="n">checkw</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">values</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">values</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">wake_models</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">pw</span> <span class="o">=</span> <span class="n">values</span>
+                        <span class="k">if</span> <span class="n">checkw</span><span class="p">:</span>
+                            <span class="n">mbooks</span><span class="p">[</span><span class="n">pw</span><span class="p">]</span><span class="o">.</span><span class="n">check_wmodel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">w</span><span class="p">],</span> <span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                        <span class="n">pw</span> <span class="o">=</span> <span class="n">deffunc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
+                    <span class="n">target</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">mbooks</span><span class="p">[</span><span class="n">pw</span><span class="p">]</span>
+                    <span class="n">target</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">pw</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wake_models</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+                        <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;Not enough </span><span class="si">{</span><span class="n">descr</span><span class="si">}</span><span class="s2"> in list </span><span class="si">{</span><span class="n">values</span><span class="si">}</span><span class="s2">, expecting </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">wake_models</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
                         <span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">WakeMirror</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">heights</span><span class="o">=</span><span class="n">hts</span><span class="p">)</span>
-
+                    <span class="n">pw</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">target</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">mbooks</span><span class="p">[</span><span class="n">pw</span><span class="p">]</span>
+                    <span class="n">target</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">pw</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
+                <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">wake_models</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+                        <span class="n">pw</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">pw</span> <span class="o">=</span> <span class="n">deffunc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
+                    <span class="n">target</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">mbooks</span><span class="p">[</span><span class="n">pw</span><span class="p">]</span>
+                    <span class="n">target</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">pw</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">partial_wakes</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">if</span> <span class="n">partial_wakes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">partial_wakes</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">partial_wakes</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">partial_wakes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">partial_wakes</span> <span class="o">=</span> <span class="n">partial_wakes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">partial_wakes</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">wake_models</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="n">pw</span> <span class="o">=</span> <span class="n">partial_wakes</span>
-                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                    <span class="n">pw</span> <span class="o">=</span> <span class="n">mbook</span><span class="o">.</span><span class="n">default_partial_wakes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">partial_wakes</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">partial_wakes</span><span class="p">[</span><span class="n">pw</span><span class="p">]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">partial_wakes</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">pw</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">partial_wakes</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wake_models</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">partial_wakes</span><span class="p">):</span>
-                    <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;Not enough partial wakes in list </span><span class="si">{</span><span class="n">partial_wakes</span><span class="si">}</span><span class="s2">, expecting </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">wake_models</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-                    <span class="p">)</span>
-                <span class="n">pw</span> <span class="o">=</span> <span class="n">partial_wakes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">partial_wakes</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">partial_wakes</span><span class="p">[</span><span class="n">pw</span><span class="p">]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">partial_wakes</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">pw</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">wake_models</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">partial_wakes</span><span class="p">:</span>
-                    <span class="n">pw</span> <span class="o">=</span> <span class="n">partial_wakes</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">pw</span> <span class="o">=</span> <span class="n">mbook</span><span class="o">.</span><span class="n">default_partial_wakes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">partial_wakes</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">partial_wakes</span><span class="p">[</span><span class="n">pw</span><span class="p">]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">partial_wakes</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">pw</span>
+        <span class="n">_set_wspecific</span><span class="p">(</span>
+            <span class="n">descr</span><span class="o">=</span><span class="s2">&quot;partial wakes&quot;</span><span class="p">,</span>
+            <span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">partial_wakes</span><span class="p">,</span>
+            <span class="n">values</span><span class="o">=</span><span class="n">partial_wakes</span><span class="p">,</span>
+            <span class="n">deffunc</span><span class="o">=</span><span class="n">mbook</span><span class="o">.</span><span class="n">default_partial_wakes</span><span class="p">,</span>
+            <span class="n">mbooks</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">partial_wakes</span><span class="p">,</span>
+            <span class="n">checkw</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ground_models</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">_set_wspecific</span><span class="p">(</span>
+            <span class="n">descr</span><span class="o">=</span><span class="s2">&quot;ground models&quot;</span><span class="p">,</span>
+            <span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ground_models</span><span class="p">,</span>
+            <span class="n">values</span><span class="o">=</span><span class="n">ground_models</span><span class="p">,</span>
+            <span class="n">deffunc</span><span class="o">=</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="s2">&quot;no_ground&quot;</span><span class="p">,</span>
+            <span class="n">mbooks</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">ground_models</span><span class="p">,</span>
+            <span class="n">checkw</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">farm_controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">farm_controllers</span><span class="p">[</span><span class="n">farm_controller</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">farm_controller</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">farm_controller</span></div>

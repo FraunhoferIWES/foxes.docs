@@ -516,3 +516,28 @@ Enjoy - we are awaiting comments and issues, thanks for testing.
   - Fix for bug with `Factory` that confused templates `A_B<..>` type with `B<..>` type templates 
   
 **Full Changelog**: [https://github.com/FraunhoferIWES/foxes/commits/v0.7.2](https://github.com/FraunhoferIWES/foxes/commits/v0.7.2)
+
+## v0.7.3
+
+- Dependencies:
+  - Restriction to `numpy<2` due to an incompatibility of dependecy `autograd`
+- Core:
+  - New model type `GroundModel`, which manages the call of the partial wakes models in case of farm calculations and wake models in case of point calculations
+- Inputs:
+  - New height dependent states: `MultiHeightNCStates` and `MultiHeightNCTimeseries`, same as `MultiHeightStates` and `MultiHeightTimeseries`, but starting from a netCDF file or `xarray.Dataset` input
+- Models:
+  - New wake model helper class `WakeK`, handling the `k`, `ka`, `kb` choices for all wake models
+  - New ground model `NoGround`, plain call of the partial wakes and wakes models
+  - New ground models `WakeMirror` and  `GroundMirror`, replacing the equivalent former wake models. Realizing wake reflection at horizontal planes.
+  - New induction model `VortexSheet`, which is a radial implementation of the centreline deficit model in Medici 2012 https://doi.org/10.1002/we.451
+- Utils:
+  - New utility `WakeKFactory` class, enabling the choice of either `k` or `ka, kb` directly from the wake model names in the model book.
+- Inputs:
+  - Work on `windio`, but unfinished on their side when it comes to analysis requests
+- Examples:
+  - Example `multi_height`: Now based on `MultiHeightNCTimeseries`
+- Bug fixes:
+  - Fox for bug with wake mirrors and partial wakes
+
+  
+**Full Changelog**: [https://github.com/FraunhoferIWES/foxes/commits/v0.7.3](https://github.com/FraunhoferIWES/foxes/commits/v0.7.3)

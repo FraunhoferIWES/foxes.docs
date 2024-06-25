@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.input.windio.windio - foxes 0.7.2
+        <title>foxes.input.windio.windio - foxes 0.7.3
  documentation</title>
       
     
@@ -37,7 +37,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.eaee958e8db0b4370.min.css?v=0db274d5" />
+        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.8b7122b5930e63132.min.css?v=abb87162" />
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.7.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.7.2
+    <a href="../../../../index.html" title="foxes 0.7.3
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7.3
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.7.2
+            foxes 0.7.3
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.7.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.2
+    <a href="../../../../index.html" title="foxes 0.7.3
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.3
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.7.2
+    foxes 0.7.3
  documentation
   </label>
   
@@ -359,281 +359,156 @@
 <h1>Source code for foxes.input.windio.windio</h1><div class="highlight"><pre>
 <span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WindFarm</span><span class="p">,</span> <span class="n">Algorithm</span>
+<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WindFarm</span>
 <span class="kn">from</span> <span class="nn">foxes.models</span> <span class="kn">import</span> <span class="n">ModelBook</span>
-<span class="kn">from</span> <span class="nn">foxes.input.states</span> <span class="kn">import</span> <span class="n">StatesTable</span>
-<span class="kn">from</span> <span class="nn">foxes.input.farm_layout</span> <span class="kn">import</span> <span class="n">add_from_df</span>
-<span class="kn">from</span> <span class="nn">foxes.models.turbine_types</span> <span class="kn">import</span> <span class="n">CpCtFromTwo</span>
-<span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">import_module</span>
-<span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
-<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
+<span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">import_module</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">foxes.data</span> <span class="kn">import</span> <span class="n">StaticData</span><span class="p">,</span> <span class="n">WINDIO</span>
+
+<span class="kn">from</span> <span class="nn">.read_fields</span> <span class="kn">import</span> <span class="n">read_wind_resource_field</span>
+<span class="kn">from</span> <span class="nn">.get_states</span> <span class="kn">import</span> <span class="n">get_states</span>
+<span class="kn">from</span> <span class="nn">.read_farm</span> <span class="kn">import</span> <span class="n">read_layout</span><span class="p">,</span> <span class="n">read_turbine_type</span>
+<span class="kn">from</span> <span class="nn">.read_attributes</span> <span class="kn">import</span> <span class="n">read_attributes</span>
+<span class="kn">from</span> <span class="nn">.runner</span> <span class="kn">import</span> <span class="n">WindioRunner</span>
 
 
-<span class="k">def</span> <span class="nf">read_resource</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">fixed_vars</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_read_site</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads the site information&quot;&quot;&quot;</span>
+    <span class="n">wio_site</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio</span><span class="p">[</span><span class="s2">&quot;site&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;site&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading site&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Name:&quot;</span><span class="p">,</span> <span class="n">wio_site</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio_site</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+
+    <span class="c1"># ignore boundaries:</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Ignoring boundaries&quot;</span><span class="p">)</span>
+
+    <span class="c1"># read energy_resource:</span>
+    <span class="n">energy_resource</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_site</span><span class="p">[</span><span class="s2">&quot;energy_resource&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;energy_resource&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Reading energy_resource&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Name:&quot;</span><span class="p">,</span> <span class="n">energy_resource</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">energy_resource</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+
+    <span class="c1"># read wind_resource:</span>
+    <span class="n">wind_resource</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">energy_resource</span><span class="p">[</span><span class="s2">&quot;wind_resource&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;wind_resource&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading wind_resource&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Name:&quot;</span><span class="p">,</span> <span class="n">wind_resource</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wind_resource</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+
+    <span class="c1"># read fields</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;coords&quot;</span><span class="p">)</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;fields&quot;</span><span class="p">)</span>
+    <span class="n">dims</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;dims&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">wind_resource</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        Reading&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="n">read_wind_resource_field</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">dims</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Coords:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">coords</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;        </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">: Shape </span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Fields:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dims</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;        </span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">: Dims </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">, shape </span><span class="si">{</span><span class="n">fields</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;states&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_states</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_read_farm</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads the wind farm information&quot;&quot;&quot;</span>
+    <span class="n">wio_farm</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio</span><span class="p">[</span><span class="s2">&quot;wind_farm&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;wind_farm&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading wind farm&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Name:&quot;</span><span class="p">,</span> <span class="n">wio_farm</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio_farm</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+
+    <span class="c1"># find REWS exponents:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">rotor_averaging</span> <span class="o">=</span> <span class="n">wio</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">][</span><span class="s2">&quot;analysis&quot;</span><span class="p">][</span><span class="s2">&quot;rotor_averaging&quot;</span><span class="p">]</span>
+        <span class="n">ws_exp_P</span> <span class="o">=</span> <span class="n">rotor_averaging</span><span class="p">[</span><span class="s2">&quot;wind_speed_exponent_for_power&quot;</span><span class="p">]</span>
+        <span class="n">ws_exp_ct</span> <span class="o">=</span> <span class="n">rotor_averaging</span><span class="p">[</span><span class="s2">&quot;wind_speed_exponent_for_ct&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">ws_exp_P</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">ws_exp_ct</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># read turbine type:</span>
+    <span class="n">turbines</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;turbines&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;turbines&quot;</span><span class="p">)</span>
+    <span class="n">ttype</span> <span class="o">=</span> <span class="n">read_turbine_type</span><span class="p">(</span><span class="n">turbines</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">ws_exp_P</span><span class="p">,</span> <span class="n">ws_exp_ct</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+
+    <span class="c1"># read layouts:</span>
+    <span class="n">layouts</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;layouts&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;layouts&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading layouts&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">layouts</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+    <span class="k">for</span> <span class="n">lname</span><span class="p">,</span> <span class="n">ldict</span> <span class="ow">in</span> <span class="n">layouts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">read_layout</span><span class="p">(</span><span class="n">lname</span><span class="p">,</span> <span class="n">ldict</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">ttype</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="read_windio">
+<a class="viewcode-back" href="../../../../api_input.html#foxes.input.windio.read_windio">[docs]</a>
+<span class="k">def</span> <span class="nf">read_windio</span><span class="p">(</span><span class="n">windio_yaml</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Reads a WindIO energy resource</span>
+<span class="sd">    Reads a complete WindIO case.</span>
+
+<span class="sd">    This is the main entry point for windio case</span>
+<span class="sd">    calculations.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    res_yaml: str</span>
-<span class="sd">        Path to the yaml file</span>
-<span class="sd">    fixed_vars: dict</span>
-<span class="sd">        Additional fixes variables that do</span>
-<span class="sd">        not occur in the yaml</span>
-<span class="sd">    kwargs: dict, optional</span>
-<span class="sd">        Additional arguments for StatesTable</span>
+<span class="sd">    windio_yaml: str</span>
+<span class="sd">        Path to the windio yaml file</span>
+<span class="sd">    verbosity: int</span>
+<span class="sd">        The verbosity level, 0 = silent</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    states: foxes.states.StatesTable</span>
-<span class="sd">        The uniform states</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">wres</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;wind_resource&quot;</span><span class="p">]</span>
-
-    <span class="n">wd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">wres</span><span class="p">[</span><span class="s2">&quot;wind_direction&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-    <span class="n">ws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">wres</span><span class="p">[</span><span class="s2">&quot;wind_speed&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-    <span class="n">n_wd</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span>
-    <span class="n">n_ws</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">n_wd</span> <span class="o">*</span> <span class="n">n_ws</span>
-
-    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_wd</span><span class="p">,</span> <span class="n">n_ws</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-    <span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">wd</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
-    <span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
-    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;wind_direction&quot;</span><span class="p">,</span> <span class="s2">&quot;wind_speed&quot;</span><span class="p">]</span>
-    <span class="n">sec_prob</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">_to_data</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">dims</span><span class="p">):</span>
-        <span class="k">nonlocal</span> <span class="n">data</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">sec_prob</span>
-        <span class="n">hdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_wd</span><span class="p">,</span> <span class="n">n_ws</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">hdata</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;wind_direction&quot;</span><span class="p">:</span>
-                <span class="n">hdata</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
-            <span class="k">elif</span> <span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;wind_speed&quot;</span><span class="p">:</span>
-                <span class="n">hdata</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown dimension &#39;</span><span class="si">{</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39; for data &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;wind_direction&quot;</span> <span class="ow">and</span> <span class="n">dims</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;wind_speed&quot;</span><span class="p">:</span>
-                <span class="n">hdata</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">dims</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;wind_direction&quot;</span> <span class="ow">and</span> <span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;wind_speed&quot;</span><span class="p">:</span>
-                <span class="n">hdata</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot handle dims = </span><span class="si">{</span><span class="n">dims</span><span class="si">}</span><span class="s2"> for data &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Can not accept more than two dimensions, got </span><span class="si">{</span><span class="n">dims</span><span class="si">}</span><span class="s2"> for data &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
-            <span class="p">)</span>
-        <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="s2">&quot;sector_probability&quot;</span><span class="p">:</span>
-            <span class="n">sec_prob</span> <span class="o">=</span> <span class="n">hdata</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">hdata</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-            <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-
-    <span class="n">vmap</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;wind_direction&quot;</span><span class="p">:</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span>
-        <span class="s2">&quot;wind_speed&quot;</span><span class="p">:</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span>
-        <span class="s2">&quot;turbulence_intensity&quot;</span><span class="p">:</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span>
-        <span class="s2">&quot;air_density&quot;</span><span class="p">:</span> <span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">,</span>
-        <span class="s2">&quot;probability&quot;</span><span class="p">:</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">,</span>
-    <span class="p">}</span>
-
-    <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">wres</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="s2">&quot;sector_probability&quot;</span> <span class="ow">or</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vmap</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-            <span class="n">_to_data</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;dims&quot;</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">sec_prob</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;probability&quot;</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
-        <span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;probability&quot;</span><span class="p">)]</span> <span class="o">*=</span> <span class="n">sec_prob</span>
-
-    <span class="n">n_vars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n_vars</span><span class="p">)</span>
-
-    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
-    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;state&quot;</span>
-    <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">vmap</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="n">ovars</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">}</span>
-    <span class="n">ovars</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">fixed_vars</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">})</span>
-
-    <span class="k">return</span> <span class="n">StatesTable</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">output_vars</span><span class="o">=</span><span class="n">ovars</span><span class="p">,</span> <span class="n">fixed_vars</span><span class="o">=</span><span class="n">fixed_vars</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">read_site</span><span class="p">(</span><span class="n">site</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Reads a WindIO site</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    site_yaml: str</span>
-<span class="sd">        Path to the yaml file</span>
-<span class="sd">    kwargs: dict, optional</span>
-<span class="sd">        Additional arguments for read_resource</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    states: foxes.states.States</span>
-<span class="sd">        The states object</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">res_yaml</span> <span class="o">=</span> <span class="n">site</span><span class="p">[</span><span class="s2">&quot;energy_resource&quot;</span><span class="p">]</span>
-    <span class="n">states</span> <span class="o">=</span> <span class="n">read_resource</span><span class="p">(</span><span class="n">res_yaml</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">states</span>
-
-
-<span class="k">def</span> <span class="nf">read_farm</span><span class="p">(</span><span class="n">fdict</span><span class="p">,</span> <span class="n">mbook</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">layout</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">turbine_models</span><span class="o">=</span><span class="p">[],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Reads a WindIO wind farm</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    farm_yaml: str</span>
-<span class="sd">        Path to the yaml file</span>
-<span class="sd">    mbook: foxes.ModelBook, optional</span>
-<span class="sd">        The model book to start from</span>
-<span class="sd">    layout: str or int</span>
-<span class="sd">        The layout choice</span>
-<span class="sd">    turbine_models: list of str</span>
-<span class="sd">        Additional turbine models</span>
-<span class="sd">    kwargs: dict, optional</span>
-<span class="sd">        Additional parameters for add_from_df()</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    mbook: foxes.ModelBook</span>
-<span class="sd">        The model book</span>
-<span class="sd">    farm: foxes.WindFarm</span>
-<span class="sd">        The wind farm</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">mbook</span> <span class="o">=</span> <span class="n">ModelBook</span><span class="p">()</span> <span class="k">if</span> <span class="n">mbook</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">mbook</span>
-
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">layout</span> <span class="o">=</span> <span class="n">fdict</span><span class="p">[</span><span class="s2">&quot;layouts&quot;</span><span class="p">][</span><span class="n">layout</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">lname</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fdict</span><span class="p">[</span><span class="s2">&quot;layouts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="n">layout</span><span class="p">]</span>
-        <span class="n">layout</span> <span class="o">=</span> <span class="n">fdict</span><span class="p">[</span><span class="s2">&quot;layouts&quot;</span><span class="p">][</span><span class="n">lname</span><span class="p">]</span>
-
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">layout</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">layout</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">ldata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
-    <span class="n">ldata</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;index&quot;</span>
-    <span class="n">ldata</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
-    <span class="n">ldata</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
-
-    <span class="n">tdict</span> <span class="o">=</span> <span class="n">fdict</span><span class="p">[</span><span class="s2">&quot;turbines&quot;</span><span class="p">]</span>
-    <span class="n">pdict</span> <span class="o">=</span> <span class="n">tdict</span><span class="p">[</span><span class="s2">&quot;performance&quot;</span><span class="p">]</span>
-
-    <span class="n">ct_ws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pdict</span><span class="p">[</span><span class="s2">&quot;Ct_curve&quot;</span><span class="p">][</span><span class="s2">&quot;Ct_wind_speeds&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-    <span class="n">ct_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ct_ws</span><span class="p">)))</span>
-    <span class="n">ct_data</span><span class="p">[</span><span class="s2">&quot;ws&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ct_ws</span>
-    <span class="n">ct_data</span><span class="p">[</span><span class="s2">&quot;ct&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pdict</span><span class="p">[</span><span class="s2">&quot;Ct_curve&quot;</span><span class="p">][</span><span class="s2">&quot;Ct_values&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-
-    <span class="n">cp_ws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pdict</span><span class="p">[</span><span class="s2">&quot;Cp_curve&quot;</span><span class="p">][</span><span class="s2">&quot;Cp_wind_speeds&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-    <span class="n">cp_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cp_ws</span><span class="p">)))</span>
-    <span class="n">cp_data</span><span class="p">[</span><span class="s2">&quot;ws&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cp_ws</span>
-    <span class="n">cp_data</span><span class="p">[</span><span class="s2">&quot;cp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pdict</span><span class="p">[</span><span class="s2">&quot;Cp_curve&quot;</span><span class="p">][</span><span class="s2">&quot;Cp_values&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-
-    <span class="n">D</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tdict</span><span class="p">[</span><span class="s2">&quot;rotor_diameter&quot;</span><span class="p">])</span>
-    <span class="n">H</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tdict</span><span class="p">[</span><span class="s2">&quot;hub_height&quot;</span><span class="p">])</span>
-
-    <span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="s2">&quot;windio_turbine&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">CpCtFromTwo</span><span class="p">(</span>
-        <span class="n">cp_data</span><span class="p">,</span> <span class="n">ct_data</span><span class="p">,</span> <span class="n">col_ws_cp_file</span><span class="o">=</span><span class="s2">&quot;ws&quot;</span><span class="p">,</span> <span class="n">col_cp</span><span class="o">=</span><span class="s2">&quot;cp&quot;</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="n">D</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span>
-    <span class="p">)</span>
-
-    <span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;windio_turbine&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">turbine_models</span>
-    <span class="n">farm</span> <span class="o">=</span> <span class="n">WindFarm</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">fdict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
-
-    <span class="n">add_from_df</span><span class="p">(</span><span class="n">farm</span><span class="p">,</span> <span class="n">ldata</span><span class="p">,</span> <span class="n">col_x</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">col_y</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">turbine_models</span><span class="o">=</span><span class="n">models</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span>
-
-
-<span class="k">def</span> <span class="nf">read_anlyses</span><span class="p">(</span>
-    <span class="n">analyses</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">keymap</span><span class="o">=</span><span class="p">{},</span> <span class="n">algo_type</span><span class="o">=</span><span class="s2">&quot;Downwind&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">algo_pars</span>
-<span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Reads a WindIO wind farm</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    analyses: dict</span>
-<span class="sd">        The analyses sub-dict of the case</span>
-<span class="sd">    mbook: foxes.ModelBook</span>
-<span class="sd">        The model book</span>
-<span class="sd">    farm: foxes.WindFarm</span>
-<span class="sd">        The wind farm</span>
-<span class="sd">    states: foxes.states.States</span>
-<span class="sd">        The states object</span>
-<span class="sd">    keymap: dict</span>
-<span class="sd">        Translation from windio to foxes keywords</span>
-<span class="sd">    algo_type: str</span>
-<span class="sd">        The default algorithm class name</span>
-<span class="sd">    algo_pars: dict, optional</span>
-<span class="sd">        Additional parameters for the algorithm</span>
-<span class="sd">        constructor</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    algo: foxes.core.Algorithm</span>
-<span class="sd">        The algorithm</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">wmodel</span> <span class="o">=</span> <span class="n">analyses</span><span class="p">[</span><span class="s2">&quot;wake_model&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
-    <span class="n">wmodels</span> <span class="o">=</span> <span class="p">[</span><span class="n">keymap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">wmodel</span><span class="p">,</span> <span class="n">wmodel</span><span class="p">)]</span>
-
-    <span class="k">return</span> <span class="n">Algorithm</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
-        <span class="n">algo_type</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">wake_models</span><span class="o">=</span><span class="n">wmodels</span><span class="p">,</span> <span class="o">**</span><span class="n">algo_pars</span>
-    <span class="p">)</span>
-
-
-<div class="viewcode-block" id="read_case">
-<a class="viewcode-back" href="../../../../api_input.html#foxes.input.windio.read_case">[docs]</a>
-<span class="k">def</span> <span class="nf">read_case</span><span class="p">(</span><span class="n">case_yaml</span><span class="p">,</span> <span class="n">site_pars</span><span class="o">=</span><span class="p">{},</span> <span class="n">farm_pars</span><span class="o">=</span><span class="p">{},</span> <span class="n">ana_pars</span><span class="o">=</span><span class="p">{}):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Reads a WindIO case</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    case_yaml: str</span>
-<span class="sd">        Path to the yaml file</span>
-<span class="sd">    site_pars: dict</span>
-<span class="sd">        Additional arguments for read_site</span>
-<span class="sd">    farm_pars: dict</span>
-<span class="sd">        Additional arguments for read_farm</span>
-<span class="sd">    ana_pars: dict</span>
-<span class="sd">        Additional arguments for read_analyses</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    mbook: foxes.ModelBook</span>
-<span class="sd">        The model book</span>
-<span class="sd">    farm: foxes.WindFarm</span>
-<span class="sd">        The wind farm</span>
-<span class="sd">    states: foxes.states.States</span>
-<span class="sd">        The states object</span>
-<span class="sd">    algo: foxes.core.Algorithm</span>
-<span class="sd">        The algorithm</span>
+<span class="sd">    runner: foxes.input.windio.WindioRunner</span>
+<span class="sd">        The windio runner, call its run function</span>
+<span class="sd">        for the complete exection</span>
 
 <span class="sd">    :group: input.windio</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">wio_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">windio_yaml</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">wio_file</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="n">wio_file</span> <span class="o">=</span> <span class="n">StaticData</span><span class="p">()</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span><span class="n">WINDIO</span><span class="p">,</span> <span class="n">wio_file</span><span class="p">,</span> <span class="n">check_raw</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading windio file </span><span class="si">{</span><span class="n">wio_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
     <span class="n">yml_utils</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;windIO.utils.yml_utils&quot;</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s2">&quot;pip install windio&quot;</span><span class="p">)</span>
-    <span class="n">case</span> <span class="o">=</span> <span class="n">yml_utils</span><span class="o">.</span><span class="n">load_yaml</span><span class="p">(</span><span class="n">case_yaml</span><span class="p">)</span>
+    <span class="n">wio</span> <span class="o">=</span> <span class="n">yml_utils</span><span class="o">.</span><span class="n">load_yaml</span><span class="p">(</span><span class="n">wio_file</span><span class="p">)</span>
 
-    <span class="n">site_yaml</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;site&quot;</span><span class="p">]</span>
-    <span class="n">states</span> <span class="o">=</span> <span class="n">read_site</span><span class="p">(</span><span class="n">site_yaml</span><span class="p">,</span> <span class="o">**</span><span class="n">site_pars</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Name:&quot;</span><span class="p">,</span> <span class="n">wio</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
 
-    <span class="n">farm_yaml</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;wind_farm&quot;</span><span class="p">]</span>
-    <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span> <span class="o">=</span> <span class="n">read_farm</span><span class="p">(</span><span class="n">farm_yaml</span><span class="p">,</span> <span class="o">**</span><span class="n">farm_pars</span><span class="p">)</span>
+    <span class="n">algo_dict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
+        <span class="n">algo_type</span><span class="o">=</span><span class="s2">&quot;Downwind&quot;</span><span class="p">,</span>
+        <span class="n">mbook</span><span class="o">=</span><span class="n">ModelBook</span><span class="p">(),</span>
+        <span class="n">farm</span><span class="o">=</span><span class="n">WindFarm</span><span class="p">(),</span>
+        <span class="n">wake_models</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span>
 
-    <span class="n">attr_dict</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span>
-    <span class="n">algo</span> <span class="o">=</span> <span class="n">read_anlyses</span><span class="p">(</span><span class="n">attr_dict</span><span class="p">[</span><span class="s2">&quot;analyses&quot;</span><span class="p">],</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="o">**</span><span class="n">ana_pars</span><span class="p">)</span>
+    <span class="n">_read_site</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+    <span class="n">_read_farm</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+    <span class="n">out_dicts</span> <span class="o">=</span> <span class="n">read_attributes</span><span class="p">(</span>
+        <span class="n">wio</span><span class="p">,</span>
+        <span class="n">algo_dict</span><span class="p">,</span>
+        <span class="n">verbosity</span><span class="p">,</span>
+    <span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">algo</span></div>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating windio runner&quot;</span><span class="p">)</span>
+    <span class="n">runner</span> <span class="o">=</span> <span class="n">WindioRunner</span><span class="p">(</span><span class="n">algo_dict</span><span class="p">,</span> <span class="n">output_dicts</span><span class="o">=</span><span class="n">out_dicts</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">runner</span></div>
 
 
 
@@ -641,10 +516,17 @@
     <span class="kn">import</span> <span class="nn">argparse</span>
 
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;case_yaml&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The case yaml file&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-f&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--file&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The windio yaml file&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;windio_5turbines_timeseries.yaml&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-    <span class="n">read_case</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">case_yaml</span><span class="p">)</span>
+    <span class="n">runner</span> <span class="o">=</span> <span class="n">read_windio</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
+
+    <span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div>
 
 

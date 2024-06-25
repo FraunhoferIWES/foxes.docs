@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.factory - foxes 0.7.2
+        <title>foxes.utils.factory - foxes 0.7.3
  documentation</title>
       
     
@@ -37,7 +37,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.eaee958e8db0b4370.min.css?v=0db274d5" />
+        <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.8b7122b5930e63132.min.css?v=abb87162" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.7.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.7.2
+    <a href="../../../index.html" title="foxes 0.7.3
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7.3
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.7.2
+            foxes 0.7.3
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.7.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.2
+    <a href="../../../index.html" title="foxes 0.7.3
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.3
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.7.2
+    foxes 0.7.3
  documentation
   </label>
   
@@ -357,9 +357,8 @@
 
 
 <h1>Source code for foxes.utils.factory</h1><div class="highlight"><pre>
-<span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="kn">from</span> <span class="nn">.dict</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span></span><code><span class="kn">from</span> <span class="nn">.dict</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 
 
 <div class="viewcode-block" id="Factory">
@@ -436,14 +435,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">var2arg</span> <span class="o">=</span> <span class="n">var2arg</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hints</span> <span class="o">=</span> <span class="n">hints</span>
 
-        <span class="n">parts</span> <span class="o">=</span> <span class="n">name_template</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&gt;&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Factory &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;: Expecting at least one variable in template, pattern &#39;&lt;..&gt;&#39;&quot;</span>
-            <span class="p">)</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">_vars</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pre</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">name_template</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&gt;&quot;</span><span class="p">)</span>
+
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parts</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">parts2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&lt;&quot;</span><span class="p">)</span>
@@ -636,6 +631,195 @@
 
 
 
+<div class="viewcode-block" id="WakeKFactory">
+<a class="viewcode-back" href="../../../api_utils.html#foxes.utils.WakeKFactory">[docs]</a>
+<span class="k">class</span> <span class="nc">WakeKFactory</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A factory that automatically handles</span>
+<span class="sd">    wake_k parameters</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    factories: list of Factory</span>
+<span class="sd">        The individual factories</span>
+
+<span class="sd">    :group: utils</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="WakeKFactory.__init__">
+<a class="viewcode-back" href="../../../_foxes/utils/WakeKFactory.__init__.html#foxes.utils.WakeKFactory.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">name_template</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">hints</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        base: class</span>
+<span class="sd">            The class of which objects are to be created</span>
+<span class="sd">        name_template: str</span>
+<span class="sd">            The name template, e.g. &#39;name_&lt;A&gt;_&lt;B&gt;_&lt;C&gt;&#39; for</span>
+<span class="sd">            variables A, B, C. Indicate wake_k part by &#39;_[wake_k]&#39;</span>
+<span class="sd">        args: tuple, optional</span>
+<span class="sd">            Additional arguments for Factory</span>
+<span class="sd">        hints: dict</span>
+<span class="sd">            Hints for print_toc, only for variables for which the</span>
+<span class="sd">            options are functions or missing</span>
+<span class="sd">        kwargs: dict</span>
+<span class="sd">            Additional arguments for Factory</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_base</span> <span class="o">=</span> <span class="n">base</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_template0</span> <span class="o">=</span> <span class="n">name_template</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factories</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">i0</span> <span class="o">=</span> <span class="n">name_template</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;_[wake_k]&quot;</span><span class="p">)</span>
+        <span class="n">i1</span> <span class="o">=</span> <span class="n">i0</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="s2">&quot;_[wake_k]&quot;</span><span class="p">)</span>
+        <span class="n">kw</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;kwargs&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+        <span class="k">if</span> <span class="n">i0</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;String &#39;_[wake_k]&#39; not found in name template &#39;</span><span class="si">{</span><span class="n">name_template</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># add case ka, kb:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">name_template</span><span class="p">[:</span><span class="n">i0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_ka&lt;ka&gt;_kb&lt;kb&gt;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_template</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">i1</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">+=</span> <span class="n">name_template</span><span class="p">[</span><span class="n">i1</span><span class="p">:]</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">hints</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">h</span><span class="p">[</span><span class="s2">&quot;ka&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;(Value, e.g. 04 for 0.4)&quot;</span>
+        <span class="n">h</span><span class="p">[</span><span class="s2">&quot;kb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;(Value, e.g. 001 for 0.01)&quot;</span>
+        <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;ti_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">Factory</span><span class="p">(</span>
+                <span class="n">base</span><span class="p">,</span>
+                <span class="n">t</span><span class="p">,</span>
+                <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                <span class="n">hints</span><span class="o">=</span><span class="n">h</span><span class="p">,</span>
+                <span class="n">kwargs</span><span class="o">=</span><span class="n">kw</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                <span class="n">ka</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+                <span class="n">kb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># add case ambient ka, kb:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">name_template</span><span class="p">[:</span><span class="n">i0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_ambka&lt;ka&gt;_kb&lt;kb&gt;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_template</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">i1</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">+=</span> <span class="n">name_template</span><span class="p">[</span><span class="n">i1</span><span class="p">:]</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">hints</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">h</span><span class="p">[</span><span class="s2">&quot;ka&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;(Value, e.g. 04 for 0.4)&quot;</span>
+        <span class="n">h</span><span class="p">[</span><span class="s2">&quot;kb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;(Value, e.g. 001 for 0.01)&quot;</span>
+        <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;ti_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_TI</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">Factory</span><span class="p">(</span>
+                <span class="n">base</span><span class="p">,</span>
+                <span class="n">t</span><span class="p">,</span>
+                <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                <span class="n">hints</span><span class="o">=</span><span class="n">h</span><span class="p">,</span>
+                <span class="n">kwargs</span><span class="o">=</span><span class="n">kw</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                <span class="n">ka</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+                <span class="n">kb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># add case ka:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">name_template</span><span class="p">[:</span><span class="n">i0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_ka&lt;ka&gt;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_template</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">i1</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">+=</span> <span class="n">name_template</span><span class="p">[</span><span class="n">i1</span><span class="p">:]</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">hints</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">h</span><span class="p">[</span><span class="s2">&quot;ka&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;(Value, e.g. 04 for 0.4)&quot;</span>
+        <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;ti_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">Factory</span><span class="p">(</span>
+                <span class="n">base</span><span class="p">,</span>
+                <span class="n">t</span><span class="p">,</span>
+                <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                <span class="n">hints</span><span class="o">=</span><span class="n">h</span><span class="p">,</span>
+                <span class="n">kwargs</span><span class="o">=</span><span class="n">kw</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                <span class="n">ka</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># add case ka:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">name_template</span><span class="p">[:</span><span class="n">i0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_ambka&lt;ka&gt;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_template</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">i1</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">+=</span> <span class="n">name_template</span><span class="p">[</span><span class="n">i1</span><span class="p">:]</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">hints</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">h</span><span class="p">[</span><span class="s2">&quot;ka&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;(Value, e.g. 04 for 0.4)&quot;</span>
+        <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;ti_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_TI</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">Factory</span><span class="p">(</span>
+                <span class="n">base</span><span class="p">,</span>
+                <span class="n">t</span><span class="p">,</span>
+                <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                <span class="n">hints</span><span class="o">=</span><span class="n">h</span><span class="p">,</span>
+                <span class="n">kwargs</span><span class="o">=</span><span class="n">kw</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                <span class="n">ka</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># add case k:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">name_template</span><span class="p">[:</span><span class="n">i0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_k&lt;k&gt;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_template</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">i1</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">+=</span> <span class="n">name_template</span><span class="p">[</span><span class="n">i1</span><span class="p">:]</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">hints</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">h</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span>
+        <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;ti_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">Factory</span><span class="p">(</span>
+                <span class="n">base</span><span class="p">,</span>
+                <span class="n">t</span><span class="p">,</span>
+                <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                <span class="n">hints</span><span class="o">=</span><span class="n">h</span><span class="p">,</span>
+                <span class="n">kwargs</span><span class="o">=</span><span class="n">kw</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># add case without k:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">name_template</span><span class="p">[:</span><span class="n">i0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_template</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">i1</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">+=</span> <span class="n">name_template</span><span class="p">[</span><span class="n">i1</span><span class="p">:]</span>
+        <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;ti_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">Factory</span><span class="p">(</span>
+                <span class="n">base</span><span class="p">,</span>
+                <span class="n">t</span><span class="p">,</span>
+                <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                <span class="n">hints</span><span class="o">=</span><span class="n">hints</span><span class="p">,</span>
+                <span class="n">kwargs</span><span class="o">=</span><span class="n">kw</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WakeKFactory.__str__">
+<a class="viewcode-back" href="../../../_foxes/utils/WakeKFactory.__str__.html#foxes.utils.WakeKFactory.__str__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;String representation&quot;&quot;&quot;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_template0</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_base</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> with&quot;</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">f0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">f0</span><span class="o">.</span><span class="n">variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">f0</span><span class="o">.</span><span class="n">options</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">f0</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2"> from </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">f0</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">f0</span><span class="o">.</span><span class="n">hints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(value)&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  [wake_k]=(None or k&lt;k&gt; or ka&lt;ka&gt; or ka&lt;ka&gt;_kb&lt;kb&gt;, e.g. 004 for 0.04)&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">s</span></div>
+</div>
+
+
+
 <div class="viewcode-block" id="FDict">
 <a class="viewcode-back" href="../../../api_utils.html#foxes.utils.FDict">[docs]</a>
 <span class="k">class</span> <span class="nc">FDict</span><span class="p">(</span><span class="n">Dict</span><span class="p">):</span>
@@ -676,19 +860,21 @@
 
 <div class="viewcode-block" id="FDict.add_factory">
 <a class="viewcode-back" href="../../../_foxes/utils/FDict.add_factory.html#foxes.utils.FDict.add_factory">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_factory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add_factory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">factory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Constructor.</span>
+<span class="sd">        Adds a Factory object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        args: tuple, optional</span>
 <span class="sd">            Parameters for the Factory constructor</span>
+<span class="sd">        factory: Factory, optional</span>
+<span class="sd">            The factory object</span>
 <span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Parameters for the Factory constructor</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="n">Factory</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">Factory</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">if</span> <span class="n">factory</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">factory</span>
         <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">gi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
             <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span>
@@ -703,6 +889,24 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">factories</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FDict.add_k_factory">
+<a class="viewcode-back" href="../../../_foxes/utils/FDict.add_k_factory.html#foxes.utils.FDict.add_k_factory">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_k_factory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a WakeKFactory.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        args: tuple, optional</span>
+<span class="sd">            Parameters for the Factory constructor</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Parameters for the Factory constructor</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">WakeKFactory</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">factories</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span><span class="n">factory</span><span class="o">=</span><span class="n">f</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FDict.__contains__">

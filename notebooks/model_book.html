@@ -13,7 +13,7 @@
     
     
       
-        <title>The model book - foxes 0.7.2
+        <title>The model book - foxes 0.7.3
  documentation</title>
       
     
@@ -37,7 +37,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.eaee958e8db0b4370.min.css?v=0db274d5" />
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.8b7122b5930e63132.min.css?v=abb87162" />
         <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -73,8 +73,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 0.7.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.7.2
+    <a href="../index.html" title="foxes 0.7.3
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7.3
  documentation" data-md-component="logo">
       
   
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.7.2
+            foxes 0.7.3
  documentation
           </span>
         </div>
@@ -175,14 +175,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 0.7.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.2
+    <a href="../index.html" title="foxes 0.7.3
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.3
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.7.2
+    foxes 0.7.3
  documentation
   </label>
   
@@ -660,6 +660,14 @@ farm_thrust2ct: Turbine2FarmModel(Thrust2Ct(thrust_var=T, var_ws_ct=REWS2))
 farm_yaw2yawm: Turbine2FarmModel(YAW2YAWM())
 farm_yawm2yaw: Turbine2FarmModel(YAWM2YAW())
 
+ground_models
+-------------
+ground_mirror: GroundMirror()
+no_ground: NoGround()
+
+blh_mirror_h&lt;height&gt;: WakeMirror with
+  height=(Boundary layer wake reflection height)
+
 partial_wakes
 -------------
 centre: PartialCentre()
@@ -728,10 +736,10 @@ kTI_amb_&lt;kTI&gt;: kTI with
 
 turbine_types
 -------------
-DTU10MW: PCtFile(D=178.3, H=119.0, P_nominal=10000.0, P_unit=kW, rho=1.225)
-IEA15MW: PCtFile(D=240.0, H=150.0, P_nominal=15000.0, P_unit=kW, rho=1.225)
-IWT7.5MW: PCtFile(D=164.0, H=100.0, P_nominal=7500.0, P_unit=kW, rho=1.225)
-NREL5MW: PCtFile(D=126.0, H=90.0, P_nominal=5000.0, P_unit=kW, rho=1.225)
+DTU10MW: PCtFile(D=178.3, H=119.0, P_nominal=10000.0, P_unit=kW, rho=1.225, var_ws_ct=REWS2, var_ws_P=REWS3)
+IEA15MW: PCtFile(D=240.0, H=150.0, P_nominal=15000.0, P_unit=kW, rho=1.225, var_ws_ct=REWS2, var_ws_P=REWS3)
+IWT7.5MW: PCtFile(D=164.0, H=100.0, P_nominal=7500.0, P_unit=kW, rho=1.225, var_ws_ct=REWS2, var_ws_P=REWS3)
+NREL5MW: PCtFile(D=126.0, H=90.0, P_nominal=5000.0, P_unit=kW, rho=1.225, var_ws_ct=REWS2, var_ws_P=REWS3)
 null_type: NullType(D=None, H=None, P_nominal=None, P_unit=kW)
 
 wake_frames
@@ -739,10 +747,31 @@ wake_frames
 rotor_wd: RotorWD()
 rotor_wd_farmo: FarmOrder()
 timelines: Timelines(dt_min=None)
-yawed: YawedWakes(k_var=k)
+
+yawed_ka&lt;ka&gt;_kb&lt;kb&gt;: YawedWakes with
+  ti_var=TI
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+yawed_ambka&lt;ka&gt;_kb&lt;kb&gt;: YawedWakes with
+  ti_var=AMB_TI
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+yawed_ka&lt;ka&gt;: YawedWakes with
+  ti_var=TI
+  ka=(Value, e.g. 04 for 0.4)
+
+yawed_ambka&lt;ka&gt;: YawedWakes with
+  ti_var=AMB_TI
+  ka=(Value, e.g. 04 for 0.4)
 
 yawed_k&lt;k&gt;: YawedWakes with
+  ti_var=TI
   k=(Value, e.g. 004 for 0.04)
+
+yawed: YawedWakes with
+  ti_var=TI
 
 streamlines_&lt;step&gt;: Streamlines2D with
   step=(Step size in m)
@@ -762,102 +791,437 @@ RHB: RankineHalfBody(induction=Madsen)
 Rathmann: Rathmann(induction=Madsen)
 SelfSimilar: SelfSimilar(gamma=1.1, induction=Madsen)
 SelfSimilar2020: SelfSimilar2020(gamma=1.1, induction=Madsen)
+VortexSheet: VortexSheet, induction=Madsen)
+
+Jensen_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: JensenWake with
+  induction=Betz
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Jensen_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: JensenWake with
+  induction=Betz
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Jensen_&lt;superposition&gt;_ka&lt;ka&gt;: JensenWake with
+  induction=Betz
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+Jensen_&lt;superposition&gt;_ambka&lt;ka&gt;: JensenWake with
+  induction=Betz
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
 
 Jensen_&lt;superposition&gt;_k&lt;k&gt;: JensenWake with
+  induction=Betz
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
   k=(Value, e.g. 004 for 0.04)
 
 Jensen_&lt;superposition&gt;: JensenWake with
+  induction=Betz
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
+
+Bastankhah2014_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2014 with
+  sbeta_factor=0.2
+  induction=Madsen
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Bastankhah2014_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2014 with
+  sbeta_factor=0.2
+  induction=Madsen
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Bastankhah2014_&lt;superposition&gt;_ka&lt;ka&gt;: Bastankhah2014 with
+  sbeta_factor=0.2
+  induction=Madsen
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+Bastankhah2014_&lt;superposition&gt;_ambka&lt;ka&gt;: Bastankhah2014 with
+  sbeta_factor=0.2
+  induction=Madsen
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
 
 Bastankhah2014_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2014 with
   sbeta_factor=0.2
+  induction=Madsen
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
   k=(Value, e.g. 004 for 0.04)
 
 Bastankhah2014_&lt;superposition&gt;: Bastankhah2014 with
   sbeta_factor=0.2
+  induction=Madsen
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
+
+Bastankhah2014B_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2014 with
+  sbeta_factor=0.2
+  induction=Betz
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Bastankhah2014B_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2014 with
+  sbeta_factor=0.2
+  induction=Betz
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Bastankhah2014B_&lt;superposition&gt;_ka&lt;ka&gt;: Bastankhah2014 with
+  sbeta_factor=0.2
+  induction=Betz
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+Bastankhah2014B_&lt;superposition&gt;_ambka&lt;ka&gt;: Bastankhah2014 with
+  sbeta_factor=0.2
+  induction=Betz
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
 
 Bastankhah2014B_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2014 with
   sbeta_factor=0.2
   induction=Betz
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
   k=(Value, e.g. 004 for 0.04)
 
 Bastankhah2014B_&lt;superposition&gt;: Bastankhah2014 with
   sbeta_factor=0.2
   induction=Betz
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
+
+Bastankhah025_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2014 with
+  sbeta_factor=0.25
+  induction=Madsen
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Bastankhah025_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2014 with
+  sbeta_factor=0.25
+  induction=Madsen
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Bastankhah025_&lt;superposition&gt;_ka&lt;ka&gt;: Bastankhah2014 with
+  sbeta_factor=0.25
+  induction=Madsen
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+Bastankhah025_&lt;superposition&gt;_ambka&lt;ka&gt;: Bastankhah2014 with
+  sbeta_factor=0.25
+  induction=Madsen
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
 
 Bastankhah025_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2014 with
   sbeta_factor=0.25
+  induction=Madsen
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
   k=(Value, e.g. 004 for 0.04)
 
 Bastankhah025_&lt;superposition&gt;: Bastankhah2014 with
   sbeta_factor=0.25
+  induction=Madsen
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
+
+Bastankhah025B_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2014 with
+  sbeta_factor=0.25
+  induction=Betz
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Bastankhah025B_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2014 with
+  sbeta_factor=0.25
+  induction=Betz
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Bastankhah025B_&lt;superposition&gt;_ka&lt;ka&gt;: Bastankhah2014 with
+  sbeta_factor=0.25
+  induction=Betz
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+Bastankhah025B_&lt;superposition&gt;_ambka&lt;ka&gt;: Bastankhah2014 with
+  sbeta_factor=0.25
+  induction=Betz
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
 
 Bastankhah025B_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2014 with
   sbeta_factor=0.25
   induction=Betz
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
   k=(Value, e.g. 004 for 0.04)
 
 Bastankhah025B_&lt;superposition&gt;: Bastankhah2014 with
   sbeta_factor=0.25
   induction=Betz
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
 
+Bastankhah2016_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2016 with
+  induction=Madsen
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Bastankhah2016_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2016 with
+  induction=Madsen
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Bastankhah2016_&lt;superposition&gt;_ka&lt;ka&gt;: Bastankhah2016 with
+  induction=Madsen
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+Bastankhah2016_&lt;superposition&gt;_ambka&lt;ka&gt;: Bastankhah2016 with
+  induction=Madsen
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
 Bastankhah2016_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2016 with
+  induction=Madsen
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
   k=(Value, e.g. 004 for 0.04)
 
 Bastankhah2016_&lt;superposition&gt;: Bastankhah2016 with
+  induction=Madsen
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
+
+Bastankhah2016B_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2016 with
+  induction=Betz
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Bastankhah2016B_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2016 with
+  induction=Betz
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Bastankhah2016B_&lt;superposition&gt;_ka&lt;ka&gt;: Bastankhah2016 with
+  induction=Betz
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+Bastankhah2016B_&lt;superposition&gt;_ambka&lt;ka&gt;: Bastankhah2016 with
+  induction=Betz
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
 
 Bastankhah2016B_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2016 with
   induction=Betz
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
   k=(Value, e.g. 004 for 0.04)
 
 Bastankhah2016B_&lt;superposition&gt;: Bastankhah2016 with
   induction=Betz
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
 
+TurbOPark_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: TurbOParkWake with
+  induction=Madsen
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+TurbOPark_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: TurbOParkWake with
+  induction=Madsen
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+TurbOPark_&lt;superposition&gt;_ka&lt;ka&gt;: TurbOParkWake with
+  induction=Madsen
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+TurbOPark_&lt;superposition&gt;_ambka&lt;ka&gt;: TurbOParkWake with
+  induction=Madsen
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
 TurbOPark_&lt;superposition&gt;_k&lt;k&gt;: TurbOParkWake with
+  induction=Madsen
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
   k=(Value, e.g. 004 for 0.04)
 
 TurbOPark_&lt;superposition&gt;: TurbOParkWake with
+  induction=Madsen
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
+
+TurbOParkB_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: TurbOParkWake with
+  induction=Betz
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+TurbOParkB_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: TurbOParkWake with
+  induction=Betz
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+TurbOParkB_&lt;superposition&gt;_ka&lt;ka&gt;: TurbOParkWake with
+  induction=Betz
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+TurbOParkB_&lt;superposition&gt;_ambka&lt;ka&gt;: TurbOParkWake with
+  induction=Betz
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
 
 TurbOParkB_&lt;superposition&gt;_k&lt;k&gt;: TurbOParkWake with
   induction=Betz
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
   k=(Value, e.g. 004 for 0.04)
 
 TurbOParkB_&lt;superposition&gt;: TurbOParkWake with
   induction=Betz
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
 
+TurbOParkIX_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;_dx&lt;dx&gt;: TurbOParkWakeIX with
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+  dx=(Integration step in m)
+
+TurbOParkIX_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;_dx&lt;dx&gt;: TurbOParkWakeIX with
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+  dx=(Integration step in m)
+
+TurbOParkIX_&lt;superposition&gt;_ka&lt;ka&gt;_dx&lt;dx&gt;: TurbOParkWakeIX with
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  dx=(Integration step in m)
+
+TurbOParkIX_&lt;superposition&gt;_ambka&lt;ka&gt;_dx&lt;dx&gt;: TurbOParkWakeIX with
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  dx=(Integration step in m)
+
 TurbOParkIX_&lt;superposition&gt;_k&lt;k&gt;_dx&lt;dx&gt;: TurbOParkWakeIX with
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
   k=(Value, e.g. 004 for 0.04)
   dx=(Integration step in m)
 
 TurbOParkIX_&lt;superposition&gt;_dx&lt;dx&gt;: TurbOParkWakeIX with
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
   dx=(Integration step in m)
 
+CrespoHernandez_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: CrespoHernandezTIWake with
+  use_ambti=False
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+CrespoHernandez_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: CrespoHernandezTIWake with
+  use_ambti=False
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+CrespoHernandez_&lt;superposition&gt;_ka&lt;ka&gt;: CrespoHernandezTIWake with
+  use_ambti=False
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+CrespoHernandez_&lt;superposition&gt;_ambka&lt;ka&gt;: CrespoHernandezTIWake with
+  use_ambti=False
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
 CrespoHernandez_&lt;superposition&gt;_k&lt;k&gt;: CrespoHernandezTIWake with
   use_ambti=False
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ti_linear)
   k=(Value, e.g. 004 for 0.04)
 
 CrespoHernandez_&lt;superposition&gt;: CrespoHernandezTIWake with
   use_ambti=False
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ti_linear)
 
 IECTI2005_&lt;superposition&gt;: IECTIWake with
@@ -866,6 +1230,96 @@ IECTI2005_&lt;superposition&gt;: IECTIWake with
 
 IECTI2019_&lt;superposition&gt;: IECTIWake with
   iec_type=2019
+  superposition=(Superposition, e.g. linear for ti_linear)
+
+IECTI2019k_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: IECTIWake with
+  iec_type=2019
+  opening_angle=None
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+IECTI2019k_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: IECTIWake with
+  iec_type=2019
+  opening_angle=None
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+IECTI2019k_&lt;superposition&gt;_ka&lt;ka&gt;: IECTIWake with
+  iec_type=2019
+  opening_angle=None
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+IECTI2019k_&lt;superposition&gt;_ambka&lt;ka&gt;: IECTIWake with
+  iec_type=2019
+  opening_angle=None
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+IECTI2019k_&lt;superposition&gt;_k&lt;k&gt;: IECTIWake with
+  iec_type=2019
+  opening_angle=None
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+IECTI2019k_&lt;superposition&gt;: IECTIWake with
+  iec_type=2019
+  opening_angle=None
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+
+IECTI2005_&lt;superposition&gt;: IECTIWake with
+  iec_type=2005
+  superposition=(Superposition, e.g. linear for ti_linear)
+
+IECTI2005k_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: IECTIWake with
+  iec_type=2005
+  opening_angle=None
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+IECTI2005k_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: IECTIWake with
+  iec_type=2005
+  opening_angle=None
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+IECTI2005k_&lt;superposition&gt;_ka&lt;ka&gt;: IECTIWake with
+  iec_type=2005
+  opening_angle=None
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+IECTI2005k_&lt;superposition&gt;_ambka&lt;ka&gt;: IECTIWake with
+  iec_type=2005
+  opening_angle=None
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+IECTI2005k_&lt;superposition&gt;_k&lt;k&gt;: IECTIWake with
+  iec_type=2005
+  opening_angle=None
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ti_linear)
+  k=(Value, e.g. 004 for 0.04)
+
+IECTI2005k_&lt;superposition&gt;: IECTIWake with
+  iec_type=2005
+  opening_angle=None
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ti_linear)
 
 wake_superpositions
@@ -957,11 +1411,41 @@ wake_models
 Jensen_quadratic_k0075: JensenWake(ws_quadratic, induction=Betz, k=0.075)
 my_Jensen: JensenWake(ws_linear_lim, induction=Betz, k=0.042)
 
+Jensen_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: JensenWake with
+  induction=Betz
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Jensen_&lt;superposition&gt;_ambka&lt;ka&gt;_kb&lt;kb&gt;: JensenWake with
+  induction=Betz
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+
+Jensen_&lt;superposition&gt;_ka&lt;ka&gt;: JensenWake with
+  induction=Betz
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
+Jensen_&lt;superposition&gt;_ambka&lt;ka&gt;: JensenWake with
+  induction=Betz
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear)
+  ka=(Value, e.g. 04 for 0.4)
+
 Jensen_&lt;superposition&gt;_k&lt;k&gt;: JensenWake with
+  induction=Betz
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
   k=(Value, e.g. 004 for 0.04)
 
 Jensen_&lt;superposition&gt;: JensenWake with
+  induction=Betz
+  ti_var=TI
   superposition=(Superposition, e.g. linear for ws_linear)
 
 </pre></div></div>

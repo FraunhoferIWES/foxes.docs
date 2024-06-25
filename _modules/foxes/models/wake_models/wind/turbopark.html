@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.wake_models.wind.turbopark - foxes 0.7.2
+        <title>foxes.models.wake_models.wind.turbopark - foxes 0.7.3
  documentation</title>
       
     
@@ -37,7 +37,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx_immaterial_theme.eaee958e8db0b4370.min.css?v=0db274d5" />
+        <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx_immaterial_theme.8b7122b5930e63132.min.css?v=abb87162" />
     <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 0.7.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.7.2
+    <a href="../../../../../index.html" title="foxes 0.7.3
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7.3
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.7.2
+            foxes 0.7.3
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 0.7.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.2
+    <a href="../../../../../index.html" title="foxes 0.7.3
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.3
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.7.2
+    foxes 0.7.3
  documentation
   </label>
   
@@ -359,6 +359,7 @@
 <h1>Source code for foxes.models.wake_models.wind.turbopark</h1><div class="highlight"><pre>
 <span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WakeK</span>
 <span class="kn">from</span> <span class="nn">foxes.models.wake_models.gaussian</span> <span class="kn">import</span> <span class="n">GaussianWakeModel</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
@@ -379,8 +380,6 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    k: float</span>
-<span class="sd">        The wake growth parameter k.</span>
 <span class="sd">    sbeta_factor: float</span>
 <span class="sd">        Factor multiplying sbeta</span>
 <span class="sd">    c1: float</span>
@@ -389,6 +388,8 @@
 <span class="sd">        Factor from Frandsen turbulence model</span>
 <span class="sd">    induction: foxes.core.AxialInductionModel or str</span>
 <span class="sd">        The induction model</span>
+<span class="sd">    wake_k: foxes.core.WakeK</span>
+<span class="sd">        Handler for the wake growth parameter k</span>
 
 <span class="sd">    :group: models.wake_models.wind</span>
 
@@ -399,12 +400,11 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">superposition</span><span class="p">,</span>
-        <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
         <span class="n">c1</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
         <span class="n">c2</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-        <span class="n">k_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">K</span><span class="p">,</span>
         <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Madsen&quot;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">wake_k</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
@@ -413,19 +413,16 @@
 <span class="sd">        ----------</span>
 <span class="sd">        superposition: str</span>
 <span class="sd">            The wind deficit superposition</span>
-<span class="sd">        k: float, optional</span>
-<span class="sd">            The wake growth parameter k. If not given here</span>
-<span class="sd">            it will be searched in the farm data.</span>
 <span class="sd">        sbeta_factor: float</span>
 <span class="sd">            Factor multiplying sbeta</span>
 <span class="sd">        c1: float</span>
 <span class="sd">            Factor from Frandsen turbulence model</span>
 <span class="sd">        c2: float</span>
 <span class="sd">            Factor from Frandsen turbulence model</span>
-<span class="sd">        k_var: str</span>
-<span class="sd">            The variable name for k</span>
 <span class="sd">        induction: foxes.core.AxialInductionModel or str</span>
 <span class="sd">            The induction model</span>
+<span class="sd">        wake_k: dict, optional</span>
+<span class="sd">            Parameters for the WakeK class</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">superpositions</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="n">superposition</span><span class="p">})</span>
@@ -433,26 +430,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">sbeta_factor</span> <span class="o">=</span> <span class="n">sbeta_factor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">c1</span> <span class="o">=</span> <span class="n">c1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">c2</span> <span class="o">=</span> <span class="n">c2</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span> <span class="o">=</span> <span class="n">k_var</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">induction</span> <span class="o">=</span> <span class="n">induction</span>
-
-        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k_var</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_k</span> <span class="o">=</span> <span class="n">WakeK</span><span class="p">(</span><span class="o">**</span><span class="n">wake_k</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TurbOParkWake.__repr__">
 <a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/TurbOParkWake.__repr__.html#foxes.models.wake_models.wind.TurbOParkWake.__repr__">[docs]</a>
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">k</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">)</span>
         <span class="n">iname</span> <span class="o">=</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">induction</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">name</span>
         <span class="p">)</span>
         <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">, induction=</span><span class="si">{</span><span class="n">iname</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, k_var=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;)&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">, induction=</span><span class="si">{</span><span class="n">iname</span><span class="si">}</span><span class="s2">, &quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_k</span><span class="o">.</span><span class="n">repr</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
         <span class="k">return</span> <span class="n">s</span></div>
 
 
@@ -468,7 +458,7 @@
 <span class="sd">            All sub models</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_k</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="TurbOParkWake.initialize">
@@ -573,19 +563,20 @@
                 <span class="n">tdata</span><span class="o">=</span><span class="n">tdata</span><span class="p">,</span>
                 <span class="n">downwind_index</span><span class="o">=</span><span class="n">downwind_index</span><span class="p">,</span>
                 <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
+            <span class="p">)</span>
 
             <span class="c1"># get k:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">,</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_k</span><span class="p">(</span>
                 <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="p">,</span>
-                <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;sw&quot;</span><span class="p">,</span>
                 <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
                 <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
                 <span class="n">tdata</span><span class="o">=</span><span class="n">tdata</span><span class="p">,</span>
                 <span class="n">downwind_index</span><span class="o">=</span><span class="n">downwind_index</span><span class="p">,</span>
                 <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">amb_ti</span><span class="o">=</span><span class="n">ati</span><span class="p">,</span>
             <span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
+
+            <span class="n">ati</span> <span class="o">=</span> <span class="n">ati</span><span class="p">[</span><span class="n">st_sel</span><span class="p">]</span>
 
             <span class="c1"># calculate sigma:</span>
             <span class="c1"># beta = np.sqrt(0.5 * (1 + np.sqrt(1.0 - ct)) / np.sqrt(1.0 - ct))</span>
@@ -649,20 +640,16 @@
 <span class="sd">    ----------</span>
 <span class="sd">    dx: float</span>
 <span class="sd">        The step size of the integral</span>
-<span class="sd">    k: float</span>
-<span class="sd">        The wake growth parameter k.</span>
 <span class="sd">    sbeta_factor: float</span>
 <span class="sd">        Factor multiplying sbeta</span>
-<span class="sd">    k_var: str</span>
-<span class="sd">        The variable name for k</span>
-<span class="sd">    ti_var:  str</span>
-<span class="sd">        The TI variable</span>
 <span class="sd">    self_wake: bool</span>
 <span class="sd">        Flag for considering only own wake in ti integral</span>
 <span class="sd">    induction: foxes.core.AxialInductionModel or str</span>
 <span class="sd">        The induction model</span>
 <span class="sd">    ipars: dict</span>
 <span class="sd">        Additional parameters for centreline integration</span>
+<span class="sd">    wake_k: foxes.core.WakeK</span>
+<span class="sd">        Handler for the wake growth parameter k</span>
 
 <span class="sd">    :group: models.wake_models.wind</span>
 
@@ -674,13 +661,11 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">superposition</span><span class="p">,</span>
         <span class="n">dx</span><span class="p">,</span>
-        <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
-        <span class="n">k_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">K</span><span class="p">,</span>
-        <span class="n">ti_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span>
         <span class="n">self_wake</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Madsen&quot;</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">ipars</span><span class="p">,</span>
+        <span class="n">ipars</span><span class="o">=</span><span class="p">{},</span>
+        <span class="o">**</span><span class="n">wake_k</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
@@ -691,51 +676,38 @@
 <span class="sd">            The wind deficit superposition</span>
 <span class="sd">        dx: float</span>
 <span class="sd">            The step size of the integral</span>
-<span class="sd">        k: float, optional</span>
-<span class="sd">            The wake growth parameter k. If not given here</span>
-<span class="sd">            it will be searched in the farm data.</span>
 <span class="sd">        sbeta_factor: float</span>
 <span class="sd">            Factor multiplying sbeta</span>
-<span class="sd">        k_var: str</span>
-<span class="sd">            The variable name for k</span>
-<span class="sd">        ti_var:  str</span>
-<span class="sd">            The TI variable</span>
 <span class="sd">        self_wake: bool</span>
 <span class="sd">            Flag for considering only own wake in ti integral</span>
 <span class="sd">        induction: foxes.core.AxialInductionModel or str</span>
 <span class="sd">            The induction model</span>
-<span class="sd">        ipars: dict, optional</span>
+<span class="sd">        ipars: dict</span>
 <span class="sd">            Additional parameters for centreline integration</span>
+<span class="sd">        wake_k: dict, optional</span>
+<span class="sd">            Parameters for the WakeK class</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">superpositions</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="n">superposition</span><span class="p">})</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="n">dx</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sbeta_factor</span> <span class="o">=</span> <span class="n">sbeta_factor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span> <span class="o">=</span> <span class="n">k_var</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span> <span class="o">=</span> <span class="n">ti_var</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ipars</span> <span class="o">=</span> <span class="n">ipars</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tiwakes</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">self_wake</span> <span class="o">=</span> <span class="n">self_wake</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">induction</span> <span class="o">=</span> <span class="n">induction</span>
-
-        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k_var</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_k</span> <span class="o">=</span> <span class="n">WakeK</span><span class="p">(</span><span class="o">**</span><span class="n">wake_k</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TurbOParkWakeIX.__repr__">
 <a class="viewcode-back" href="../../../../../_foxes/models/wake_models/wind/TurbOParkWakeIX.__repr__.html#foxes.models.wake_models.wind.TurbOParkWakeIX.__repr__">[docs]</a>
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">k</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">)</span>
         <span class="n">iname</span> <span class="o">=</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">induction</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">name</span>
         <span class="p">)</span>
         <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">, induction=</span><span class="si">{</span><span class="n">iname</span><span class="si">}</span><span class="s2">, dx=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dx</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, k_var=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, ti_var=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">superpositions</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span><span class="si">}</span><span class="s2">, induction=</span><span class="si">{</span><span class="n">iname</span><span class="si">}</span><span class="s2">, dx=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dx</span><span class="si">}</span><span class="s2">, &quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_k</span><span class="o">.</span><span class="n">repr</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
         <span class="k">return</span> <span class="n">s</span></div>
 
 
@@ -751,7 +723,7 @@
 <span class="sd">            All sub models</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_k</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="TurbOParkWakeIX.initialize">
@@ -804,11 +776,11 @@
         <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
                 <span class="n">wdel</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">new_wake_deltas</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">)</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span> <span class="ow">in</span> <span class="n">wdel</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_k</span><span class="o">.</span><span class="n">ti_var</span> <span class="ow">in</span> <span class="n">wdel</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_tiwakes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">FV</span><span class="o">.</span><span class="n">amb2var</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tiwakes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_k</span><span class="o">.</span><span class="n">ti_var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">FV</span><span class="o">.</span><span class="n">amb2var</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tiwakes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Missing wake model that computes wake delta for variable </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Missing wake model that computes wake delta for variable </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_k</span><span class="o">.</span><span class="n">ti_var</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">new_wake_deltas</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">)</span></div>
@@ -886,10 +858,8 @@
             <span class="p">)[</span><span class="n">st_sel</span><span class="p">]</span>
 
             <span class="c1"># get k:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">k_var</span><span class="p">,</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_k</span><span class="p">(</span>
                 <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="p">,</span>
-                <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;sw&quot;</span><span class="p">,</span>
                 <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
                 <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
                 <span class="n">tdata</span><span class="o">=</span><span class="n">tdata</span><span class="p">,</span>
@@ -910,7 +880,7 @@
                 <span class="n">mdata</span><span class="p">,</span>
                 <span class="n">fdata</span><span class="p">,</span>
                 <span class="n">downwind_index</span><span class="p">,</span>
-                <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ti_var</span><span class="p">],</span>
+                <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_k</span><span class="o">.</span><span class="n">ti_var</span><span class="p">],</span>
                 <span class="n">x</span><span class="p">,</span>
                 <span class="n">dx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span>
                 <span class="n">wake_models</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_tiwakes</span><span class="p">,</span>

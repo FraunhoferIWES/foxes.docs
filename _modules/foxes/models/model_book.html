@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.model_book - foxes 0.7.2
+        <title>foxes.models.model_book - foxes 0.7.3
  documentation</title>
       
     
@@ -37,7 +37,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.eaee958e8db0b4370.min.css?v=0db274d5" />
+        <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.8b7122b5930e63132.min.css?v=abb87162" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 0.7.2
- documentation" class="md-header__button md-logo" aria-label="foxes 0.7.2
+    <a href="../../../index.html" title="foxes 0.7.3
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7.3
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.7.2
+            foxes 0.7.3
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 0.7.2
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.2
+    <a href="../../../index.html" title="foxes 0.7.3
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.3
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.7.2
+    foxes 0.7.3
  documentation
   </label>
   
@@ -375,6 +375,7 @@
     <span class="n">WakeModel</span><span class="p">,</span>
     <span class="n">AxialInductionModel</span><span class="p">,</span>
     <span class="n">TurbineInductionModel</span><span class="p">,</span>
+    <span class="n">GroundModel</span><span class="p">,</span>
 <span class="p">)</span>
 
 
@@ -419,6 +420,9 @@
 <span class="sd">    induction_models: foxes.utils.FDict</span>
 <span class="sd">        The induction models. Keys: model name str,</span>
 <span class="sd">        values: foxes.core.AxialInductionModel</span>
+<span class="sd">    ground_models: foxes.utils.FDict</span>
+<span class="sd">        The ground models. Keys: model name str,</span>
+<span class="sd">        values: foxes.core.GroundModel</span>
 <span class="sd">    sources: foxes.utils.FDict</span>
 <span class="sd">        All sources dict</span>
 <span class="sd">    base_classes: foxes.utils.FDict</span>
@@ -594,13 +598,10 @@
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;wake_frames&quot;</span><span class="p">,</span>
             <span class="n">rotor_wd</span><span class="o">=</span><span class="n">fm</span><span class="o">.</span><span class="n">wake_frames</span><span class="o">.</span><span class="n">RotorWD</span><span class="p">(</span><span class="n">var_wd</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">),</span>
             <span class="n">rotor_wd_farmo</span><span class="o">=</span><span class="n">fm</span><span class="o">.</span><span class="n">wake_frames</span><span class="o">.</span><span class="n">FarmOrder</span><span class="p">(),</span>
-            <span class="n">yawed</span><span class="o">=</span><span class="n">fm</span><span class="o">.</span><span class="n">wake_frames</span><span class="o">.</span><span class="n">YawedWakes</span><span class="p">(),</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_frames</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_frames</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_frames</span><span class="o">.</span><span class="n">YawedWakes</span><span class="p">,</span>
-            <span class="s2">&quot;yawed_k&lt;k&gt;&quot;</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;yawed_[wake_k]&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_frames</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_frames</span><span class="o">.</span><span class="n">Streamlines2D</span><span class="p">,</span>
@@ -687,169 +688,76 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span> <span class="o">=</span> <span class="n">FDict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;wake_models&quot;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">JensenWake</span><span class="p">,</span>
-            <span class="s2">&quot;Jensen_&lt;superposition&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Jensen_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Betz&quot;</span><span class="p">),</span>
             <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">JensenWake</span><span class="p">,</span>
-            <span class="s2">&quot;Jensen_&lt;superposition&gt;_k&lt;k&gt;&quot;</span><span class="p">,</span>
-            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
         <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2014</span><span class="p">,</span>
-            <span class="s2">&quot;Bastankhah2014_&lt;superposition&gt;&quot;</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span>
+            <span class="s2">&quot;Bastankhah2014_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Madsen&quot;</span><span class="p">),</span>
             <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2014</span><span class="p">,</span>
-            <span class="s2">&quot;Bastankhah2014_&lt;superposition&gt;_k&lt;k&gt;&quot;</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span>
-            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2014</span><span class="p">,</span>
-            <span class="s2">&quot;Bastankhah2014B_&lt;superposition&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Bastankhah2014B_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
             <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Betz&quot;</span><span class="p">),</span>
             <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2014</span><span class="p">,</span>
-            <span class="s2">&quot;Bastankhah2014B_&lt;superposition&gt;_k&lt;k&gt;&quot;</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Betz&quot;</span><span class="p">),</span>
-            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2014</span><span class="p">,</span>
-            <span class="s2">&quot;Bastankhah025_&lt;superposition&gt;&quot;</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.25</span><span class="p">),</span>
+            <span class="s2">&quot;Bastankhah025_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Madsen&quot;</span><span class="p">),</span>
             <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2014</span><span class="p">,</span>
-            <span class="s2">&quot;Bastankhah025_&lt;superposition&gt;_k&lt;k&gt;&quot;</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.25</span><span class="p">),</span>
-            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2014</span><span class="p">,</span>
-            <span class="s2">&quot;Bastankhah025B_&lt;superposition&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Bastankhah025B_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
             <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Betz&quot;</span><span class="p">),</span>
             <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2014</span><span class="p">,</span>
-            <span class="s2">&quot;Bastankhah025B_&lt;superposition&gt;_k&lt;k&gt;&quot;</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">sbeta_factor</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Betz&quot;</span><span class="p">),</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2016</span><span class="p">,</span>
+            <span class="s2">&quot;Bastankhah2016_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Madsen&quot;</span><span class="p">),</span>
             <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
+            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2016</span><span class="p">,</span>
+            <span class="s2">&quot;Bastankhah2016B_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Betz&quot;</span><span class="p">),</span>
+            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
         <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2016</span><span class="p">,</span>
-            <span class="s2">&quot;Bastankhah2016_&lt;superposition&gt;&quot;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">TurbOParkWake</span><span class="p">,</span>
+            <span class="s2">&quot;TurbOPark_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Madsen&quot;</span><span class="p">),</span>
             <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2016</span><span class="p">,</span>
-            <span class="s2">&quot;Bastankhah2016_&lt;superposition&gt;_k&lt;k&gt;&quot;</span><span class="p">,</span>
-            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2016</span><span class="p">,</span>
-            <span class="s2">&quot;Bastankhah2016B_&lt;superposition&gt;&quot;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">TurbOParkWake</span><span class="p">,</span>
+            <span class="s2">&quot;TurbOParkB_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
             <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Betz&quot;</span><span class="p">),</span>
             <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2016</span><span class="p">,</span>
-            <span class="s2">&quot;Bastankhah2016B_&lt;superposition&gt;_k&lt;k&gt;&quot;</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Betz&quot;</span><span class="p">),</span>
-            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
         <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">TurbOParkWake</span><span class="p">,</span>
-            <span class="s2">&quot;TurbOPark_&lt;superposition&gt;&quot;</span><span class="p">,</span>
-            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">TurbOParkWake</span><span class="p">,</span>
-            <span class="s2">&quot;TurbOPark_&lt;superposition&gt;_k&lt;k&gt;&quot;</span><span class="p">,</span>
-            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">TurbOParkWake</span><span class="p">,</span>
-            <span class="s2">&quot;TurbOParkB_&lt;superposition&gt;&quot;</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Betz&quot;</span><span class="p">),</span>
-            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">TurbOParkWake</span><span class="p">,</span>
-            <span class="s2">&quot;TurbOParkB_&lt;superposition&gt;_k&lt;k&gt;&quot;</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Betz&quot;</span><span class="p">),</span>
-            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
-        <span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">TurbOParkWakeIX</span><span class="p">,</span>
-            <span class="s2">&quot;TurbOParkIX_&lt;superposition&gt;_dx&lt;dx&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;TurbOParkIX_&lt;superposition&gt;_[wake_k]_dx&lt;dx&gt;&quot;</span><span class="p">,</span>
             <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">dx</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
             <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
@@ -858,37 +766,12 @@
             <span class="p">},</span>
         <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">TurbOParkWakeIX</span><span class="p">,</span>
-            <span class="s2">&quot;TurbOParkIX_&lt;superposition&gt;_k&lt;k&gt;_dx&lt;dx&gt;&quot;</span><span class="p">,</span>
-            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-            <span class="n">dx</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;dx&quot;</span><span class="p">:</span> <span class="s2">&quot;(Integration step in m)&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
-        <span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">ti</span><span class="o">.</span><span class="n">CrespoHernandezTIWake</span><span class="p">,</span>
-            <span class="s2">&quot;CrespoHernandez_&lt;superposition&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;CrespoHernandez_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
             <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">use_ambti</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
             <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ti_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ti_linear)&quot;</span><span class="p">},</span>
-        <span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
-            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">ti</span><span class="o">.</span><span class="n">CrespoHernandezTIWake</span><span class="p">,</span>
-            <span class="s2">&quot;CrespoHernandez_&lt;superposition&gt;_k&lt;k&gt;&quot;</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">use_ambti</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
-            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ti_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
-            <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ti_linear)&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;(Value, e.g. 004 for 0.04)&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
@@ -906,12 +789,46 @@
             <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ti_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ti_linear)&quot;</span><span class="p">},</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">ti</span><span class="o">.</span><span class="n">IECTIWake</span><span class="p">,</span>
+            <span class="s2">&quot;IECTI2019k_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">iec_type</span><span class="o">=</span><span class="s2">&quot;2019&quot;</span><span class="p">,</span> <span class="n">opening_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ti_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ti_linear)&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">ti</span><span class="o">.</span><span class="n">IECTIWake</span><span class="p">,</span>
+            <span class="s2">&quot;IECTI2005_&lt;superposition&gt;&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">iec_type</span><span class="o">=</span><span class="s2">&quot;2005&quot;</span><span class="p">),</span>
+            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ti_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ti_linear)&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">ti</span><span class="o">.</span><span class="n">IECTIWake</span><span class="p">,</span>
+            <span class="s2">&quot;IECTI2005k_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">iec_type</span><span class="o">=</span><span class="s2">&quot;2005&quot;</span><span class="p">,</span> <span class="n">opening_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ti_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ti_linear)&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;RHB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">RankineHalfBody</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Rathmann&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">Rathmann</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;SelfSimilar&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">SelfSimilar</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;SelfSimilar2020&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">SelfSimilar2020</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;VortexSheet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">VortexSheet</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ground_models</span> <span class="o">=</span> <span class="n">FDict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ground_models&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ground_models</span><span class="p">[</span><span class="s2">&quot;no_ground&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">ground_models</span><span class="o">.</span><span class="n">NoGround</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ground_models</span><span class="p">[</span><span class="s2">&quot;ground_mirror&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">ground_models</span><span class="o">.</span><span class="n">GroundMirror</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ground_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">ground_models</span><span class="o">.</span><span class="n">WakeMirror</span><span class="p">,</span>
+            <span class="s2">&quot;blh_mirror_h&lt;height&gt;&quot;</span><span class="p">,</span>
+            <span class="n">var2arg</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;heights&quot;</span><span class="p">},</span>
+            <span class="n">height</span><span class="o">=</span><span class="k">lambda</span> <span class="n">h</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">h</span><span class="p">)],</span>
+            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;(Boundary layer wake reflection height)&quot;</span><span class="p">},</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">sources</span> <span class="o">=</span> <span class="n">FDict</span><span class="p">(</span>
@@ -927,6 +844,7 @@
             <span class="n">wake_superpositions</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_superpositions</span><span class="p">,</span>
             <span class="n">wake_models</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">,</span>
             <span class="n">axial_induction</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">axial_induction</span><span class="p">,</span>
+            <span class="n">ground_models</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ground_models</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base_classes</span> <span class="o">=</span> <span class="n">FDict</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;base_classes&quot;</span><span class="p">,</span>
@@ -941,6 +859,7 @@
             <span class="n">wake_superpositions</span><span class="o">=</span><span class="n">WakeSuperposition</span><span class="p">,</span>
             <span class="n">wake_models</span><span class="o">=</span><span class="n">WakeModel</span><span class="p">,</span>
             <span class="n">axial_induction</span><span class="o">=</span><span class="n">AxialInductionModel</span><span class="p">,</span>
+            <span class="n">ground_models</span><span class="o">=</span><span class="n">GroundModel</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
