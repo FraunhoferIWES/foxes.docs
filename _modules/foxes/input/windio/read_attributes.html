@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.input.windio.read_attributes - foxes 0.7.3
+        <title>foxes.input.windio.read_attributes - foxes 0.7.4.25
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.7.3
- documentation" class="md-header__button md-logo" aria-label="foxes 0.7.3
+    <a href="../../../../index.html" title="foxes 0.7.4.25
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7.4.25
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.7.3
+            foxes 0.7.4.25
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.7.3
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.3
+    <a href="../../../../index.html" title="foxes 0.7.4.25
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.4.25
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.7.3
+    foxes 0.7.4.25
  documentation
   </label>
   
@@ -361,6 +361,8 @@
 <span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WakeModel</span><span class="p">,</span> <span class="n">WakeFrame</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 
+<span class="kn">from</span> <span class="nn">.read_outputs</span> <span class="kn">import</span> <span class="n">read_outputs</span>
+
 
 <span class="k">def</span> <span class="nf">_read_wind_deficit</span><span class="p">(</span><span class="n">wind_deficit</span><span class="p">,</span> <span class="n">superposition</span><span class="p">,</span> <span class="n">induction</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads the wind deficit wake model&quot;&quot;&quot;</span>
@@ -382,11 +384,20 @@
         <span class="p">},</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ws_sup_dict&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-
+    <span class="n">ws_sup_amb_dict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;Linear&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_linear_amb&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Quadratic&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_quadratic_amb&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ws_sup_dict&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    
     <span class="n">wname</span> <span class="o">=</span> <span class="n">wind_deficit</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">eff_ws</span> <span class="o">=</span> <span class="n">wind_deficit</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;use_effective_ws&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading wind_deficit_model&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Name:&quot;</span><span class="p">,</span> <span class="n">wname</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Name    :&quot;</span><span class="p">,</span> <span class="n">wname</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Eff ws  :&quot;</span><span class="p">,</span> <span class="n">eff_ws</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wind_deficit</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
     <span class="n">wind_def_dict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wmodel_type</span><span class="o">=</span><span class="n">wind_def_map</span><span class="p">[</span><span class="n">wname</span><span class="p">],</span> <span class="n">induction</span><span class="o">=</span><span class="n">induction</span><span class="p">)</span>
     <span class="n">kcoef</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wind_deficit</span><span class="p">[</span><span class="s2">&quot;wake_expansion_coefficient&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;kcoef&quot;</span><span class="p">)</span>
@@ -395,11 +406,11 @@
     <span class="n">amb_ti</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;free_stream_ti&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ka</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">ka</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
         <span class="n">wind_def_dict</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kb</span>
-        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        Using k =&quot;</span><span class="p">,</span> <span class="n">kb</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ti_var</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_TI</span> <span class="k">if</span> <span class="n">amb_ti</span> <span class="k">else</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span>
-        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      Using k = </span><span class="si">{</span><span class="n">ka</span><span class="si">}</span><span class="s2"> * </span><span class="si">{</span><span class="n">ti_var</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">kb</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">wind_def_dict</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">wind_def_dict</span><span class="p">[</span><span class="s2">&quot;ka&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ka</span>
@@ -407,19 +418,19 @@
         <span class="n">wind_def_dict</span><span class="p">[</span><span class="s2">&quot;ti_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ti_var</span>
     <span class="k">if</span> <span class="s2">&quot;ceps&quot;</span> <span class="ow">in</span> <span class="n">wind_deficit</span><span class="p">:</span>
         <span class="n">sbf</span> <span class="o">=</span> <span class="n">wind_deficit</span><span class="p">[</span><span class="s2">&quot;ceps&quot;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      Using sbeta_factor = </span><span class="si">{</span><span class="n">sbf</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">wind_def_dict</span><span class="p">[</span><span class="s2">&quot;sbeta_factor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sbf</span>
-    <span class="n">wind_def_dict</span><span class="p">[</span><span class="s2">&quot;superposition&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ws_sup_dict</span><span class="p">[</span><span class="n">superposition</span><span class="p">[</span><span class="s2">&quot;ws_superposition&quot;</span><span class="p">]]</span>
+    <span class="n">supd</span> <span class="o">=</span> <span class="n">ws_sup_dict</span> <span class="k">if</span> <span class="n">eff_ws</span> <span class="k">else</span> <span class="n">ws_sup_amb_dict</span>
+    <span class="n">wind_def_dict</span><span class="p">[</span><span class="s2">&quot;superposition&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">supd</span><span class="p">[</span><span class="n">superposition</span><span class="p">[</span><span class="s2">&quot;ws_superposition&quot;</span><span class="p">]]</span>
 
     <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;mbook&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">wname</span><span class="p">]</span> <span class="o">=</span> <span class="n">WakeModel</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">**</span><span class="n">wind_def_dict</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      Created wake model &#39;</span><span class="si">{</span><span class="n">wname</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;       &quot;</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;mbook&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">wname</span><span class="p">])</span>
     <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;wake_models&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wname</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">ka</span><span class="p">,</span> <span class="n">kb</span><span class="p">,</span> <span class="n">amb_ti</span>
-
 
 <span class="k">def</span> <span class="nf">_read_turbulence</span><span class="p">(</span>
     <span class="n">turbulence_model</span><span class="p">,</span> <span class="n">superposition</span><span class="p">,</span> <span class="n">induction</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">ka</span><span class="p">,</span> <span class="n">kb</span><span class="p">,</span> <span class="n">amb_ti</span><span class="p">,</span> <span class="n">verbosity</span>
@@ -429,7 +440,7 @@
     <span class="n">twake_def_map</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
         <span class="p">{</span>
             <span class="s2">&quot;CrespoHernandez&quot;</span><span class="p">:</span> <span class="s2">&quot;CrespoHernandezTIWake&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;IEC-TI-2019&quot;</span><span class="p">:</span> <span class="s2">&quot;IECTI2019&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;IEC-TI-2019&quot;</span><span class="p">:</span> <span class="s2">&quot;IECTIWake&quot;</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;twake_def_map&quot;</span><span class="p">,</span>
     <span class="p">)</span>
@@ -443,38 +454,41 @@
     <span class="p">)</span>
 
     <span class="n">wname</span> <span class="o">=</span> <span class="n">turbulence_model</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading turbulence_model&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Name:&quot;</span><span class="p">,</span> <span class="n">wname</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">turbulence_model</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
-    <span class="n">tiwake_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">wmodel_type</span><span class="o">=</span><span class="n">twake_def_map</span><span class="p">[</span><span class="n">wname</span><span class="p">],</span> <span class="n">induction</span><span class="o">=</span><span class="n">induction</span><span class="p">)</span>
-    <span class="k">if</span> <span class="s2">&quot;wake_expansion_coefficient&quot;</span> <span class="ow">in</span> <span class="n">turbulence_model</span><span class="p">:</span>
-        <span class="n">kcoef</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">turbulence_model</span><span class="p">[</span><span class="s2">&quot;wake_expansion_coefficient&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;kcoef&quot;</span><span class="p">)</span>
-        <span class="n">ka</span> <span class="o">=</span> <span class="n">kcoef</span><span class="p">[</span><span class="s2">&quot;k_a&quot;</span><span class="p">]</span>
-        <span class="n">kb</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;k_b&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-        <span class="n">amb_ti</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;free_stream_ti&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">ka</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">ka</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
-        <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kb</span>
-        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        Using k =&quot;</span><span class="p">,</span> <span class="n">kb</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">ti_var</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_TI</span> <span class="k">if</span> <span class="n">amb_ti</span> <span class="k">else</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span>
-        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      Using k = </span><span class="si">{</span><span class="n">ka</span><span class="si">}</span><span class="s2"> * </span><span class="si">{</span><span class="n">ti_var</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">kb</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;ka&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ka</span>
-        <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;kb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kb</span>
-        <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;ti_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ti_var</span>
-    <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;superposition&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ti_sup_dict</span><span class="p">[</span><span class="n">superposition</span><span class="p">[</span><span class="s2">&quot;ti_superposition&quot;</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="n">wname</span> <span class="o">!=</span> <span class="s2">&quot;None&quot;</span><span class="p">:</span>
+        <span class="n">tiwake_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">wmodel_type</span><span class="o">=</span><span class="n">twake_def_map</span><span class="p">[</span><span class="n">wname</span><span class="p">],</span> <span class="n">induction</span><span class="o">=</span><span class="n">induction</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">wname</span> <span class="o">==</span> <span class="s2">&quot;IEC-TI-2019&quot;</span><span class="p">:</span>
+            <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;opening_angle&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;iec_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;2019&quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;wake_expansion_coefficient&quot;</span> <span class="ow">in</span> <span class="n">turbulence_model</span><span class="p">:</span>
+            <span class="n">kcoef</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">turbulence_model</span><span class="p">[</span><span class="s2">&quot;wake_expansion_coefficient&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;kcoef&quot;</span><span class="p">)</span>
+            <span class="n">ka</span> <span class="o">=</span> <span class="n">kcoef</span><span class="p">[</span><span class="s2">&quot;k_a&quot;</span><span class="p">]</span>
+            <span class="n">kb</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;k_b&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+            <span class="n">amb_ti</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;free_stream_ti&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ka</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">ka</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kb</span>
+            <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        Using k =&quot;</span><span class="p">,</span> <span class="n">kb</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ti_var</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_TI</span> <span class="k">if</span> <span class="n">amb_ti</span> <span class="k">else</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span>
+            <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      Using k = </span><span class="si">{</span><span class="n">ka</span><span class="si">}</span><span class="s2"> * </span><span class="si">{</span><span class="n">ti_var</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">kb</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;ka&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ka</span>
+            <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;kb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kb</span>
+            <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;ti_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ti_var</span>
+        <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;superposition&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ti_sup_dict</span><span class="p">[</span><span class="n">superposition</span><span class="p">[</span><span class="s2">&quot;ti_superposition&quot;</span><span class="p">]]</span>
 
-    <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;mbook&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">wname</span><span class="p">]</span> <span class="o">=</span> <span class="n">WakeModel</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">**</span><span class="n">tiwake_dict</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      Created wake model &#39;</span><span class="si">{</span><span class="n">wname</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;       &quot;</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;mbook&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">wname</span><span class="p">])</span>
-    <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;wake_models&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wname</span><span class="p">)</span>
+        <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;mbook&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">wname</span><span class="p">]</span> <span class="o">=</span> <span class="n">WakeModel</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">**</span><span class="n">tiwake_dict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      Created wake model &#39;</span><span class="si">{</span><span class="n">wname</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;       &quot;</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;mbook&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">wname</span><span class="p">])</span>
+        <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;wake_models&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wname</span><span class="p">)</span>
 
-
-<span class="k">def</span> <span class="nf">_read_blockage</span><span class="p">(</span><span class="n">blockage_model</span><span class="p">,</span> <span class="n">superposition</span><span class="p">,</span> <span class="n">induction</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_read_blockage</span><span class="p">(</span><span class="n">blockage_model</span><span class="p">,</span> <span class="n">induction</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads the blockage model&quot;&quot;&quot;</span>
     <span class="n">indc_def_map</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
         <span class="p">{</span>
@@ -487,23 +501,22 @@
     <span class="p">)</span>
 
     <span class="n">wname</span> <span class="o">=</span> <span class="n">blockage_model</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading blockage_model&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Name:&quot;</span><span class="p">,</span> <span class="n">wname</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">blockage_model</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
     <span class="k">if</span> <span class="n">wname</span> <span class="o">!=</span> <span class="s2">&quot;None&quot;</span><span class="p">:</span>
         <span class="n">indc_dict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wmodel_type</span><span class="o">=</span><span class="n">indc_def_map</span><span class="p">[</span><span class="n">wname</span><span class="p">],</span> <span class="n">induction</span><span class="o">=</span><span class="n">induction</span><span class="p">)</span>
         <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;mbook&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">wname</span><span class="p">]</span> <span class="o">=</span> <span class="n">WakeModel</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">**</span><span class="n">indc_dict</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      Created wake model &#39;</span><span class="si">{</span><span class="n">wname</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;       &quot;</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;mbook&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="n">wname</span><span class="p">])</span>
         <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;wake_models&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wname</span><span class="p">)</span>
         <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;algo_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Iterative&quot;</span>
 
-
 <span class="k">def</span> <span class="nf">_read_rotor_averaging</span><span class="p">(</span><span class="n">rotor_averaging</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads the rotor averaging&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading rotor_averaging&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">rotor_averaging</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">rotor_averaging</span><span class="p">[</span><span class="s2">&quot;grid&quot;</span><span class="p">]</span>
@@ -517,13 +530,13 @@
     <span class="n">wake_averaging</span> <span class="o">=</span> <span class="n">rotor_averaging</span><span class="p">[</span><span class="s2">&quot;wake_averaging&quot;</span><span class="p">]</span>
     <span class="n">wse_P</span> <span class="o">=</span> <span class="n">rotor_averaging</span><span class="p">[</span><span class="s2">&quot;wind_speed_exponent_for_power&quot;</span><span class="p">]</span>
     <span class="n">wse_ct</span> <span class="o">=</span> <span class="n">rotor_averaging</span><span class="p">[</span><span class="s2">&quot;wind_speed_exponent_for_ct&quot;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        grid                :&quot;</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        background_averaging:&quot;</span><span class="p">,</span> <span class="n">background_averaging</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        wake_averaging      :&quot;</span><span class="p">,</span> <span class="n">wake_averaging</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        ws exponent power   :&quot;</span><span class="p">,</span> <span class="n">wse_P</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        ws exponent ct      :&quot;</span><span class="p">,</span> <span class="n">wse_ct</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">background_averaging</span> <span class="o">==</span> <span class="s2">&quot;center&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">background_averaging</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;centre&quot;</span><span class="p">]:</span>
         <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;rotor_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;centre&quot;</span>
     <span class="k">elif</span> <span class="n">background_averaging</span> <span class="o">==</span> <span class="s2">&quot;grid&quot;</span><span class="p">:</span>
         <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;rotor_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;grid</span><span class="si">{</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -531,7 +544,7 @@
         <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;Expecting background_averaging &#39;center&#39; or &#39;grid&#39;, got &#39;</span><span class="si">{</span><span class="n">background_averaging</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
         <span class="p">)</span>
-    <span class="k">if</span> <span class="n">wake_averaging</span> <span class="o">==</span> <span class="s2">&quot;centre&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">wake_averaging</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;centre&quot;</span><span class="p">,</span> <span class="s2">&quot;center&quot;</span><span class="p">]:</span>
         <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;partial_wakes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;centre&quot;</span>
     <span class="k">elif</span> <span class="n">wake_averaging</span> <span class="o">==</span> <span class="s2">&quot;grid&quot;</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">background_averaging</span> <span class="o">==</span> <span class="s2">&quot;grid&quot;</span><span class="p">:</span>
@@ -543,10 +556,9 @@
                 <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;partial_wakes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;partial_wakes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wake_averaging</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        --&gt; rotor_model     :&quot;</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;rotor_model&quot;</span><span class="p">])</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        --&gt; partial_wakes   :&quot;</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;partial_wakes&quot;</span><span class="p">])</span>
-
 
 <span class="k">def</span> <span class="nf">_read_deflection</span><span class="p">(</span><span class="n">deflection</span><span class="p">,</span> <span class="n">induction</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads deflection model&quot;&quot;&quot;</span>
@@ -559,7 +571,7 @@
     <span class="p">)</span>
 
     <span class="n">wname</span> <span class="o">=</span> <span class="n">deflection</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading deflection_model&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Name:&quot;</span><span class="p">,</span> <span class="n">wname</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">deflection</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
@@ -570,21 +582,20 @@
         <span class="p">)</span>
     <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
         <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;mbook&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">wake_frames</span><span class="p">[</span><span class="n">wname</span><span class="p">]</span> <span class="o">=</span> <span class="n">WakeFrame</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">**</span><span class="n">indc_dict</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      Created wake frame &#39;</span><span class="si">{</span><span class="n">wname</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;       &quot;</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;mbook&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">wake_frames</span><span class="p">[</span><span class="n">wname</span><span class="p">])</span>
     <span class="n">algo_dict</span><span class="p">[</span><span class="s2">&quot;wake_frame&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wname</span>
 
-
 <span class="k">def</span> <span class="nf">_read_analysis</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads the windio analyses&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading analysis&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio_ana</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
 
     <span class="c1"># superposition:</span>
     <span class="n">superposition</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">[</span><span class="s2">&quot;superposition_model&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;superposition_model&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading superposition_model&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">superposition</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
 
@@ -596,8 +607,8 @@
         <span class="p">},</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;induction mapping&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">induction</span> <span class="o">=</span> <span class="n">imap</span><span class="p">[</span><span class="n">wio_ana</span><span class="p">[</span><span class="s2">&quot;axial_induction_model&quot;</span><span class="p">]]</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">induction</span> <span class="o">=</span> <span class="n">imap</span><span class="p">[</span><span class="n">wio_ana</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;axial_induction_model&quot;</span><span class="p">,</span> <span class="s2">&quot;1D&quot;</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    axial induction model:&quot;</span><span class="p">,</span> <span class="n">induction</span><span class="p">)</span>
 
     <span class="c1"># wind deficit model:</span>
@@ -607,33 +618,35 @@
     <span class="p">)</span>
 
     <span class="c1"># turbulence model:</span>
-    <span class="n">turbulence_model</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">[</span><span class="s2">&quot;turbulence_model&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;turbulence_model&quot;</span><span class="p">)</span>
-    <span class="n">_read_turbulence</span><span class="p">(</span>
-        <span class="n">turbulence_model</span><span class="p">,</span> <span class="n">superposition</span><span class="p">,</span> <span class="n">induction</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">ka</span><span class="p">,</span> <span class="n">kb</span><span class="p">,</span> <span class="n">amb_ti</span><span class="p">,</span> <span class="n">verbosity</span>
-    <span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;turbulence_model&quot;</span> <span class="ow">in</span> <span class="n">wio_ana</span><span class="p">:</span>
+        <span class="n">turbulence_model</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">[</span><span class="s2">&quot;turbulence_model&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;turbulence_model&quot;</span><span class="p">)</span>
+        <span class="n">_read_turbulence</span><span class="p">(</span>
+            <span class="n">turbulence_model</span><span class="p">,</span> <span class="n">superposition</span><span class="p">,</span> <span class="n">induction</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">ka</span><span class="p">,</span> <span class="n">kb</span><span class="p">,</span> <span class="n">amb_ti</span><span class="p">,</span> <span class="n">verbosity</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;turbulence_model not found, not using a TI wake model&quot;</span><span class="p">)</span>
 
     <span class="c1"># blockage model:</span>
-    <span class="n">blockage_model</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">[</span><span class="s2">&quot;blockage_model&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;blockage_model&quot;</span><span class="p">)</span>
-    <span class="n">_read_blockage</span><span class="p">(</span><span class="n">blockage_model</span><span class="p">,</span> <span class="n">superposition</span><span class="p">,</span> <span class="n">induction</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-
+    <span class="k">if</span> <span class="s2">&quot;blockage_model&quot;</span> <span class="ow">in</span> <span class="n">wio_ana</span><span class="p">:</span>
+        <span class="n">blockage_model</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">[</span><span class="s2">&quot;blockage_model&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;blockage_model&quot;</span><span class="p">)</span>
+        <span class="n">_read_blockage</span><span class="p">(</span><span class="n">blockage_model</span><span class="p">,</span> <span class="n">induction</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;blockage_model not found, not using a turbine induction model&quot;</span><span class="p">)</span>
+        
     <span class="c1"># rotor_averaging:</span>
-    <span class="n">rotor_averaging</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">[</span><span class="s2">&quot;rotor_averaging&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rotor_averaging&quot;</span><span class="p">)</span>
-    <span class="n">_read_rotor_averaging</span><span class="p">(</span><span class="n">rotor_averaging</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-
+    <span class="k">if</span> <span class="s2">&quot;rotor_averaging&quot;</span> <span class="ow">in</span> <span class="n">wio_ana</span><span class="p">:</span>
+        <span class="n">rotor_averaging</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">[</span><span class="s2">&quot;rotor_averaging&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rotor_averaging&quot;</span><span class="p">)</span>
+        <span class="n">_read_rotor_averaging</span><span class="p">(</span><span class="n">rotor_averaging</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rotor_averaging not found, using default settings&quot;</span><span class="p">)</span>
+        
     <span class="c1"># deflection:</span>
-    <span class="n">deflection</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">[</span><span class="s2">&quot;deflection_model&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;deflection_model&quot;</span><span class="p">)</span>
-    <span class="n">_read_deflection</span><span class="p">(</span><span class="n">deflection</span><span class="p">,</span> <span class="n">induction</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">_read_outputs</span><span class="p">(</span><span class="n">wio_outs</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads the outputs&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Reading outputs&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio_outs</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
-    <span class="n">quit</span><span class="p">()</span>
-    <span class="k">return</span> <span class="p">[]</span>
-
-
+    <span class="k">if</span> <span class="s2">&quot;deflection_model&quot;</span> <span class="ow">in</span> <span class="n">wio_ana</span><span class="p">:</span>
+        <span class="n">deflection</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">[</span><span class="s2">&quot;deflection_model&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;deflection_model&quot;</span><span class="p">)</span>
+        <span class="n">_read_deflection</span><span class="p">(</span><span class="n">deflection</span><span class="p">,</span> <span class="n">induction</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;deflection_model not found, using default settings&quot;</span><span class="p">)</span>
+        
 <div class="viewcode-block" id="read_attributes">
 <a class="viewcode-back" href="../../../../api_input.html#foxes.input.windio.read_attributes">[docs]</a>
 <span class="k">def</span> <span class="nf">read_attributes</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
@@ -658,7 +671,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">wio_attrs</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;attributes&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading attributes&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio_attrs</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
 
@@ -666,20 +679,24 @@
     <span class="k">if</span> <span class="s2">&quot;flow_model&quot;</span> <span class="ow">in</span> <span class="n">wio_attrs</span><span class="p">:</span>
         <span class="n">flow_model</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_attrs</span><span class="p">[</span><span class="s2">&quot;flow_model&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;flow_model&quot;</span><span class="p">)</span>
         <span class="n">fmname</span> <span class="o">=</span> <span class="n">flow_model</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading flow_model&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Name:&quot;</span><span class="p">,</span> <span class="n">fmname</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">flow_model</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
         <span class="k">if</span> <span class="n">fmname</span> <span class="o">!=</span> <span class="s2">&quot;foxes&quot;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can only run flow_model &#39;foxes&#39;, got &#39;</span><span class="si">{</span><span class="n">fmname</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running flow model &#39;foxes&#39;, overruling original choice &#39;</span><span class="si">{</span><span class="n">fmname</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
 
     <span class="c1"># read analysis:</span>
     <span class="n">wio_ana</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_attrs</span><span class="p">[</span><span class="s2">&quot;analysis&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;analyses&quot;</span><span class="p">)</span>
     <span class="n">_read_analysis</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
     <span class="c1"># outputs:</span>
-    <span class="n">outputs</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_attrs</span><span class="p">[</span><span class="s2">&quot;outputs&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;outputs&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">_read_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span></div>
+    <span class="n">out_dicts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="s2">&quot;outputs&quot;</span> <span class="ow">in</span> <span class="n">wio_attrs</span><span class="p">:</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_attrs</span><span class="p">[</span><span class="s2">&quot;outputs&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;outputs&quot;</span><span class="p">)</span>
+        <span class="n">out_dicts</span> <span class="o">=</span> <span class="n">read_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">out_dicts</span></div>
 
 </code></pre></div>
 

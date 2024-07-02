@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.input.windio.runner - foxes 0.7.3
+        <title>foxes.input.windio.runner - foxes 0.7.4.25
  documentation</title>
       
     
@@ -72,8 +72,8 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.7.3
- documentation" class="md-header__button md-logo" aria-label="foxes 0.7.3
+    <a href="../../../../index.html" title="foxes 0.7.4.25
+ documentation" class="md-header__button md-logo" aria-label="foxes 0.7.4.25
  documentation" data-md-component="logo">
       
   
@@ -86,7 +86,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.7.3
+            foxes 0.7.4.25
  documentation
           </span>
         </div>
@@ -174,14 +174,14 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.7.3
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.3
+    <a href="../../../../index.html" title="foxes 0.7.4.25
+ documentation" class="md-nav__button md-logo" aria-label="foxes 0.7.4.25
  documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.7.3
+    foxes 0.7.4.25
  documentation
   </label>
   
@@ -357,10 +357,26 @@
 
 
 <h1>Source code for foxes.input.windio.runner</h1><div class="highlight"><pre>
-<span></span><code><span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">Algorithm</span>
+<span></span><code><span class="kn">import</span> <span class="nn">yaml</span>
+
+<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">Algorithm</span>
 <span class="kn">from</span> <span class="nn">foxes.output</span> <span class="kn">import</span> <span class="n">Output</span>
 
 
+<span class="k">def</span> <span class="nf">_write_yaml</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fpath</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Write the data to yaml &quot;&quot;&quot;</span>
+    <span class="n">rmap</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;include&quot;</span><span class="p">:</span> <span class="s2">&quot;!include&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span> <span class="ow">in</span> <span class="n">rmap</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        
 <div class="viewcode-block" id="WindioRunner">
 <a class="viewcode-back" href="../../../../api_input.html#foxes.input.windio.WindioRunner">[docs]</a>
 <span class="k">class</span> <span class="nc">WindioRunner</span><span class="p">:</span>
@@ -371,12 +387,20 @@
 <span class="sd">    ----------</span>
 <span class="sd">    algo: foxes.core.Algorithm</span>
 <span class="sd">        The algorithm object</span>
+<span class="sd">    output_dir: pathlib.Path</span>
+<span class="sd">        Path to the output folder</span>
 <span class="sd">    output_dicts: list of dict</span>
 <span class="sd">        The output dictionaries</span>
 <span class="sd">    farm_results: xarray.Dataset</span>
 <span class="sd">        The farm results</span>
 <span class="sd">    output_results: list</span>
 <span class="sd">        The output results</span>
+<span class="sd">    wio_input_data: dict</span>
+<span class="sd">        The wind_energy_system windio input data</span>
+<span class="sd">    file_name_input_yaml: str</span>
+<span class="sd">        Name of the written input data file</span>
+<span class="sd">    file_name_output_yaml: str</span>
+<span class="sd">        Name of the written output data file</span>
 <span class="sd">    verbosity: int</span>
 <span class="sd">        The verbosity level, 0 = silent</span>
 
@@ -386,7 +410,16 @@
 
 <div class="viewcode-block" id="WindioRunner.__init__">
 <a class="viewcode-back" href="../../../../_foxes/input/windio/WindioRunner.__init__.html#foxes.input.windio.WindioRunner.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">output_dicts</span><span class="o">=</span><span class="p">[],</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">algo_dict</span><span class="p">,</span> 
+        <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span>
+        <span class="n">output_dicts</span><span class="o">=</span><span class="p">[],</span> 
+        <span class="n">wio_input_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+        <span class="n">file_name_input_yaml</span><span class="o">=</span><span class="s2">&quot;recorded_input.yaml&quot;</span><span class="p">,</span>
+        <span class="n">file_name_output_yaml</span><span class="o">=</span><span class="s2">&quot;recorded_output.yaml&quot;</span><span class="p">,</span>
+        <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Conbstructor</span>
 
@@ -394,26 +427,45 @@
 <span class="sd">        ----------</span>
 <span class="sd">        algo_dict: dict</span>
 <span class="sd">            The algorithm dictionary</span>
+<span class="sd">        output_dir: pathlib.Path</span>
+<span class="sd">            Path to the output folder</span>
 <span class="sd">        output_dicts: list of dict</span>
 <span class="sd">            The output dictionaries</span>
+<span class="sd">        wio_input_data: dict</span>
+<span class="sd">            The wind_energy_system windio input data</span>
+<span class="sd">        file_name_input_yaml: str</span>
+<span class="sd">            Name of the written input data file</span>
+<span class="sd">        file_name_output_yaml: str</span>
+<span class="sd">            Name of the written output data file</span>
 <span class="sd">        verbosity: int</span>
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">algo</span> <span class="o">=</span> <span class="n">algo_dict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">output_dir</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output_dicts</span> <span class="o">=</span> <span class="n">output_dicts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wio_input_data</span> <span class="o">=</span> <span class="n">wio_input_data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_name_input_yaml</span> <span class="o">=</span> <span class="n">file_name_input_yaml</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_name_output_yaml</span> <span class="o">=</span> <span class="n">file_name_output_yaml</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">verbosity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output_results</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span> <span class="o">=</span> <span class="kc">False</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span> <span class="o">=</span> <span class="kc">False</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_yaml</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">wio_input_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">wio_input_data</span><span class="p">):</span>
+            <span class="n">fpath</span> <span class="o">=</span> <span class="n">output_dir</span><span class="o">/</span><span class="n">file_name_input_yaml</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Writing file&quot;</span><span class="p">,</span> <span class="n">fpath</span><span class="p">)</span>
+            <span class="n">_write_yaml</span><span class="p">(</span><span class="n">wio_input_data</span><span class="p">,</span> <span class="n">fpath</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_output_yaml</span><span class="p">[</span><span class="s2">&quot;wind_energy_system&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;include </span><span class="si">{</span><span class="n">file_name_input_yaml</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
 
 <div class="viewcode-block" id="WindioRunner.print">
 <a class="viewcode-back" href="../../../../_foxes/input/windio/WindioRunner.print.html#foxes.input.windio.WindioRunner.print">[docs]</a>
-    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Print based on verbosity&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="n">level</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
@@ -422,7 +474,7 @@
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the runner&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating algorithm &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="p">[</span><span class="s1">&#39;algo_type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating algorithm &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="p">[</span><span class="s1">&#39;algo_type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">algo</span> <span class="o">=</span> <span class="n">Algorithm</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">initialized</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
@@ -440,7 +492,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs the farm calculation&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running farm_calc&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Running farm_calc&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">()</span></div>
 
 
@@ -454,11 +506,23 @@
             <span class="n">run_fname</span> <span class="o">=</span> <span class="n">odict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;run_func&quot;</span><span class="p">)</span>
             <span class="n">run_args</span> <span class="o">=</span> <span class="n">odict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;run_args&quot;</span><span class="p">,</span> <span class="p">())</span>
             <span class="n">run_kwargs</span> <span class="o">=</span> <span class="n">odict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;run_kwargs&quot;</span><span class="p">,</span> <span class="p">{})</span>
-            <span class="n">o</span> <span class="o">=</span> <span class="n">Output</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">**</span><span class="n">odict</span><span class="p">)</span>
+                    
+            <span class="n">_odict</span> <span class="o">=</span> <span class="n">odict</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">if</span> <span class="s2">&quot;output_yaml_update&quot;</span> <span class="ow">in</span> <span class="n">_odict</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_output_yaml</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">_odict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;output_yaml_update&quot;</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">_odict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;farm_results&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="n">_odict</span><span class="p">[</span><span class="s2">&quot;farm_results&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span>
+            <span class="k">if</span> <span class="n">_odict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;algo&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="n">_odict</span><span class="p">[</span><span class="s2">&quot;algo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span>
+            <span class="n">o</span> <span class="o">=</span> <span class="n">Output</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">**</span><span class="n">_odict</span><span class="p">)</span>
             <span class="n">f</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">run_fname</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">output_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">run_args</span><span class="p">,</span> <span class="o">**</span><span class="n">run_kwargs</span><span class="p">))</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">run_args</span><span class="p">,</span> <span class="o">**</span><span class="n">run_kwargs</span><span class="p">))</span>
+            
+        <span class="n">fpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">file_name_output_yaml</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Writing file&quot;</span><span class="p">,</span> <span class="n">fpath</span><span class="p">)</span>
+        <span class="n">_write_yaml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_output_yaml</span><span class="p">,</span> <span class="n">fpath</span><span class="p">)</span></div>
 
-
+            
 <div class="viewcode-block" id="WindioRunner.run">
 <a class="viewcode-back" href="../../../../_foxes/input/windio/WindioRunner.run.html#foxes.input.windio.WindioRunner.run">[docs]</a>
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
