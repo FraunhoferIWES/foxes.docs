@@ -13,8 +13,7 @@
     
     
       
-        <title>foxes.models.wake_frames.timelines - foxes 0.8
- documentation</title>
+        <title>foxes.models.wake_frames.timelines - foxes 1.0 documentation</title>
       
     
     
@@ -37,7 +36,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.8b7122b5930e63132.min.css?v=abb87162" />
+        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.3625f807144f53acf.min.css?v=fbfc4466" />
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -72,9 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 0.8
- documentation" class="md-header__button md-logo" aria-label="foxes 0.8
- documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.0 documentation" class="md-header__button md-logo" aria-label="foxes 1.0 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -86,8 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 0.8
- documentation
+            foxes 1.0 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -174,15 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 0.8
- documentation" class="md-nav__button md-logo" aria-label="foxes 0.8
- documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.0 documentation" class="md-nav__button md-logo" aria-label="foxes 1.0 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 0.8
- documentation
+    foxes 1.0 documentation
   </label>
   
     <div class="md-nav__source">
@@ -256,8 +249,40 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../inputs.html" class="md-nav__link">
+        <span title="/inputs.rst (reference label)" class="md-ellipsis">Inputs</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../models.html" class="md-nav__link">
         <span title="/models.rst (reference label)" class="md-ellipsis">Models</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../notebooks/parallelization.html" class="md-nav__link">
+        <span title="/notebooks/parallelization.ipynb (reference label)" class="md-ellipsis">Parallelization</span>
       </a>
     </li>
   
@@ -352,8 +377,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../history.html" class="md-nav__link">
-        <span title="/history.md (reference label)" class="md-ellipsis">History</span>
+      <a href="../../../../CHANGELOG.html" class="md-nav__link">
+        <span title="/changelog.md (reference label)" class="md-ellipsis">History</span>
       </a>
     </li>
   
@@ -390,10 +415,11 @@
 
 <h1>Source code for foxes.models.wake_frames.timelines</h1><div class="highlight"><pre>
 <span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">xarray</span> <span class="kn">import</span> <span class="n">Dataset</span>
 
-<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WakeFrame</span>
+<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WakeFrame</span><span class="p">,</span> <span class="n">MData</span><span class="p">,</span> <span class="n">FData</span><span class="p">,</span> <span class="n">TData</span>
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">wd2uv</span>
-<span class="kn">from</span> <span class="nn">foxes.core.data</span> <span class="kn">import</span> <span class="n">MData</span><span class="p">,</span> <span class="n">FData</span><span class="p">,</span> <span class="n">TData</span>
+<span class="kn">from</span> <span class="nn">foxes.algorithms.iterative</span> <span class="kn">import</span> <span class="n">Iterative</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
@@ -406,12 +432,12 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    max_wake_length: float</span>
-<span class="sd">        The maximal wake length</span>
+<span class="sd">    max_length_km: float</span>
+<span class="sd">        The maximal wake length in km</span>
 <span class="sd">    cl_ipars: dict</span>
 <span class="sd">        Interpolation parameters for centre line</span>
 <span class="sd">        point interpolation</span>
-<span class="sd">    dt_min: float, optional</span>
+<span class="sd">    dt_min: float</span>
 <span class="sd">        The delta t value in minutes,</span>
 <span class="sd">        if not from timeseries data</span>
 
@@ -421,24 +447,25 @@
 
 <div class="viewcode-block" id="Timelines.__init__">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.__init__.html#foxes.models.wake_frames.Timelines.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_wake_length</span><span class="o">=</span><span class="mf">2e4</span><span class="p">,</span> <span class="n">cl_ipars</span><span class="o">=</span><span class="p">{},</span> <span class="n">dt_min</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_length_km</span><span class="o">=</span><span class="mf">2e4</span><span class="p">,</span> <span class="n">cl_ipars</span><span class="o">=</span><span class="p">{},</span> <span class="n">dt_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        max_wake_length: float</span>
-<span class="sd">            The maximal wake length</span>
+<span class="sd">        max_length_km: float</span>
+<span class="sd">            The maximal wake length in km</span>
 <span class="sd">        cl_ipars: dict</span>
 <span class="sd">            Interpolation parameters for centre line</span>
 <span class="sd">            point interpolation</span>
 <span class="sd">        dt_min: float, optional</span>
 <span class="sd">            The delta t value in minutes,</span>
 <span class="sd">            if not from timeseries data</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Additional parameters for the base class</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">max_wake_length</span> <span class="o">=</span> <span class="n">max_wake_length</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">max_length_km</span><span class="o">=</span><span class="n">max_length_km</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cl_ipars</span> <span class="o">=</span> <span class="n">cl_ipars</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dt_min</span> <span class="o">=</span> <span class="n">dt_min</span></div>
 
@@ -446,8 +473,112 @@
 <div class="viewcode-block" id="Timelines.__repr__">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.__repr__.html#foxes.models.wake_frames.Timelines.__repr__">[docs]</a>
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(dt_min=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dt_min</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(dt_min=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dt_min</span><span class="si">}</span><span class="s2">, max_length_km=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_length_km</span><span class="si">}</span><span class="s2">)&quot;</span></div>
 
+
+    <span class="k">def</span> <span class="nf">_precalc_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">heights</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">,</span> <span class="n">needs_res</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper function for pre-calculation of ambient wind vectors&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Pre-calculating ambient wind vectors&quot;</span><span class="p">)</span>
+
+        <span class="c1"># get and check times:</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">states</span><span class="o">.</span><span class="n">index</span><span class="p">())</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt_min</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">times</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Expecting state index of type np.datetime64, found </span><span class="si">{</span><span class="n">times</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Expecting &#39;dt_min&#39; for single step timeseries&quot;</span>
+                <span class="p">)</span>
+            <span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;timedelta64[s]&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt_min</span> <span class="o">*</span> <span class="mi">60</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;timedelta64[s]&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span>
+
+        <span class="c1"># prepare mdata:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">get_model_data</span><span class="p">(</span><span class="n">states</span><span class="p">)[</span><span class="s2">&quot;coords&quot;</span><span class="p">]</span>
+        <span class="n">mdict</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">mdims</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">v</span><span class="p">,)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">get_model_data</span><span class="p">(</span><span class="n">states</span><span class="p">)[</span><span class="s2">&quot;data_vars&quot;</span><span class="p">]</span>
+        <span class="n">mdict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">v</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+        <span class="n">mdims</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">v</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+        <span class="n">mdata</span> <span class="o">=</span> <span class="n">MData</span><span class="p">(</span><span class="n">mdict</span><span class="p">,</span> <span class="n">mdims</span><span class="p">,</span> <span class="n">loop_dims</span><span class="o">=</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">],</span> <span class="n">states_i0</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">mdict</span><span class="p">,</span> <span class="n">mdims</span><span class="p">,</span> <span class="n">data</span>
+
+        <span class="c1"># prepare fdata:</span>
+        <span class="n">fdata</span> <span class="o">=</span> <span class="n">FData</span><span class="p">({},</span> <span class="p">{},</span> <span class="n">loop_dims</span><span class="o">=</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">])</span>
+
+        <span class="c1"># prepare tdata:</span>
+        <span class="n">n_states</span> <span class="o">=</span> <span class="n">states</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">states</span><span class="o">.</span><span class="n">output_point_vars</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">pdims</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+
+        <span class="c1"># calculate all heights:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dxy&quot;</span><span class="p">:</span> <span class="p">((</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="s2">&quot;dir&quot;</span><span class="p">),</span> <span class="p">[])}</span>
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">heights</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Height: </span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+
+            <span class="n">points</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span>
+            <span class="n">tdata</span> <span class="o">=</span> <span class="n">TData</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span>
+                <span class="n">points</span><span class="o">=</span><span class="n">points</span><span class="p">,</span>
+                <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+                <span class="n">dims</span><span class="o">=</span><span class="n">pdims</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">res</span> <span class="o">=</span> <span class="n">states</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">)</span>
+            <span class="k">del</span> <span class="n">tdata</span>
+
+            <span class="n">uv</span> <span class="o">=</span> <span class="n">wd2uv</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">])[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">dxy</span> <span class="o">=</span> <span class="n">uv</span> <span class="o">*</span> <span class="n">dt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dxy</span> <span class="o">=</span> <span class="n">uv</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+                <span class="n">dxy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dxy</span><span class="p">,</span> <span class="n">uv</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">dt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">[</span><span class="s2">&quot;dxy&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dxy</span><span class="p">)</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot; DEBUG</span>
+<span class="sd">            import matplotlib.pyplot as plt</span>
+<span class="sd">            xy = np.array([np.sum(self.timelines_data[h][:n], axis=0) for n in range(len(self.timelines_data[h]))])</span>
+<span class="sd">            print(xy)</span>
+<span class="sd">            plt.plot(xy[:, 0], xy[:, 1])</span>
+<span class="sd">            plt.title(f&quot;Height {h} m&quot;)</span>
+<span class="sd">            plt.show()</span>
+<span class="sd">            quit()</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+
+            <span class="k">if</span> <span class="n">needs_res</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s2">&quot;U&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">[</span><span class="s2">&quot;U&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">),</span> <span class="p">[])</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">[</span><span class="s2">&quot;V&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">),</span> <span class="p">[])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">[</span><span class="s2">&quot;U&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uv</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">[</span><span class="s2">&quot;V&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uv</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+
+                <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">states</span><span class="o">.</span><span class="n">output_point_vars</span><span class="p">(</span><span class="n">algo</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">]:</span>
+                        <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">),</span> <span class="p">[])</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">v</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+            <span class="k">del</span> <span class="n">res</span><span class="p">,</span> <span class="n">uv</span><span class="p">,</span> <span class="n">dxy</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
+            <span class="n">coords</span><span class="o">=</span><span class="p">{</span>
+                <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="n">states</span><span class="o">.</span><span class="n">index</span><span class="p">(),</span>
+                <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="n">heights</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span>
+                <span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
 
 <div class="viewcode-block" id="Timelines.initialize">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.initialize.html#foxes.models.wake_frames.Timelines.initialize">[docs]</a>
@@ -463,68 +594,106 @@
 <span class="sd">            The verbosity level, 0 = silent</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">Iterative</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Incompatible algorithm type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, expecting </span><span class="si">{</span><span class="n">Iterative</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Pre-calculating ambient wind vectors&quot;</span><span class="p">)</span>
+        <span class="c1"># find turbine hub heights:</span>
+        <span class="n">t2h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ti</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbines</span><span class="p">):</span>
+            <span class="n">t2h</span><span class="p">[</span><span class="n">ti</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">t</span><span class="o">.</span><span class="n">H</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">H</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">algo</span><span class="o">.</span><span class="n">farm_controller</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="n">ti</span><span class="p">]</span><span class="o">.</span><span class="n">H</span>
+            <span class="p">)</span>
+        <span class="n">heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">t2h</span><span class="p">)</span>
 
-        <span class="c1"># get and check times:</span>
-        <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">index</span><span class="p">())</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt_min</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">times</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Expecting state index of type np.datetime64, found </span><span class="si">{</span><span class="n">times</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Expecting &#39;dt_min&#39; for single step timeseries&quot;</span>
-                <span class="p">)</span>
-            <span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;timedelta64[s]&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span>
+        <span class="c1"># pre-calc data:</span>
+        <span class="kn">from</span> <span class="nn">foxes.input.states</span> <span class="kn">import</span> <span class="n">OnePointFlowTimeseries</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="p">,</span> <span class="n">OnePointFlowTimeseries</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_precalc_data</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">base_states</span><span class="p">,</span> <span class="n">heights</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">n</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt_min</span> <span class="o">*</span> <span class="mi">60</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;timedelta64[s]&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_precalc_data</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="p">,</span> <span class="n">heights</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span></div>
 
-        <span class="c1"># calculate horizontal wind vector in all states:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_uv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">algo</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
 
-        <span class="c1"># prepare mdata:</span>
-        <span class="n">mdata</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">get_model_data</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="p">)[</span><span class="s2">&quot;data_vars&quot;</span><span class="p">]</span>
-        <span class="n">mdict</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">mdata</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-        <span class="n">mdims</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">mdata</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-        <span class="n">mdata</span> <span class="o">=</span> <span class="n">MData</span><span class="p">(</span><span class="n">mdict</span><span class="p">,</span> <span class="n">mdims</span><span class="p">,</span> <span class="n">loop_dims</span><span class="o">=</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">])</span>
-        <span class="k">del</span> <span class="n">mdict</span><span class="p">,</span> <span class="n">mdims</span>
+<div class="viewcode-block" id="Timelines.set_running">
+<a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.set_running.html#foxes.models.wake_frames.Timelines.set_running">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_running</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">algo</span><span class="p">,</span>
+        <span class="n">data_stash</span><span class="p">,</span>
+        <span class="n">sel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">isel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets this model status to running, and moves</span>
+<span class="sd">        all large data to stash.</span>
 
-        <span class="c1"># prepare fdata:</span>
-        <span class="n">fdata</span> <span class="o">=</span> <span class="n">FData</span><span class="p">({},</span> <span class="p">{},</span> <span class="n">loop_dims</span><span class="o">=</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">])</span>
+<span class="sd">        The stashed data will be returned by the</span>
+<span class="sd">        unset_running() function after running calculations.</span>
 
-        <span class="c1"># prepare tdata:</span>
-        <span class="n">tdata</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">algo</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">output_point_vars</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="n">pdims</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tdata</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
-        <span class="n">tdata</span> <span class="o">=</span> <span class="n">TData</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span>
-            <span class="n">points</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">algo</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">),</span>
-            <span class="n">data</span><span class="o">=</span><span class="n">tdata</span><span class="p">,</span>
-            <span class="n">dims</span><span class="o">=</span><span class="n">pdims</span><span class="p">,</span>
-        <span class="p">)</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        data_stash: dict</span>
+<span class="sd">            Large data stash, this function adds data here.</span>
+<span class="sd">            Key: model name. Value: dict, large model data</span>
+<span class="sd">        sel: dict, optional</span>
+<span class="sd">            The subset selection dictionary</span>
+<span class="sd">        isel: dict, optional</span>
+<span class="sd">            The index subset selection dictionary</span>
+<span class="sd">        verbosity: int</span>
+<span class="sd">            The verbosity level, 0 = silent</span>
 
-        <span class="c1"># calculate:</span>
-        <span class="n">res</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_dxy</span> <span class="o">=</span> <span class="n">wd2uv</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">])[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_dxy</span> <span class="o">=</span> <span class="n">wd2uv</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">])[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_dxy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dxy</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dxy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_running</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">data_stash</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">isel</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; DEBUG</span>
-<span class="sd">        import matplotlib.pyplot as plt</span>
-<span class="sd">        xy = np.array([np.sum(self._dxy[:n], axis=0) for n in range(len(self._dxy))])</span>
-<span class="sd">        print(xy)</span>
-<span class="sd">        plt.plot(xy[:, 0], xy[:, 1])</span>
-<span class="sd">        plt.show()</span>
-<span class="sd">        quit()</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
+        <span class="k">if</span> <span class="n">sel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">isel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data_stash</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span>
+
+            <span class="k">if</span> <span class="n">isel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">isel</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">sel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Timelines.unset_running">
+<a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.unset_running.html#foxes.models.wake_frames.Timelines.unset_running">[docs]</a>
+    <span class="k">def</span> <span class="nf">unset_running</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">algo</span><span class="p">,</span>
+        <span class="n">data_stash</span><span class="p">,</span>
+        <span class="n">sel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">isel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets this model status to not running, recovering large data</span>
+<span class="sd">        from stash</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        data_stash: dict</span>
+<span class="sd">            Large data stash, this function adds data here.</span>
+<span class="sd">            Key: model name. Value: dict, large model data</span>
+<span class="sd">        sel: dict, optional</span>
+<span class="sd">            The subset selection dictionary</span>
+<span class="sd">        isel: dict, optional</span>
+<span class="sd">            The index subset selection dictionary</span>
+<span class="sd">        verbosity: int</span>
+<span class="sd">            The verbosity level, 0 = silent</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">unset_running</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">data_stash</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">isel</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data_stash</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s2">&quot;data&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Timelines.calc_order">
@@ -551,25 +720,8 @@
 <span class="sd">            The turbine order, shape: (n_states, n_turbines)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># prepare:</span>
-        <span class="n">n_states</span> <span class="o">=</span> <span class="n">fdata</span><span class="o">.</span><span class="n">n_states</span>
-        <span class="n">n_turbines</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_turbines</span>
-        <span class="n">tdata</span> <span class="o">=</span> <span class="n">TData</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">])</span>
-
-        <span class="c1"># calculate streamline x coordinates for turbines rotor centre points:</span>
-        <span class="c1"># n_states, n_turbines_source, n_turbines_target</span>
-        <span class="n">coosx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">ti</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_turbines</span><span class="p">):</span>
-            <span class="n">coosx</span><span class="p">[:,</span> <span class="n">ti</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_wake_coos</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">,</span> <span class="n">ti</span><span class="p">)[</span>
-                <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
-            <span class="p">]</span>
-
-        <span class="c1"># derive turbine order:</span>
-        <span class="c1"># TODO: Remove loop over states</span>
-        <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">si</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_states</span><span class="p">):</span>
-            <span class="n">order</span><span class="p">[</span><span class="n">si</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">lexsort</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="n">coosx</span><span class="p">[</span><span class="n">si</span><span class="p">])</span>
-
+        <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">fdata</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="n">fdata</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span>
+        <span class="n">order</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">fdata</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
         <span class="k">return</span> <span class="n">order</span></div>
 
 
@@ -613,69 +765,86 @@
         <span class="n">n_points</span> <span class="o">=</span> <span class="n">n_targets</span> <span class="o">*</span> <span class="n">n_tpoints</span>
         <span class="n">points</span> <span class="o">=</span> <span class="n">targets</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
         <span class="n">rxyz</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">][:,</span> <span class="n">downwind_index</span><span class="p">]</span>
+        <span class="n">theights</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">][:,</span> <span class="n">downwind_index</span><span class="p">]</span>
+        <span class="n">heights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">data_dxy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">[</span><span class="s2">&quot;dxy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
 
         <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
         <span class="n">D</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">][:,</span> <span class="n">downwind_index</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
-
-        <span class="n">i0</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">states_i0</span><span class="p">(</span><span class="n">counter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">)</span>
-        <span class="n">i1</span> <span class="o">=</span> <span class="n">i0</span> <span class="o">+</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span>
-        <span class="n">dxy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dxy</span><span class="p">[:</span><span class="n">i1</span><span class="p">]</span>
-
-        <span class="n">trace_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-        <span class="n">trace_p</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">rxyz</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-        <span class="n">trace_l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-        <span class="n">trace_d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
-        <span class="n">trace_si</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span>
-        <span class="n">trace_si</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">i0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
 
         <span class="n">wcoos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mf">1e20</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
         <span class="n">wcoosx</span> <span class="o">=</span> <span class="n">wcoos</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="n">wcoosy</span> <span class="o">=</span> <span class="n">wcoos</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
         <span class="n">wcoos</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">rxyz</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-        <span class="k">del</span> <span class="n">rxyz</span>
 
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">trace_si</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">trace_l</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_wake_length</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
-                <span class="n">trace_si</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">i0</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">states_i0</span><span class="p">(</span><span class="n">counter</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">i1</span> <span class="o">=</span> <span class="n">i0</span> <span class="o">+</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_states</span>
+        <span class="n">trace_si</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span>
+        <span class="n">trace_si</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">i0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">hi</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">heights</span><span class="p">):</span>
+            <span class="n">dxy</span> <span class="o">=</span> <span class="n">data_dxy</span><span class="p">[</span><span class="n">hi</span><span class="p">][:</span><span class="n">i1</span><span class="p">]</span>
+            <span class="n">precond</span> <span class="o">=</span> <span class="n">theights</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">h</span>
 
-                <span class="n">delta</span> <span class="o">=</span> <span class="n">dxy</span><span class="p">[</span><span class="n">trace_si</span><span class="p">[</span><span class="n">sel</span><span class="p">]]</span>
-                <span class="n">dmag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">trace_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+            <span class="n">trace_p</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">rxyz</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">trace_l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+            <span class="n">trace_d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+            <span class="n">h_trace_si</span> <span class="o">=</span> <span class="n">trace_si</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-                <span class="n">trace_p</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">-=</span> <span class="n">delta</span>
-                <span class="n">trace_l</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dmag</span>
+            <span class="c1"># flake8: noqa: F821</span>
+            <span class="k">def</span> <span class="nf">_update_wcoos</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;Local function that updates coordinates and source times&quot;&quot;&quot;</span>
+                <span class="k">nonlocal</span> <span class="n">wcoosx</span><span class="p">,</span> <span class="n">wcoosy</span><span class="p">,</span> <span class="n">trace_si</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">trace_p</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">sel</span> <span class="o">=</span> <span class="n">sel</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">d</span> <span class="o">&lt;=</span> <span class="n">trace_d</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
+                    <span class="n">trace_d</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
 
-                <span class="n">trp</span> <span class="o">=</span> <span class="n">trace_p</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
-                <span class="n">d0</span> <span class="o">=</span> <span class="n">trace_d</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
-                <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">trp</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">trace_d</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span>
+                    <span class="n">nx</span> <span class="o">=</span> <span class="n">dxy</span><span class="p">[</span><span class="n">h_trace_si</span><span class="p">[</span><span class="n">sel</span><span class="p">]]</span>
+                    <span class="n">dx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">nx</span> <span class="o">/=</span> <span class="n">dx</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+                    <span class="n">trp</span> <span class="o">=</span> <span class="n">trace_p</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
+                    <span class="n">projx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;sd,sd-&gt;s&quot;</span><span class="p">,</span> <span class="n">trp</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
 
-                <span class="n">seln</span> <span class="o">=</span> <span class="n">d</span> <span class="o">&lt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">d0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">dmag</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">seln</span><span class="p">):</span>
-                    <span class="n">htrp</span> <span class="o">=</span> <span class="n">trp</span><span class="p">[</span><span class="n">seln</span><span class="p">]</span>
-                    <span class="n">raxis</span> <span class="o">=</span> <span class="n">delta</span><span class="p">[</span><span class="n">seln</span><span class="p">]</span>
-                    <span class="n">raxis</span> <span class="o">=</span> <span class="n">raxis</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">raxis</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
-                    <span class="n">saxis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
-                        <span class="p">[</span><span class="o">-</span><span class="n">raxis</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">raxis</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-                    <span class="p">)</span>
+                    <span class="n">seln</span> <span class="o">=</span> <span class="p">(</span><span class="n">projx</span> <span class="o">&gt;</span> <span class="o">-</span><span class="n">dx</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">projx</span> <span class="o">&lt;</span> <span class="n">dx</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">seln</span><span class="p">):</span>
+                        <span class="n">wcoosx</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">seln</span><span class="p">,</span> <span class="n">projx</span> <span class="o">+</span> <span class="n">trace_l</span><span class="p">[</span><span class="n">sel</span><span class="p">],</span> <span class="n">wcoosx</span><span class="p">[</span><span class="n">sel</span><span class="p">])</span>
 
-                    <span class="n">wcx</span> <span class="o">=</span> <span class="n">wcoosx</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
-                    <span class="n">wcx</span><span class="p">[</span><span class="n">seln</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;sd,sd-&gt;s&quot;</span><span class="p">,</span> <span class="n">htrp</span><span class="p">,</span> <span class="n">raxis</span><span class="p">)</span> <span class="o">+</span> <span class="n">trace_l</span><span class="p">[</span><span class="n">sel</span><span class="p">][</span><span class="n">seln</span><span class="p">]</span>
-                    <span class="n">wcoosx</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">wcx</span>
-                    <span class="k">del</span> <span class="n">wcx</span><span class="p">,</span> <span class="n">raxis</span>
+                        <span class="n">ny</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="o">-</span><span class="n">nx</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">nx</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                        <span class="n">projy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;sd,sd-&gt;s&quot;</span><span class="p">,</span> <span class="n">trp</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
+                        <span class="n">wcoosy</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">seln</span><span class="p">,</span> <span class="n">projy</span><span class="p">,</span> <span class="n">wcoosy</span><span class="p">[</span><span class="n">sel</span><span class="p">])</span>
+                        <span class="k">del</span> <span class="n">ny</span><span class="p">,</span> <span class="n">projy</span>
 
-                    <span class="n">wcy</span> <span class="o">=</span> <span class="n">wcoosy</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
-                    <span class="n">wcy</span><span class="p">[</span><span class="n">seln</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;sd,sd-&gt;s&quot;</span><span class="p">,</span> <span class="n">htrp</span><span class="p">,</span> <span class="n">saxis</span><span class="p">)</span>
-                    <span class="n">wcoosy</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">wcy</span>
-                    <span class="k">del</span> <span class="n">wcy</span><span class="p">,</span> <span class="n">saxis</span><span class="p">,</span> <span class="n">htrp</span>
+                        <span class="n">trace_si</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">seln</span><span class="p">,</span> <span class="n">h_trace_si</span><span class="p">[</span><span class="n">sel</span><span class="p">],</span> <span class="n">trace_si</span><span class="p">[</span><span class="n">sel</span><span class="p">])</span>
 
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">break</span>
+            <span class="c1"># step backwards in time, until wake source turbine is hit:</span>
+            <span class="n">_update_wcoos</span><span class="p">(</span><span class="n">precond</span><span class="p">)</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">sel</span> <span class="o">=</span> <span class="n">precond</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">h_trace_si</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">trace_l</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_length_km</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
+                    <span class="n">h_trace_si</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
 
-        <span class="c1"># turbines that cause wake:</span>
+                    <span class="n">delta</span> <span class="o">=</span> <span class="n">dxy</span><span class="p">[</span><span class="n">h_trace_si</span><span class="p">[</span><span class="n">sel</span><span class="p">]]</span>
+                    <span class="n">dmag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">trace_p</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">-=</span> <span class="n">delta</span>
+                    <span class="n">trace_l</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dmag</span>
+                    <span class="k">del</span> <span class="n">delta</span><span class="p">,</span> <span class="n">dmag</span>
+
+                    <span class="c1"># check if this is closer to turbine:</span>
+                    <span class="n">_update_wcoos</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span>
+                    <span class="k">del</span> <span class="n">sel</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">del</span> <span class="n">sel</span>
+                    <span class="k">break</span>
+            <span class="k">del</span> <span class="n">trace_p</span><span class="p">,</span> <span class="n">trace_l</span><span class="p">,</span> <span class="n">trace_d</span><span class="p">,</span> <span class="n">h_trace_si</span><span class="p">,</span> <span class="n">dxy</span><span class="p">,</span> <span class="n">precond</span>
+
+        <span class="c1"># store turbines that cause wake:</span>
+        <span class="n">trace_si</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">trace_si</span><span class="p">,</span> <span class="n">i0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">])</span>
         <span class="n">tdata</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_SOURCE_ORDERI</span><span class="p">]</span> <span class="o">=</span> <span class="n">downwind_index</span>
 
-        <span class="c1"># states that cause wake for each target point:</span>
+        <span class="c1"># store states that cause wake for each target point,</span>
+        <span class="c1"># will be used by model.get_data() during wake calculation:</span>
         <span class="n">tdata</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
             <span class="n">FC</span><span class="o">.</span><span class="n">STATES_SEL</span><span class="p">,</span>
             <span class="n">trace_si</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_targets</span><span class="p">,</span> <span class="n">n_tpoints</span><span class="p">),</span>
@@ -711,7 +880,73 @@
 <span class="sd">            The centreline points, shape: (n_states, n_points, 3)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+        <span class="c1"># prepare:</span>
+        <span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">rxyz</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">][:,</span> <span class="n">downwind_index</span><span class="p">]</span>
+        <span class="n">theights</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">][:,</span> <span class="n">downwind_index</span><span class="p">]</span>
+        <span class="n">heights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">data_dxy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span><span class="p">[</span><span class="s2">&quot;dxy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+        <span class="n">points</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">rxyz</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+
+        <span class="n">trace_dp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">trace_l</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">trace_si</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_points</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">)</span>
+        <span class="n">trace_si</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">hi</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">heights</span><span class="p">):</span>
+            <span class="n">precond</span> <span class="o">=</span> <span class="n">theights</span> <span class="o">==</span> <span class="n">h</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">precond</span><span class="p">):</span>
+                <span class="n">sel</span> <span class="o">=</span> <span class="n">precond</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">trace_l</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
+                    <span class="n">dxy</span> <span class="o">=</span> <span class="n">data_dxy</span><span class="p">[</span><span class="n">hi</span><span class="p">][</span><span class="n">trace_si</span><span class="p">[</span><span class="n">sel</span><span class="p">]]</span>
+
+                    <span class="n">trl</span> <span class="o">=</span> <span class="n">trace_l</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
+                    <span class="n">trp</span> <span class="o">=</span> <span class="n">trace_dp</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span>
+                    <span class="n">dl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">dxy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">cl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">trl</span> <span class="o">-</span> <span class="n">dl</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">trl</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">cl</span><span class="p">):</span>
+                        <span class="n">trace_l</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cl</span><span class="p">,</span> <span class="n">trl</span> <span class="o">-</span> <span class="n">dl</span><span class="p">,</span> <span class="n">trl</span><span class="p">)</span>
+                        <span class="n">trace_dp</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cl</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">trp</span> <span class="o">+</span> <span class="n">dxy</span><span class="p">,</span> <span class="n">trp</span><span class="p">)</span>
+                    <span class="k">del</span> <span class="n">trl</span><span class="p">,</span> <span class="n">trp</span><span class="p">,</span> <span class="n">dl</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">dxy</span>
+
+                    <span class="n">trace_si</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+                    <span class="n">sel</span> <span class="o">=</span> <span class="n">precond</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">trace_l</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">trace_si</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+
+                <span class="n">si</span> <span class="o">=</span> <span class="n">trace_si</span><span class="p">[</span><span class="n">precond</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">dxy</span> <span class="o">=</span> <span class="n">data_dxy</span><span class="p">[</span><span class="n">hi</span><span class="p">][</span><span class="n">si</span><span class="p">]</span>
+                <span class="n">dl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">dxy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+                <span class="n">trl</span> <span class="o">=</span> <span class="n">trace_l</span><span class="p">[</span><span class="n">precond</span><span class="p">][:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+                <span class="n">trp</span> <span class="o">=</span> <span class="n">trace_dp</span><span class="p">[</span><span class="n">precond</span><span class="p">]</span>
+                <span class="n">sel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">trl</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">dl</span>
+                <span class="n">trace_dp</span><span class="p">[</span><span class="n">precond</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sel</span><span class="p">,</span> <span class="n">trp</span> <span class="o">-</span> <span class="n">trl</span> <span class="o">/</span> <span class="n">dl</span> <span class="o">*</span> <span class="n">dxy</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+                <span class="k">del</span> <span class="n">si</span><span class="p">,</span> <span class="n">dxy</span><span class="p">,</span> <span class="n">dl</span><span class="p">,</span> <span class="n">trl</span><span class="p">,</span> <span class="n">trp</span><span class="p">,</span> <span class="n">sel</span>
+            <span class="k">del</span> <span class="n">precond</span>
+        <span class="k">del</span> <span class="n">trace_si</span><span class="p">,</span> <span class="n">trace_l</span>
+
+        <span class="n">points</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">trace_dp</span>
+
+        <span class="k">return</span> <span class="n">points</span></div>
+
+
+<div class="viewcode-block" id="Timelines.finalize">
+<a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.finalize.html#foxes.models.wake_frames.Timelines.finalize">[docs]</a>
+    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Finalizes the model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        verbosity: int</span>
+<span class="sd">            The verbosity level, 0 = silent</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span> <span class="o">=</span> <span class="kc">None</span></div>
 </div>
 
 </code></pre></div>
@@ -745,7 +980,7 @@
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    7.3.7.
+    8.1.3.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -766,7 +1001,6 @@
       
         <script src="../../../../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     
   </body>
 </html>
