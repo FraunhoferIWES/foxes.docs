@@ -697,10 +697,10 @@
 <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">farm_layout</span><span class="o">.</span><span class="n">add_grid</span><span class="p">(</span>
     <span class="n">farm</span><span class="o">=</span><span class="n">farm</span><span class="p">,</span>
     <span class="n">xy_base</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-    <span class="n">step_vectors</span><span class="o">=</span><span class="p">[[</span><span class="mf">900.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">80.</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">]],</span>
+    <span class="n">step_vectors</span><span class="o">=</span><span class="p">[[</span><span class="mf">900.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">80.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">]],</span>
     <span class="n">steps</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
     <span class="n">turbine_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NREL5MW&quot;</span><span class="p">,</span> <span class="s2">&quot;kTI_05&quot;</span><span class="p">],</span>
-    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FarmLayoutOutput</span><span class="p">(</span><span class="n">farm</span><span class="p">)</span><span class="o">.</span><span class="n">get_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -737,7 +737,7 @@
     <span class="n">fixed_vars</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">:</span> <span class="mf">1.225</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span>
 <span class="p">)</span>
 
-<span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">StatesRosePlotOutput</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">])</span>
+<span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">StatesRosePlotOutput</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">])</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">get_figure</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_WS</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
@@ -748,7 +748,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Selecting &#39;DefaultEngine(n_procs=15, chunk_size_states=None, chunk_size_points=20000)&#39;
+Selecting &#39;DefaultEngine(n_procs=16, chunk_size_states=None, chunk_size_points=20000)&#39;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -784,10 +784,19 @@ Selecting &#39;DefaultEngine(n_procs=15, chunk_size_states=None, chunk_size_poin
 <span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FarmResultsEval</span><span class="p">(</span><span class="n">farm_results</span><span class="p">)</span>
 <span class="n">o</span><span class="o">.</span><span class="n">add_efficiency</span><span class="p">()</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 <span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FarmLayoutOutput</span><span class="p">(</span><span class="n">farm</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">)</span>
-<span class="n">o</span><span class="o">.</span><span class="n">get_figure</span><span class="p">(</span><span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;mean_REWS&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean REWS [m/s]&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">o</span><span class="o">.</span><span class="n">get_figure</span><span class="p">(</span><span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;mean_EFF&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean efficiency [%]&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">o</span><span class="o">.</span><span class="n">get_figure</span><span class="p">(</span>
+    <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;mean_REWS&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean REWS [m/s]&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">o</span><span class="o">.</span><span class="n">get_figure</span><span class="p">(</span>
+    <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;mean_EFF&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean efficiency [%]&quot;</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+    <span class="n">annotate</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FarmResultsEval</span><span class="p">(</span><span class="n">farm_results</span><span class="p">)</span>

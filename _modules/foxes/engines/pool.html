@@ -492,15 +492,13 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Shuts down the pool&quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
-<div class="viewcode-block" id="PoolEngine.initialize">
-<a class="viewcode-back" href="../../../_foxes/engines/ThreadsEngine.html#foxes.engines.PoolEngine.initialize">[docs]</a>
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initializes the engine.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_create_pool</span><span class="p">()</span></div>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_create_pool</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
 
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exit_args</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown_pool</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="o">*</span><span class="n">exit_args</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PoolEngine.run_calculation">
 <a class="viewcode-back" href="../../../_foxes/engines/ThreadsEngine.html#foxes.engines.PoolEngine.run_calculation">[docs]</a>
@@ -584,14 +582,15 @@
         <span class="n">n_chunks_states</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk_sizes_states</span><span class="p">)</span>
         <span class="n">n_chunks_targets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk_sizes_targets</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Selecting n_chunks_states = </span><span class="si">{</span><span class="n">n_chunks_states</span><span class="si">}</span><span class="s2">, n_chunks_targets = </span><span class="si">{</span><span class="n">n_chunks_targets</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: Selecting n_chunks_states = </span><span class="si">{</span><span class="n">n_chunks_states</span><span class="si">}</span><span class="s2">, n_chunks_targets = </span><span class="si">{</span><span class="n">n_chunks_targets</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># prepare and submit chunks:</span>
         <span class="n">n_chunks_all</span> <span class="o">=</span> <span class="n">n_chunks_states</span> <span class="o">*</span> <span class="n">n_chunks_targets</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Submitting </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="si">}</span><span class="s2"> processes&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: Submitting </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="si">}</span><span class="s2"> processes&quot;</span><span class="p">,</span>
+            <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">n_chunks_all</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="n">jobs</span> <span class="o">=</span> <span class="p">{}</span>
@@ -640,7 +639,7 @@
         <span class="c1"># wait for results:</span>
         <span class="k">if</span> <span class="n">n_chunks_all</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Computing </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks using </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="si">}</span><span class="s2"> processes&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: Computing </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks using </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="si">}</span><span class="s2"> processes&quot;</span>
             <span class="p">)</span>
         <span class="n">pbar</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">n_chunks_all</span><span class="p">)</span>
@@ -668,25 +667,6 @@
             <span class="n">goal_data</span><span class="o">=</span><span class="n">goal_data</span><span class="p">,</span>
             <span class="n">iterative</span><span class="o">=</span><span class="n">iterative</span><span class="p">,</span>
         <span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="PoolEngine.finalize">
-<a class="viewcode-back" href="../../../_foxes/engines/ThreadsEngine.html#foxes.engines.PoolEngine.finalize">[docs]</a>
-    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exit_args</span><span class="p">,</span> <span class="o">**</span><span class="n">exit_kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Finalizes the engine.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        exit_args: tuple, optional</span>
-<span class="sd">            Arguments from the exit function</span>
-<span class="sd">        exit_kwargs: dict, optional</span>
-<span class="sd">            Arguments from the exit function</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialized</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown_pool</span><span class="p">()</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="o">*</span><span class="n">exit_args</span><span class="p">,</span> <span class="o">**</span><span class="n">exit_kwargs</span><span class="p">)</span></div>
 </div>
 
 </code></pre></div>

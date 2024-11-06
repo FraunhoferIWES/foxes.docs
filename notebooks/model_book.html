@@ -867,10 +867,10 @@ Example: seq_dyn_wakes_10s
 wake_models
 -----------
 RHB: RankineHalfBody(induction=Madsen)
-Rathmann: Rathmann(induction=Madsen)
-SelfSimilar: SelfSimilar(gamma=1.1, induction=Madsen)
-SelfSimilar2020: SelfSimilar2020(gamma=1.1, induction=Madsen)
-VortexSheet: VortexSheet, induction=Madsen)
+Rathmann: Rathmann(ws_linear, induction=Madsen)
+SelfSimilar: SelfSimilar(ws_linear, induction=Madsen, gamma=1.1)
+SelfSimilar2020: SelfSimilar2020(ws_linear, induction=Madsen, gamma=1.1)
+VortexSheet: VortexSheet(ws_linear, induction=Madsen)
 
 Jensen_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: JensenWake with
   induction=Betz
@@ -1476,6 +1476,22 @@ IECTI2005k_&lt;superposition&gt;: IECTIWake with
   ti_var=TI
   superposition=(Superposition, e.g. linear for ti_linear)
 Example: IECTI2005k_linear
+
+VortexSheet_&lt;superposition&gt;: VortexSheet with
+  superposition=(Superposition, e.g. linear for ws_linear)
+Example: VortexSheet_linear
+
+Rathmann_&lt;superposition&gt;: Rathmann with
+  superposition=(Superposition, e.g. linear for ws_linear)
+Example: Rathmann_linear
+
+SelfSimilar_&lt;superposition&gt;: SelfSimilar with
+  superposition=(Superposition, e.g. linear for ws_linear)
+Example: SelfSimilar_linear
+
+SelfSimilar2020_&lt;superposition&gt;: SelfSimilar2020 with
+  superposition=(Superposition, e.g. linear for ws_linear)
+Example: SelfSimilar2020_linear
 
 wake_superpositions
 -------------------

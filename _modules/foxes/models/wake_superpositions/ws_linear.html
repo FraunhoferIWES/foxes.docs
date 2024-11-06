@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.wake_superpositions.ws_linear - foxes 1.0 documentation</title>
+        <title>foxes.models.wake_superpositions.ws_linear - foxes 1.1 documentation</title>
       
     
     
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 1.0 documentation" class="md-header__button md-logo" aria-label="foxes 1.0 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.0 documentation
+            foxes 1.1 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 1.0 documentation" class="md-nav__button md-logo" aria-label="foxes 1.0 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.0 documentation
+    foxes 1.1 documentation
   </label>
   
     <div class="md-nav__source">
@@ -425,7 +425,7 @@
 <a class="viewcode-back" href="../../../../api_models.html#foxes.models.wake_superpositions.WSLinear">[docs]</a>
 <span class="k">class</span> <span class="nc">WSLinear</span><span class="p">(</span><span class="n">WakeSuperposition</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Linear supersposition of wind deficit results</span>
+<span class="sd">    Linear superposition of wind deficit results</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -523,7 +523,7 @@
 <span class="sd">            The target point data</span>
 <span class="sd">        downwind_index: int</span>
 <span class="sd">            The index of the wake causing turbine</span>
-<span class="sd">            in the downwnd order</span>
+<span class="sd">            in the downwind order</span>
 <span class="sd">        st_sel: numpy.ndarray of bool</span>
 <span class="sd">            The selection of targets, shape: (n_states, n_targets)</span>
 <span class="sd">        variable: str</span>
@@ -550,14 +550,15 @@
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">st_sel</span><span class="p">):</span>
             <span class="n">scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
                 <span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_amb</span> <span class="k">else</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span>
-                <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="p">,</span>
+                <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET_TPOINT</span><span class="p">,</span>
                 <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
                 <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
                 <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
                 <span class="n">tdata</span><span class="o">=</span><span class="n">tdata</span><span class="p">,</span>
                 <span class="n">downwind_index</span><span class="o">=</span><span class="n">downwind_index</span><span class="p">,</span>
-                <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="p">)[</span><span class="n">st_sel</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+                <span class="n">upcast</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">selection</span><span class="o">=</span><span class="n">st_sel</span><span class="p">,</span>
+            <span class="p">)</span>
 
             <span class="n">wake_delta</span><span class="p">[</span><span class="n">st_sel</span><span class="p">]</span> <span class="o">+=</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">wake_model_result</span>
 
@@ -618,7 +619,7 @@
 <a class="viewcode-back" href="../../../../api_models.html#foxes.models.wake_superpositions.WSLinearLocal">[docs]</a>
 <span class="k">class</span> <span class="nc">WSLinearLocal</span><span class="p">(</span><span class="n">WakeSuperposition</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Local linear supersposition of wind deficit results</span>
+<span class="sd">    Local linear superposition of wind deficit results</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -708,7 +709,7 @@
 <span class="sd">            The target point data</span>
 <span class="sd">        downwind_index: int</span>
 <span class="sd">            The index of the wake causing turbine</span>
-<span class="sd">            in the downwnd order</span>
+<span class="sd">            in the downwind order</span>
 <span class="sd">        st_sel: numpy.ndarray of bool</span>
 <span class="sd">            The selection of targets, shape: (n_states, n_targets)</span>
 <span class="sd">        variable: str</span>

@@ -440,6 +440,7 @@
         <span class="p">{</span>
             <span class="s2">&quot;Linear&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_linear&quot;</span><span class="p">,</span>
             <span class="s2">&quot;Quadratic&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_quadratic&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Product&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_product&quot;</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ws_sup_dict&quot;</span><span class="p">,</span>
     <span class="p">)</span>
@@ -447,6 +448,7 @@
         <span class="p">{</span>
             <span class="s2">&quot;Linear&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_linear_amb&quot;</span><span class="p">,</span>
             <span class="s2">&quot;Quadratic&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_quadratic_amb&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Product&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_product&quot;</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ws_sup_dict&quot;</span><span class="p">,</span>
     <span class="p">)</span>
@@ -729,7 +731,7 @@
 
 <div class="viewcode-block" id="read_attributes">
 <a class="viewcode-back" href="../../../../api_input.html#foxes.input.windio.read_attributes">[docs]</a>
-<span class="k">def</span> <span class="nf">read_attributes</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">read_attributes</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">output_pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Reads the attributes part of windio</span>
 
@@ -741,6 +743,8 @@
 <span class="sd">        The algorithm dictionary</span>
 <span class="sd">    verbosity: int</span>
 <span class="sd">        The verbosity level, 0=silent</span>
+<span class="sd">    **output_pars: dict, optional</span>
+<span class="sd">        Additional parameters for output reading</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -776,7 +780,9 @@
     <span class="n">out_dicts</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="s2">&quot;outputs&quot;</span> <span class="ow">in</span> <span class="n">wio_attrs</span><span class="p">:</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_attrs</span><span class="p">[</span><span class="s2">&quot;outputs&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;outputs&quot;</span><span class="p">)</span>
-        <span class="n">out_dicts</span><span class="p">,</span> <span class="n">odir</span> <span class="o">=</span> <span class="n">read_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+        <span class="n">out_dicts</span><span class="p">,</span> <span class="n">odir</span> <span class="o">=</span> <span class="n">read_outputs</span><span class="p">(</span>
+            <span class="n">outputs</span><span class="p">,</span> <span class="n">algo_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">,</span> <span class="o">**</span><span class="n">output_pars</span>
+        <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">out_dicts</span><span class="p">,</span> <span class="n">odir</span></div>
 

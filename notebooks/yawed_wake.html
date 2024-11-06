@@ -767,9 +767,7 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [4]:
 </code></pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">yawm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="p">[</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
-<span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">yawm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
 <span class="n">yawm</span>
 </code></pre></div>
 </div>
@@ -857,7 +855,7 @@ Turbine 1, T1: xy=(1000.00, 0.00), set_yawm, yawm2yaw, NREL5MW, kTI_05
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Selecting &#39;DefaultEngine(n_procs=15, chunk_size_states=None, chunk_size_points=20000)&#39;
+Selecting &#39;DefaultEngine(n_procs=16, chunk_size_states=None, chunk_size_points=20000)&#39;
 </pre></div></div>
 </div>
 <p>Once the wind farm results are ready we can continue and plot the wind field:</p>
@@ -899,7 +897,9 @@ Selecting &#39;DefaultEngine(n_procs=15, chunk_size_states=None, chunk_size_poin
 </code></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">o</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">FlowPlots2D</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">gen_states_fig_yz</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">750</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=-</span><span class="mi">200</span><span class="p">,</span><span class="n">ymax</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">zmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">zmax</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span><span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">gen_states_fig_yz</span><span class="p">(</span>
+    <span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">750</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=-</span><span class="mi">200</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">zmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zmax</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
 <span class="k">for</span> <span class="n">fig</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>

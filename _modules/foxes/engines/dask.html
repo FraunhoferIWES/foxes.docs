@@ -424,6 +424,9 @@
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
+<span class="n">dask</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">distributed</span> <span class="o">=</span> <span class="kc">None</span>
+
 
 <span class="k">def</span> <span class="nf">delayed</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A dummy decorator&quot;&quot;&quot;</span>
@@ -433,15 +436,19 @@
 <span class="k">def</span> <span class="nf">load_dask</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;On-demand loading of the dask package&quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">dask</span><span class="p">,</span> <span class="n">ProgressBar</span><span class="p">,</span> <span class="n">delayed</span>
-    <span class="n">dask</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s2">&quot;pip install dask&quot;</span><span class="p">)</span>
-    <span class="n">ProgressBar</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dask.diagnostics&quot;</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s2">&quot;pip install dask&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ProgressBar</span>
-    <span class="n">delayed</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">delayed</span>
+    <span class="k">if</span> <span class="n">dask</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dask</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;dask&quot;</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s2">&quot;pip install dask&quot;</span><span class="p">)</span>
+        <span class="n">ProgressBar</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span>
+            <span class="s2">&quot;dask.diagnostics&quot;</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s2">&quot;pip install dask&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">ProgressBar</span>
+        <span class="n">delayed</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">delayed</span>
 
 
 <span class="k">def</span> <span class="nf">load_distributed</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;On-demand loading of the distributed package&quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">distributed</span>
-    <span class="n">distributed</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;distributed&quot;</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s2">&quot;pip install distributed&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">distributed</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">distributed</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;distributed&quot;</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s2">&quot;pip install distributed&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="DaskBaseEngine">
@@ -772,13 +779,13 @@
         <span class="n">chunk_size_points0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_points</span>
         <span class="n">n_states</span> <span class="o">=</span> <span class="n">model_data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span>
         <span class="n">n_targets</span> <span class="o">=</span> <span class="n">point_data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">]</span> <span class="k">if</span> <span class="n">point_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
-        <span class="n">__</span><span class="p">,</span> <span class="n">chunk_sizes_states</span><span class="p">,</span> <span class="n">chunk_sizes_targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_chunk_sizes</span><span class="p">(</span>
+        <span class="n">chunk_sizes_states</span><span class="p">,</span> <span class="n">chunk_sizes_targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_chunk_sizes</span><span class="p">(</span>
             <span class="n">n_states</span><span class="p">,</span> <span class="n">n_targets</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">chunk_sizes_states</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">chunk_sizes_targets</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Selecting chunk_size_states = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_states</span><span class="si">}</span><span class="s2">, chunk_size_points = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_points</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: Selecting chunk_size_states = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_states</span><span class="si">}</span><span class="s2">, chunk_size_points = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_points</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>  <span class="c1"># , level=2)</span>
 
         <span class="c1"># prepare:</span>

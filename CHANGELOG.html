@@ -701,6 +701,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#v1-1" class="md-nav__link">
+    <span title="/changelog.md#v1-1 (reference label)" class="md-ellipsis">v1.<wbr>1</span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1017,6 +1024,13 @@
         <li class="md-nav__item">
   <a href="#v1-0" class="md-nav__link">
     <span title="/changelog.md#v1-0 (reference label)" class="md-ellipsis">v1.<wbr>0</span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1-1" class="md-nav__link">
+    <span title="/changelog.md#v1-1 (reference label)" class="md-ellipsis">v1.<wbr>1</span>
   </a>
   
 </li>
@@ -2063,6 +2077,38 @@
 </li>
 </ul>
 <p><strong>Full Changelog</strong>: <a class="reference external" href="https://github.com/FraunhoferIWES/foxes/commits/v1.0">https://github.com/FraunhoferIWES/foxes/commits/v1.0</a></p>
+<h2 id="v1-1">v1.1<a class="headerlink" href="#v1-1" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Python versions:</p>
+<ul>
+<li><p>Adding support for Python3.13</p></li>
+</ul>
+</li>
+<li><p>Engines:</p>
+<ul>
+<li><p>Default number of processes is now os.cpu_count(), or os.process_cpu_count() for python3.13</p></li>
+<li><p>New engine: <code class="docutils literal notranslate"><span class="pre">RayEngine</span></code> (short name <code class="docutils literal notranslate"><span class="pre">ray</span></code>), runs parallel computations based on  the <a class="reference external" href="https://docs.ray.io/en/latest/">Ray package</a></p></li>
+</ul>
+</li>
+<li><p>Inputs:</p>
+<ul>
+<li><p>New states <code class="docutils literal notranslate"><span class="pre">SliceDataNC</span></code>, much like <code class="docutils literal notranslate"><span class="pre">FieldDataNC</span></code> but without height dependency</p></li>
+</ul>
+</li>
+<li><p>Models:</p>
+<ul>
+<li><p>New turbine type <code class="docutils literal notranslate"><span class="pre">TBLFile</span></code>: Reads power, ct, D, H, P_rated from a <a href="#id1"><span class="problematic" id="id2">*</span></a>.tbl file</p></li>
+<li><p>Turbine induction models <code class="docutils literal notranslate"><span class="pre">SelfSimilar</span></code>, <code class="docutils literal notranslate"><span class="pre">SelfSimilar2020</span></code>, <code class="docutils literal notranslate"><span class="pre">Rathmann</span></code>, <code class="docutils literal notranslate"><span class="pre">VortexSheet</span></code> now optionally accept any wind speed superposition model, i.e., they are no longer based on hard-coded linear superposition</p></li>
+</ul>
+</li>
+<li><p>Bug fixes:</p>
+<ul>
+<li><p>Bug fixed in <code class="docutils literal notranslate"><span class="pre">WSProduct</span></code>, causing zero wind speed at regions not touched by wakes</p></li>
+<li><p>Bugs fixes in <code class="docutils literal notranslate"><span class="pre">FarmLayoutOutput</span></code>, concerning the writing of the layout csv file</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Full Changelog</strong>: <a class="reference external" href="https://github.com/FraunhoferIWES/foxes/commits/v1.1">https://github.com/FraunhoferIWES/foxes/commits/v1.1</a></p>
 
 
 

@@ -729,7 +729,11 @@
 
 <span class="c1"># setup the calculation algorithm:</span>
 <span class="n">algo</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">Downwind</span><span class="p">(</span>
-    <span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Jensen_linear_k007&quot;</span><span class="p">],</span> <span class="n">mbook</span><span class="o">=</span><span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">farm</span><span class="p">,</span>
+    <span class="n">states</span><span class="p">,</span>
+    <span class="n">wake_models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Jensen_linear_k007&quot;</span><span class="p">],</span>
+    <span class="n">mbook</span><span class="o">=</span><span class="n">mbook</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
@@ -749,7 +753,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Selecting &#39;DefaultEngine(n_procs=15, chunk_size_states=None, chunk_size_points=20000)&#39;
+Selecting &#39;DefaultEngine(n_procs=16, chunk_size_states=None, chunk_size_points=20000)&#39;
 
 Farm results:
  &lt;xarray.Dataset&gt; Size: 1kB
@@ -837,14 +841,14 @@ Coordinates:
   * state    (state) int64 8B 0
 Dimensions without coordinates: point
 Data variables:
-    TI       (state, point) float64 64kB 0.12 0.12 0.12 0.12 ... 0.12 0.12 0.12
     WS       (state, point) float64 64kB 9.0 9.0 9.0 9.0 ... 8.916 8.916 8.916
-    WD       (state, point) float64 64kB 270.0 270.0 270.0 ... 270.0 270.0 270.0
     RHO      (state, point) float64 64kB 1.225 1.225 1.225 ... 1.225 1.225 1.225
-    AMB_TI   (state, point) float64 64kB 0.12 0.12 0.12 0.12 ... 0.12 0.12 0.12
+    WD       (state, point) float64 64kB 270.0 270.0 270.0 ... 270.0 270.0 270.0
+    TI       (state, point) float64 64kB 0.12 0.12 0.12 0.12 ... 0.12 0.12 0.12
     AMB_WS   (state, point) float64 64kB 9.0 9.0 9.0 9.0 9.0 ... 9.0 9.0 9.0 9.0
-    AMB_WD   (state, point) float64 64kB 270.0 270.0 270.0 ... 270.0 270.0 270.0
     AMB_RHO  (state, point) float64 64kB 1.225 1.225 1.225 ... 1.225 1.225 1.225
+    AMB_WD   (state, point) float64 64kB 270.0 270.0 270.0 ... 270.0 270.0 270.0
+    AMB_TI   (state, point) float64 64kB 0.12 0.12 0.12 0.12 ... 0.12 0.12 0.12
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">

@@ -880,12 +880,39 @@
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;RHB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">RankineHalfBody</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;VortexSheet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">VortexSheet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">VortexSheet</span><span class="p">,</span>
+            <span class="s2">&quot;VortexSheet_&lt;superposition&gt;&quot;</span><span class="p">,</span>
+            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Rathmann&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">Rathmann</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">Rathmann</span><span class="p">,</span>
+            <span class="s2">&quot;Rathmann_&lt;superposition&gt;&quot;</span><span class="p">,</span>
+            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;SelfSimilar&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">SelfSimilar</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;SelfSimilar2020&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">SelfSimilar2020</span><span class="p">()</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;VortexSheet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">VortexSheet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">SelfSimilar</span><span class="p">,</span>
+            <span class="s2">&quot;SelfSimilar_&lt;superposition&gt;&quot;</span><span class="p">,</span>
+            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">SelfSimilar2020</span><span class="p">,</span>
+            <span class="s2">&quot;SelfSimilar2020_&lt;superposition&gt;&quot;</span><span class="p">,</span>
+            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">hints</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear)&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">ground_models</span> <span class="o">=</span> <span class="n">FDict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ground_models&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ground_models</span><span class="p">[</span><span class="s2">&quot;no_ground&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">ground_models</span><span class="o">.</span><span class="n">NoGround</span><span class="p">()</span>
@@ -938,7 +965,7 @@
 <div class="viewcode-block" id="ModelBook.__getitem__">
 <a class="viewcode-back" href="../../../_foxes/models/ModelBook.__getitem__.html#foxes.models.ModelBook.__getitem__">[docs]</a>
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ModelBook.print_toc">

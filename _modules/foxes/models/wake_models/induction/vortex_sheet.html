@@ -428,7 +428,10 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The Vortex Sheet model implemented with a radial dependency</span>
 
-<span class="sd">    Ref: Medici, D., et al. &quot;The upstream flow of a wind turbine: blockage effect.&quot; Wind Energy 14.5 (2011): 691-697.</span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Reference:</span>
+<span class="sd">    Medici, D., et al. &quot;The upstream flow of a wind turbine: blockage effect.&quot; Wind Energy 14.5 (2011): 691-697.</span>
 <span class="sd">    https://doi.org/10.1002/we.451</span>
 
 <span class="sd">    Attributes</span>
@@ -444,23 +447,29 @@
 
 <div class="viewcode-block" id="VortexSheet.__init__">
 <a class="viewcode-back" href="../../../../../_foxes/models/wake_models/induction/VortexSheet.__init__.html#foxes.models.wake_models.induction.VortexSheet.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pre_rotor_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Madsen&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">superposition</span><span class="o">=</span><span class="s2">&quot;ws_linear&quot;</span><span class="p">,</span>
+        <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Madsen&quot;</span><span class="p">,</span>
+        <span class="n">pre_rotor_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        pre_rotor_only: bool</span>
-<span class="sd">            Calculate only the pre-rotor region</span>
+<span class="sd">        superposition: str</span>
+<span class="sd">            The wind speed superposition</span>
 <span class="sd">        induction: foxes.core.AxialInductionModel or str</span>
 <span class="sd">            The induction model</span>
-
-<span class="sd">        :group: models.wake_models.induction</span>
+<span class="sd">        pre_rotor_only: bool</span>
+<span class="sd">            Calculate only the pre-rotor region</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">induction</span> <span class="o">=</span> <span class="n">induction</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pre_rotor_only</span> <span class="o">=</span> <span class="n">pre_rotor_only</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pre_rotor_only</span> <span class="o">=</span> <span class="n">pre_rotor_only</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_superp_name</span> <span class="o">=</span> <span class="n">superposition</span></div>
 
 
 <div class="viewcode-block" id="VortexSheet.__repr__">
@@ -469,7 +478,7 @@
         <span class="n">iname</span> <span class="o">=</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">induction</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">name</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, induction=</span><span class="si">{</span><span class="n">iname</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_superp_name</span><span class="si">}</span><span class="s2">, induction=</span><span class="si">{</span><span class="n">iname</span><span class="si">}</span><span class="s2">)&quot;</span></div>
 
 
 <div class="viewcode-block" id="VortexSheet.sub_models">
@@ -484,7 +493,7 @@
 <span class="sd">            All sub models</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_superp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="VortexSheet.initialize">
@@ -503,6 +512,7 @@
 <span class="sd">            Overwrite existing data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_superp</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">wake_superpositions</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_superp_name</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">induction</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">axial_induction</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="p">]</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">,</span> <span class="n">force</span><span class="p">)</span></div>
@@ -564,7 +574,7 @@
 <span class="sd">            The target point data</span>
 <span class="sd">        downwind_index: int</span>
 <span class="sd">            The index of the wake causing turbine</span>
-<span class="sd">            in the downwnd order</span>
+<span class="sd">            in the downwind order</span>
 <span class="sd">        wake_coos: numpy.ndarray</span>
 <span class="sd">            The wake frame coordinates of the evaluation</span>
 <span class="sd">            points, shape: (n_states, n_targets, n_tpoints, 3)</span>
@@ -594,18 +604,6 @@
             <span class="n">downwind_index</span><span class="o">=</span><span class="n">downwind_index</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="c1"># get ws</span>
-        <span class="n">ws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
-            <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span>
-            <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET_TPOINT</span><span class="p">,</span>
-            <span class="n">lookup</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
-            <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
-            <span class="n">fdata</span><span class="o">=</span><span class="n">fdata</span><span class="p">,</span>
-            <span class="n">tdata</span><span class="o">=</span><span class="n">tdata</span><span class="p">,</span>
-            <span class="n">upcast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">downwind_index</span><span class="o">=</span><span class="n">downwind_index</span><span class="p">,</span>
-        <span class="p">)</span>
-
         <span class="c1"># get D</span>
         <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
             <span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">,</span>
@@ -619,47 +617,90 @@
         <span class="p">)</span>
 
         <span class="n">sp_sel</span> <span class="o">=</span> <span class="p">(</span><span class="n">ct</span> <span class="o">&gt;</span> <span class="mf">1e-8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">ws_sel</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
         <span class="n">ct_sel</span> <span class="o">=</span> <span class="n">ct</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
         <span class="n">r_sph_sel</span> <span class="o">=</span> <span class="n">r_sph</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
         <span class="n">D_sel</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sp_sel</span><span class="p">):</span>
-            <span class="n">blockage</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="n">ws_sel</span>
-                <span class="o">*</span> <span class="p">(</span>
-                    <span class="mi">1</span>
-                    <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">ct2a</span><span class="p">(</span><span class="n">ct_sel</span><span class="p">)</span>
-                    <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">r_sph_sel</span> <span class="o">/</span> <span class="n">D_sel</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">r_sph_sel</span> <span class="o">/</span> <span class="n">D_sel</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
-                    <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
-                <span class="p">)</span>
-            <span class="p">)</span> <span class="o">-</span> <span class="n">ws_sel</span>
-            <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">][</span><span class="n">sp_sel</span><span class="p">]</span> <span class="o">+=</span> <span class="n">blockage</span>
+            <span class="n">blockage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">ct2a</span><span class="p">(</span><span class="n">ct_sel</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+                <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">r_sph_sel</span> <span class="o">/</span> <span class="n">D_sel</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">r_sph_sel</span> <span class="o">/</span> <span class="n">D_sel</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_superp</span><span class="o">.</span><span class="n">add_wake</span><span class="p">(</span>
+                <span class="n">algo</span><span class="p">,</span>
+                <span class="n">mdata</span><span class="p">,</span>
+                <span class="n">fdata</span><span class="p">,</span>
+                <span class="n">tdata</span><span class="p">,</span>
+                <span class="n">downwind_index</span><span class="p">,</span>
+                <span class="n">sp_sel</span><span class="p">,</span>
+                <span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span>
+                <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">],</span>
+                <span class="o">-</span><span class="n">blockage</span><span class="p">,</span>
+            <span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_rotor_only</span><span class="p">:</span>
             <span class="n">sp_sel</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="p">(</span><span class="n">ct</span> <span class="o">&gt;</span> <span class="mf">1e-8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">r</span> <span class="o">&gt;</span> <span class="n">D</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
             <span class="p">)</span>  <span class="c1"># mirror in rotor plane and inverse blockage, but not directly behind rotor</span>
-            <span class="n">ws_sel</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
             <span class="n">ct_sel</span> <span class="o">=</span> <span class="n">ct</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
             <span class="n">r_sph_sel</span> <span class="o">=</span> <span class="n">r_sph</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
             <span class="n">D_sel</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">sp_sel</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sp_sel</span><span class="p">):</span>
-                <span class="n">blockage</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="n">ws_sel</span>
-                    <span class="o">*</span> <span class="p">(</span>
-                        <span class="mi">1</span>
-                        <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">ct2a</span><span class="p">(</span><span class="n">ct_sel</span><span class="p">)</span>
-                        <span class="o">*</span> <span class="p">(</span>
-                            <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">r_sph_sel</span> <span class="o">/</span> <span class="n">D_sel</span><span class="p">)</span>
-                            <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">r_sph_sel</span> <span class="o">/</span> <span class="n">D_sel</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-                        <span class="p">)</span>
-                        <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
-                    <span class="p">)</span>
-                <span class="p">)</span> <span class="o">-</span> <span class="n">ws_sel</span>
-                <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">][</span><span class="n">sp_sel</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="n">blockage</span>
+                <span class="n">blockage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">induction</span><span class="o">.</span><span class="n">ct2a</span><span class="p">(</span><span class="n">ct_sel</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+                    <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">r_sph_sel</span> <span class="o">/</span> <span class="n">D_sel</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">r_sph_sel</span> <span class="o">/</span> <span class="n">D_sel</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">_superp</span><span class="o">.</span><span class="n">add_wake</span><span class="p">(</span>
+                    <span class="n">algo</span><span class="p">,</span>
+                    <span class="n">mdata</span><span class="p">,</span>
+                    <span class="n">fdata</span><span class="p">,</span>
+                    <span class="n">tdata</span><span class="p">,</span>
+                    <span class="n">downwind_index</span><span class="p">,</span>
+                    <span class="n">sp_sel</span><span class="p">,</span>
+                    <span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span>
+                    <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">],</span>
+                    <span class="n">blockage</span><span class="p">,</span>
+                <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">wake_deltas</span></div>
+
+
+<div class="viewcode-block" id="VortexSheet.finalize_wake_deltas">
+<a class="viewcode-back" href="../../../../../_foxes/models/wake_models/induction/VortexSheet.finalize_wake_deltas.html#foxes.models.wake_models.induction.VortexSheet.finalize_wake_deltas">[docs]</a>
+    <span class="k">def</span> <span class="nf">finalize_wake_deltas</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">algo</span><span class="p">,</span>
+        <span class="n">mdata</span><span class="p">,</span>
+        <span class="n">fdata</span><span class="p">,</span>
+        <span class="n">amb_results</span><span class="p">,</span>
+        <span class="n">wake_deltas</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Finalize the wake calculation.</span>
+
+<span class="sd">        Modifies wake_deltas on the fly.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        mdata: foxes.core.MData</span>
+<span class="sd">            The model data</span>
+<span class="sd">        fdata: foxes.core.FData</span>
+<span class="sd">            The farm data</span>
+<span class="sd">        amb_results: dict</span>
+<span class="sd">            The ambient results, key: variable name str,</span>
+<span class="sd">            values: numpy.ndarray with shape</span>
+<span class="sd">            (n_states, n_targets, n_tpoints)</span>
+<span class="sd">        wake_deltas: dict</span>
+<span class="sd">            The wake deltas object at the selected target</span>
+<span class="sd">            turbines. Key: variable str, value: numpy.ndarray</span>
+<span class="sd">            with shape (n_states, n_targets, n_tpoints)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_superp</span><span class="o">.</span><span class="n">calc_final_wake_delta</span><span class="p">(</span>
+            <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">amb_results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">],</span> <span class="n">wake_deltas</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span>
+        <span class="p">)</span></div>
 </div>
 
 </code></pre></div>

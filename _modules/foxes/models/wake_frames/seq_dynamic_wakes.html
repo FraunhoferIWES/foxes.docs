@@ -525,7 +525,7 @@
 <div class="viewcode-block" id="SeqDynamicWakes.calc_order">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/SeqDynamicWakes.calc_order.html#foxes.models.wake_frames.SeqDynamicWakes.calc_order">[docs]</a>
     <span class="k">def</span> <span class="nf">calc_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the order of turbine evaluation.</span>
 
 <span class="sd">        This function is executed on a single chunk of data,</span>
@@ -574,7 +574,7 @@
 <span class="sd">            The target point data</span>
 <span class="sd">        downwind_index: int</span>
 <span class="sd">            The index of the wake causing turbine</span>
-<span class="sd">            in the downwnd order</span>
+<span class="sd">            in the downwind order</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -665,7 +665,6 @@
         <span class="n">tdata</span><span class="p">,</span>
         <span class="n">target</span><span class="p">,</span>
         <span class="n">states0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">upcast</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return data that is required for computing the</span>
@@ -688,17 +687,12 @@
 <span class="sd">            FC.STATE_TARGET, FC.STATE_TARGET_TPOINT</span>
 <span class="sd">        states0: numpy.ndarray, optional</span>
 <span class="sd">            The states of wake creation</span>
-<span class="sd">        upcast: bool</span>
-<span class="sd">            Flag for ensuring targets dimension,</span>
-<span class="sd">            otherwise dimension 1 is entered</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        data: numpy.ndarray</span>
 <span class="sd">            Data for wake modelling, shape:</span>
 <span class="sd">            (n_states, n_turbines) or (n_states, n_target)</span>
-<span class="sd">        dims: tuple</span>
-<span class="sd">            The data dimensions</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">states0</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_SOURCE_ORDERI</span> <span class="ow">in</span> <span class="n">tdata</span><span class="p">:</span>
@@ -723,9 +717,9 @@
                     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;stp,p-&gt;st&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">tdata</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TWEIGHTS</span><span class="p">])</span>
-                <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">data</span>
             <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET_TPOINT</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">data</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;Cannot handle target &#39;</span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&#39;, choices are </span><span class="si">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE_TARGET_TPOINT</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -733,7 +727,7 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_wake_modelling_data</span><span class="p">(</span>
-                <span class="n">algo</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">downwind_index</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">states0</span><span class="p">,</span> <span class="n">upcast</span>
+                <span class="n">algo</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">downwind_index</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">states0</span>
             <span class="p">)</span></div>
 
 
