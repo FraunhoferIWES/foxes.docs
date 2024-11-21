@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.engine - foxes 1.1.0.1 documentation</title>
+        <title>foxes.core.engine - foxes 1.2 documentation</title>
       
     
     
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.1.0.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.1.0.1 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.1.0.1 documentation
+            foxes 1.2 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.1.0.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.1.0.1 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.1.0.1 documentation
+    foxes 1.2 documentation
   </label>
   
     <div class="md-nav__source">
@@ -283,6 +283,38 @@
     <li class="md-nav__item">
       <a href="../../../notebooks/parallelization.html" class="md-nav__link">
         <span title="/notebooks/parallelization.ipynb (reference label)" class="md-ellipsis">Parallelization</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../apps.html" class="md-nav__link">
+        <span title="/apps.md (reference label)" class="md-ellipsis">Command line applications</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../apps.html#foxes-windio" class="md-nav__link">
+        <span title="/apps.md#foxes-windio (reference label)" class="md-ellipsis">foxes_<wbr>windio</span>
       </a>
     </li>
   
@@ -422,6 +454,7 @@
 
 <span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">MData</span><span class="p">,</span> <span class="n">FData</span><span class="p">,</span> <span class="n">TData</span>
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">all_subclasses</span>
+<span class="kn">from</span> <span class="nn">foxes.config</span> <span class="kn">import</span> <span class="n">config</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 <span class="n">__global_engine_data__</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -684,26 +717,21 @@
             <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_states</span> <span class="o">/</span> <span class="n">n_chunks_states</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">chunk_size_states</span><span class="p">:</span>
                 <span class="n">n_chunks_states</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="n">chunk_size_states</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_states</span> <span class="o">/</span> <span class="n">n_chunks_states</span><span class="p">)</span>
-        <span class="n">chunk_sizes_states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n_chunks_states</span><span class="p">,</span> <span class="n">chunk_size_states</span><span class="p">)</span>
-        <span class="n">extra</span> <span class="o">=</span> <span class="n">n_states</span> <span class="o">-</span> <span class="n">n_chunks_states</span> <span class="o">*</span> <span class="n">chunk_size_states</span>
-        <span class="k">if</span> <span class="n">extra</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">chunk_sizes_states</span><span class="p">[</span><span class="o">-</span><span class="n">extra</span><span class="p">:]</span> <span class="o">+=</span> <span class="mi">1</span>
-
-        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">chunk_sizes_states</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="p">(</span>
-            <span class="n">s</span> <span class="o">==</span> <span class="n">n_states</span>
-        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;States count mismatch: Expecting </span><span class="si">{</span><span class="n">n_states</span><span class="si">}</span><span class="s2">, chunks sum is </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">. Chunks: </span><span class="si">{</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">chunk_sizes_states</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
 
         <span class="c1"># determine points chunks:</span>
         <span class="n">chunk_sizes_targets</span> <span class="o">=</span> <span class="p">[</span><span class="n">n_targets</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">n_targets</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_points</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">n_chunks_states</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">n_chunks_targets</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="p">,</span> <span class="n">n_targets</span><span class="p">)</span>
-                    <span class="n">chunk_size_targets</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n_targets</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">n_targets</span> <span class="o">&lt;</span> <span class="nb">max</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span>
                     <span class="n">chunk_size_targets</span> <span class="o">=</span> <span class="n">n_targets</span>
                     <span class="n">n_chunks_targets</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">n_chunks_targets</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="p">,</span> <span class="n">n_targets</span><span class="p">)</span>
+                    <span class="n">chunk_size_targets</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n_targets</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_states</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">n_chunks_states</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="k">while</span> <span class="n">chunk_size_states</span> <span class="o">*</span> <span class="n">chunk_size_targets</span> <span class="o">&gt;</span> <span class="n">n_targets</span><span class="p">:</span>
+                            <span class="n">n_chunks_states</span> <span class="o">+=</span> <span class="mi">1</span>
+                            <span class="n">chunk_size_states</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_states</span> <span class="o">/</span> <span class="n">n_chunks_states</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">chunk_size_targets</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_targets</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_points</span><span class="p">)</span>
                 <span class="n">n_chunks_targets</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n_targets</span> <span class="o">/</span> <span class="n">chunk_size_targets</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
@@ -719,6 +747,16 @@
             <span class="k">assert</span> <span class="p">(</span>
                 <span class="n">s</span> <span class="o">==</span> <span class="n">n_targets</span>
             <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Targets count mismatch: Expecting </span><span class="si">{</span><span class="n">n_targets</span><span class="si">}</span><span class="s2">, chunks sum is </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">. Chunks: </span><span class="si">{</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">chunk_sizes_targets</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="n">chunk_sizes_states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n_chunks_states</span><span class="p">,</span> <span class="n">chunk_size_states</span><span class="p">)</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">n_states</span> <span class="o">-</span> <span class="n">n_chunks_states</span> <span class="o">*</span> <span class="n">chunk_size_states</span>
+        <span class="k">if</span> <span class="n">extra</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">chunk_sizes_states</span><span class="p">[</span><span class="o">-</span><span class="n">extra</span><span class="p">:]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">chunk_sizes_states</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">s</span> <span class="o">==</span> <span class="n">n_states</span>
+        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;States count mismatch: Expecting </span><span class="si">{</span><span class="n">n_states</span><span class="si">}</span><span class="s2">, chunks sum is </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">. Chunks: </span><span class="si">{</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">chunk_sizes_states</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
 
         <span class="k">return</span> <span class="n">chunk_sizes_states</span><span class="p">,</span> <span class="n">chunk_sizes_targets</span></div>
 
@@ -783,7 +821,7 @@
                 <span class="n">n_states</span> <span class="o">=</span> <span class="n">i1_states</span> <span class="o">-</span> <span class="n">i0_states</span>
                 <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">out_vars</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
                     <span class="n">data</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
-                        <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span>
+                        <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span>
                     <span class="p">)</span>
                     <span class="n">dims</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
 
@@ -807,7 +845,9 @@
                 <span class="n">n_states</span> <span class="o">=</span> <span class="n">i1_states</span> <span class="o">-</span> <span class="n">i0_states</span>
                 <span class="n">n_targets</span> <span class="o">=</span> <span class="n">i1_targets</span> <span class="o">-</span> <span class="n">i0_targets</span>
                 <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">out_vars</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
-                    <span class="n">data</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_targets</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">)</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
+                        <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_targets</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span>
+                    <span class="p">)</span>
                     <span class="n">dims</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span>
 
             <span class="n">tdata</span> <span class="o">=</span> <span class="n">TData</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span>
@@ -988,22 +1028,22 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">engine_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">engine_type</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-                <span class="n">default</span><span class="o">=</span><span class="s2">&quot;DefaultEngine&quot;</span><span class="p">,</span>
-                <span class="n">threads</span><span class="o">=</span><span class="s2">&quot;ThreadsEngine&quot;</span><span class="p">,</span>
-                <span class="n">process</span><span class="o">=</span><span class="s2">&quot;ProcessEngine&quot;</span><span class="p">,</span>
-                <span class="n">xarray</span><span class="o">=</span><span class="s2">&quot;XArrayEngine&quot;</span><span class="p">,</span>
-                <span class="n">dask</span><span class="o">=</span><span class="s2">&quot;DaskEngine&quot;</span><span class="p">,</span>
-                <span class="n">multiprocess</span><span class="o">=</span><span class="s2">&quot;MultiprocessEngine&quot;</span><span class="p">,</span>
-                <span class="n">local_cluster</span><span class="o">=</span><span class="s2">&quot;LocalClusterEngine&quot;</span><span class="p">,</span>
-                <span class="n">slurm_cluster</span><span class="o">=</span><span class="s2">&quot;SlurmClusterEngine&quot;</span><span class="p">,</span>
-                <span class="n">mpi</span><span class="o">=</span><span class="s2">&quot;MPIEngine&quot;</span><span class="p">,</span>
-                <span class="n">ray</span><span class="o">=</span><span class="s2">&quot;RayEngine&quot;</span><span class="p">,</span>
-                <span class="n">numpy</span><span class="o">=</span><span class="s2">&quot;NumpyEngine&quot;</span><span class="p">,</span>
-                <span class="n">single</span><span class="o">=</span><span class="s2">&quot;SingleChunkEngine&quot;</span><span class="p">,</span>
-            <span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">engine_type</span><span class="p">,</span> <span class="n">engine_type</span><span class="p">)</span>
+            <span class="n">engine_type</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+
+        <span class="n">engine_type</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">default</span><span class="o">=</span><span class="s2">&quot;DefaultEngine&quot;</span><span class="p">,</span>
+            <span class="n">threads</span><span class="o">=</span><span class="s2">&quot;ThreadsEngine&quot;</span><span class="p">,</span>
+            <span class="n">process</span><span class="o">=</span><span class="s2">&quot;ProcessEngine&quot;</span><span class="p">,</span>
+            <span class="n">xarray</span><span class="o">=</span><span class="s2">&quot;XArrayEngine&quot;</span><span class="p">,</span>
+            <span class="n">dask</span><span class="o">=</span><span class="s2">&quot;DaskEngine&quot;</span><span class="p">,</span>
+            <span class="n">multiprocess</span><span class="o">=</span><span class="s2">&quot;MultiprocessEngine&quot;</span><span class="p">,</span>
+            <span class="n">local_cluster</span><span class="o">=</span><span class="s2">&quot;LocalClusterEngine&quot;</span><span class="p">,</span>
+            <span class="n">slurm_cluster</span><span class="o">=</span><span class="s2">&quot;SlurmClusterEngine&quot;</span><span class="p">,</span>
+            <span class="n">mpi</span><span class="o">=</span><span class="s2">&quot;MPIEngine&quot;</span><span class="p">,</span>
+            <span class="n">ray</span><span class="o">=</span><span class="s2">&quot;RayEngine&quot;</span><span class="p">,</span>
+            <span class="n">numpy</span><span class="o">=</span><span class="s2">&quot;NumpyEngine&quot;</span><span class="p">,</span>
+            <span class="n">single</span><span class="o">=</span><span class="s2">&quot;SingleChunkEngine&quot;</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">engine_type</span><span class="p">,</span> <span class="n">engine_type</span><span class="p">)</span>
 
         <span class="n">allc</span> <span class="o">=</span> <span class="n">all_subclasses</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
         <span class="n">found</span> <span class="o">=</span> <span class="n">engine_type</span> <span class="ow">in</span> <span class="p">[</span><span class="n">scls</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">scls</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">]</span>
@@ -1056,9 +1096,7 @@
             <span class="n">default</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
             <span class="k">return</span> <span class="n">default</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">and</span> <span class="n">default</span><span class="p">:</span>
-            <span class="n">engine</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
-                <span class="n">engine_type</span><span class="o">=</span><span class="s2">&quot;DefaultEngine&quot;</span><span class="p">,</span> <span class="n">chunk_size_points</span><span class="o">=</span><span class="mi">20000</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span>
-            <span class="p">)</span>
+            <span class="n">engine</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">engine_type</span><span class="o">=</span><span class="s2">&quot;DefaultEngine&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selecting &#39;</span><span class="si">{</span><span class="n">engine</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
             <span class="n">engine</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
             <span class="k">return</span> <span class="n">engine</span>

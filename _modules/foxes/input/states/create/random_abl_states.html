@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.input.states.create.random_abl_states - foxes 1.1.0.1 documentation</title>
+        <title>foxes.input.states.create.random_abl_states - foxes 1.2 documentation</title>
       
     
     
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 1.1.0.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.1.0.1 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.1.0.1 documentation
+            foxes 1.2 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 1.1.0.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.1.0.1 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.1.0.1 documentation
+    foxes 1.2 documentation
   </label>
   
     <div class="md-nav__source">
@@ -283,6 +283,38 @@
     <li class="md-nav__item">
       <a href="../../../../../notebooks/parallelization.html" class="md-nav__link">
         <span title="/notebooks/parallelization.ipynb (reference label)" class="md-ellipsis">Parallelization</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../apps.html" class="md-nav__link">
+        <span title="/apps.md (reference label)" class="md-ellipsis">Command line applications</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../apps.html#foxes-windio" class="md-nav__link">
+        <span title="/apps.md#foxes-windio (reference label)" class="md-ellipsis">foxes_<wbr>windio</span>
       </a>
     </li>
   
@@ -417,6 +449,7 @@
 <span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+<span class="kn">from</span> <span class="nn">foxes.config</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">get_path</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
@@ -459,7 +492,7 @@
 
     <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">mm</span> <span class="ow">in</span> <span class="n">cols_minmax</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="n">mm</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">high</span><span class="o">=</span><span class="n">mm</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n_states</span><span class="p">,))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
-            <span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span>
         <span class="p">)</span>
 
     <span class="n">cmol</span> <span class="o">=</span> <span class="n">var2col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">MOL</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">MOL</span><span class="p">)</span>
@@ -519,8 +552,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="n">fpath</span> <span class="o">=</span> <span class="n">get_path</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">verbosity</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing file&quot;</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing file&quot;</span><span class="p">,</span> <span class="n">fpath</span><span class="p">)</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">create_random_abl_states</span><span class="p">(</span>
         <span class="n">n_states</span><span class="p">,</span> <span class="n">cols_minmax</span><span class="p">,</span> <span class="n">var2col</span><span class="p">,</span> <span class="n">mol_abs_range</span><span class="p">,</span> <span class="n">normalize</span>
@@ -551,7 +585,7 @@
             <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
-    <span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 </code></pre></div>
 

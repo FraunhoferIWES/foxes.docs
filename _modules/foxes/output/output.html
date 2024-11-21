@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.output - foxes 1.1.0.1 documentation</title>
+        <title>foxes.output.output - foxes 1.2 documentation</title>
       
     
     
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.1.0.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.1.0.1 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.1.0.1 documentation
+            foxes 1.2 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.1.0.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.1.0.1 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.1.0.1 documentation
+    foxes 1.2 documentation
   </label>
   
     <div class="md-nav__source">
@@ -283,6 +283,22 @@
     <li class="md-nav__item">
       <a href="../../../notebooks/parallelization.html" class="md-nav__link">
         <span title="/notebooks/parallelization.ipynb (reference label)" class="md-ellipsis">Parallelization</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../apps.html" class="md-nav__link">
+        <span title="/apps.md (reference label)" class="md-ellipsis">Command line applications</span>
       </a>
     </li>
   
@@ -416,11 +432,12 @@
 <h1>Source code for foxes.output.output</h1><div class="highlight"><pre>
 <span></span><code><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
+<span class="kn">from</span> <span class="nn">foxes.config</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">get_path</span>
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">PandasFileHelper</span><span class="p">,</span> <span class="n">all_subclasses</span>
 
 
 <div class="viewcode-block" id="Output">
-<a class="viewcode-back" href="../../../api_output.html#foxes.output.Output">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/output/Output.html#foxes.output.Output">[docs]</a>
 <span class="k">class</span> <span class="nc">Output</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for foxes output.</span>
@@ -453,8 +470,12 @@
 <span class="sd">            Modifies file names by f(fname)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">out_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">out_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">out_fname_fun</span> <span class="o">=</span> <span class="n">out_fname_fun</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">=</span> <span class="n">get_path</span><span class="p">(</span><span class="n">out_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">out_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">out_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_fname_fun</span> <span class="o">=</span> <span class="n">out_fname_fun</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: Creating output dir </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Output.get_fpath">
@@ -477,7 +498,7 @@
         <span class="n">fnm</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_fname_fun</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">fnm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_fname_fun</span><span class="p">(</span><span class="n">fnm</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">/</span> <span class="n">fnm</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">fnm</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">/</span> <span class="n">fnm</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">get_path</span><span class="p">(</span><span class="n">fnm</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Output.write">

@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.core.algorithm - foxes 1.1.0.1 documentation</title>
+        <title>foxes.core.algorithm - foxes 1.2 documentation</title>
       
     
     
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.1.0.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.1.0.1 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.1.0.1 documentation
+            foxes 1.2 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.1.0.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.1.0.1 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.1.0.1 documentation
+    foxes 1.2 documentation
   </label>
   
     <div class="md-nav__source">
@@ -283,6 +283,38 @@
     <li class="md-nav__item">
       <a href="../../../notebooks/parallelization.html" class="md-nav__link">
         <span title="/notebooks/parallelization.ipynb (reference label)" class="md-ellipsis">Parallelization</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../apps.html" class="md-nav__link">
+        <span title="/apps.md (reference label)" class="md-ellipsis">Command line applications</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../apps.html#foxes-windio" class="md-nav__link">
+        <span title="/apps.md#foxes-windio (reference label)" class="md-ellipsis">foxes_<wbr>windio</span>
       </a>
     </li>
   
@@ -421,6 +453,7 @@
 <span class="kn">from</span> <span class="nn">.model</span> <span class="kn">import</span> <span class="n">Model</span>
 <span class="kn">from</span> <span class="nn">foxes.data</span> <span class="kn">import</span> <span class="n">StaticData</span>
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">all_subclasses</span>
+<span class="kn">from</span> <span class="nn">foxes.config</span> <span class="kn">import</span> <span class="n">config</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 <span class="kn">from</span> <span class="nn">.engine</span> <span class="kn">import</span> <span class="n">Engine</span>
@@ -453,7 +486,6 @@
         <span class="n">farm</span><span class="p">,</span>
         <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">dbook</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">engine</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">engine_pars</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -469,8 +501,6 @@
 <span class="sd">            The verbosity level, 0 means silent</span>
 <span class="sd">        dbook: foxes.DataBook, optional</span>
 <span class="sd">            The data book, or None for default</span>
-<span class="sd">        engine: str</span>
-<span class="sd">            The engine class name</span>
 <span class="sd">        engine_pars: dict, optional</span>
 <span class="sd">            Parameters for the engine constructor</span>
 
@@ -488,14 +518,22 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__idata_mem</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;idata_mem&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__chunk_store</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;chunk_store&quot;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">engine</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">e</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">engine_type</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">,</span> <span class="o">**</span><span class="n">engine_pars</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">engine_pars</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s2">&quot;engine_type&quot;</span> <span class="ow">in</span> <span class="n">engine_pars</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s2">&quot;engine&quot;</span> <span class="ow">in</span> <span class="n">engine_pars</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Expecting either &#39;engine&#39; or &#39;engine_type&#39;, not both&quot;</span>
+                    <span class="p">)</span>
+            <span class="k">elif</span> <span class="s2">&quot;engine&quot;</span> <span class="ow">in</span> <span class="n">engine_pars</span><span class="p">:</span>
+                <span class="n">engine_pars</span><span class="p">[</span><span class="s2">&quot;engine_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">engine_pars</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;engine&quot;</span><span class="p">)</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">engine_pars</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;verbosity&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">e</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="o">**</span><span class="n">engine_pars</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Error while interpreting engine_pars </span><span class="si">{</span><span class="n">engine_pars</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">e</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algorithm &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Selecting engine &#39;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-            <span class="n">e</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">engine_pars</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Algorithm &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Parameter &#39;engine&#39; is None; ignoring engine parameters </span><span class="si">{</span><span class="n">engine_pars</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span></div>
+            <span class="n">e</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span></div>
 
 
     <span class="nd">@property</span>
@@ -822,6 +860,12 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">idata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;coords&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="n">states_indices</span><span class="p">},</span> <span class="s2">&quot;data_vars&quot;</span><span class="p">:</span> <span class="p">{}}</span>
 
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,)</span> <span class="o">+</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
+            <span class="n">pts</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+            <span class="n">points</span> <span class="o">=</span> <span class="n">pts</span>
+            <span class="k">del</span> <span class="n">pts</span>
+
         <span class="k">if</span> <span class="p">(</span>
             <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span>
             <span class="ow">or</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_states</span>
@@ -836,7 +880,7 @@
         <span class="p">)</span>
         <span class="n">idata</span><span class="p">[</span><span class="s2">&quot;data_vars&quot;</span><span class="p">][</span><span class="n">FC</span><span class="o">.</span><span class="n">TWEIGHTS</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
             <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">,),</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">),</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="o">**</span><span class="n">idata</span><span class="p">)</span></div>

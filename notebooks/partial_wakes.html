@@ -13,7 +13,7 @@
     
     
       
-        <title>Partial wakes verification - foxes 1.1.1 documentation</title>
+        <title>Partial wakes verification - foxes 1.2 documentation</title>
       
     
     
@@ -72,7 +72,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 1.1.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.1.1 documentation" data-md-component="logo">
+    <a href="../index.html" title="foxes 1.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -84,7 +84,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.1.1 documentation
+            foxes 1.2 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -171,12 +171,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 1.1.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.1.1 documentation" data-md-component="logo">
+    <a href="../index.html" title="foxes 1.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.1.1 documentation
+    foxes 1.2 documentation
   </label>
   
     <div class="md-nav__source">
@@ -295,6 +295,38 @@
 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../apps.html" class="md-nav__link">
+        <span title="/apps.md (reference label)" class="md-ellipsis">Command line applications</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apps.html#foxes-windio" class="md-nav__link">
+        <span title="/apps.md#foxes-windio (reference label)" class="md-ellipsis">foxes_<wbr>windio</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -302,7 +334,7 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
       
       
       
@@ -310,14 +342,14 @@
         <div class="md-nav__link md-nav__link--index ">
           <a href="../examples.html"><span title="/examples.rst (reference label)" class="md-ellipsis">Examples</span></a>
           
-            <label for="__nav_7">
+            <label for="__nav_9">
               <span class="md-nav__icon md-icon"></span>
             </label>
           
         </div>
       
       <nav class="md-nav" aria-label="Examples" data-md-level="1">
-        <label class="md-nav__title" for="__nav_7">
+        <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
           <span title="/examples.rst (reference label)" class="md-ellipsis">Examples</span>
         </label>
@@ -697,9 +729,19 @@
 </code></pre></div>
 </div>
 </div>
-<p>We start by creating a pandas DataFrame object that contains data for 1000 ambient states, including the different <code class="docutils literal notranslate"><span class="pre">y</span></code> positions of the probe turbine:</p>
-<div class="nbinput docutils container">
+<p>Let’s initialize the engine:</p>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [2]:
+</code></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">engine</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;process&quot;</span><span class="p">,</span> <span class="n">chunk_size_states</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">engine</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<p>Next, we create a pandas DataFrame object that contains data for 1000 ambient states, including the different <code class="docutils literal notranslate"><span class="pre">y</span></code> positions of the probe turbine:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [3]:
 </code></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">Ny</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -718,7 +760,7 @@
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>Out[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>Out[3]:
 </code></pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -851,7 +893,7 @@
 </div>
 <p>The main <em>foxes</em> calculation is carried out by the following function. Notice how the turbine model <code class="docutils literal notranslate"><span class="pre">SetFarmVars</span></code> is used for initializing the different <code class="docutils literal notranslate"><span class="pre">y</span></code> positions:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [4]:
 </code></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="n">rotor</span><span class="p">,</span> <span class="n">pwake</span><span class="p">,</span> <span class="n">wake</span><span class="p">):</span>
@@ -905,22 +947,21 @@
 </div>
 <p>This function calls the above function for a given list of partial wakes models, called <code class="docutils literal notranslate"><span class="pre">pwakes</span></code>:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [5]:
 </code></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">run_calc</span><span class="p">(</span><span class="n">rotor</span><span class="p">,</span> <span class="n">pwakes</span><span class="p">,</span> <span class="n">wake</span><span class="p">):</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">with</span> <span class="n">foxes</span><span class="o">.</span><span class="n">Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;multiprocess&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">pwake</span> <span class="ow">in</span> <span class="n">pwakes</span><span class="p">:</span>
-            <span class="n">farm_results</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">calc</span><span class="p">(</span><span class="n">rotor</span><span class="p">,</span> <span class="n">pwake</span><span class="p">,</span> <span class="n">wake</span><span class="p">)</span>
-            <span class="n">results</span><span class="p">[</span><span class="n">pwake</span><span class="p">]</span> <span class="o">=</span> <span class="n">farm_results</span>
+    <span class="k">for</span> <span class="n">pwake</span> <span class="ow">in</span> <span class="n">pwakes</span><span class="p">:</span>
+        <span class="n">farm_results</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">calc</span><span class="p">(</span><span class="n">rotor</span><span class="p">,</span> <span class="n">pwake</span><span class="p">,</span> <span class="n">wake</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="n">pwake</span><span class="p">]</span> <span class="o">=</span> <span class="n">farm_results</span>
     <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">D</span>
 </code></pre></div>
 </div>
 </div>
 <p>Another function will be used for evaluating the calculation results dictionary, creating a plot of results:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [6]:
 </code></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_plot</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">rotor</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">)):</span>
@@ -949,7 +990,7 @@
 </div>
 <p>Now we can start the evaluation. First, let’s look at partial wakes of the <code class="docutils literal notranslate"><span class="pre">grid</span></code> type, for a Gaussian wake model:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [7]:
 </code></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">rotor</span> <span class="o">=</span> <span class="s2">&quot;grid400&quot;</span>
@@ -974,30 +1015,200 @@
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Calculating rotor = grid400, pwake = rotor_points
-Calculating rotor = grid400, pwake = centre
-Calculating rotor = grid400, pwake = grid4
-Calculating rotor = grid400, pwake = grid9
-Calculating rotor = grid400, pwake = grid16
-Calculating rotor = grid400, pwake = grid100
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 22.30it/s]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_partial_wakes_12_1.png" src="../_images/notebooks_partial_wakes_12_1.png" />
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = centre
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 28.29it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = grid4
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 32.39it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = grid9
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 24.71it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = grid16
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 27.33it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = grid100
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 18.70it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_partial_wakes_14_22.png" src="../_images/notebooks_partial_wakes_14_22.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_partial_wakes_12_2.png" src="../_images/notebooks_partial_wakes_12_2.png" />
+<img alt="../_images/notebooks_partial_wakes_14_23.png" src="../_images/notebooks_partial_wakes_14_23.png" />
 </div>
 </div>
 <p>Next, we repeat the exercise with <code class="docutils literal notranslate"><span class="pre">axiwake</span></code> partial wakes, which approach the “true” result with much less wake evaluation points:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [8]:
 </code></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">rotor</span> <span class="o">=</span> <span class="s2">&quot;grid400&quot;</span>
@@ -1022,29 +1233,167 @@ Calculating rotor = grid400, pwake = grid100
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Calculating rotor = grid400, pwake = rotor_points
-Calculating rotor = grid400, pwake = centre
-Calculating rotor = grid400, pwake = axiwake4
-Calculating rotor = grid400, pwake = axiwake6
-Calculating rotor = grid400, pwake = axiwake9
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 18.48it/s]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_partial_wakes_14_1.png" src="../_images/notebooks_partial_wakes_14_1.png" />
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = centre
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 28.52it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = axiwake4
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 33.59it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = axiwake6
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 33.44it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = axiwake9
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 30.50it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_partial_wakes_16_18.png" src="../_images/notebooks_partial_wakes_16_18.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_partial_wakes_14_2.png" src="../_images/notebooks_partial_wakes_14_2.png" />
+<img alt="../_images/notebooks_partial_wakes_16_19.png" src="../_images/notebooks_partial_wakes_16_19.png" />
 </div>
 </div>
 <p>For top-hat models, the <code class="docutils literal notranslate"><span class="pre">top_hat</span></code> partial wakes are exact and fast:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [9]:
 </code></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">rotor</span> <span class="o">=</span> <span class="s2">&quot;grid400&quot;</span>
@@ -1069,27 +1418,174 @@ Calculating rotor = grid400, pwake = axiwake9
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Calculating rotor = grid400, pwake = rotor_points
-Calculating rotor = grid400, pwake = centre
-Calculating rotor = grid400, pwake = grid16
-Calculating rotor = grid400, pwake = axiwake9
-Calculating rotor = grid400, pwake = top_hat
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 28.35it/s]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_partial_wakes_16_1.png" src="../_images/notebooks_partial_wakes_16_1.png" />
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = centre
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 24.98it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = grid16
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 28.67it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = axiwake9
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 34.04it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Calculating rotor = grid400, pwake = top_hat
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessEngine: Calculating 1001 states for 2 turbines
+ProcessEngine: Computing 2 chunks using 16 processes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 31.71it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_partial_wakes_18_18.png" src="../_images/notebooks_partial_wakes_18_18.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_partial_wakes_16_2.png" src="../_images/notebooks_partial_wakes_16_2.png" />
+<img alt="../_images/notebooks_partial_wakes_18_19.png" src="../_images/notebooks_partial_wakes_18_19.png" />
 </div>
 </div>
 <p>Clearly the <code class="docutils literal notranslate"><span class="pre">top_hat</span></code> choice is the only one that can handle wake models with <code class="docutils literal notranslate"><span class="pre">top_hat</span></code> shape.</p>
+<p>After all work is done, we shutdown the engine:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [10]:
+</code></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">engine</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
 
 
 
