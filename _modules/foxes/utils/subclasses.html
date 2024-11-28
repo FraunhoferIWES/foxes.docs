@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.subclasses - foxes 1.2 documentation</title>
+        <title>foxes.utils.subclasses - foxes 1.2.1 documentation</title>
       
     
     
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.2.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2 documentation
+            foxes 1.2.1 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.2.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2 documentation
+    foxes 1.2.1 documentation
   </label>
   
     <div class="md-nav__source">
@@ -297,24 +297,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../apps.html" class="md-nav__link">
-        <span title="/apps.md (reference label)" class="md-ellipsis">Command line applications</span>
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../apps.html#foxes-windio" class="md-nav__link">
-        <span title="/apps.md#foxes-windio (reference label)" class="md-ellipsis">foxes_<wbr>windio</span>
+      <a href="../../../parameter_files.html" class="md-nav__link">
+        <span title="/parameter_files.md (reference label)" class="md-ellipsis">Input parameter files</span>
       </a>
     </li>
   
@@ -469,6 +453,81 @@
     <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">())</span><span class="o">.</span><span class="n">union</span><span class="p">(</span>
         <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">all_subclasses</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span>
     <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="new_cls">
+<a class="viewcode-back" href="../../../api_utils.html#foxes.utils.new_cls">[docs]</a>
+<span class="k">def</span> <span class="nf">new_cls</span><span class="p">(</span><span class="n">base_cls</span><span class="p">,</span> <span class="n">cls_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run-time class selector.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base_cls: object</span>
+<span class="sd">        The base class</span>
+<span class="sd">    cls_name: string</span>
+<span class="sd">        Name of the class</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cls: object</span>
+<span class="sd">        The derived class</span>
+
+<span class="sd">    :group: utils</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">cls_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">allc</span> <span class="o">=</span> <span class="n">all_subclasses</span><span class="p">(</span><span class="n">base_cls</span><span class="p">)</span>
+    <span class="n">found</span> <span class="o">=</span> <span class="n">cls_name</span> <span class="ow">in</span> <span class="p">[</span><span class="n">scls</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">scls</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">scls</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">scls</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="n">cls_name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">scls</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">estr</span> <span class="o">=</span> <span class="s2">&quot;Class &#39;</span><span class="si">{}</span><span class="s2">&#39; not found, available classes derived from &#39;</span><span class="si">{}</span><span class="s2">&#39; are </span><span class="se">\n</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">cls_name</span><span class="p">,</span> <span class="n">base_cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">allc</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">estr</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="new_instance">
+<a class="viewcode-back" href="../../../api_utils.html#foxes.utils.new_instance">[docs]</a>
+<span class="k">def</span> <span class="nf">new_instance</span><span class="p">(</span><span class="n">base_cls</span><span class="p">,</span> <span class="n">cls_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run-time factory.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base_cls: object</span>
+<span class="sd">        The base class</span>
+<span class="sd">    cls_name: string</span>
+<span class="sd">        Name of the class</span>
+<span class="sd">    args: tuple, optional</span>
+<span class="sd">        Additional parameters for the constructor</span>
+<span class="sd">    kwargs: dict, optional</span>
+<span class="sd">        Additional parameters for the constructor</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    obj: object</span>
+<span class="sd">        The instance of the derived class</span>
+
+<span class="sd">    :group: utils</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="bp">cls</span> <span class="o">=</span> <span class="n">new_cls</span><span class="p">(</span><span class="n">base_cls</span><span class="p">,</span> <span class="n">cls_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 </code></pre></div>
 

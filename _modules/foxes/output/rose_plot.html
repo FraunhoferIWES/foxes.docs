@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.rose_plot - foxes 1.2 documentation</title>
+        <title>foxes.output.rose_plot - foxes 1.2.1 documentation</title>
       
     
     
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.2.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2 documentation
+            foxes 1.2.1 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.2.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2 documentation
+    foxes 1.2.1 documentation
   </label>
   
     <div class="md-nav__source">
@@ -297,8 +297,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../apps.html" class="md-nav__link">
-        <span title="/apps.md (reference label)" class="md-ellipsis">Command line applications</span>
+      <a href="../../../parameter_files.html" class="md-nav__link">
+        <span title="/parameter_files.md (reference label)" class="md-ellipsis">Input parameter files</span>
       </a>
     </li>
   
@@ -431,9 +431,12 @@
 
 <h1>Source code for foxes.output.rose_plot</h1><div class="highlight"><pre>
 <span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">xarray</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">matplotlib.cm</span> <span class="kn">import</span> <span class="n">ScalarMappable</span>
+<span class="kn">from</span> <span class="nn">matplotlib.projections.polar</span> <span class="kn">import</span> <span class="n">PolarAxes</span>
+<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
 
-<span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">wd2uv</span><span class="p">,</span> <span class="n">uv2wd</span><span class="p">,</span> <span class="n">TabWindroseAxes</span>
 <span class="kn">from</span> <span class="nn">foxes.algorithms</span> <span class="kn">import</span> <span class="n">Downwind</span>
 <span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WindFarm</span><span class="p">,</span> <span class="n">Turbine</span>
 <span class="kn">from</span> <span class="nn">foxes.models</span> <span class="kn">import</span> <span class="n">ModelBook</span>
@@ -444,7 +447,7 @@
 
 
 <div class="viewcode-block" id="RosePlotOutput">
-<a class="viewcode-back" href="../../../_foxes/output/RosePlotOutput.html#foxes.output.RosePlotOutput">[docs]</a>
+<a class="viewcode-back" href="../../../api_output.html#foxes.output.RosePlotOutput">[docs]</a>
 <span class="k">class</span> <span class="nc">RosePlotOutput</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">     Class for rose plot creation</span>
@@ -460,30 +463,38 @@
 
 <div class="viewcode-block" id="RosePlotOutput.__init__">
 <a class="viewcode-back" href="../../../_foxes/output/RosePlotOutput.__init__.html#foxes.output.RosePlotOutput.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">farm_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">point_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">use_points</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        results: xarray.Dataset</span>
-<span class="sd">            The calculation results (farm or points)</span>
+<span class="sd">        farm_results: xarray.Dataset, optional</span>
+<span class="sd">            The farm results</span>
+<span class="sd">        point_results: xarray.Dataset, optional</span>
+<span class="sd">            The point results</span>
+<span class="sd">        use_points: bool</span>
+<span class="sd">            Flag for using points in cases where both</span>
+<span class="sd">            farm and point results are given</span>
 <span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Additional parameters for the base class</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">dims</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">sizes</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="k">if</span> <span class="n">dims</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_rtype</span> <span class="o">=</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span>
-        <span class="k">elif</span> <span class="n">dims</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">use_points</span> <span class="ow">or</span> <span class="p">(</span><span class="n">farm_results</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">point_results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">point_results</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_rtype</span> <span class="o">=</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span>
+        <span class="k">elif</span> <span class="n">farm_results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">farm_results</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rtype</span> <span class="o">=</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Results dimension 1 is neither &#39;</span><span class="si">{</span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="si">}</span><span class="s2">&#39; nor &#39;</span><span class="si">{</span><span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="si">}</span><span class="s2">&#39;: dims = </span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">dims</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span></div>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Require either farm_results or point_results&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RosePlotOutput.get_data_info">
@@ -546,106 +557,72 @@
 <a class="viewcode-back" href="../../../_foxes/output/StatesRosePlotOutput.html#foxes.output.RosePlotOutput.get_data">[docs]</a>
     <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">sectors</span><span class="p">,</span>
-        <span class="n">var</span><span class="p">,</span>
-        <span class="n">var_bins</span><span class="p">,</span>
+        <span class="n">wd_sectors</span><span class="p">,</span>
+        <span class="n">ws_var</span><span class="p">,</span>
+        <span class="n">ws_bins</span><span class="p">,</span>
         <span class="n">wd_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">AMB_WD</span><span class="p">,</span>
-        <span class="n">turbine</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">point</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">start0</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">turbine</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">point</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">add_inf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get pandas DataFrame with wind rose data.</span>
+<span class="sd">        Generates the plot data</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        sectors: int</span>
-<span class="sd">            The number of wind direction sectors</span>
-<span class="sd">        var: str</span>
-<span class="sd">            The data variable name</span>
-<span class="sd">        var_bins: list of float</span>
-<span class="sd">            The variable bin separation values</span>
-<span class="sd">        wd_var: str, optional</span>
-<span class="sd">            The wind direction variable name</span>
-<span class="sd">        turbine: int, optional</span>
-<span class="sd">            Only relevant in case of farm results.</span>
-<span class="sd">            If None, mean over all turbines.</span>
-<span class="sd">            Else, data from a single turbine</span>
-<span class="sd">        point: int, optional</span>
-<span class="sd">            Only relevant in case of point results.</span>
-<span class="sd">            If None, mean over all points.</span>
-<span class="sd">            Else, data from a single point</span>
-<span class="sd">        start0: bool</span>
-<span class="sd">            Flag for starting the first sector at</span>
-<span class="sd">            zero degrees instead of minus half width</span>
+<span class="sd">        wd_sectors: int</span>
+<span class="sd">            The number of wind rose sectors</span>
+<span class="sd">        ws_var: str</span>
+<span class="sd">            The wind speed variable</span>
+<span class="sd">        ws_bins: list of float</span>
+<span class="sd">            The wind speed bins</span>
+<span class="sd">        wd_var: str</span>
+<span class="sd">            The wind direction variable</span>
+<span class="sd">        turbine: int</span>
+<span class="sd">            The turbine index, for weights and for</span>
+<span class="sd">            data if farm_results are given</span>
+<span class="sd">        point: int</span>
+<span class="sd">            The point index, for data if point_results</span>
+<span class="sd">            are given</span>
+<span class="sd">        add_inf: bool</span>
+<span class="sd">            Add an upper bin up to infinity</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        pd.DataFrame:</span>
-<span class="sd">            The wind rose data</span>
+<span class="sd">        data: xarray.Dataset</span>
+<span class="sd">            The plot data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">add_inf</span><span class="p">:</span>
+            <span class="n">ws_bins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ws_bins</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">turbine</span><span class="p">]</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">turbine</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rtype</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span> <span class="k">else</span> <span class="n">point</span>
+        <span class="n">ws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">ws_var</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">t</span><span class="p">]</span>
+        <span class="n">wd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">wd_delta</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="n">wd_sectors</span>
+        <span class="n">wd</span><span class="p">[</span><span class="n">wd</span> <span class="o">&gt;=</span> <span class="mi">360</span> <span class="o">-</span> <span class="n">wd_delta</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">360</span>
+        <span class="n">wd_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">wd_delta</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="n">wd_delta</span><span class="p">)</span>
+        <span class="n">ws_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ws_bins</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">ws</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
-        <span class="n">dwd</span> <span class="o">=</span> <span class="mf">360.0</span> <span class="o">/</span> <span class="n">sectors</span>
-        <span class="n">wds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">360.0</span><span class="p">,</span> <span class="n">dwd</span><span class="p">)</span>
-        <span class="n">wdb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wds</span><span class="p">,</span> <span class="mi">360</span><span class="p">)</span> <span class="k">if</span> <span class="n">start0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">dwd</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">360.0</span><span class="p">,</span> <span class="n">dwd</span><span class="p">)</span>
-        <span class="n">lgd</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;interval_</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="p">(</span><span class="n">wd_bins</span><span class="p">,</span> <span class="n">ws_bins</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">w</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[[</span><span class="n">wd_var</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">data</span><span class="p">[</span><span class="n">lgd</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">var</span><span class="p">]</span>
-        <span class="n">uv</span> <span class="o">=</span> <span class="n">wd2uv</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
-        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;u&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">uv</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
-        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;v&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">uv</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
-
-        <span class="n">data</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">100</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">:</span> <span class="s2">&quot;frequency&quot;</span><span class="p">})</span>
-
-        <span class="n">el</span> <span class="o">=</span> <span class="n">turbine</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rtype</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span> <span class="k">else</span> <span class="n">point</span>
-        <span class="k">if</span> <span class="n">el</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">sname</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">grp</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rtype</span><span class="p">)</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">grp</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">el</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">sname</span><span class="p">)</span>
-
-        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;wd&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">uv2wd</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">start0</span><span class="p">:</span>
-            <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;wd&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">360.0</span> <span class="o">-</span> <span class="n">dwd</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;wd&quot;</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">360.0</span>
-
-        <span class="n">data</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;wd&quot;</span><span class="p">],</span> <span class="n">wdb</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">wds</span><span class="p">)</span>
-        <span class="n">data</span><span class="p">[</span><span class="n">lgd</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">lgd</span><span class="p">],</span> <span class="n">var_bins</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_lowest</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-        <span class="n">grp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="n">wd_var</span><span class="p">,</span> <span class="n">lgd</span><span class="p">,</span> <span class="s2">&quot;frequency&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">wd_var</span><span class="p">,</span> <span class="n">lgd</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">grp</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-
-        <span class="n">data</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-        <span class="n">data</span><span class="p">[</span><span class="n">lgd</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">lgd</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">start0</span><span class="p">:</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dwd</span> <span class="o">/</span> <span class="mi">2</span>
-
-        <span class="n">ii</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">IntervalIndex</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">lgd</span><span class="p">])</span>
-        <span class="n">data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">ii</span><span class="o">.</span><span class="n">mid</span>
-        <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;bin_min_</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ii</span><span class="o">.</span><span class="n">left</span>
-        <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;bin_max_</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ii</span><span class="o">.</span><span class="n">right</span>
-        <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;bin_min_</span><span class="si">{</span><span class="n">wd_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span> <span class="o">-</span> <span class="n">dwd</span> <span class="o">/</span> <span class="mi">2</span>
-        <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;bin_max_</span><span class="si">{</span><span class="n">wd_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span> <span class="o">+</span> <span class="n">dwd</span> <span class="o">/</span> <span class="mi">2</span>
-        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;sector&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span> <span class="o">/</span> <span class="n">dwd</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-
-        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span>
-            <span class="p">[</span>
-                <span class="n">wd_var</span><span class="p">,</span>
-                <span class="n">var</span><span class="p">,</span>
-                <span class="s2">&quot;sector&quot;</span><span class="p">,</span>
-                <span class="sa">f</span><span class="s2">&quot;bin_min_</span><span class="si">{</span><span class="n">wd_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="sa">f</span><span class="s2">&quot;bin_max_</span><span class="si">{</span><span class="n">wd_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="sa">f</span><span class="s2">&quot;bin_min_</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="sa">f</span><span class="s2">&quot;bin_max_</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="n">lgd</span><span class="p">,</span>
-                <span class="s2">&quot;frequency&quot;</span><span class="p">,</span>
-            <span class="p">]</span>
-        <span class="p">]</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;bin&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
+            <span class="n">coords</span><span class="o">=</span><span class="p">{</span>
+                <span class="n">wd_var</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="n">wd_delta</span><span class="p">),</span>
+                <span class="n">ws_var</span><span class="p">:</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">ws_bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">ws_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span>
+            <span class="p">},</span>
+            <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span>
+                <span class="sa">f</span><span class="s2">&quot;bin_min_</span><span class="si">{</span><span class="n">wd_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">wd_var</span><span class="p">,</span> <span class="n">wd_bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="sa">f</span><span class="s2">&quot;bin_max_</span><span class="si">{</span><span class="n">wd_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">wd_var</span><span class="p">,</span> <span class="n">wd_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span>
+                <span class="sa">f</span><span class="s2">&quot;bin_min_</span><span class="si">{</span><span class="n">ws_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">ws_var</span><span class="p">,</span> <span class="n">ws_bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="sa">f</span><span class="s2">&quot;bin_max_</span><span class="si">{</span><span class="n">ws_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">ws_var</span><span class="p">,</span> <span class="n">ws_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span>
+                <span class="s2">&quot;frequency&quot;</span><span class="p">:</span> <span class="p">((</span><span class="n">wd_var</span><span class="p">,</span> <span class="n">ws_var</span><span class="p">),</span> <span class="n">freq</span><span class="p">),</span>
+            <span class="p">},</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">wd_var</span><span class="si">}</span><span class="s2">_bounds&quot;</span><span class="p">:</span> <span class="n">wd_bins</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ws_var</span><span class="si">}</span><span class="s2">_bounds&quot;</span><span class="p">:</span> <span class="n">ws_bins</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">data</span></div>
 
@@ -654,122 +631,130 @@
 <a class="viewcode-back" href="../../../_foxes/output/StatesRosePlotOutput.html#foxes.output.RosePlotOutput.get_figure">[docs]</a>
     <span class="k">def</span> <span class="nf">get_figure</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">sectors</span><span class="p">,</span>
-        <span class="n">var</span><span class="p">,</span>
-        <span class="n">var_bins</span><span class="p">,</span>
+        <span class="n">wd_sectors</span><span class="p">,</span>
+        <span class="n">ws_var</span><span class="p">,</span>
+        <span class="n">ws_bins</span><span class="p">,</span>
         <span class="n">wd_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">AMB_WD</span><span class="p">,</span>
-        <span class="n">turbine</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">point</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">legend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">design</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span>
-        <span class="n">start0</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">rect</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">freq_delta</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;summer&quot;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">legend_pars</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">ret_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates figure object</span>
+<span class="sd">        Creates the figure</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        sectors: int</span>
-<span class="sd">            The number of wind direction sectors</span>
-<span class="sd">        var: str</span>
-<span class="sd">            The data variable name</span>
-<span class="sd">        var_bins: list of float</span>
-<span class="sd">            The variable bin separation values</span>
-<span class="sd">        wd_var: str, optional</span>
-<span class="sd">            The wind direction variable name</span>
-<span class="sd">        turbine: int, optional</span>
-<span class="sd">            Only relevant in case of farm results.</span>
-<span class="sd">            If None, mean over all turbines.</span>
-<span class="sd">            Else, data from a single turbine</span>
-<span class="sd">        point: int, optional</span>
-<span class="sd">            Only relevant in case of point results.</span>
-<span class="sd">            If None, mean over all points.</span>
-<span class="sd">            Else, data from a single point</span>
-<span class="sd">        title. str, optional</span>
-<span class="sd">            The title</span>
-<span class="sd">        legend: str, optional</span>
-<span class="sd">            The data legend string</span>
-<span class="sd">        design: str</span>
-<span class="sd">            The wind rose design: bar, contour, ...</span>
-<span class="sd">        start0: bool</span>
-<span class="sd">            Flag for starting the first sector at</span>
-<span class="sd">            zero degrees instead of minus half width</span>
-<span class="sd">        fig: matplotlib.Figure</span>
-<span class="sd">            The figure to which to add an axis</span>
+<span class="sd">        wd_sectors: int</span>
+<span class="sd">            The number of wind rose sectors</span>
+<span class="sd">        ws_var: str</span>
+<span class="sd">            The wind speed variable</span>
+<span class="sd">        ws_bins: list of float</span>
+<span class="sd">            The wind speed bins</span>
+<span class="sd">        wd_var: str</span>
+<span class="sd">            The wind direction variable</span>
+<span class="sd">        fig: pyplot.Figure, optional</span>
+<span class="sd">            The figure object</span>
+<span class="sd">        ax: pyplot.Axes, optional</span>
+<span class="sd">            The axes object</span>
 <span class="sd">        figsize: tuple, optional</span>
-<span class="sd">            The figsize of the newly created figure</span>
-<span class="sd">        rect: list, optional</span>
-<span class="sd">            The rectangle of the figure which to fill,</span>
-<span class="sd">            e.g. [0.1, 0.1, 0.8, 0.8]</span>
+<span class="sd">            The figsize argument for plt.subplots</span>
+<span class="sd">        freq_delta: int</span>
+<span class="sd">            The frequency delta for the label</span>
+<span class="sd">            in percent</span>
+<span class="sd">        cmap: str</span>
+<span class="sd">            The color map</span>
+<span class="sd">        title: str, optional</span>
+<span class="sd">            The title</span>
+<span class="sd">        legend_pars: dict, optional</span>
+<span class="sd">            Parameters for the legend</span>
 <span class="sd">        ret_data: bool</span>
 <span class="sd">            Flag for returning wind rose data</span>
 <span class="sd">        kwargs: dict, optional</span>
-<span class="sd">            Additional arguments for TabWindroseAxes</span>
-<span class="sd">            plot function</span>
+<span class="sd">            Additional parameters for get_data</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        fig: matplotlib.pyplot.Figure</span>
-<span class="sd">            The rose plot figure</span>
-<span class="sd">        data: pd.DataFrame, optional</span>
-<span class="sd">            The wind rose data</span>
+<span class="sd">        ax: pyplot.Axes</span>
+<span class="sd">            The axes object</span>
+<span class="sd">        data: xarray.Dataset, optional</span>
+<span class="sd">            The plot data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">lg</span> <span class="o">=</span> <span class="n">legend</span>
-        <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">legend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">ttl</span><span class="p">,</span> <span class="n">lg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data_info</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">ttl</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">wd_sectors</span><span class="p">,</span> <span class="n">ws_var</span><span class="p">,</span> <span class="n">ws_bins</span><span class="p">,</span> <span class="n">wd_var</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="n">wrdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
-            <span class="n">sectors</span><span class="o">=</span><span class="n">sectors</span><span class="p">,</span>
-            <span class="n">var</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
-            <span class="n">var_bins</span><span class="o">=</span><span class="n">var_bins</span><span class="p">,</span>
-            <span class="n">wd_var</span><span class="o">=</span><span class="n">wd_var</span><span class="p">,</span>
-            <span class="n">turbine</span><span class="o">=</span><span class="n">turbine</span><span class="p">,</span>
-            <span class="n">point</span><span class="o">=</span><span class="n">point</span><span class="p">,</span>
-            <span class="n">start0</span><span class="o">=</span><span class="n">start0</span><span class="p">,</span>
+        <span class="n">n_wsb</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">ws_var</span><span class="p">]</span>
+        <span class="n">n_wdb</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span>
+        <span class="n">ws_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ws_var</span><span class="si">}</span><span class="s2">_bounds&quot;</span><span class="p">])</span>
+        <span class="n">wd_cent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="mi">90</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="mi">360</span><span class="p">)</span>
+        <span class="n">wd_cent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">wd_cent</span><span class="p">)</span>
+        <span class="n">wd_delta</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="n">n_wdb</span>
+        <span class="n">wd_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">0.9</span> <span class="o">*</span> <span class="n">wd_delta</span><span class="p">)</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">PolarAxes</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Require axes of type &#39;</span><span class="si">{</span><span class="n">PolarAxes</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39; for &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39;, got &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="s2">&quot;polar&quot;</span><span class="p">})</span>
+
+        <span class="n">bcmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">n_wsb</span><span class="p">)</span>
+        <span class="n">color_list</span> <span class="o">=</span> <span class="n">bcmap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_wsb</span><span class="p">))</span>
+
+        <span class="n">bottom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_wdb</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">wsi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_wsb</span><span class="p">):</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+                <span class="n">wd_cent</span><span class="p">,</span>
+                <span class="n">freq</span><span class="p">[:,</span> <span class="n">wsi</span><span class="p">],</span>
+                <span class="n">bottom</span><span class="o">=</span><span class="n">bottom</span><span class="p">,</span>
+                <span class="n">width</span><span class="o">=</span><span class="n">wd_width</span><span class="p">,</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">color_list</span><span class="p">[</span><span class="n">wsi</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="n">bottom</span> <span class="o">+=</span> <span class="n">freq</span><span class="p">[:,</span> <span class="n">wsi</span><span class="p">]</span>
+
+        <span class="n">fmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">freq_delta</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">freq_delta</span><span class="p">)</span>
+        <span class="n">freq_ticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">fmax</span> <span class="o">+</span> <span class="n">freq_delta</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">freq_delta</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+
+        <span class="n">tksl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">wd_delta</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+        <span class="n">tks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="mi">90</span> <span class="o">-</span> <span class="n">tksl</span><span class="p">,</span> <span class="mi">360</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">tks</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="si">}</span><span class="s2">°&quot;</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">tksl</span><span class="p">])</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">freq_ticks</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">%&quot;</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">freq_ticks</span><span class="p">])</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="n">llines</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">color_list</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+        <span class="n">lleg</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">ws_bins</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">ws_bins</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_wsb</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">lpars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">,</span>
+            <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+            <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ws_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">)</span>
-
-        <span class="n">ax</span> <span class="o">=</span> <span class="n">TabWindroseAxes</span><span class="o">.</span><span class="n">from_ax</span><span class="p">(</span><span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">rect</span><span class="o">=</span><span class="n">rect</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
-
-        <span class="n">plfun</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">design</span><span class="p">)</span>
-        <span class="n">plfun</span><span class="p">(</span>
-            <span class="n">direction</span><span class="o">=</span><span class="n">wrdata</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
-            <span class="n">var</span><span class="o">=</span><span class="n">wrdata</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
-            <span class="n">weights</span><span class="o">=</span><span class="n">wrdata</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
-            <span class="n">bin_min_dir</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">wrdata</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;bin_min_</span><span class="si">{</span><span class="n">wd_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span>
-            <span class="n">bin_min_var</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">wrdata</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;bin_min_</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span>
-            <span class="n">bin_max_var</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">wrdata</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;bin_max_</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span>
-            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">lg</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">ttl</span><span class="p">)</span>
+        <span class="n">wsl</span> <span class="o">=</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS2</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">REWS3</span><span class="p">]</span>
+        <span class="n">wsl</span> <span class="o">+=</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">var2amb</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">wsl</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">ws_var</span> <span class="ow">in</span> <span class="n">wsl</span><span class="p">:</span>
+            <span class="n">lpars</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot; [m/s]&quot;</span>
+        <span class="k">if</span> <span class="n">legend_pars</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lpars</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">legend_pars</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">llines</span><span class="p">,</span> <span class="n">lleg</span><span class="p">,</span> <span class="o">**</span><span class="n">lpars</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">ret_data</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">wrdata</span>
+            <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">data</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">fig</span></div>
+            <span class="k">return</span> <span class="n">ax</span></div>
 
 
 <div class="viewcode-block" id="RosePlotOutput.write_figure">
 <a class="viewcode-back" href="../../../_foxes/output/StatesRosePlotOutput.html#foxes.output.RosePlotOutput.write_figure">[docs]</a>
-    <span class="k">def</span> <span class="nf">write_figure</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">file_name</span><span class="p">,</span>
-        <span class="n">sectors</span><span class="p">,</span>
-        <span class="n">var</span><span class="p">,</span>
-        <span class="n">var_bins</span><span class="p">,</span>
-        <span class="n">ret_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">write_figure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">ret_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Write rose plot to file</span>
 
@@ -777,16 +762,12 @@
 <span class="sd">        ----------</span>
 <span class="sd">        file_name: str</span>
 <span class="sd">            Name of the output file</span>
-<span class="sd">        sectors: int</span>
-<span class="sd">            The number of wind direction sectors</span>
-<span class="sd">        var: str</span>
-<span class="sd">            The data variable name</span>
-<span class="sd">        var_bins: list of float</span>
-<span class="sd">            The variable bin separation values</span>
+<span class="sd">        args: tuple, optional</span>
+<span class="sd">            Additional parameters for get_figure</span>
 <span class="sd">        ret_data: bool</span>
 <span class="sd">            Flag for returning wind rose data</span>
 <span class="sd">        kwargs: dict, optional</span>
-<span class="sd">            Additional parameters for get_figure()</span>
+<span class="sd">            Additional parameters for get_figure</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -795,25 +776,19 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_figure</span><span class="p">(</span>
-            <span class="n">sectors</span><span class="o">=</span><span class="n">sectors</span><span class="p">,</span>
-            <span class="n">var</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
-            <span class="n">var_bins</span><span class="o">=</span><span class="n">var_bins</span><span class="p">,</span>
-            <span class="n">ret_data</span><span class="o">=</span><span class="n">ret_data</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_figure</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">ret_data</span><span class="o">=</span><span class="n">ret_data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">fpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_fpath</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ret_data</span><span class="p">:</span>
-            <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">write_image</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
+            <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">r</span><span class="o">.</span><span class="n">write_image</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span></div>
+            <span class="n">r</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span></div>
 </div>
 
 
 
 <div class="viewcode-block" id="StatesRosePlotOutput">
-<a class="viewcode-back" href="../../../_foxes/output/StatesRosePlotOutput.html#foxes.output.StatesRosePlotOutput">[docs]</a>
+<a class="viewcode-back" href="../../../api_output.html#foxes.output.StatesRosePlotOutput">[docs]</a>
 <span class="k">class</span> <span class="nc">StatesRosePlotOutput</span><span class="p">(</span><span class="n">RosePlotOutput</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for rose plot creation directly from states</span>
@@ -863,6 +838,252 @@
         <span class="n">results</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">calc_farm</span><span class="p">(</span><span class="n">ambient</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">rename_vars</span><span class="p">({</span><span class="n">ws_var</span><span class="p">:</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_WS</span><span class="p">})</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="WindRoseBinPlot">
+<a class="viewcode-back" href="../../../api_output.html#foxes.output.WindRoseBinPlot">[docs]</a>
+<span class="k">class</span> <span class="nc">WindRoseBinPlot</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots mean data in wind rose bins</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    farm_results: xarray.Dataset</span>
+<span class="sd">        The wind farm results</span>
+
+<span class="sd">    :group: output</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="WindRoseBinPlot.__init__">
+<a class="viewcode-back" href="../../../_foxes/output/WindRoseBinPlot.__init__.html#foxes.output.WindRoseBinPlot.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        farm_results: xarray.Dataset</span>
+<span class="sd">            The wind farm results</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Parameters for the base class</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span> <span class="o">=</span> <span class="n">farm_results</span></div>
+
+
+<div class="viewcode-block" id="WindRoseBinPlot.get_data">
+<a class="viewcode-back" href="../../../_foxes/output/WindRoseBinPlot.get_data.html#foxes.output.WindRoseBinPlot.get_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">variable</span><span class="p">,</span>
+        <span class="n">ws_bins</span><span class="p">,</span>
+        <span class="n">wd_sectors</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+        <span class="n">wd_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">AMB_WD</span><span class="p">,</span>
+        <span class="n">ws_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span><span class="p">,</span>
+        <span class="n">turbine</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">contraction</span><span class="o">=</span><span class="s2">&quot;weights&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates the plot data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        variable: str</span>
+<span class="sd">            The variable name</span>
+<span class="sd">        ws_bins: list of float</span>
+<span class="sd">            The wind speed bins</span>
+<span class="sd">        wd_var: str</span>
+<span class="sd">            The wind direction variable</span>
+<span class="sd">        ws_var: str</span>
+<span class="sd">            The wind speed variable</span>
+<span class="sd">        turbine: int</span>
+<span class="sd">            The turbine index</span>
+<span class="sd">        contraction: str</span>
+<span class="sd">            The contraction method for states:</span>
+<span class="sd">            weights, mean_no_weights, sum_no_weights</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        data: xarray.Dataset</span>
+<span class="sd">            The plot data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">var</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">turbine</span><span class="p">]</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">turbine</span><span class="p">]</span>
+        <span class="n">ws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">ws_var</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">turbine</span><span class="p">]</span>
+        <span class="n">wd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">turbine</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">wd_delta</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="n">wd_sectors</span>
+        <span class="n">wd</span><span class="p">[</span><span class="n">wd</span> <span class="o">&gt;=</span> <span class="mi">360</span> <span class="o">-</span> <span class="n">wd_delta</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">360</span>
+        <span class="n">wd_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">wd_delta</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="n">wd_delta</span><span class="p">)</span>
+        <span class="n">ws_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ws_bins</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">contraction</span> <span class="o">==</span> <span class="s2">&quot;weights&quot;</span><span class="p">:</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="p">(</span><span class="n">wd_bins</span><span class="p">,</span> <span class="n">ws_bins</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">w</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">z</span><span class="p">[</span><span class="n">z</span> <span class="o">&lt;</span> <span class="mf">1e-13</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="p">(</span><span class="n">wd_bins</span><span class="p">,</span> <span class="n">ws_bins</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">w</span> <span class="o">*</span> <span class="n">var</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">z</span>
+        <span class="k">elif</span> <span class="n">contraction</span> <span class="o">==</span> <span class="s2">&quot;mean_no_weights&quot;</span><span class="p">:</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="p">(</span><span class="n">wd_bins</span><span class="p">,</span> <span class="n">ws_bins</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+            <span class="n">z</span><span class="p">[</span><span class="n">z</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="p">(</span><span class="n">wd_bins</span><span class="p">,</span> <span class="n">ws_bins</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">var</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">z</span>
+        <span class="k">elif</span> <span class="n">contraction</span> <span class="o">==</span> <span class="s2">&quot;sum_no_weights&quot;</span><span class="p">:</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="p">(</span><span class="n">wd_bins</span><span class="p">,</span> <span class="n">ws_bins</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">var</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Contraction &#39;</span><span class="si">{</span><span class="n">contraction</span><span class="si">}</span><span class="s2">&#39; not supported. Choices: weights, mean_no_weights, sum_no_weights&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
+            <span class="n">coords</span><span class="o">=</span><span class="p">{</span>
+                <span class="n">wd_var</span><span class="p">:</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">wd_bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">wd_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span>
+                <span class="n">ws_var</span><span class="p">:</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">ws_bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">ws_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span>
+            <span class="p">},</span>
+            <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span>
+                <span class="n">variable</span><span class="p">:</span> <span class="p">((</span><span class="n">wd_var</span><span class="p">,</span> <span class="n">ws_var</span><span class="p">),</span> <span class="n">z</span><span class="p">),</span>
+            <span class="p">},</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">wd_var</span><span class="si">}</span><span class="s2">_bounds&quot;</span><span class="p">:</span> <span class="n">wd_bins</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ws_var</span><span class="si">}</span><span class="s2">_bounds&quot;</span><span class="p">:</span> <span class="n">ws_bins</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="WindRoseBinPlot.get_figure">
+<a class="viewcode-back" href="../../../_foxes/output/WindRoseBinPlot.get_figure.html#foxes.output.WindRoseBinPlot.get_figure">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_figure</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">variable</span><span class="p">,</span>
+        <span class="n">ws_bins</span><span class="p">,</span>
+        <span class="n">wd_sectors</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+        <span class="n">wd_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">AMB_WD</span><span class="p">,</span>
+        <span class="n">ws_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">AMB_REWS</span><span class="p">,</span>
+        <span class="n">turbine</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">contraction</span><span class="o">=</span><span class="s2">&quot;weights&quot;</span><span class="p">,</span>
+        <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ret_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates the figure</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        variable: str</span>
+<span class="sd">            The variable name</span>
+<span class="sd">        ws_bins: list of float</span>
+<span class="sd">            The wind speed bins</span>
+<span class="sd">        wd_var: str</span>
+<span class="sd">            The wind direction variable</span>
+<span class="sd">        ws_var: str</span>
+<span class="sd">            The wind speed variable</span>
+<span class="sd">        turbine: int</span>
+<span class="sd">            The turbine index</span>
+<span class="sd">        contraction: str</span>
+<span class="sd">            The contraction method for states:</span>
+<span class="sd">            weights, mean_no_weights, sum_no_weights</span>
+<span class="sd">        fig: pyplot.Figure, optional</span>
+<span class="sd">            The figure object</span>
+<span class="sd">        ax: pyplot.Axes, optional</span>
+<span class="sd">            The axes object</span>
+<span class="sd">        title: str, optional</span>
+<span class="sd">            The title</span>
+<span class="sd">        figsize: tuple, optional</span>
+<span class="sd">            The figsize argument for plt.subplots</span>
+<span class="sd">        ret_data: bool</span>
+<span class="sd">            Flag for returning wind rose data</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Additional parameters for plt.pcolormesh</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ax: pyplot.Axes</span>
+<span class="sd">            The axes object</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span>
+            <span class="n">variable</span><span class="o">=</span><span class="n">variable</span><span class="p">,</span>
+            <span class="n">ws_bins</span><span class="o">=</span><span class="n">ws_bins</span><span class="p">,</span>
+            <span class="n">wd_sectors</span><span class="o">=</span><span class="n">wd_sectors</span><span class="p">,</span>
+            <span class="n">wd_var</span><span class="o">=</span><span class="n">wd_var</span><span class="p">,</span>
+            <span class="n">ws_var</span><span class="o">=</span><span class="n">ws_var</span><span class="p">,</span>
+            <span class="n">turbine</span><span class="o">=</span><span class="n">turbine</span><span class="p">,</span>
+            <span class="n">contraction</span><span class="o">=</span><span class="n">contraction</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">wd_delta</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="n">data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span>
+        <span class="n">wd_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="mi">90</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">wd_var</span><span class="si">}</span><span class="s2">_bounds&quot;</span><span class="p">],</span> <span class="mi">360</span><span class="p">)</span>
+        <span class="n">wd_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">wd_bins</span><span class="p">)</span>
+        <span class="n">ws_bins</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ws_var</span><span class="si">}</span><span class="s2">_bounds&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">PolarAxes</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Require axes of type &#39;</span><span class="si">{</span><span class="n">PolarAxes</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39; for &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39;, got &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="s2">&quot;polar&quot;</span><span class="p">})</span>
+
+        <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">ws_bins</span><span class="p">,</span> <span class="n">wd_bins</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+        <span class="n">prgs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;shading&quot;</span><span class="p">:</span> <span class="s2">&quot;flat&quot;</span><span class="p">}</span>
+        <span class="n">prgs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">img</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="o">**</span><span class="n">prgs</span><span class="p">)</span>
+
+        <span class="n">tksl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">wd_delta</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+        <span class="n">tks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="mi">90</span> <span class="o">-</span> <span class="n">tksl</span><span class="p">,</span> <span class="mi">360</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">tks</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">°&quot;</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">tksl</span><span class="p">])</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">ws_bins</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        <span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.12</span><span class="p">)</span>
+        <span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">ret_data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="WindRoseBinPlot.write_figure">
+<a class="viewcode-back" href="../../../_foxes/output/WindRoseBinPlot.write_figure.html#foxes.output.WindRoseBinPlot.write_figure">[docs]</a>
+    <span class="k">def</span> <span class="nf">write_figure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">ret_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write rose plot to file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        file_name: str</span>
+<span class="sd">            Name of the output file</span>
+<span class="sd">        args: tuple, optional</span>
+<span class="sd">            Additional parameters for get_figure</span>
+<span class="sd">        ret_data: bool</span>
+<span class="sd">            Flag for returning wind rose data</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Additional parameters for get_figure</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        data: pd.DataFrame, optional</span>
+<span class="sd">            The wind rose data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_figure</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">ret_data</span><span class="o">=</span><span class="n">ret_data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_fpath</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ret_data</span><span class="p">:</span>
+            <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">r</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span></div>
 </div>
 
 </code></pre></div>

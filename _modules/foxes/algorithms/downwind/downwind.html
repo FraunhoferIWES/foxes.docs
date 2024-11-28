@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.algorithms.downwind.downwind - foxes 1.2 documentation</title>
+        <title>foxes.algorithms.downwind.downwind - foxes 1.2.1 documentation</title>
       
     
     
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 1.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.2.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2 documentation
+            foxes 1.2.1 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 1.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.2.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2 documentation
+    foxes 1.2.1 documentation
   </label>
   
     <div class="md-nav__source">
@@ -297,24 +297,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../apps.html" class="md-nav__link">
-        <span title="/apps.md (reference label)" class="md-ellipsis">Command line applications</span>
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../apps.html#foxes-windio" class="md-nav__link">
-        <span title="/apps.md#foxes-windio (reference label)" class="md-ellipsis">foxes_<wbr>windio</span>
+      <a href="../../../../parameter_files.html" class="md-nav__link">
+        <span title="/parameter_files.md (reference label)" class="md-ellipsis">Input parameter files</span>
       </a>
     </li>
   
@@ -767,14 +751,26 @@
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">mdls</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_print_deco</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">n_points</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Downwind.print_deco">
+<a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.html#foxes.algorithms.Downwind.print_deco">[docs]</a>
+    <span class="k">def</span> <span class="nf">print_deco</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_points</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Helper function for printing model names</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        func_name: str, optional</span>
+<span class="sd">            Name of the calling function</span>
+<span class="sd">        n_points: int, optional</span>
+<span class="sd">            The number of points</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">deco</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span>
+            <span class="n">deco</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">60</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">deco</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Running </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">func_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Algorithm: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">func_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Running </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">func_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">deco</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  n_states : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_states</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  n_turbines: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -802,7 +798,8 @@
                     <span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">farm_controller</span><span class="o">.</span><span class="n">pre_rotor_models</span><span class="o">.</span><span class="n">models</span><span class="p">)</span><span class="si">}</span><span class="s2">) </span><span class="si">{</span><span class="n">m</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">deco</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">()</span></div>
+
 
     <span class="k">def</span> <span class="nf">_print_model_oder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mlist</span><span class="p">,</span> <span class="n">calc_pars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1005,7 +1002,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
 
         <span class="c1"># welcome:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_print_deco</span><span class="p">(</span><span class="s2">&quot;calc_farm&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print_deco</span><span class="p">(</span><span class="s2">&quot;calc_farm&quot;</span><span class="p">)</span>
 
         <span class="c1"># collect models:</span>
         <span class="k">if</span> <span class="n">outputs</span> <span class="o">==</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span>
@@ -1217,7 +1214,7 @@
 
         <span class="c1"># welcome:</span>
         <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_print_deco</span><span class="p">(</span><span class="s2">&quot;calc_points&quot;</span><span class="p">,</span> <span class="n">n_points</span><span class="o">=</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print_deco</span><span class="p">(</span><span class="s2">&quot;calc_points&quot;</span><span class="p">,</span> <span class="n">n_points</span><span class="o">=</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
         <span class="c1"># collect models and initialize:</span>
         <span class="n">mlist</span><span class="p">,</span> <span class="n">calc_pars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collect_point_models</span><span class="p">(</span>
