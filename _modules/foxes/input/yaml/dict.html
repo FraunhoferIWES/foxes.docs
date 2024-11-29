@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.input.yaml.dict - foxes 1.2.1 documentation</title>
+        <title>foxes.input.yaml.dict - foxes 1.2.2 documentation</title>
       
     
     
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 1.2.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.1 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.2.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2.1 documentation
+            foxes 1.2.2 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 1.2.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.1 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.2.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2.1 documentation
+    foxes 1.2.2 documentation
   </label>
   
     <div class="md-nav__source">
@@ -576,6 +576,175 @@
 
 
 
+<div class="viewcode-block" id="get_output_obj">
+<a class="viewcode-back" href="../../../../api_input.html#foxes.input.yaml.get_output_obj">[docs]</a>
+<span class="k">def</span> <span class="nf">get_output_obj</span><span class="p">(</span>
+    <span class="n">ocls</span><span class="p">,</span>
+    <span class="n">odict</span><span class="p">,</span>
+    <span class="n">algo</span><span class="p">,</span>
+    <span class="n">farm_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">point_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">base_class</span><span class="o">=</span><span class="n">Output</span><span class="p">,</span>
+    <span class="n">extra_sig</span><span class="o">=</span><span class="p">{},</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create the output object</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ocls: str</span>
+<span class="sd">        Name of the output class</span>
+<span class="sd">    odict: dict</span>
+<span class="sd">        The output dict</span>
+<span class="sd">    algo: foxes.core.Algorithm</span>
+<span class="sd">        The algorithm</span>
+<span class="sd">    farm_results: xarray.Dataset, optional</span>
+<span class="sd">        The farm results</span>
+<span class="sd">    point_results: xarray.Dataset, optional</span>
+<span class="sd">        The point results</span>
+<span class="sd">    base_class: object</span>
+<span class="sd">        The output&#39;s base class</span>
+<span class="sd">    extra_sig: dict</span>
+<span class="sd">        Extra function signature check, sets</span>
+<span class="sd">        arguments (key) with data (value)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    obj: object or None</span>
+<span class="sd">        The output object</span>
+
+<span class="sd">    :group: input.yaml</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">cls</span> <span class="o">=</span> <span class="n">new_cls</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">ocls</span><span class="p">)</span>
+    <span class="n">prs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">signature</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">if</span> <span class="s2">&quot;algo&quot;</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">algo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Output of type &#39;</span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&#39; requires algo&quot;</span>
+        <span class="n">odict</span><span class="p">[</span><span class="s2">&quot;algo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">algo</span>
+    <span class="k">if</span> <span class="s2">&quot;farm&quot;</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
+        <span class="n">odict</span><span class="p">[</span><span class="s2">&quot;farm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">farm</span>
+    <span class="k">if</span> <span class="s2">&quot;farm_results&quot;</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">farm_results</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No farm results; skipping output </span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">odict</span><span class="p">[</span><span class="s2">&quot;farm_results&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">farm_results</span>
+    <span class="k">if</span> <span class="s2">&quot;point_results&quot;</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
+        <span class="n">odict</span><span class="p">[</span><span class="s2">&quot;point_results&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_results</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">extra_sig</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
+            <span class="n">odict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+
+    <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">odict</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_get_object</span><span class="p">(</span><span class="n">rlabels</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for object extraction&quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;]&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">i0</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i0</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">inds</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="n">i0</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="n">rlabels</span><span class="p">[</span><span class="n">d</span><span class="p">[:</span><span class="n">i0</span><span class="p">]][</span><span class="n">inds</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rlabels</span><span class="p">[</span><span class="n">d</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="run_obj_function">
+<a class="viewcode-back" href="../../../../api_input.html#foxes.input.yaml.run_obj_function">[docs]</a>
+<span class="k">def</span> <span class="nf">run_obj_function</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">,</span>
+    <span class="n">fdict</span><span class="p">,</span>
+    <span class="n">algo</span><span class="p">,</span>
+    <span class="n">rlabels</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Runs a function of an object</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj: object</span>
+<span class="sd">        The object</span>
+<span class="sd">    fdict: dict</span>
+<span class="sd">        The function call dict</span>
+<span class="sd">    algo: foxes.core.Algorithm</span>
+<span class="sd">        The algorithm</span>
+<span class="sd">    rlabels: dict</span>
+<span class="sd">        Storage for result variables</span>
+<span class="sd">    verbosity: int, optional</span>
+<span class="sd">        The verbosity level, 0 = silent</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    results: object</span>
+<span class="sd">        The returns of the function</span>
+
+<span class="sd">    :group: input.yaml</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="n">level</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">fdict</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;function&quot;</span><span class="p">)</span>
+    <span class="n">_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt_show</span> <span class="o">=</span> <span class="n">fdict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;plt_show&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">plt_close</span> <span class="o">=</span> <span class="n">fdict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;plt_close&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">rlbs</span> <span class="o">=</span> <span class="n">fdict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;result_labels&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># grab function:</span>
+    <span class="n">ocls</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
+    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">fname</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Output of type &#39;</span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&#39;: Function &#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&#39; not found&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+
+    <span class="c1"># add required input data objects:</span>
+    <span class="n">prs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">signature</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">if</span> <span class="s2">&quot;algo&quot;</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
+        <span class="n">fdict</span><span class="p">[</span><span class="s2">&quot;algo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">algo</span>
+    <span class="k">if</span> <span class="s2">&quot;farm&quot;</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
+        <span class="n">fdict</span><span class="p">[</span><span class="s2">&quot;farm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">farm</span>
+
+    <span class="c1"># replace result labels by objects:</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">fdict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;$&quot;</span><span class="p">:</span>
+            <span class="n">fdict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">_get_object</span><span class="p">(</span><span class="n">rlabels</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+
+    <span class="c1"># run function:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">fdict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;args&quot;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">())</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">fdict</span><span class="p">)</span>
+
+    <span class="c1"># pyplot shortcuts:</span>
+    <span class="k">if</span> <span class="n">plt_show</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">plt_close</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1"># store results under result labels:</span>
+    <span class="k">if</span> <span class="n">rlbs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">_set_label</span><span class="p">(</span><span class="n">rlabels</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;__&quot;</span><span class="p">]:</span>
+                <span class="k">assert</span> <span class="p">(</span>
+                    <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;$&quot;</span>
+                <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> of type &#39;</span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&#39;, function &#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&#39;: result labels must start with &#39;$&#39;, got &#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+                <span class="k">assert</span> <span class="p">(</span>
+                    <span class="s2">&quot;[&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">k</span> <span class="ow">and</span> <span class="s2">&quot;]&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">k</span> <span class="ow">and</span> <span class="s2">&quot;,&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">k</span>
+                <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> of type &#39;</span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&#39;, function &#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&#39;: result labels cannot contain &#39;[&#39; or &#39;]&#39; or comma, got &#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+                <span class="n">_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    result label </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">rlabels</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rlbs</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rlbs</span><span class="p">):</span>
+                <span class="n">_set_label</span><span class="p">(</span><span class="n">rlabels</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_set_label</span><span class="p">(</span><span class="n">rlabels</span><span class="p">,</span> <span class="n">rlbs</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span></div>
+
+
+
 <div class="viewcode-block" id="run_outputs">
 <a class="viewcode-back" href="../../../../api_input.html#foxes.input.yaml.run_outputs">[docs]</a>
 <span class="k">def</span> <span class="nf">run_outputs</span><span class="p">(</span>
@@ -583,6 +752,8 @@
     <span class="n">algo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">farm_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">point_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">extra_sig</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">ret_rlabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -598,9 +769,13 @@
 <span class="sd">        The farm results</span>
 <span class="sd">    point_results: xarray.Dataset, optional</span>
 <span class="sd">        The point results</span>
+<span class="sd">    extra_sig: dict</span>
+<span class="sd">        Extra function signature check, sets</span>
+<span class="sd">        arguments (key) with data (value)</span>
+<span class="sd">    ret_rlabels: bool</span>
+<span class="sd">        Flag for returning results variables</span>
 <span class="sd">    verbosity: int, optional</span>
-<span class="sd">        Force a verbosity level, 0 = silent, overrules</span>
-<span class="sd">        settings from idict</span>
+<span class="sd">        The verbosity level, 0 = silent</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -608,6 +783,8 @@
 <span class="sd">        For each output enty, a tuple (dict, results),</span>
 <span class="sd">        where results is a tuple that represents one</span>
 <span class="sd">        entry per function call</span>
+<span class="sd">    rlabels: dict, optional</span>
+<span class="sd">        The results variables</span>
 
 <span class="sd">    :group: input.yaml</span>
 
@@ -618,6 +795,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">rlabels</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;result_labels&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="s2">&quot;outputs&quot;</span> <span class="ow">in</span> <span class="n">idict</span><span class="p">:</span>
         <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;Running outputs&quot;</span><span class="p">)</span>
         <span class="n">odicts</span> <span class="o">=</span> <span class="p">[</span>
@@ -625,124 +803,48 @@
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">odict</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">idict</span><span class="p">[</span><span class="s2">&quot;outputs&quot;</span><span class="p">])</span>
         <span class="p">]</span>
 
-        <span class="n">rlabels</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;result_labels&quot;</span><span class="p">)</span>
-
-        <span class="k">def</span> <span class="nf">_get_object</span><span class="p">(</span><span class="n">rlabels</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
-            <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;]&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-            <span class="n">i0</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">i0</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">inds</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="n">i0</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)])</span>
-                <span class="k">return</span> <span class="n">rlabels</span><span class="p">[</span><span class="n">d</span><span class="p">[:</span><span class="n">i0</span><span class="p">]][</span><span class="n">inds</span><span class="p">]</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">rlabels</span><span class="p">[</span><span class="n">d</span><span class="p">]</span>
-
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">odicts</span><span class="p">):</span>
-
             <span class="k">if</span> <span class="s2">&quot;output_type&quot;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
                 <span class="n">ocls</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;output_type&quot;</span><span class="p">)</span>
                 <span class="n">_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Output </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">d0</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">output_type</span><span class="o">=</span><span class="n">ocls</span><span class="p">)</span>
                 <span class="n">d0</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
                 <span class="n">flist</span> <span class="o">=</span> <span class="p">[</span>
-                    <span class="n">Dict</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.function</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;functions&quot;</span><span class="p">))</span>
+                    <span class="n">Dict</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.function</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;functions&quot;</span><span class="p">))</span>
                 <span class="p">]</span>
-                <span class="bp">cls</span> <span class="o">=</span> <span class="n">new_cls</span><span class="p">(</span><span class="n">Output</span><span class="p">,</span> <span class="n">ocls</span><span class="p">)</span>
-                <span class="n">prs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">signature</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-                <span class="k">if</span> <span class="s2">&quot;algo&quot;</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
-                    <span class="k">assert</span> <span class="p">(</span>
-                        <span class="n">algo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                    <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> of type &#39;</span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&#39; requires algo&quot;</span>
-                    <span class="n">d</span><span class="p">[</span><span class="s2">&quot;algo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">algo</span>
-                <span class="k">if</span> <span class="s2">&quot;farm&quot;</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
-                    <span class="n">d</span><span class="p">[</span><span class="s2">&quot;farm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">farm</span>
-                <span class="k">if</span> <span class="s2">&quot;farm_results&quot;</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">farm_results</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No farm results; skipping output </span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                        <span class="k">for</span> <span class="n">fdict</span> <span class="ow">in</span> <span class="n">flist</span><span class="p">:</span>
-                            <span class="n">out</span> <span class="o">+=</span> <span class="p">(</span><span class="n">d0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-                        <span class="k">continue</span>
-                    <span class="n">d</span><span class="p">[</span><span class="s2">&quot;farm_results&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">farm_results</span>
-                <span class="k">if</span> <span class="s2">&quot;point_results&quot;</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
-                    <span class="n">d</span><span class="p">[</span><span class="s2">&quot;point_results&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_results</span>
-                <span class="n">o</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span>
+
+                <span class="n">o</span> <span class="o">=</span> <span class="n">get_output_obj</span><span class="p">(</span>
+                    <span class="n">ocls</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">,</span> <span class="n">point_results</span><span class="p">,</span> <span class="n">extra_sig</span><span class="o">=</span><span class="n">extra_sig</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">o</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">d0</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+                    <span class="k">continue</span>
 
             <span class="k">elif</span> <span class="s2">&quot;object&quot;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
                 <span class="n">ocls</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span>
+                <span class="n">_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Output </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: Object </span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">o</span> <span class="o">=</span> <span class="n">_get_object</span><span class="p">(</span><span class="n">rlabels</span><span class="p">,</span> <span class="n">ocls</span><span class="p">)</span>
                 <span class="n">d0</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">object</span><span class="o">=</span><span class="n">ocls</span><span class="p">)</span>
                 <span class="n">d0</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
                 <span class="n">flist</span> <span class="o">=</span> <span class="p">[</span>
-                    <span class="n">Dict</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.function</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;functions&quot;</span><span class="p">))</span>
+                    <span class="n">Dict</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.function</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;functions&quot;</span><span class="p">))</span>
                 <span class="p">]</span>
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> of type &#39;</span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&#39;: Please specify either &#39;output_type&#39; or &#39;object&#39;&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: Please specify either &#39;output_type&#39; or &#39;object&#39;&quot;</span>
                 <span class="p">)</span>
 
             <span class="n">fres</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">fdict</span> <span class="ow">in</span> <span class="n">flist</span><span class="p">:</span>
-                <span class="n">fname</span> <span class="o">=</span> <span class="n">fdict</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;function&quot;</span><span class="p">)</span>
-                <span class="n">_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="n">plt_show</span> <span class="o">=</span> <span class="n">fdict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;plt_show&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-                <span class="n">plt_close</span> <span class="o">=</span> <span class="n">fdict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;plt_close&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-                <span class="n">rlbs</span> <span class="o">=</span> <span class="n">fdict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;result_labels&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-
-                <span class="c1"># grab function:</span>
-                <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span>
-                    <span class="n">o</span><span class="p">,</span> <span class="n">fname</span>
-                <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> of type &#39;</span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&#39;: Function &#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&#39; not found&quot;</span>
-                <span class="n">f</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-
-                <span class="c1"># add required input data objects:</span>
-                <span class="n">prs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">signature</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-                <span class="k">if</span> <span class="s2">&quot;algo&quot;</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
-                    <span class="n">fdict</span><span class="p">[</span><span class="s2">&quot;algo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">algo</span>
-                <span class="k">if</span> <span class="s2">&quot;farm&quot;</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">:</span>
-                    <span class="n">fdict</span><span class="p">[</span><span class="s2">&quot;farm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">farm</span>
-
-                <span class="c1"># replace result labels by objects:</span>
-                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">fdict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;$&quot;</span><span class="p">:</span>
-                        <span class="n">fdict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">_get_object</span><span class="p">(</span><span class="n">rlabels</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
-
-                <span class="c1"># run function:</span>
-                <span class="n">args</span> <span class="o">=</span> <span class="n">fdict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;args&quot;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">())</span>
-                <span class="n">results</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">fdict</span><span class="p">)</span>
-
-                <span class="c1"># pyplot shortcuts:</span>
-                <span class="k">if</span> <span class="n">plt_show</span><span class="p">:</span>
-                    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">plt_close</span><span class="p">:</span>
-                    <span class="n">results</span> <span class="o">=</span> <span class="kc">None</span>
-                    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-                <span class="c1"># store results under result labels:</span>
-                <span class="k">if</span> <span class="n">rlbs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-                    <span class="k">def</span> <span class="nf">_set_label</span><span class="p">(</span><span class="n">rlabels</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
-                        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;__&quot;</span><span class="p">]:</span>
-                            <span class="k">assert</span> <span class="p">(</span>
-                                <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;$&quot;</span>
-                            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> of type &#39;</span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&#39;, function &#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&#39;: result labels must start with &#39;$&#39;, got &#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
-                            <span class="k">assert</span> <span class="p">(</span>
-                                <span class="s2">&quot;[&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">k</span> <span class="ow">and</span> <span class="s2">&quot;]&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">k</span> <span class="ow">and</span> <span class="s2">&quot;,&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">k</span>
-                            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Output </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> of type &#39;</span><span class="si">{</span><span class="n">ocls</span><span class="si">}</span><span class="s2">&#39;, function &#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&#39;: result labels cannot contain &#39;[&#39; or &#39;]&#39; or comma, got &#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
-                            <span class="n">_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    result label </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                            <span class="n">rlabels</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
-
-                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rlbs</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
-                        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rlbs</span><span class="p">):</span>
-                            <span class="n">_set_label</span><span class="p">(</span><span class="n">rlabels</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">_set_label</span><span class="p">(</span><span class="n">rlabels</span><span class="p">,</span> <span class="n">rlbs</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
-
+                <span class="n">results</span> <span class="o">=</span> <span class="n">run_obj_function</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">fdict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">rlabels</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
                 <span class="n">fres</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
             <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">d0</span><span class="p">,</span> <span class="n">fres</span><span class="p">))</span>
 
-    <span class="k">return</span> <span class="n">out</span></div>
+    <span class="k">return</span> <span class="n">out</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ret_rlabels</span> <span class="k">else</span> <span class="n">out</span><span class="p">,</span> <span class="n">rlabels</span></div>
 
 
 
@@ -811,7 +913,7 @@
         <span class="n">out</span> <span class="o">+=</span> <span class="p">(</span><span class="n">point_results</span><span class="p">,)</span>
 
     <span class="c1"># run outputs:</span>
-    <span class="n">out</span> <span class="o">+=</span> <span class="p">(</span><span class="n">run_outputs</span><span class="p">(</span><span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">,</span> <span class="n">point_results</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">),)</span>
+    <span class="n">out</span> <span class="o">+=</span> <span class="p">(</span><span class="n">run_outputs</span><span class="p">(</span><span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">,</span> <span class="n">point_results</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">),)</span>
 
     <span class="c1"># shutdown engine, if created above:</span>
     <span class="k">if</span> <span class="n">engine</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
