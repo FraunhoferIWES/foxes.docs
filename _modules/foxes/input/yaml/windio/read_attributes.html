@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.input.yaml.windio.read_attributes - foxes 1.2.2 documentation</title>
+        <title>foxes.input.yaml.windio.read_attributes - foxes 1.2.3 documentation</title>
       
     
     
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 1.2.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.2 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.2.3 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2.2 documentation
+            foxes 1.2.3 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 1.2.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.2 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.2.3 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2.2 documentation
+    foxes 1.2.3 documentation
   </label>
   
     <div class="md-nav__source">
@@ -394,7 +394,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../../CHANGELOG.html" class="md-nav__link">
-        <span title="/changelog.md (reference label)" class="md-ellipsis">History</span>
+        <span title="/changelog.md (reference label)" class="md-ellipsis">Changelog</span>
       </a>
     </li>
   
@@ -434,8 +434,6 @@
 <span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WakeModel</span><span class="p">,</span> <span class="n">WakeFrame</span>
 <span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
 
-<span class="kn">from</span> <span class="nn">.read_outputs</span> <span class="kn">import</span> <span class="n">read_outputs</span>
-
 
 <span class="k">def</span> <span class="nf">_read_wind_deficit</span><span class="p">(</span>
     <span class="n">wake_model_key</span><span class="p">,</span>
@@ -461,7 +459,7 @@
     <span class="n">ws_sup_dict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
         <span class="p">{</span>
             <span class="s2">&quot;Linear&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_linear&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;Quadratic&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_quadratic&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Squared&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_quadratic&quot;</span><span class="p">,</span>
             <span class="s2">&quot;Product&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_product&quot;</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ws_sup_dict&quot;</span><span class="p">,</span>
@@ -469,14 +467,14 @@
     <span class="n">ws_sup_amb_dict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
         <span class="p">{</span>
             <span class="s2">&quot;Linear&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_linear_amb&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;Quadratic&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_quadratic_amb&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Squared&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_quadratic_amb&quot;</span><span class="p">,</span>
             <span class="s2">&quot;Product&quot;</span><span class="p">:</span> <span class="s2">&quot;ws_product&quot;</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ws_sup_dict&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">wname</span> <span class="o">=</span> <span class="n">wind_deficit</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
-    <span class="n">eff_ws</span> <span class="o">=</span> <span class="n">wind_deficit</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;use_effective_ws&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">wname</span> <span class="o">=</span> <span class="n">wind_deficit</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+    <span class="n">eff_ws</span> <span class="o">=</span> <span class="n">wind_deficit</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;use_effective_ws&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading&quot;</span><span class="p">,</span> <span class="n">wake_model_key</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Name    :&quot;</span><span class="p">,</span> <span class="n">wname</span><span class="p">)</span>
@@ -485,8 +483,8 @@
     <span class="n">wind_def_dict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wmodel_type</span><span class="o">=</span><span class="n">wind_def_map</span><span class="p">[</span><span class="n">wname</span><span class="p">],</span> <span class="n">induction</span><span class="o">=</span><span class="n">induction</span><span class="p">)</span>
     <span class="n">kcoef</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wind_deficit</span><span class="p">[</span><span class="s2">&quot;wake_expansion_coefficient&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;kcoef&quot;</span><span class="p">)</span>
     <span class="n">ka</span> <span class="o">=</span> <span class="n">kcoef</span><span class="p">[</span><span class="s2">&quot;k_a&quot;</span><span class="p">]</span>
-    <span class="n">kb</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;k_b&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-    <span class="n">amb_ti</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;free_stream_ti&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">kb</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="s2">&quot;k_b&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">amb_ti</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="s2">&quot;free_stream_ti&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ka</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">ka</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
         <span class="n">wind_def_dict</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kb</span>
         <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
@@ -540,12 +538,12 @@
     <span class="n">ti_sup_dict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
         <span class="p">{</span>
             <span class="s2">&quot;Linear&quot;</span><span class="p">:</span> <span class="s2">&quot;ti_linear&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;Quadratic&quot;</span><span class="p">:</span> <span class="s2">&quot;ti_quadratic&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Squared&quot;</span><span class="p">:</span> <span class="s2">&quot;ti_quadratic&quot;</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ti_sup_dict&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">wname</span> <span class="o">=</span> <span class="n">turbulence_model</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+    <span class="n">wname</span> <span class="o">=</span> <span class="n">turbulence_model</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading turbulence_model&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Name:&quot;</span><span class="p">,</span> <span class="n">wname</span><span class="p">)</span>
@@ -558,8 +556,8 @@
         <span class="k">if</span> <span class="s2">&quot;wake_expansion_coefficient&quot;</span> <span class="ow">in</span> <span class="n">turbulence_model</span><span class="p">:</span>
             <span class="n">kcoef</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">turbulence_model</span><span class="p">[</span><span class="s2">&quot;wake_expansion_coefficient&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;kcoef&quot;</span><span class="p">)</span>
             <span class="n">ka</span> <span class="o">=</span> <span class="n">kcoef</span><span class="p">[</span><span class="s2">&quot;k_a&quot;</span><span class="p">]</span>
-            <span class="n">kb</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;k_b&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-            <span class="n">amb_ti</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;free_stream_ti&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="n">kb</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="s2">&quot;k_b&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+            <span class="n">amb_ti</span> <span class="o">=</span> <span class="n">kcoef</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="s2">&quot;free_stream_ti&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ka</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">ka</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
             <span class="n">tiwake_dict</span><span class="p">[</span><span class="s2">&quot;k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kb</span>
             <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
@@ -593,7 +591,7 @@
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;twake_def_map&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">wname</span> <span class="o">=</span> <span class="n">blockage_model</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+    <span class="n">wname</span> <span class="o">=</span> <span class="n">blockage_model</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading blockage_model&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Name:&quot;</span><span class="p">,</span> <span class="n">wname</span><span class="p">)</span>
@@ -670,7 +668,7 @@
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;defl_def_map&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">wname</span> <span class="o">=</span> <span class="n">deflection</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+    <span class="n">wname</span> <span class="o">=</span> <span class="n">deflection</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading deflection_model&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Name:&quot;</span><span class="p">,</span> <span class="n">wname</span><span class="p">)</span>
@@ -708,7 +706,7 @@
         <span class="p">},</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;induction mapping&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">induction</span> <span class="o">=</span> <span class="n">imap</span><span class="p">[</span><span class="n">wio_ana</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;axial_induction_model&quot;</span><span class="p">,</span> <span class="s2">&quot;1D&quot;</span><span class="p">)]</span>
+    <span class="n">induction</span> <span class="o">=</span> <span class="n">imap</span><span class="p">[</span><span class="n">wio_ana</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="s2">&quot;axial_induction_model&quot;</span><span class="p">,</span> <span class="s2">&quot;1D&quot;</span><span class="p">)]</span>
     <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    axial induction model:&quot;</span><span class="p">,</span> <span class="n">induction</span><span class="p">)</span>
 
@@ -771,14 +769,14 @@
 
 <div class="viewcode-block" id="read_attributes">
 <a class="viewcode-back" href="../../../../../api_input.html#foxes.input.yaml.windio.read_attributes">[docs]</a>
-<span class="k">def</span> <span class="nf">read_attributes</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">idict</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">read_attributes</span><span class="p">(</span><span class="n">wio_attrs</span><span class="p">,</span> <span class="n">idict</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Reads the attributes part of windio</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    wio: foxes.utils.Dict</span>
-<span class="sd">        The windio data</span>
+<span class="sd">    wio_attrs: foxes.utils.Dict</span>
+<span class="sd">        The windio attributes data</span>
 <span class="sd">    idict: foxes.utils.Dict</span>
 <span class="sd">        The foxes input data dictionary</span>
 <span class="sd">    mbook: foxes.models.ModelBook</span>
@@ -786,15 +784,9 @@
 <span class="sd">    verbosity: int</span>
 <span class="sd">        The verbosity level, 0=silent</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    odir: pathlib.Path</span>
-<span class="sd">        The output directory</span>
-
 <span class="sd">    :group: input.yaml.windio</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">wio_attrs</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.attributes&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading attributes&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio_attrs</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
@@ -802,7 +794,7 @@
     <span class="c1"># read flow model:</span>
     <span class="k">if</span> <span class="s2">&quot;flow_model&quot;</span> <span class="ow">in</span> <span class="n">wio_attrs</span><span class="p">:</span>
         <span class="n">flow_model</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_attrs</span><span class="p">[</span><span class="s2">&quot;flow_model&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;flow_model&quot;</span><span class="p">)</span>
-        <span class="n">fmname</span> <span class="o">=</span> <span class="n">flow_model</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+        <span class="n">fmname</span> <span class="o">=</span> <span class="n">flow_model</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading flow_model&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Name:&quot;</span><span class="p">,</span> <span class="n">fmname</span><span class="p">)</span>
@@ -812,16 +804,7 @@
 
     <span class="c1"># read analysis:</span>
     <span class="n">wio_ana</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_attrs</span><span class="p">[</span><span class="s2">&quot;analysis&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_attrs</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.analysis&quot;</span><span class="p">)</span>
-    <span class="n">_read_analysis</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">,</span> <span class="n">idict</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-
-    <span class="c1"># outputs:</span>
-    <span class="n">odict</span> <span class="o">=</span> <span class="n">idict</span><span class="p">[</span><span class="s2">&quot;outputs&quot;</span><span class="p">]</span>
-    <span class="n">odir</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
-    <span class="k">if</span> <span class="s2">&quot;outputs&quot;</span> <span class="ow">in</span> <span class="n">wio_attrs</span><span class="p">:</span>
-        <span class="n">outputs</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_attrs</span><span class="p">[</span><span class="s2">&quot;outputs&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_attrs</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.outputs&quot;</span><span class="p">)</span>
-        <span class="n">odir</span> <span class="o">=</span> <span class="n">read_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">odict</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">odir</span></div>
+    <span class="n">_read_analysis</span><span class="p">(</span><span class="n">wio_ana</span><span class="p">,</span> <span class="n">idict</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span></div>
 
 </code></pre></div>
 

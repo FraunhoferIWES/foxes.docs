@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.config.config - foxes 1.2.2 documentation</title>
+        <title>foxes.config.config - foxes 1.2.3 documentation</title>
       
     
     
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.2.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.2.3 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2.2 documentation
+            foxes 1.2.3 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.2.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.2.3 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2.2 documentation
+    foxes 1.2.3 documentation
   </label>
   
     <div class="md-nav__source">
@@ -394,7 +394,7 @@
   
     <li class="md-nav__item">
       <a href="../../../CHANGELOG.html" class="md-nav__link">
-        <span title="/changelog.md (reference label)" class="md-ellipsis">History</span>
+        <span title="/changelog.md (reference label)" class="md-ellipsis">Changelog</span>
       </a>
     </li>
   
@@ -433,7 +433,7 @@
 <span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">from</span> <span class="nn">foxes.utils.dict</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">import_module</span>
 <span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
 
 
@@ -455,7 +455,9 @@
                 <span class="n">FC</span><span class="o">.</span><span class="n">DTYPE</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
                 <span class="n">FC</span><span class="o">.</span><span class="n">ITYPE</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span>
                 <span class="n">FC</span><span class="o">.</span><span class="n">WORK_DIR</span><span class="p">:</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">),</span>
-                <span class="n">FC</span><span class="o">.</span><span class="n">OUT_DIR</span><span class="p">:</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">),</span>
+                <span class="n">FC</span><span class="o">.</span><span class="n">INPUT_DIR</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">FC</span><span class="o">.</span><span class="n">OUTPUT_DIR</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">FC</span><span class="o">.</span><span class="n">NC_ENGINE</span><span class="p">:</span> <span class="s2">&quot;h5netcdf&quot;</span><span class="p">,</span>
             <span class="p">},</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;config&quot;</span><span class="p">,</span>
         <span class="p">)</span></div>
@@ -499,12 +501,33 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">WORK_DIR</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pth</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">WORK_DIR</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">WORK_DIR</span><span class="p">]</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pth</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
             <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">WORK_DIR</span><span class="p">]</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">pth</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">WORK_DIR</span><span class="p">]</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">out_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">input_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The input base directory</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pth: pathlib.Path</span>
+<span class="sd">            Path to the input base directory</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">INPUT_DIR</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">work_dir</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">INPUT_DIR</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pth</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">INPUT_DIR</span><span class="p">]</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">pth</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">INPUT_DIR</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">output_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The default output directory</span>
 
@@ -514,7 +537,27 @@
 <span class="sd">            Path to the default output directory</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">get_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">OUT_DIR</span><span class="p">))</span></div>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">OUTPUT_DIR</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">work_dir</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">OUTPUT_DIR</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pth</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">OUTPUT_DIR</span><span class="p">]</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">pth</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">OUTPUT_DIR</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nc_engine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The NetCDF engine</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        nce: str </span>
+<span class="sd">            The NetCDF engine</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">import_module</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">NC_ENGINE</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">NC_ENGINE</span><span class="p">]</span></div>
 
 
 
@@ -526,10 +569,40 @@
 
 <div class="viewcode-block" id="get_path">
 <a class="viewcode-back" href="../../../api_config.html#foxes.config.get_path">[docs]</a>
-<span class="k">def</span> <span class="nf">get_path</span><span class="p">(</span><span class="n">pth</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_path</span><span class="p">(</span><span class="n">pth</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gets path object, respecting the base directory</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pth: str or pathlib.Path</span>
+<span class="sd">        The path, optionally relative to base</span>
+<span class="sd">    base: pathlib.Path</span>
+<span class="sd">        The base directory</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out: pathlib.Path</span>
+<span class="sd">        The path, absolute or relative to base directory</span>
+
+<span class="sd">    :group: foxes.config</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pth</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
+        <span class="n">pth</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">pth</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pth</span><span class="o">.</span><span class="n">is_absolute</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">pth</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">base</span> <span class="o">/</span> <span class="n">pth</span></div>
+
+
+
+<div class="viewcode-block" id="get_input_path">
+<a class="viewcode-back" href="../../../api_config.html#foxes.config.get_input_path">[docs]</a>
+<span class="k">def</span> <span class="nf">get_input_path</span><span class="p">(</span><span class="n">pth</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets path object, respecting the configurations</span>
-<span class="sd">    work directory</span>
+<span class="sd">    input directory</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -539,15 +612,13 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    out: pathlib.Path</span>
-<span class="sd">        The path, absolute or relative to working directory</span>
+<span class="sd">        The path, absolute or relative to input directory</span>
 <span class="sd">        from config</span>
 
 <span class="sd">    :group: foxes.config</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pth</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
-        <span class="n">pth</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">pth</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">pth</span> <span class="k">if</span> <span class="n">pth</span><span class="o">.</span><span class="n">is_absolute</span><span class="p">()</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">work_dir</span> <span class="o">/</span> <span class="n">pth</span></div>
+    <span class="k">return</span> <span class="n">get_path</span><span class="p">(</span><span class="n">pth</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">input_dir</span><span class="p">)</span></div>
 
 
 
@@ -572,9 +643,7 @@
 <span class="sd">    :group: foxes.config</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pth</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
-        <span class="n">pth</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">pth</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">pth</span> <span class="k">if</span> <span class="n">pth</span><span class="o">.</span><span class="n">is_absolute</span><span class="p">()</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">/</span> <span class="n">pth</span></div>
+    <span class="k">return</span> <span class="n">get_path</span><span class="p">(</span><span class="n">pth</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">output_dir</span><span class="p">)</span></div>
 
 </code></pre></div>
 

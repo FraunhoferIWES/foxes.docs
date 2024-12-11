@@ -695,3 +695,21 @@ This major version introduces the concept of `Engines` which handle the chunking
 - Developments required by `foxes_opt` v0.3, related to running also wind farm optimizations by yaml parameter files
 
 **Full Changelog**: [https://github.com/FraunhoferIWES/foxes/commits/v1.2.2](https://github.com/FraunhoferIWES/foxes/commits/v1.2.2)
+
+## v1.2.3
+
+- Dependencies:
+  - Switching `windIO` support to fork at [https://github.com/EUFLOW/windIO](https://github.com/EUFLOW/windIO)
+  - Removing dependency `netcdf4`, since this or `h5netcdf` are now a dynamic choice, called when NetCDF files are being used
+- Config:
+  - Now three directories are defined: `work_dir`, `input_dir`, `output_dir`. If not defined, falling back to `work_dir`, defaulting to cwd.
+- Inputs:
+  - Removing `SliceDataNC`, since now `FieldDataNC` can handle data without height dependency
+  - Enhancing `FieldDataNC` for more efficient parallel loading of large data, replacing `pre_load` flag with load mode options `preload`, `lazy`, `fly`
+  - Enhancing `windio` inputs for output generation
+- Outputs:
+  - New output `SlicesData` which combines slices from `SliceData` into a single NetCDF file, resulting in full 3d field output (or 4d, with time/states dimension)
+- Models:
+  - New point model `Ustar2TI`, estimates TI from friction velocity
+
+**Full Changelog**: [https://github.com/FraunhoferIWES/foxes/commits/v1.2.3](https://github.com/FraunhoferIWES/foxes/commits/v1.2.3)

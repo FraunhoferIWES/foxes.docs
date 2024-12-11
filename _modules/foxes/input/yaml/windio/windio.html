@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.input.yaml.windio.windio - foxes 1.2.2 documentation</title>
+        <title>foxes.input.yaml.windio.windio - foxes 1.2.3 documentation</title>
       
     
     
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 1.2.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.2 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.2.3 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2.2 documentation
+            foxes 1.2.3 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 1.2.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.2 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.2.3 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2.2 documentation
+    foxes 1.2.3 documentation
   </label>
   
     <div class="md-nav__source">
@@ -394,7 +394,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../../CHANGELOG.html" class="md-nav__link">
-        <span title="/changelog.md (reference label)" class="md-ellipsis">History</span>
+        <span title="/changelog.md (reference label)" class="md-ellipsis">Changelog</span>
       </a>
     </li>
   
@@ -433,101 +433,15 @@
 <span></span><code><span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WindFarm</span>
+<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">Algorithm</span>
 <span class="kn">from</span> <span class="nn">foxes.models</span> <span class="kn">import</span> <span class="n">ModelBook</span>
 <span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">import_module</span><span class="p">,</span> <span class="n">Dict</span>
 
-<span class="kn">from</span> <span class="nn">.read_fields</span> <span class="kn">import</span> <span class="n">read_wind_resource_field</span>
-<span class="kn">from</span> <span class="nn">.get_states</span> <span class="kn">import</span> <span class="n">get_states</span>
-<span class="kn">from</span> <span class="nn">.read_farm</span> <span class="kn">import</span> <span class="n">read_layout</span><span class="p">,</span> <span class="n">read_turbine_types</span>
+<span class="kn">from</span> <span class="nn">.read_site</span> <span class="kn">import</span> <span class="n">read_site</span>
+<span class="kn">from</span> <span class="nn">.read_farm</span> <span class="kn">import</span> <span class="n">read_farm</span>
 <span class="kn">from</span> <span class="nn">.read_attributes</span> <span class="kn">import</span> <span class="n">read_attributes</span>
+<span class="kn">from</span> <span class="nn">.read_outputs</span> <span class="kn">import</span> <span class="n">read_outputs</span>
 <span class="kn">from</span> <span class="nn">..dict</span> <span class="kn">import</span> <span class="n">run_dict</span>
-
-
-<span class="k">def</span> <span class="nf">_read_site</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads the site information&quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">_print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="n">level</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-    <span class="n">wio_site</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;site&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_dict</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.site&quot;</span><span class="p">)</span>
-    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;Reading site&quot;</span><span class="p">)</span>
-    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Name:&quot;</span><span class="p">,</span> <span class="n">wio_site</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio_site</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
-    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Ignoring boundaries&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-    <span class="c1"># read energy_resource:</span>
-    <span class="n">energy_resource</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
-        <span class="n">wio_site</span><span class="p">[</span><span class="s2">&quot;energy_resource&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_site</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.energy_resource&quot;</span>
-    <span class="p">)</span>
-    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Reading energy_resource&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;    Name:&quot;</span><span class="p">,</span> <span class="n">energy_resource</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;    Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">energy_resource</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-    <span class="c1"># read wind_resource:</span>
-    <span class="n">wind_resource</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
-        <span class="n">energy_resource</span><span class="p">[</span><span class="s2">&quot;wind_resource&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">energy_resource</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.wind_resource&quot;</span>
-    <span class="p">)</span>
-    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;    Reading wind_resource&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;      Name:&quot;</span><span class="p">,</span> <span class="n">wind_resource</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wind_resource</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-
-    <span class="c1"># read fields</span>
-    <span class="n">coords</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;coords&quot;</span><span class="p">)</span>
-    <span class="n">fields</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;fields&quot;</span><span class="p">)</span>
-    <span class="n">dims</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;dims&quot;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">wind_resource</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">read_wind_resource_field</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Coords:&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">coords</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;        </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">: Shape </span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Fields:&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dims</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;        </span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">: Dims </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">, shape </span><span class="si">{</span><span class="n">fields</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;        </span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">fields</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">get_states</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">_read_farm</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads the wind farm information&quot;&quot;&quot;</span>
-    <span class="n">wio_farm</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;wind_farm&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_dict</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.wind_farm&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading wind farm&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Name:&quot;</span><span class="p">,</span> <span class="n">wio_farm</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio_farm</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
-
-    <span class="c1"># find REWS exponents:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">rotor_averaging</span> <span class="o">=</span> <span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">][</span><span class="s2">&quot;analysis&quot;</span><span class="p">][</span><span class="s2">&quot;rotor_averaging&quot;</span><span class="p">]</span>
-        <span class="n">ws_exp_P</span> <span class="o">=</span> <span class="n">rotor_averaging</span><span class="p">[</span><span class="s2">&quot;wind_speed_exponent_for_power&quot;</span><span class="p">]</span>
-        <span class="n">ws_exp_ct</span> <span class="o">=</span> <span class="n">rotor_averaging</span><span class="p">[</span><span class="s2">&quot;wind_speed_exponent_for_ct&quot;</span><span class="p">]</span>
-    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-        <span class="n">ws_exp_P</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="n">ws_exp_ct</span> <span class="o">=</span> <span class="mi">1</span>
-
-    <span class="c1"># read turbine type:</span>
-    <span class="n">ttypes</span> <span class="o">=</span> <span class="n">read_turbine_types</span><span class="p">(</span><span class="n">wio_farm</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">ws_exp_P</span><span class="p">,</span> <span class="n">ws_exp_ct</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-
-    <span class="c1"># read layouts and create wind farm:</span>
-    <span class="n">farm</span> <span class="o">=</span> <span class="n">WindFarm</span><span class="p">()</span>
-    <span class="n">wfarm</span> <span class="o">=</span> <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;layouts&quot;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wfarm</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">layouts</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wfarm</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_farm</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.layouts&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">layouts</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">):</span> <span class="n">l</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wfarm</span><span class="p">)}</span>
-        <span class="n">layouts</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">layouts</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_farm</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.layouts&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading layouts&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">layouts</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
-    <span class="k">for</span> <span class="n">lname</span><span class="p">,</span> <span class="n">ldict</span> <span class="ow">in</span> <span class="n">layouts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">read_layout</span><span class="p">(</span><span class="n">lname</span><span class="p">,</span> <span class="n">ldict</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">ttypes</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">farm</span>
 
 
 <div class="viewcode-block" id="read_windio">
@@ -545,14 +459,12 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    idict: foxes.utils.Dict</span>
+<span class="sd">    idict: foxes.utils.Dict or dict</span>
 <span class="sd">        The foxes input data dictionary</span>
-<span class="sd">    states: foxes.core.States</span>
-<span class="sd">        The states object</span>
-<span class="sd">    farm: foxes.core.WindFarm</span>
-<span class="sd">        The wind farm</span>
-<span class="sd">    mbook: foxes.models.ModelBook</span>
-<span class="sd">        The model book</span>
+<span class="sd">    algo: foxes.core.Algorithm</span>
+<span class="sd">        The algorithm</span>
+<span class="sd">    odir: pathlib.Path</span>
+<span class="sd">        The output directory</span>
 
 <span class="sd">    :group: input.yaml.windio</span>
 
@@ -562,8 +474,11 @@
         <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="n">level</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">Dict</span><span class="p">):</span>
+        <span class="n">wio_dict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;windio&quot;</span><span class="p">)</span>
+
     <span class="n">_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading windio data&quot;</span><span class="p">)</span>
-    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Name:&quot;</span><span class="p">,</span> <span class="n">wio_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Name:&quot;</span><span class="p">,</span> <span class="n">wio_dict</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
 
     <span class="n">idict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
@@ -575,17 +490,28 @@
             <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span> <span class="o">-</span> <span class="mi">3</span><span class="p">,</span>
         <span class="p">),</span>
         <span class="n">calc_farm</span><span class="o">=</span><span class="n">Dict</span><span class="p">(</span><span class="n">run</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;wio2fxs.calc_farm&quot;</span><span class="p">),</span>
-        <span class="n">outputs</span><span class="o">=</span><span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;wio2fxs.outputs&quot;</span><span class="p">),</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;wio2fxs&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">mbook</span> <span class="o">=</span> <span class="n">ModelBook</span><span class="p">()</span>
-    <span class="n">states</span> <span class="o">=</span> <span class="n">_read_site</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-    <span class="n">farm</span> <span class="o">=</span> <span class="n">_read_farm</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="n">read_site</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+    <span class="n">farm</span> <span class="o">=</span> <span class="n">read_farm</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
-    <span class="n">odir</span> <span class="o">=</span> <span class="n">read_attributes</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">idict</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
+    <span class="n">wio_attrs</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_dict</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.attributes&quot;</span><span class="p">)</span>
+    <span class="n">read_attributes</span><span class="p">(</span><span class="n">wio_attrs</span><span class="p">,</span> <span class="n">idict</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">idict</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">odir</span></div>
+    <span class="n">algo</span> <span class="o">=</span> <span class="n">Algorithm</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+        <span class="n">farm</span><span class="o">=</span><span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span> <span class="n">mbook</span><span class="o">=</span><span class="n">mbook</span><span class="p">,</span> <span class="o">**</span><span class="n">idict</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;algorithm&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">odir</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="s2">&quot;model_outputs_specification&quot;</span> <span class="ow">in</span> <span class="n">wio_attrs</span><span class="p">:</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
+            <span class="n">wio_attrs</span><span class="p">[</span><span class="s2">&quot;model_outputs_specification&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_attrs</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.outputs&quot;</span>
+        <span class="p">)</span>
+        <span class="n">odir</span> <span class="o">=</span> <span class="n">read_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">odir</span></div>
 
 
 
@@ -608,7 +534,7 @@
         <span class="s2">&quot;yml_file&quot;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The windio yaml file&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--out_dir&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The output directory&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--output_dir&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The output directory&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-r&quot;</span><span class="p">,</span> <span class="s2">&quot;--rotor&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The rotor model&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;centre&quot;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="s2">&quot;--pwakes&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The partial wakes models&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;centre&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;+&quot;</span>
@@ -650,15 +576,13 @@
         <span class="s2">&quot;--verbosity&quot;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The verbosity level, 0 = silent&quot;</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-    <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span>
-
-    <span class="k">def</span> <span class="nf">_print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="n">level</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_print</span><span class="p">(</span><span class="o">*</span><span class="n">ags</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="n">level</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">ags</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="p">(</span>
         <span class="n">args</span><span class="o">.</span><span class="n">engine</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -671,7 +595,7 @@
             <span class="n">n_procs</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">n_procs</span><span class="p">,</span>
             <span class="n">chunk_size_states</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">chunksize_states</span><span class="p">,</span>
             <span class="n">chunk_size_points</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">chunksize_points</span><span class="p">,</span>
-            <span class="n">verbosity</span><span class="o">=</span><span class="n">v</span><span class="p">,</span>
+            <span class="n">verbosity</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">verbosity</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">epars</span> <span class="o">=</span> <span class="kc">None</span>
@@ -680,28 +604,27 @@
     <span class="n">_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading windio file </span><span class="si">{</span><span class="n">wio_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">yml_utils</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span>
         <span class="s2">&quot;windIO.utils.yml_utils&quot;</span><span class="p">,</span>
-        <span class="n">hint</span><span class="o">=</span><span class="s2">&quot;pip install git+https://github.com/kilojoules/windIO@master#egg=windIO&quot;</span><span class="p">,</span>
+        <span class="n">pip_hint</span><span class="o">=</span><span class="s2">&quot;pip install git+https://github.com/EUFLOW/windIO@master#egg=windIO&quot;</span><span class="p">,</span>
+        <span class="n">conda_hint</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">wio</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">yml_utils</span><span class="o">.</span><span class="n">load_yaml</span><span class="p">(</span><span class="n">wio_file</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;windio&quot;</span><span class="p">)</span>
-    <span class="n">idict</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">odir</span> <span class="o">=</span> <span class="n">read_windio</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">odir</span> <span class="o">=</span> <span class="n">read_windio</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">out_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">odir</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">odir</span>
 
     <span class="n">run_dict</span><span class="p">(</span>
         <span class="n">idict</span><span class="p">,</span>
-        <span class="n">farm</span><span class="o">=</span><span class="n">farm</span><span class="p">,</span>
-        <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span>
-        <span class="n">mbook</span><span class="o">=</span><span class="n">mbook</span><span class="p">,</span>
+        <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
         <span class="n">rotor_model</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">rotor</span><span class="p">,</span>
         <span class="n">partial_wakes</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">pwakes</span><span class="p">,</span>
         <span class="n">wake_models</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">wakes</span><span class="p">,</span>
         <span class="n">wake_frame</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">frame</span><span class="p">,</span>
         <span class="n">engine_pars</span><span class="o">=</span><span class="n">epars</span><span class="p">,</span>
         <span class="n">iterative</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">iterative</span><span class="p">,</span>
-        <span class="n">work_dir</span><span class="o">=</span><span class="n">wio_file</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span>
-        <span class="n">out_dir</span><span class="o">=</span><span class="n">odir</span><span class="p">,</span>
+        <span class="n">input_dir</span><span class="o">=</span><span class="n">wio_file</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span>
+        <span class="n">output_dir</span><span class="o">=</span><span class="n">odir</span><span class="p">,</span>
         <span class="n">verbosity</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">verbosity</span><span class="p">,</span>
     <span class="p">)</span></div>
 
