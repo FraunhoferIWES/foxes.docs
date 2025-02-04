@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.farm_layout - foxes 1.2.5 documentation</title>
+        <title>foxes.output.farm_layout - foxes 1.3 documentation</title>
       
     
     
@@ -36,7 +36,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.3625f807144f53acf.min.css?v=fbfc4466" />
+        <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.d69cbd15d52a24b41.min.css?v=a37d4f05" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.2.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.3 documentation" class="md-header__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2.5 documentation
+            foxes 1.3 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.2.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.3 documentation" class="md-nav__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2.5 documentation
+    foxes 1.3 documentation
   </label>
   
     <div class="md-nav__source">
@@ -430,20 +430,21 @@
 
 
 <h1>Source code for foxes.output.farm_layout</h1><div class="highlight"><pre>
-<span></span><code><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
+<span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_axes_locatable</span>
 
-<span class="kn">from</span> <span class="nn">foxes.config</span> <span class="kn">import</span> <span class="n">config</span>
-<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
-<span class="kn">from</span> <span class="nn">foxes.output.output</span> <span class="kn">import</span> <span class="n">Output</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.output.output</span><span class="w"> </span><span class="kn">import</span> <span class="n">Output</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">foxes.variables</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FV</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">foxes.constants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FC</span>
 
 
 <div class="viewcode-block" id="FarmLayoutOutput">
 <a class="viewcode-back" href="../../../api_output.html#foxes.output.FarmLayoutOutput">[docs]</a>
-<span class="k">class</span> <span class="nc">FarmLayoutOutput</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FarmLayoutOutput</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the farm layout</span>
 
@@ -466,7 +467,7 @@
 
 <div class="viewcode-block" id="FarmLayoutOutput.__init__">
 <a class="viewcode-back" href="../../../_foxes/output/FarmLayoutOutput.__init__.html#foxes.output.FarmLayoutOutput.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">farm</span><span class="p">,</span>
         <span class="n">farm_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -510,7 +511,7 @@
 
 <div class="viewcode-block" id="FarmLayoutOutput.get_layout_data">
 <a class="viewcode-back" href="../../../_foxes/output/FarmLayoutOutput.get_layout_data.html#foxes.output.FarmLayoutOutput.get_layout_data">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_layout_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_layout_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns wind farm layout.</span>
 
@@ -540,7 +541,7 @@
 
 <div class="viewcode-block" id="FarmLayoutOutput.get_layout_dict">
 <a class="viewcode-back" href="../../../_foxes/output/FarmLayoutOutput.get_layout_dict.html#foxes.output.FarmLayoutOutput.get_layout_dict">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_layout_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_layout_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns wind farm layout.</span>
 
@@ -569,7 +570,7 @@
 
 <div class="viewcode-block" id="FarmLayoutOutput.get_figure">
 <a class="viewcode-back" href="../../../_foxes/output/FarmLayoutOutput.get_figure.html#foxes.output.FarmLayoutOutput.get_figure">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_figure</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_figure</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">color_by</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
@@ -674,9 +675,16 @@
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fres</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing farm_results for color_by &#39;</span><span class="si">{</span><span class="n">color_by</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">color_by</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;mean_&quot;</span><span class="p">:</span>
-                    <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span>
-                        <span class="s2">&quot;st,st-&gt;t&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fres</span><span class="p">[</span><span class="n">color_by</span><span class="p">[</span><span class="mi">5</span><span class="p">:]],</span> <span class="bp">self</span><span class="o">.</span><span class="n">fres</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span>
-                    <span class="p">)</span>
+                    <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fres</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">weights</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,):</span>
+                        <span class="n">wx</span> <span class="o">=</span> <span class="s2">&quot;s&quot;</span>
+                    <span class="k">elif</span> <span class="n">weights</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">):</span>
+                        <span class="n">wx</span> <span class="o">=</span> <span class="s2">&quot;st&quot;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;Unsupported dimensions for &#39;</span><span class="si">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="si">}</span><span class="s2">&#39;: Expecting &#39;</span><span class="si">{</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,)</span><span class="si">}</span><span class="s2">&#39; or &#39;</span><span class="si">{</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span><span class="w"> </span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;, got &#39;</span><span class="si">{</span><span class="n">weights</span><span class="o">.</span><span class="n">dims</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+                        <span class="p">)</span>
+                    <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;st,</span><span class="si">{</span><span class="n">wx</span><span class="si">}</span><span class="s2">-&gt;t&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fres</span><span class="p">[</span><span class="n">color_by</span><span class="p">[</span><span class="mi">5</span><span class="p">:]],</span> <span class="n">weights</span><span class="p">)</span>
                 <span class="k">elif</span> <span class="n">color_by</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;sum_&quot;</span><span class="p">:</span>
                     <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fres</span><span class="p">[</span><span class="n">color_by</span><span class="p">[</span><span class="mi">4</span><span class="p">:]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
                 <span class="k">elif</span> <span class="n">color_by</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;min_&quot;</span><span class="p">:</span>
@@ -741,7 +749,7 @@
 
 <div class="viewcode-block" id="FarmLayoutOutput.write_plot">
 <a class="viewcode-back" href="../../../_foxes/output/FarmLayoutOutput.write_plot.html#foxes.output.FarmLayoutOutput.write_plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">write_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Writes the layout plot to file.</span>
 
@@ -769,7 +777,7 @@
 
 <div class="viewcode-block" id="FarmLayoutOutput.write_xyh">
 <a class="viewcode-back" href="../../../_foxes/output/FarmLayoutOutput.write_xyh.html#foxes.output.FarmLayoutOutput.write_xyh">[docs]</a>
-    <span class="k">def</span> <span class="nf">write_xyh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_xyh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Writes xyh layout file.</span>
 
@@ -789,7 +797,7 @@
 
 <div class="viewcode-block" id="FarmLayoutOutput.write_csv">
 <a class="viewcode-back" href="../../../_foxes/output/FarmLayoutOutput.write_csv.html#foxes.output.FarmLayoutOutput.write_csv">[docs]</a>
-    <span class="k">def</span> <span class="nf">write_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">type_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">type_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">algo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Writes csv layout file.</span>
 
@@ -826,7 +834,7 @@
 
 <div class="viewcode-block" id="FarmLayoutOutput.write_json">
 <a class="viewcode-back" href="../../../_foxes/output/FarmLayoutOutput.write_json.html#foxes.output.FarmLayoutOutput.write_json">[docs]</a>
-    <span class="k">def</span> <span class="nf">write_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Writes xyh layout file.</span>
 

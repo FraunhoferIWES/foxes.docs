@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.models.wake_frames.timelines - foxes 1.2.5 documentation</title>
+        <title>foxes.models.wake_frames.timelines - foxes 1.3 documentation</title>
       
     
     
@@ -36,7 +36,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.3625f807144f53acf.min.css?v=fbfc4466" />
+        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.d69cbd15d52a24b41.min.css?v=a37d4f05" />
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 1.2.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.3 documentation" class="md-header__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2.5 documentation
+            foxes 1.3 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 1.2.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.3 documentation" class="md-nav__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2.5 documentation
+    foxes 1.3 documentation
   </label>
   
     <div class="md-nav__source">
@@ -430,20 +430,20 @@
 
 
 <h1>Source code for foxes.models.wake_frames.timelines</h1><div class="highlight"><pre>
-<span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">xarray</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
 
-<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WakeFrame</span><span class="p">,</span> <span class="n">MData</span><span class="p">,</span> <span class="n">FData</span><span class="p">,</span> <span class="n">TData</span>
-<span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">wd2uv</span>
-<span class="kn">from</span> <span class="nn">foxes.algorithms.iterative</span> <span class="kn">import</span> <span class="n">Iterative</span>
-<span class="kn">from</span> <span class="nn">foxes.config</span> <span class="kn">import</span> <span class="n">config</span>
-<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
-<span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">WakeFrame</span><span class="p">,</span> <span class="n">MData</span><span class="p">,</span> <span class="n">FData</span><span class="p">,</span> <span class="n">TData</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">wd2uv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.algorithms.iterative</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterative</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">foxes.variables</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FV</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">foxes.constants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FC</span>
 
 
 <div class="viewcode-block" id="Timelines">
 <a class="viewcode-back" href="../../../../api_models.html#foxes.models.wake_frames.Timelines">[docs]</a>
-<span class="k">class</span> <span class="nc">Timelines</span><span class="p">(</span><span class="n">WakeFrame</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Timelines</span><span class="p">(</span><span class="n">WakeFrame</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Dynamic wakes for spatially uniform timeseries states.</span>
 
@@ -464,7 +464,7 @@
 
 <div class="viewcode-block" id="Timelines.__init__">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.__init__.html#foxes.models.wake_frames.Timelines.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_length_km</span><span class="o">=</span><span class="mf">2e4</span><span class="p">,</span> <span class="n">cl_ipars</span><span class="o">=</span><span class="p">{},</span> <span class="n">dt_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_length_km</span><span class="o">=</span><span class="mf">2e4</span><span class="p">,</span> <span class="n">cl_ipars</span><span class="o">=</span><span class="p">{},</span> <span class="n">dt_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -489,11 +489,11 @@
 
 <div class="viewcode-block" id="Timelines.__repr__">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.__repr__.html#foxes.models.wake_frames.Timelines.__repr__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(dt_min=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dt_min</span><span class="si">}</span><span class="s2">, max_length_km=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_length_km</span><span class="si">}</span><span class="s2">)&quot;</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_precalc_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">heights</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">,</span> <span class="n">needs_res</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_precalc_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">heights</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">,</span> <span class="n">needs_res</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper function for pre-calculation of ambient wind vectors&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -545,6 +545,7 @@
 
         <span class="c1"># calculate all heights:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dxy&quot;</span><span class="p">:</span> <span class="p">((</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="s2">&quot;dir&quot;</span><span class="p">),</span> <span class="p">[])}</span>
+        <span class="n">weight_data</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">heights</span><span class="p">:</span>
 
             <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -558,6 +559,13 @@
             <span class="p">)</span>
 
             <span class="n">res</span> <span class="o">=</span> <span class="n">states</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">weight_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">weight_data</span> <span class="o">=</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,),</span> <span class="n">tdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">tdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span> <span class="o">==</span> <span class="n">weight_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: weight data mismatch between heights&quot;</span>
+                <span class="p">)</span>
             <span class="k">del</span> <span class="n">tdata</span>
 
             <span class="n">uv</span> <span class="o">=</span> <span class="n">wd2uv</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">])[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
@@ -603,9 +611,11 @@
             <span class="p">},</span>
         <span class="p">)</span>
 
+        <span class="k">return</span> <span class="n">weight_data</span>
+
 <div class="viewcode-block" id="Timelines.initialize">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.initialize.html#foxes.models.wake_frames.Timelines.initialize">[docs]</a>
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the model.</span>
 
@@ -632,7 +642,7 @@
         <span class="n">heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">t2h</span><span class="p">)</span>
 
         <span class="c1"># pre-calc data:</span>
-        <span class="kn">from</span> <span class="nn">foxes.input.states</span> <span class="kn">import</span> <span class="n">OnePointFlowTimeseries</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.input.states</span><span class="w"> </span><span class="kn">import</span> <span class="n">OnePointFlowTimeseries</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="p">,</span> <span class="n">OnePointFlowTimeseries</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_precalc_data</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">base_states</span><span class="p">,</span> <span class="n">heights</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
@@ -642,7 +652,7 @@
 
 <div class="viewcode-block" id="Timelines.set_running">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.set_running.html#foxes.models.wake_frames.Timelines.set_running">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_running</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_running</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">data_stash</span><span class="p">,</span>
@@ -685,7 +695,7 @@
 
 <div class="viewcode-block" id="Timelines.unset_running">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.unset_running.html#foxes.models.wake_frames.Timelines.unset_running">[docs]</a>
-    <span class="k">def</span> <span class="nf">unset_running</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unset_running</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">data_stash</span><span class="p">,</span>
@@ -721,7 +731,7 @@
 
 <div class="viewcode-block" id="Timelines.calc_order">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.calc_order.html#foxes.models.wake_frames.Timelines.calc_order">[docs]</a>
-    <span class="k">def</span> <span class="nf">calc_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">calc_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the order of turbine evaluation.</span>
 
@@ -750,7 +760,7 @@
 
 <div class="viewcode-block" id="Timelines.get_wake_coos">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.get_wake_coos.html#foxes.models.wake_frames.Timelines.get_wake_coos">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_wake_coos</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_wake_coos</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">algo</span><span class="p">,</span>
         <span class="n">mdata</span><span class="p">,</span>
@@ -815,7 +825,7 @@
             <span class="n">h_trace_si</span> <span class="o">=</span> <span class="n">trace_si</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
             <span class="c1"># flake8: noqa: F821</span>
-            <span class="k">def</span> <span class="nf">_update_wcoos</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">_update_wcoos</span><span class="p">(</span><span class="n">sel</span><span class="p">):</span>
 <span class="w">                </span><span class="sd">&quot;&quot;&quot;Local function that updates coordinates and source times&quot;&quot;&quot;</span>
                 <span class="k">nonlocal</span> <span class="n">wcoosx</span><span class="p">,</span> <span class="n">wcoosy</span><span class="p">,</span> <span class="n">trace_si</span>
                 <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">trace_p</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -879,7 +889,7 @@
 
 <div class="viewcode-block" id="Timelines.get_centreline_points">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.get_centreline_points.html#foxes.models.wake_frames.Timelines.get_centreline_points">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_centreline_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">downwind_index</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_centreline_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">downwind_index</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets the points along the centreline for given</span>
 <span class="sd">        values of x.</span>
@@ -956,7 +966,7 @@
 
 <div class="viewcode-block" id="Timelines.finalize">
 <a class="viewcode-back" href="../../../../_foxes/models/wake_frames/Timelines.finalize.html#foxes.models.wake_frames.Timelines.finalize">[docs]</a>
-    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Finalizes the model.</span>
 

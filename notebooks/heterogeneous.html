@@ -13,7 +13,7 @@
     
     
       
-        <title>Heterogeneous flow - foxes 1.2.5 documentation</title>
+        <title>Heterogeneous flow - foxes 1.3 documentation</title>
       
     
     
@@ -36,7 +36,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.3625f807144f53acf.min.css?v=fbfc4466" />
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.d69cbd15d52a24b41.min.css?v=a37d4f05" />
         <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -72,7 +72,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 1.2.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="../index.html" title="foxes 1.3 documentation" class="md-header__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -84,7 +84,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2.5 documentation
+            foxes 1.3 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -171,12 +171,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 1.2.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="../index.html" title="foxes 1.3 documentation" class="md-nav__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2.5 documentation
+    foxes 1.3 documentation
   </label>
   
     <div class="md-nav__source">
@@ -690,7 +690,7 @@
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js'></script>
 <script>require=requirejs;</script><h1 id="Heterogeneous-flow">Heterogeneous flow<a class="headerlink" href="#Heterogeneous-flow" title="Link to this heading">¶</a></h1>
-<p>The best way to run <code class="docutils literal notranslate"><span class="pre">foxes</span></code> calculations on heterogeneous background flow fields is by providing them in <code class="docutils literal notranslate"><span class="pre">netCDF</span></code> format. They should contain the following coordinates:</p>
+<p>The best way to run <code class="docutils literal notranslate"><span class="pre">foxes</span></code> calculations on heterogeneous background flow fields is by providing them in <code class="docutils literal notranslate"><span class="pre">netCDF</span></code> format. The following coordinates are supported (can be <code class="docutils literal notranslate"><span class="pre">None</span></code> if not present):</p>
 <ul class="simple">
 <li><p>A state coordinate, e.g. <code class="docutils literal notranslate"><span class="pre">Time</span></code> (expected by default) or <code class="docutils literal notranslate"><span class="pre">state</span></code>, or similar</p></li>
 <li><p>A height coordinate, e.g. <code class="docutils literal notranslate"><span class="pre">height</span></code> (expected by default) or <code class="docutils literal notranslate"><span class="pre">h</span></code>, or similar</p></li>
@@ -711,11 +711,11 @@
 </code></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">foxes</span>
-<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">foxes</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">foxes.variables</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FV</span>
 </code></pre></div>
 </div>
 </div>
@@ -736,11 +736,13 @@
     <span class="n">fixed_vars</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">:</span> <span class="mf">1.225</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
     <span class="n">load_mode</span><span class="o">=</span><span class="s2">&quot;preload&quot;</span><span class="p">,</span>
     <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">bounds_extra_space</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
-<p>Note that it is recommended that the <code class="docutils literal notranslate"><span class="pre">states</span></code> object should be created outside the <code class="docutils literal notranslate"><span class="pre">DaskRunner</span></code> when working with NetCFD input.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">bounds_extra_space</span></code> parameter is here set to 1000 meters. Alternatively, distances can be specified as multiples of the rotor diameter as string, e.g., <code class="docutils literal notranslate"><span class="pre">2D</span></code>. If not <code class="docutils literal notranslate"><span class="pre">None</span></code> this cuts the input data spatially to the specified extension of the wind farm boundary area.</p>
+<p>Note that it is recommended that the <code class="docutils literal notranslate"><span class="pre">states</span></code> object should be created outside the <code class="docutils literal notranslate"><span class="pre">Engine</span></code> context when working with NetCFD input.</p>
 <p>Now back to our example. Let’s place a simple 3 x 3 grid wind farm inside the data domain, which is a rectangle between <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> and <code class="docutils literal notranslate"><span class="pre">(2500,</span> <span class="pre">2500)</span></code>:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [3]:
@@ -840,7 +842,7 @@ ProcessEngine: Computing 32 chunks using 16 processes
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 32/32 [00:01&lt;00:00, 21.35it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████| 32/32 [00:01&lt;00:00, 18.56it/s]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">

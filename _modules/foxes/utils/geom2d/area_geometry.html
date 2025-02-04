@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.utils.geom2d.area_geometry - foxes 1.2.5 documentation</title>
+        <title>foxes.utils.geom2d.area_geometry - foxes 1.3 documentation</title>
       
     
     
@@ -36,7 +36,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.3625f807144f53acf.min.css?v=fbfc4466" />
+        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.d69cbd15d52a24b41.min.css?v=a37d4f05" />
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 1.2.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.3 documentation" class="md-header__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2.5 documentation
+            foxes 1.3 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 1.2.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.3 documentation" class="md-nav__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2.5 documentation
+    foxes 1.3 documentation
   </label>
   
     <div class="md-nav__source">
@@ -430,15 +430,15 @@
 
 
 <h1>Source code for foxes.utils.geom2d.area_geometry</h1><div class="highlight"><pre>
-<span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
+<span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">ListedColormap</span>
 
 
 <div class="viewcode-block" id="AreaGeometry">
 <a class="viewcode-back" href="../../../../api_utils.html#foxes.utils.geom2d.AreaGeometry">[docs]</a>
-<span class="k">class</span> <span class="nc">AreaGeometry</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AreaGeometry</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for closed 2D geometries.</span>
 
@@ -449,7 +449,7 @@
 <div class="viewcode-block" id="AreaGeometry.p_min">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaIntersection.html#foxes.utils.geom2d.AreaGeometry.p_min">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">p_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">p_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns minimal (x,y) point.</span>
 
@@ -465,7 +465,7 @@
 <div class="viewcode-block" id="AreaGeometry.p_max">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaIntersection.html#foxes.utils.geom2d.AreaGeometry.p_max">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">p_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">p_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns maximal (x,y) point.</span>
 
@@ -481,7 +481,7 @@
 <div class="viewcode-block" id="AreaGeometry.points_distance">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaIntersection.html#foxes.utils.geom2d.AreaGeometry.points_distance">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">points_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">return_nearest</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">points_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">return_nearest</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates point distances wrt boundary.</span>
 
@@ -508,7 +508,7 @@
 <div class="viewcode-block" id="AreaGeometry.points_inside">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaIntersection.html#foxes.utils.geom2d.AreaGeometry.points_inside">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">points_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">points_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tests if points are inside the geometry.</span>
 
@@ -528,7 +528,7 @@
 
 <div class="viewcode-block" id="AreaGeometry.add_to_figure">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaIntersection.html#foxes.utils.geom2d.AreaGeometry.add_to_figure">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_to_figure</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_to_figure</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">ax</span><span class="p">,</span>
         <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -643,7 +643,7 @@
 
 <div class="viewcode-block" id="AreaGeometry.inverse">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/ClosedPolygon.html#foxes.utils.geom2d.AreaGeometry.inverse">[docs]</a>
-    <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the inverted geometry</span>
 
@@ -656,7 +656,7 @@
         <span class="k">return</span> <span class="n">InvertedAreaGeometry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">AreaUnion</span><span class="p">([</span><span class="bp">self</span><span class="p">]</span> <span class="o">+</span> <span class="n">g</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">AreaUnion</span><span class="p">):</span>
@@ -664,7 +664,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">AreaUnion</span><span class="p">([</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">AreaIntersection</span><span class="p">([</span><span class="bp">self</span><span class="p">]</span> <span class="o">+</span> <span class="n">g</span><span class="o">.</span><span class="n">inverse</span><span class="p">())</span>
         <span class="k">else</span><span class="p">:</span>
@@ -674,7 +674,7 @@
 
 <div class="viewcode-block" id="InvertedAreaGeometry">
 <a class="viewcode-back" href="../../../../api_utils.html#foxes.utils.geom2d.InvertedAreaGeometry">[docs]</a>
-<span class="k">class</span> <span class="nc">InvertedAreaGeometry</span><span class="p">(</span><span class="n">AreaGeometry</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">InvertedAreaGeometry</span><span class="p">(</span><span class="n">AreaGeometry</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for inverted geometries.</span>
 
@@ -684,7 +684,7 @@
 
 <div class="viewcode-block" id="InvertedAreaGeometry.__init__">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/InvertedAreaGeometry.__init__.html#foxes.utils.geom2d.InvertedAreaGeometry.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometry</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometry</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -699,7 +699,7 @@
 
 <div class="viewcode-block" id="InvertedAreaGeometry.p_min">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/InvertedAreaGeometry.p_min.html#foxes.utils.geom2d.InvertedAreaGeometry.p_min">[docs]</a>
-    <span class="k">def</span> <span class="nf">p_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">p_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns minimal (x,y) point.</span>
 
@@ -727,7 +727,7 @@
 
 <div class="viewcode-block" id="InvertedAreaGeometry.p_max">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/InvertedAreaGeometry.p_max.html#foxes.utils.geom2d.InvertedAreaGeometry.p_max">[docs]</a>
-    <span class="k">def</span> <span class="nf">p_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">p_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns maximal (x,y) point.</span>
 
@@ -755,7 +755,7 @@
 
 <div class="viewcode-block" id="InvertedAreaGeometry.points_distance">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/InvertedAreaGeometry.points_distance.html#foxes.utils.geom2d.InvertedAreaGeometry.points_distance">[docs]</a>
-    <span class="k">def</span> <span class="nf">points_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">return_nearest</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">points_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">return_nearest</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates point distances wrt boundary.</span>
 
@@ -781,7 +781,7 @@
 
 <div class="viewcode-block" id="InvertedAreaGeometry.points_inside">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/InvertedAreaGeometry.points_inside.html#foxes.utils.geom2d.InvertedAreaGeometry.points_inside">[docs]</a>
-    <span class="k">def</span> <span class="nf">points_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">points_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tests if points are inside the geometry.</span>
 
@@ -801,7 +801,7 @@
 
 <div class="viewcode-block" id="InvertedAreaGeometry.add_to_figure">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/InvertedAreaGeometry.add_to_figure.html#foxes.utils.geom2d.InvertedAreaGeometry.add_to_figure">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_to_figure</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_to_figure</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">ax</span><span class="p">,</span>
         <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -842,7 +842,7 @@
 
 <div class="viewcode-block" id="InvertedAreaGeometry.inverse">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/InvertedAreaGeometry.inverse.html#foxes.utils.geom2d.InvertedAreaGeometry.inverse">[docs]</a>
-    <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the inverted geometry</span>
 
@@ -859,7 +859,7 @@
 
 <div class="viewcode-block" id="AreaUnion">
 <a class="viewcode-back" href="../../../../api_utils.html#foxes.utils.geom2d.AreaUnion">[docs]</a>
-<span class="k">class</span> <span class="nc">AreaUnion</span><span class="p">(</span><span class="n">AreaGeometry</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AreaUnion</span><span class="p">(</span><span class="n">AreaGeometry</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The union of area geometries.</span>
 
@@ -874,7 +874,7 @@
 
 <div class="viewcode-block" id="AreaUnion.__init__">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaUnion.__init__.html#foxes.utils.geom2d.AreaUnion.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometries</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometries</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -889,7 +889,7 @@
 
 <div class="viewcode-block" id="AreaUnion.p_min">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaUnion.p_min.html#foxes.utils.geom2d.AreaUnion.p_min">[docs]</a>
-    <span class="k">def</span> <span class="nf">p_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">p_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns minimal (x,y) point.</span>
 
@@ -911,7 +911,7 @@
 
 <div class="viewcode-block" id="AreaUnion.p_max">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaUnion.p_max.html#foxes.utils.geom2d.AreaUnion.p_max">[docs]</a>
-    <span class="k">def</span> <span class="nf">p_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">p_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns maximal (x,y) point.</span>
 
@@ -933,7 +933,7 @@
 
 <div class="viewcode-block" id="AreaUnion.points_distance">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaUnion.points_distance.html#foxes.utils.geom2d.AreaUnion.points_distance">[docs]</a>
-    <span class="k">def</span> <span class="nf">points_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">return_nearest</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">points_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">return_nearest</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates point distances wrt boundary.</span>
 
@@ -996,7 +996,7 @@
 
 <div class="viewcode-block" id="AreaUnion.points_inside">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaUnion.points_inside.html#foxes.utils.geom2d.AreaUnion.points_inside">[docs]</a>
-    <span class="k">def</span> <span class="nf">points_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">points_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tests if points are inside the geometry.</span>
 
@@ -1023,7 +1023,7 @@
 
 <div class="viewcode-block" id="AreaUnion.add_to_figure">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaUnion.add_to_figure.html#foxes.utils.geom2d.AreaUnion.add_to_figure">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_to_figure</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_to_figure</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">ax</span><span class="p">,</span>
         <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -1071,7 +1071,7 @@
 
 <div class="viewcode-block" id="AreaUnion.inverse">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaUnion.inverse.html#foxes.utils.geom2d.AreaUnion.inverse">[docs]</a>
-    <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the inverted geometry</span>
 
@@ -1084,7 +1084,7 @@
         <span class="k">return</span> <span class="n">InvertedAreaUnion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">AreaUnion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geometries</span> <span class="o">+</span> <span class="n">g</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">AreaUnion</span><span class="p">):</span>
@@ -1094,7 +1094,7 @@
 
 
 
-<span class="k">class</span> <span class="nc">InvertedAreaUnion</span><span class="p">(</span><span class="n">InvertedAreaGeometry</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">InvertedAreaUnion</span><span class="p">(</span><span class="n">InvertedAreaGeometry</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Inversion of a union of areas</span>
 
@@ -1102,7 +1102,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">union</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">union</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 
@@ -1114,7 +1114,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">union</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">p_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">p_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns minimal (x,y) point.</span>
 
@@ -1142,7 +1142,7 @@
                     <span class="n">out</span><span class="p">[</span><span class="n">di</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
             <span class="k">return</span> <span class="n">out</span>
 
-    <span class="k">def</span> <span class="nf">p_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">p_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns maximal (x,y) point.</span>
 
@@ -1173,7 +1173,7 @@
 
 <div class="viewcode-block" id="AreaIntersection">
 <a class="viewcode-back" href="../../../../api_utils.html#foxes.utils.geom2d.AreaIntersection">[docs]</a>
-<span class="k">class</span> <span class="nc">AreaIntersection</span><span class="p">(</span><span class="n">AreaGeometry</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AreaIntersection</span><span class="p">(</span><span class="n">AreaGeometry</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The intersection of area geometries.</span>
 
@@ -1183,7 +1183,7 @@
 
 <div class="viewcode-block" id="AreaIntersection.__new__">
 <a class="viewcode-back" href="../../../../_foxes/utils/geom2d/AreaIntersection.__new__.html#foxes.utils.geom2d.AreaIntersection.__new__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">geometries</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">geometries</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor.</span>
 

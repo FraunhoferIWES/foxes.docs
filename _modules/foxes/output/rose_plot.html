@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.output.rose_plot - foxes 1.2.5 documentation</title>
+        <title>foxes.output.rose_plot - foxes 1.3 documentation</title>
       
     
     
@@ -36,7 +36,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.3625f807144f53acf.min.css?v=fbfc4466" />
+        <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_immaterial_theme.d69cbd15d52a24b41.min.css?v=a37d4f05" />
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.2.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.3 documentation" class="md-header__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2.5 documentation
+            foxes 1.3 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.2.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.3 documentation" class="md-nav__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2.5 documentation
+    foxes 1.3 documentation
   </label>
   
     <div class="md-nav__source">
@@ -430,25 +430,25 @@
 
 
 <h1>Source code for foxes.output.rose_plot</h1><div class="highlight"><pre>
-<span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">xarray</span> <span class="kn">import</span> <span class="n">Dataset</span>
-<span class="kn">from</span> <span class="nn">matplotlib.cm</span> <span class="kn">import</span> <span class="n">ScalarMappable</span>
-<span class="kn">from</span> <span class="nn">matplotlib.projections.polar</span> <span class="kn">import</span> <span class="n">PolarAxes</span>
-<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
+<span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.cm</span><span class="w"> </span><span class="kn">import</span> <span class="n">ScalarMappable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.projections.polar</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolarAxes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.lines</span><span class="w"> </span><span class="kn">import</span> <span class="n">Line2D</span>
 
-<span class="kn">from</span> <span class="nn">foxes.algorithms</span> <span class="kn">import</span> <span class="n">Downwind</span>
-<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">WindFarm</span><span class="p">,</span> <span class="n">Turbine</span>
-<span class="kn">from</span> <span class="nn">foxes.models</span> <span class="kn">import</span> <span class="n">ModelBook</span>
-<span class="kn">import</span> <span class="nn">foxes.variables</span> <span class="k">as</span> <span class="nn">FV</span>
-<span class="kn">import</span> <span class="nn">foxes.constants</span> <span class="k">as</span> <span class="nn">FC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.algorithms</span><span class="w"> </span><span class="kn">import</span> <span class="n">Downwind</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">WindFarm</span><span class="p">,</span> <span class="n">Turbine</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelBook</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">foxes.variables</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FV</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">foxes.constants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FC</span>
 
-<span class="kn">from</span> <span class="nn">.output</span> <span class="kn">import</span> <span class="n">Output</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.output</span><span class="w"> </span><span class="kn">import</span> <span class="n">Output</span>
 
 
 <div class="viewcode-block" id="RosePlotOutput">
 <a class="viewcode-back" href="../../../api_output.html#foxes.output.RosePlotOutput">[docs]</a>
-<span class="k">class</span> <span class="nc">RosePlotOutput</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RosePlotOutput</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">     Class for rose plot creation</span>
 
@@ -463,7 +463,7 @@
 
 <div class="viewcode-block" id="RosePlotOutput.__init__">
 <a class="viewcode-back" href="../../../_foxes/output/RosePlotOutput.__init__.html#foxes.output.RosePlotOutput.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">farm_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">point_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -500,7 +500,7 @@
 <div class="viewcode-block" id="RosePlotOutput.get_data_info">
 <a class="viewcode-back" href="../../../_foxes/output/StatesRosePlotOutput.html#foxes.output.RosePlotOutput.get_data_info">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_data_info</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dname</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_data_info</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dname</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns default description for a variable.</span>
 
@@ -555,7 +555,7 @@
 
 <div class="viewcode-block" id="RosePlotOutput.get_data">
 <a class="viewcode-back" href="../../../_foxes/output/StatesRosePlotOutput.html#foxes.output.RosePlotOutput.get_data">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">wd_sectors</span><span class="p">,</span>
         <span class="n">ws_var</span><span class="p">,</span>
@@ -593,9 +593,19 @@
 <span class="sd">            The plot data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,):</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">):</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">turbine</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">):</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">point</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Wrong dimensions for &#39;</span><span class="si">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="si">}</span><span class="s2">&#39;. Expecting </span><span class="si">{</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,)</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span><span class="w"> </span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span><span class="si">}</span><span class="s2"> or </span><span class="si">{</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span><span class="w"> </span><span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">)</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
         <span class="k">if</span> <span class="n">add_inf</span><span class="p">:</span>
             <span class="n">ws_bins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ws_bins</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
-        <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">turbine</span><span class="p">]</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">turbine</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rtype</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span> <span class="k">else</span> <span class="n">point</span>
         <span class="n">ws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">ws_var</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">t</span><span class="p">]</span>
         <span class="n">wd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -629,7 +639,7 @@
 
 <div class="viewcode-block" id="RosePlotOutput.get_figure">
 <a class="viewcode-back" href="../../../_foxes/output/StatesRosePlotOutput.html#foxes.output.RosePlotOutput.get_figure">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_figure</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_figure</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">wd_sectors</span><span class="p">,</span>
         <span class="n">ws_var</span><span class="p">,</span>
@@ -754,7 +764,7 @@
 
 <div class="viewcode-block" id="RosePlotOutput.write_figure">
 <a class="viewcode-back" href="../../../_foxes/output/StatesRosePlotOutput.html#foxes.output.RosePlotOutput.write_figure">[docs]</a>
-    <span class="k">def</span> <span class="nf">write_figure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">ret_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_figure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">ret_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Write rose plot to file</span>
 
@@ -789,7 +799,7 @@
 
 <div class="viewcode-block" id="StatesRosePlotOutput">
 <a class="viewcode-back" href="../../../api_output.html#foxes.output.StatesRosePlotOutput">[docs]</a>
-<span class="k">class</span> <span class="nc">StatesRosePlotOutput</span><span class="p">(</span><span class="n">RosePlotOutput</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">StatesRosePlotOutput</span><span class="p">(</span><span class="n">RosePlotOutput</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for rose plot creation directly from states</span>
 <span class="sd">    :group: output</span>
@@ -797,7 +807,7 @@
 
 <div class="viewcode-block" id="StatesRosePlotOutput.__init__">
 <a class="viewcode-back" href="../../../_foxes/output/StatesRosePlotOutput.__init__.html#foxes.output.StatesRosePlotOutput.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">states</span><span class="p">,</span>
         <span class="n">point</span><span class="p">,</span>
@@ -844,7 +854,7 @@
 
 <div class="viewcode-block" id="WindRoseBinPlot">
 <a class="viewcode-back" href="../../../api_output.html#foxes.output.WindRoseBinPlot">[docs]</a>
-<span class="k">class</span> <span class="nc">WindRoseBinPlot</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">WindRoseBinPlot</span><span class="p">(</span><span class="n">Output</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plots mean data in wind rose bins</span>
 
@@ -859,7 +869,7 @@
 
 <div class="viewcode-block" id="WindRoseBinPlot.__init__">
 <a class="viewcode-back" href="../../../_foxes/output/WindRoseBinPlot.__init__.html#foxes.output.WindRoseBinPlot.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">farm_results</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor</span>
 
@@ -877,7 +887,7 @@
 
 <div class="viewcode-block" id="WindRoseBinPlot.get_data">
 <a class="viewcode-back" href="../../../_foxes/output/WindRoseBinPlot.get_data.html#foxes.output.WindRoseBinPlot.get_data">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">variable</span><span class="p">,</span>
         <span class="n">ws_bins</span><span class="p">,</span>
@@ -912,8 +922,16 @@
 <span class="sd">            The plot data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,):</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">):</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">turbine</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Wrong dimensions for &#39;</span><span class="si">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="si">}</span><span class="s2">&#39;. Expecting </span><span class="si">{</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,)</span><span class="si">}</span><span class="s2"> or </span><span class="si">{</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span><span class="w"> </span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
         <span class="n">var</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">turbine</span><span class="p">]</span>
-        <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">turbine</span><span class="p">]</span>
         <span class="n">ws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">ws_var</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">turbine</span><span class="p">]</span>
         <span class="n">wd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_results</span><span class="p">[</span><span class="n">wd_var</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="n">turbine</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">wd_delta</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="n">wd_sectors</span>
@@ -955,7 +973,7 @@
 
 <div class="viewcode-block" id="WindRoseBinPlot.get_figure">
 <a class="viewcode-back" href="../../../_foxes/output/WindRoseBinPlot.get_figure.html#foxes.output.WindRoseBinPlot.get_figure">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_figure</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_figure</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">variable</span><span class="p">,</span>
         <span class="n">ws_bins</span><span class="p">,</span>
@@ -1055,7 +1073,7 @@
 
 <div class="viewcode-block" id="WindRoseBinPlot.write_figure">
 <a class="viewcode-back" href="../../../_foxes/output/WindRoseBinPlot.write_figure.html#foxes.output.WindRoseBinPlot.write_figure">[docs]</a>
-    <span class="k">def</span> <span class="nf">write_figure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">ret_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_figure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">ret_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Write rose plot to file</span>
 

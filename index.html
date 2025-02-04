@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes 1.2.5 documentation</title>
+        <title>foxes 1.3 documentation</title>
       
     
     
@@ -36,7 +36,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="_static/sphinx_immaterial_theme.3625f807144f53acf.min.css?v=fbfc4466" />
+        <link rel="stylesheet" type="text/css" href="_static/sphinx_immaterial_theme.d69cbd15d52a24b41.min.css?v=a37d4f05" />
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -76,7 +76,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="#" title="foxes 1.2.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="#" title="foxes 1.3 documentation" class="md-header__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -88,7 +88,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2.5 documentation
+            foxes 1.3 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -175,12 +175,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="#" title="foxes 1.2.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="#" title="foxes 1.3 documentation" class="md-nav__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2.5 documentation
+    foxes 1.3 documentation
   </label>
   
     <div class="md-nav__source">
@@ -473,17 +473,10 @@
 
 
 <img alt="_images/Logo_FOXES.svg" class="align-center" src="_images/Logo_FOXES.svg" />
-<div class="admonition versionchanged">
-<p class="admonition-title"><span class="versionmodified changed">Changed in version 1.2.3: </span><cite>FieldDataNC</cite> now with more efficient parallel loading of large data, replacing <cite>pre_load</cite> flag with load
-mode options <cite>preload</cite>, <cite>lazy</cite>, <cite>fly</cite></p>
-</div>
-<div class="admonition versionchanged">
-<p class="admonition-title"><span class="versionmodified changed">Changed in version 1.2.3: </span>Removing states class <cite>SliceDataNC</cite>, since now <cite>FieldDataNC</cite> can also handle data without height dependency</p>
-</div>
-<div class="admonition versionchanged">
-<p class="admonition-title"><span class="versionmodified changed">Changed in version 1.2.1: </span>Output <cite>FarmResultsEval</cite>: Renaming contraction rule <cite>mean</cite> as <cite>weights</cite>. Usually this
-is the contraction rule of choice for AEP and other weighted mean computations wrt states.
-Also introducing the rule <cite>mean_no_weights</cite>, for special cases and debugging.</p>
+<div class="admonition versionadded">
+<p class="admonition-title"><span class="versionmodified added">Added in version 1.3: </span>Input states <cite>WRGStates</cite>, representing wind resource grid data, ie, a regular grid of wind roses.
+This required a change of the treatment of statistical weights of the states, such that they
+may now depend on the evaluation point.</p>
 </div>
 <div class="admonition versionadded">
 <p class="admonition-title"><span class="versionmodified added">Added in version 1.2: </span>Running <em>foxes</em> from <a class="reference internal" href="parameter_files.html#input-parameter-files"><span class="std std-ref">Input parameter files</span></a> in <em>yaml</em> format,
@@ -494,10 +487,6 @@ simply by <cite>foxes_yaml imputs.yaml</cite> or <cite>foxes_windio inputs.yaml<
 The default is now based on <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a> and comes with a speedup.
 Also <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/">mpi4py</a> is now supported, for simplified
 multi-node computations.</p>
-</div>
-<div class="admonition versionadded">
-<p class="admonition-title"><span class="versionmodified added">Added in version 1.0: </span>New wake frame <a class="reference internal" href="notebooks/dyn_wakes.html#Dynamic-Wakes-1"><span class="std std-ref">DynamicWakes</span></a>: Chunk-based vectorized dynamic
-wakes for any kind of inflow</p>
 </div>
 <h1 id="welcome-to-foxes">Welcome to FOXES<a class="headerlink" href="#welcome-to-foxes" title="Link to this heading">¶</a></h1>
 <p><em>Farm Optimization and eXtended yield Evaluation Software</em></p>

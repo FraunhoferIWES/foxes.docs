@@ -13,7 +13,7 @@
     
     
       
-        <title>foxes.algorithms.iterative.iterative - foxes 1.2.5 documentation</title>
+        <title>foxes.algorithms.iterative.iterative - foxes 1.3 documentation</title>
       
     
     
@@ -36,7 +36,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.3625f807144f53acf.min.css?v=fbfc4466" />
+        <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_immaterial_theme.d69cbd15d52a24b41.min.css?v=a37d4f05" />
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -71,7 +71,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 1.2.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.3 documentation" class="md-header__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.2.5 documentation
+            foxes 1.3 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -170,12 +170,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 1.2.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.2.5 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.3 documentation" class="md-nav__button md-logo" aria-label="foxes 1.3 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
     </a>
-    foxes 1.2.5 documentation
+    foxes 1.3 documentation
   </label>
   
     <div class="md-nav__source">
@@ -430,17 +430,17 @@
 
 
 <h1>Source code for foxes.algorithms.iterative.iterative</h1><div class="highlight"><pre>
-<span></span><code><span class="kn">from</span> <span class="nn">foxes.algorithms.downwind.downwind</span> <span class="kn">import</span> <span class="n">Downwind</span>
+<span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">foxes.algorithms.downwind.downwind</span><span class="w"> </span><span class="kn">import</span> <span class="n">Downwind</span>
 
-<span class="kn">from</span> <span class="nn">foxes.core</span> <span class="kn">import</span> <span class="n">FarmDataModelList</span>
-<span class="kn">from</span> <span class="nn">foxes.utils</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">FarmDataModelList</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">models</span> <span class="k">as</span> <span class="n">mdls</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span> <span class="k">as</span> <span class="n">mdls</span>
 
 
 <div class="viewcode-block" id="Iterative">
 <a class="viewcode-back" href="../../../../api_algorithms_iterative.html#foxes.algorithms.Iterative">[docs]</a>
-<span class="k">class</span> <span class="nc">Iterative</span><span class="p">(</span><span class="n">Downwind</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Iterative</span><span class="p">(</span><span class="n">Downwind</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Iterative calculation of farm data.</span>
 
@@ -460,7 +460,7 @@
 <div class="viewcode-block" id="Iterative.get_model">
 <a class="viewcode-back" href="../../../../_foxes/algorithms/Iterative.get_model.html#foxes.algorithms.Iterative.get_model">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the algorithm specific model</span>
 
@@ -483,7 +483,7 @@
 
 <div class="viewcode-block" id="Iterative.__init__">
 <a class="viewcode-back" href="../../../../_foxes/algorithms/Iterative.__init__.html#foxes.algorithms.Iterative.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="n">max_it</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -527,7 +527,7 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">farm_results_downwind</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">farm_results_downwind</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets the all-chunks farm results in downwind order</span>
 <span class="sd">        from the previous iteration</span>
@@ -542,7 +542,7 @@
 
 <div class="viewcode-block" id="Iterative.set_urelax">
 <a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.html#foxes.algorithms.Iterative.set_urelax">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_urelax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry_point</span><span class="p">,</span> <span class="o">**</span><span class="n">urel</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_urelax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry_point</span><span class="p">,</span> <span class="o">**</span><span class="n">urel</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets under-relaxation parameters.</span>
 
@@ -570,7 +570,7 @@
 
 <div class="viewcode-block" id="Iterative.initialize">
 <a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.html#foxes.algorithms.Iterative.initialize">[docs]</a>
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the algorithm.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -581,7 +581,7 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">urelax</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">urelax</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the under-relaxation parameters</span>
 
@@ -594,7 +594,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_urelax</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">iterations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">iterations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The current iteration number</span>
 
@@ -606,7 +606,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_it</span>
 
-    <span class="k">def</span> <span class="nf">_collect_farm_models</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_collect_farm_models</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">outputs</span><span class="p">,</span>
         <span class="n">calc_parameters</span><span class="p">,</span>
@@ -689,19 +689,19 @@
 
             <span class="k">return</span> <span class="n">mlist</span><span class="p">,</span> <span class="n">calc_pars</span>
 
-    <span class="k">def</span> <span class="nf">_calc_farm_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mlist</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_farm_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mlist</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper function that gathers the farm variables&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_it</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_calc_farm_vars</span><span class="p">(</span><span class="n">mlist</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_launch_parallel_farm_calc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mlist</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_launch_parallel_farm_calc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mlist</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper function for running the main farm calculation&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_launch_parallel_farm_calc</span><span class="p">(</span>
             <span class="n">mlist</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">farm_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__prev_farm_results</span><span class="p">,</span> <span class="n">iterative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">final_iteration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">final_iteration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Flag for the final iteration</span>
 
@@ -715,7 +715,7 @@
 
 <div class="viewcode-block" id="Iterative.calc_farm">
 <a class="viewcode-back" href="../../../../_foxes/algorithms/Iterative.calc_farm.html#foxes.algorithms.Iterative.calc_farm">[docs]</a>
-    <span class="k">def</span> <span class="nf">calc_farm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ret_dwnd_order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">calc_farm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ret_dwnd_order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate farm data.</span>
 
