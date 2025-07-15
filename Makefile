@@ -1,5 +1,6 @@
 html: clean
-	cp $(FOXES)/docs/build/ docs -rp
+	cp $(FOXES)/docs/build/ . -rp
+	ln -s build/html docs
 
 clean:
-	rm -rf _* notebooks *.html objects.inv   searchindex.js  sitemap.xml docs 
+	rm -rf _* notebooks *.html objects.inv   searchindex.js  sitemap.xml docs build
