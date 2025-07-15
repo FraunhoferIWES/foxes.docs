@@ -1,7 +1,7 @@
 html: clean
-	cp $(FOXES)/docs/build/ . -rp
-	ln -s build/html docs
+	cp $(FOXES)/docs/build/html/ docs -rp
+	cp $(FOXES)/docs/build/doctrees . -rp
 	cp .nojekyll docs/
 
 clean:
-	rm -rf _* notebooks *.html objects.inv   searchindex.js  sitemap.xml docs build
+	rm -rf _* notebooks *.html objects.inv   searchindex.js  sitemap.xml docs doctrees
