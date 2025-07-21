@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.input.yaml.windio.read_site - foxes 1.4 documentation</title>
+        <title>foxes.input.yaml.windio.read_site - foxes 1.5 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 1.4 documentation" class="md-header__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.4 documentation
+            foxes 1.5 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 1.4 documentation" class="md-nav__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.4 documentation
+    foxes 1.5 documentation
   </label>
   
     <div class="md-nav__source">
@@ -734,11 +734,118 @@
             <span class="nb">dict</span><span class="p">(</span>
                 <span class="n">states_type</span><span class="o">=</span><span class="s2">&quot;WeibullSectors&quot;</span><span class="p">,</span>
                 <span class="n">data_source</span><span class="o">=</span><span class="n">sdata</span><span class="p">,</span>
-                <span class="n">ws_bins</span><span class="o">=</span><span class="n">coords</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">)),</span>
+                <span class="n">ws_bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sdata</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="n">output_vars</span><span class="o">=</span><span class="n">ovars</span><span class="p">,</span>
                 <span class="n">var2ncvar</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">:</span> <span class="s2">&quot;sector_probability&quot;</span><span class="p">},</span>
                 <span class="n">fixed_vars</span><span class="o">=</span><span class="n">fix</span><span class="p">,</span>
                 <span class="n">profiles</span><span class="o">=</span><span class="n">profiles</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_WeibullPointCloud</span><span class="p">(</span>
+    <span class="n">coords</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">states_dict</span><span class="p">,</span> <span class="n">ovars</span><span class="p">,</span> <span class="n">fixval</span><span class="p">,</span> <span class="n">profiles</span><span class="p">,</span> <span class="n">verbosity</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Try to generate Weibull sector parameters</span>
+<span class="sd">    :group: input.yaml.windio</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">FV</span><span class="o">.</span><span class="n">WD</span> <span class="ow">in</span> <span class="n">coords</span>
+        <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_A</span> <span class="ow">in</span> <span class="n">fields</span>
+        <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_k</span> <span class="ow">in</span> <span class="n">fields</span>
+        <span class="ow">and</span> <span class="s2">&quot;sector_probability&quot;</span> <span class="ow">in</span> <span class="n">fields</span>
+        <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">X</span> <span class="ow">in</span> <span class="n">fields</span>
+        <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span> <span class="ow">in</span> <span class="n">fields</span>
+        <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="ow">and</span> <span class="n">dims</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">]</span> <span class="o">==</span> <span class="n">dims</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">]</span>
+        <span class="ow">and</span> <span class="n">dims</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span>
+        <span class="ow">and</span> <span class="n">dims</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">coords</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        selecting class &#39;WeibullPointCloud&#39;&quot;</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">fix</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">fields</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">fix</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span>
+            <span class="k">elif</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fixval</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">d</span><span class="p">)</span>
+        <span class="n">fix</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">v</span><span class="p">:</span> <span class="n">d</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">fixval</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">})</span>
+
+        <span class="n">sdata</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
+            <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>
+            <span class="n">data_vars</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">states_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">states_type</span><span class="o">=</span><span class="s2">&quot;WeibullPointCloud&quot;</span><span class="p">,</span>
+                <span class="n">data_source</span><span class="o">=</span><span class="n">sdata</span><span class="p">,</span>
+                <span class="n">output_vars</span><span class="o">=</span><span class="n">ovars</span><span class="p">,</span>
+                <span class="n">var2ncvar</span><span class="o">=</span><span class="p">{},</span>
+                <span class="n">fixed_vars</span><span class="o">=</span><span class="n">fix</span><span class="p">,</span>
+                <span class="n">point_coord</span><span class="o">=</span><span class="n">dims</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">wd_coord</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span>
+                <span class="n">ws_coord</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">in</span> <span class="n">sdata</span><span class="o">.</span><span class="n">coords</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">ws_bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sdata</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">x_ncvar</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">,</span>
+                <span class="n">y_ncvar</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span>
+                <span class="n">h_ncvar</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">H</span> <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">H</span> <span class="ow">in</span> <span class="n">sdata</span><span class="o">.</span><span class="n">data_vars</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">weight_ncvar</span><span class="o">=</span><span class="s2">&quot;sector_probability&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_WeibullField</span><span class="p">(</span>
+    <span class="n">coords</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">states_dict</span><span class="p">,</span> <span class="n">ovars</span><span class="p">,</span> <span class="n">fixval</span><span class="p">,</span> <span class="n">profiles</span><span class="p">,</span> <span class="n">verbosity</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Try to generate Weibull sector parameters</span>
+<span class="sd">    :group: input.yaml.windio</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">FV</span><span class="o">.</span><span class="n">WD</span> <span class="ow">in</span> <span class="n">coords</span>
+        <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">X</span> <span class="ow">in</span> <span class="n">coords</span>
+        <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span> <span class="ow">in</span> <span class="n">coords</span>
+        <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_A</span> <span class="ow">in</span> <span class="n">fields</span>
+        <span class="ow">and</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_k</span> <span class="ow">in</span> <span class="n">fields</span>
+        <span class="ow">and</span> <span class="s2">&quot;sector_probability&quot;</span> <span class="ow">in</span> <span class="n">fields</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        selecting class &#39;WeibullField&#39;&quot;</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">fix</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">fields</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">fix</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span>
+            <span class="k">elif</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fixval</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">d</span><span class="p">)</span>
+        <span class="n">fix</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">v</span><span class="p">:</span> <span class="n">d</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">fixval</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">})</span>
+
+        <span class="n">sdata</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
+            <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>
+            <span class="n">data_vars</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">states_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">states_type</span><span class="o">=</span><span class="s2">&quot;WeibullField&quot;</span><span class="p">,</span>
+                <span class="n">data_source</span><span class="o">=</span><span class="n">sdata</span><span class="p">,</span>
+                <span class="n">output_vars</span><span class="o">=</span><span class="n">ovars</span><span class="p">,</span>
+                <span class="n">wd_coord</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span>
+                <span class="n">x_coord</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">,</span>
+                <span class="n">y_coord</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span>
+                <span class="n">h_coord</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">H</span> <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">H</span> <span class="ow">in</span> <span class="n">sdata</span><span class="o">.</span><span class="n">coords</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">weight_ncvar</span><span class="o">=</span><span class="s2">&quot;sector_probability&quot;</span><span class="p">,</span>
+                <span class="n">var2ncvar</span><span class="o">=</span><span class="p">{},</span>
+                <span class="n">fixed_vars</span><span class="o">=</span><span class="n">fix</span><span class="p">,</span>
+                <span class="n">ws_bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sdata</span><span class="o">.</span><span class="n">coords</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">ws_coord</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">in</span> <span class="n">sdata</span><span class="o">.</span><span class="n">coords</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span>
@@ -772,7 +879,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Creating states&quot;</span><span class="p">)</span>
 
     <span class="n">ovars</span> <span class="o">=</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">]</span>
-    <span class="n">fixval</span> <span class="o">=</span> <span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">:</span> <span class="mf">1.225</span><span class="p">}</span>
+    <span class="n">fixval</span> <span class="o">=</span> <span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">:</span> <span class="mf">1.225</span><span class="p">}</span>
     <span class="n">profiles</span> <span class="o">=</span> <span class="n">_get_profiles</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">ovars</span><span class="p">,</span> <span class="n">fixval</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
     <span class="n">states_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -786,7 +893,13 @@
         <span class="ow">or</span> <span class="n">_get_MultiHeightNCTimeseries</span><span class="p">(</span>
             <span class="n">coords</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">states_dict</span><span class="p">,</span> <span class="n">ovars</span><span class="p">,</span> <span class="n">fixval</span><span class="p">,</span> <span class="n">profiles</span><span class="p">,</span> <span class="n">verbosity</span>
         <span class="p">)</span>
+        <span class="ow">or</span> <span class="n">_get_WeibullPointCloud</span><span class="p">(</span>
+            <span class="n">coords</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">states_dict</span><span class="p">,</span> <span class="n">ovars</span><span class="p">,</span> <span class="n">fixval</span><span class="p">,</span> <span class="n">profiles</span><span class="p">,</span> <span class="n">verbosity</span>
+        <span class="p">)</span>
         <span class="ow">or</span> <span class="n">_get_WeibullSectors</span><span class="p">(</span>
+            <span class="n">coords</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">states_dict</span><span class="p">,</span> <span class="n">ovars</span><span class="p">,</span> <span class="n">fixval</span><span class="p">,</span> <span class="n">profiles</span><span class="p">,</span> <span class="n">verbosity</span>
+        <span class="p">)</span>
+        <span class="ow">or</span> <span class="n">_get_WeibullField</span><span class="p">(</span>
             <span class="n">coords</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">states_dict</span><span class="p">,</span> <span class="n">ovars</span><span class="p">,</span> <span class="n">fixval</span><span class="p">,</span> <span class="n">profiles</span><span class="p">,</span> <span class="n">verbosity</span>
         <span class="p">)</span>
     <span class="p">):</span>
@@ -798,7 +911,7 @@
 
 
 <div class="viewcode-block" id="read_site">
-<a class="viewcode-back" href="../../../../../api_input.html#foxes.input.yaml.windio.read_site">[docs]</a>
+<a class="viewcode-back" href="../../../../../_foxes/input/yaml/windio/read_site.html#foxes.input.yaml.windio.read_site">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">read_site</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Reads the site information</span>
@@ -823,32 +936,28 @@
         <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="n">level</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="n">wio_site</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;site&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_dict</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.site&quot;</span><span class="p">)</span>
+    <span class="n">wio_site</span> <span class="o">=</span> <span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;site&quot;</span><span class="p">]</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;Reading site&quot;</span><span class="p">)</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Name:&quot;</span><span class="p">,</span> <span class="n">wio_site</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio_site</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Ignoring boundaries&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="c1"># read energy_resource:</span>
-    <span class="n">energy_resource</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
-        <span class="n">wio_site</span><span class="p">[</span><span class="s2">&quot;energy_resource&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_site</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.energy_resource&quot;</span>
-    <span class="p">)</span>
+    <span class="n">energy_resource</span> <span class="o">=</span> <span class="n">wio_site</span><span class="p">[</span><span class="s2">&quot;energy_resource&quot;</span><span class="p">]</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Reading energy_resource&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;    Name:&quot;</span><span class="p">,</span> <span class="n">energy_resource</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;    Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">energy_resource</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="c1"># read wind_resource:</span>
-    <span class="n">wind_resource</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
-        <span class="n">energy_resource</span><span class="p">[</span><span class="s2">&quot;wind_resource&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">energy_resource</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.wind_resource&quot;</span>
-    <span class="p">)</span>
+    <span class="n">wind_resource</span> <span class="o">=</span> <span class="n">energy_resource</span><span class="p">[</span><span class="s2">&quot;wind_resource&quot;</span><span class="p">]</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;    Reading wind_resource&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;      Name:&quot;</span><span class="p">,</span> <span class="n">wind_resource</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wind_resource</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
     <span class="c1"># read fields</span>
-    <span class="n">coords</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;coords&quot;</span><span class="p">)</span>
-    <span class="n">fields</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;fields&quot;</span><span class="p">)</span>
-    <span class="n">dims</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;dims&quot;</span><span class="p">)</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">_name</span><span class="o">=</span><span class="s2">&quot;coords&quot;</span><span class="p">)</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">_name</span><span class="o">=</span><span class="s2">&quot;fields&quot;</span><span class="p">)</span>
+    <span class="n">dims</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">_name</span><span class="o">=</span><span class="s2">&quot;dims&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">wind_resource</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">read_wind_resource_field</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>

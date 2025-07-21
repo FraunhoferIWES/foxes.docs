@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.core.engine - foxes 1.4 documentation</title>
+        <title>foxes.core.engine - foxes 1.5 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.4 documentation" class="md-header__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.4 documentation
+            foxes 1.5 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.4 documentation" class="md-nav__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.4 documentation
+    foxes 1.5 documentation
   </label>
   
     <div class="md-nav__source">
@@ -543,7 +543,6 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">MData</span><span class="p">,</span> <span class="n">FData</span><span class="p">,</span> <span class="n">TData</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">new_instance</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">foxes.constants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FC</span>
 
 <span class="n">__global_engine_data__</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -552,7 +551,7 @@
 
 
 <div class="viewcode-block" id="Engine">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.Engine">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/Engine.html#foxes.core.Engine">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Engine</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base clas for foxes calculation engines</span>
@@ -915,8 +914,9 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        data: list of foxes.core.Data</span>
-<span class="sd">            Either [mdata, fdata] or [mdata, fdata, tdata]</span>
+<span class="sd">        data: tuple of foxes.core.Data</span>
+<span class="sd">            The input data for the chunk calculation,</span>
+<span class="sd">            either (mdata, fdata) or (mdata, fdata, tdata)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># prepare:</span>
@@ -935,51 +935,37 @@
         <span class="p">)</span>
 
         <span class="c1"># create fdata:</span>
-        <span class="k">if</span> <span class="n">point_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-
-            <span class="k">def</span><span class="w"> </span><span class="nf">cb</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="p">):</span>
-                <span class="n">n_states</span> <span class="o">=</span> <span class="n">i1_states</span> <span class="o">-</span> <span class="n">i0_states</span>
-                <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">out_vars</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
-                    <span class="n">data</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
-                        <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span>
-                    <span class="p">)</span>
-                    <span class="n">dims</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
-
+        <span class="k">if</span> <span class="n">farm_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fdata</span> <span class="o">=</span> <span class="n">FData</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span>
+                <span class="n">farm_data</span><span class="p">,</span>
+                <span class="n">mdata</span><span class="o">=</span><span class="n">mdata</span><span class="p">,</span>
+                <span class="n">s_states</span><span class="o">=</span><span class="n">s_states</span><span class="p">,</span>
+                <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">states_i0</span><span class="o">=</span><span class="n">i0_states</span><span class="p">,</span>
+                <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">cb</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">fdata</span> <span class="o">=</span> <span class="n">FData</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span>
-            <span class="n">farm_data</span><span class="p">,</span>
-            <span class="n">mdata</span><span class="o">=</span><span class="n">mdata</span><span class="p">,</span>
-            <span class="n">s_states</span><span class="o">=</span><span class="n">s_states</span><span class="p">,</span>
-            <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">,</span>
-            <span class="n">states_i0</span><span class="o">=</span><span class="n">i0_states</span><span class="p">,</span>
-            <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="p">)</span>
+            <span class="n">fdata</span> <span class="o">=</span> <span class="n">FData</span><span class="o">.</span><span class="n">from_mdata</span><span class="p">(</span>
+                <span class="n">mdata</span><span class="o">=</span><span class="n">mdata</span><span class="p">,</span>
+                <span class="n">states_i0</span><span class="o">=</span><span class="n">i0_states</span><span class="p">,</span>
+            <span class="p">)</span>
 
         <span class="c1"># create tdata:</span>
-        <span class="n">tdata</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="n">point_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-            <span class="k">def</span><span class="w"> </span><span class="nf">cb</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="p">):</span>
-                <span class="n">n_states</span> <span class="o">=</span> <span class="n">i1_states</span> <span class="o">-</span> <span class="n">i0_states</span>
-                <span class="n">n_targets</span> <span class="o">=</span> <span class="n">i1_targets</span> <span class="o">-</span> <span class="n">i0_targets</span>
-                <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">out_vars</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
-                    <span class="n">data</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
-                        <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_targets</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span>
-                    <span class="p">)</span>
-                    <span class="n">dims</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span>
-
-            <span class="n">tdata</span> <span class="o">=</span> <span class="n">TData</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span>
+        <span class="n">tdata</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">TData</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span>
                 <span class="n">point_data</span><span class="p">,</span>
                 <span class="n">mdata</span><span class="o">=</span><span class="n">mdata</span><span class="p">,</span>
                 <span class="n">s_states</span><span class="o">=</span><span class="n">s_states</span><span class="p">,</span>
                 <span class="n">s_targets</span><span class="o">=</span><span class="n">s_targets</span><span class="p">,</span>
-                <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">,</span>
+                <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">states_i0</span><span class="o">=</span><span class="n">i0_states</span><span class="p">,</span>
                 <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="p">)</span>
+            <span class="k">if</span> <span class="n">point_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
 
-        <span class="k">return</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">[</span><span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">]</span> <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">(</span><span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">)</span> <span class="k">if</span> <span class="n">tdata</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Engine.combine_results">
@@ -1106,7 +1092,14 @@
 <div class="viewcode-block" id="Engine.run_calculation">
 <a class="viewcode-back" href="../../../_foxes/engines/DaskBaseEngine.html#foxes.core.Engine.run_calculation">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">run_calculation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_data</span><span class="p">,</span> <span class="n">farm_data</span><span class="p">,</span> <span class="n">point_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_calculation</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">algo</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">,</span>
+        <span class="n">model_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">farm_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">point_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs the model calculation</span>
 
@@ -1114,12 +1107,12 @@
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The algorithm object</span>
-<span class="sd">        model: foxes.core.DataCalcModel</span>
+<span class="sd">        model: foxes.core.DataCalcModel, optional</span>
 <span class="sd">            The model that whose calculate function</span>
 <span class="sd">            should be run</span>
 <span class="sd">        model_data: xarray.Dataset</span>
 <span class="sd">            The initial model data</span>
-<span class="sd">        farm_data: xarray.Dataset</span>
+<span class="sd">        farm_data: xarray.Dataset, optional</span>
 <span class="sd">            The initial farm data</span>
 <span class="sd">        point_data: xarray.Dataset, optional</span>
 <span class="sd">            The initial point data</span>
@@ -1187,7 +1180,7 @@
 
 
 <div class="viewcode-block" id="get_engine">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.get_engine">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/get_engine.html#foxes.core.get_engine">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_engine</span><span class="p">(</span><span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets the global calculation engine</span>
@@ -1231,7 +1224,7 @@
 
 
 <div class="viewcode-block" id="has_engine">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.has_engine">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/has_engine.html#foxes.core.has_engine">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">has_engine</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Flag that checks if engine has been set</span>
@@ -1249,7 +1242,7 @@
 
 
 <div class="viewcode-block" id="reset_engine">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.reset_engine">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/reset_engine.html#foxes.core.reset_engine">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">reset_engine</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Resets the global calculation engine</span>

@@ -21,7 +21,7 @@
     
     
       
-        <title>Installation - foxes 1.4 documentation</title>
+        <title>Installation - foxes 1.5 documentation</title>
       
     
     
@@ -83,7 +83,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="foxes 1.4 documentation" class="md-header__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="index.html" title="foxes 1.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -96,7 +96,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.4 documentation
+            foxes 1.5 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -191,12 +191,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="foxes 1.4 documentation" class="md-nav__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="index.html" title="foxes 1.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.4 documentation
+    foxes 1.5 documentation
   </label>
   
     <div class="md-nav__source">
@@ -860,7 +860,7 @@
 
 <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Link to this heading">¶</a></h2>
-<p>The supported Python versions are <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.8</span></code>…<code class="docutils literal notranslate"><span class="pre">3.13</span></code>.</p>
+<p>The supported Python versions are <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.9</span></code>…<code class="docutils literal notranslate"><span class="pre">3.13</span></code>.</p>
 <h2 id="tldr-quick-installation-guide">TLDR; Quick installation guide<a class="headerlink" href="#tldr-quick-installation-guide" title="Link to this heading">¶</a></h2>
 <p>Either install via pip:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><code><span class="go">pip install foxes</span>
@@ -924,17 +924,11 @@ quicker conda installations, can be found below.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>eng</p></td>
-<td><p>Installs all engine dependencies</p></td>
-</tr>
-<tr class="row-odd"><td><p>eng0</p></td>
-<td><p>Like <code class="docutils literal notranslate"><span class="pre">eng</span></code>, but without <code class="docutils literal notranslate"><span class="pre">mpi4py</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>dask</p></td>
-<td><p>Installs dependencies for <code class="docutils literal notranslate"><span class="pre">dask</span></code> engine</p></td>
-</tr>
-<tr class="row-odd"><td><p>opt</p></td>
+<tr class="row-even"><td><p>opt</p></td>
 <td><p>Installs <a class="reference external" href="https://github.com/FraunhoferIWES/foxes-opt">foxes-opt</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>dask</p></td>
+<td><p>Installs dependencies for <code class="docutils literal notranslate"><span class="pre">dask</span></code> engine</p></td>
 </tr>
 <tr class="row-even"><td><p>test</p></td>
 <td><p>Dependencies for running the tests</p></td>
@@ -942,21 +936,21 @@ quicker conda installations, can be found below.</p>
 <tr class="row-odd"><td><p>doc</p></td>
 <td><p>Dependencies for creating the docs</p></td>
 </tr>
-<tr class="row-even"><td><p>dev</p></td>
-<td><p>Usefull tools for code development</p></td>
+<tr class="row-even"><td><p>utils</p></td>
+<td><p>Dependencies for utilities</p></td>
 </tr>
 </tbody>
 </table>
-<p>As an example, the optional dependencies <code class="docutils literal notranslate"><span class="pre">eng0</span></code> are installed by</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><code><span class="go">pip install foxes[eng0]</span>
+<p>As an example, the optional dependencies <code class="docutils literal notranslate"><span class="pre">test</span></code> are installed by</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><code><span class="go">pip install foxes[test]</span>
 </code></pre></div>
 </div>
-<p>or, for development mode, from the <code class="docutils literal notranslate"><span class="pre">foxes</span></code> root directory by</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><code><span class="go">pip install -e .[eng0]</span>
+<p>or, for development mode, from the <code class="docutils literal notranslate"><span class="pre">test</span></code> root directory by</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><code><span class="go">pip install -e .[test]</span>
 </code></pre></div>
 </div>
 <p>Note that options can also be combined, e.g.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><code><span class="go">pip install foxes[test,dev,eng0]</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><code><span class="go">pip install foxes[test,opt]</span>
 </code></pre></div>
 </div>
 <h2 id="installation-via-conda">Installation via conda<a class="headerlink" href="#installation-via-conda" title="Link to this heading">¶</a></h2>

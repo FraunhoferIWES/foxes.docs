@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.input.states.weibull_sectors - foxes 1.4 documentation</title>
+        <title>foxes.input.states.weibull_sectors - foxes 1.5 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 1.4 documentation" class="md-header__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.4 documentation
+            foxes 1.5 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 1.4 documentation" class="md-nav__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.4 documentation
+    foxes 1.5 documentation
   </label>
   
     <div class="md-nav__source">
@@ -550,7 +550,7 @@
 
 
 <div class="viewcode-block" id="WeibullSectors">
-<a class="viewcode-back" href="../../../../api_input.html#foxes.input.states.WeibullSectors">[docs]</a>
+<a class="viewcode-back" href="../../../../_foxes/input/states/WeibullSectors.html#foxes.input.states.WeibullSectors">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">WeibullSectors</span><span class="p">(</span><span class="n">StatesTable</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    States with wind speed from Weibull parameters</span>
@@ -568,6 +568,8 @@
 <span class="sd">        Subset selection via xr.Dataset.sel()</span>
 <span class="sd">    isel: dict</span>
 <span class="sd">        Subset selection via xr.Dataset.isel()</span>
+<span class="sd">    rpars: dict</span>
+<span class="sd">        Additional parameters for reading the file</span>
 <span class="sd">    RDICT: dict</span>
 <span class="sd">        Default xarray file reading parameters</span>
 
@@ -587,6 +589,7 @@
         <span class="n">var2ncvar</span><span class="o">=</span><span class="p">{},</span>
         <span class="n">sel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">isel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">read_pars</span><span class="o">=</span><span class="p">{},</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -608,6 +611,8 @@
 <span class="sd">            Subset selection via xr.Dataset.sel()</span>
 <span class="sd">        isel: dict, optional</span>
 <span class="sd">            Subset selection via xr.Dataset.isel()</span>
+<span class="sd">        read_pars: dict</span>
+<span class="sd">            Additional parameters for reading the file</span>
 <span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Additional arguments for the base class</span>
 
@@ -617,6 +622,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">var2ncvar</span> <span class="o">=</span> <span class="n">var2ncvar</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sel</span> <span class="o">=</span> <span class="n">sel</span> <span class="k">if</span> <span class="n">sel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">isel</span> <span class="o">=</span> <span class="n">isel</span> <span class="k">if</span> <span class="n">isel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rpars</span> <span class="o">=</span> <span class="n">read_pars</span>
 
         <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ovars</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -628,14 +634,204 @@
                     <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Cannot have &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; as output variable&quot;</span>
                 <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_original_data_source</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_data</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="WeibullSectors.__repr__">
 <a class="viewcode-back" href="../../../../_foxes/input/states/WeibullSectors.__repr__.html#foxes.input.states.WeibullSectors.__repr__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(ws_bins=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_ws</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(n_wd=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_wd</span><span class="si">}</span><span class="s2">, n_ws=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_ws</span><span class="si">}</span><span class="s2">)&quot;</span></div>
 
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_read_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">point_coord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extracts data from file or Dataset.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The calculation algorithm</span>
+<span class="sd">        point_coord: str, optional</span>
+<span class="sd">            The coordinate name representing the point index</span>
+<span class="sd">        verbosity: int</span>
+<span class="sd">            The verbosity level, 0 = silent</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        data: xarray.Dataset</span>
+<span class="sd">            The input data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># store original data</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_data</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_original_data</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># read file or grab data</span>
+        <span class="n">cwd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var2ncvar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">PathLike</span><span class="p">)):</span>
+            <span class="n">fpath</span> <span class="o">=</span> <span class="n">get_input_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">fpath</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Reading static data &#39;</span><span class="si">{</span><span class="n">fpath</span><span class="si">}</span><span class="s2">&#39; from context &#39;</span><span class="si">{</span><span class="n">STATES</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+                    <span class="p">)</span>
+                <span class="n">fpath</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">dbook</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span><span class="n">STATES</span><span class="p">,</span> <span class="n">fpath</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">check_raw</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Path: </span><span class="si">{</span><span class="n">fpath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Reading file </span><span class="si">{</span><span class="n">fpath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">rpars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RDICT</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">rpars</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fpath</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s2">&quot;.nc&quot;</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">open_dataset</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">nc_engine</span><span class="p">,</span> <span class="o">**</span><span class="n">rpars</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">PandasFileHelper</span><span class="p">()</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="o">**</span><span class="n">rpars</span><span class="p">)</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">cwd</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_original_data</span> <span class="o">=</span> <span class="n">data</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">,</span> <span class="n">Dataset</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">cwd</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()</span>
+
+        <span class="c1"># optionally select a subset</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isel</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">isel</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sel</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">sel</span><span class="p">)</span>
+
+        <span class="c1"># remove wd 360 from the end, if wd 0 is given:</span>
+        <span class="n">wd</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">cwd</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">wd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">and</span> <span class="n">wd</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mf">360.0</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isel</span><span class="p">({</span><span class="n">cwd</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]})</span>
+
+        <span class="c1"># construct wind speed bins and bin deltas</span>
+        <span class="n">cws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var2ncvar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ws_bins</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">wsb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ws_bins</span>
+            <span class="n">wss</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">wsb</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">wsb</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="k">elif</span> <span class="n">cws</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">wss</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">cws</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+            <span class="n">wsb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">wss</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
+            <span class="n">wsb</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">wss</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">wss</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">wsb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">wss</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">wsb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">wsb</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">wss</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">wsb</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ws_bins</span> <span class="o">=</span> <span class="n">wsb</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Expecting ws_bins argument, since &#39;</span><span class="si">{</span><span class="n">cws</span><span class="si">}</span><span class="s2">&#39; not found in data&quot;</span>
+            <span class="p">)</span>
+        <span class="n">wsd</span> <span class="o">=</span> <span class="n">wsb</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">wsb</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">n_ws</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">wss</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">wsb</span>
+
+        <span class="c1"># prepare data binning</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_original_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span>
+        <span class="n">cpt</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">var2ncvar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">)</span> <span class="k">if</span> <span class="n">point_coord</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+        <span class="n">n_wd</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">cwd</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">BIN_WD</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;bin_wd&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">BIN_WS</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;bin_ws&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">POINT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;point&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cpt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_pt</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">shp</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_wd</span><span class="p">,</span> <span class="n">n_ws</span><span class="p">)</span>
+            <span class="n">dms</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BIN_WD</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">BIN_WS</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">n_pt</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">cpt</span><span class="p">]</span>
+            <span class="n">shp</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_wd</span><span class="p">,</span> <span class="n">n_ws</span><span class="p">,</span> <span class="n">n_pt</span><span class="p">)</span>
+            <span class="n">dms</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BIN_WD</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">BIN_WS</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">POINT</span><span class="p">)</span>
+
+        <span class="c1"># create binned data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">),</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">cpt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">cwd</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">wss</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">cwd</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">wss</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_A</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_k</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ovars</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">]</span> <span class="ow">and</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed_vars</span><span class="p">:</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var2ncvar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Missing variable &#39;</span><span class="si">{</span><span class="n">w</span><span class="si">}</span><span class="s2">&#39; in data, found </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
+                <span class="n">iws</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">cws</span><span class="p">)</span> <span class="k">if</span> <span class="n">cws</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">dims</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="n">iwd</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">cwd</span><span class="p">)</span> <span class="k">if</span> <span class="n">cwd</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">dims</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="n">ipt</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">cpt</span><span class="p">)</span> <span class="k">if</span> <span class="n">cpt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">cpt</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">dims</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_A</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_k</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">cws</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Cannot have &#39;</span><span class="si">{</span><span class="n">cws</span><span class="si">}</span><span class="s2">&#39; as dimension in variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39;, got </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">cwd</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Expecting &#39;</span><span class="si">{</span><span class="n">cwd</span><span class="si">}</span><span class="s2">&#39; as dimension in variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39;, got </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="p">)</span>
+                <span class="k">if</span> <span class="n">iws</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">iwd</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ipt</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">fixed_vars</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+                <span class="k">elif</span> <span class="n">iws</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">iwd</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ipt</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="n">iwd</span><span class="p">,</span> <span class="n">iws</span><span class="p">,</span> <span class="n">ipt</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="n">iws</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">iwd</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ipt</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">cpt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="n">iwd</span><span class="p">,</span> <span class="n">iws</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="n">iwd</span><span class="p">,</span> <span class="n">iws</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])[</span>
+                            <span class="p">:,</span> <span class="p">:,</span> <span class="kc">None</span>
+                        <span class="p">]</span>
+                <span class="k">elif</span> <span class="n">iws</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">iwd</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ipt</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="n">iws</span><span class="p">,</span> <span class="n">ipt</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+                <span class="k">elif</span> <span class="n">iws</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">iwd</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ipt</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="n">iwd</span><span class="p">,</span> <span class="n">ipt</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+                <span class="k">elif</span> <span class="n">iws</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">iwd</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ipt</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">cpt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">iws</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">iwd</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ipt</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">cpt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">iws</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">iwd</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">ipt</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">v</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+
+        <span class="c1"># compute Weibull weights</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span> <span class="o">*=</span> <span class="n">weibull_weights</span><span class="p">(</span>
+            <span class="n">ws</span><span class="o">=</span><span class="n">wss</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span> <span class="k">if</span> <span class="n">cpt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">wss</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span>
+            <span class="n">ws_deltas</span><span class="o">=</span><span class="n">wsd</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span> <span class="k">if</span> <span class="n">cpt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">wsd</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span>
+            <span class="n">A</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_A</span><span class="p">),</span>
+            <span class="n">k</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_k</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="c1"># translate binned data to states</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_pt</span> <span class="o">=</span> <span class="n">n_pt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_wd</span> <span class="o">=</span> <span class="n">n_wd</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_ws</span> <span class="o">=</span> <span class="n">n_ws</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_N</span> <span class="o">=</span> <span class="n">n_wd</span> <span class="o">*</span> <span class="n">n_ws</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
+            <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">dms</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span>
 
 <div class="viewcode-block" id="WeibullSectors.load_data">
 <a class="viewcode-back" href="../../../../_foxes/input/states/WeibullSectors.load_data.html#foxes.input.states.WeibullSectors.load_data">[docs]</a>
@@ -662,112 +858,21 @@
 <span class="sd">            and `coords`, a dict with entries `dim_name_str -&gt; dim_array`</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_read_data</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_data_source</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_data_source</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_original_data_source</span> <span class="o">=</span> <span class="kc">None</span>
-
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">PathLike</span><span class="p">)):</span>
-            <span class="n">fpath</span> <span class="o">=</span> <span class="n">get_input_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">fpath</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Reading static data &#39;</span><span class="si">{</span><span class="n">fpath</span><span class="si">}</span><span class="s2">&#39; from context &#39;</span><span class="si">{</span><span class="n">STATES</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
-                    <span class="p">)</span>
-                <span class="n">fpath</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">dbook</span><span class="o">.</span><span class="n">get_file_path</span><span class="p">(</span><span class="n">STATES</span><span class="p">,</span> <span class="n">fpath</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">check_raw</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Path: </span><span class="si">{</span><span class="n">fpath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">verbosity</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Reading file </span><span class="si">{</span><span class="n">fpath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">rpars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RDICT</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">rpars</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">fpath</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s2">&quot;.nc&quot;</span><span class="p">:</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">open_dataset</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">nc_engine</span><span class="p">,</span> <span class="o">**</span><span class="n">rpars</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">PandasFileHelper</span><span class="p">()</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="o">**</span><span class="n">rpars</span><span class="p">)</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_original_data_source</span> <span class="o">=</span> <span class="n">data</span>
-
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">,</span> <span class="n">Dataset</span><span class="p">):</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span>
-
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isel</span><span class="p">):</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">isel</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sel</span><span class="p">):</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">sel</span><span class="p">)</span>
-
-        <span class="n">wsn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var2ncvar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ws_bins</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">wsb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ws_bins</span>
-        <span class="k">elif</span> <span class="n">wsn</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">wsb</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">wsn</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Expecting ws_bins argument, since &#39;</span><span class="si">{</span><span class="n">wsn</span><span class="si">}</span><span class="s2">&#39; not found in data&quot;</span>
-            <span class="p">)</span>
-        <span class="n">wss</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">wsb</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">wsb</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-        <span class="n">wsd</span> <span class="o">=</span> <span class="n">wsb</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">wsb</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">n_ws</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">wss</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_n_ws</span> <span class="o">=</span> <span class="n">n_ws</span>
-        <span class="k">del</span> <span class="n">wsb</span>
-
-        <span class="n">secn</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">n_secs</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_data_source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_original_data_source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_A</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_k</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ovars</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">and</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed_vars</span><span class="p">:</span>
-                <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var2ncvar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Missing variable &#39;</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&#39; in data, found </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
-                    <span class="p">)</span>
-                <span class="n">d</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">fixed_vars</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
-                    <span class="k">continue</span>
-                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Expecting single dimension for variable &#39;</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&#39;, got </span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="si">}</span><span class="s2">&quot;</span>
-                    <span class="p">)</span>
-                <span class="k">elif</span> <span class="n">secn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">secn</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                    <span class="n">n_secs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">secn</span><span class="p">]</span>
-                <span class="k">elif</span> <span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">secn</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Expecting dimension &#39;</span><span class="si">{</span><span class="n">secn</span><span class="si">}</span><span class="s2">&#39; for variable &#39;</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&#39;, got </span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="si">}</span><span class="s2">&quot;</span>
-                    <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
-                    <span class="p">(</span><span class="n">n_secs</span><span class="p">,</span> <span class="n">n_ws</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">POINT</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Variable &#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39; has unsupported dimension &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">POINT</span><span class="si">}</span><span class="s2">&#39;, dims = </span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">[</span><span class="n">v</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="kc">None</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_secs</span><span class="p">,</span> <span class="n">n_ws</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">wss</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
-        <span class="k">del</span> <span class="n">wss</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tmp</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_N</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">tmp</span>
+        <span class="k">del</span> <span class="n">tmp</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span> <span class="o">*=</span> <span class="n">weibull_weights</span><span class="p">(</span>
-            <span class="n">ws</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">],</span>
-            <span class="n">ws_deltas</span><span class="o">=</span><span class="n">wsd</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span>
-            <span class="n">A</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_A</span><span class="p">),</span>
-            <span class="n">k</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIBULL_k</span><span class="p">),</span>
-        <span class="p">)</span>
-
-        <span class="c1"># remove wd 360 from the end, if wd 0 is given:</span>
-        <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mf">360.0</span>
-            <span class="p">):</span>
-                <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">[</span><span class="n">v</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-                <span class="n">n_secs</span> <span class="o">-=</span> <span class="mi">1</span>
-
-        <span class="n">N</span> <span class="o">=</span> <span class="n">n_secs</span> <span class="o">*</span> <span class="n">n_ws</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_N</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span>
 
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span></div>
 </div>

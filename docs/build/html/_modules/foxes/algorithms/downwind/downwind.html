@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.algorithms.downwind.downwind - foxes 1.4 documentation</title>
+        <title>foxes.algorithms.downwind.downwind - foxes 1.5 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 1.4 documentation" class="md-header__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.4 documentation
+            foxes 1.5 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 1.4 documentation" class="md-nav__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.4 documentation
+    foxes 1.5 documentation
   </label>
   
     <div class="md-nav__source">
@@ -1037,7 +1037,7 @@
         <span class="c1"># 2) calculate ambient rotor results:</span>
         <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rotor_model</span><span class="p">)</span>
         <span class="n">calc_pars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calc_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">{}))</span>
-        <span class="n">calc_pars</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;store&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+        <span class="n">calc_pars</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;store&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="c1"># 3) run post-rotor turbine models via farm controller:</span>
         <span class="n">mlist</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">farm_controller</span><span class="p">)</span>
@@ -1068,7 +1068,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">_launch_parallel_farm_calc</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">mlist</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">model_data</span><span class="p">,</span>
         <span class="n">outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
@@ -1080,8 +1080,8 @@
 <span class="sd">        ----------</span>
 <span class="sd">        mlist: foxes.models.FarmDataModelList</span>
 <span class="sd">            The model list</span>
-<span class="sd">        data: tuple of xarray.Dataset</span>
-<span class="sd">            The (mdata, fdata) inputs</span>
+<span class="sd">        model_data: xarray.Dataset</span>
+<span class="sd">            The initial model data</span>
 <span class="sd">        outputs: list of str, optional</span>
 <span class="sd">            The output variables, or None for defaults</span>
 <span class="sd">        normalize: bool</span>
@@ -1098,7 +1098,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">out_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm_vars</span> <span class="k">if</span> <span class="n">outputs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">outputs</span>
         <span class="n">farm_results</span> <span class="o">=</span> <span class="n">get_engine</span><span class="p">()</span><span class="o">.</span><span class="n">run_calculation</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">mlist</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">out_vars</span><span class="o">=</span><span class="n">out_vars</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">mlist</span><span class="p">,</span> <span class="n">model_data</span><span class="p">,</span> <span class="n">out_vars</span><span class="o">=</span><span class="n">out_vars</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>

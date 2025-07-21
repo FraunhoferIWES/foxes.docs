@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.algorithms.downwind.models.init_farm_data - foxes 1.4 documentation</title>
+        <title>foxes.algorithms.downwind.models.init_farm_data - foxes 1.5 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 1.4 documentation" class="md-header__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.4 documentation
+            foxes 1.5 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 1.4 documentation" class="md-nav__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.4 documentation
+    foxes 1.5 documentation
   </label>
   
     <div class="md-nav__source">
@@ -544,7 +544,7 @@
 
 
 <div class="viewcode-block" id="InitFarmData">
-<a class="viewcode-back" href="../../../../../api_algorithms_downwind.html#foxes.algorithms.downwind.models.InitFarmData">[docs]</a>
+<a class="viewcode-back" href="../../../../../_foxes/algorithms/downwind/models/InitFarmData.html#foxes.algorithms.downwind.models.InitFarmData">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">InitFarmData</span><span class="p">(</span><span class="n">FarmDataModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sets basic turbine data and applies downwind order</span>
@@ -621,17 +621,17 @@
         <span class="n">n_states</span> <span class="o">=</span> <span class="n">fdata</span><span class="o">.</span><span class="n">n_states</span>
         <span class="n">n_turbines</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_turbines</span>
 
-        <span class="c1"># define FV.TXYH as vector [X, Y, H]:</span>
-        <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
-            <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span>
+        <span class="c1"># add and set X, Y, H, D:</span>
+        <span class="n">fdata</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">XYH</span><span class="p">),</span>
         <span class="p">)</span>
-        <span class="n">fdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">XYH</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">]):</span>
-            <span class="n">fdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">][</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
-            <span class="n">fdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
-
-        <span class="c1"># set X, Y, H, D:</span>
-        <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
+        <span class="n">fdata</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">),</span>
+        <span class="p">)</span>
         <span class="k">for</span> <span class="n">ti</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbines</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">xy</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">][:,</span> <span class="n">ti</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
@@ -650,35 +650,65 @@
                 <span class="n">D</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">farm_controller</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="n">ti</span><span class="p">]</span><span class="o">.</span><span class="n">D</span>
             <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">][:,</span> <span class="n">ti</span><span class="p">]</span> <span class="o">=</span> <span class="n">D</span>
 
-        <span class="c1"># calc WD and YAW at rotor centres:</span>
+        <span class="c1"># calc WD at rotor centres:</span>
         <span class="n">svrs</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">output_point_vars</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
         <span class="n">tdata</span> <span class="o">=</span> <span class="n">TData</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">],</span> <span class="n">variables</span><span class="o">=</span><span class="n">svrs</span><span class="p">)</span>
         <span class="n">sres</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">)</span>
-        <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">]</span> <span class="o">=</span> <span class="n">sres</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">][:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">fdata</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span>
+            <span class="n">sres</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">][:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">fdata</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">AMB_WD</span><span class="p">,</span>
+            <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+            <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">),</span>
+        <span class="p">)</span>
         <span class="k">del</span> <span class="n">tdata</span><span class="p">,</span> <span class="n">sres</span><span class="p">,</span> <span class="n">svrs</span>
 
-        <span class="c1"># calculate and inverse:</span>
+        <span class="c1"># calculate downwind order:</span>
         <span class="n">order</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">wake_frame</span><span class="o">.</span><span class="n">calc_order</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">)</span>
         <span class="n">ssel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
         <span class="n">ssel</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
-        <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">ORDER</span><span class="p">]</span> <span class="o">=</span> <span class="n">order</span>
-        <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">ORDER_SSEL</span><span class="p">]</span> <span class="o">=</span> <span class="n">ssel</span>
-        <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">ORDER_INV</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
-        <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">ORDER_INV</span><span class="p">][</span><span class="n">ssel</span><span class="p">,</span> <span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_turbines</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
 
         <span class="c1"># apply downwind order to all data:</span>
-        <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">][</span><span class="n">ssel</span><span class="p">,</span> <span class="n">order</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="p">[</span><span class="n">fdata</span><span class="p">,</span> <span class="n">mdata</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="p">(</span>
+                    <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">]</span>
+                    <span class="ow">and</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">k</span><span class="p">][:</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
+                <span class="p">):</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">ssel</span><span class="p">,</span> <span class="n">order</span><span class="p">]</span>
+
+        <span class="c1"># add derived data:</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">]):</span>
-            <span class="n">fdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">][</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">fdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">!=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]):</span>
-                <span class="n">fdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">ssel</span><span class="p">,</span> <span class="n">order</span><span class="p">]</span>
-        <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">YAW</span><span class="p">]</span> <span class="o">=</span> <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">mdata</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">if</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">mdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">k</span><span class="p">][:</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span>
-                <span class="n">mdata</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="n">mdata</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
-            <span class="p">):</span>
-                <span class="n">mdata</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">ssel</span><span class="p">,</span> <span class="n">order</span><span class="p">]</span>
+            <span class="n">fdata</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                <span class="n">v</span><span class="p">,</span>
+                <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">TXYH</span><span class="p">][:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">],</span>
+                <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="n">fdata</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">YAW</span><span class="p">,</span>
+            <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+            <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">fdata</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">ORDER</span><span class="p">,</span>
+            <span class="n">order</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">fdata</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">ORDER_SSEL</span><span class="p">,</span>
+            <span class="n">ssel</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">fdata</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">FV</span><span class="o">.</span><span class="n">ORDER_INV</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">order</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">fdata</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">ORDER_INV</span><span class="p">][</span><span class="n">ssel</span><span class="p">,</span> <span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_turbines</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
 
         <span class="k">return</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">fdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_farm_vars</span><span class="p">(</span><span class="n">algo</span><span class="p">)}</span></div>
 </div>

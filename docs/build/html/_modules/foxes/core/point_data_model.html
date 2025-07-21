@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.core.point_data_model - foxes 1.4 documentation</title>
+        <title>foxes.core.point_data_model - foxes 1.5 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.4 documentation" class="md-header__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.4 documentation
+            foxes 1.5 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.4 documentation" class="md-nav__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.4 documentation
+    foxes 1.5 documentation
   </label>
   
     <div class="md-nav__source">
@@ -546,7 +546,7 @@
 
 
 <div class="viewcode-block" id="PointDataModel">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.PointDataModel">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/PointDataModel.html#foxes.core.PointDataModel">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PointDataModel</span><span class="p">(</span><span class="n">DataCalcModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for models that modify</span>
@@ -587,36 +587,39 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="PointDataModel.ensure_variables">
-<a class="viewcode-back" href="../../../_foxes/models/point_models/WakeDeltas.html#foxes.core.PointDataModel.ensure_variables">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">ensure_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">):</span>
+<div class="viewcode-block" id="PointDataModel.ensure_output_vars">
+<a class="viewcode-back" href="../../../_foxes/models/point_models/WakeDeltas.html#foxes.core.PointDataModel.ensure_output_vars">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ensure_output_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">tdata</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add variables to tdata, initialized with NaN</span>
+<span class="sd">        Ensures that the output variables are present in the target data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        mdata: foxes.core.Data</span>
-<span class="sd">            The model data</span>
-<span class="sd">        fdata: foxes.core.Data</span>
-<span class="sd">            The farm data</span>
-<span class="sd">        tdata: foxes.core.Data</span>
+<span class="sd">        tdata: foxes.core.TData</span>
 <span class="sd">            The target point data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_point_vars</span><span class="p">(</span><span class="n">algo</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tdata</span><span class="p">:</span>
-                <span class="n">tdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
-                    <span class="p">(</span><span class="n">tdata</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="n">tdata</span><span class="o">.</span><span class="n">n_targets</span><span class="p">,</span> <span class="n">tdata</span><span class="o">.</span><span class="n">n_tpoints</span><span class="p">),</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
-                    <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">,</span>
-                <span class="p">)</span>
-                <span class="n">tdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span></div>
+        <span class="n">vrs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_point_vars</span><span class="p">(</span><span class="n">algo</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;fixed_vars&quot;</span><span class="p">):</span>
+            <span class="n">vrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fixed_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">vrs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tdata</span><span class="p">:</span>
+                <span class="n">tdata</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                    <span class="n">var</span><span class="p">,</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
+                        <span class="p">(</span><span class="n">tdata</span><span class="o">.</span><span class="n">n_states</span><span class="p">,</span> <span class="n">tdata</span><span class="o">.</span><span class="n">n_targets</span><span class="p">,</span> <span class="n">tdata</span><span class="o">.</span><span class="n">n_tpoints</span><span class="p">),</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                        <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">),</span>
+                <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="PointDataModel.calculate">
-<a class="viewcode-back" href="../../../_foxes/core/States.html#foxes.core.PointDataModel.calculate">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/input/states/DatasetStates.html#foxes.core.PointDataModel.calculate">[docs]</a>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -698,7 +701,7 @@
 
 
 <div class="viewcode-block" id="PointDataModelList">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.PointDataModelList">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/PointDataModelList.html#foxes.core.PointDataModelList">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PointDataModelList</span><span class="p">(</span><span class="n">PointDataModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A list of point data models.</span>
@@ -821,6 +824,8 @@
 <span class="sd">            (n_states, n_targets, n_tpoints)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_output_vars</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">tdata</span><span class="p">)</span>
+
         <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">parameters</span> <span class="o">=</span> <span class="p">[{}]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">)</span>
         <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>

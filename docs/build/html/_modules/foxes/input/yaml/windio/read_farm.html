@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.input.yaml.windio.read_farm - foxes 1.4 documentation</title>
+        <title>foxes.input.yaml.windio.read_farm - foxes 1.5 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 1.4 documentation" class="md-header__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.4 documentation
+            foxes 1.5 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 1.4 documentation" class="md-nav__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.4 documentation
+    foxes 1.5 documentation
   </label>
   
     <div class="md-nav__source">
@@ -577,7 +577,9 @@
             <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="s2">&quot;turbine_types&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">wio_farm</span><span class="p">:</span>
-        <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;turbine_types&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;turbines&quot;</span><span class="p">]}</span>
+        <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;turbine_types&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
+            <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;turbines&quot;</span><span class="p">]},</span> <span class="n">_name</span><span class="o">=</span><span class="s2">&quot;turbine_types&quot;</span>
+        <span class="p">)</span>
 
     <span class="n">ttypes</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">wio_trbns</span> <span class="ow">in</span> <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;turbine_types&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -588,18 +590,18 @@
         <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio_trbns</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
         <span class="c1"># read performance:</span>
-        <span class="n">performance</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_trbns</span><span class="p">[</span><span class="s2">&quot;performance&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;performance&quot;</span><span class="p">)</span>
+        <span class="n">performance</span> <span class="o">=</span> <span class="n">wio_trbns</span><span class="p">[</span><span class="s2">&quot;performance&quot;</span><span class="p">]</span>
         <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;        Reading performance&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
         <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;          Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">performance</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
         <span class="c1"># P, ct data:</span>
         <span class="k">if</span> <span class="s2">&quot;power_curve&quot;</span> <span class="ow">in</span> <span class="n">performance</span><span class="p">:</span>
-            <span class="n">power_curve</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">performance</span><span class="p">[</span><span class="s2">&quot;power_curve&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;power_curve&quot;</span><span class="p">)</span>
+            <span class="n">power_curve</span> <span class="o">=</span> <span class="n">performance</span><span class="p">[</span><span class="s2">&quot;power_curve&quot;</span><span class="p">]</span>
             <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;            Reading power_curve&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
             <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;              Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">power_curve</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
             <span class="n">P</span> <span class="o">=</span> <span class="n">power_curve</span><span class="p">[</span><span class="s2">&quot;power_values&quot;</span><span class="p">]</span>
             <span class="n">ws_P</span> <span class="o">=</span> <span class="n">power_curve</span><span class="p">[</span><span class="s2">&quot;power_wind_speeds&quot;</span><span class="p">]</span>
-            <span class="n">ct_curve</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">performance</span><span class="p">[</span><span class="s2">&quot;Ct_curve&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Ct_values&quot;</span><span class="p">)</span>
+            <span class="n">ct_curve</span> <span class="o">=</span> <span class="n">performance</span><span class="p">[</span><span class="s2">&quot;Ct_curve&quot;</span><span class="p">]</span>
             <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;            Reading Ct_curve&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
             <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;              Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ct_curve</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
             <span class="n">ct</span> <span class="o">=</span> <span class="n">ct_curve</span><span class="p">[</span><span class="s2">&quot;Ct_values&quot;</span><span class="p">]</span>
@@ -635,12 +637,12 @@
 
         <span class="c1"># P, ct data:</span>
         <span class="k">elif</span> <span class="s2">&quot;Cp_curve&quot;</span> <span class="ow">in</span> <span class="n">performance</span><span class="p">:</span>
-            <span class="n">cp_curve</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">performance</span><span class="p">[</span><span class="s2">&quot;Cp_curve&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Cp_curve&quot;</span><span class="p">)</span>
+            <span class="n">cp_curve</span> <span class="o">=</span> <span class="n">performance</span><span class="p">[</span><span class="s2">&quot;Cp_curve&quot;</span><span class="p">]</span>
             <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;            Reading Cp_curve&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
             <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;              Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">cp_curve</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
             <span class="n">cp</span> <span class="o">=</span> <span class="n">cp_curve</span><span class="p">[</span><span class="s2">&quot;Cp_values&quot;</span><span class="p">]</span>
             <span class="n">ws_cp</span> <span class="o">=</span> <span class="n">cp_curve</span><span class="p">[</span><span class="s2">&quot;Cp_wind_speeds&quot;</span><span class="p">]</span>
-            <span class="n">ct_curve</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">performance</span><span class="p">[</span><span class="s2">&quot;Ct_curve&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Ct_values&quot;</span><span class="p">)</span>
+            <span class="n">ct_curve</span> <span class="o">=</span> <span class="n">performance</span><span class="p">[</span><span class="s2">&quot;Ct_curve&quot;</span><span class="p">]</span>
             <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;            Reading Ct_curve&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
             <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;              Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ct_curve</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
             <span class="n">ct</span> <span class="o">=</span> <span class="n">ct_curve</span><span class="p">[</span><span class="s2">&quot;Ct_values&quot;</span><span class="p">]</span>
@@ -696,7 +698,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;        Reading &#39;</span><span class="si">{</span><span class="n">lname</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-    <span class="n">cdict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">ldict</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;coordinates&quot;</span><span class="p">)</span>
+    <span class="n">cdict</span> <span class="o">=</span> <span class="n">ldict</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">]</span>
     <span class="n">tmap</span> <span class="o">=</span> <span class="n">ldict</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="s2">&quot;turbine_types&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;          Turbine type map:&quot;</span><span class="p">,</span> <span class="n">tmap</span><span class="p">)</span>
@@ -732,7 +734,7 @@
 <span class="sd">    :group: input.yaml.windio</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">wio_farm</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;wind_farm&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_dict</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.wind_farm&quot;</span><span class="p">)</span>
+    <span class="n">wio_farm</span> <span class="o">=</span> <span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;wind_farm&quot;</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading wind farm&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Name:&quot;</span><span class="p">,</span> <span class="n">wio_farm</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
@@ -754,10 +756,10 @@
     <span class="n">farm</span> <span class="o">=</span> <span class="n">WindFarm</span><span class="p">()</span>
     <span class="n">wfarm</span> <span class="o">=</span> <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;layouts&quot;</span><span class="p">]</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wfarm</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">layouts</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wfarm</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_farm</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.layouts&quot;</span><span class="p">)</span>
+        <span class="n">layouts</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wfarm</span><span class="p">,</span> <span class="n">_name</span><span class="o">=</span><span class="n">wio_farm</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.layouts&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">layouts</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">):</span> <span class="n">lf</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lf</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wfarm</span><span class="p">)}</span>
-        <span class="n">layouts</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">layouts</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_farm</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.layouts&quot;</span><span class="p">)</span>
+        <span class="n">layouts</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">layouts</span><span class="p">,</span> <span class="n">_name</span><span class="o">=</span><span class="n">wio_farm</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.layouts&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Reading layouts&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">layouts</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>

@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.core.data - foxes 1.4 documentation</title>
+        <title>foxes.core.data - foxes 1.5 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.4 documentation" class="md-header__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.4 documentation
+            foxes 1.5 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.4 documentation" class="md-nav__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.4 documentation
+    foxes 1.5 documentation
   </label>
   
     <div class="md-nav__source">
@@ -544,7 +544,7 @@
 
 
 <div class="viewcode-block" id="Data">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.Data">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/Data.html#foxes.core.Data">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Data</span><span class="p">(</span><span class="n">Dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Container for numpy array data and</span>
@@ -594,7 +594,7 @@
 <span class="sd">            The data container name</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span> <span class="n">dims</span>
@@ -653,12 +653,12 @@
 <span class="sd">            or the corresponding index</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">elif</span> <span class="n">counter</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">counter</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__states_i0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: states_i0 requested but not set&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__states_i0</span>
+        <span class="k">elif</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span></div>
 
@@ -871,7 +871,7 @@
 
 
 <div class="viewcode-block" id="MData">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.MData">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/MData.html#foxes.core.MData">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MData</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Container for foxes model data.</span>
@@ -902,7 +902,7 @@
 
 
 <div class="viewcode-block" id="FData">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.FData">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/FData.html#foxes.core.FData">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">FData</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Container for foxes farm data.</span>
@@ -960,6 +960,80 @@
                         <span class="sa">f</span><span class="s2">&quot;FData &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Missing &#39;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&#39; in sizes, got </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sizes</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span><span class="si">}</span><span class="s2">&quot;</span>
                     <span class="p">)</span>
 
+<div class="viewcode-block" id="FData.from_sizes">
+<a class="viewcode-back" href="../../../_foxes/core/FData.from_sizes.html#foxes.core.FData.from_sizes">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_sizes</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">n_states</span><span class="p">,</span> <span class="n">n_turbines</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create Data object from model data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_states: int</span>
+<span class="sd">            The number of states</span>
+<span class="sd">        n_turbines: int</span>
+<span class="sd">            The number of turbines</span>
+<span class="sd">        args: tuple, optional</span>
+<span class="sd">            Additional parameters for the constructor</span>
+<span class="sd">        callback: Function, optional</span>
+<span class="sd">            Function f(data, dims) that manipulates</span>
+<span class="sd">            the data and dims dicts before construction</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Additional parameters for the constructor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        data: Data</span>
+<span class="sd">            The data object</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_states</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_turbines</span>
+
+        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">callback</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="FData.from_mdata">
+<a class="viewcode-back" href="../../../_foxes/core/FData.from_mdata.html#foxes.core.FData.from_mdata">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_mdata</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create Data object from model data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mdata: MData</span>
+<span class="sd">            The model data</span>
+<span class="sd">        args: tuple, optional</span>
+<span class="sd">            Additional parameters for the constructor</span>
+<span class="sd">        callback: Function, optional</span>
+<span class="sd">            Function f(data, dims) that manipulates</span>
+<span class="sd">            the data and dims dicts before construction</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Additional parameters for the constructor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        data: Data</span>
+<span class="sd">            The data object</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">]:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">callback</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span></div>
+
+
 <div class="viewcode-block" id="FData.from_dataset">
 <a class="viewcode-back" href="../../../_foxes/core/FData.from_dataset.html#foxes.core.FData.from_dataset">[docs]</a>
     <span class="nd">@classmethod</span>
@@ -995,6 +1069,9 @@
                 <span class="k">if</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
                     <span class="n">data</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span>
                     <span class="n">dims</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">]</span>
+                    <span class="n">dims</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">callback</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="p">)</span>
 
@@ -1004,7 +1081,7 @@
 
 
 <div class="viewcode-block" id="TData">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.TData">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/TData.html#foxes.core.TData">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TData</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Container for foxes target data.</span>

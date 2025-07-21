@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.models.turbine_models.Calculator.__init__ - foxes 1.4 documentation</title>
+        <title>foxes.models.turbine_models.Calculator.__init__ - foxes 1.5 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.4 documentation" class="md-header__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.4 documentation
+            foxes 1.5 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.4 documentation" class="md-nav__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.4 documentation
+    foxes 1.5 documentation
   </label>
   
     <div class="md-nav__source">
@@ -539,15 +539,20 @@
 <span class="sig-prename descclassname"><span class="pre">foxes.models.turbine_models.</span></span><span class="sig-name descname"><span class="pre">Calculator</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#" title="foxes.models.turbine_models.Calculator.__init__.in_vars (Python parameter)"><span class="n"><span class="pre">in_vars</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#" title="foxes.models.turbine_models.Calculator.__init__.out_vars (Python parameter)"><span class="n"><span class="pre">out_vars</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#" title="foxes.models.turbine_models.Calculator.__init__.func (Python parameter)"><span class="n"><span class="pre">func</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">**</span></span><a class="n reference internal" href="#" title="foxes.models.turbine_models.Calculator.__init__.kwargs (Python parameter)"><span class="n"><span class="pre">kwargs</span></span></a></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/foxes/models/turbine_models/calculator.html#Calculator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Constructor.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
-<dl class="simple">
+<dl>
 <dt>in_vars: list of str</dt><dd><p>The input farm variables</p>
 </dd>
 <dt>out_vars: list of str</dt><dd><p>The output variables</p>
 </dd>
-<dt>func: Function</dt><dd><p>The function: f(in0, in1, …, stsel) -&gt; (out0, out1, …)
+<dt>func: Function</dt><dd><p>The function: f(in0, in1, …, algo, mdata, fdata, st_sel) -&gt; (out0, out1, …)
 where inX and outY are numpy.ndarrays and
 st_sel is the state-turbine selection slice or array.
 All arrays have shape (n_states, n_turbines).</p>
+<p>Beware that the turbine ordering in fdata is in downwind order,
+hence external data X of shape (n_states, n_turbines) in farm order
+needs to be reordered by X[ssel, order] with
+ssel = fdata[FV.ORDER_SSEL], order = fdata[FV.ORDER]
+before using it in combination with fdata variables.</p>
 </dd>
 <dt>kwargs: dict, optional</dt><dd><p>Additional arguments for TurbineModel</p>
 </dd>

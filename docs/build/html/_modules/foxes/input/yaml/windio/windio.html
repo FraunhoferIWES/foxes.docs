@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.input.yaml.windio.windio - foxes 1.4 documentation</title>
+        <title>foxes.input.yaml.windio.windio - foxes 1.5 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 1.4 documentation" class="md-header__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.4 documentation
+            foxes 1.5 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 1.4 documentation" class="md-nav__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.4 documentation
+    foxes 1.5 documentation
   </label>
   
     <div class="md-nav__source">
@@ -550,7 +550,7 @@
 
 
 <div class="viewcode-block" id="read_windio">
-<a class="viewcode-back" href="../../../../../api_input.html#foxes.input.yaml.read_windio">[docs]</a>
+<a class="viewcode-back" href="../../../../../_foxes/input/yaml/read_windio.html#foxes.input.yaml.read_windio">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">read_windio</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Translate windio data to foxes input data</span>
@@ -580,30 +580,44 @@
             <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">Dict</span><span class="p">):</span>
-        <span class="n">wio_dict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;windio&quot;</span><span class="p">)</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">_name</span><span class="o">=</span><span class="s2">&quot;windio&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">wio_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">tmp</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span>
+        <span class="n">wio_dict</span> <span class="o">=</span> <span class="n">tmp</span>
 
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;Reading windio data&quot;</span><span class="p">)</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Name:&quot;</span><span class="p">,</span> <span class="n">wio_dict</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
     <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;  Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">wio_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
 
     <span class="n">idict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
-        <span class="n">wind_farm</span><span class="o">=</span><span class="n">Dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;wio2fxs.farm&quot;</span><span class="p">),</span>
+        <span class="n">wind_farm</span><span class="o">=</span><span class="n">Dict</span><span class="p">(</span><span class="n">_name</span><span class="o">=</span><span class="s2">&quot;wio2fxs.farm&quot;</span><span class="p">),</span>
         <span class="n">algorithm</span><span class="o">=</span><span class="n">Dict</span><span class="p">(</span>
             <span class="n">algo_type</span><span class="o">=</span><span class="s2">&quot;Downwind&quot;</span><span class="p">,</span>
             <span class="n">wake_models</span><span class="o">=</span><span class="p">[],</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;wio2fxs.algorithm&quot;</span><span class="p">,</span>
+            <span class="n">_name</span><span class="o">=</span><span class="s2">&quot;wio2fxs.algorithm&quot;</span><span class="p">,</span>
             <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span> <span class="o">-</span> <span class="mi">3</span><span class="p">,</span>
         <span class="p">),</span>
-        <span class="n">calc_farm</span><span class="o">=</span><span class="n">Dict</span><span class="p">(</span><span class="n">run</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;wio2fxs.calc_farm&quot;</span><span class="p">),</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;wio2fxs&quot;</span><span class="p">,</span>
+        <span class="n">calc_farm</span><span class="o">=</span><span class="n">Dict</span><span class="p">(</span><span class="n">run</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">_name</span><span class="o">=</span><span class="s2">&quot;wio2fxs.calc_farm&quot;</span><span class="p">),</span>
+        <span class="n">_name</span><span class="o">=</span><span class="s2">&quot;wio2fxs&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">mbook</span> <span class="o">=</span> <span class="n">ModelBook</span><span class="p">()</span>
     <span class="n">states</span> <span class="o">=</span> <span class="n">read_site</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
     <span class="n">farm</span> <span class="o">=</span> <span class="n">read_farm</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
-    <span class="n">wio_attrs</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_dict</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.attributes&quot;</span><span class="p">)</span>
+    <span class="n">wio_attrs</span> <span class="o">=</span> <span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span>
     <span class="n">read_attributes</span><span class="p">(</span><span class="n">wio_attrs</span><span class="p">,</span> <span class="n">idict</span><span class="p">,</span> <span class="n">mbook</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
+
+    <span class="c1"># special case WeibullPointCloud:</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="nb">type</span><span class="p">(</span><span class="n">states</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;WeibullPointCloud&quot;</span>
+        <span class="ow">and</span> <span class="n">idict</span><span class="p">[</span><span class="s2">&quot;algorithm&quot;</span><span class="p">][</span><span class="s2">&quot;rotor_model&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;centre&quot;</span>
+    <span class="p">):</span>
+        <span class="n">_print</span><span class="p">(</span>
+            <span class="s2">&quot;Found WeibullPointCloud states, changing rotor model from &#39;centre&#39; to &#39;direct_mdata&#39;&quot;</span><span class="p">,</span>
+            <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">idict</span><span class="p">[</span><span class="s2">&quot;algorithm&quot;</span><span class="p">][</span><span class="s2">&quot;rotor_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;direct_mdata&quot;</span>
 
     <span class="n">algo</span> <span class="o">=</span> <span class="n">Algorithm</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
         <span class="n">farm</span><span class="o">=</span><span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span> <span class="n">mbook</span><span class="o">=</span><span class="n">mbook</span><span class="p">,</span> <span class="o">**</span><span class="n">idict</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;algorithm&quot;</span><span class="p">)</span>
@@ -611,9 +625,7 @@
 
     <span class="n">odir</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="s2">&quot;model_outputs_specification&quot;</span> <span class="ow">in</span> <span class="n">wio_attrs</span><span class="p">:</span>
-        <span class="n">outputs</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
-            <span class="n">wio_attrs</span><span class="p">[</span><span class="s2">&quot;model_outputs_specification&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">wio_attrs</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.outputs&quot;</span>
-        <span class="p">)</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">wio_attrs</span><span class="p">[</span><span class="s2">&quot;model_outputs_specification&quot;</span><span class="p">]</span>
         <span class="n">odir</span> <span class="o">=</span> <span class="n">read_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">odir</span></div>
@@ -621,7 +633,7 @@
 
 
 <div class="viewcode-block" id="foxes_windio">
-<a class="viewcode-back" href="../../../../../api_input.html#foxes.input.yaml.foxes_windio">[docs]</a>
+<a class="viewcode-back" href="../../../../../_foxes/input/yaml/foxes_windio.html#foxes.input.yaml.foxes_windio">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">foxes_windio</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Command line tool for running foxes from windio yaml file input.</span>
@@ -713,7 +725,7 @@
         <span class="n">conda_hint</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">wio</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">yml_utils</span><span class="o">.</span><span class="n">load_yaml</span><span class="p">(</span><span class="n">wio_file</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;windio&quot;</span><span class="p">)</span>
+    <span class="n">wio</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">yml_utils</span><span class="o">.</span><span class="n">load_yaml</span><span class="p">(</span><span class="n">wio_file</span><span class="p">),</span> <span class="n">_name</span><span class="o">=</span><span class="s2">&quot;windio&quot;</span><span class="p">)</span>
     <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">odir</span> <span class="o">=</span> <span class="n">read_windio</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

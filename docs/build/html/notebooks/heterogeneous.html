@@ -21,7 +21,7 @@
     
     
       
-        <title>Heterogeneous flow - foxes 1.4 documentation</title>
+        <title>Heterogeneous flow - foxes 1.5 documentation</title>
       
     
     
@@ -79,7 +79,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 1.4 documentation" class="md-header__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../index.html" title="foxes 1.5 documentation" class="md-header__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -92,7 +92,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.4 documentation
+            foxes 1.5 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -187,12 +187,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 1.4 documentation" class="md-nav__button md-logo" aria-label="foxes 1.4 documentation" data-md-component="logo">
+    <a href="../index.html" title="foxes 1.5 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.4 documentation
+    foxes 1.5 documentation
   </label>
   
     <div class="md-nav__source">
@@ -973,7 +973,7 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><code>In [2]:
 </code></pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">states</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">FieldDataNC</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">states</span> <span class="o">=</span> <span class="n">foxes</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">FieldData</span><span class="p">(</span>
     <span class="n">data_source</span><span class="o">=</span><span class="s2">&quot;wind_rotation.nc&quot;</span><span class="p">,</span>
     <span class="n">states_coord</span><span class="o">=</span><span class="s2">&quot;state&quot;</span><span class="p">,</span>
     <span class="n">x_coord</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
@@ -984,8 +984,8 @@
     <span class="n">var2ncvar</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="p">:</span> <span class="s2">&quot;ws&quot;</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">:</span> <span class="s2">&quot;wd&quot;</span><span class="p">},</span>
     <span class="n">fixed_vars</span><span class="o">=</span><span class="p">{</span><span class="n">FV</span><span class="o">.</span><span class="n">RHO</span><span class="p">:</span> <span class="mf">1.225</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">TI</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
     <span class="n">load_mode</span><span class="o">=</span><span class="s2">&quot;preload&quot;</span><span class="p">,</span>
-    <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">bounds_extra_space</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">interpn_pars</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
@@ -1063,24 +1063,24 @@ SingleChunkEngine: Calculating 2 states for 9 turbines
 SingleChunkEngine: Running single chunk calculation for 2 states
                        WD  AMB_REWS      REWS        AMB_P            P
 state turbine
-0     0        201.161371  7.491089  7.491089  1474.211367  1474.211367
-      1        208.049066  7.673386  7.673386  1580.523022  1580.523022
-      2        214.528483  7.960601  7.960601  1748.171047  1748.171047
-      3        218.247780  6.867297  6.867297  1127.597810  1127.597810
-      4        222.303121  7.283373  7.283373  1352.715530  1352.715530
-      5        225.904246  7.731909  7.731909  1614.607085  1614.607085
-      6        236.756149  6.932726  6.932726  1156.958672  1156.958672
-      7        237.144203  7.375640  7.375640  1406.547918  1406.547918
-      8        237.488279  7.818854  7.818854  1665.347000  1665.347000
-1     0         20.313664  6.703701  6.703701  1054.871543  1054.871543
-      1         26.262006  6.995899  6.995899  1185.898485  1185.898485
-      2         31.680276  7.357075  7.357075  1396.122949  1396.122949
-      3         44.542681  5.352448  5.352448   521.748653   521.748653
-      4         47.452899  5.960030  5.960030   724.421405   724.421405
-      5         49.819769  6.580130  6.580130   998.581195   998.581195
-      6         75.465593  5.352662  5.352662   521.621921   521.621921
-      7         72.555045  5.960214  5.960214   724.363478   724.363478
-      8         70.187742  6.580285  6.580285   998.552663   998.552663
+0     0        201.161374  7.491089  7.491089  1474.211485  1474.211485
+      1        208.049068  7.673386  7.673386  1580.523149  1580.523149
+      2        214.528482  7.960601  7.960601  1748.171150  1748.171150
+      3        218.247782  6.867298  6.867298  1127.597890  1127.597890
+      4        222.303122  7.283373  7.283373  1352.715592  1352.715592
+      5        225.904246  7.731909  7.731909  1614.607094  1614.607094
+      6        236.756151  6.932726  6.932726  1156.958724  1156.958724
+      7        237.144204  7.375640  7.375640  1406.547921  1406.547921
+      8        237.488280  7.818854  7.818854  1665.346938  1665.346938
+1     0         20.308543  6.703701  5.149847  1054.871497   454.760904
+      1         26.259834  6.995899  5.857833  1185.898437   690.639626
+      2         31.680276  7.357075  7.357075  1396.122885  1396.122885
+      3         44.542450  5.352448  5.263710   521.748601   492.140835
+      4         47.452840  5.960030  5.917024   724.421355   710.071226
+      5         49.819770  6.580130  6.580130   998.581133   998.581133
+      6         75.465596  5.352661  5.352661   521.621885   521.621885
+      7         72.555047  5.960214  5.960214   724.363441   724.363441
+      8         70.187744  6.580285  6.580285   998.552613   998.552613
 DefaultEngine: Selecting engine &#39;process&#39;
 ProcessEngine: Calculating data at 63001 points for 2 states
 ProcessEngine: Computing 32 chunks using 16 processes
@@ -1091,7 +1091,7 @@ ProcessEngine: Computing 32 chunks using 16 processes
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-100%|██████████████████████████████████████████████████████████████████████████████████████████| 32/32 [00:02&lt;00:00, 15.00it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 32/32 [00:01&lt;00:00, 24.32it/s]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
