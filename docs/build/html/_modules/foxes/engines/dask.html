@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.engines.dask - foxes 1.5.2 documentation</title>
+        <title>foxes.engines.dask - foxes 1.6 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -542,9 +542,9 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Engine</span><span class="p">,</span> <span class="n">MData</span><span class="p">,</span> <span class="n">FData</span><span class="p">,</span> <span class="n">TData</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">import_module</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">foxes.variables</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FV</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">foxes.constants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FC</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.pool</span><span class="w"> </span><span class="kn">import</span> <span class="n">_run_shared</span>
 
 <span class="n">dask</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">distributed</span> <span class="o">=</span> <span class="kc">None</span>
@@ -575,6 +575,12 @@
         <span class="n">distributed</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;distributed&quot;</span><span class="p">)</span>
 
 
+<span class="nd">@delayed</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_run_map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for running map func on proc&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">]</span>
+
+
 <div class="viewcode-block" id="DaskBaseEngine">
 <a class="viewcode-back" href="../../../api_engines.html#foxes.engines.DaskBaseEngine">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DaskBaseEngine</span><span class="p">(</span><span class="n">Engine</span><span class="p">):</span>
@@ -585,20 +591,17 @@
 <span class="sd">    ----------</span>
 <span class="sd">    dask_config: dict</span>
 <span class="sd">        The dask configuration parameters</span>
-<span class="sd">    progress_bar: bool</span>
-<span class="sd">        Flag for showing progress bar</span>
 
 <span class="sd">    :group: engines</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DaskBaseEngine.__init__">
-<a class="viewcode-back" href="../../../_foxes/engines/XArrayEngine.html#foxes.engines.DaskBaseEngine.__init__">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/engines/DaskEngine.html#foxes.engines.DaskBaseEngine.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="n">dask_config</span><span class="o">=</span><span class="p">{},</span>
-        <span class="n">progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -620,29 +623,73 @@
 
         <span class="n">load_dask</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">dask_config</span> <span class="o">=</span> <span class="n">dask_config</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">progress_bar</span> <span class="o">=</span> <span class="n">progress_bar</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dask_config</span> <span class="o">=</span> <span class="n">dask_config</span></div>
 
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">progress_bar</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_progress_bar</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_pbar</span> <span class="o">=</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="n">minimum</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_pbar</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">progress_bar</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_progress_bar</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_pbar</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DaskBaseEngine.initialize">
-<a class="viewcode-back" href="../../../_foxes/engines/XArrayEngine.html#foxes.engines.DaskBaseEngine.initialize">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/engines/SlurmClusterEngine.html#foxes.engines.DaskBaseEngine.initialize">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the engine.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dask</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">dask_config</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="DaskBaseEngine.submit">
+<a class="viewcode-back" href="../../../_foxes/engines/DaskEngine.html#foxes.engines.DaskBaseEngine.submit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Submits a job to worker, obtaining a future</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        f: Callable</span>
+<span class="sd">            The function f(*args, **kwargs) to be</span>
+<span class="sd">            submitted</span>
+<span class="sd">        args: tuple, optional</span>
+<span class="sd">            Arguments for the function</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Arguments for the function</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        future: object</span>
+<span class="sd">            The future object</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">delayed</span><span class="p">(</span><span class="n">f</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DaskBaseEngine.await_result">
+<a class="viewcode-back" href="../../../_foxes/engines/DaskEngine.html#foxes.engines.DaskBaseEngine.await_result">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">await_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">future</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Waits for result from a future</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        future: object</span>
+<span class="sd">            The future</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        result: object</span>
+<span class="sd">            The calculation result</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">future</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="DaskBaseEngine.map">
@@ -680,11 +727,11 @@
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">inptl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)))</span>
-            <span class="n">jobs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">inptl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_workers</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)))</span>
+            <span class="n">futures</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">subi</span> <span class="ow">in</span> <span class="n">inptl</span><span class="p">:</span>
-                <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_run_map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">subi</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">jobs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">futures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_run_map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">subi</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">futures</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
                 <span class="n">out</span> <span class="o">+=</span> <span class="n">r</span>
@@ -692,7 +739,7 @@
 
 
 <div class="viewcode-block" id="DaskBaseEngine.chunk_data">
-<a class="viewcode-back" href="../../../_foxes/engines/XArrayEngine.html#foxes.engines.DaskBaseEngine.chunk_data">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/engines/SlurmClusterEngine.html#foxes.engines.DaskBaseEngine.chunk_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">chunk_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Applies the selected chunking</span>
@@ -720,7 +767,7 @@
 
 
 <div class="viewcode-block" id="DaskBaseEngine.finalize">
-<a class="viewcode-back" href="../../../_foxes/engines/XArrayEngine.html#foxes.engines.DaskBaseEngine.finalize">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/engines/SlurmClusterEngine.html#foxes.engines.DaskBaseEngine.finalize">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exit_args</span><span class="p">,</span> <span class="o">**</span><span class="n">exit_kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Finalizes the engine.</span>
@@ -737,410 +784,6 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="o">*</span><span class="n">exit_args</span><span class="p">,</span> <span class="o">**</span><span class="n">exit_kwargs</span><span class="p">)</span></div>
 </div>
 
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_run_as_ufunc</span><span class="p">(</span>
-    <span class="n">state_inds</span><span class="p">,</span>
-    <span class="o">*</span><span class="n">ldata</span><span class="p">,</span>
-    <span class="n">algo</span><span class="p">,</span>
-    <span class="n">dvars</span><span class="p">,</span>
-    <span class="n">lvars</span><span class="p">,</span>
-    <span class="n">ldims</span><span class="p">,</span>
-    <span class="n">evars</span><span class="p">,</span>
-    <span class="n">edims</span><span class="p">,</span>
-    <span class="n">edata</span><span class="p">,</span>
-    <span class="n">loop_dims</span><span class="p">,</span>
-    <span class="n">out_vars</span><span class="p">,</span>
-    <span class="n">out_coords</span><span class="p">,</span>
-    <span class="n">calc_pars</span><span class="p">,</span>
-    <span class="n">init_vars</span><span class="p">,</span>
-    <span class="n">calculate</span><span class="p">,</span>
-<span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Wrapper that mitigates between apply_ufunc and `calculate`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">n_prev</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">init_vars</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">n_prev</span><span class="p">:</span>
-        <span class="n">prev</span> <span class="o">=</span> <span class="n">ldata</span><span class="p">[:</span><span class="n">n_prev</span><span class="p">]</span>
-        <span class="n">ldata</span> <span class="o">=</span> <span class="n">ldata</span><span class="p">[</span><span class="n">n_prev</span><span class="p">:]</span>
-
-    <span class="c1"># reconstruct original data:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">hvars</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dvars</span><span class="p">):</span>
-        <span class="n">v2l</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">lvars</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvars</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">lvars</span><span class="p">}</span>
-        <span class="n">v2e</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">evars</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvars</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">evars</span><span class="p">}</span>
-
-        <span class="n">hdata</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">ldata</span><span class="p">[</span><span class="n">v2l</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">v2l</span> <span class="k">else</span> <span class="n">edata</span><span class="p">[</span><span class="n">v2e</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvars</span><span class="p">}</span>
-        <span class="n">hdims</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">ldims</span><span class="p">[</span><span class="n">v2l</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">v2l</span> <span class="k">else</span> <span class="n">edims</span><span class="p">[</span><span class="n">v2e</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvars</span><span class="p">}</span>
-
-        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">MData</span><span class="p">(</span>
-                    <span class="n">data</span><span class="o">=</span><span class="n">hdata</span><span class="p">,</span>
-                    <span class="n">dims</span><span class="o">=</span><span class="n">hdims</span><span class="p">,</span>
-                    <span class="c1"># loop_dims=loop_dims,</span>
-                    <span class="n">states_i0</span><span class="o">=</span><span class="n">state_inds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                <span class="p">)</span>
-            <span class="p">)</span>
-        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">FData</span><span class="p">(</span>
-                    <span class="n">data</span><span class="o">=</span><span class="n">hdata</span><span class="p">,</span>
-                    <span class="n">dims</span><span class="o">=</span><span class="n">hdims</span><span class="p">,</span>
-                    <span class="c1"># loop_dims=loop_dims,</span>
-                    <span class="n">states_i0</span><span class="o">=</span><span class="n">state_inds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                <span class="p">)</span>
-            <span class="p">)</span>
-        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">TData</span><span class="p">(</span>
-                    <span class="n">data</span><span class="o">=</span><span class="n">hdata</span><span class="p">,</span>
-                    <span class="n">dims</span><span class="o">=</span><span class="n">hdims</span><span class="p">,</span>
-                    <span class="c1"># loop_dims=loop_dims,</span>
-                    <span class="n">states_i0</span><span class="o">=</span><span class="n">state_inds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                <span class="p">)</span>
-            <span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Not more than 3 data sets implemented, found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dvars</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
-
-        <span class="k">del</span> <span class="n">hdata</span><span class="p">,</span> <span class="n">hdims</span><span class="p">,</span> <span class="n">v2l</span><span class="p">,</span> <span class="n">v2e</span>
-
-    <span class="c1"># deduce output shape:</span>
-    <span class="n">oshape</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">li</span><span class="p">,</span> <span class="n">ld</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">out_coords</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dims</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ldims</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">ld</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">:</span>
-                <span class="n">oshape</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ldata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">dims</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ld</span><span class="p">)])</span>
-                <span class="k">break</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">oshape</span><span class="p">)</span> <span class="o">!=</span> <span class="n">li</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Failed to find loop dimension&quot;</span><span class="p">)</span>
-
-    <span class="c1"># add zero output data arrays:</span>
-    <span class="n">odims</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">out_coords</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">out_vars</span><span class="p">}</span>
-    <span class="n">odata</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">v</span><span class="p">:</span> <span class="p">(</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">oshape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">init_vars</span>
-            <span class="k">else</span> <span class="n">prev</span><span class="p">[</span><span class="n">init_vars</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="p">)</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">out_vars</span>
-        <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="n">FData</span><span class="p">(</span>
-                <span class="n">odata</span><span class="p">,</span>
-                <span class="n">odims</span><span class="p">,</span>
-                <span class="c1"># loop_dims,</span>
-                <span class="n">states_i0</span><span class="o">=</span><span class="n">state_inds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">odata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">odims</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">FData</span><span class="p">(</span>
-                <span class="n">odata</span><span class="p">,</span>
-                <span class="n">odims</span><span class="p">,</span>
-                <span class="c1"># loop_dims,</span>
-                <span class="n">states_i0</span><span class="o">=</span><span class="n">state_inds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">TData</span><span class="p">(</span>
-                <span class="n">odata</span><span class="p">,</span>
-                <span class="n">odims</span><span class="p">,</span>
-                <span class="c1"># loop_dims,</span>
-                <span class="n">states_i0</span><span class="o">=</span><span class="n">state_inds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="p">)</span>
-    <span class="k">del</span> <span class="n">odims</span><span class="p">,</span> <span class="n">odata</span>
-
-    <span class="c1"># link chunk state indices from mdata to fdata and tdata:</span>
-    <span class="k">if</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-            <span class="n">d</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span>
-
-    <span class="c1"># link weights from mdata to fdata:</span>
-    <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-        <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span>
-        <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">]</span>
-
-    <span class="c1"># run model calculation:</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">calculate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">calc_pars</span><span class="p">)</span>
-
-    <span class="c1"># replace missing results by first input data with matching shape:</span>
-    <span class="n">missing</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">out_vars</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing</span><span class="p">):</span>
-        <span class="n">found</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">missing</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">dta</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dta</span> <span class="ow">and</span> <span class="n">dta</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">oshape</span><span class="p">):</span>
-                    <span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dta</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
-                    <span class="n">found</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-                    <span class="k">break</span>
-        <span class="n">missing</span> <span class="o">-=</span> <span class="n">found</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Missing results </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">missing</span><span class="p">)</span><span class="si">}</span><span class="s2">, expected shape </span><span class="si">{</span><span class="n">oshape</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
-    <span class="k">del</span> <span class="n">data</span>
-
-    <span class="c1"># create output:</span>
-    <span class="n">n_vars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">out_vars</span><span class="p">)</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">oshape</span> <span class="o">+</span> <span class="p">[</span><span class="n">n_vars</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">out_vars</span><span class="p">:</span>
-        <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">out_vars</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
-
-    <span class="k">return</span> <span class="n">data</span>
-
-
-<div class="viewcode-block" id="XArrayEngine">
-<a class="viewcode-back" href="../../../api_engines.html#foxes.engines.XArrayEngine">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">XArrayEngine</span><span class="p">(</span><span class="n">DaskBaseEngine</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The engine for foxes calculations via xarray.apply_ufunc.</span>
-
-<span class="sd">    :group: engines</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-
-<div class="viewcode-block" id="XArrayEngine.map">
-<a class="viewcode-back" href="../../../_foxes/engines/XArrayEngine.map.html#foxes.engines.XArrayEngine.map">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">map</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">func</span><span class="p">,</span>
-        <span class="n">inputs</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Runs a function on a list of files</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        func: Callable</span>
-<span class="sd">            Function to be called on each file,</span>
-<span class="sd">            func(input, *args, **kwargs) -&gt; data</span>
-<span class="sd">        inputs: array-like</span>
-<span class="sd">            The input data list</span>
-<span class="sd">        args: tuple, optional</span>
-<span class="sd">            Arguments for func</span>
-<span class="sd">        kwargs: dict, optional</span>
-<span class="sd">            Keyword arguments for func</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        results: list</span>
-<span class="sd">            The list of results</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="XArrayEngine.run_calculation">
-<a class="viewcode-back" href="../../../_foxes/engines/XArrayEngine.run_calculation.html#foxes.engines.XArrayEngine.run_calculation">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">run_calculation</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">algo</span><span class="p">,</span>
-        <span class="n">model</span><span class="p">,</span>
-        <span class="n">model_data</span><span class="p">,</span>
-        <span class="n">farm_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">point_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">out_vars</span><span class="o">=</span><span class="p">[],</span>
-        <span class="n">chunk_store</span><span class="o">=</span><span class="p">{},</span>
-        <span class="n">sel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">isel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">persist</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">iterative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">calc_pars</span><span class="p">,</span>
-    <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Runs the model calculation</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        algo: foxes.core.Algorithm</span>
-<span class="sd">            The algorithm object</span>
-<span class="sd">        model: foxes.core.DataCalcModel</span>
-<span class="sd">            The model that whose calculate function</span>
-<span class="sd">            should be run</span>
-<span class="sd">        model_data: xarray.Dataset</span>
-<span class="sd">            The initial model data</span>
-<span class="sd">        farm_data: xarray.Dataset, optional</span>
-<span class="sd">            The initial farm data</span>
-<span class="sd">        point_data: xarray.Dataset, optional</span>
-<span class="sd">            The initial point data</span>
-<span class="sd">        out_vars: list of str, optional</span>
-<span class="sd">            Names of the output variables</span>
-<span class="sd">        chunk_store: foxes.utils.Dict</span>
-<span class="sd">            The chunk store</span>
-<span class="sd">        sel: dict, optional</span>
-<span class="sd">            Selection of coordinate subsets</span>
-<span class="sd">        isel: dict, optional</span>
-<span class="sd">            Selection of coordinate subsets index values</span>
-<span class="sd">        persist: bool</span>
-<span class="sd">            Flag for persisting xarray Dataset objects</span>
-<span class="sd">        iterative: bool</span>
-<span class="sd">            Flag for use within the iterative algorithm</span>
-<span class="sd">        calc_pars: dict, optional</span>
-<span class="sd">            Additional parameters for the model.calculate()</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        results: xarray.Dataset</span>
-<span class="sd">            The model results</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># subset selection:</span>
-        <span class="n">model_data</span><span class="p">,</span> <span class="n">farm_data</span><span class="p">,</span> <span class="n">point_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_subsets</span><span class="p">(</span>
-            <span class="n">model_data</span><span class="p">,</span> <span class="n">farm_data</span><span class="p">,</span> <span class="n">point_data</span><span class="p">,</span> <span class="n">sel</span><span class="o">=</span><span class="n">sel</span><span class="p">,</span> <span class="n">isel</span><span class="o">=</span><span class="n">isel</span>
-        <span class="p">)</span>
-
-        <span class="c1"># basic checks:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">run_calculation</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_data</span><span class="p">,</span> <span class="n">farm_data</span><span class="p">,</span> <span class="n">point_data</span><span class="p">)</span>
-
-        <span class="c1"># find chunk sizes, if not given:</span>
-        <span class="n">chunk_size_states0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_states</span>
-        <span class="n">chunk_size_points0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_points</span>
-        <span class="n">n_states</span> <span class="o">=</span> <span class="n">model_data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span>
-        <span class="n">n_targets</span> <span class="o">=</span> <span class="n">point_data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">]</span> <span class="k">if</span> <span class="n">point_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
-        <span class="n">chunk_sizes_states</span><span class="p">,</span> <span class="n">chunk_sizes_targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_chunk_sizes</span><span class="p">(</span>
-            <span class="n">n_states</span><span class="p">,</span> <span class="n">n_targets</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">chunk_sizes_states</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">chunk_sizes_targets</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: Selecting chunk_size_states = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_states</span><span class="si">}</span><span class="s2">, chunk_size_points = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_points</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="p">)</span>  <span class="c1"># , level=2)</span>
-
-        <span class="c1"># prepare:</span>
-        <span class="n">algo</span><span class="o">.</span><span class="n">reset_chunk_store</span><span class="p">(</span><span class="n">chunk_store</span><span class="p">)</span>
-        <span class="n">out_coords</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output_coords</span><span class="p">()</span>
-        <span class="n">loop_dims</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop_dims</span> <span class="k">if</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">out_coords</span><span class="p">]</span>
-        <span class="n">loopd</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">loop_dims</span><span class="p">)</span>
-
-        <span class="c1"># extract loop-var dependent and independent data:</span>
-        <span class="n">ldata</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">lvars</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">ldims</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">edata</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">evars</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">edims</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">dvars</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">ivars</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">idims</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">chunk_data</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">[</span><span class="n">model_data</span><span class="p">,</span> <span class="n">farm_data</span><span class="p">,</span> <span class="n">point_data</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="p">]</span>
-        <span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">hvarsl</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">loopd</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">dims</span><span class="p">))]</span>
-            <span class="n">ldata</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ds</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvarsl</span><span class="p">]</span>
-            <span class="n">ldims</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ds</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvarsl</span><span class="p">]</span>
-            <span class="n">lvars</span> <span class="o">+=</span> <span class="n">hvarsl</span>
-
-            <span class="n">hvarse</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">hvarsl</span><span class="p">]</span>
-            <span class="n">edata</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ds</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvarse</span><span class="p">]</span>
-            <span class="n">edims</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ds</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">hvarse</span><span class="p">]</span>
-            <span class="n">evars</span> <span class="o">+=</span> <span class="n">hvarse</span>
-
-            <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">loopd</span><span class="p">:</span>
-                    <span class="n">ldata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">chunk_data</span><span class="p">(</span>
-                            <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">d</span><span class="p">},</span> <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
-                        <span class="p">)</span>
-                    <span class="p">)</span>
-                    <span class="n">ldims</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">c</span><span class="p">,))</span>
-                    <span class="n">lvars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">edata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-                    <span class="n">edims</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">c</span><span class="p">,))</span>
-                    <span class="n">evars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-
-            <span class="n">dvars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
-
-        <span class="c1"># apply persist:</span>
-        <span class="k">if</span> <span class="n">persist</span><span class="p">:</span>
-            <span class="n">ldata</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">persist</span><span class="p">()</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ldata</span><span class="p">]</span>
-
-        <span class="c1"># setup dask options:</span>
-        <span class="n">dargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">output_sizes</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">VARS</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">out_vars</span><span class="p">)})</span>
-        <span class="n">out_core_vars</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">out_coords</span> <span class="k">if</span> <span class="n">d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">loop_dims</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">VARS</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span> <span class="ow">in</span> <span class="n">loopd</span> <span class="ow">and</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ldims</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="n">dargs</span><span class="p">[</span><span class="s2">&quot;output_sizes&quot;</span><span class="p">][</span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">]</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_turbines</span>
-
-        <span class="c1"># find states_i0:</span>
-        <span class="n">state_inds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_data</span><span class="p">(</span>
-            <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ldata</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]),</span>
-                <span class="n">dims</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span>
-                <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="n">ldata</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()},</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-
-        <span class="c1"># setup arguments for wrapper function:</span>
-        <span class="n">out_coords</span> <span class="o">=</span> <span class="n">loop_dims</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">out_core_vars</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">([</span><span class="n">FC</span><span class="o">.</span><span class="n">VARS</span><span class="p">]))</span>
-        <span class="n">wargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-            <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
-            <span class="n">dvars</span><span class="o">=</span><span class="n">dvars</span><span class="p">,</span>
-            <span class="n">lvars</span><span class="o">=</span><span class="n">lvars</span><span class="p">,</span>
-            <span class="n">ldims</span><span class="o">=</span><span class="n">ldims</span><span class="p">,</span>
-            <span class="n">evars</span><span class="o">=</span><span class="n">evars</span><span class="p">,</span>
-            <span class="n">edims</span><span class="o">=</span><span class="n">edims</span><span class="p">,</span>
-            <span class="n">edata</span><span class="o">=</span><span class="n">edata</span><span class="p">,</span>
-            <span class="n">loop_dims</span><span class="o">=</span><span class="n">loop_dims</span><span class="p">,</span>
-            <span class="n">out_vars</span><span class="o">=</span><span class="n">out_vars</span><span class="p">,</span>
-            <span class="n">out_coords</span><span class="o">=</span><span class="n">out_coords</span><span class="p">,</span>
-            <span class="n">calc_pars</span><span class="o">=</span><span class="n">calc_pars</span><span class="p">,</span>
-            <span class="n">init_vars</span><span class="o">=</span><span class="n">ivars</span><span class="p">,</span>
-            <span class="n">calculate</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">calculate</span><span class="p">,</span>
-        <span class="p">)</span>
-
-        <span class="c1"># run parallel computation:</span>
-        <span class="n">iidims</span> <span class="o">=</span> <span class="p">[[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">loopd</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">idims</span><span class="p">]</span>
-        <span class="n">icdims</span> <span class="o">=</span> <span class="p">[[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">loopd</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ldims</span><span class="p">]</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
-            <span class="n">_run_as_ufunc</span><span class="p">,</span>
-            <span class="n">state_inds</span><span class="p">,</span>
-            <span class="o">*</span><span class="n">ldata</span><span class="p">,</span>
-            <span class="n">input_core_dims</span><span class="o">=</span><span class="p">[[]]</span> <span class="o">+</span> <span class="n">iidims</span> <span class="o">+</span> <span class="n">icdims</span><span class="p">,</span>
-            <span class="n">output_core_dims</span><span class="o">=</span><span class="p">[</span><span class="n">out_core_vars</span><span class="p">],</span>
-            <span class="n">output_dtypes</span><span class="o">=</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">],</span>
-            <span class="n">dask</span><span class="o">=</span><span class="s2">&quot;parallelized&quot;</span><span class="p">,</span>
-            <span class="n">dask_gufunc_kwargs</span><span class="o">=</span><span class="n">dargs</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="n">wargs</span><span class="p">,</span>
-        <span class="p">)</span>
-
-        <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="n">FC</span><span class="o">.</span><span class="n">VARS</span><span class="p">:</span> <span class="n">out_vars</span><span class="p">})</span><span class="o">.</span><span class="n">to_dataset</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">FC</span><span class="o">.</span><span class="n">VARS</span><span class="p">)</span>
-
-        <span class="c1"># reset:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_states</span> <span class="o">=</span> <span class="n">chunk_size_states0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_points</span> <span class="o">=</span> <span class="n">chunk_size_points0</span>
-
-        <span class="c1"># update data by calculation results:</span>
-        <span class="k">return</span> <span class="n">results</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">num_workers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="p">)</span></div>
-</div>
-
-
-
-<span class="nd">@delayed</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">_run_lazy</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">iterative</span><span class="p">,</span> <span class="n">chunk_store</span><span class="p">,</span> <span class="n">i0_t0</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">cpars</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for lazy running&quot;&quot;&quot;</span>
-    <span class="n">algo</span><span class="o">.</span><span class="n">reset_chunk_store</span><span class="p">(</span><span class="n">chunk_store</span><span class="p">)</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">cpars</span><span class="p">)</span>
-    <span class="n">chunk_store</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">reset_chunk_store</span><span class="p">()</span> <span class="k">if</span> <span class="n">iterative</span> <span class="k">else</span> <span class="p">{}</span>
-    <span class="n">cstore</span> <span class="o">=</span> <span class="p">{</span><span class="n">i0_t0</span><span class="p">:</span> <span class="n">chunk_store</span><span class="p">[</span><span class="n">i0_t0</span><span class="p">]}</span> <span class="k">if</span> <span class="n">i0_t0</span> <span class="ow">in</span> <span class="n">chunk_store</span> <span class="k">else</span> <span class="p">{}</span>
-    <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">cstore</span>
-
-
-<span class="nd">@delayed</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">_run_map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for running map func on proc&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="DaskEngine">
@@ -1167,6 +810,7 @@
         <span class="n">sel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">isel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">iterative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">write_nc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">calc_pars</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1195,6 +839,19 @@
 <span class="sd">            Selection of coordinate subsets index values</span>
 <span class="sd">        iterative: bool</span>
 <span class="sd">            Flag for use within the iterative algorithm</span>
+<span class="sd">        write_nc: dict, optional</span>
+<span class="sd">            Parameters for writing results to netCDF files, e.g.</span>
+<span class="sd">            {&#39;out_dir&#39;: &#39;results&#39;, &#39;base_name&#39;: &#39;calc_results&#39;,</span>
+<span class="sd">            &#39;ret_data&#39;: False, &#39;split&#39;: 1000}.</span>
+
+<span class="sd">            The split parameter controls how the output is split:</span>
+<span class="sd">            - &#39;chunks&#39;: one file per chunk (fastest method),</span>
+<span class="sd">            - &#39;input&#39;: split according to sizes of multiple states input files,</span>
+<span class="sd">            - int: split with this many states per file,</span>
+<span class="sd">            - None: create a single output file.</span>
+
+<span class="sd">            Use ret_data = False together with non-single file writing</span>
+<span class="sd">            to avoid constructing the full Dataset in memory.</span>
 <span class="sd">        calc_pars: dict, optional</span>
 <span class="sd">            Additional parameters for the model.calculate()</span>
 
@@ -1204,6 +861,9 @@
 <span class="sd">            The model results</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># reset chunk store:</span>
+        <span class="n">algo</span><span class="o">.</span><span class="n">reset_chunk_store</span><span class="p">(</span><span class="n">chunk_store</span><span class="p">)</span>
+
         <span class="c1"># subset selection:</span>
         <span class="n">model_data</span><span class="p">,</span> <span class="n">farm_data</span><span class="p">,</span> <span class="n">point_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_subsets</span><span class="p">(</span>
             <span class="n">model_data</span><span class="p">,</span> <span class="n">farm_data</span><span class="p">,</span> <span class="n">point_data</span><span class="p">,</span> <span class="n">sel</span><span class="o">=</span><span class="n">sel</span><span class="p">,</span> <span class="n">isel</span><span class="o">=</span><span class="n">isel</span>
@@ -1221,6 +881,7 @@
         <span class="k">if</span> <span class="n">farm_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">farm_data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">()</span>
         <span class="n">goal_data</span> <span class="o">=</span> <span class="n">farm_data</span> <span class="k">if</span> <span class="n">point_data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">point_data</span>
+        <span class="n">algo</span><span class="o">.</span><span class="n">reset_chunk_store</span><span class="p">(</span><span class="n">chunk_store</span><span class="p">)</span>
 
         <span class="c1"># calculate chunk sizes:</span>
         <span class="n">n_targets</span> <span class="o">=</span> <span class="n">point_data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">]</span> <span class="k">if</span> <span class="n">point_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
@@ -1237,15 +898,22 @@
         <span class="c1"># submit chunks:</span>
         <span class="n">n_chunks_all</span> <span class="o">=</span> <span class="n">n_chunks_states</span> <span class="o">*</span> <span class="n">n_chunks_targets</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Submitting </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="si">}</span><span class="s2"> processes&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span>
+            <span class="sa">f</span><span class="s2">&quot;Submitting </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_workers</span><span class="si">}</span><span class="s2"> workers&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span>
         <span class="p">)</span>
-        <span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">n_chunks_all</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">pbar</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">n_chunks_all</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_progress_bar</span>
+            <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+        <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">i0_states</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">pdone</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
         <span class="k">for</span> <span class="n">chunki_states</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks_states</span><span class="p">):</span>
             <span class="n">i1_states</span> <span class="o">=</span> <span class="n">i0_states</span> <span class="o">+</span> <span class="n">chunk_sizes_states</span><span class="p">[</span><span class="n">chunki_states</span><span class="p">]</span>
             <span class="n">i0_targets</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">for</span> <span class="n">chunki_points</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks_targets</span><span class="p">):</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">)</span>
                 <span class="n">i1_targets</span> <span class="o">=</span> <span class="n">i0_targets</span> <span class="o">+</span> <span class="n">chunk_sizes_targets</span><span class="p">[</span><span class="n">chunki_points</span><span class="p">]</span>
 
                 <span class="c1"># get this chunk&#39;s data:</span>
@@ -1257,25 +925,36 @@
                     <span class="n">states_i0_i1</span><span class="o">=</span><span class="p">(</span><span class="n">i0_states</span><span class="p">,</span> <span class="n">i1_states</span><span class="p">),</span>
                     <span class="n">targets_i0_i1</span><span class="o">=</span><span class="p">(</span><span class="n">i0_targets</span><span class="p">,</span> <span class="n">i1_targets</span><span class="p">),</span>
                     <span class="n">out_vars</span><span class="o">=</span><span class="n">out_vars</span><span class="p">,</span>
+                    <span class="n">chunki_states</span><span class="o">=</span><span class="n">chunki_states</span><span class="p">,</span>
+                    <span class="n">chunki_points</span><span class="o">=</span><span class="n">chunki_points</span><span class="p">,</span>
+                    <span class="n">n_chunks_states</span><span class="o">=</span><span class="n">n_chunks_states</span><span class="p">,</span>
+                    <span class="n">n_chunks_points</span><span class="o">=</span><span class="n">n_chunks_targets</span><span class="p">,</span>
                 <span class="p">)</span>
 
                 <span class="c1"># submit model calculation:</span>
-                <span class="n">results</span><span class="p">[(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">)]</span> <span class="o">=</span> <span class="n">_run_lazy</span><span class="p">(</span>
-                    <span class="n">deepcopy</span><span class="p">(</span><span class="n">algo</span><span class="p">),</span>
-                    <span class="n">deepcopy</span><span class="p">(</span><span class="n">model</span><span class="p">),</span>
-                    <span class="n">iterative</span><span class="p">,</span>
-                    <span class="n">chunk_store</span><span class="p">,</span>
-                    <span class="p">(</span><span class="n">i0_states</span><span class="p">,</span> <span class="n">i0_targets</span><span class="p">),</span>
+                <span class="n">futures</span><span class="p">[(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">)]</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="n">_run_shared</span><span class="p">)(</span>
+                    <span class="n">algo</span><span class="p">,</span>
+                    <span class="n">model</span><span class="p">,</span>
                     <span class="o">*</span><span class="n">data</span><span class="p">,</span>
+                    <span class="n">chunk_key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
+                    <span class="n">out_coords</span><span class="o">=</span><span class="n">out_coords</span><span class="p">,</span>
+                    <span class="n">write_nc</span><span class="o">=</span><span class="n">write_nc</span><span class="p">,</span>
                     <span class="o">**</span><span class="n">calc_pars</span><span class="p">,</span>
                 <span class="p">)</span>
                 <span class="k">del</span> <span class="n">data</span>
 
                 <span class="n">i0_targets</span> <span class="o">=</span> <span class="n">i1_targets</span>
 
+                <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">if</span> <span class="n">pbar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">prints_progress</span><span class="p">:</span>
+                    <span class="n">pr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">counter</span> <span class="o">/</span> <span class="n">n_chunks_states</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">pr</span> <span class="o">&gt;</span> <span class="n">pdone</span><span class="p">:</span>
+                        <span class="n">pdone</span> <span class="o">=</span> <span class="n">pr</span>
+                        <span class="nb">print</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Submitted </span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">n_chunks_states</span><span class="si">}</span><span class="s2"> chunks, </span><span class="si">{</span><span class="n">pdone</span><span class="si">}</span><span class="s2">%&quot;</span>
+                        <span class="p">)</span>
             <span class="n">i0_states</span> <span class="o">=</span> <span class="n">i1_states</span>
 
         <span class="k">del</span> <span class="n">farm_data</span><span class="p">,</span> <span class="n">point_data</span><span class="p">,</span> <span class="n">calc_pars</span>
@@ -1285,12 +964,14 @@
         <span class="c1"># wait for results:</span>
         <span class="k">if</span> <span class="n">n_chunks_all</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Computing </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks using </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="si">}</span><span class="s2"> processes&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Computing </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks using </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_workers</span><span class="si">}</span><span class="s2"> workers&quot;</span>
             <span class="p">)</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">results</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">futures</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">futures</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_results</span><span class="p">(</span>
             <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
+            <span class="n">futures</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span>
             <span class="n">model_data</span><span class="o">=</span><span class="n">model_data</span><span class="p">,</span>
             <span class="n">out_vars</span><span class="o">=</span><span class="n">out_vars</span><span class="p">,</span>
@@ -1299,6 +980,7 @@
             <span class="n">n_chunks_targets</span><span class="o">=</span><span class="n">n_chunks_targets</span><span class="p">,</span>
             <span class="n">goal_data</span><span class="o">=</span><span class="n">goal_data</span><span class="p">,</span>
             <span class="n">iterative</span><span class="o">=</span><span class="n">iterative</span><span class="p">,</span>
+            <span class="n">write_nc</span><span class="o">=</span><span class="n">write_nc</span><span class="p">,</span>
         <span class="p">)</span></div>
 </div>
 
@@ -1312,11 +994,13 @@
     <span class="n">dims</span><span class="p">,</span>
     <span class="n">mdata_size</span><span class="p">,</span>
     <span class="n">fdata_size</span><span class="p">,</span>
-    <span class="n">loop_dims</span><span class="p">,</span>
     <span class="n">iterative</span><span class="p">,</span>
     <span class="n">chunk_store</span><span class="p">,</span>
+    <span class="n">chunki_states</span><span class="p">,</span>
+    <span class="n">chunki_points</span><span class="p">,</span>
+    <span class="n">n_chunks_states</span><span class="p">,</span>
+    <span class="n">n_chunks_points</span><span class="p">,</span>
     <span class="n">i0_states</span><span class="p">,</span>
-    <span class="n">i0_targets</span><span class="p">,</span>
     <span class="n">cpars</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for running on a cluster&quot;&quot;&quot;</span>
@@ -1326,7 +1010,10 @@
     <span class="n">mdata</span> <span class="o">=</span> <span class="n">MData</span><span class="p">(</span>
         <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mdata_size</span><span class="p">)},</span>
         <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">dims</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mdata_size</span><span class="p">)},</span>
-        <span class="c1"># loop_dims=loop_dims[0],</span>
+        <span class="n">chunki_states</span><span class="o">=</span><span class="n">chunki_states</span><span class="p">,</span>
+        <span class="n">chunki_points</span><span class="o">=</span><span class="n">chunki_points</span><span class="p">,</span>
+        <span class="n">n_chunks_states</span><span class="o">=</span><span class="n">n_chunks_states</span><span class="p">,</span>
+        <span class="n">n_chunks_points</span><span class="o">=</span><span class="n">n_chunks_points</span><span class="p">,</span>
         <span class="n">states_i0</span><span class="o">=</span><span class="n">i0_states</span><span class="p">,</span>
     <span class="p">)</span>
 
@@ -1334,7 +1021,10 @@
     <span class="n">fdata</span> <span class="o">=</span> <span class="n">FData</span><span class="p">(</span>
         <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mdata_size</span><span class="p">,</span> <span class="n">fdata_end</span><span class="p">)},</span>
         <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">dims</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mdata_size</span><span class="p">,</span> <span class="n">fdata_end</span><span class="p">)},</span>
-        <span class="c1"># loop_dims=loop_dims[1],</span>
+        <span class="n">chunki_states</span><span class="o">=</span><span class="n">chunki_states</span><span class="p">,</span>
+        <span class="n">chunki_points</span><span class="o">=</span><span class="n">chunki_points</span><span class="p">,</span>
+        <span class="n">n_chunks_states</span><span class="o">=</span><span class="n">n_chunks_states</span><span class="p">,</span>
+        <span class="n">n_chunks_points</span><span class="o">=</span><span class="n">n_chunks_points</span><span class="p">,</span>
         <span class="n">states_i0</span><span class="o">=</span><span class="n">i0_states</span><span class="p">,</span>
     <span class="p">)</span>
 
@@ -1343,7 +1033,10 @@
         <span class="n">tdata</span> <span class="o">=</span> <span class="n">TData</span><span class="p">(</span>
             <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">fdata_end</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))},</span>
             <span class="n">dims</span><span class="o">=</span><span class="p">{</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">dims</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">fdata_end</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))},</span>
-            <span class="c1"># loop_dims=loop_dims[2],</span>
+            <span class="n">chunki_states</span><span class="o">=</span><span class="n">chunki_states</span><span class="p">,</span>
+            <span class="n">chunki_points</span><span class="o">=</span><span class="n">chunki_points</span><span class="p">,</span>
+            <span class="n">n_chunks_states</span><span class="o">=</span><span class="n">n_chunks_states</span><span class="p">,</span>
+            <span class="n">n_chunks_points</span><span class="o">=</span><span class="n">n_chunks_points</span><span class="p">,</span>
             <span class="n">states_i0</span><span class="o">=</span><span class="n">i0_states</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -1352,7 +1045,7 @@
     <span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">cpars</span><span class="p">)</span>
     <span class="n">chunk_store</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">reset_chunk_store</span><span class="p">()</span> <span class="k">if</span> <span class="n">iterative</span> <span class="k">else</span> <span class="p">{}</span>
 
-    <span class="n">k</span> <span class="o">=</span> <span class="p">(</span><span class="n">i0_states</span><span class="p">,</span> <span class="n">i0_targets</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="p">(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">)</span>
     <span class="n">cstore</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">chunk_store</span><span class="p">[</span><span class="n">k</span><span class="p">]}</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">chunk_store</span> <span class="k">else</span> <span class="p">{}</span>
     <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">cstore</span>
 
@@ -1415,7 +1108,7 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Launching local dask cluster..&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_cluster</span> <span class="o">=</span> <span class="n">distributed</span><span class="o">.</span><span class="n">LocalCluster</span><span class="p">(</span>
-            <span class="n">n_workers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">cluster_pars</span>
+            <span class="n">n_workers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_workers</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">cluster_pars</span>
         <span class="p">)</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">distributed</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cluster</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">client_pars</span><span class="p">)</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cluster</span><span class="p">)</span>
@@ -1438,6 +1131,51 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_cluster&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cluster</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_cluster</span><span class="o">.</span><span class="fm">__del__</span><span class="p">()</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__del__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="LocalClusterEngine.submit">
+<a class="viewcode-back" href="../../../_foxes/engines/SlurmClusterEngine.html#foxes.engines.LocalClusterEngine.submit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Submits a job to worker, obtaining a future</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        f: Callable</span>
+<span class="sd">            The function f(*args, **kwargs) to be</span>
+<span class="sd">            submitted</span>
+<span class="sd">        args: tuple, optional</span>
+<span class="sd">            Arguments for the function</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Arguments for the function</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        future: object</span>
+<span class="sd">            The future object</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LocalClusterEngine.await_result">
+<a class="viewcode-back" href="../../../_foxes/engines/SlurmClusterEngine.html#foxes.engines.LocalClusterEngine.await_result">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">await_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">future</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Waits for result from a future</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        future: object</span>
+<span class="sd">            The future</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        result: object</span>
+<span class="sd">            The calculation result</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span></div>
+
 
 <div class="viewcode-block" id="LocalClusterEngine.run_calculation">
 <a class="viewcode-back" href="../../../_foxes/engines/SlurmClusterEngine.html#foxes.engines.LocalClusterEngine.run_calculation">[docs]</a>
@@ -1528,10 +1266,16 @@
         <span class="n">all_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">falgo</span><span class="p">,</span> <span class="n">fmodel</span><span class="p">,</span> <span class="n">cpars</span><span class="p">]</span>
 
         <span class="c1"># submit chunks:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Submitting </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="si">}</span><span class="s2"> processes&quot;</span><span class="p">)</span>
-        <span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">n_chunks_all</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="n">jobs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Submitting </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_workers</span><span class="si">}</span><span class="s2"> workers&quot;</span><span class="p">)</span>
+        <span class="n">pbar</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">n_chunks_all</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_progress_bar</span>
+            <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+        <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">i0_states</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">pdone</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">chunki_states</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks_states</span><span class="p">):</span>
             <span class="n">i1_states</span> <span class="o">=</span> <span class="n">i0_states</span> <span class="o">+</span> <span class="n">chunk_sizes_states</span><span class="p">[</span><span class="n">chunki_states</span><span class="p">]</span>
             <span class="n">i0_targets</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1547,6 +1291,10 @@
                     <span class="n">states_i0_i1</span><span class="o">=</span><span class="p">(</span><span class="n">i0_states</span><span class="p">,</span> <span class="n">i1_states</span><span class="p">),</span>
                     <span class="n">targets_i0_i1</span><span class="o">=</span><span class="p">(</span><span class="n">i0_targets</span><span class="p">,</span> <span class="n">i1_targets</span><span class="p">),</span>
                     <span class="n">out_vars</span><span class="o">=</span><span class="n">out_vars</span><span class="p">,</span>
+                    <span class="n">chunki_states</span><span class="o">=</span><span class="n">chunki_states</span><span class="p">,</span>
+                    <span class="n">chunki_points</span><span class="o">=</span><span class="n">chunki_points</span><span class="p">,</span>
+                    <span class="n">n_chunks_states</span><span class="o">=</span><span class="n">n_chunks_states</span><span class="p">,</span>
+                    <span class="n">n_chunks_points</span><span class="o">=</span><span class="n">n_chunks_targets</span><span class="p">,</span>
                 <span class="p">)</span>
 
                 <span class="c1"># scatter data:</span>
@@ -1571,7 +1319,7 @@
                     <span class="n">all_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cstore</span><span class="p">)</span>
 
                 <span class="c1"># submit model calculation:</span>
-                <span class="n">jobs</span><span class="p">[(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+                <span class="n">futures</span><span class="p">[(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
                     <span class="n">_run_on_cluster</span><span class="p">,</span>
                     <span class="n">falgo</span><span class="p">,</span>
                     <span class="n">fmodel</span><span class="p">,</span>
@@ -1580,11 +1328,13 @@
                     <span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span>
                     <span class="n">mdata_size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
                     <span class="n">fdata_size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
-                    <span class="n">loop_dims</span><span class="o">=</span><span class="n">ldims</span><span class="p">,</span>
                     <span class="n">iterative</span><span class="o">=</span><span class="n">iterative</span><span class="p">,</span>
                     <span class="n">chunk_store</span><span class="o">=</span><span class="n">cstore</span><span class="p">,</span>
+                    <span class="n">chunki_states</span><span class="o">=</span><span class="n">chunki_states</span><span class="p">,</span>
+                    <span class="n">chunki_points</span><span class="o">=</span><span class="n">chunki_points</span><span class="p">,</span>
+                    <span class="n">n_chunks_states</span><span class="o">=</span><span class="n">n_chunks_states</span><span class="p">,</span>
+                    <span class="n">n_chunks_points</span><span class="o">=</span><span class="n">n_chunks_targets</span><span class="p">,</span>
                     <span class="n">i0_states</span><span class="o">=</span><span class="n">i0_states</span><span class="p">,</span>
-                    <span class="n">i0_targets</span><span class="o">=</span><span class="n">i0_targets</span><span class="p">,</span>
                     <span class="n">cpars</span><span class="o">=</span><span class="n">cpars</span><span class="p">,</span>
                     <span class="n">retries</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                 <span class="p">)</span>
@@ -1592,35 +1342,27 @@
 
                 <span class="n">i0_targets</span> <span class="o">=</span> <span class="n">i1_targets</span>
 
+                <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">if</span> <span class="n">pbar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">prints_progress</span><span class="p">:</span>
+                    <span class="n">pr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">counter</span> <span class="o">/</span> <span class="n">n_chunks_all</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">pr</span> <span class="o">&gt;</span> <span class="n">pdone</span><span class="p">:</span>
+                        <span class="n">pdone</span> <span class="o">=</span> <span class="n">pr</span>
+                        <span class="nb">print</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Submitted </span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks, </span><span class="si">{</span><span class="n">pdone</span><span class="si">}</span><span class="s2">%&quot;</span>
+                        <span class="p">)</span>
             <span class="n">i0_states</span> <span class="o">=</span> <span class="n">i1_states</span>
 
         <span class="k">del</span> <span class="n">falgo</span><span class="p">,</span> <span class="n">fmodel</span><span class="p">,</span> <span class="n">farm_data</span><span class="p">,</span> <span class="n">point_data</span><span class="p">,</span> <span class="n">calc_pars</span>
         <span class="k">if</span> <span class="n">pbar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-        <span class="c1"># wait for results:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computing </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks using </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_procs</span><span class="si">}</span><span class="s2"> processes&quot;</span><span class="p">)</span>
-        <span class="n">pbar</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">n_chunks_all</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">n_chunks_all</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span>
-            <span class="k">else</span> <span class="kc">None</span>
-        <span class="p">)</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">chunki_states</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks_states</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">chunki_points</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks_targets</span><span class="p">):</span>
-                <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">)</span>
-                <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">jobs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">pbar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">pbar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">prints_progress</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: Submitted all </span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s2"> chunks</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_results</span><span class="p">(</span>
             <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
-            <span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span>
+            <span class="n">futures</span><span class="o">=</span><span class="n">futures</span><span class="p">,</span>
             <span class="n">model_data</span><span class="o">=</span><span class="n">model_data</span><span class="p">,</span>
             <span class="n">out_vars</span><span class="o">=</span><span class="n">out_vars</span><span class="p">,</span>
             <span class="n">out_coords</span><span class="o">=</span><span class="n">out_coords</span><span class="p">,</span>
@@ -1659,7 +1401,7 @@
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_cluster</span> <span class="o">=</span> <span class="n">dask_jobqueue</span><span class="o">.</span><span class="n">SLURMCluster</span><span class="p">(</span><span class="o">**</span><span class="n">cargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_cluster</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">jobs</span><span class="o">=</span><span class="n">nodes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cluster</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">futures</span><span class="o">=</span><span class="n">nodes</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_cluster</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cluster</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">distributed</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cluster</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">client_pars</span><span class="p">)</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
 

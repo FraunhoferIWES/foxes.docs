@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.input.yaml.windio.windio - foxes 1.5.2 documentation</title>
+        <title>foxes.input.yaml.windio.windio - foxes 1.6 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -549,9 +549,45 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">..dict</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_dict</span>
 
 
-<div class="viewcode-block" id="read_windio">
-<a class="viewcode-back" href="../../../../../api_input.html#foxes.input.yaml.read_windio">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">read_windio</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="windio_file2dict">
+<a class="viewcode-back" href="../../../../../api_input.html#foxes.input.yaml.windio_file2dict">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">windio_file2dict</span><span class="p">(</span><span class="n">yml_file</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read windio yaml file and translate to foxes input data dictionary</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    yml_file: pathlib.Path or str</span>
+<span class="sd">        The windio yaml file</span>
+<span class="sd">    verbosity: int</span>
+<span class="sd">        The verbosity level, 0 = silent</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    wio_dict: foxes.utils.Dict</span>
+<span class="sd">        The windio data dictionary</span>
+
+<span class="sd">    :group: input.yaml.windio</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">wio_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">yml_file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading windio file </span><span class="si">{</span><span class="n">wio_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">windio</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span>
+        <span class="s2">&quot;windIO&quot;</span><span class="p">,</span>
+        <span class="n">pip_hint</span><span class="o">=</span><span class="s2">&quot;pip install git+https://github.com/EUFLOW/windIO@master&quot;</span><span class="p">,</span>
+        <span class="n">conda_hint</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Dict</span><span class="p">(</span><span class="n">windio</span><span class="o">.</span><span class="n">load_yaml</span><span class="p">(</span><span class="n">wio_file</span><span class="p">),</span> <span class="n">_name</span><span class="o">=</span><span class="s2">&quot;windio&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="read_windio_dict">
+<a class="viewcode-back" href="../../../../../api_input.html#foxes.input.yaml.read_windio_dict">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_windio_dict</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">algo_kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Translate windio data to foxes input data</span>
 
@@ -559,8 +595,13 @@
 <span class="sd">    ----------</span>
 <span class="sd">    wio_dict: foxes.utils.Dict</span>
 <span class="sd">        The windio data</span>
+<span class="sd">    ret_algo: bool</span>
+<span class="sd">        Whether to return the algorithm object, otherwise</span>
+<span class="sd">        return its parameters</span>
 <span class="sd">    verbosity: int</span>
 <span class="sd">        The verbosity level, 0 = silent</span>
+<span class="sd">    algo_kwargs: dict, optional</span>
+<span class="sd">        Additional keyword arguments for the algorithm</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -620,6 +661,9 @@
         <span class="p">)</span>
         <span class="n">idict</span><span class="p">[</span><span class="s2">&quot;algorithm&quot;</span><span class="p">][</span><span class="s2">&quot;rotor_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;direct_mdata&quot;</span>
 
+    <span class="n">idict</span><span class="p">[</span><span class="s2">&quot;algorithm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">algo_kwargs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Final input dictionary:</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">idict</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">algo</span> <span class="o">=</span> <span class="n">Algorithm</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
         <span class="n">farm</span><span class="o">=</span><span class="n">farm</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span> <span class="n">mbook</span><span class="o">=</span><span class="n">mbook</span><span class="p">,</span> <span class="o">**</span><span class="n">idict</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="s2">&quot;algorithm&quot;</span><span class="p">)</span>
     <span class="p">)</span>
@@ -630,6 +674,45 @@
         <span class="n">odir</span> <span class="o">=</span> <span class="n">read_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">odir</span></div>
+
+
+
+<div class="viewcode-block" id="read_windio_file">
+<a class="viewcode-back" href="../../../../../api_input.html#foxes.input.yaml.read_windio_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_windio_file</span><span class="p">(</span><span class="n">yml_file</span><span class="p">,</span> <span class="n">ret_wio</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">algo_kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read windio yaml file and translate to foxes input data</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    yml_file: pathlib.Path or str</span>
+<span class="sd">        The windio yaml file</span>
+<span class="sd">    ret_wio: bool</span>
+<span class="sd">        Whether to return the windio data dictionary as well</span>
+<span class="sd">    verbosity: int</span>
+<span class="sd">        The verbosity level, 0 = silent</span>
+<span class="sd">    algo_kwargs: dict, optional</span>
+<span class="sd">        Additional keyword arguments for the algorithm</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    idict: foxes.utils.Dict or dict</span>
+<span class="sd">        The foxes input data dictionary</span>
+<span class="sd">    algo: foxes.core.Algorithm</span>
+<span class="sd">        The algorithm</span>
+<span class="sd">    odir: pathlib.Path</span>
+<span class="sd">        The output directory</span>
+
+<span class="sd">    :group: input.yaml.windio</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wio</span> <span class="o">=</span> <span class="n">windio_file2dict</span><span class="p">(</span><span class="n">yml_file</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+    <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">odir</span> <span class="o">=</span> <span class="n">read_windio_dict</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">,</span> <span class="o">**</span><span class="n">algo_kwargs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ret_wio</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">odir</span><span class="p">,</span> <span class="n">wio</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">odir</span></div>
 
 
 
@@ -698,10 +781,6 @@
     <span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_print</span><span class="p">(</span><span class="o">*</span><span class="n">ags</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;=</span> <span class="n">level</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">ags</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
     <span class="k">if</span> <span class="p">(</span>
         <span class="n">args</span><span class="o">.</span><span class="n">engine</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">n_procs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -719,15 +798,7 @@
         <span class="n">epars</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="n">wio_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">yml_file</span><span class="p">)</span>
-    <span class="n">_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading windio file </span><span class="si">{</span><span class="n">wio_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">yml_utils</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span>
-        <span class="s2">&quot;windIO.utils.yml_utils&quot;</span><span class="p">,</span>
-        <span class="n">pip_hint</span><span class="o">=</span><span class="s2">&quot;pip install git+https://github.com/EUFLOW/windIO@master#egg=windIO&quot;</span><span class="p">,</span>
-        <span class="n">conda_hint</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="n">wio</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">yml_utils</span><span class="o">.</span><span class="n">load_yaml</span><span class="p">(</span><span class="n">wio_file</span><span class="p">),</span> <span class="n">_name</span><span class="o">=</span><span class="s2">&quot;windio&quot;</span><span class="p">)</span>
-    <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">odir</span> <span class="o">=</span> <span class="n">read_windio</span><span class="p">(</span><span class="n">wio</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span>
+    <span class="n">idict</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">odir</span> <span class="o">=</span> <span class="n">read_windio_file</span><span class="p">(</span><span class="n">wio_file</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">odir</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">odir</span>

@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.utils.xarray_utils - foxes 1.5.2 documentation</title>
+        <title>foxes.utils.xarray_utils - foxes 1.6 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -536,19 +536,188 @@
 
 <h1>Source code for foxes.utils.xarray_utils</h1><div class="highlight"><pre>
 <span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">SerializationWarning</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.variables</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_default_digits</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">foxes.variables</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FV</span>
+
+
+<div class="viewcode-block" id="compute_scale_and_offset">
+<a class="viewcode-back" href="../../../_foxes/utils/compute_scale_and_offset.html#foxes.utils.compute_scale_and_offset">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_scale_and_offset</span><span class="p">(</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">hasnan</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes scale_factor and add_offset for packing data</span>
+<span class="sd">    into n-bit integers.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    min: float</span>
+<span class="sd">        Minimum value of the data</span>
+<span class="sd">    max: float</span>
+<span class="sd">        Maximum value of the data</span>
+<span class="sd">    n: int</span>
+<span class="sd">        Number of bits for packing</span>
+<span class="sd">    hasnan: bool</span>
+<span class="sd">        NaN present in the data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    scale_factor: float</span>
+<span class="sd">        The scale factor</span>
+<span class="sd">    add_offset: float</span>
+<span class="sd">        The add offset</span>
+<span class="sd">    fill_value: float</span>
+<span class="sd">        The fill value for NaN</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Source: https://docs.unidata.ucar.edu/nug/current/best_practices.html</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">min</span> <span class="o">==</span> <span class="nb">max</span><span class="p">:</span>
+        <span class="nb">max</span> <span class="o">=</span> <span class="nb">min</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">hasnan</span><span class="p">:</span>
+        <span class="n">scale_factor</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">add_offset</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="nb">max</span> <span class="o">+</span> <span class="nb">min</span><span class="p">)</span>
+        <span class="n">fill_value</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">scale_factor</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span> <span class="o">-</span> <span class="nb">min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">add_offset</span> <span class="o">=</span> <span class="nb">min</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">scale_factor</span>
+        <span class="n">fill_value</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">scale_factor</span><span class="p">,</span> <span class="n">add_offset</span><span class="p">,</span> <span class="n">fill_value</span></div>
+
+
+
+<div class="viewcode-block" id="pack_value">
+<a class="viewcode-back" href="../../../api_utils.html#foxes.utils.pack_value">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">pack_value</span><span class="p">(</span><span class="n">unpacked_value</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">,</span> <span class="n">add_offset</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pack a floating point value into an integer representation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    unpacked_value: float or np.ndarray</span>
+<span class="sd">        The floating point value(s) to be packed</span>
+<span class="sd">    scale_factor: float</span>
+<span class="sd">        The scale factor</span>
+<span class="sd">    add_offset: float</span>
+<span class="sd">        The add offset</span>
+<span class="sd">    dtype: numpy.dtype</span>
+<span class="sd">        The dtype of packed values</span>
+<span class="sd">    fill_value: float</span>
+<span class="sd">        The fill value for NaN</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    packed_value: int or np.ndarray</span>
+<span class="sd">        The packed integer value(s)</span>
+
+<span class="sd">    :group: utils</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">fill_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="n">unpacked_value</span> <span class="o">-</span> <span class="n">add_offset</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale_factor</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">unpacked_value</span><span class="p">),</span>
+            <span class="n">fill_value</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="n">unpacked_value</span> <span class="o">-</span> <span class="n">add_offset</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale_factor</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="unpack_value">
+<a class="viewcode-back" href="../../../api_utils.html#foxes.utils.unpack_value">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">unpack_value</span><span class="p">(</span><span class="n">packed_value</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">,</span> <span class="n">add_offset</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Unpack an integer representation back into a floating point value.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    packed_value: int or np.ndarray</span>
+<span class="sd">        The packed integer value(s) to be unpacked</span>
+<span class="sd">    scale_factor: float</span>
+<span class="sd">        The scale factor</span>
+<span class="sd">    add_offset: float</span>
+<span class="sd">        The add offset</span>
+<span class="sd">    fill_value: float</span>
+<span class="sd">        The fill value for NaN</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    unpacked_value: float or np.ndarray</span>
+<span class="sd">        The unpacked floating point value(s)</span>
+
+<span class="sd">    :group: utils</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">fill_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">packed_value</span> <span class="o">*</span> <span class="n">scale_factor</span> <span class="o">+</span> <span class="n">add_offset</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">scale_factor</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+            <span class="n">packed_value</span> <span class="o">==</span> <span class="n">fill_value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">packed_value</span> <span class="o">*</span> <span class="n">scale_factor</span> <span class="o">+</span> <span class="n">add_offset</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">scale_factor</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_encoding">
+<a class="viewcode-back" href="../../../api_utils.html#foxes.utils.get_encoding">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_encoding</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">complevel</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the encoding parameters for a numpy array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: np.ndarray</span>
+<span class="sd">        The numpy array for which to get the encoding information.</span>
+<span class="sd">    complevel: int</span>
+<span class="sd">        The compression level (1-9)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    encoding: dict</span>
+<span class="sd">        The encoding information of the numpy array.</span>
+
+<span class="sd">    :group: utils</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">enc</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;zlib&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;complevel&quot;</span><span class="p">:</span> <span class="n">complevel</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
+                <span class="n">enc</span><span class="p">[</span><span class="s2">&quot;dtype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="vm">__name__</span>
+    <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">):</span>
+        <span class="nb">min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">hasnan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">]):</span>
+            <span class="n">scale_factor</span><span class="p">,</span> <span class="n">add_offset</span><span class="p">,</span> <span class="n">fill_value</span> <span class="o">=</span> <span class="n">compute_scale_and_offset</span><span class="p">(</span>
+                <span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">hasnan</span>
+            <span class="p">)</span>
+            <span class="n">packed</span> <span class="o">=</span> <span class="n">pack_value</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">,</span> <span class="n">add_offset</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">)</span>
+            <span class="n">unpacked</span> <span class="o">=</span> <span class="n">unpack_value</span><span class="p">(</span><span class="n">packed</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">,</span> <span class="n">add_offset</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_allclose</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">unpacked</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="n">scale_factor</span><span class="p">)</span>
+                <span class="n">enc</span><span class="p">[</span><span class="s2">&quot;dtype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="n">enc</span><span class="p">[</span><span class="s2">&quot;scale_factor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale_factor</span>
+                <span class="n">enc</span><span class="p">[</span><span class="s2">&quot;add_offset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">add_offset</span>
+                <span class="n">enc</span><span class="p">[</span><span class="s2">&quot;_FillValue&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fill_value</span>
+                <span class="k">break</span>
+            <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+                <span class="k">continue</span>
+    <span class="k">return</span> <span class="n">enc</span></div>
+
 
 
 <div class="viewcode-block" id="write_nc">
-<a class="viewcode-back" href="../../../_foxes/utils/write_nc.html#foxes.utils.write_nc">[docs]</a>
+<a class="viewcode-back" href="../../../api_utils.html#foxes.utils.write_nc">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">write_nc</span><span class="p">(</span>
     <span class="n">ds</span><span class="p">,</span>
     <span class="n">fpath</span><span class="p">,</span>
     <span class="nb">round</span><span class="o">=</span><span class="p">{},</span>
-    <span class="n">complevel</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">complevel</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">nc_engine</span><span class="o">=</span><span class="s2">&quot;netcdf4&quot;</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
@@ -559,59 +728,70 @@
 <span class="sd">    ----------</span>
 <span class="sd">    fpath: str</span>
 <span class="sd">        Path to the output file, should be nc</span>
-<span class="sd">    round: dict</span>
+<span class="sd">    round: dict or int</span>
 <span class="sd">        The rounding digits, falling back to defaults</span>
-<span class="sd">        if variable not found</span>
+<span class="sd">        if variable not found. If int, applies to all variables.</span>
 <span class="sd">    complevel: int</span>
 <span class="sd">        The compression level</span>
+<span class="sd">    nc_engine: str</span>
+<span class="sd">        The NetCDF engine to use</span>
 <span class="sd">    verbosity: int</span>
 <span class="sd">        The verbosity level, 0 = silent</span>
 <span class="sd">    kwargs: dict, optional</span>
 <span class="sd">        Additional parameters for xarray.to_netcdf</span>
+
+<span class="sd">    :group: utils</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper function to round values&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File </span><span class="si">{</span><span class="n">fpath</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Rounding </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2"> decimals&quot;</span><span class="p">)</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="k">pass</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                <span class="k">pass</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">x</span>
+            <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File </span><span class="si">{</span><span class="n">fpath</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Rounding </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2"> decimals&quot;</span><span class="p">)</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">r</span>
         <span class="k">return</span> <span class="n">x</span>
 
+    <span class="n">enc</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">fpath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">round</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">crds</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">d</span> <span class="o">=</span> <span class="nb">round</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">get_default_digits</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">round</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="nb">round</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="nb">round</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">get_default_digits</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
             <span class="n">crds</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">_round</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+            <span class="n">enc</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_encoding</span><span class="p">(</span><span class="n">crds</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">complevel</span><span class="o">=</span><span class="n">complevel</span><span class="p">)</span>
+            <span class="c1"># print(&quot;WRITENC ENC&quot;,v, enc[v])</span>
         <span class="n">dvrs</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">d</span> <span class="o">=</span> <span class="nb">round</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">get_default_digits</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
-            <span class="n">dvrs</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">_round</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">round</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="nb">round</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="nb">round</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">get_default_digits</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="n">FV</span><span class="o">.</span><span class="n">WEIGHT</span><span class="p">:</span>
+                <span class="n">dvrs</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">_round</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dvrs</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+            <span class="n">enc</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_encoding</span><span class="p">(</span><span class="n">dvrs</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">complevel</span><span class="o">=</span><span class="n">complevel</span><span class="p">)</span>
+            <span class="c1"># print(&quot;WRITENC ENC&quot;,v, enc[v])</span>
         <span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="n">crds</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="n">dvrs</span><span class="p">)</span>
-
-    <span class="n">enc</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">if</span> <span class="n">complevel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">complevel</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File </span><span class="si">{</span><span class="n">fpath</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Compression level = </span><span class="si">{</span><span class="n">complevel</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">enc</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;zlib&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;complevel&quot;</span><span class="p">:</span> <span class="n">complevel</span><span class="p">}</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_vars</span><span class="p">}</span>
 
     <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing file&quot;</span><span class="p">,</span> <span class="n">fpath</span><span class="p">)</span>
 
-    <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
-
-    <span class="n">kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="n">enc</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">nc_engine</span><span class="p">)</span>
+    <span class="n">kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="n">enc</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">nc_engine</span><span class="p">)</span>
     <span class="n">kw</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="n">ds</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span></div>
+
+    <span class="c1"># silencing a warning about _FillValue = None</span>
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">SerializationWarning</span><span class="p">)</span>
+        <span class="n">ds</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span></div>
 
 </code></pre></div>
 

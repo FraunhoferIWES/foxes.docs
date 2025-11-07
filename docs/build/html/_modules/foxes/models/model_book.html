@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.models.model_book - foxes 1.5.2 documentation</title>
+        <title>foxes.models.model_book - foxes 1.6 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -955,6 +955,25 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span> <span class="o">=</span> <span class="n">FDict</span><span class="p">(</span><span class="n">_name</span><span class="o">=</span><span class="s2">&quot;wake_models&quot;</span><span class="p">)</span>
 
+        <span class="c1"># Reference for the IEA37Gaussian wake deficit model:</span>
+        <span class="c1"># https://github.com/byuflowlab/iea37-wflo-casestudies/blob/master/cs1-2/iea37-wakemodel.pdf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="s2">&quot;IEA37Gaussian&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2014</span><span class="p">(</span>
+            <span class="n">superposition</span><span class="o">=</span><span class="s2">&quot;ws_quadratic&quot;</span><span class="p">,</span>
+            <span class="n">k</span><span class="o">=</span><span class="mf">0.0324555</span><span class="p">,</span>
+            <span class="n">sbeta</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
+            <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2014</span><span class="p">,</span>
+            <span class="s2">&quot;IEA37Gaussian_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">sbeta</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="p">)),</span>
+            <span class="n">superposition</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="sa">f</span><span class="s2">&quot;ws_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wake_superpositions</span>
+            <span class="k">else</span> <span class="n">s</span><span class="p">,</span>
+            <span class="n">hints</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;superposition&quot;</span><span class="p">:</span> <span class="s2">&quot;(Superposition, e.g. linear for ws_linear, or vector)&quot;</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">JensenWake</span><span class="p">,</span>
             <span class="s2">&quot;Jensen_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
@@ -967,6 +986,11 @@
             <span class="p">},</span>
         <span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="s2">&quot;Bastankhah2014&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2014</span><span class="p">(</span>
+            <span class="n">superposition</span><span class="o">=</span><span class="s2">&quot;ws_linear&quot;</span><span class="p">,</span>
+            <span class="n">k</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+            <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Madsen&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">Bastankhah2014</span><span class="p">,</span>
             <span class="s2">&quot;Bastankhah2014_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>
@@ -1035,6 +1059,12 @@
             <span class="p">},</span>
         <span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="p">[</span><span class="s2">&quot;TurbOPark&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">TurbOParkWake</span><span class="p">(</span>
+            <span class="n">superposition</span><span class="o">=</span><span class="s2">&quot;ws_quadratic&quot;</span><span class="p">,</span>
+            <span class="n">ka</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+            <span class="n">ti_var</span><span class="o">=</span><span class="n">FV</span><span class="o">.</span><span class="n">AMB_TI</span><span class="p">,</span>
+            <span class="n">induction</span><span class="o">=</span><span class="s2">&quot;Madsen&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">add_k_factory</span><span class="p">(</span>
             <span class="n">fm</span><span class="o">.</span><span class="n">wake_models</span><span class="o">.</span><span class="n">wind</span><span class="o">.</span><span class="n">TurbOParkWake</span><span class="p">,</span>
             <span class="s2">&quot;TurbOPark_&lt;superposition&gt;_[wake_k]&quot;</span><span class="p">,</span>

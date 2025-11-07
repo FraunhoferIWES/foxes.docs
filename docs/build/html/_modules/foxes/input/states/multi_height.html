@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.input.states.multi_height - foxes 1.5.2 documentation</title>
+        <title>foxes.input.states.multi_height - foxes 1.6 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -842,8 +842,8 @@
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        data_stash: dict</span>
-<span class="sd">            Large data stash, this function adds data here.</span>
+<span class="sd">        data_stash: dict, optional</span>
+<span class="sd">            Large data stash, this function adds data here, if given.</span>
 <span class="sd">            Key: model name. Value: dict, large model data</span>
 <span class="sd">        sel: dict, optional</span>
 <span class="sd">            The subset selection dictionary</span>
@@ -855,10 +855,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_running</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">data_stash</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">isel</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
-        <span class="n">data_stash</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-            <span class="n">data_source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">,</span>
-            <span class="n">inds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_inds</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">data_stash</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data_stash</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">data_source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">,</span>
+                <span class="n">inds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_inds</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inds</span></div>
 
 
@@ -880,8 +881,8 @@
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        data_stash: dict</span>
-<span class="sd">            Large data stash, this function adds data here.</span>
+<span class="sd">        data_stash: dict, optional</span>
+<span class="sd">            Reconstruct model data from this stash, if given.</span>
 <span class="sd">            Key: model name. Value: dict, large model data</span>
 <span class="sd">        sel: dict, optional</span>
 <span class="sd">            The subset selection dictionary</span>
@@ -893,9 +894,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">unset_running</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">data_stash</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">isel</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
-        <span class="n">data</span> <span class="o">=</span> <span class="n">data_stash</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;data_source&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_inds</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;inds&quot;</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="n">data_stash</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data_stash</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;data_source&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inds</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;inds&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MultiHeightStates.size">
@@ -1104,6 +1106,20 @@
 <span class="sd">    xr_read_pars: dict</span>
 <span class="sd">        Parameters for xarray.open_dataset</span>
 
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Example of the NetCDF structure:</span>
+
+<span class="sd">    &gt;&gt;&gt;    Dimensions:  (Time: 3000, height: 8)</span>
+<span class="sd">    &gt;&gt;&gt;    Coordinates:</span>
+<span class="sd">    &gt;&gt;&gt;    * Time     (Time) &lt;U19 228kB &#39;2009-01-01 00:00:00&#39; ... &#39;2009-01-21 19:50:00&#39;</span>
+<span class="sd">    &gt;&gt;&gt;    * height   (height) float32 32B 50.0 75.0 90.0 100.0 150.0 200.0 250.0 500.0</span>
+<span class="sd">    &gt;&gt;&gt;    Data variables:</span>
+<span class="sd">    &gt;&gt;&gt;        ws       (Time, height) float32 96kB ...</span>
+<span class="sd">    &gt;&gt;&gt;        wd       (Time, height) float32 96kB ...</span>
+<span class="sd">    &gt;&gt;&gt;        ti       (Time, height) float32 96kB ...</span>
+<span class="sd">    &gt;&gt;&gt;        rho      (Time) float32 12kB ...</span>
+
 <span class="sd">    :group: input.states</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1200,7 +1216,8 @@
                     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Path: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">verbosity</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Reading file </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">open_dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">xr_read_pars</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">open_dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">xr_read_pars</span><span class="p">)</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">ds</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span>
 

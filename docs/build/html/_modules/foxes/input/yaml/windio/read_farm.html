@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.input.yaml.windio.read_farm - foxes 1.5.2 documentation</title>
+        <title>foxes.input.yaml.windio.read_farm - foxes 1.6 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -604,12 +604,21 @@
             <span class="n">P</span> <span class="o">=</span> <span class="n">power_curve</span><span class="p">[</span><span class="s2">&quot;power_values&quot;</span><span class="p">]</span>
             <span class="n">ws_P</span> <span class="o">=</span> <span class="n">power_curve</span><span class="p">[</span><span class="s2">&quot;power_wind_speeds&quot;</span><span class="p">]</span>
             <span class="n">ct_curve</span> <span class="o">=</span> <span class="n">performance</span><span class="p">[</span><span class="s2">&quot;Ct_curve&quot;</span><span class="p">]</span>
+            <span class="n">data_P</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;ws&quot;</span><span class="p">:</span> <span class="n">ws_P</span><span class="p">,</span> <span class="s2">&quot;P&quot;</span><span class="p">:</span> <span class="n">P</span><span class="p">})</span>
+
+            <span class="n">P_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data_P</span><span class="p">[</span><span class="s2">&quot;P&quot;</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">P_unit</span><span class="p">,</span> <span class="n">P_scale</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">&quot;W&quot;</span><span class="p">,</span> <span class="mf">1e6</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;kW&quot;</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;MW&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]:</span>
+                <span class="k">if</span> <span class="n">P_max</span> <span class="o">/</span> <span class="n">P_scale</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">break</span>
+            <span class="k">assert</span> <span class="n">P_max</span> <span class="o">/</span> <span class="n">P_scale</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">P_max</span> <span class="o">/</span> <span class="n">P_scale</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">,</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Failed to determin P_unit for max power </span><span class="si">{</span><span class="n">P_max</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="n">_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;              Determined P_unit = </span><span class="si">{</span><span class="n">P_unit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
             <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;            Reading Ct_curve&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
             <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;              Contents:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ct_curve</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
             <span class="n">ct</span> <span class="o">=</span> <span class="n">ct_curve</span><span class="p">[</span><span class="s2">&quot;Ct_values&quot;</span><span class="p">]</span>
             <span class="n">ws_ct</span> <span class="o">=</span> <span class="n">ct_curve</span><span class="p">[</span><span class="s2">&quot;Ct_wind_speeds&quot;</span><span class="p">]</span>
-
-            <span class="n">data_P</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;ws&quot;</span><span class="p">:</span> <span class="n">ws_P</span><span class="p">,</span> <span class="s2">&quot;P&quot;</span><span class="p">:</span> <span class="n">P</span><span class="p">})</span>
             <span class="n">data_ct</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;ws&quot;</span><span class="p">:</span> <span class="n">ws_ct</span><span class="p">,</span> <span class="s2">&quot;ct&quot;</span><span class="p">:</span> <span class="n">ct</span><span class="p">})</span>
 
             <span class="k">def</span><span class="w"> </span><span class="nf">_get_wse_var</span><span class="p">(</span><span class="n">wse</span><span class="p">):</span>
@@ -634,6 +643,7 @@
                 <span class="n">var_ws_ct</span><span class="o">=</span><span class="n">_get_wse_var</span><span class="p">(</span><span class="n">ws_exp_ct</span><span class="p">),</span>
                 <span class="n">var_ws_P</span><span class="o">=</span><span class="n">_get_wse_var</span><span class="p">(</span><span class="n">ws_exp_P</span><span class="p">),</span>
                 <span class="n">rho</span><span class="o">=</span><span class="mf">1.225</span><span class="p">,</span>
+                <span class="n">P_unit</span><span class="o">=</span><span class="n">P_unit</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;               &quot;</span><span class="p">,</span> <span class="n">mbook</span><span class="o">.</span><span class="n">turbine_types</span><span class="p">[</span><span class="n">tname</span><span class="p">],</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
@@ -787,6 +797,106 @@
         <span class="n">read_layout</span><span class="p">(</span><span class="n">lname</span><span class="p">,</span> <span class="n">ldict</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="n">ttypes</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">farm</span></div>
+
+
+
+<div class="viewcode-block" id="read_n_turbines">
+<a class="viewcode-back" href="../../../../../api_input.html#foxes.input.yaml.windio.read_n_turbines">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_n_turbines</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads the number of turbines from windio input</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    wio_dict: foxes.utils.Dict</span>
+<span class="sd">        The windio data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    n_turbines: int</span>
+<span class="sd">        The number of turbines</span>
+
+<span class="sd">    :group: input.yaml.windio</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wio_farm</span> <span class="o">=</span> <span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;wind_farm&quot;</span><span class="p">]</span>
+    <span class="n">wfarm</span> <span class="o">=</span> <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;layouts&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wfarm</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;coordinates&quot;</span> <span class="ow">in</span> <span class="n">wfarm</span><span class="p">:</span>
+            <span class="n">wfarm</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="n">wfarm</span><span class="p">}</span>
+        <span class="n">layouts</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">wfarm</span><span class="p">,</span> <span class="n">_name</span><span class="o">=</span><span class="n">wio_farm</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.layouts&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">layouts</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">):</span> <span class="n">lf</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lf</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wfarm</span><span class="p">)}</span>
+        <span class="n">layouts</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">layouts</span><span class="p">,</span> <span class="n">_name</span><span class="o">=</span><span class="n">wio_farm</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.layouts&quot;</span><span class="p">)</span>
+    <span class="n">n_turbines</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">ldict</span> <span class="ow">in</span> <span class="n">layouts</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">n_turbines</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ldict</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">n_turbines</span></div>
+
+
+
+<div class="viewcode-block" id="read_hub_heights">
+<a class="viewcode-back" href="../../../../../api_input.html#foxes.input.yaml.windio.read_hub_heights">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_hub_heights</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads the hub heights from windio input</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    wio_dict: foxes.utils.Dict</span>
+<span class="sd">        The windio data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    hub_heights: list of float</span>
+<span class="sd">        The hub heights of all turbines</span>
+
+<span class="sd">    :group: input.yaml.windio</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wio_farm</span> <span class="o">=</span> <span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;wind_farm&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&quot;turbine_types&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">wio_farm</span><span class="p">:</span>
+        <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;turbine_types&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
+            <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;turbines&quot;</span><span class="p">]},</span> <span class="n">_name</span><span class="o">=</span><span class="s2">&quot;turbine_types&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">hub_heights</span> <span class="o">=</span> <span class="p">[</span><span class="n">tt</span><span class="p">[</span><span class="s2">&quot;hub_height&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;turbine_types&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+
+    <span class="k">return</span> <span class="n">hub_heights</span></div>
+
+
+
+<div class="viewcode-block" id="read_rotor_diameters">
+<a class="viewcode-back" href="../../../../../api_input.html#foxes.input.yaml.windio.read_rotor_diameters">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_rotor_diameters</span><span class="p">(</span><span class="n">wio_dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads the rotor diameters from windio input</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    wio_dict: foxes.utils.Dict</span>
+<span class="sd">        The windio data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    rotor_diameters: list of float</span>
+<span class="sd">        The rotor diameters of all turbines</span>
+
+<span class="sd">    :group: input.yaml.windio</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wio_farm</span> <span class="o">=</span> <span class="n">wio_dict</span><span class="p">[</span><span class="s2">&quot;wind_farm&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&quot;turbine_types&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">wio_farm</span><span class="p">:</span>
+        <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;turbine_types&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span>
+            <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;turbines&quot;</span><span class="p">]},</span> <span class="n">_name</span><span class="o">=</span><span class="s2">&quot;turbine_types&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">rotor_diameters</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">tt</span><span class="p">[</span><span class="s2">&quot;rotor_diameter&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="n">wio_farm</span><span class="p">[</span><span class="s2">&quot;turbine_types&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+    <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">rotor_diameters</span></div>
 
 </code></pre></div>
 

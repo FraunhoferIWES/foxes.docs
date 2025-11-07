@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.algorithms.downwind.downwind - foxes 1.5.2 documentation</title>
+        <title>foxes.algorithms.downwind.downwind - foxes 1.6 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -536,6 +536,7 @@
 
 <h1>Source code for foxes.algorithms.downwind.downwind</h1><div class="highlight"><pre>
 <span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Algorithm</span><span class="p">,</span> <span class="n">FarmDataModelList</span><span class="p">,</span> <span class="n">get_engine</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">PointDataModel</span><span class="p">,</span> <span class="n">PointDataModelList</span><span class="p">,</span> <span class="n">FarmController</span>
@@ -618,6 +619,7 @@
         <span class="n">ground_models</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">farm_controller</span><span class="o">=</span><span class="s2">&quot;basic_ctrl&quot;</span><span class="p">,</span>
         <span class="n">mbook</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">population_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -651,6 +653,9 @@
 <span class="sd">            looked up in the model book</span>
 <span class="sd">        mbook: foxes.ModelBook, optional</span>
 <span class="sd">            The model book</span>
+<span class="sd">        population_params: dict, optional</span>
+<span class="sd">            The population parameters. If provided, this will be</span>
+<span class="sd">            used to create the population model.</span>
 <span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Additional parameters for the base class</span>
 
@@ -660,7 +665,22 @@
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">mbook</span><span class="p">,</span> <span class="n">farm</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">__states</span> <span class="o">=</span> <span class="n">states</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_SETPOP</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">population_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__states</span> <span class="o">=</span> <span class="n">states</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_SETPOP</span> <span class="o">=</span> <span class="s2">&quot;set_pop_data&quot;</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SETPOP</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mbook</span><span class="o">.</span><span class="n">turbine_models</span><span class="p">,</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Algorithm &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Model name &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_SETPOP</span><span class="si">}</span><span class="s2">&#39; for population data model is reserved&quot;</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_pop_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;PopulationModel&quot;</span><span class="p">)(</span><span class="o">**</span><span class="n">population_params</span><span class="p">)</span>
+            <span class="n">mbook</span><span class="o">.</span><span class="n">turbine_models</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_SETPOP</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pop_model</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;PopulationStates&quot;</span><span class="p">)(</span>
+                <span class="n">states</span><span class="p">,</span> <span class="n">n_pop</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_pop_model</span><span class="o">.</span><span class="n">n_pop</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbines</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SETPOP</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">models</span><span class="p">:</span>
+                    <span class="n">t</span><span class="o">.</span><span class="n">insert_model</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SETPOP</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_states</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__rotor_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mbook</span><span class="o">.</span><span class="n">rotor_models</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="n">rotor_model</span><span class="p">)</span>
@@ -855,6 +875,75 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__farm_controller</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">population_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The population model</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        m: foxes.core.PopulationModel</span>
+<span class="sd">            The population model, or None if not used</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SETPOP</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pop_model</span>
+
+<div class="viewcode-block" id="Downwind.select_population_member">
+<a class="viewcode-back" href="../../../../_foxes/algorithms/Sequential.html#foxes.algorithms.Downwind.select_population_member">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">select_population_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pop_farm_results</span><span class="p">,</span> <span class="n">pop_index</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Select a specific population member from the population model results.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        pop_farm_results: xarray.Dataset</span>
+<span class="sd">            The farm results including population index dimension</span>
+<span class="sd">        pop_index: int or numpy.ndarray</span>
+<span class="sd">            The population index to select. Either a single index</span>
+<span class="sd">            for all states, or an array of shape (n_states,)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        farm_results: xarray.Dataset</span>
+<span class="sd">            The farm results for the selected population member.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SETPOP</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algorithm &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: No population model defined&quot;</span><span class="p">)</span>
+        <span class="n">ini</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialized</span>
+        <span class="k">if</span> <span class="n">ini</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">states</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbines</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SETPOP</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">models</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">t</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_SETPOP</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="n">ini</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+
+        <span class="n">POP</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">population_model</span><span class="o">.</span><span class="n">index_coord</span>
+        <span class="k">assert</span> <span class="n">POP</span> <span class="ow">in</span> <span class="n">pop_farm_results</span><span class="o">.</span><span class="n">sizes</span><span class="p">,</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Algorithm &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Population index coordinate &#39;</span><span class="si">{</span><span class="n">POP</span><span class="si">}</span><span class="s2">&#39; not found in provided farm results&quot;</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pop_index</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="n">v</span><span class="p">:</span> <span class="p">(</span>
+                        <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">),</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">take_along_axis</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">pop_index</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span>
+                            <span class="mi">0</span>
+                        <span class="p">],</span>
+                    <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">POP</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
+                    <span class="k">else</span> <span class="n">d</span>
+                    <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">pop_farm_results</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pop_farm_results</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="n">POP</span><span class="p">:</span> <span class="n">pop_index</span><span class="p">})</span></div>
+
+
 <div class="viewcode-block" id="Downwind.get_model">
 <a class="viewcode-back" href="../../../../_foxes/algorithms/Downwind.get_model.html#foxes.algorithms.Downwind.get_model">[docs]</a>
     <span class="nd">@classmethod</span>
@@ -970,7 +1059,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">initialized</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">n_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">size</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">size</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Downwind.sub_models">
@@ -1112,8 +1201,9 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">calc_parameters</span><span class="o">=</span><span class="p">{},</span>
-        <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">ambient</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">clear_mem</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1126,10 +1216,12 @@
 <span class="sd">            Key: model name str, value: parameter dict</span>
 <span class="sd">        outputs: list of str, optional</span>
 <span class="sd">            The output variables, or None for defaults</span>
-<span class="sd">        finalize: bool</span>
-<span class="sd">            Flag for finalization after calculation</span>
 <span class="sd">        ambient: bool</span>
 <span class="sd">            Flag for ambient instead of waked calculation</span>
+<span class="sd">        finalize: bool</span>
+<span class="sd">            Flag for finalization after calculation</span>
+<span class="sd">        clear_mem: bool</span>
+<span class="sd">            Clear idata memory after starting the run</span>
 <span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Additional parameters for run_calculation</span>
 
@@ -1176,23 +1268,25 @@
             <span class="n">model_data</span><span class="p">,</span>
             <span class="n">parameters</span><span class="o">=</span><span class="n">calc_pars</span><span class="p">,</span>
             <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
+            <span class="n">clear_mem</span><span class="o">=</span><span class="n">clear_mem</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">farm_results</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TNAME</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">,),</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_names</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">ORDER</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">ORDER_SSEL</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">ORDER_INV</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">farm_results</span><span class="p">:</span>
-                <span class="n">farm_results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">farm_results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">farm_results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">farm_results</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TNAME</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">,),</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_names</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">ORDER</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">ORDER_SSEL</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">ORDER_INV</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">farm_results</span><span class="p">:</span>
+                    <span class="n">farm_results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">farm_results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_int</span><span class="p">)</span>
         <span class="k">del</span> <span class="n">model_data</span>
 
         <span class="c1"># finalize models:</span>
-        <span class="k">if</span> <span class="n">finalize</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">clear_mem</span> <span class="ow">or</span> <span class="n">finalize</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">mlist</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">clear_mem</span><span class="o">=</span><span class="n">clear_mem</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">del_model_data</span><span class="p">(</span><span class="n">mlist</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">ambient</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ambient</span> <span class="ow">and</span> <span class="n">farm_results</span><span class="p">:</span>
             <span class="n">dvars</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">farm_results</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">FV</span><span class="o">.</span><span class="n">var2amb</span><span class="p">]</span>
             <span class="n">farm_results</span> <span class="o">=</span> <span class="n">farm_results</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span><span class="n">dvars</span><span class="p">)</span>
 

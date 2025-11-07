@@ -19,7 +19,7 @@
     
     
       
-        <title>Changelog - foxes 1.5.2 documentation</title>
+        <title>Changelog - foxes 1.6 documentation</title>
       
     
     
@@ -81,7 +81,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -94,7 +94,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -189,12 +189,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -1083,6 +1083,16 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#v1-6" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="/changelog.md#v1-6 (reference label)"><span>v1.<wbr>6</span></span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1651,6 +1661,16 @@
     
     <span class="md-ellipsis">
       <span title="/changelog.md#v1-5-2 (reference label)"><span>v1.<wbr>5.<wbr>2</span></span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1-6" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="/changelog.md#v1-6 (reference label)"><span>v1.<wbr>6</span></span>
     </span>
   </a>
   
@@ -2994,6 +3014,69 @@
 </li>
 </ul>
 <p><strong>Full Changelog</strong>: <a class="reference external" href="https://github.com/FraunhoferIWES/foxes/commits/v1.5.2">https://github.com/FraunhoferIWES/foxes/commits/v1.5.2</a></p>
+<h2 id="v1-6">v1.6<a class="headerlink" href="#v1-6" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Python version:</p>
+<ul>
+<li><p>Adding support for Python 3.14</p></li>
+</ul>
+</li>
+<li><p>Core:</p>
+<ul>
+<li><p>Wind farms now support turbine locations in terms of longitude, lattitude. They will automatically be translated into
+a uniquely fixed UTM zone, stored in the global config object.</p></li>
+<li><p>Turbines now carry an optional property <code class="docutils literal notranslate"><span class="pre">wind_farm_name</span></code>, intended for cases which model multiple wind farms. The <code class="docutils literal notranslate"><span class="pre">WindFarm</span></code> class offers a property <code class="docutils literal notranslate"><span class="pre">wind_farm_names</span></code> and a function <code class="docutils literal notranslate"><span class="pre">get_wind_farm_mapping()</span></code>, returning a mapping from wind farm names to turbine indices. This is for example used by layout plots with the choice <code class="docutils literal notranslate"><span class="pre">annotate=3</span></code>, which results in printing wind farm names instead of turbine indices.</p></li>
+</ul>
+</li>
+<li><p>Algorithms:</p>
+<ul>
+<li><p>New optional dict-type parameter <code class="docutils literal notranslate"><span class="pre">write_nc</span></code> for <code class="docutils literal notranslate"><span class="pre">algo.calc_farm()</span></code> and <code class="docutils literal notranslate"><span class="pre">algo.calc_points()</span></code>, allowing the parallel writing of results into multiple files without ever constructing the complete dataset in memory. If writing results to file is the only intention of the run, this is the recommended approach.</p></li>
+<li><p>Introducing new parameter <code class="docutils literal notranslate"><span class="pre">population_params</span></code> to <code class="docutils literal notranslate"><span class="pre">Downwind</span></code> algorithm, for setting up a vectorized parameter study. This is based on a set of values for selected variables, which are then evaluated for each state. This is realized via the algorithm specific states class <code class="docutils literal notranslate"><span class="pre">PopulationStates</span></code> and turbine model class <code class="docutils literal notranslate"><span class="pre">PopulationModel</span></code>.</p></li>
+<li><p>Reworking the <code class="docutils literal notranslate"><span class="pre">Iterative</span></code> algorithm, such that it now computes only non-converged states in each iteration. In general, this leads to a substantial speed-up.</p></li>
+<li><p>Introducing new boolean parameter <code class="docutils literal notranslate"><span class="pre">clear_mem</span></code> to <code class="docutils literal notranslate"><span class="pre">algo.calc_farm()</span></code>, clearing memory after initiating the calculation. This is intended to be used when there is only one single call of that function, or any of the used models.</p></li>
+</ul>
+</li>
+<li><p>Engines:</p>
+<ul>
+<li><p>Now all engines have <code class="docutils literal notranslate"><span class="pre">submit</span></code> and <code class="docutils literal notranslate"><span class="pre">await_result</span></code> functions (which are trivial for serial engines), also usable by the user from the <code class="docutils literal notranslate"><span class="pre">engine</span></code> object, e.g. for parallel plotting during post-processing.</p></li>
+<li><p>Adding support for parallel results writing via <code class="docutils literal notranslate"><span class="pre">write_nc</span></code> parameter, optionally without ever creating the full dataset in memory. Independent of writing, the futures of individual chunks are now computed directly when needed, no longer in advance.</p></li>
+<li><p>Engines have a new boolean parameter <code class="docutils literal notranslate"><span class="pre">progress_bar</span></code>, and if set to False, they print the progress to terminal instead. This is recommended for runs on clusters.</p></li>
+<li><p>Dropping <code class="docutils literal notranslate"><span class="pre">XArrayEngine</span></code>, since no longer compatible</p></li>
+</ul>
+</li>
+<li><p>Inputs:</p>
+<ul>
+<li><p>New farm layout input <code class="docutils literal notranslate"><span class="pre">from_eww</span></code>, reading wind farm input in EuroWindWakes format</p></li>
+<li><p>New farm layout input <code class="docutils literal notranslate"><span class="pre">from_wrf</span></code>, reading a folder that contains wind farm input data in a format readable by WRF</p></li>
+<li><p>New states <code class="docutils literal notranslate"><span class="pre">NEWAStates</span></code>, directly reading NEWA-WRF data files into foxes</p></li>
+</ul>
+</li>
+<li><p>Models:</p>
+<ul>
+<li><p>Addition of <code class="docutils literal notranslate"><span class="pre">IEA37Gaussian</span></code> wake model to the model book, requiring slight generalization of the <code class="docutils literal notranslate"><span class="pre">Bastankhah2014</span></code> wake model class.</p></li>
+<li><p>Adding default parameter wake models to the model book, following the papers: <code class="docutils literal notranslate"><span class="pre">Bastankhah2014</span></code>, <code class="docutils literal notranslate"><span class="pre">TurbOPark</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Utils:</p>
+<ul>
+<li><p>Improved <code class="docutils literal notranslate"><span class="pre">write_nc</span></code> utility, now better data compression through the usage of appropriate encoding</p></li>
+</ul>
+</li>
+<li><p>Examples:</p>
+<ul>
+<li><p>New example <code class="docutils literal notranslate"><span class="pre">parameter_study</span></code>, demonstrating the setup of a parameter study</p></li>
+</ul>
+</li>
+<li><p>Bug fixes:</p>
+<ul>
+<li><p>Fix for max x selection in <code class="docutils literal notranslate"><span class="pre">FieldDataNC</span></code>, thanks &#64;qzheng75</p></li>
+<li><p>Fix for <code class="docutils literal notranslate"><span class="pre">Sequential</span></code> algorithm with non-updated chunk store data</p></li>
+<li><p>Fix for <code class="docutils literal notranslate"><span class="pre">TurbOPark</span></code> wake model in the context of <code class="docutils literal notranslate"><span class="pre">windio</span></code> input files</p></li>
+<li><p>Fix for bug with writing time stamps to NetCDF in <code class="docutils literal notranslate"><span class="pre">write_nc</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Full Changelog</strong>: <a class="reference external" href="https://github.com/FraunhoferIWES/foxes/commits/v1.6">https://github.com/FraunhoferIWES/foxes/commits/v1.6</a></p>
 
 
 

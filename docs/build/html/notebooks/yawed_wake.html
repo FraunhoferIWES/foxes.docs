@@ -21,7 +21,7 @@
     
     
       
-        <title>Yawed rotor wakes - foxes 1.5.2 documentation</title>
+        <title>Yawed rotor wakes - foxes 1.6 documentation</title>
       
     
     
@@ -79,7 +79,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -92,7 +92,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -187,12 +187,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -1147,6 +1147,7 @@ Selecting &#39;DefaultEngine(n_procs=16, chunk_size_states=None, chunk_size_poin
 DefaultEngine: Selecting engine &#39;single&#39;
 SingleChunkEngine: Calculating 3 states for 2 turbines
 SingleChunkEngine: Running single chunk calculation for 3 states
+SingleChunkEngine: Combining results from 1 chunks
 </pre></div></div>
 </div>
 <p>Once the wind farm results are ready we can continue and plot the wind field:</p>
@@ -1168,7 +1169,7 @@ SingleChunkEngine: Running single chunk calculation for 3 states
 <div class="highlight"><pre>
 DefaultEngine: Selecting engine &#39;process&#39;
 ProcessEngine: Calculating data at 31411 points for 3 states
-ProcessEngine: Computing 48 chunks using 16 processes
+ProcessEngine: Computing 45 chunks using 15 workers
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1176,28 +1177,45 @@ ProcessEngine: Computing 48 chunks using 16 processes
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-100%|████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:00&lt;00:00, 1015.29it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████| 45/45 [00:00&lt;00:00, 587.65it/s]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_16_2.png" src="../_images/notebooks_yawed_wake_16_2.png" />
+<div class="highlight"><pre>
+ProcessEngine: Completed all 45 chunks
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_yawed_wake_16_4.png" src="../_images/notebooks_yawed_wake_16_4.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_16_3.png" src="../_images/notebooks_yawed_wake_16_3.png" />
+<img alt="../_images/notebooks_yawed_wake_16_5.png" src="../_images/notebooks_yawed_wake_16_5.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_16_4.png" src="../_images/notebooks_yawed_wake_16_4.png" />
+<img alt="../_images/notebooks_yawed_wake_16_6.png" src="../_images/notebooks_yawed_wake_16_6.png" />
 </div>
 </div>
 <p>As well as some vertical cross sections some distance downstream:</p>
@@ -1222,6 +1240,7 @@ ProcessEngine: Computing 48 chunks using 16 processes
 DefaultEngine: Selecting engine &#39;single&#39;
 SingleChunkEngine: Calculating data at 1066 points for 3 states
 SingleChunkEngine: Running single chunk calculation for 3 states
+SingleChunkEngine: Combining results from 1 chunks
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1293,7 +1312,7 @@ state turbine
 <div class="highlight"><pre>
 DefaultEngine: Selecting engine &#39;process&#39;
 ProcessEngine: Calculating data at 31411 points for 3 states
-ProcessEngine: Computing 48 chunks using 16 processes
+ProcessEngine: Computing 45 chunks using 15 workers
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1301,28 +1320,45 @@ ProcessEngine: Computing 48 chunks using 16 processes
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-100%|████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:00&lt;00:00, 1009.78it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████| 45/45 [00:00&lt;00:00, 647.89it/s]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_22_2.png" src="../_images/notebooks_yawed_wake_22_2.png" />
+<div class="highlight"><pre>
+ProcessEngine: Completed all 45 chunks
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_yawed_wake_22_4.png" src="../_images/notebooks_yawed_wake_22_4.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_22_3.png" src="../_images/notebooks_yawed_wake_22_3.png" />
+<img alt="../_images/notebooks_yawed_wake_22_5.png" src="../_images/notebooks_yawed_wake_22_5.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_22_4.png" src="../_images/notebooks_yawed_wake_22_4.png" />
+<img alt="../_images/notebooks_yawed_wake_22_6.png" src="../_images/notebooks_yawed_wake_22_6.png" />
 </div>
 </div>
 <p>Other wake deflection models, like <code class="docutils literal notranslate"><span class="pre">JimenezProj</span></code>, <code class="docutils literal notranslate"><span class="pre">JimenezPath</span></code> or <code class="docutils literal notranslate"><span class="pre">Bastankhah2016</span></code> do not affect the wind direction variable.</p>
@@ -1346,7 +1382,7 @@ ProcessEngine: Computing 48 chunks using 16 processes
 <div class="highlight"><pre>
 DefaultEngine: Selecting engine &#39;process&#39;
 ProcessEngine: Calculating data at 31411 points for 3 states
-ProcessEngine: Computing 48 chunks using 16 processes
+ProcessEngine: Computing 45 chunks using 15 workers
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1354,28 +1390,45 @@ ProcessEngine: Computing 48 chunks using 16 processes
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-100%|████████████████████████████████████████████████████████████████████████████████████████| 48/48 [00:00&lt;00:00, 1021.40it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████| 45/45 [00:00&lt;00:00, 657.03it/s]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_25_2.png" src="../_images/notebooks_yawed_wake_25_2.png" />
+<div class="highlight"><pre>
+ProcessEngine: Completed all 45 chunks
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_yawed_wake_25_4.png" src="../_images/notebooks_yawed_wake_25_4.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_25_3.png" src="../_images/notebooks_yawed_wake_25_3.png" />
+<img alt="../_images/notebooks_yawed_wake_25_5.png" src="../_images/notebooks_yawed_wake_25_5.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_yawed_wake_25_4.png" src="../_images/notebooks_yawed_wake_25_4.png" />
+<img alt="../_images/notebooks_yawed_wake_25_6.png" src="../_images/notebooks_yawed_wake_25_6.png" />
 </div>
 </div>
 

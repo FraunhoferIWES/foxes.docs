@@ -21,7 +21,7 @@
     
     
       
-        <title>The model book - foxes 1.5.2 documentation</title>
+        <title>The model book - foxes 1.6 documentation</title>
       
     
     
@@ -79,7 +79,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -92,7 +92,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -187,12 +187,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -1161,11 +1161,57 @@ Example: seq_dyn_wakes_10s
 
 wake_models
 -----------
+Bastankhah2014: Bastankhah2014(ws_linear, induction=Madsen, k=0.04)
+IEA37Gaussian: Bastankhah2014(ws_quadratic, induction=Madsen, k=0.0324555)
 RHB: RankineHalfBody(vector, induction=Madsen)
 Rathmann: Rathmann(ws_linear, induction=Madsen)
 SelfSimilar: SelfSimilar(ws_linear, induction=Madsen, gamma=1.1)
 SelfSimilar2020: SelfSimilar2020(ws_linear, induction=Madsen, gamma=1.1)
+TurbOPark: TurbOParkWake(ws_quadratic, induction=Madsen, k=0.04*AMB_TI)
 VortexSheet: VortexSheet(ws_linear, induction=Madsen)
+
+IEA37Gaussian_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: Bastankhah2014 with
+  sbeta=0.35355339059327373
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear, or vector)
+  ka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+Example: IEA37Gaussian_linear_ka0.2_kb0.001
+
+IEA37Gaussian_&lt;superposition&gt;_ambka&lt;ambka&gt;_kb&lt;kb&gt;: Bastankhah2014 with
+  sbeta=0.35355339059327373
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear, or vector)
+  ambka=(Value, e.g. 04 for 0.4)
+  kb=(Value, e.g. 001 for 0.01)
+Example: IEA37Gaussian_linear_ambka0.4_kb0.001
+
+IEA37Gaussian_&lt;superposition&gt;_ka&lt;ka&gt;: Bastankhah2014 with
+  sbeta=0.35355339059327373
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear, or vector)
+  ka=(Value, e.g. 04 for 0.4)
+Example: IEA37Gaussian_linear_ka0.2
+
+IEA37Gaussian_&lt;superposition&gt;_ambka&lt;ambka&gt;: Bastankhah2014 with
+  sbeta=0.35355339059327373
+  ti_var=AMB_TI
+  superposition=(Superposition, e.g. linear for ws_linear, or vector)
+  ambka=(Value, e.g. 04 for 0.4)
+Example: IEA37Gaussian_linear_ambka0.4
+
+IEA37Gaussian_&lt;superposition&gt;_k&lt;k&gt;: Bastankhah2014 with
+  sbeta=0.35355339059327373
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear, or vector)
+  k=(Value, e.g. 004 for 0.04)
+Example: IEA37Gaussian_linear_k0.04
+
+IEA37Gaussian_&lt;superposition&gt;: Bastankhah2014 with
+  sbeta=0.35355339059327373
+  ti_var=TI
+  superposition=(Superposition, e.g. linear for ws_linear, or vector)
+Example: IEA37Gaussian_linear
 
 Jensen_&lt;superposition&gt;_ka&lt;ka&gt;_kb&lt;kb&gt;: JensenWake with
   induction=Betz

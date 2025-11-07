@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.algorithms.iterative.models.convergence - foxes 1.5.2 documentation</title>
+        <title>foxes.algorithms.iterative.models.convergence - foxes 1.6 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -538,8 +538,9 @@
 <span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">foxes.variables</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FV</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">delta_wd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">foxes.variables</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FV</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">foxes.constants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FC</span>
 
 
 <div class="viewcode-block" id="ConvCrit">
@@ -569,8 +570,43 @@
 <span class="sd">            The convergence criteria name</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_conv_states</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__no_subs</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="ConvCrit.disable_subsets">
+<a class="viewcode-back" href="../../../../../_foxes/algorithms/iterative/DefaultConv.html#foxes.algorithms.iterative.ConvCrit.disable_subsets">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">disable_subsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">no_subs</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Disable subset state selection in iterative algorithm.</span>
+
+<span class="sd">        This is needed if the convergence criterion requires</span>
+<span class="sd">        all states to be calculated in each iteration.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        no_subs: bool</span>
+<span class="sd">            Disable subsets flag</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__no_subs</span> <span class="o">=</span> <span class="n">no_subs</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">no_subs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the disable subsets flag.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        no_subs: bool</span>
+<span class="sd">            Disable subsets flag</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__no_subs</span>
 
 <div class="viewcode-block" id="ConvCrit.check_converged">
 <a class="viewcode-back" href="../../../../../_foxes/algorithms/iterative/ConvCrit.check_converged.html#foxes.algorithms.iterative.ConvCrit.check_converged">[docs]</a>
@@ -601,10 +637,8 @@
         <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="ConvCrit.get_deltas">
-<a class="viewcode-back" href="../../../../../_foxes/algorithms/iterative/ConvCrit.get_deltas.html#foxes.algorithms.iterative.ConvCrit.get_deltas">[docs]</a>
-    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the most recent evaluation deltas.</span>
 
@@ -614,8 +648,20 @@
 <span class="sd">            The most recent evaluation deltas</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
-</div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">conv_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the convergence state per state.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        conv_states: numpy.ndarray, bool</span>
+<span class="sd">            The convergence state per state</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_subs</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conv_states</span></div>
 
 
 
@@ -693,29 +739,21 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_failed</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_conv_states</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">crits</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">c</span><span class="o">.</span><span class="n">check_converged</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">prev_results</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">):</span>
+            <span class="n">conv</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">check_converged</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">prev_results</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conv_states</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_conv_states</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">conv_states</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">deltas</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_conv_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conv_states</span> <span class="o">&amp;</span> <span class="n">c</span><span class="o">.</span><span class="n">conv_states</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">deltas</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">failed</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">conv</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_failed</span> <span class="o">=</span> <span class="n">c</span>
-                <span class="k">return</span> <span class="kc">False</span>
 
-        <span class="k">return</span> <span class="kc">True</span></div>
-
-
-<div class="viewcode-block" id="ConvCritList.get_deltas">
-<a class="viewcode-back" href="../../../../../_foxes/algorithms/iterative/ConvCritList.get_deltas.html#foxes.algorithms.iterative.ConvCritList.get_deltas">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the most recent evaluation deltas.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        deltas: dict</span>
-<span class="sd">            The most recent evaluation deltas</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_failed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_failed</span><span class="o">.</span><span class="n">get_deltas</span><span class="p">()</span>
-        <span class="k">return</span> <span class="p">{}</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_failed</span> <span class="ow">is</span> <span class="kc">None</span></div>
 </div>
 
 
@@ -760,9 +798,7 @@
         <span class="k">if</span> <span class="n">wd_vars</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">wd_vars</span> <span class="o">=</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_WD</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">YAW</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">AMB_YAW</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">wd_vars</span> <span class="o">=</span> <span class="n">wd_vars</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span> <span class="o">=</span> <span class="p">{}</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wd_vars</span> <span class="o">=</span> <span class="n">wd_vars</span></div>
 
 
 <div class="viewcode-block" id="ConvVarDelta.check_converged">
@@ -798,39 +834,32 @@
             <span class="n">L</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
 
         <span class="n">ok</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">n_states</span> <span class="o">=</span> <span class="n">prev_results</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_conv_states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">lim</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">x0</span> <span class="o">=</span> <span class="n">prev_results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wd_vars</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">delta_wd</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x</span><span class="p">)))</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">delta_wd</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">))</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
             <span class="n">check</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_conv_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conv_states</span> <span class="o">&amp;</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="n">lim</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">ok</span> <span class="o">=</span> <span class="n">ok</span> <span class="ow">and</span> <span class="p">(</span><span class="n">check</span> <span class="o">&lt;=</span> <span class="n">lim</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">r</span> <span class="o">=</span> <span class="s2">&quot;FAILED&quot;</span> <span class="k">if</span> <span class="n">check</span> <span class="o">&gt;</span> <span class="n">lim</span> <span class="k">else</span> <span class="s2">&quot;OK&quot;</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">L</span><span class="si">}}</span><span class="s2">: delta = </span><span class="si">{</span><span class="n">check</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">, lim = </span><span class="si">{</span><span class="n">lim</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">  --  </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
-                <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Converged states: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_conv_states</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_states</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">ok</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_conv_states</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="k">return</span> <span class="n">ok</span></div>
-
-
-<div class="viewcode-block" id="ConvVarDelta.get_deltas">
-<a class="viewcode-back" href="../../../../../_foxes/algorithms/iterative/DefaultConv.html#foxes.algorithms.iterative.ConvVarDelta.get_deltas">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_deltas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the most recent evaluation deltas.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        deltas: dict</span>
-<span class="sd">            The most recent evaluation deltas</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deltas</span></div>
 </div>
 
 

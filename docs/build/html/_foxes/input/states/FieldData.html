@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.input.states.FieldData - foxes 1.5.2 documentation</title>
+        <title>foxes.input.states.FieldData - foxes 1.6 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -556,7 +556,22 @@ horizontal grid in NetCDF format.</p>
 <dt>bounds_extra_space: float or str</dt><dd><p>The extra space, either float in m,
 or str for units of D, e.g. ‘2.5D’</p>
 </dd>
+<dt>height_bounds: tuple, optional</dt><dd><p>The (h_min, h_max) height bounds in m. Defaults to H +/- 0.5*D</p>
+</dd>
 </dl>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<p>Simplistic example of the NetCDF structure:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span>   <span class="n">Dimensions</span><span class="p">:</span>  <span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">h</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">Coordinates</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="o">*</span> <span class="n">state</span>    <span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="n">int32</span> <span class="mi">8</span><span class="n">B</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="o">*</span> <span class="n">h</span>        <span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="n">float32</span> <span class="mi">8</span><span class="n">B</span> <span class="mf">0.0</span> <span class="mf">300.0</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="o">*</span> <span class="n">y</span>        <span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="n">float32</span> <span class="mi">8</span><span class="n">B</span> <span class="mf">0.0</span> <span class="mf">2.5e+03</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="o">*</span> <span class="n">x</span>        <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">float32</span> <span class="mi">8</span><span class="n">B</span> <span class="mf">0.0</span> <span class="mf">2.5e+03</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">Data</span> <span class="n">variables</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>       <span class="n">ws</span>       <span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">float32</span> <span class="mi">64</span><span class="n">B</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span>       <span class="n">wd</span>       <span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">float32</span> <span class="mi">64</span><span class="n">B</span> <span class="o">...</span>
+</code></pre></div>
+</div>
 <h2 id="public-members">Public members<a class="headerlink" href="#public-members" title="Link to this heading">¶</a></h2>
 <dl class="py method summary objdesc">
 <dt class="sig sig-object highlight py">
@@ -570,16 +585,22 @@ or str for units of D, e.g. ‘2.5D’</p>
 <dd><p>Load and/or create all model data that is subject to chunking.</p>
 </dd></dl>
 
-<dl class="py method summary objdesc">
-<dt class="sig sig-object highlight py">
-<a class="sig-name descname pseudo-toc-entry reference internal" href="FieldData.calculate.html" title="foxes.input.states.FieldData.calculate (Python method) — The main model calculation."><span class="sig-name descname pseudo-toc-entry"><span class="pre">calculate</span></span></a><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="FieldData.calculate.html" title="foxes.input.states.FieldData.calculate.algo (Python parameter)"><span class="n"><span class="pre">algo</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="FieldData.calculate.html" title="foxes.input.states.FieldData.calculate.mdata (Python parameter)"><span class="n"><span class="pre">mdata</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="FieldData.calculate.html" title="foxes.input.states.FieldData.calculate.fdata (Python parameter)"><span class="n"><span class="pre">fdata</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="FieldData.calculate.html" title="foxes.input.states.FieldData.calculate.tdata (Python parameter)"><span class="n"><span class="pre">tdata</span></span></a></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/foxes/input/states/field_data.html#FieldData.calculate"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>The main model calculation.</p>
-</dd></dl>
-
 <dl class="py property summary objdesc">
 <dt class="sig sig-object highlight py">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><a class="sig-name descname reference internal" href="DatasetStates.data_source.html" title="foxes.input.states.DatasetStates.data_source (Python property) — The data source"><span class="sig-name descname"><span class="pre">data_source</span></span></a></dt>
 <dd><p>The data source</p>
+</dd></dl>
+
+<dl class="py method summary objdesc">
+<dt class="sig sig-object highlight py">
+<a class="sig-name descname reference internal" href="DatasetStates.preproc_first.html" title="foxes.input.states.DatasetStates.preproc_first (Python method) — Preprocesses the first file."><span class="sig-name descname"><span class="pre">preproc_first</span></span></a><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.preproc_first.html" title="foxes.input.states.DatasetStates.preproc_first.algo (Python parameter)"><span class="n"><span class="pre">algo</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.preproc_first.html" title="foxes.input.states.DatasetStates.preproc_first.data (Python parameter)"><span class="n"><span class="pre">data</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.preproc_first.html" title="foxes.input.states.DatasetStates.preproc_first.cmap (Python parameter)"><span class="n"><span class="pre">cmap</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.preproc_first.html" title="foxes.input.states.DatasetStates.preproc_first.vars (Python parameter)"><span class="n"><span class="pre">vars</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.preproc_first.html" title="foxes.input.states.DatasetStates.preproc_first.bounds_extra_space (Python parameter)"><span class="n"><span class="pre">bounds_extra_space</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="p"><span class="pre">...</span></span></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/foxes/input/states/dataset_states.html#DatasetStates.preproc_first"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Preprocesses the first file.</p>
+</dd></dl>
+
+<dl class="py method summary objdesc">
+<dt class="sig sig-object highlight py">
+<a class="sig-name descname reference internal" href="DatasetStates.gen_states_split_size.html" title="foxes.input.states.DatasetStates.gen_states_split_size (Python method) — Generator for suggested states split sizes for output writing."><span class="sig-name descname"><span class="pre">gen_states_split_size</span></span></a><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/foxes/input/states/dataset_states.html#DatasetStates.gen_states_split_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Generator for suggested states split sizes for output writing.</p>
 </dd></dl>
 
 <dl class="py method summary objdesc">
@@ -618,6 +639,18 @@ from stash</p>
 <dt class="sig sig-object highlight py">
 <a class="sig-name descname reference internal" href="DatasetStates.get_calc_data.html" title="foxes.input.states.DatasetStates.get_calc_data (Python method) — Gathers data for calculations."><span class="sig-name descname"><span class="pre">get_calc_data</span></span></a><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.get_calc_data.html" title="foxes.input.states.DatasetStates.get_calc_data.mdata (Python parameter)"><span class="n"><span class="pre">mdata</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.get_calc_data.html" title="foxes.input.states.DatasetStates.get_calc_data.cmap (Python parameter)"><span class="n"><span class="pre">cmap</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.get_calc_data.html" title="foxes.input.states.DatasetStates.get_calc_data.variables (Python parameter)"><span class="n"><span class="pre">variables</span></span></a></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/foxes/input/states/dataset_states.html#DatasetStates.get_calc_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Gathers data for calculations.</p>
+</dd></dl>
+
+<dl class="py method summary objdesc">
+<dt class="sig sig-object highlight py">
+<a class="sig-name descname reference internal" href="DatasetStates.interpolate_data.html" title="foxes.input.states.DatasetStates.interpolate_data (Python method) — Interpolates data to points."><span class="sig-name descname"><span class="pre">interpolate_data</span></span></a><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.interpolate_data.html" title="foxes.input.states.DatasetStates.interpolate_data.idims (Python parameter)"><span class="n"><span class="pre">idims</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.interpolate_data.html" title="foxes.input.states.DatasetStates.interpolate_data.icrds (Python parameter)"><span class="n"><span class="pre">icrds</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.interpolate_data.html" title="foxes.input.states.DatasetStates.interpolate_data.d (Python parameter)"><span class="n"><span class="pre">d</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.interpolate_data.html" title="foxes.input.states.DatasetStates.interpolate_data.pts (Python parameter)"><span class="n"><span class="pre">pts</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.interpolate_data.html" title="foxes.input.states.DatasetStates.interpolate_data.tdims (Python parameter)"><span class="n"><span class="pre">tdims</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.interpolate_data.html" title="foxes.input.states.DatasetStates.interpolate_data.vrs (Python parameter)"><span class="n"><span class="pre">vrs</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.interpolate_data.html" title="foxes.input.states.DatasetStates.interpolate_data.times (Python parameter)"><span class="n"><span class="pre">times</span></span></a></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/foxes/input/states/dataset_states.html#DatasetStates.interpolate_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Interpolates data to points.</p>
+</dd></dl>
+
+<dl class="py method summary objdesc">
+<dt class="sig sig-object highlight py">
+<a class="sig-name descname reference internal" href="DatasetStates.calculate.html" title="foxes.input.states.DatasetStates.calculate (Python method) — The main model calculation."><span class="sig-name descname"><span class="pre">calculate</span></span></a><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.calculate.html" title="foxes.input.states.DatasetStates.calculate.algo (Python parameter)"><span class="n"><span class="pre">algo</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.calculate.html" title="foxes.input.states.DatasetStates.calculate.mdata (Python parameter)"><span class="n"><span class="pre">mdata</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.calculate.html" title="foxes.input.states.DatasetStates.calculate.fdata (Python parameter)"><span class="n"><span class="pre">fdata</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="DatasetStates.calculate.html" title="foxes.input.states.DatasetStates.calculate.tdata (Python parameter)"><span class="n"><span class="pre">tdata</span></span></a></em></span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/foxes/input/states/dataset_states.html#DatasetStates.calculate"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>The main model calculation.</p>
 </dd></dl>
 
 <dl class="py method summary objdesc">

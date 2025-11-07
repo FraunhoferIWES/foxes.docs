@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.output.farm_layout - foxes 1.5.2 documentation</title>
+        <title>foxes.output.farm_layout - foxes 1.6 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -709,6 +709,7 @@
 <span class="sd">            0 = No annotation</span>
 <span class="sd">            1 = Turbine indices</span>
 <span class="sd">            2 = Turbine names</span>
+<span class="sd">            3 = Wind farm names</span>
 <span class="sd">        title: str, optional</span>
 <span class="sd">            The plot title, or None for automatic</span>
 <span class="sd">        fig: matplotlib.pyplot.Figure, optional</span>
@@ -815,22 +816,28 @@
                     <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
                         <span class="n">t</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">anno_delx</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">anno_dely</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">fontsize</span>
                     <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">annotate</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">wf_name</span><span class="p">,</span> <span class="n">turb_indices</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">get_wind_farm_mapping</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">xc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">turb_indices</span><span class="p">])</span>
+                    <span class="n">yc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">turb_indices</span><span class="p">])</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span> <span class="n">yc</span><span class="p">,</span> <span class="n">wf_name</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">fontsize</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">boundary</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">hbargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;fill_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;inside_lightgray&quot;</span><span class="p">}</span>
             <span class="n">hbargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">bargs</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">add_to_figure</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">hbargs</span><span class="p">)</span>
 
-        <span class="n">ti</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">title</span>
-            <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="k">else</span> <span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">name</span>
-                <span class="k">if</span> <span class="n">D</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">normalize_D</span>
-                <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (D = </span><span class="si">{</span><span class="n">D</span><span class="si">}</span><span class="s2"> m)&quot;</span>
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">annotate</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">ti</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">title</span>
+                <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">name</span>
+                    <span class="k">if</span> <span class="n">D</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">normalize_D</span>
+                    <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (D = </span><span class="si">{</span><span class="n">D</span><span class="si">}</span><span class="s2"> m)&quot;</span>
+                <span class="p">)</span>
             <span class="p">)</span>
-        <span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">ti</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">ti</span><span class="p">)</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x [m]&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">normalize_D</span> <span class="k">else</span> <span class="s2">&quot;x [D]&quot;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;y [m]&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">normalize_D</span> <span class="k">else</span> <span class="s2">&quot;y [D]&quot;</span><span class="p">)</span>

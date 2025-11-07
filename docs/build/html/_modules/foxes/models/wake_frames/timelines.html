@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.models.wake_frames.timelines - foxes 1.5.2 documentation</title>
+        <title>foxes.models.wake_frames.timelines - foxes 1.6 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 1.5.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.5.2 documentation
+            foxes 1.6 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 1.5.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.5.2 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.5.2 documentation
+    foxes 1.6 documentation
   </label>
   
     <div class="md-nav__source">
@@ -737,6 +737,9 @@
             <span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
+        <span class="c1"># disable subset state selection in iterative algo:</span>
+        <span class="n">algo</span><span class="o">.</span><span class="n">conv_crit</span><span class="o">.</span><span class="n">disable_subsets</span><span class="p">()</span>
+
         <span class="c1"># find turbine hub heights:</span>
         <span class="n">t2h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">ti</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbines</span><span class="p">):</span>
@@ -775,8 +778,8 @@
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        data_stash: dict</span>
-<span class="sd">            Large data stash, this function adds data here.</span>
+<span class="sd">        data_stash: dict, optional</span>
+<span class="sd">            Large data stash, this function adds data here, if given.</span>
 <span class="sd">            Key: model name. Value: dict, large model data</span>
 <span class="sd">        sel: dict, optional</span>
 <span class="sd">            The subset selection dictionary</span>
@@ -788,7 +791,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_running</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">data_stash</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">isel</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">sel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">isel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">data_stash</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">isel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
             <span class="n">data_stash</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span>
 
             <span class="k">if</span> <span class="n">isel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -815,8 +818,8 @@
 <span class="sd">        ----------</span>
 <span class="sd">        algo: foxes.core.Algorithm</span>
 <span class="sd">            The calculation algorithm</span>
-<span class="sd">        data_stash: dict</span>
-<span class="sd">            Large data stash, this function adds data here.</span>
+<span class="sd">        data_stash: dict, optional</span>
+<span class="sd">            Reconstruct model data from this stash, if given.</span>
 <span class="sd">            Key: model name. Value: dict, large model data</span>
 <span class="sd">        sel: dict, optional</span>
 <span class="sd">            The subset selection dictionary</span>
@@ -828,9 +831,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">unset_running</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">data_stash</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">isel</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 
-        <span class="n">data</span> <span class="o">=</span> <span class="n">data_stash</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s2">&quot;data&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="n">data_stash</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data_stash</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;data&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">timelines_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Timelines.calc_order">
