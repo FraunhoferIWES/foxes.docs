@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.engines.dask - foxes 1.6 documentation</title>
+        <title>foxes.engines.dask - foxes 1.6.1 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.6 documentation
+            foxes 1.6.1 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.6 documentation
+    foxes 1.6.1 documentation
   </label>
   
     <div class="md-nav__source">
@@ -544,7 +544,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">import_module</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">foxes.constants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FC</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">.pool</span><span class="w"> </span><span class="kn">import</span> <span class="n">_run_shared</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.pool</span><span class="w"> </span><span class="kn">import</span> <span class="n">_run_shared</span><span class="p">,</span> <span class="n">_write_chunk_results</span><span class="p">,</span> <span class="n">_write_ani</span>
 
 <span class="n">dask</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">distributed</span> <span class="o">=</span> <span class="kc">None</span>
@@ -811,6 +811,7 @@
         <span class="n">isel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">iterative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">write_nc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">write_chunk_ani</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">calc_pars</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -852,6 +853,13 @@
 
 <span class="sd">            Use ret_data = False together with non-single file writing</span>
 <span class="sd">            to avoid constructing the full Dataset in memory.</span>
+<span class="sd">        write_chunk_ani: dict, optional</span>
+<span class="sd">            Parameters for writing chunk animations, e.g.</span>
+<span class="sd">            {&#39;fpath_base&#39;: &#39;results/chunk_animation&#39;, &#39;vars&#39;: [&#39;WS&#39;],</span>
+<span class="sd">            &#39;resolution&#39;: 100, &#39;chunk&#39;: 5}.&#39;}</span>
+<span class="sd">            The chunk is either an integer that refers to a states chunk,</span>
+<span class="sd">            or a  tuple (states_chunk_index, points_chunk_index), or a list</span>
+<span class="sd">            of such entries.</span>
 <span class="sd">        calc_pars: dict, optional</span>
 <span class="sd">            Additional parameters for the model.calculate()</span>
 
@@ -939,6 +947,7 @@
                     <span class="n">chunk_key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
                     <span class="n">out_coords</span><span class="o">=</span><span class="n">out_coords</span><span class="p">,</span>
                     <span class="n">write_nc</span><span class="o">=</span><span class="n">write_nc</span><span class="p">,</span>
+                    <span class="n">write_chunk_ani</span><span class="o">=</span><span class="n">write_chunk_ani</span><span class="p">,</span>
                     <span class="o">**</span><span class="n">calc_pars</span><span class="p">,</span>
                 <span class="p">)</span>
                 <span class="k">del</span> <span class="n">data</span>
@@ -992,6 +1001,7 @@
     <span class="o">*</span><span class="n">data</span><span class="p">,</span>
     <span class="n">names</span><span class="p">,</span>
     <span class="n">dims</span><span class="p">,</span>
+    <span class="n">out_coords</span><span class="p">,</span>
     <span class="n">mdata_size</span><span class="p">,</span>
     <span class="n">fdata_size</span><span class="p">,</span>
     <span class="n">iterative</span><span class="p">,</span>
@@ -1001,6 +1011,8 @@
     <span class="n">n_chunks_states</span><span class="p">,</span>
     <span class="n">n_chunks_points</span><span class="p">,</span>
     <span class="n">i0_states</span><span class="p">,</span>
+    <span class="n">write_nc</span><span class="p">,</span>
+    <span class="n">write_chunk_ani</span><span class="p">,</span>
     <span class="n">cpars</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for running on a cluster&quot;&quot;&quot;</span>
@@ -1047,6 +1059,10 @@
 
     <span class="n">k</span> <span class="o">=</span> <span class="p">(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">)</span>
     <span class="n">cstore</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">chunk_store</span><span class="p">[</span><span class="n">k</span><span class="p">]}</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">chunk_store</span> <span class="k">else</span> <span class="p">{}</span>
+
+    <span class="n">_write_ani</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">write_chunk_ani</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">_write_chunk_results</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">write_nc</span><span class="p">,</span> <span class="n">out_coords</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
     <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">cstore</span>
 
 
@@ -1191,6 +1207,8 @@
         <span class="n">sel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">isel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">iterative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">write_nc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">write_chunk_ani</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">calc_pars</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1219,6 +1237,26 @@
 <span class="sd">            Selection of coordinate subsets index values</span>
 <span class="sd">        iterative: bool</span>
 <span class="sd">            Flag for use within the iterative algorithm</span>
+<span class="sd">        write_nc: dict, optional</span>
+<span class="sd">            Parameters for writing results to netCDF files, e.g.</span>
+<span class="sd">            {&#39;out_dir&#39;: &#39;results&#39;, &#39;base_name&#39;: &#39;calc_results&#39;,</span>
+<span class="sd">            &#39;ret_data&#39;: False, &#39;split&#39;: 1000}.</span>
+
+<span class="sd">            The split parameter controls how the output is split:</span>
+<span class="sd">            - &#39;chunks&#39;: one file per chunk (fastest method),</span>
+<span class="sd">            - &#39;input&#39;: split according to sizes of multiple states input files,</span>
+<span class="sd">            - int: split with this many states per file,</span>
+<span class="sd">            - None: create a single output file.</span>
+
+<span class="sd">            Use ret_data = False together with non-single file writing</span>
+<span class="sd">            to avoid constructing the full Dataset in memory.</span>
+<span class="sd">        write_chunk_ani: dict, optional</span>
+<span class="sd">            Parameters for writing chunk animations, e.g.</span>
+<span class="sd">            {&#39;fpath_base&#39;: &#39;results/chunk_animation&#39;, &#39;vars&#39;: [&#39;WS&#39;],</span>
+<span class="sd">            &#39;resolution&#39;: 100, &#39;chunk&#39;: 5}.&#39;}</span>
+<span class="sd">            The chunk is either an integer that refers to a states chunk,</span>
+<span class="sd">            or a  tuple (states_chunk_index, points_chunk_index), or a list</span>
+<span class="sd">            of such entries.</span>
 <span class="sd">        calc_pars: dict, optional</span>
 <span class="sd">            Additional parameters for the model.calculate()</span>
 
@@ -1326,6 +1364,7 @@
                     <span class="o">*</span><span class="n">fut_data</span><span class="p">,</span>
                     <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span>
                     <span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span>
+                    <span class="n">out_coords</span><span class="o">=</span><span class="n">out_coords</span><span class="p">,</span>
                     <span class="n">mdata_size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
                     <span class="n">fdata_size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
                     <span class="n">iterative</span><span class="o">=</span><span class="n">iterative</span><span class="p">,</span>
@@ -1335,6 +1374,8 @@
                     <span class="n">n_chunks_states</span><span class="o">=</span><span class="n">n_chunks_states</span><span class="p">,</span>
                     <span class="n">n_chunks_points</span><span class="o">=</span><span class="n">n_chunks_targets</span><span class="p">,</span>
                     <span class="n">i0_states</span><span class="o">=</span><span class="n">i0_states</span><span class="p">,</span>
+                    <span class="n">write_nc</span><span class="o">=</span><span class="n">write_nc</span><span class="p">,</span>
+                    <span class="n">write_chunk_ani</span><span class="o">=</span><span class="n">write_chunk_ani</span><span class="p">,</span>
                     <span class="n">cpars</span><span class="o">=</span><span class="n">cpars</span><span class="p">,</span>
                     <span class="n">retries</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                 <span class="p">)</span>
@@ -1360,7 +1401,7 @@
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">prints_progress</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: Submitted all </span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s2"> chunks</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_results</span><span class="p">(</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_results</span><span class="p">(</span>
             <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
             <span class="n">futures</span><span class="o">=</span><span class="n">futures</span><span class="p">,</span>
             <span class="n">model_data</span><span class="o">=</span><span class="n">model_data</span><span class="p">,</span>
@@ -1370,11 +1411,8 @@
             <span class="n">n_chunks_targets</span><span class="o">=</span><span class="n">n_chunks_targets</span><span class="p">,</span>
             <span class="n">goal_data</span><span class="o">=</span><span class="n">goal_data</span><span class="p">,</span>
             <span class="n">iterative</span><span class="o">=</span><span class="n">iterative</span><span class="p">,</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">persist</span><span class="p">()</span>
-
-        <span class="c1"># self._client.cancel(all_data)</span>
-
-        <span class="k">return</span> <span class="n">results</span></div>
+            <span class="n">write_nc</span><span class="o">=</span><span class="n">write_nc</span><span class="p">,</span>
+        <span class="p">)</span></div>
 </div>
 
 

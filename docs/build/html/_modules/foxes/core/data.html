@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.core.data - foxes 1.6 documentation</title>
+        <title>foxes.core.data - foxes 1.6.1 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.6 documentation
+            foxes 1.6.1 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.6 documentation
+    foxes 1.6.1 documentation
   </label>
   
     <div class="md-nav__source">
@@ -807,7 +807,7 @@
 
 <div class="viewcode-block" id="Data.get_slice">
 <a class="viewcode-back" href="../../../_foxes/core/TData.html#foxes.core.Data.get_slice">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_slice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">dim_map</span><span class="o">=</span><span class="p">{},</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_slice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">dim_map</span><span class="o">=</span><span class="p">{},</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a slice of data.</span>
 
@@ -822,6 +822,8 @@
 <span class="sd">            If not found, same dimensions are assumed.</span>
 <span class="sd">        name: str, optional</span>
 <span class="sd">            The name of the data object</span>
+<span class="sd">        force: bool, optional</span>
+<span class="sd">            Force the slice operation even if checks fail</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -831,6 +833,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
             <span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="n">variables</span><span class="p">]</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
             <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span>
 
@@ -857,18 +860,38 @@
             <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sts</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">sts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">sts</span><span class="p">))):</span>
                 <span class="n">states_i0</span> <span class="o">=</span> <span class="n">sts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Cannot determine states_i0 for states slices </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, leading to selection </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">sts</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">force</span><span class="p">:</span>
+                    <span class="n">states_i0</span> <span class="o">=</span> <span class="n">sts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Cannot determine states_i0 for states slices </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, leading to selection </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">sts</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">states_i0</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">cls</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">Data</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">states_i0</span><span class="o">=</span><span class="n">states_i0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+                <span class="n">data</span><span class="p">,</span>
+                <span class="n">dims</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">states_i0</span><span class="o">=</span><span class="n">states_i0</span><span class="p">,</span>
+                <span class="n">chunki_states</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">chunki_states</span><span class="p">,</span>
+                <span class="n">chunki_points</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">chunki_points</span><span class="p">,</span>
+                <span class="n">n_chunks_states</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_states</span><span class="p">,</span>
+                <span class="n">n_chunks_points</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_points</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-                <span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">loop_dims</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loop_dims</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">states_i0</span><span class="o">=</span><span class="n">states_i0</span>
+                <span class="n">data</span><span class="p">,</span>
+                <span class="n">dims</span><span class="p">,</span>
+                <span class="n">loop_dims</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loop_dims</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">states_i0</span><span class="o">=</span><span class="n">states_i0</span><span class="p">,</span>
+                <span class="n">chunki_states</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">chunki_states</span><span class="p">,</span>
+                <span class="n">chunki_points</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">chunki_points</span><span class="p">,</span>
+                <span class="n">n_chunks_states</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_states</span><span class="p">,</span>
+                <span class="n">n_chunks_points</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_points</span><span class="p">,</span>
             <span class="p">)</span></div>
 
 
@@ -1346,6 +1369,7 @@
         <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">dims</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">mdata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tdata&quot;</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
@@ -1364,6 +1388,8 @@
 <span class="sd">        variables: list of str</span>
 <span class="sd">            Add default empty variables with NaN values</span>
 <span class="sd">            and shape (n_states, n_targets, n_tpoints)</span>
+<span class="sd">        mdata: MData, optional</span>
+<span class="sd">            The model data</span>
 <span class="sd">        name: str</span>
 <span class="sd">            The data container name</span>
 <span class="sd">        kwargs: dict, optional</span>
@@ -1389,6 +1415,13 @@
             <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
                 <span class="n">data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
                 <span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;chunki_states&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">chunki_states</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;chunki_points&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">chunki_points</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;n_chunks_states&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_chunks_states</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;n_chunks_points&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_chunks_points</span>
+
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
@@ -1402,6 +1435,7 @@
         <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">dims</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">mdata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tdata&quot;</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
@@ -1424,6 +1458,8 @@
 <span class="sd">        variables: list of str</span>
 <span class="sd">            Add default empty variables with NaN values</span>
 <span class="sd">            and shape (n_states, n_targets, n_tpoints)</span>
+<span class="sd">        mdata: MData, optional</span>
+<span class="sd">            The model data</span>
 <span class="sd">        name: str</span>
 <span class="sd">            The data container name</span>
 <span class="sd">        kwargs: dict, optional</span>
@@ -1449,6 +1485,13 @@
             <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
                 <span class="n">data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">tpoints</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
                 <span class="n">dims</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mdata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;chunki_states&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">chunki_states</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;chunki_points&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">chunki_points</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;n_chunks_states&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_chunks_states</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;n_chunks_points&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">n_chunks_points</span>
+
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 

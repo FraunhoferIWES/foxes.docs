@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.input.states.dataset_states - foxes 1.6 documentation</title>
+        <title>foxes.input.states.dataset_states - foxes 1.6.1 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.6.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.6 documentation
+            foxes 1.6.1 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
+    <a href="../../../../index.html" title="foxes 1.6.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.6 documentation
+    foxes 1.6.1 documentation
   </label>
   
     <div class="md-nav__source">
@@ -652,7 +652,7 @@
         <span class="n">var2ncvar</span><span class="o">=</span><span class="p">{},</span>
         <span class="n">fixed_vars</span><span class="o">=</span><span class="p">{},</span>
         <span class="n">load_mode</span><span class="o">=</span><span class="s2">&quot;preload&quot;</span><span class="p">,</span>
-        <span class="n">time_format</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">_%H:%M:%S&quot;</span><span class="p">,</span>
+        <span class="n">time_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">sel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">isel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">weight_factor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -683,7 +683,7 @@
 <span class="sd">            reads only states index and weights during initialization</span>
 <span class="sd">            and then opens the relevant files again within</span>
 <span class="sd">            the chunk calculation</span>
-<span class="sd">        time_format: str</span>
+<span class="sd">        time_format: str, optional</span>
 <span class="sd">            The datetime parsing format string</span>
 <span class="sd">        sel: dict, optional</span>
 <span class="sd">            Subset selection via xr.Dataset.sel()</span>
@@ -694,7 +694,7 @@
 <span class="sd">        check_times: bool</span>
 <span class="sd">            Whether to check the time coordinates for consistency</span>
 <span class="sd">        check_input_nans: bool</span>
-<span class="sd">            Whether to check input data for NaNs</span>
+<span class="sd">            Whether to check input data for NaNs, otherwise NaNs are removed</span>
 <span class="sd">        kwargs: dict, optional</span>
 <span class="sd">            Additional arguments for the base class</span>
 
@@ -1473,8 +1473,8 @@
 
 
 <div class="viewcode-block" id="DatasetStates.interpolate_data">
-<a class="viewcode-back" href="../../../../_foxes/input/states/WeibullPointCloud.html#foxes.input.states.DatasetStates.interpolate_data">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idims</span><span class="p">,</span> <span class="n">icrds</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">pts</span><span class="p">,</span> <span class="n">tdims</span><span class="p">,</span> <span class="n">vrs</span><span class="p">,</span> <span class="n">times</span><span class="p">):</span>
+<a class="viewcode-back" href="../../../../_foxes/input/states/WeibullField.html#foxes.input.states.DatasetStates.interpolate_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idims</span><span class="p">,</span> <span class="n">icrds</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">pts</span><span class="p">,</span> <span class="n">vrs</span><span class="p">,</span> <span class="n">times</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Interpolates data to points.</span>
 
@@ -1483,7 +1483,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        idims: list of str</span>
-<span class="sd">            The input dimensions, e.g. [state, x, y, height]</span>
+<span class="sd">            The input dimensions, e.g. [x, y, height]</span>
 <span class="sd">        icrds: list of numpy.ndarray</span>
 <span class="sd">            The input coordinates, each with shape (n_i,)</span>
 <span class="sd">            where n_i is the number of grid points in dimension i</span>
@@ -1493,17 +1493,14 @@
 <span class="sd">            nv is the number of variables</span>
 <span class="sd">        pts: numpy.ndarray</span>
 <span class="sd">            The points to interpolate to, with shape (n_pts, n_idims)</span>
-<span class="sd">        tdims: tuple</span>
-<span class="sd">            The target dimensions, e.g. (1, m, nv) or (n_states, m, nv)</span>
 <span class="sd">        vrs: list of str</span>
 <span class="sd">            The variable names, length nv</span>
 <span class="sd">        times: numpy.ndarray</span>
 <span class="sd">            The time coordinates of the states, with shape (n_states,)</span>
-
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        d_interp: numpy.ndarray</span>
-<span class="sd">            The interpolated data array with shape tdims</span>
+<span class="sd">            The interpolated data array with shape (n_pts, nv)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">gvars</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">icrds</span><span class="p">)</span>
@@ -1529,11 +1526,11 @@
             <span class="p">)</span>
             <span class="k">raise</span> <span class="n">e</span>
 
-        <span class="k">return</span> <span class="n">d</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tdims</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">d</span></div>
 
 
 <div class="viewcode-block" id="DatasetStates.calculate">
-<a class="viewcode-back" href="../../../../_foxes/input/states/WeibullField.html#foxes.input.states.DatasetStates.calculate">[docs]</a>
+<a class="viewcode-back" href="../../../../_foxes/input/states/WeibullPointCloud.html#foxes.input.states.DatasetStates.calculate">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The main model calculation.</span>
@@ -1573,10 +1570,51 @@
         <span class="n">coords</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_calc_data</span><span class="p">(</span><span class="n">mdata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cmap</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span>
         <span class="n">coords</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_int</span><span class="p">)</span>
 
+        <span class="c1"># check if points are state dependent</span>
+        <span class="n">_points_data</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_points</span><span class="p">(</span><span class="n">has_p</span><span class="p">,</span> <span class="n">has_h</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Helper function for points analysis.&quot;&quot;&quot;</span>
+            <span class="k">nonlocal</span> <span class="n">_points_data</span>
+
+            <span class="k">if</span> <span class="n">_points_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">pmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">pmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">_points_data</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;pmin&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pmin</span>
+                <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;pmax&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pmax</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pmin</span> <span class="o">=</span> <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;pmin&quot;</span><span class="p">]</span>
+                <span class="n">pmax</span> <span class="o">=</span> <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;pmax&quot;</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">has_p</span> <span class="ow">and</span> <span class="s2">&quot;points_vary&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_points_data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pmax</span> <span class="o">-</span> <span class="n">pmin</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-4</span><span class="p">:</span>
+                    <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;up&quot;</span><span class="p">],</span> <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;up2p&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span>
+                        <span class="n">points</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span> <span class="o">*</span> <span class="n">n_pts</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">)</span>
+                    <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;points_vary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;up&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;up2p&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;points_vary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">if</span> <span class="n">has_h</span> <span class="ow">and</span> <span class="s2">&quot;heights_vary&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_points_data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pmax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">pmin</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">1e-4</span><span class="p">:</span>
+                    <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;uh&quot;</span><span class="p">],</span> <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;uh2h&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span>
+                        <span class="n">points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span> <span class="o">*</span> <span class="n">n_pts</span><span class="p">),</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">)</span>
+                    <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;heights_vary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;uh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span>
+                    <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;uh2h&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="n">_points_data</span><span class="p">[</span><span class="s2">&quot;heights_vary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">return</span> <span class="n">_points_data</span>
+
         <span class="c1"># interpolate data to points:</span>
         <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">dims</span><span class="p">,</span> <span class="p">(</span><span class="n">vrs</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="c1"># translate (WD, WS) to (U, V):</span>
+            <span class="c1"># replace (WD, WS) by (U, V):</span>
             <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span> <span class="ow">in</span> <span class="n">vrs</span> <span class="ow">or</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">in</span> <span class="n">vrs</span><span class="p">:</span>
                 <span class="k">assert</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span> <span class="ow">in</span> <span class="n">vrs</span> <span class="ow">and</span> <span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">in</span> <span class="n">vrs</span> <span class="ow">or</span> <span class="n">FV</span><span class="o">.</span><span class="n">WS</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed_vars</span><span class="p">),</span> <span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Missing &#39;</span><span class="si">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WD</span><span class="si">}</span><span class="s2">&#39; or &#39;</span><span class="si">{</span><span class="n">FV</span><span class="o">.</span><span class="n">WS</span><span class="si">}</span><span class="s2">&#39; in data variables </span><span class="si">{</span><span class="n">vrs</span><span class="si">}</span><span class="s2"> for dimensions </span><span class="si">{</span><span class="n">dims</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -1587,63 +1625,80 @@
                 <span class="n">d</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">[</span><span class="n">iwd</span><span class="p">,</span> <span class="n">iws</span><span class="p">]]</span> <span class="o">=</span> <span class="n">wd2uv</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">iwd</span><span class="p">],</span> <span class="n">ws</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
                 <span class="k">del</span> <span class="n">ws</span>
 
-            <span class="c1"># prepare points:</span>
-            <span class="n">idims</span> <span class="o">=</span> <span class="n">dims</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">n_vrs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vrs</span><span class="p">)</span>
-            <span class="n">tdims</span> <span class="o">=</span> <span class="p">[</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="n">n_vrs</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">idims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">):</span>
-                <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">),</span>
-                    <span class="n">points</span><span class="p">,</span>
-                    <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                <span class="p">)</span>
-                <span class="n">pts</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
-                <span class="n">pts</span> <span class="o">=</span> <span class="n">pts</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span> <span class="o">*</span> <span class="n">n_pts</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">idims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">):</span>
-                <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">),</span>
-                    <span class="n">points</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span>
-                    <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                <span class="p">)</span>
-                <span class="n">pts</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
-                <span class="n">pts</span> <span class="o">=</span> <span class="n">pts</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span> <span class="o">*</span> <span class="n">n_pts</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">idims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">):</span>
-                <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">),</span>
-                    <span class="n">points</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
-                    <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                <span class="p">)</span>
-                <span class="n">pts</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_states</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
-                <span class="n">pts</span> <span class="o">=</span> <span class="n">pts</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_states</span> <span class="o">*</span> <span class="n">n_pts</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">idims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,):</span>
-                <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span> <span class="ow">in</span> <span class="n">vrs</span><span class="p">:</span>
-                    <span class="n">uv</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">[</span><span class="n">iwd</span><span class="p">,</span> <span class="n">iws</span><span class="p">]]</span>
-                    <span class="n">d</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">iwd</span><span class="p">]</span> <span class="o">=</span> <span class="n">uv2wd</span><span class="p">(</span><span class="n">uv</span><span class="p">)</span>
-                    <span class="n">d</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">iws</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-                    <span class="k">del</span> <span class="n">uv</span>
-                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vrs</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ovars</span><span class="p">:</span>
-                        <span class="n">out</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
-                        <span class="n">out</span><span class="p">[</span><span class="n">v</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
-                <span class="k">continue</span>
-            <span class="k">elif</span> <span class="n">idims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">):</span>
-                <span class="n">pts</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                <span class="n">tdims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="n">n_vrs</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">idims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">):</span>
-                <span class="n">pts</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-                <span class="n">tdims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="n">n_vrs</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">idims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">,):</span>
-                <span class="n">pts</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="mi">2</span><span class="p">]</span>
-                <span class="n">tdims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="n">n_vrs</span><span class="p">)</span>
+            <span class="c1"># move state dimension to second last position:</span>
+            <span class="k">if</span> <span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">dims</span> <span class="o">=</span> <span class="n">dims</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,)</span> <span class="o">+</span> <span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],)</span>
+                <span class="n">idims</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dims</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Unsupported dimensions </span><span class="si">{</span><span class="n">dims</span><span class="si">}</span><span class="s2"> for variables </span><span class="si">{</span><span class="n">vrs</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span>
+                <span class="n">idims</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dims</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
-            <span class="c1"># interpolate:</span>
-            <span class="n">icrds</span> <span class="o">=</span> <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">idims</span><span class="p">]</span>
-            <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolate_data</span><span class="p">(</span><span class="n">idims</span><span class="p">,</span> <span class="n">icrds</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">pts</span><span class="p">,</span> <span class="n">tdims</span><span class="p">,</span> <span class="n">vrs</span><span class="p">,</span> <span class="n">times</span><span class="p">)</span>
-            <span class="k">del</span> <span class="n">pts</span><span class="p">,</span> <span class="n">icrds</span>
+            <span class="c1"># interpolate data:</span>
+            <span class="n">n_vrs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vrs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">idims</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># prepare points:</span>
+                <span class="n">pts</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">has_p</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">X</span> <span class="ow">in</span> <span class="n">idims</span> <span class="ow">or</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span> <span class="ow">in</span> <span class="n">idims</span> <span class="ow">or</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span> <span class="ow">in</span> <span class="n">idims</span>
+                <span class="n">has_h</span> <span class="o">=</span> <span class="n">FV</span><span class="o">.</span><span class="n">H</span> <span class="ow">in</span> <span class="n">idims</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">idims</span><span class="o">.</span><span class="n">copy</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">H</span><span class="p">]:</span>
+                        <span class="n">points_data</span> <span class="o">=</span> <span class="n">_analyze_points</span><span class="p">(</span><span class="n">has_p</span><span class="p">,</span> <span class="n">has_h</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FV</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">FV</span><span class="o">.</span><span class="n">Y</span><span class="p">]:</span>
+                            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">FV</span><span class="o">.</span><span class="n">X</span> <span class="k">else</span> <span class="mi">1</span>
+                            <span class="n">pts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">points_data</span><span class="p">[</span><span class="s2">&quot;up&quot;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">])</span>
+                        <span class="k">elif</span> <span class="n">has_p</span><span class="p">:</span>
+                            <span class="n">pts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">points_data</span><span class="p">[</span><span class="s2">&quot;up&quot;</span><span class="p">][:,</span> <span class="mi">2</span><span class="p">])</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">pts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">points_data</span><span class="p">[</span><span class="s2">&quot;uh&quot;</span><span class="p">])</span>
+                    <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">:</span>
+                        <span class="n">points_data</span> <span class="o">=</span> <span class="n">_analyze_points</span><span class="p">(</span><span class="n">has_p</span><span class="p">,</span> <span class="n">has_h</span><span class="p">)</span>
+                        <span class="n">pts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">points_data</span><span class="p">[</span><span class="s2">&quot;up&quot;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">])</span>
+                        <span class="n">pts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">points_data</span><span class="p">[</span><span class="s2">&quot;up&quot;</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">])</span>
+                        <span class="k">if</span> <span class="n">coords</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">POINT</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                            <span class="n">pts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">points_data</span><span class="p">[</span><span class="s2">&quot;up&quot;</span><span class="p">][:,</span> <span class="mi">2</span><span class="p">])</span>
+                    <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span>
+                        <span class="n">idims</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;States &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: Unsupported dimension &#39;</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&#39; in </span><span class="si">{</span><span class="n">dims</span><span class="si">}</span><span class="s2"> for interpolation of variables </span><span class="si">{</span><span class="n">vrs</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="p">)</span>
+                <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+                <span class="c1"># interpolate:</span>
+                <span class="n">icrds</span> <span class="o">=</span> <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">idims</span><span class="p">]</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolate_data</span><span class="p">(</span><span class="n">idims</span><span class="p">,</span> <span class="n">icrds</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">pts</span><span class="p">,</span> <span class="n">vrs</span><span class="p">,</span> <span class="n">times</span><span class="p">)</span>
+
+                <span class="c1"># move state dimension back to front:</span>
+                <span class="k">if</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">:</span>
+                    <span class="n">dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,)</span> <span class="o">+</span> <span class="n">dims</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],)</span>
+                    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+
+                <span class="c1"># reconstruct time varying pts:</span>
+                <span class="k">if</span> <span class="n">has_p</span> <span class="ow">and</span> <span class="n">points_data</span><span class="p">[</span><span class="s2">&quot;points_vary&quot;</span><span class="p">]:</span>
+                    <span class="n">shp</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+                    <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">[:,</span> <span class="n">points_data</span><span class="p">[</span><span class="s2">&quot;up2p&quot;</span><span class="p">],</span> <span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shp</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">:</span>
+                        <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">],</span> <span class="n">coords</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">has_h</span> <span class="ow">and</span> <span class="n">points_data</span><span class="p">[</span><span class="s2">&quot;heights_vary&quot;</span><span class="p">]:</span>
+                    <span class="n">shp</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+                    <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">[:,</span> <span class="n">points_data</span><span class="p">[</span><span class="s2">&quot;uh2h&quot;</span><span class="p">],</span> <span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shp</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">:</span>
+                        <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">],</span> <span class="n">coords</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+                <span class="k">del</span> <span class="n">points_data</span><span class="p">,</span> <span class="n">pts</span><span class="p">,</span> <span class="n">icrds</span>
+
+            <span class="c1"># case no interpolation needed:</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># reshape to include states and points dimensions:</span>
+                <span class="k">if</span> <span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span>
+                    <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
 
             <span class="c1"># translate (U, V) into (WD, WS):</span>
             <span class="k">if</span> <span class="n">FV</span><span class="o">.</span><span class="n">WD</span> <span class="ow">in</span> <span class="n">vrs</span><span class="p">:</span>
@@ -1653,7 +1708,7 @@
                 <span class="k">del</span> <span class="n">uv</span>
 
             <span class="c1"># broadcast if needed:</span>
-            <span class="k">if</span> <span class="n">tdims</span> <span class="o">!=</span> <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="n">n_vrs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="n">n_vrs</span><span class="p">):</span>
                 <span class="n">tmp</span> <span class="o">=</span> <span class="n">d</span>
                 <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">,</span> <span class="n">n_vrs</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype_double</span><span class="p">)</span>
                 <span class="n">d</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">tmp</span>

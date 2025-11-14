@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.engines.pool - foxes 1.6 documentation</title>
+        <title>foxes.engines.pool - foxes 1.6.1 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-header__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.6 documentation
+            foxes 1.6.1 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.6 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.6 documentation
+    foxes 1.6.1 documentation
   </label>
   
     <div class="md-nav__source">
@@ -543,6 +543,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">get_output_path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Engine</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_nc</span> <span class="k">as</span> <span class="n">write_nc_file</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">foxes.output</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_chunk_ani_xy</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">foxes.constants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FC</span>
 
 
@@ -577,12 +578,33 @@
         <span class="n">t0</span> <span class="o">=</span> <span class="n">mdata</span><span class="o">.</span><span class="n">chunki_points</span>
         <span class="n">vrb</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">out_coords</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">):</span>
-            <span class="n">fpath</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i0</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">.nc&quot;</span>
+            <span class="n">fpath</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i0</span><span class="si">:</span><span class="s2">06d</span><span class="si">}</span><span class="s2">.nc&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">fpath</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i0</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t0</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">.nc&quot;</span>
+            <span class="n">fpath</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i0</span><span class="si">:</span><span class="s2">06d</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t0</span><span class="si">:</span><span class="s2">06d</span><span class="si">}</span><span class="s2">.nc&quot;</span>
         <span class="n">write_nc_file</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">fpath</span><span class="p">,</span> <span class="n">nc_engine</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">nc_engine</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">vrb</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">results</span> <span class="k">if</span> <span class="n">ret_data</span> <span class="k">else</span> <span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_write_ani</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">chunk_key</span><span class="p">,</span> <span class="n">write_chunk_ani</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for optionally writing chunk flow animations to file&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">write_chunk_ani</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">pars</span> <span class="o">=</span> <span class="n">write_chunk_ani</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">chk</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;chunk&quot;</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_do_run</span><span class="p">(</span><span class="n">chk</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chk</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chk</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">_do_run</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+                        <span class="k">return</span> <span class="kc">True</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">(</span>
+                    <span class="n">chk</span> <span class="o">==</span> <span class="n">chunk_key</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chk</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="k">else</span> <span class="n">chk</span> <span class="o">==</span> <span class="n">chunk_key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">_do_run</span><span class="p">(</span><span class="n">chk</span><span class="p">):</span>
+            <span class="n">write_chunk_ani_xy</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">pars</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span>
@@ -594,6 +616,7 @@
     <span class="n">chunk_key</span><span class="p">,</span>
     <span class="n">out_coords</span><span class="p">,</span>
     <span class="n">write_nc</span><span class="p">,</span>
+    <span class="n">write_chunk_ani</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">cpars</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for running in a single process&quot;&quot;&quot;</span>
@@ -601,6 +624,7 @@
     <span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">cpars</span><span class="p">)</span>
     <span class="n">chunk_store</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">reset_chunk_store</span><span class="p">()</span> <span class="k">if</span> <span class="n">iterative</span> <span class="k">else</span> <span class="p">{}</span>
     <span class="n">cstore</span> <span class="o">=</span> <span class="p">{</span><span class="n">chunk_key</span><span class="p">:</span> <span class="n">chunk_store</span><span class="p">[</span><span class="n">chunk_key</span><span class="p">]}</span> <span class="k">if</span> <span class="n">chunk_key</span> <span class="ow">in</span> <span class="n">chunk_store</span> <span class="k">else</span> <span class="p">{}</span>
+    <span class="n">_write_ani</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">chunk_key</span><span class="p">,</span> <span class="n">write_chunk_ani</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">_write_chunk_results</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">write_nc</span><span class="p">,</span> <span class="n">out_coords</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">cstore</span>
 
@@ -612,6 +636,7 @@
     <span class="n">chunk_key</span><span class="p">,</span>
     <span class="n">out_coords</span><span class="p">,</span>
     <span class="n">write_nc</span><span class="p">,</span>
+    <span class="n">write_chunk_ani</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">cpars</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for running in a single process&quot;&quot;&quot;</span>
@@ -621,6 +646,7 @@
         <span class="k">if</span> <span class="n">chunk_key</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">chunk_store</span>
         <span class="k">else</span> <span class="p">{}</span>
     <span class="p">)</span>
+    <span class="n">_write_ani</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">chunk_key</span><span class="p">,</span> <span class="n">write_chunk_ani</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">_write_chunk_results</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">write_nc</span><span class="p">,</span> <span class="n">out_coords</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">results</span><span class="p">,</span> <span class="n">cstore</span>
 
@@ -743,6 +769,7 @@
         <span class="n">isel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">iterative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">write_nc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">write_chunk_ani</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">calc_pars</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -784,6 +811,13 @@
 
 <span class="sd">            Use ret_data = False together with non-single file writing</span>
 <span class="sd">            to avoid constructing the full Dataset in memory.</span>
+<span class="sd">        write_chunk_ani: dict, optional</span>
+<span class="sd">            Parameters for writing chunk animations, e.g.</span>
+<span class="sd">            {&#39;fpath_base&#39;: &#39;results/chunk_animation&#39;, &#39;vars&#39;: [&#39;WS&#39;],</span>
+<span class="sd">            &#39;resolution&#39;: 100, &#39;chunk&#39;: 5}.&#39;}</span>
+<span class="sd">            The chunk is either an integer that refers to a states chunk,</span>
+<span class="sd">            or a  tuple (states_chunk_index, points_chunk_index), or a list</span>
+<span class="sd">            of such entries.</span>
 <span class="sd">        calc_pars: dict, optional</span>
 <span class="sd">            Additional parameters for the model.calculate()</span>
 
@@ -875,6 +909,7 @@
                         <span class="n">chunk_key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
                         <span class="n">out_coords</span><span class="o">=</span><span class="n">out_coords</span><span class="p">,</span>
                         <span class="n">write_nc</span><span class="o">=</span><span class="n">write_nc</span><span class="p">,</span>
+                        <span class="n">write_chunk_ani</span><span class="o">=</span><span class="n">write_chunk_ani</span><span class="p">,</span>
                         <span class="o">**</span><span class="n">calc_pars</span><span class="p">,</span>
                     <span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -888,6 +923,7 @@
                         <span class="n">chunk_key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
                         <span class="n">out_coords</span><span class="o">=</span><span class="n">out_coords</span><span class="p">,</span>
                         <span class="n">write_nc</span><span class="o">=</span><span class="n">write_nc</span><span class="p">,</span>
+                        <span class="n">write_chunk_ani</span><span class="o">=</span><span class="n">write_chunk_ani</span><span class="p">,</span>
                         <span class="o">**</span><span class="n">calc_pars</span><span class="p">,</span>
                     <span class="p">)</span>
                 <span class="k">del</span> <span class="n">data</span>
