@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.core.engine - foxes 1.6.1 documentation</title>
+        <title>foxes.core.engine - foxes 1.6.2 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.6.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.6.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.6.1 documentation
+            foxes 1.6.2 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.6.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.6.1 documentation
+    foxes 1.6.2 documentation
   </label>
   
     <div class="md-nav__source">
@@ -554,7 +554,7 @@
 
 
 <div class="viewcode-block" id="Engine">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.Engine">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/Engine.html#foxes.core.Engine">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Engine</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base clas for foxes calculation engines</span>
@@ -619,7 +619,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__name</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__entered</span> <span class="o">=</span> <span class="kc">False</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__entered</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__running_chunk_calc</span> <span class="o">=</span> <span class="kc">False</span></div>
 
 
 <div class="viewcode-block" id="Engine.__repr__">
@@ -739,6 +740,19 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__initialized</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">running_chunk_calc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag that a chunk calculation is running.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        flag: bool</span>
+<span class="sd">            True if a chunk calculation is running.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__running_chunk_calc</span>
+
 <div class="viewcode-block" id="Engine.initialize">
 <a class="viewcode-back" href="../../../_foxes/engines/ThreadsEngine.html#foxes.core.Engine.initialize">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -808,6 +822,27 @@
 <span class="sd">        -------</span>
 <span class="sd">        future: object</span>
 <span class="sd">            The future object</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="Engine.future_is_done">
+<a class="viewcode-back" href="../../../_foxes/engines/PoolEngine.html#foxes.core.Engine.future_is_done">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">future_is_done</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">future</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if a future is done</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        future: object</span>
+<span class="sd">            The future</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        is_done: bool</span>
+<span class="sd">            True if the future is done</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
@@ -1111,383 +1146,25 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">)</span> <span class="k">if</span> <span class="n">tdata</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="n">mdata</span><span class="p">,</span> <span class="n">fdata</span><span class="p">,</span> <span class="n">tdata</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Engine.combine_results">
-<a class="viewcode-back" href="../../../_foxes/engines/ThreadsEngine.html#foxes.core.Engine.combine_results">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">combine_results</span><span class="p">(</span>
+<div class="viewcode-block" id="Engine.get_start_calc_message">
+<a class="viewcode-back" href="../../../_foxes/engines/ThreadsEngine.html#foxes.core.Engine.get_start_calc_message">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_start_calc_message</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">algo</span><span class="p">,</span>
-        <span class="n">futures</span><span class="p">,</span>
-        <span class="n">model_data</span><span class="p">,</span>
-        <span class="n">out_vars</span><span class="p">,</span>
-        <span class="n">out_coords</span><span class="p">,</span>
         <span class="n">n_chunks_states</span><span class="p">,</span>
         <span class="n">n_chunks_targets</span><span class="p">,</span>
-        <span class="n">goal_data</span><span class="p">,</span>
-        <span class="n">iterative</span><span class="p">,</span>
-        <span class="n">write_nc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Combines chunk results into final Dataset</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        algo: foxes.core.Algorithm</span>
-<span class="sd">            The algorithm object</span>
-<span class="sd">        futures: dict</span>
-<span class="sd">            The futures from the chunk calculations,</span>
-<span class="sd">            key: (chunki_states, chunki_targets),</span>
-<span class="sd">            value: future unpacking to (results, cstore)</span>
-<span class="sd">        model_data: xarray.Dataset</span>
-<span class="sd">            The initial model data</span>
-<span class="sd">        out_vars: list of str</span>
-<span class="sd">            Names of the output variables</span>
-<span class="sd">        out_coords: list of str</span>
-<span class="sd">            Names of the output coordinates</span>
-<span class="sd">        n_chunks_states: int</span>
-<span class="sd">            The number of states chunks</span>
-<span class="sd">        n_chunks_targets: int</span>
-<span class="sd">            The number of targets chunks</span>
-<span class="sd">        goal_data: foxes.core.Data</span>
-<span class="sd">            Either fdata or tdata</span>
-<span class="sd">        iterative: bool</span>
-<span class="sd">            Flag for use within the iterative algorithm</span>
-<span class="sd">        write_nc: dict, optional</span>
-<span class="sd">            Parameters for writing results to netCDF files, e.g.</span>
-<span class="sd">            {&#39;out_dir&#39;: &#39;results&#39;, &#39;base_name&#39;: &#39;calc_results&#39;,</span>
-<span class="sd">            &#39;ret_data&#39;: False, &#39;split&#39;: 1000}.</span>
-
-<span class="sd">            The split parameter controls how the output is split:</span>
-<span class="sd">            - &#39;chunks&#39;: one file per chunk (fastest method),</span>
-<span class="sd">            - &#39;input&#39;: split according to sizes of multiple states input files,</span>
-<span class="sd">            - int: split with this many states per file,</span>
-<span class="sd">            - None: create a single output file.</span>
-
-<span class="sd">            Use ret_data = False together with non-single file writing</span>
-<span class="sd">            to avoid constructing the full Dataset in memory.</span>
-<span class="sd">        results: dict, optional</span>
-<span class="sd">            The evaluated futures</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        ds: xarray.Dataset, optional</span>
-<span class="sd">            The final results dataset</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="p">(</span><span class="n">futures</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">results</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
-            <span class="n">futures</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Either futures or results must be provided, not both&quot;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Combining results&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-        <span class="n">coords</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">vrb</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">in</span> <span class="n">out_coords</span> <span class="ow">and</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">in</span> <span class="n">model_data</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
-            <span class="n">coords</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span> <span class="o">=</span> <span class="n">model_data</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-
-        <span class="c1"># read parameters for file writing</span>
-        <span class="n">ret_data</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">split_size</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">write_on_fly</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">write_from_ds</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">futures</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="k">if</span> <span class="n">futures</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="k">if</span> <span class="n">write_nc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">iterative</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">algo</span><span class="o">.</span><span class="n">final_iteration</span><span class="p">):</span>
-            <span class="n">out_dir</span> <span class="o">=</span> <span class="n">get_output_path</span><span class="p">(</span><span class="n">write_nc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;out_dir&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">))</span>
-            <span class="n">base_name</span> <span class="o">=</span> <span class="n">write_nc</span><span class="p">[</span><span class="s2">&quot;base_name&quot;</span><span class="p">]</span>
-            <span class="n">ret_data</span> <span class="o">=</span> <span class="n">write_nc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ret_data&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-            <span class="n">split_mode</span> <span class="o">=</span> <span class="n">write_nc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;split&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-            <span class="n">out_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="n">out_fpath</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="p">(</span><span class="n">base_name</span> <span class="o">+</span> <span class="s2">&quot;_*.nc&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">split_mode</span> <span class="o">==</span> <span class="s2">&quot;chunks&quot;</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Writing results to &#39;</span><span class="si">{</span><span class="n">out_fpath</span><span class="si">}</span><span class="s2">&#39;, using split = </span><span class="si">{</span><span class="n">split_mode</span><span class="si">}</span><span class="s2">, ret_data = </span><span class="si">{</span><span class="n">ret_data</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span>
-            <span class="k">elif</span> <span class="n">split_mode</span> <span class="o">==</span> <span class="s2">&quot;input&quot;</span><span class="p">:</span>
-                <span class="n">gen_size</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">gen_states_split_size</span><span class="p">()</span>
-                <span class="n">split_size</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">gen_size</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">split_mode</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-                <span class="n">split_size</span> <span class="o">=</span> <span class="n">split_mode</span>
-            <span class="k">elif</span> <span class="n">split_mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">split_size</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Invalid split mode &#39;</span><span class="si">{</span><span class="n">split_mode</span><span class="si">}</span><span class="s2">&#39; in &#39;write_nc&#39;, expected &#39;chunks&#39;, &#39;input&#39;, int or None&quot;</span>
-                <span class="p">)</span>
-            <span class="k">if</span> <span class="n">split_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">out_fpath</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="p">(</span><span class="n">base_name</span> <span class="o">+</span> <span class="s2">&quot;.nc&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">split_mode</span> <span class="o">!=</span> <span class="s2">&quot;chunks&quot;</span><span class="p">:</span>
-                <span class="n">write_on_fly</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">ret_data</span> <span class="ow">and</span> <span class="n">split_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                <span class="n">write_from_ds</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">write_on_fly</span>
-                <span class="n">ret_data</span> <span class="o">=</span> <span class="n">write_nc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ret_data&quot;</span><span class="p">,</span> <span class="n">write_from_ds</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Writing results to &#39;</span><span class="si">{</span><span class="n">out_fpath</span><span class="si">}</span><span class="s2">&#39;, using split = </span><span class="si">{</span><span class="n">split_mode</span><span class="si">}</span><span class="s2">, on_fly = </span><span class="si">{</span><span class="n">write_on_fly</span><span class="si">}</span><span class="s2">, ret_data = </span><span class="si">{</span><span class="n">ret_data</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">_red_dims</span><span class="p">(</span><span class="n">data_vars</span><span class="p">):</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;Helper function for reducing unneccessary dimensions of data vars&quot;&quot;&quot;</span>
-            <span class="n">dvars</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data_vars</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="p">(</span>
-                    <span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
-                    <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
-                    <span class="ow">and</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_turbines</span> <span class="o">&gt;</span> <span class="mi">1</span>
-                <span class="p">):</span>
-                    <span class="n">dvars</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,),</span> <span class="n">d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
-                <span class="k">elif</span> <span class="p">(</span>
-                    <span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span>
-                    <span class="ow">and</span> <span class="n">goal_data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">n_chunks_targets</span>
-                    <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">==</span> <span class="p">(</span><span class="n">n_chunks_targets</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-                <span class="p">):</span>
-                    <span class="n">dvars</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,),</span> <span class="n">d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">dvars</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">dvars</span>
-
-        <span class="n">fcounter</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">_write_parts_on_fly</span><span class="p">(</span><span class="n">data_vars</span><span class="p">,</span> <span class="n">scount</span><span class="p">,</span> <span class="n">wcount</span><span class="p">):</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;Helper function for writing chunked results to netCDF,</span>
-<span class="sd">            without ever constructing the full Dataset in memory</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">nonlocal</span> <span class="n">fcounter</span><span class="p">,</span> <span class="n">split_size</span>
-            <span class="n">wfutures</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">if</span> <span class="n">split_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">splits</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">split_size</span><span class="p">,</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="n">wcount</span><span class="p">)</span>
-                <span class="k">while</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="n">wcount</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">scount</span> <span class="o">-</span> <span class="n">wcount</span> <span class="o">&gt;=</span> <span class="n">splits</span><span class="p">:</span>
-                    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                            <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-                        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                            <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-
-                    <span class="n">dvars</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="n">splits</span><span class="p">])</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data_vars</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-                    <span class="n">dvars</span> <span class="o">=</span> <span class="n">_red_dims</span><span class="p">(</span><span class="n">dvars</span><span class="p">)</span>
-
-                    <span class="n">crds</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">d</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">coords</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-                    <span class="n">crds</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">][</span><span class="n">wcount</span> <span class="p">:</span> <span class="n">wcount</span> <span class="o">+</span> <span class="n">splits</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="n">scount</span> <span class="o">-</span> <span class="n">wcount</span> <span class="o">==</span> <span class="n">splits</span><span class="p">:</span>
-                        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                            <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                            <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">splits</span><span class="p">:]]</span>
-
-                    <span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="n">crds</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="n">dvars</span><span class="p">)</span>
-                    <span class="n">fpath</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">fcounter</span><span class="si">:</span><span class="s2">06d</span><span class="si">}</span><span class="s2">.nc&quot;</span>
-                    <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">fpath</span><span class="p">)</span>
-                    <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">nc_engine</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">nc_engine</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">vrb</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">futures</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">futures</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_workers</span><span class="p">:</span>
-                        <span class="n">future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">write_nc_file</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-                        <span class="n">wfutures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
-                        <span class="k">del</span> <span class="n">future</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">write_nc_file</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-                    <span class="k">del</span> <span class="n">ds</span><span class="p">,</span> <span class="n">crds</span><span class="p">,</span> <span class="n">dvars</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
-
-                    <span class="n">wcount</span> <span class="o">+=</span> <span class="n">splits</span>
-                    <span class="n">fcounter</span> <span class="o">+=</span> <span class="mi">1</span>
-
-                    <span class="k">if</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="n">wcount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="n">split_mode</span> <span class="o">==</span> <span class="s2">&quot;input&quot;</span><span class="p">:</span>
-                            <span class="k">try</span><span class="p">:</span>
-                                <span class="n">split_size</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">gen_size</span><span class="p">)</span>
-                            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
-                                <span class="n">split_size</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="n">wcount</span>
-                        <span class="n">splits</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">split_size</span><span class="p">,</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="n">wcount</span><span class="p">)</span>
-
-            <span class="k">return</span> <span class="n">wcount</span><span class="p">,</span> <span class="n">wfutures</span>
-
-        <span class="n">data_vars</span> <span class="o">=</span> <span class="p">{}</span>
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">_get_res_vars</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">data_vars</span><span class="p">):</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;Helper function for extracting results variables&quot;&quot;&quot;</span>
-            <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">[]</span>
-            <span class="n">res_vars</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">out_vars</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">res_vars</span><span class="p">:</span>
-                    <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">out_coords</span><span class="p">,</span> <span class="p">[]]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">goal_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">goal_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
-            <span class="k">return</span> <span class="n">res_vars</span>
-
-        <span class="k">if</span> <span class="n">futures</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Computing </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s2"> chunks using </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_workers</span><span class="si">}</span><span class="s2"> workers&quot;</span>
-            <span class="p">)</span>
-            <span class="n">vlevel</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper function for start calculation message&quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Starting calculation using &quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_workers</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_workers</span><span class="si">}</span><span class="s2"> workers&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Combining results from </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s2"> chunks&quot;</span><span class="p">)</span>
-            <span class="n">vlevel</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="n">pbar</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="n">vlevel</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_progress_bar</span><span class="p">:</span>
-            <span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">))</span>
-
-        <span class="n">scount</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">wcount</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">wfutures</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">res_vars</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">pdone</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="k">if</span> <span class="n">n_chunks_targets</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">futures</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">r</span><span class="p">,</span> <span class="n">cstore</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">await_result</span><span class="p">(</span><span class="n">futures</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">r</span><span class="p">,</span> <span class="n">cstore</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-
-                <span class="k">if</span> <span class="n">res_vars</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">res_vars</span> <span class="o">=</span> <span class="n">_get_res_vars</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">data_vars</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">iterative</span><span class="p">:</span>
-                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cstore</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                        <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">chunk_store</span><span class="p">:</span>
-                            <span class="n">algo</span><span class="o">.</span><span class="n">chunk_store</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-                        <span class="k">else</span><span class="p">:</span>
-                            <span class="n">algo</span><span class="o">.</span><span class="n">chunk_store</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
-
-                <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">res_vars</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data_vars</span><span class="p">:</span>
-                        <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
-
-                <span class="k">if</span> <span class="n">write_on_fly</span><span class="p">:</span>
-                    <span class="n">scount</span> <span class="o">+=</span> <span class="n">r</span><span class="p">[</span><span class="n">res_vars</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                    <span class="n">wcount</span><span class="p">,</span> <span class="n">ftrs</span> <span class="o">=</span> <span class="n">_write_parts_on_fly</span><span class="p">(</span><span class="n">data_vars</span><span class="p">,</span> <span class="n">scount</span><span class="p">,</span> <span class="n">wcount</span><span class="p">)</span>
-                    <span class="n">wfutures</span> <span class="o">+=</span> <span class="n">ftrs</span>
-                    <span class="k">del</span> <span class="n">ftrs</span>
-                <span class="k">del</span> <span class="n">r</span><span class="p">,</span> <span class="n">cstore</span>
-
-                <span class="k">if</span> <span class="n">pbar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="n">vlevel</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">prints_progress</span><span class="p">:</span>
-                    <span class="n">pr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">))</span>
-                    <span class="k">if</span> <span class="n">pr</span> <span class="o">&gt;</span> <span class="n">pdone</span><span class="p">:</span>
-                        <span class="n">pdone</span> <span class="o">=</span> <span class="n">pr</span>
-                        <span class="nb">print</span><span class="p">(</span>
-                            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Completed </span><span class="si">{</span><span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s2"> chunks, </span><span class="si">{</span><span class="n">pdone</span><span class="si">}</span><span class="s2">%&quot;</span>
-                        <span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">pdone</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-            <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">for</span> <span class="n">chunki_states</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks_states</span><span class="p">):</span>
-                <span class="n">tres</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="k">for</span> <span class="n">chunki_points</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks_targets</span><span class="p">):</span>
-                    <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
-                    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="p">(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">):</span>
-                            <span class="k">if</span> <span class="n">futures</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                                <span class="n">r</span><span class="p">,</span> <span class="n">cstore</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">await_result</span><span class="p">(</span><span class="n">futures</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
-                            <span class="k">else</span><span class="p">:</span>
-                                <span class="n">r</span><span class="p">,</span> <span class="n">cstore</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-
-                            <span class="k">if</span> <span class="n">res_vars</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                                <span class="n">res_vars</span> <span class="o">=</span> <span class="n">_get_res_vars</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">data_vars</span><span class="p">)</span>
-                            <span class="k">if</span> <span class="n">tres</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                                <span class="n">tres</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">res_vars</span><span class="p">}</span>
-
-                            <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
-                            <span class="k">break</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
-                        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Missing future for key </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-                    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">res_vars</span><span class="p">:</span>
-                        <span class="n">tres</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
-                    <span class="k">if</span> <span class="n">iterative</span><span class="p">:</span>
-                        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cstore</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                            <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">algo</span><span class="o">.</span><span class="n">chunk_store</span><span class="p">:</span>
-                                <span class="n">algo</span><span class="o">.</span><span class="n">chunk_store</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-                            <span class="k">else</span><span class="p">:</span>
-                                <span class="n">algo</span><span class="o">.</span><span class="n">chunk_store</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
-                    <span class="k">del</span> <span class="n">r</span><span class="p">,</span> <span class="n">cstore</span>
-
-                    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
-                    <span class="k">if</span> <span class="n">pbar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                        <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-                    <span class="k">elif</span> <span class="p">(</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="n">vlevel</span>
-                        <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">prints_progress</span>
-                        <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
-                    <span class="p">):</span>
-                        <span class="n">pr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">counter</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">))</span>
-                        <span class="k">if</span> <span class="n">pr</span> <span class="o">&gt;</span> <span class="n">pdone</span><span class="p">:</span>
-                            <span class="n">pdone</span> <span class="o">=</span> <span class="n">pr</span>
-                            <span class="nb">print</span><span class="p">(</span>
-                                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Completed </span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s2"> chunks, </span><span class="si">{</span><span class="n">pdone</span><span class="si">}</span><span class="s2">%&quot;</span>
-                            <span class="p">)</span>
-
-                <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
-                <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">res_vars</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data_vars</span><span class="p">:</span>
-                        <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">tres</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-                        <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span> <span class="ow">and</span> <span class="n">write_on_fly</span><span class="p">:</span>
-                            <span class="n">scount</span> <span class="o">+=</span> <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                        <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
-                <span class="k">del</span> <span class="n">tres</span>
-
-                <span class="k">if</span> <span class="n">write_on_fly</span><span class="p">:</span>
-                    <span class="n">wcount</span><span class="p">,</span> <span class="n">ftrs</span> <span class="o">=</span> <span class="n">_write_parts_on_fly</span><span class="p">(</span><span class="n">data_vars</span><span class="p">,</span> <span class="n">scount</span><span class="p">,</span> <span class="n">wcount</span><span class="p">)</span>
-                    <span class="n">wfutures</span> <span class="o">+=</span> <span class="n">ftrs</span>
-                    <span class="k">del</span> <span class="n">ftrs</span>
-        <span class="k">for</span> <span class="n">wf</span> <span class="ow">in</span> <span class="n">wfutures</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">await_result</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
-        <span class="k">del</span> <span class="n">wfutures</span>
-
-        <span class="k">if</span> <span class="n">pbar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Completed all </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s2"> chunks</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">vlevel</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-
-        <span class="c1"># if not iterative or algo.final_iteration:</span>
-        <span class="c1">#    algo.reset_chunk_store()</span>
-
-        <span class="k">if</span> <span class="n">ret_data</span> <span class="ow">or</span> <span class="n">write_from_ds</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">res_vars</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data_vars</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                        <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-                    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                        <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-
-            <span class="n">dvars</span> <span class="o">=</span> <span class="n">_red_dims</span><span class="p">(</span><span class="n">data_vars</span><span class="p">)</span>
-            <span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
-                <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>
-                <span class="n">data_vars</span><span class="o">=</span><span class="n">dvars</span><span class="p">,</span>
-            <span class="p">)</span>
-
-            <span class="k">if</span> <span class="n">write_from_ds</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">split_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">write_nc_file</span><span class="p">(</span>
-                        <span class="n">ds</span><span class="p">,</span> <span class="n">out_fpath</span><span class="p">,</span> <span class="n">nc_engine</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">nc_engine</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">vrb</span>
-                    <span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">wcount</span> <span class="o">=</span> <span class="mi">0</span>
-                    <span class="n">fcounter</span> <span class="o">=</span> <span class="mi">0</span>
-                    <span class="n">wfutures</span> <span class="o">=</span> <span class="p">[]</span>
-                    <span class="k">while</span> <span class="n">wcount</span> <span class="o">&lt;</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_states</span><span class="p">:</span>
-                        <span class="n">splits</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">split_size</span><span class="p">,</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="n">wcount</span><span class="p">)</span>
-                        <span class="n">dssub</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">isel</span><span class="p">({</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="nb">slice</span><span class="p">(</span><span class="n">wcount</span><span class="p">,</span> <span class="n">wcount</span> <span class="o">+</span> <span class="n">splits</span><span class="p">)})</span>
-
-                        <span class="n">fpath</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">fcounter</span><span class="si">:</span><span class="s2">06d</span><span class="si">}</span><span class="s2">.nc&quot;</span>
-                        <span class="n">future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
-                            <span class="n">write_nc_file</span><span class="p">,</span>
-                            <span class="n">dssub</span><span class="p">,</span>
-                            <span class="n">fpath</span><span class="p">,</span>
-                            <span class="n">nc_engine</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">nc_engine</span><span class="p">,</span>
-                            <span class="n">verbosity</span><span class="o">=</span><span class="n">vrb</span><span class="p">,</span>
-                        <span class="p">)</span>
-                        <span class="n">wfutures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
-                        <span class="k">del</span> <span class="n">dssub</span><span class="p">,</span> <span class="n">future</span>
-
-                        <span class="n">wcount</span> <span class="o">+=</span> <span class="n">splits</span>
-                        <span class="n">fcounter</span> <span class="o">+=</span> <span class="mi">1</span>
-
-                        <span class="k">if</span> <span class="n">wcount</span> <span class="o">&lt;</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="ow">and</span> <span class="n">split_mode</span> <span class="o">==</span> <span class="s2">&quot;input&quot;</span><span class="p">:</span>
-                            <span class="k">try</span><span class="p">:</span>
-                                <span class="n">split_size</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">gen_size</span><span class="p">)</span>
-                            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
-                                <span class="n">split_size</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="n">wcount</span>
-
-                    <span class="k">for</span> <span class="n">wf</span> <span class="ow">in</span> <span class="n">wfutures</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">await_result</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">ret_data</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ds</span></div>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;a single worker&quot;</span>
+        <span class="k">if</span> <span class="n">n_chunks_states</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">n_chunks_targets</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, for </span><span class="si">{</span><span class="n">n_chunks_states</span><span class="si">}</span><span class="s2"> states chunks&quot;</span>
+            <span class="k">if</span> <span class="n">n_chunks_targets</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; and </span><span class="si">{</span><span class="n">n_chunks_targets</span><span class="si">}</span><span class="s2"> targets chunks&quot;</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;.&quot;</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
 
 
 <div class="viewcode-block" id="Engine.run_calculation">
@@ -1539,6 +1216,443 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model &#39;</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; not initialized&quot;</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="Engine.new_chunk_results_manager">
+<a class="viewcode-back" href="../../../_foxes/engines/ThreadsEngine.html#foxes.core.Engine.new_chunk_results_manager">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">new_chunk_results_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a new ChunkResultsManager</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo: foxes.core.Algorithm</span>
+<span class="sd">            The algorithm object</span>
+<span class="sd">        kwargs: dict, optional</span>
+<span class="sd">            Additional keyword arguments</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        crm: foxes.core.engine.ChunkResultsManager</span>
+<span class="sd">            The chunk results manager</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        Derived engines should receive results from chunked calculations</span>
+<span class="sd">        through</span>
+<span class="sd">        </span>
+<span class="sd">        &gt;&gt;&gt; with engine.new_chunk_results_manager(...) as results_man:</span>
+<span class="sd">        &gt;&gt;&gt;    ...</span>
+<span class="sd">        &gt;&gt;&gt;    results_man.update(results, futures)</span>
+<span class="sd">        &gt;&gt;&gt;    ...</span>
+
+<span class="sd">        After exiting the with-block, the final results are available</span>
+<span class="sd">        through `results_man.results`.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ChunkResultsManager</span><span class="p">(</span><span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Engine.ChunkResultsManager">
+<a class="viewcode-back" href="../../../_foxes/engines/ThreadsEngine.html#foxes.core.Engine.ChunkResultsManager">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">ChunkResultsManager</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper class for results management during chunk calculations&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Engine.ChunkResultsManager.__init__">
+<a class="viewcode-back" href="../../../_foxes/core/Engine.ChunkResultsManager.__init__.html#foxes.core.Engine.ChunkResultsManager.__init__">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">algo</span><span class="p">,</span>
+            <span class="n">engine</span><span class="p">,</span>
+            <span class="n">goal_data</span><span class="p">,</span>
+            <span class="n">n_chunks_states</span><span class="p">,</span>
+            <span class="n">n_chunks_targets</span><span class="p">,</span>
+            <span class="n">out_vars</span><span class="p">,</span>
+            <span class="n">out_dims</span><span class="p">,</span>
+            <span class="n">coords</span><span class="p">,</span>
+            <span class="n">iterative</span><span class="p">,</span>
+            <span class="n">write_nc</span><span class="p">,</span>
+        <span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Constructor</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            algo: foxes.core.Algorithm</span>
+<span class="sd">                The algorithm object</span>
+<span class="sd">            engine: foxes.core.Engine</span>
+<span class="sd">                The engine object</span>
+<span class="sd">            goal_data: xarray.Dataset</span>
+<span class="sd">                The goal data</span>
+<span class="sd">            n_chunks_states: int</span>
+<span class="sd">                Number of state chunks</span>
+<span class="sd">            n_chunks_targets: int</span>
+<span class="sd">                Number of target chunks</span>
+<span class="sd">            out_vars: list</span>
+<span class="sd">                List of output variables</span>
+<span class="sd">            out_dims: list</span>
+<span class="sd">                List of output dimensions</span>
+<span class="sd">            coords: dict</span>
+<span class="sd">                Coordinates</span>
+<span class="sd">            iterative: bool</span>
+<span class="sd">                Whether the calculation is iterative</span>
+<span class="sd">            write_nc: dict or None</span>
+<span class="sd">                Write netCDF parameters</span>
+
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">algo</span> <span class="o">=</span> <span class="n">algo</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ci_states</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ci_targets</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scount</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wcount</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wfutures</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fcounter</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pdone</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pbar</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">res_vars</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">goal_data</span> <span class="o">=</span> <span class="n">goal_data</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">base_name</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ret_data</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gen_size</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_on_fly</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_from_ds</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_states</span> <span class="o">=</span> <span class="n">n_chunks_states</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_targets</span> <span class="o">=</span> <span class="n">n_chunks_targets</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_all</span> <span class="o">=</span> <span class="n">n_chunks_states</span> <span class="o">*</span> <span class="n">n_chunks_targets</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_dims</span> <span class="o">=</span> <span class="n">out_dims</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coords</span> <span class="o">=</span> <span class="n">coords</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_vars</span> <span class="o">=</span> <span class="n">out_vars</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iterative</span> <span class="o">=</span> <span class="n">iterative</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tres</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">verbosity</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="c1"># read parameters for file writing</span>
+            <span class="k">if</span> <span class="n">write_nc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">iterative</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">algo</span><span class="o">.</span><span class="n">final_iteration</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">=</span> <span class="n">get_output_path</span><span class="p">(</span><span class="n">write_nc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;out_dir&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">base_name</span> <span class="o">=</span> <span class="n">write_nc</span><span class="p">[</span><span class="s2">&quot;base_name&quot;</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ret_data</span> <span class="o">=</span> <span class="n">write_nc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ret_data&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">split_mode</span> <span class="o">=</span> <span class="n">write_nc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;split&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">out_fpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_name</span> <span class="o">+</span> <span class="s2">&quot;_*.nc&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_mode</span> <span class="o">==</span> <span class="s2">&quot;chunks&quot;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Writing results to &#39;</span><span class="si">{</span><span class="n">out_fpath</span><span class="si">}</span><span class="s2">&#39;, using split = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">split_mode</span><span class="si">}</span><span class="s2">, ret_data = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ret_data</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_mode</span> <span class="o">==</span> <span class="s2">&quot;input&quot;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">gen_size</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">gen_states_split_size</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen_size</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">split_mode</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_mode</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Invalid split mode &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">split_mode</span><span class="si">}</span><span class="s2">&#39; in &#39;write_nc&#39;, expected &#39;chunks&#39;, &#39;input&#39;, int or None&quot;</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">out_fpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_name</span> <span class="o">+</span> <span class="s2">&quot;.nc&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_mode</span> <span class="o">!=</span> <span class="s2">&quot;chunks&quot;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">write_on_fly</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ret_data</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                    <span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">write_from_ds</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_on_fly</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ret_data</span> <span class="o">=</span> <span class="n">write_nc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ret_data&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_from_ds</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Writing results to &#39;</span><span class="si">{</span><span class="n">out_fpath</span><span class="si">}</span><span class="s2">&#39;, using split = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">split_mode</span><span class="si">}</span><span class="s2">, on_fly = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">write_on_fly</span><span class="si">}</span><span class="s2">, ret_data = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ret_data</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">__entered</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+
+        <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__entered</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Enter called for already entered ChunkResultsManager&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__entered</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">get_start_calc_message</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_states</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_targets</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">has_progress_bar</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_all</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_red_dims</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_vars</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Helper function for reducing dimensions of data vars&quot;&quot;&quot;</span>
+            <span class="n">dvars</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data_vars</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="p">(</span>
+                    <span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TURBINE</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">n_turbines</span> <span class="o">&gt;</span> <span class="mi">1</span>
+                <span class="p">):</span>
+                    <span class="n">dvars</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,),</span> <span class="n">d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="p">(</span>
+                    <span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span> <span class="n">FC</span><span class="o">.</span><span class="n">TPOINT</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">goal_data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">TARGET</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_targets</span>
+                    <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">==</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_targets</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="p">):</span>
+                    <span class="n">dvars</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">,),</span> <span class="n">d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dvars</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">dvars</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_write_parts_on_fly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">futures</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Helper function for writing results to files on the fly&quot;&quot;&quot;</span>
+            <span class="n">vrb</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">wfutures</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">splits</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">split_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">wcount</span><span class="p">)</span>
+                <span class="k">while</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">wcount</span> <span class="o">&gt;</span> <span class="mi">0</span>
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">scount</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">wcount</span> <span class="o">&gt;=</span> <span class="n">splits</span>
+                <span class="p">):</span>
+                    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                                <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                            <span class="p">]</span>
+
+                    <span class="n">dvars</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][:</span><span class="n">splits</span><span class="p">])</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="p">}</span>
+                    <span class="n">dvars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_red_dims</span><span class="p">(</span><span class="n">dvars</span><span class="p">)</span>
+                    <span class="n">crds</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">d</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+                    <span class="n">crds</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">][</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">wcount</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">wcount</span> <span class="o">+</span> <span class="n">splits</span>
+                    <span class="p">]</span>
+                    <span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="n">crds</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="n">dvars</span><span class="p">)</span>
+                    <span class="k">del</span> <span class="n">dvars</span><span class="p">,</span> <span class="n">crds</span>
+
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scount</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">wcount</span> <span class="o">==</span> <span class="n">splits</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">splits</span><span class="p">:]]</span>
+
+                    <span class="n">fpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">fcounter</span><span class="si">:</span><span class="s2">06d</span><span class="si">}</span><span class="s2">.nc&quot;</span>
+                    <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">fpath</span><span class="p">)</span>
+                    <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">nc_engine</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">nc_engine</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">vrb</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">futures</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">futures</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">n_workers</span><span class="p">:</span>
+                        <span class="n">future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">write_nc_file</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                        <span class="n">wfutures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+                        <span class="k">del</span> <span class="n">future</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">write_nc_file</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                    <span class="k">del</span> <span class="n">ds</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">wcount</span> <span class="o">+=</span> <span class="n">splits</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">fcounter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">wcount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_mode</span> <span class="o">==</span> <span class="s2">&quot;input&quot;</span><span class="p">:</span>
+                            <span class="k">try</span><span class="p">:</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen_size</span><span class="p">)</span>
+                            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">wcount</span>
+                        <span class="n">splits</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">split_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">wcount</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">wfutures</span> <span class="o">+=</span> <span class="n">wfutures</span>
+
+<div class="viewcode-block" id="Engine.ChunkResultsManager.update">
+<a class="viewcode-back" href="../../../_foxes/core/Engine.ChunkResultsManager.update.html#foxes.core.Engine.ChunkResultsManager.update">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">futures</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Updates the chunk calculation progress, adds results to data_vars</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            results: dict</span>
+<span class="sd">                Dictionary of chunk results</span>
+<span class="sd">            futures: list or None</span>
+<span class="sd">                List of current futures for asynchronous writing</span>
+
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">__entered</span><span class="p">,</span> <span class="p">(</span>
+                <span class="s2">&quot;ChunkResultsManager: update_chunk_progress called without enter&quot;</span>
+            <span class="p">)</span>
+
+            <span class="n">chunk_key</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ci_states</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ci_targets</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">chunk_key</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                <span class="n">r</span><span class="p">,</span> <span class="n">cstore</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">chunk_key</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterative</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cstore</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">chunk_store</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">chunk_store</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">chunk_store</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
+
+                <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">res_vars</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">res_vars</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_vars</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">res_vars</span><span class="p">:</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dims</span><span class="p">,</span> <span class="p">[]]</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">goal_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">goal_data</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+                                <span class="p">)</span>
+
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_targets</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">res_vars</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">:</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">scount</span> <span class="o">+=</span> <span class="n">r</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">res_vars</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tres</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">tres</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">res_vars</span><span class="p">}</span>
+                        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">res_vars</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">tres</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ci_targets</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_targets</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+                            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">res_vars</span><span class="p">:</span>
+                                <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">:</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                        <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tres</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                                    <span class="p">)</span>
+                                    <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_on_fly</span><span class="p">:</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">scount</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                                    <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">tres</span> <span class="o">=</span> <span class="kc">None</span>
+
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_on_fly</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_write_parts_on_fly</span><span class="p">(</span><span class="n">futures</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pbar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">prints_progress</span><span class="p">:</span>
+                    <span class="n">pr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_all</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">pr</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdone</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">pdone</span> <span class="o">=</span> <span class="n">pr</span>
+                        <span class="nb">print</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Completed </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pdone</span><span class="si">}</span><span class="s2">%&quot;</span>
+                        <span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">ci_targets</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ci_targets</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_targets</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ci_targets</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">ci_states</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">chunk_key</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ci_states</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ci_targets</span><span class="p">)</span></div>
+
+
+        <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exit_args</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">__entered</span><span class="p">,</span> <span class="s2">&quot;ChunkResultsManager: exit called without enter&quot;</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_all</span><span class="p">,</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Incomplete chunk calculation: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks done&quot;</span>
+            <span class="p">)</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">ci_states</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_states</span><span class="p">,</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Incomplete chunk calculation: only </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ci_states</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_states</span><span class="si">}</span><span class="s2"> states chunks done&quot;</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">wfutures</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">wf</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wfutures</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">await_result</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pbar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Completed all </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+            <span class="n">vrb</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ret_data</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_from_ds</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">res_vars</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+                            <span class="p">)</span>
+                        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_red_dims</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span>
+                    <span class="n">coords</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>
+                    <span class="n">data_vars</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">,</span>
+                <span class="p">)</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_from_ds</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">fpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_name</span><span class="si">}</span><span class="s2">.nc&quot;</span>
+                        <span class="n">write_nc_file</span><span class="p">(</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span>
+                            <span class="n">fpath</span><span class="p">,</span>
+                            <span class="n">nc_engine</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">nc_engine</span><span class="p">,</span>
+                            <span class="n">verbosity</span><span class="o">=</span><span class="n">vrb</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">wcount</span> <span class="o">=</span> <span class="mi">0</span>
+                        <span class="n">fcounter</span> <span class="o">=</span> <span class="mi">0</span>
+                        <span class="n">wfutures</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="k">while</span> <span class="n">wcount</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">n_states</span><span class="p">:</span>
+                            <span class="n">splits</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">split_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="n">wcount</span><span class="p">)</span>
+                            <span class="n">dssub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span>
+                                <span class="p">{</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">:</span> <span class="nb">slice</span><span class="p">(</span><span class="n">wcount</span><span class="p">,</span> <span class="n">wcount</span> <span class="o">+</span> <span class="n">splits</span><span class="p">)}</span>
+                            <span class="p">)</span>
+
+                            <span class="n">fpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">fcounter</span><span class="si">:</span><span class="s2">06d</span><span class="si">}</span><span class="s2">.nc&quot;</span>
+                            <span class="n">future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+                                <span class="n">write_nc_file</span><span class="p">,</span>
+                                <span class="n">dssub</span><span class="p">,</span>
+                                <span class="n">fpath</span><span class="p">,</span>
+                                <span class="n">nc_engine</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">nc_engine</span><span class="p">,</span>
+                                <span class="n">verbosity</span><span class="o">=</span><span class="n">vrb</span><span class="p">,</span>
+                            <span class="p">)</span>
+                            <span class="n">wfutures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+                            <span class="k">del</span> <span class="n">dssub</span><span class="p">,</span> <span class="n">future</span>
+
+                            <span class="n">wcount</span> <span class="o">+=</span> <span class="n">splits</span>
+                            <span class="n">fcounter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                            <span class="k">if</span> <span class="p">(</span>
+                                <span class="n">wcount</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">n_states</span>
+                                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_mode</span> <span class="o">==</span> <span class="s2">&quot;input&quot;</span>
+                            <span class="p">):</span>
+                                <span class="k">try</span><span class="p">:</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen_size</span><span class="p">)</span>
+                                <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">n_states</span> <span class="o">-</span> <span class="n">wcount</span>
+                        <span class="k">for</span> <span class="n">wf</span> <span class="ow">in</span> <span class="n">wfutures</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">await_result</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
+
+            <span class="k">del</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ci_states</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ci_targets</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scount</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wcount</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wfutures</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fcounter</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">split_size</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pdone</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pbar</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">res_vars</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data_vars</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">goal_data</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">base_name</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ret_data</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">gen_size</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_on_fly</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_from_ds</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">out_dims</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">out_vars</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">iterative</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tres</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__entered</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+
 <div class="viewcode-block" id="Engine.new">
 <a class="viewcode-back" href="../../../_foxes/engines/ThreadsEngine.html#foxes.core.Engine.new">[docs]</a>
     <span class="nd">@classmethod</span>
@@ -1580,7 +1694,7 @@
 
 
 <div class="viewcode-block" id="get_engine">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.get_engine">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/get_engine.html#foxes.core.get_engine">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_engine</span><span class="p">(</span><span class="n">error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets the global calculation engine</span>
@@ -1624,7 +1738,7 @@
 
 
 <div class="viewcode-block" id="has_engine">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.has_engine">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/has_engine.html#foxes.core.has_engine">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">has_engine</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Flag that checks if engine has been set</span>
@@ -1642,7 +1756,7 @@
 
 
 <div class="viewcode-block" id="reset_engine">
-<a class="viewcode-back" href="../../../api_core.html#foxes.core.reset_engine">[docs]</a>
+<a class="viewcode-back" href="../../../_foxes/core/reset_engine.html#foxes.core.reset_engine">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">reset_engine</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Resets the global calculation engine</span>

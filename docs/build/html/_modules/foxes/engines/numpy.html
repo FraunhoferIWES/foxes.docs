@@ -17,7 +17,7 @@
     
     
       
-        <title>foxes.engines.numpy - foxes 1.6.1 documentation</title>
+        <title>foxes.engines.numpy - foxes 1.6.2 documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="foxes 1.6.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.6.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.6.1 documentation
+            foxes 1.6.2 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,12 +182,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="foxes 1.6.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
+    <a href="../../../index.html" title="foxes 1.6.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.6.1 documentation
+    foxes 1.6.2 documentation
   </label>
   
     <div class="md-nav__source">
@@ -535,13 +535,12 @@
 
 
 <h1>Source code for foxes.engines.numpy</h1><div class="highlight"><pre>
-<span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">foxes.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Engine</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">foxes.constants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">FC</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">.pool</span><span class="w"> </span><span class="kn">import</span> <span class="n">_run</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.pool</span><span class="w"> </span><span class="kn">import</span> <span class="n">_run_shared</span>
 
 
 <div class="viewcode-block" id="NumpyEngine">
@@ -632,6 +631,39 @@
         <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">]</span></div>
 
 
+<div class="viewcode-block" id="NumpyEngine.future_is_done">
+<a class="viewcode-back" href="../../../_foxes/engines/NumpyEngine.future_is_done.html#foxes.engines.NumpyEngine.future_is_done">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">future_is_done</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">future</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if a future is done</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        future: object</span>
+<span class="sd">            The future</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        is_done: bool</span>
+<span class="sd">            True if the future is done</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_start_calc_message</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_chunks_states</span><span class="p">,</span>
+        <span class="n">n_chunks_targets</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper function for start calculation message&quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Starting calculation using a loop over&quot;</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">n_chunks_states</span><span class="si">}</span><span class="s2"> states chunks&quot;</span>
+        <span class="k">if</span> <span class="n">n_chunks_targets</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; and </span><span class="si">{</span><span class="n">n_chunks_targets</span><span class="si">}</span><span class="s2"> targets chunks&quot;</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;.&quot;</span>
+        <span class="k">return</span> <span class="n">msg</span>
+
 <div class="viewcode-block" id="NumpyEngine.run_calculation">
 <a class="viewcode-back" href="../../../_foxes/engines/NumpyEngine.run_calculation.html#foxes.engines.NumpyEngine.run_calculation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run_calculation</span><span class="p">(</span>
@@ -714,11 +746,15 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">run_calculation</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_data</span><span class="p">,</span> <span class="n">farm_data</span><span class="p">,</span> <span class="n">point_data</span><span class="p">)</span>
 
         <span class="c1"># prepare:</span>
+        <span class="n">algo</span><span class="o">.</span><span class="n">reset_chunk_store</span><span class="p">(</span><span class="n">chunk_store</span><span class="p">)</span>
         <span class="n">n_states</span> <span class="o">=</span> <span class="n">model_data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span>
-        <span class="n">out_coords</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output_coords</span><span class="p">()</span>
+        <span class="n">out_dims</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output_coords</span><span class="p">()</span>
         <span class="n">coords</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">if</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">in</span> <span class="n">out_coords</span> <span class="ow">and</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">in</span> <span class="n">model_data</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">in</span> <span class="n">out_dims</span> <span class="ow">and</span> <span class="n">FC</span><span class="o">.</span><span class="n">STATE</span> <span class="ow">in</span> <span class="n">model_data</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
             <span class="n">coords</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span> <span class="o">=</span> <span class="n">model_data</span><span class="p">[</span><span class="n">FC</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">farm_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">farm_data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">()</span>
+        <span class="n">goal_data</span> <span class="o">=</span> <span class="n">farm_data</span> <span class="k">if</span> <span class="n">point_data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">point_data</span>
 
         <span class="c1"># DEBUG objec mem sizes:</span>
         <span class="c1"># from foxes.utils import print_mem</span>
@@ -737,92 +773,65 @@
             <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="c1"># prepare and submit chunks:</span>
-        <span class="n">n_chunks_all</span> <span class="o">=</span> <span class="n">n_chunks_states</span> <span class="o">*</span> <span class="n">n_chunks_targets</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: Looping over </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks&quot;</span><span class="p">)</span>
-        <span class="n">pbar</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_progress_bar</span> <span class="ow">and</span> <span class="n">n_chunks_all</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">n_chunks_all</span><span class="p">)</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">i0_states</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">pdone</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="k">for</span> <span class="n">chunki_states</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks_states</span><span class="p">):</span>
-            <span class="n">i1_states</span> <span class="o">=</span> <span class="n">i0_states</span> <span class="o">+</span> <span class="n">chunk_sizes_states</span><span class="p">[</span><span class="n">chunki_states</span><span class="p">]</span>
-            <span class="n">i0_targets</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">for</span> <span class="n">chunki_points</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks_targets</span><span class="p">):</span>
-                <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">)</span>
-                <span class="n">i1_targets</span> <span class="o">=</span> <span class="n">i0_targets</span> <span class="o">+</span> <span class="n">chunk_sizes_targets</span><span class="p">[</span><span class="n">chunki_points</span><span class="p">]</span>
-
-                <span class="c1"># get this chunk&#39;s data:</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_chunk_input_data</span><span class="p">(</span>
-                    <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
-                    <span class="n">model_data</span><span class="o">=</span><span class="n">model_data</span><span class="p">,</span>
-                    <span class="n">farm_data</span><span class="o">=</span><span class="n">farm_data</span><span class="p">,</span>
-                    <span class="n">point_data</span><span class="o">=</span><span class="n">point_data</span><span class="p">,</span>
-                    <span class="n">states_i0_i1</span><span class="o">=</span><span class="p">(</span><span class="n">i0_states</span><span class="p">,</span> <span class="n">i1_states</span><span class="p">),</span>
-                    <span class="n">targets_i0_i1</span><span class="o">=</span><span class="p">(</span><span class="n">i0_targets</span><span class="p">,</span> <span class="n">i1_targets</span><span class="p">),</span>
-                    <span class="n">out_vars</span><span class="o">=</span><span class="n">out_vars</span><span class="p">,</span>
-                    <span class="n">chunki_states</span><span class="o">=</span><span class="n">chunki_states</span><span class="p">,</span>
-                    <span class="n">chunki_points</span><span class="o">=</span><span class="n">chunki_points</span><span class="p">,</span>
-                    <span class="n">n_chunks_states</span><span class="o">=</span><span class="n">n_chunks_states</span><span class="p">,</span>
-                    <span class="n">n_chunks_points</span><span class="o">=</span><span class="n">n_chunks_targets</span><span class="p">,</span>
-                <span class="p">)</span>
-
-                <span class="c1"># submit model calculation:</span>
-                <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">)</span>
-                <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">_run</span><span class="p">(</span>
-                    <span class="n">algo</span><span class="p">,</span>
-                    <span class="n">model</span><span class="p">,</span>
-                    <span class="o">*</span><span class="n">data</span><span class="p">,</span>
-                    <span class="n">iterative</span><span class="o">=</span><span class="n">iterative</span><span class="p">,</span>
-                    <span class="n">chunk_store</span><span class="o">=</span><span class="n">chunk_store</span><span class="p">,</span>
-                    <span class="n">chunk_key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
-                    <span class="n">out_coords</span><span class="o">=</span><span class="n">out_coords</span><span class="p">,</span>
-                    <span class="n">write_nc</span><span class="o">=</span><span class="n">write_nc</span><span class="p">,</span>
-                    <span class="n">write_chunk_ani</span><span class="o">=</span><span class="n">write_chunk_ani</span><span class="p">,</span>
-                    <span class="o">**</span><span class="n">calc_pars</span><span class="p">,</span>
-                <span class="p">)</span>
-                <span class="c1"># chunk_store.update(results[key][1])</span>
-                <span class="k">del</span> <span class="n">data</span>
-
-                <span class="n">i0_targets</span> <span class="o">=</span> <span class="n">i1_targets</span>
-
-                <span class="k">if</span> <span class="n">pbar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">prints_progress</span><span class="p">:</span>
-                    <span class="n">pr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">chunki_states</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_chunks_all</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">pr</span> <span class="o">&gt;</span> <span class="n">pdone</span><span class="p">:</span>
-                        <span class="n">pdone</span> <span class="o">=</span> <span class="n">pr</span>
-                        <span class="nb">print</span><span class="p">(</span>
-                            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Completed </span><span class="si">{</span><span class="n">chunki_states</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">n_chunks_all</span><span class="si">}</span><span class="s2"> chunks, </span><span class="si">{</span><span class="n">pdone</span><span class="si">}</span><span class="s2">%&quot;</span>
-                        <span class="p">)</span>
-            <span class="n">i0_states</span> <span class="o">=</span> <span class="n">i1_states</span>
-
-        <span class="k">if</span> <span class="n">farm_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">farm_data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">()</span>
-        <span class="n">goal_data</span> <span class="o">=</span> <span class="n">farm_data</span> <span class="k">if</span> <span class="n">point_data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">point_data</span>
-        <span class="k">del</span> <span class="n">calc_pars</span><span class="p">,</span> <span class="n">farm_data</span><span class="p">,</span> <span class="n">point_data</span>
-
-        <span class="k">if</span> <span class="n">pbar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">prints_progress</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: Completed all </span><span class="si">{</span><span class="n">i1_states</span><span class="si">}</span><span class="s2"> states</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-
-        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine_results</span><span class="p">(</span>
-            <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
-            <span class="n">futures</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span>
-            <span class="n">model_data</span><span class="o">=</span><span class="n">model_data</span><span class="p">,</span>
-            <span class="n">out_vars</span><span class="o">=</span><span class="n">out_vars</span><span class="p">,</span>
-            <span class="n">out_coords</span><span class="o">=</span><span class="n">out_coords</span><span class="p">,</span>
+        <span class="c1"># start calculation:</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_chunk_results_manager</span><span class="p">(</span>
+            <span class="n">algo</span><span class="p">,</span>
+            <span class="n">goal_data</span><span class="o">=</span><span class="n">goal_data</span><span class="p">,</span>
             <span class="n">n_chunks_states</span><span class="o">=</span><span class="n">n_chunks_states</span><span class="p">,</span>
             <span class="n">n_chunks_targets</span><span class="o">=</span><span class="n">n_chunks_targets</span><span class="p">,</span>
-            <span class="n">goal_data</span><span class="o">=</span><span class="n">goal_data</span><span class="p">,</span>
+            <span class="n">out_vars</span><span class="o">=</span><span class="n">out_vars</span><span class="p">,</span>
+            <span class="n">out_dims</span><span class="o">=</span><span class="n">out_dims</span><span class="p">,</span>
+            <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>
             <span class="n">iterative</span><span class="o">=</span><span class="n">iterative</span><span class="p">,</span>
             <span class="n">write_nc</span><span class="o">=</span><span class="n">write_nc</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="p">)</span> <span class="k">as</span> <span class="n">results_mgr</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">i0_states</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">chunki_states</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks_states</span><span class="p">):</span>
+                <span class="n">i1_states</span> <span class="o">=</span> <span class="n">i0_states</span> <span class="o">+</span> <span class="n">chunk_sizes_states</span><span class="p">[</span><span class="n">chunki_states</span><span class="p">]</span>
+                <span class="n">i0_targets</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">chunki_points</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks_targets</span><span class="p">):</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">)</span>
+                    <span class="n">i1_targets</span> <span class="o">=</span> <span class="n">i0_targets</span> <span class="o">+</span> <span class="n">chunk_sizes_targets</span><span class="p">[</span><span class="n">chunki_points</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">out</span></div>
+                    <span class="c1"># get this chunk&#39;s data:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_chunk_input_data</span><span class="p">(</span>
+                        <span class="n">algo</span><span class="o">=</span><span class="n">algo</span><span class="p">,</span>
+                        <span class="n">model_data</span><span class="o">=</span><span class="n">model_data</span><span class="p">,</span>
+                        <span class="n">farm_data</span><span class="o">=</span><span class="n">farm_data</span><span class="p">,</span>
+                        <span class="n">point_data</span><span class="o">=</span><span class="n">point_data</span><span class="p">,</span>
+                        <span class="n">states_i0_i1</span><span class="o">=</span><span class="p">(</span><span class="n">i0_states</span><span class="p">,</span> <span class="n">i1_states</span><span class="p">),</span>
+                        <span class="n">targets_i0_i1</span><span class="o">=</span><span class="p">(</span><span class="n">i0_targets</span><span class="p">,</span> <span class="n">i1_targets</span><span class="p">),</span>
+                        <span class="n">out_vars</span><span class="o">=</span><span class="n">out_vars</span><span class="p">,</span>
+                        <span class="n">chunki_states</span><span class="o">=</span><span class="n">chunki_states</span><span class="p">,</span>
+                        <span class="n">chunki_points</span><span class="o">=</span><span class="n">chunki_points</span><span class="p">,</span>
+                        <span class="n">n_chunks_states</span><span class="o">=</span><span class="n">n_chunks_states</span><span class="p">,</span>
+                        <span class="n">n_chunks_points</span><span class="o">=</span><span class="n">n_chunks_targets</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+                    <span class="c1"># submit model calculation:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">chunki_states</span><span class="p">,</span> <span class="n">chunki_points</span><span class="p">)</span>
+                    <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">_run_shared</span><span class="p">(</span>
+                        <span class="n">algo</span><span class="p">,</span>
+                        <span class="n">model</span><span class="p">,</span>
+                        <span class="o">*</span><span class="n">data</span><span class="p">,</span>
+                        <span class="n">chunk_key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
+                        <span class="n">out_dims</span><span class="o">=</span><span class="n">out_dims</span><span class="p">,</span>
+                        <span class="n">write_nc</span><span class="o">=</span><span class="n">write_nc</span><span class="p">,</span>
+                        <span class="n">write_chunk_ani</span><span class="o">=</span><span class="n">write_chunk_ani</span><span class="p">,</span>
+                        <span class="o">**</span><span class="n">calc_pars</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="c1"># chunk_store.update(results[key][1])</span>
+                    <span class="k">del</span> <span class="n">data</span>
+
+                    <span class="c1"># progress update:</span>
+                    <span class="n">results_mgr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+                    <span class="n">i0_targets</span> <span class="o">=</span> <span class="n">i1_targets</span>
+                <span class="n">i0_states</span> <span class="o">=</span> <span class="n">i1_states</span>
+            <span class="k">del</span> <span class="n">calc_pars</span><span class="p">,</span> <span class="n">farm_data</span><span class="p">,</span> <span class="n">point_data</span><span class="p">,</span> <span class="n">results</span>
+
+        <span class="k">return</span> <span class="n">results_mgr</span><span class="o">.</span><span class="n">results</span></div>
 </div>
 
 </code></pre></div>

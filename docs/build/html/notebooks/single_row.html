@@ -21,7 +21,7 @@
     
     
       
-        <title>Single row of turbines - foxes 1.6.1 documentation</title>
+        <title>Single row of turbines - foxes 1.6.2 documentation</title>
       
     
     
@@ -79,7 +79,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="foxes 1.6.1 documentation" class="md-header__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
+    <a href="../index.html" title="foxes 1.6.2 documentation" class="md-header__button md-logo" aria-label="foxes 1.6.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -92,7 +92,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            foxes 1.6.1 documentation
+            foxes 1.6.2 documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -187,12 +187,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="foxes 1.6.1 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6.1 documentation" data-md-component="logo">
+    <a href="../index.html" title="foxes 1.6.2 documentation" class="md-nav__button md-logo" aria-label="foxes 1.6.2 documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
     </a>
-    foxes 1.6.1 documentation
+    foxes 1.6.2 documentation
   </label>
   
     <div class="md-nav__source">
@@ -1045,7 +1045,9 @@
 Selecting &#39;DefaultEngine(n_procs=16, chunk_size_states=None, chunk_size_points=None)&#39;
 DefaultEngine: Selecting engine &#39;single&#39;
 SingleChunkEngine: Calculating 1 states for 5 turbines
-SingleChunkEngine: Combining results from 1 chunks
+SingleChunkEngine: Starting calculation using a single worker.
+SingleChunkEngine: Completed all 1 chunks
+
 
 Farm results:
  &lt;xarray.Dataset&gt; Size: 1kB
@@ -1127,7 +1129,9 @@ state turbine
 <div class="highlight"><pre>
 DefaultEngine: Selecting engine &#39;single&#39;
 SingleChunkEngine: Calculating data at 8000 points for 1 states
-SingleChunkEngine: Combining results from 1 chunks
+SingleChunkEngine: Starting calculation using a single worker.
+SingleChunkEngine: Completed all 1 chunks
+
 
 Point results:
  &lt;xarray.Dataset&gt; Size: 512kB
@@ -1136,14 +1140,14 @@ Coordinates:
   * state    (state) int64 8B 0
 Dimensions without coordinates: point
 Data variables:
+    WD       (state, point) float64 64kB 270.0 270.0 270.0 ... 270.0 270.0 270.0
     RHO      (state, point) float64 64kB 1.225 1.225 1.225 ... 1.225 1.225 1.225
     WS       (state, point) float64 64kB 9.0 9.0 9.0 9.0 ... 8.916 8.916 8.916
     TI       (state, point) float64 64kB 0.12 0.12 0.12 0.12 ... 0.12 0.12 0.12
-    WD       (state, point) float64 64kB 270.0 270.0 270.0 ... 270.0 270.0 270.0
+    AMB_WD   (state, point) float64 64kB 270.0 270.0 270.0 ... 270.0 270.0 270.0
     AMB_RHO  (state, point) float64 64kB 1.225 1.225 1.225 ... 1.225 1.225 1.225
     AMB_WS   (state, point) float64 64kB 9.0 9.0 9.0 9.0 9.0 ... 9.0 9.0 9.0 9.0
     AMB_TI   (state, point) float64 64kB 0.12 0.12 0.12 0.12 ... 0.12 0.12 0.12
-    AMB_WD   (state, point) float64 64kB 270.0 270.0 270.0 ... 270.0 270.0 270.0
     weight   (state) float64 8B 1.0
 </pre></div></div>
 </div>
@@ -1173,7 +1177,7 @@ Data variables:
 <div class="highlight"><pre>
 DefaultEngine: Selecting engine &#39;process&#39;
 ProcessEngine: Calculating data at 42521 points for 1 states
-ProcessEngine: Computing 15 chunks using 15 workers
+ProcessEngine: Starting calculation using 15 workers, for 1 states chunks and 15 targets chunks.
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1181,7 +1185,7 @@ ProcessEngine: Computing 15 chunks using 15 workers
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-100%|████████████████████████████████████████████████████████████████████████████████████████| 15/15 [00:00&lt;00:00, 6426.41it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████| 15/15 [00:00&lt;00:00, 126.39it/s]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
